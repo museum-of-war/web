@@ -47,7 +47,6 @@ module.exports = {
         "300px": "300px",
         "350px": "350px",
         "400px": "400px",
-
         "500px": "500px",
         "screen5%": "5vh",
         "screen7%": "7vh",
