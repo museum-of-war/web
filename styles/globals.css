@@ -2,19 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@font-face {
+  font-family: "RockstarBlack";
+  src: local("RockstarBlack"),
+    url("/fonts/RockStar-Black.otf") format("truetype");
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@font-face {
+  font-family: "RockstarLight";
+  src: local("RockstarLight"),
+    url("/fonts/RockStar-Light.otf") format("truetype");
 }
 
-* {
-  box-sizing: border-box;
+@font-face {
+  font-family: "RockstarNarrowRegular";
+  src: local("RockstarNarrowRegular"),
+    url("/fonts/RockStar-NarrowRegular.otf") format("truetype");
+}
+
+.font-rblack {
+  font-family: RockstarBlack;
+}
+
+.font-rlight {
+  font-family: RockstarLight;
+}
+
+.font-rnarrow {
+  font-family: RockstarNarrowRegular;
 }
