@@ -16,7 +16,7 @@ const ContentMain = () => {
         )}
       </div>
       <div className="ml-10  mt-16 w-20% justify-between flex flex-col">
-        <p className = "">
+        <p className = "font-rlight">
           Ми не дамо викреслити жодного дня цього періоду зі сторінок світової
           історії.{" "}
         </p>

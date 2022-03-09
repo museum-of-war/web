@@ -4,6 +4,7 @@ import ContentMission from "./ContentMission";
 import ContentTop from "./ContentTop";
 import ContentWar from "./ContentWar";
 import ContentMain from "./ContentMain";
+import ContentMedia from "./ContentMedia";
 
 const Content = () => {
   return (
@@ -12,6 +13,8 @@ const Content = () => {
       <ContentMission/>
       <ContentWar />
     <ContentMain/>
+    <ContentMedia/>
+
       <ContentBottom />
     </>
   );
