@@ -2,12 +2,19 @@ import React from "react";
 
 const ContentTop = () => {
   return (
-    <div className="flex w-30%">
-      <img alt="Logo" src={"img/logo.png"} width="30%" />
-      <div className="flex flex-row font-rlight">
-        <div>An NFT-museum of the war of putin's russia against Ukraine</div>
-        <div className="text-sm	" style = {{color:'yellow'}}> NFT-музей війни путінської росії проти України. </div>
+    <div className="pl-10% pr-10% flex flex-row  w-screen100% justify-between items-center">
+      <div className="  w-45%">
+        <img alt="Logo" src={"img/logo.png"} className="w-90%" />
+        <div className="mt-10 relative flex flex-row font-rlight justify-between">
+          <p className=" w-45%	">
+            An NFT-museum of the war of putin's russia against Ukraine
+          </p>
+          <p className=" w-45%	">
+            NFT-музей війни путінської росії проти України.
+          </p>
+        </div>
       </div>
+      <img alt="Logo" src={"img/pd-header.png"} width="45%" />
     </div>
   );
 };
