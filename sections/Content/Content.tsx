@@ -1,13 +1,16 @@
 import React from "react";
 import ContentBottom from "./ContentBottom";
-import ContentMiddle from "./ContentMiddle";
+import ContentMission from "./ContentMission";
 import ContentTop from "./ContentTop";
+import ContentWar from "./ContentWar";
 
 const Content = () => {
   return (
     <>
       <ContentTop />
-      <ContentMiddle />
+      <ContentMission/>
+      <ContentWar />
+
       <ContentBottom />
     </>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import Blurb from "./Blurb";
 
-const ContentMiddle = () => {
+const ContentMission = () => {
   return (
     <div className ="pl-10% pr-10% flex flex-direction justify-between mt-20">
     <div className = "w-45%">
@@ -14,4 +14,4 @@ const ContentMiddle = () => {
   );
 };
 
-export default ContentMiddle;
+export default ContentMission;
