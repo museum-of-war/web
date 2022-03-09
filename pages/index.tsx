@@ -5,11 +5,11 @@ import Header from "../sections/Header/Header";
 
 const Home: NextPage = () => {
   return (
-    <>
+    <div className="text-carbon">
       <Header />
       <Content />
       <Footer />
-    </>
+    </div>
   );
 };
 
