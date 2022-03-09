@@ -1,10 +1,19 @@
 import React from "react";
-import Image from "next/image";
+import ConnectWalletButton from "../../components/ConnectWalletButton";
+import HeaderButton from "../../components/HeaderButton";
 
 const Header = () => {
   return (
-    <div className="flex flex-row w-screen">
-      <Image src={"/img/logo.png"} alt="Logo" width="100" height="40%" />
+    <div className="flex flex-row w-screen px-10% items-center mb-8% pt-2%">
+      <img
+        className="w-10% min-w-75px mr-30%"
+        src={"/img/logo.png"}
+        alt="Logo"
+      />
+      <HeaderButton label="Warline" onClick={() => {}} />
+      <HeaderButton label="About project" onClick={() => {}} />
+      <HeaderButton label="My tokens" onClick={() => {}} />
+      <ConnectWalletButton />
     </div>
   );
 };
