@@ -7,7 +7,7 @@ const ContentTop = () => {
         <img alt="Logo" src={"img/logo.png"} className="w-90%" />
         <div className="mt-10 relative flex flex-row font-rlight justify-between">
           <p className="w-45%">
-            {"An NFT-museum of the war of putin's russia against Ukraine"}
+            {"An NFT-museum of the war of putin's russia against Ukraine"}
           </p>
           <p className="w-45%">
             NFT-музей війни путінської росії проти України.

@@ -4,7 +4,7 @@ import SocialMediaButton from "../../components/SocialMediaButton";
 
 const Footer = () => {
   return (
-    <div className="flex flex-row px-10% font-rnarrow py-4% items-center">
+    <div className="flex flex-row px-10% font-rnarrow py-4% items-center justify-between">
       <p className="mr-50%">© 2022 Copyright</p>
       <HeaderAndFooterButton label="Privacy Policy" onClick={() => {}} />
       <HeaderAndFooterButton label="Terms" onClick={() => {}} />
