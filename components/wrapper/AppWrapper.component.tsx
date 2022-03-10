@@ -36,7 +36,7 @@ export const AppWrapper: React.FC<React.PropsWithChildren<{}>> = ({
   }, [provider]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen text-carbon">
       <Header
         signerAddress={signerAddress}
         handleConnect={handleConnect}
