@@ -4,7 +4,7 @@ import React from "react";
 const ExploreWarline = () => {
   const { push } = useRouter();
   return (
-    <div className="mt-10px">
+    <div className="desktop:mt-30px laptop:mt-25px tablet:mt-30px mobile:mt-30px">
       <div className="">
         <img alt="warline" src="/img/pd-exploreWarline.png" />
       </div>

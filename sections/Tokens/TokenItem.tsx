@@ -7,8 +7,8 @@ type TokenItemProps = {
 
 const TokenItem = ({ tokenData }: TokenItemProps) => {
   return (
-    <div className="mt-30px">
-      <div className="">
+    <div className="desktop:mt-50px laptop:mt-40px tablet:mt-30px mobile:mt-30px">
+      <div>
         <img alt="token" src={tokenData.imageUrl} />
       </div>
       <div className="flex flex-row align-center justify-between items-center">
