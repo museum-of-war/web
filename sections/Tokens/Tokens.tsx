@@ -1,5 +1,6 @@
 import { TokenDataType } from "@sections/types";
 import React from "react";
+import ExploreWarline from "./ExploreWarline";
 import TokenItem from "./TokenItem";
 
 const Tokens = () => {
@@ -19,14 +20,21 @@ const Tokens = () => {
         tablet:text-60px tablet:leading-70px 
         laptop:text-70px laptop:leading-80px
         desktop:text-80px desktop:leading-100px
-        font-rblack"
+        font-rblack mb-10px"
       >
         MY TOKENS
       </p>
-      <div className="grid grid-cols-4">
+      <div
+        className="grid 
+        desktop:grid-cols-4 desktop:gap-x-40px
+        laptop:grid-cols-3 laptop:gap-x-35px 
+        tablet:grid-cols-2 tablet:gap-x-30px 
+        mobile:grid-cols-1"
+      >
         {mockTokens.map((tokenData, idx) => (
           <TokenItem tokenData={tokenData} key={idx} />
         ))}
+        <ExploreWarline />
       </div>
     </div>
   );

@@ -7,13 +7,17 @@ type TokenItemProps = {
 
 const TokenItem = ({ tokenData }: TokenItemProps) => {
   return (
-    <div className="p-8%">
+    <div className="mt-30px">
       <div className="">
         <img alt="token" src={tokenData.imageUrl} />
       </div>
-      <div className="flex flex-row align-center justify-between">
-        <p className="font-rblack">{tokenData.timeOfEvent}</p>
-        <p className="font-rnarrow">{"Day " + tokenData.day}</p>
+      <div className="flex flex-row align-center justify-between items-center">
+        <p className="font-rblack mobile:text-36px tablet:text-36px laptop:text-30px desktop:text-36px">
+          {tokenData.timeOfEvent}
+        </p>
+        <p className="font-rnarrow mobile:text-30px tablet:text-26px laptop:text-30px">
+          {"Day " + tokenData.day}
+        </p>
       </div>
     </div>
   );
