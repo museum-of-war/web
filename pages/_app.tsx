@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { AppWrapper } from "@components/wrapper";
 
 function SafeHydrate({ children }: any) {
   return (
@@ -12,7 +13,9 @@ function SafeHydrate({ children }: any) {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SafeHydrate>
-      <Component {...pageProps} />
+      <AppWrapper>
+        <Component {...pageProps} />
+      </AppWrapper>
     </SafeHydrate>
   );
 }
