@@ -5,7 +5,7 @@ type HeaderButtonProps = {
   onClick: () => void;
 };
 
-const HeaderButton = ({ label, onClick }: HeaderButtonProps) => {
+const HeaderAndFooterButton = ({ label, onClick }: HeaderButtonProps) => {
   return (
     <div className="mr-4%">
       <button
@@ -18,4 +18,4 @@ const HeaderButton = ({ label, onClick }: HeaderButtonProps) => {
   );
 };
 
-export default HeaderButton;
+export default HeaderAndFooterButton;
