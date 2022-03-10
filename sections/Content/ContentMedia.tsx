@@ -17,13 +17,13 @@ const ContentMedia = () => {
     <p className="font-rblack text-90px uppercase">MEDIA</p>
     <div className="h-5px w-100% bg-carbon"></div>
     <div className="mt-20px relative flex flex-row font-rlight justify-between">
-        <p className="mr-3%	">
+        <p className="mr-5%	">
         {Media("To preserve the memory of the real events of that time, to spread truthful information among the digital community and in the world and to collect donations for the support of U...","New Your Times","dkddk")}
         </p>
-        <p className="mr-3%	">
+        <p className="mr-5%	">
         {Media("To preserve the memory of the real events of that time, to spread truthful information among the digital community and in the world and to collect donations for the support of U...","New Your Times","dkddk")}
         </p>
-        <p className=" mr-3%	">
+        <p className=" mr-5%	">
         {Media("To preserve the memory of the real events of that time, to spread truthful information among the digital community and in the world and to collect donations for the support of U...","New Your Times","dkddk")}
         </p>
         <p className="	">
