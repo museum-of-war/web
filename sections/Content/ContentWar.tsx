@@ -1,8 +1,10 @@
 import React from "react";
 import Blurb from "./Blurb";
-import { isMobile } from "react-device-detect";
+import { useViewPort } from "@hooks/useViewport";
 
 const ContentWar = () => {
+  const { isMobile } = useViewPort()
+
   return (
     <div className="pr-10% mobile:pl-10% tablet:pl-0 flex flex-direction mobile:mt-8% tablet:mt-20 mobile:mb-15% tablet:mb-100px">
       {!isMobile && (

@@ -1,8 +1,9 @@
+import { useViewPort } from "@hooks/useViewport";
 import React from "react";
-import { isMobile } from "react-device-detect";
 import Blurb from "./Blurb";
 
 const ContentMission = () => {
+  const { isMobile } = useViewPort();
   return (
     <>
       <div className="px-10% tablet:flex tablet:flex-row tablet:justify-between mt-20 tablet:mb-75px mobile:mb-8%">

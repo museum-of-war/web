@@ -1,7 +1,10 @@
+import { useViewPort } from "@hooks/useViewport";
 import React from "react";
-import { isMobile } from "react-device-detect";
 
 const ContentTop = () => {
+
+  const { isMobile } = useViewPort()
+
   console.log(isMobile);
   return isMobile ? (
     <div>

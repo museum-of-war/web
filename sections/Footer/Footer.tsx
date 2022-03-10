@@ -1,9 +1,10 @@
 import React from "react";
 import HeaderAndFooterButton from "../../components/HeaderAndFooterButton";
 import SocialMediaButton from "../../components/SocialMediaButton";
-import { isMobile } from "react-device-detect";
+import { useViewPort } from "@hooks/useViewport";
 
 const Footer = () => {
+  const { isMobile } = useViewPort()
   return isMobile ? (
     <div className="px-10% font-rnarrow py-10% flex flex-col">
       <div className="flex flex-row align-center mb-4%">

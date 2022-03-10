@@ -1,7 +1,7 @@
 import React from "react";
 import ConnectWalletButton from "../../components/ConnectWalletButton";
 import HeaderAndFooterButton from "../../components/HeaderAndFooterButton";
-import { isMobile } from "react-device-detect";
+import { useViewPort } from "@hooks/useViewport";
 
 type HeaderProps = {
   signerAddress: string;
@@ -14,6 +14,7 @@ const Header = ({
   handleConnect,
   handleDisconnect,
 }: HeaderProps) => {
+  const { isMobile } = useViewPort()
   return isMobile ? (
     <div className="flex flex-row w-screen px-10% items-center mb-8% pt-8% pb-15% justify-between">
       <img
