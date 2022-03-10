@@ -1,7 +1,8 @@
 import React from "react";
+// import Event from "./Event";
 
 const Warline = () => {
-  return <div>Warline</div>;
+  return <div></div>;
 };
 
 export default Warline;
