@@ -1,5 +1,4 @@
 import React from "react";
-import Blurb from "./Blurb";
 
 const Media = (summary: string, outlet: string, url: string) => {
   return (

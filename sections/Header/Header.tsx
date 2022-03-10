@@ -3,7 +3,17 @@ import ConnectWalletButton from "../../components/ConnectWalletButton";
 import HeaderAndFooterButton from "../../components/HeaderAndFooterButton";
 import { isMobile } from "react-device-detect";
 
-const Header = () => {
+type HeaderProps = {
+  signerAddress: string;
+  handleConnect: () => void;
+  handleDisconnect: () => void;
+};
+
+const Header = ({
+  signerAddress,
+  handleConnect,
+  handleDisconnect,
+}: HeaderProps) => {
   return isMobile ? (
     <div className="flex flex-row w-screen px-10% items-center mb-8% pt-8% pb-15% justify-between">
       <img
@@ -25,7 +35,13 @@ const Header = () => {
           <HeaderAndFooterButton label="Warline" onClick={() => {}} />
           <HeaderAndFooterButton label="About project" onClick={() => {}} />
           <HeaderAndFooterButton label="My tokens" onClick={() => {}} />
-          <ConnectWalletButton />
+          {
+            <ConnectWalletButton
+              signerAddress={signerAddress}
+              handleConnect={handleConnect}
+              handleDisconnect={handleDisconnect}
+            />
+          }
         </>
       )}
       {isMobile && <HeaderAndFooterButton label="Menu" onClick={() => {}} />}

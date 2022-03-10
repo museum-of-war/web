@@ -3,18 +3,10 @@ export const openInNewTab = (url: string) => {
   if (newWindow) newWindow.opener = null;
 };
 
-export function isMobile() {
-  const toMatch = [
-    /Android/i,
-    /webOS/i,
-    /iPhone/i,
-    /iPad/i,
-    /iPod/i,
-    /BlackBerry/i,
-    /Windows Phone/i,
-  ];
-
-  return toMatch.some((toMatchItem) => {
-    return navigator.userAgent.match(toMatchItem);
-  });
-}
+export const truncateAddress = (address: string) => {
+  return (
+    address.substring(0, 5) +
+    "..." +
+    address.substring(address.length - 4, address.length)
+  );
+};

@@ -7,14 +7,32 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "downlevelIteration": true,
+    "noUnusedLocals": true,
     "jsx": "preserve",
-    "incremental": true
+    "baseUrl": ".",
+    "incremental": true,
+    "paths": {
+      "@components/*": ["components/*"],
+      "@parameters/*": ["parameters/*"],
+      "@parameters": ["parameters"],
+      "@api": ["api"],
+      "@api/*": ["api/*"],
+      "@hooks/*": ["hooks/*"],
+      "@services/*": ["services/*"],
+      "@utils/*": ["utils/*"],
+      "@styles": ["styles"],
+      "@store": ["store"],
+      "@store/*": ["store/*"],
+      "@sections/*": ["sections/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_error.js"],
   "exclude": ["node_modules"]
 }

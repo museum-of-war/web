@@ -9,7 +9,7 @@ type SocialMediaButtonProps = {
 
 const SocialMediaButton = ({ twitter, instagram }: SocialMediaButtonProps) => {
   return (
-    <div className="mobile:w-20% tablet:w-4% mobile:mr-6% tablet:mr-2%">
+    <div className="mobile:w-20% tablet:w-4% mobile:mr-6% tablet:mr-2% tablet:min-w-50px">
       <button
         onClick={
           twitter
