@@ -1,6 +1,6 @@
 import React from "react";
 import ConnectWalletButton from "../../components/ConnectWalletButton";
-import HeaderButton from "../../components/HeaderButton";
+import HeaderAndFooterButton from "../../components/HeaderAndFooterButton";
 
 const Header = () => {
   return (
@@ -10,9 +10,9 @@ const Header = () => {
         src={"/img/logo.png"}
         alt="Logo"
       />
-      <HeaderButton label="Warline" onClick={() => {}} />
-      <HeaderButton label="About project" onClick={() => {}} />
-      <HeaderButton label="My tokens" onClick={() => {}} />
+      <HeaderAndFooterButton label="Warline" onClick={() => {}} />
+      <HeaderAndFooterButton label="About project" onClick={() => {}} />
+      <HeaderAndFooterButton label="My tokens" onClick={() => {}} />
       <ConnectWalletButton />
     </div>
   );

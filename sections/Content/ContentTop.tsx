@@ -9,7 +9,7 @@ const ContentTop = () => {
           <p className=" w-45%	">
             An NFT-museum of the war of putin's russia against Ukraine
           </p>
-          <p className=" w-45%	">
+          <p className="w-45%">
             NFT-музей війни путінської росії проти України.
           </p>
         </div>
