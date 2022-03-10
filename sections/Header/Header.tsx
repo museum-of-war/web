@@ -2,6 +2,7 @@ import React from "react";
 import ConnectWalletButton from "../../components/ConnectWalletButton";
 import HeaderAndFooterButton from "../../components/HeaderAndFooterButton";
 import { useViewPort } from "@hooks/useViewport";
+import { useAppRouter } from "@hooks/useAppRouter";
 
 type HeaderProps = {
   signerAddress: string;
@@ -15,6 +16,7 @@ const Header = ({
   handleDisconnect,
 }: HeaderProps) => {
   const { isMobile } = useViewPort()
+  const { push, route } = useAppRouter();
   return isMobile ? (
     <div className="flex flex-row w-screen px-10% items-center mb-8% pt-8% pb-15% justify-between">
       <img
@@ -33,9 +35,27 @@ const Header = ({
       />
       {!isMobile && (
         <>
-          <HeaderAndFooterButton label="Warline" onClick={() => {}} />
-          <HeaderAndFooterButton label="About project" onClick={() => {}} />
-          <HeaderAndFooterButton label="My tokens" onClick={() => {}} />
+          <HeaderAndFooterButton
+            label="Warline"
+            onClick={() => {
+              push("/warline");
+            }}
+            underlined={route === "/warline"}
+          />
+          <HeaderAndFooterButton
+            label="About project"
+            onClick={() => {
+              push("/");
+            }}
+            underlined={route === "/"}
+          />
+          <HeaderAndFooterButton
+            label="My tokens"
+            onClick={() => {
+              push("/tokens");
+            }}
+            underlined={route === "/tokens"}
+          />
           {
             <ConnectWalletButton
               signerAddress={signerAddress}

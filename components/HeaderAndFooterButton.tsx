@@ -1,13 +1,18 @@
 import React from "react";
 
-type HeaderButtonProps = {
+type HeaderAndFooterButtonProps = {
   label: string;
   onClick: () => void;
+  underlined?: boolean;
 };
 
-const HeaderAndFooterButton = ({ label, onClick }: HeaderButtonProps) => {
+const HeaderAndFooterButton = ({
+  label,
+  onClick,
+  underlined,
+}: HeaderAndFooterButtonProps) => {
   return (
-    <div className="mr-4%">
+    <div className={`mr-4% ${underlined && "border-b-4"} pb-5px `}>
       <button
         className="font-rblack mobile:text-12px laptop:text-14px desktop:text-16px"
         onClick={onClick}
