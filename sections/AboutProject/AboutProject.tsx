@@ -5,7 +5,7 @@ import ContentWar from "./ContentWar";
 import ContentMain from "./ContentMain";
 import ContentMedia from "./ContentMedia";
 
-const Content = () => {
+const AboutProject = () => {
   return (
     <div>
       <ContentTop />
@@ -17,4 +17,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default AboutProject;
