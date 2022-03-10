@@ -5,8 +5,8 @@ import { isMobile } from "react-device-detect";
 
 const Footer = () => {
   return isMobile ? (
-    <div className="px-10% font-rnarrow py-6%">
-      <div className="flex flex-row mb-4%">
+    <div className="px-10% font-rnarrow py-10% flex flex-col">
+      <div className="flex flex-row align-center mb-4%">
         <SocialMediaButton twitter />
         <SocialMediaButton instagram />
       </div>
@@ -14,7 +14,7 @@ const Footer = () => {
         <HeaderAndFooterButton label="Privacy Policy" onClick={() => {}} />
         <HeaderAndFooterButton label="Terms" onClick={() => {}} />
       </div>
-      <p className="mr-50%">© 2022 Copyright</p>
+      <p>© 2022 Copyright</p>
     </div>
   ) : (
     <div className="flex flex-row px-10% font-rnarrow py-4% items-center justify-between">
