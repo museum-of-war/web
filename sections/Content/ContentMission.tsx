@@ -3,7 +3,7 @@ import Blurb from "./Blurb";
 
 const ContentMission = () => {
   return (
-    <div className="pl-10% pr-10% flex flex-direction justify-between mt-20">
+    <div className="px-10% flex flex-direction justify-between mt-20 mb-75px">
       <div className="w-45%">
         <Blurb
           header="MISSION"
