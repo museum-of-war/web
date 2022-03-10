@@ -1,27 +1,24 @@
 import React from "react";
 
-type PropsBlurb = {
-  imageUrl: string;
-  time: string;
-  description: string;
-  tokenId: string;
-  username:string;
+type PropsEvent = {
+  eventData: EventType;
 };
 
-const Event = ({ imageUrl, time, description,tokenId,username }: PropsBlurb) => {
+const Event = ({ eventData }: PropsEvent) => {
   return (
     <div>
-      <p className="font-rblack tablet:text-5vw mobile:text-12vw mobile:leading-12vw tablet:leading-5.5vw uppercase">
-        {header}
-      </p>
-      <div className="h-5px w-100% bg-carbon"></div>
-      <div className="pt-20px relative tablet:flex tablet:flex-row font-rlight tablet:justify-between">
-        <p className="pt-10 tablet:w-45% mobile:text-12px tablet:text-14px laptop:text-16px mobile:mb-6%">
-          {english}
-        </p>
-        <p className="tablet:w-45% mobile:text-12px tablet:text-14px laptop:text-16px">
-          {ukrainian}
-        </p>
+      <div className="flex flex-row items-center justify-between ">
+        <p className="font-rblack text-32px">{eventData.time}</p>
+        <p className="font-rlight">#000{eventData.tokenId}</p>
+      </div>
+      <p className="font-rnarrow pt-15px"> {eventData.description}</p>
+      <div className="flex flex-row items-center justify-between pt-15px">
+        <p className="font-rlight ">{eventData.username}</p>
+        <img
+          alt="Logo"
+          src={"img/warline-TwitterLogo.png"}
+          className="w-50px"
+        />
       </div>
     </div>
   );
