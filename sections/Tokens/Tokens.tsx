@@ -11,7 +11,7 @@ const Tokens = () => {
     { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
     { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
   ];
-  console.log("hey1");
+
   return (
     <div className="px-10%">
       <p

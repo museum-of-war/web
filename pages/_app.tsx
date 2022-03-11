@@ -13,9 +13,7 @@ function SafeHydrate({ children }: any) {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SafeHydrate>
-      <AppWrapper>
-        <Component {...pageProps} />
-      </AppWrapper>
+      <AppWrapper Child={(props) => <Component {...pageProps} {...props} />} />
     </SafeHydrate>
   );
 }

@@ -4,10 +4,17 @@ import Header from "@sections/Header/Header";
 import { useEffect, useState } from "react";
 // import { configureAxios } from "@services/axios";
 // import { initialiseCachedProvider } from "auth/provider";
+export interface SharedProps {
+  signerAddress: string;
+  handleConnect: () => void;
+  handleDisconnect: () => void;
+}
 
-export const AppWrapper: React.FC<React.PropsWithChildren<{}>> = ({
-  children,
-}) => {
+interface WrapperProps {
+  Child: React.FC<SharedProps>;
+}
+
+export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
   // useEffect(() => {
   //   configureAxios();
   //   initialiseCachedProvider();
@@ -45,8 +52,16 @@ export const AppWrapper: React.FC<React.PropsWithChildren<{}>> = ({
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
       />
-      <div className={`${menuOpen && "blur-sm h-screen80% overflow-y-scroll"}`}>
-        {children}
+      <div
+        className={`${
+          menuOpen && "blur-sm h-screen80% overflow-y-scroll relative"
+        }`}
+      >
+        <Child
+          signerAddress={signerAddress}
+          handleConnect={handleConnect}
+          handleDisconnect={handleDisconnect}
+        />
         <Footer />
       </div>
     </div>

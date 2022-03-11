@@ -23,7 +23,7 @@ const Day = ({ dayData }: PropsDay) => {
       </div>
       <div className=" w-100%">
         {dayData.events.map((eventData, idx) => (
-          <Event eventData={eventData} />
+          <Event eventData={eventData} key={idx} />
         ))}
       </div>
     </div>
@@ -41,7 +41,7 @@ const Day = ({ dayData }: PropsDay) => {
       </div>
       <div className=" w-100%">
         {dayData.events.map((eventData, idx) => (
-          <Event eventData={eventData} />
+          <Event eventData={eventData} key={idx} />
         ))}
       </div>
     </div>
@@ -57,7 +57,7 @@ const Day = ({ dayData }: PropsDay) => {
       </div>
       <div className="ml-5% w-70%">
         {dayData.events.map((eventData, idx) => (
-          <Event eventData={eventData} />
+          <Event eventData={eventData} key={idx} />
         ))}
       </div>
     </div>

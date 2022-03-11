@@ -1,17 +1,25 @@
 import React from "react";
 import ContentMission from "./ContentMission";
-import ContentTop from "./ContentTop";
+import ContentTop from "./ContentTop/ContentTop";
 import ContentWar from "./ContentWar";
 import ContentMain from "./ContentMain";
 import ContentMedia from "./ContentMedia";
 
-const AboutProject = () => {
+type AboutProjectProps = {
+  signerAddress: string;
+  handleConnect: () => void;
+};
+
+const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
   return (
     <div>
-      <ContentTop />
+      <ContentTop signerAddress={signerAddress} handleConnect={handleConnect} />
       <ContentMission />
       <ContentWar />
-      <ContentMain />
+      <ContentMain
+        signerAddress={signerAddress}
+        handleConnect={handleConnect}
+      />
       <ContentMedia />
     </div>
   );
