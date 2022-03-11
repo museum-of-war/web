@@ -18,13 +18,14 @@ const ContentTopConnected = () => {
         </div>
       </div>
       <div>
-        <video
+        <img alt="header" src={"img/pd-header.png"} className="w-full mb-15%" />
+        {/* <video
           loop
           autoPlay
           muted
           src={"vid/pd-header.mp4"}
           className="w-full mb-15%"
-        />
+        /> */}
       </div>
     </div>
   ) : (
@@ -41,7 +42,8 @@ const ContentTopConnected = () => {
             </p>
           </div>
         </div>
-        <video loop autoPlay muted src={"vid/pd-header.mp4"} width="45%" />
+        <img alt="header" src={"img/pd-header.png"} width="45%" />
+        {/* <video loop autoPlay muted src={"vid/pd-header.mp4"} width="45%" /> */}
       </div>
       <PoweredByFrame />
     </div>
