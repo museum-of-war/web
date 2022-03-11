@@ -12,7 +12,7 @@ const ContentMain = () => {
           We will never let any single day of this period disappear from the
           ledger of world history.
         </p>
-        <div className="flex flex-row mb-8% -ml-10%">
+        <div className="flex flex-row mb-8% -ml-10% px-10%">
           <img
             className="w-15% mr-10% -mt-10px h-100%"
             alt="dots"
@@ -28,15 +28,20 @@ const ContentMain = () => {
           english="will be created in chronological order, according to the events so the true history will be saved and cherished. And artists will depict how the war is perceived by the peaceful population of sovereign Ukraine — from its full outbreak to the moment of Ukrainian victory celebration. "
           ukrainian="NFT створюватимуться в хронологічній послідовності. Таким чином буде збережно виключно коректний перебіг подій. Художники відображатимуть військові події, пережиті мирним населенням суверенної України — від повних заперечень війни і до моменту святкування української перемоги."
         />
-        <div className="mt-8%">
-          <Blurb
-            header={"TEAM AND PARTNERS"}
-            english="Ukrainian NFT artists community in collaboration with Ministry of digital trasformation of Ukraine"
-            ukrainian="Спільнота українських NFT художників у співпраці з Міністерством цифрової трансформації України"
-          />
-        </div>
       </div>
       <ConnectYourWalletChronology />
+      <div className="mt-8% px-10%">
+        <Blurb
+          header={"TEAM AND PARTNERS"}
+          english="Ukrainian NFT artists community in collaboration with Ministry of digital trasformation of Ukraine"
+          ukrainian="Спільнота українських NFT художників у співпраці з Міністерством цифрової трансформації України"
+        />
+        <img
+          alt="partners"
+          src={"img/pd-partners.png"}
+          className="mb-8% mt-8%"
+        />
+      </div>
     </div>
   ) : (
     <div className="mt-20">
@@ -66,6 +71,11 @@ const ContentMain = () => {
           header={"TEAM AND PARTNERS"}
           english="Ukrainian NFT artists community in collaboration with Ministry of digital trasformation of Ukraine"
           ukrainian="Спільнота українських NFT художників у співпраці з Міністерством цифрової трансформації України"
+        />
+        <img
+          alt="partners"
+          src={"img/pd-partners.png"}
+          className="mb-8% mobile:mt-8% tablet:mt-0"
         />
       </div>
     </div>
