@@ -1,5 +1,5 @@
 import { DayType } from "@sections/types";
-import React from "react";
+import React, { useState } from "react";
 import Day from "./Day";
 
 import SupportBanner from "./SupportBanner";
@@ -54,11 +54,17 @@ const daysMock: Array<DayType> = [
 ];
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
+  const [showPopup, setShowPopup] = useState<boolean>(false);
   return isMobile ? (
     <div className="">
       <div className="px-10%">
         {daysMock.map((dayData, idx) => (
-          <Day dayData={dayData} key={idx} />
+          <Day
+            key={idx}
+            dayData={dayData}
+            showPopup={showPopup}
+            setShowPopup={setShowPopup}
+          />
         ))}
       </div>
       <div className=" ">
@@ -69,7 +75,12 @@ const Warline = () => {
     <div className="">
       <div className="px-10%">
         {daysMock.map((dayData, idx) => (
-          <Day dayData={dayData} key={idx} />
+          <Day
+            key={idx}
+            dayData={dayData}
+            showPopup={showPopup}
+            setShowPopup={setShowPopup}
+          />
         ))}
       </div>
       <div className=" ">
@@ -79,7 +90,12 @@ const Warline = () => {
   ) : (
     <div className="px-10%">
       {daysMock.map((dayData, idx) => (
-        <Day dayData={dayData} key={idx} />
+        <Day
+          key={idx}
+          dayData={dayData}
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
+        />
       ))}
 
       <div className="ml-33% ">

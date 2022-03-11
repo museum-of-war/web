@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
 import Popup from "./Popup";
@@ -7,11 +7,18 @@ type PropsEvent = {
   eventData: EventType;
   dayNo: number;
   date: string;
+  showPopup: boolean;
+  setShowPopup: (arg: boolean) => void;
 };
 
-const Event = ({ eventData, dayNo, date }: PropsEvent) => {
+const Event = ({
+  eventData,
+  dayNo,
+  date,
+  showPopup,
+  setShowPopup,
+}: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
-  const [showPopup, setShowPopup] = useState<boolean>(false);
 
   return isMobile ? (
     <div className="flex flex-col items-top mb-60px">
@@ -34,12 +41,22 @@ const Event = ({ eventData, dayNo, date }: PropsEvent) => {
             />
           </div>
         </div>
-        <p onClick={() => setShowPopup(true)} className="font-rblack mt-15px ">
-          See Details
-        </p>
+        <div>
+          <button
+            onClick={() => setShowPopup(true)}
+            className="font-rblack mt-15px "
+          >
+            See Details
+          </button>
+        </div>
       </div>
       {showPopup ? (
-        <Popup eventData={eventData} dayNo={dayNo} date={date} />
+        <Popup
+          eventData={eventData}
+          dayNo={dayNo}
+          date={date}
+          setShowPopup={setShowPopup}
+        />
       ) : (
         <></>
       )}
@@ -69,12 +86,19 @@ const Event = ({ eventData, dayNo, date }: PropsEvent) => {
             />
           </div>
         </div>
-        <p onClick={() => setShowPopup(true)} className="font-rblack ">
-          See Details
-        </p>
+        <div>
+          <button onClick={() => setShowPopup(true)} className="font-rblack ">
+            See Details
+          </button>
+        </div>
       </div>
       {showPopup ? (
-        <Popup eventData={eventData} dayNo={dayNo} date={date} />
+        <Popup
+          eventData={eventData}
+          dayNo={dayNo}
+          date={date}
+          setShowPopup={setShowPopup}
+        />
       ) : (
         <></>
       )}
@@ -104,12 +128,19 @@ const Event = ({ eventData, dayNo, date }: PropsEvent) => {
             />
           </div>
         </div>
-        <p onClick={() => setShowPopup(true)} className="font-rblack ">
-          See Details
-        </p>
+        <div>
+          <button onClick={() => setShowPopup(true)} className="font-rblack ">
+            See Details
+          </button>
+        </div>
       </div>
       {showPopup ? (
-        <Popup eventData={eventData} dayNo={dayNo} date={date} />
+        <Popup
+          eventData={eventData}
+          dayNo={dayNo}
+          date={date}
+          setShowPopup={setShowPopup}
+        />
       ) : (
         <></>
       )}

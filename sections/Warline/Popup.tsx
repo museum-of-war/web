@@ -7,9 +7,10 @@ type PropsPopup = {
   eventData: EventType;
   dayNo: number;
   date: string;
+  setShowPopup: (arg: boolean) => void;
 };
 
-const Popup = ({ eventData, dayNo, date }: PropsPopup) => {
+const Popup = ({ eventData, dayNo, date, setShowPopup }: PropsPopup) => {
   const { isMobile, isTablet } = useViewPort();
 
   return isMobile ? (
@@ -38,8 +39,13 @@ const Popup = ({ eventData, dayNo, date }: PropsPopup) => {
     </div>
   ) : isTablet ? (
     <div>
-      <div className="absolute z-10 w-screen90% min-h-screen90% bg-white top-5% left-5%  flex flex-row px-7% py-10%	">
-        <VscChromeClose size={25} className="absolute right-20px top-20px" />
+      <div className="fixed z-10 w-screen90% min-h-screen90% bg-white top-5% left-5% flex flex-row px-7% py-10%	">
+        <button
+          className="absolute right-20px top-20px"
+          onClick={() => setShowPopup(false)}
+        >
+          <VscChromeClose size={25} />
+        </button>
         <div className="w-100%">
           <div className="flex flex-row items-center justify-between ">
             <p className="font-rblack leading-32px text-32px">
@@ -78,24 +84,29 @@ const Popup = ({ eventData, dayNo, date }: PropsPopup) => {
           </div>
           <p className="font-rlight text-24px mt-8%">Description</p>
           <p className="pt-2% font-rnarrow text-18px">
-            To preserve the memory of the real events of that time, to spread
+            To preserve the memory of the real events of that time, to spread
             truthful information among the digital community and in the world
-            and to collect donations for the support of Ukraine.
+            and to collect donations for the support of Ukraine.
           </p>
           <p className="pt-2% font-rnarrow text-18px">
-            Зберегти пам'ять про реальні події цього часу, розповсюдити правдиву
-            інформацію серед діджитал-спільноти та й у світі та зібрати
-            благодійні внески на підтримку України.
+            {
+              "Зберегти пам'ять про реальні події цього часу, розповсюдити правдиву інформацію серед діджитал-спільноти та й у світі та зібрати благодійні внески на підтримку України."
+            }
           </p>
         </div>
       </div>
 
-      <div className=" fixed w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70	"></div>
+      <div className="fixed w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70	"></div>
     </div>
   ) : (
     <div>
-      <div className="absolute z-10 w-screen90% min-h-screen90% bg-white top-5% left-5%  flex flex-row px-5% py-3%	">
-        <VscChromeClose size={25} className="absolute right-20px top-20px" />
+      <div className="fixed z-10 w-screen90% min-h-screen90% bg-white top-5% left-5%  flex flex-row px-5% py-3%	">
+        <button
+          className="absolute right-20px top-20px"
+          onClick={() => setShowPopup(false)}
+        >
+          <VscChromeClose size={25} />
+        </button>
         <div className="w-35%">
           <img
             alt="Logo"
@@ -137,19 +148,19 @@ const Popup = ({ eventData, dayNo, date }: PropsPopup) => {
           </div>
           <p className="font-rlight text-24px mt-5%">Description</p>
           <p className="pt-2% font-rnarrow text-18px">
-            To preserve the memory of the real events of that time, to spread
+            To preserve the memory of the real events of that time, to spread
             truthful information among the digital community and in the world
-            and to collect donations for the support of Ukraine.
+            and to collect donations for the support of Ukraine.
           </p>
           <p className="pt-2% font-rnarrow text-18px">
-            Зберегти пам'ять про реальні події цього часу, розповсюдити правдиву
-            інформацію серед діджитал-спільноти та й у світі та зібрати
-            благодійні внески на підтримку України.
+            {
+              "Зберегти пам'ять про реальні події цього часу, розповсюдити правдиву інформацію серед діджитал-спільноти та й у світі та зібрати благодійні внески на підтримку України."
+            }
           </p>
         </div>
       </div>
 
-      <div className=" fixed w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70	"></div>
+      <div className=" fixed w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70"></div>
     </div>
   );
 };

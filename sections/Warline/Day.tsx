@@ -1,13 +1,14 @@
 import { DayType } from "@sections/types";
-import React from "react";
 import Event from "./Event";
 import { useViewPort } from "@hooks/useViewport";
 
 type PropsDay = {
   dayData: DayType;
+  showPopup: boolean;
+  setShowPopup: (arg: boolean) => void;
 };
 
-const Day = ({ dayData }: PropsDay) => {
+const Day = ({ dayData, showPopup, setShowPopup }: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
   return isMobile ? (
     <div className="mb-40px flex flex-col">
@@ -24,10 +25,12 @@ const Day = ({ dayData }: PropsDay) => {
       <div className=" w-100%">
         {dayData.events.map((eventData, idx) => (
           <Event
+            key={idx}
             eventData={eventData}
             dayNo={dayData.dayNo}
             date={dayData.date}
-            key={idx}
+            showPopup={showPopup}
+            setShowPopup={setShowPopup}
           />
         ))}
       </div>
@@ -47,10 +50,12 @@ const Day = ({ dayData }: PropsDay) => {
       <div className=" w-100%">
         {dayData.events.map((eventData, idx) => (
           <Event
+            key={idx}
             eventData={eventData}
             dayNo={dayData.dayNo}
             date={dayData.date}
-            key={idx}
+            showPopup={showPopup}
+            setShowPopup={setShowPopup}
           />
         ))}
       </div>
@@ -68,10 +73,12 @@ const Day = ({ dayData }: PropsDay) => {
       <div className="ml-5% w-70%">
         {dayData.events.map((eventData, idx) => (
           <Event
+            key={idx}
             eventData={eventData}
             dayNo={dayData.dayNo}
             date={dayData.date}
-            key={idx}
+            showPopup={showPopup}
+            setShowPopup={setShowPopup}
           />
         ))}
       </div>
