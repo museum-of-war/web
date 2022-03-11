@@ -8,32 +8,89 @@ type HeaderProps = {
   signerAddress: string;
   handleConnect: () => void;
   handleDisconnect: () => void;
+  menuOpen: boolean;
+  setMenuOpen: (arg: boolean) => void;
 };
 
 const Header = ({
   signerAddress,
   handleConnect,
   handleDisconnect,
+  menuOpen,
+  setMenuOpen,
 }: HeaderProps) => {
-  const { isMobile } = useViewPort()
+  const { isMobile } = useViewPort();
   const { push, route } = useAppRouter();
   return isMobile ? (
-    <div className="flex flex-row w-screen px-10% items-center mb-8% pt-8% pb-15% justify-between">
-      <img
-        className="w-15% min-w-75px mr-15%"
-        src={"/img/pd-logoNoSymbol.png"}
-        alt="Logo"
-      />
-      {<HeaderAndFooterButton label="Menu" onClick={() => {}} />}
+    <div
+      className={`w-screen px-10% mb-8% pt-8% pb-15% ${
+        menuOpen && "border-b-4"
+      }`}
+    >
+      <div className="flex flex-row justify-between items-center">
+        <img
+          className="w-15% min-w-75px mr-15%"
+          src={"/img/pd-logoNoSymbol.png"}
+          alt="Logo"
+        />
+        {
+          <HeaderAndFooterButton
+            label={menuOpen ? "" : "Menu"}
+            menu
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
+        }
+      </div>
+      {menuOpen && (
+        <>
+          <div className="my-8%">
+            <HeaderAndFooterButton
+              label="Warline"
+              onClick={() => {
+                push("/warline");
+                setMenuOpen(false);
+              }}
+              underlined={route === "/warline"}
+            />
+          </div>
+          <div className="mb-8%">
+            <HeaderAndFooterButton
+              label="About project"
+              onClick={() => {
+                push("/");
+                setMenuOpen(false);
+              }}
+              underlined={route === "/"}
+            />
+          </div>
+          <div className="mb-8%">
+            <HeaderAndFooterButton
+              label="My tokens"
+              onClick={() => {
+                push("/tokens");
+                setMenuOpen(false);
+              }}
+              underlined={route === "/tokens"}
+            />
+          </div>
+          {
+            <ConnectWalletButton
+              signerAddress={signerAddress}
+              handleConnect={handleConnect}
+              handleDisconnect={handleDisconnect}
+            />
+          }
+        </>
+      )}
     </div>
   ) : (
-    <div className="flex flex-row w-screen pl-10% pr-13% items-center mb-8% pt-2% justify-between">
+    <div className="flex flex-row w-screen pl-10% pr-13% items-center mb-8% pt-2% justify-between z-20">
       <img
         className="w-15% min-w-75px laptop:mr-30% tablet:mr-25%"
         src={"/img/pd-logoNoSymbol.png"}
         alt="Logo"
       />
-      {!isMobile && (
+      {!menuOpen && (
         <>
           <HeaderAndFooterButton
             label="Warline"
@@ -65,7 +122,13 @@ const Header = ({
           }
         </>
       )}
-      {isMobile && <HeaderAndFooterButton label="Menu" onClick={() => {}} />}
+      {menuOpen && (
+        <HeaderAndFooterButton
+          label=""
+          menu
+          onClick={() => setMenuOpen(!menuOpen)}
+        />
+      )}
     </div>
   );
 };

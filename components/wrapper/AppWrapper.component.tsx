@@ -13,6 +13,7 @@ export const AppWrapper: React.FC<React.PropsWithChildren<{}>> = ({
   //   initialiseCachedProvider();
   // }, []);
   const [signerAddress, setSignerAddress] = useState<string>("");
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const { provider, connectWallet, disconnectWallet } = useWeb3Modal();
 
   const handleConnect = async () => {
@@ -41,9 +42,13 @@ export const AppWrapper: React.FC<React.PropsWithChildren<{}>> = ({
         signerAddress={signerAddress}
         handleConnect={handleConnect}
         handleDisconnect={handleDisconnect}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
       />
-      {children}
-      <Footer />
+      <div className={`${menuOpen && "blur-sm h-screen80% overflow-y-scroll"}`}>
+        {children}
+        <Footer />
+      </div>
     </div>
   );
 };
