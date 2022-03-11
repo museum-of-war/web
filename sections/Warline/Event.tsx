@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
+import Popup from "./Popup";
 
 type PropsEvent = {
   eventData: EventType;
+  dayNo: number;
+  date: string;
 };
 
-const Event = ({ eventData }: PropsEvent) => {
+const Event = ({ eventData, dayNo, date }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
+  const [showPopup, setShowPopup] = useState<boolean>(false);
 
   return isMobile ? (
     <div className="flex flex-col items-top mb-60px">
@@ -30,8 +34,15 @@ const Event = ({ eventData }: PropsEvent) => {
             />
           </div>
         </div>
-        <p className="font-rblack mt-15px ">See Details</p>
+        <p onClick={() => setShowPopup(true)} className="font-rblack mt-15px ">
+          See Details
+        </p>
       </div>
+      {showPopup ? (
+        <Popup eventData={eventData} dayNo={dayNo} date={date} />
+      ) : (
+        <></>
+      )}
     </div>
   ) : isTablet ? (
     <div className="flex flex-row items-top mb-60px">
@@ -58,8 +69,15 @@ const Event = ({ eventData }: PropsEvent) => {
             />
           </div>
         </div>
-        <p className="font-rblack ">See Details</p>
+        <p onClick={() => setShowPopup(true)} className="font-rblack ">
+          See Details
+        </p>
       </div>
+      {showPopup ? (
+        <Popup eventData={eventData} dayNo={dayNo} date={date} />
+      ) : (
+        <></>
+      )}
     </div>
   ) : (
     <div className="flex flex-row items-top mb-60px">
@@ -86,8 +104,15 @@ const Event = ({ eventData }: PropsEvent) => {
             />
           </div>
         </div>
-        <p className="font-rblack ">See Details</p>
+        <p onClick={() => setShowPopup(true)} className="font-rblack ">
+          See Details
+        </p>
       </div>
+      {showPopup ? (
+        <Popup eventData={eventData} dayNo={dayNo} date={date} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

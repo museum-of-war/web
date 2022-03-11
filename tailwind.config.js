@@ -18,6 +18,9 @@ module.exports = {
       light_gray: {
         DEFAULT: "#f1f6f6",
       },
+      beige: {
+        DEFAULT: "#E9E9E9",
+      },
     },
     extend: {
       height: (theme) => ({
@@ -97,6 +100,8 @@ module.exports = {
         "20em": "20em",
         "10vw": "15vw",
         "20vw": "20vw",
+        "25vw": "25vw",
+
         "30vw": "30vw",
         "40vw": "40vw",
         "50vw": "50vw",
@@ -238,6 +243,8 @@ module.exports = {
         "screen70%": "70vw",
         "screen80%": "80vw",
         "screen85%": "85vw",
+        "screen90%": "90vw",
+
         "screen100%": "100vw",
         "2vw": "2vw",
         "5vw": "5vw",
@@ -482,10 +489,37 @@ module.exports = {
 
       "85%": "85%",
       "300px": "300px",
+      "400px": "400px",
+
       "700px": "700px",
       "1000px": "1000px",
       "100vw": "100vw",
       "100%": "100%",
+    },
+    minHeight: {
+      "10px": "10px",
+      "50px": "50px",
+      "100px": "100px",
+      "screen/8": "12.5vh",
+      "screen16.5%": "16.5vh",
+      "screen10%": "10vh",
+      "screen15%": "15vh",
+      "screen20%": "20vh",
+      "screen25%": "25vh",
+      "screen30%": "30vh",
+      "screen40%": "40vh",
+      "screen58%": "58vh",
+      "screen63%": "63vh",
+      "screen71%": "71vh",
+      "screen80%": "80vh",
+      "screen90%": "90vh",
+      "screen100%": "100vh",
+      "10vw": "10vw",
+      "200px": "200px",
+      "screen100%": "100vh",
+      "10vw": "10vw",
+      "200px": "200px",
+      all: "calc(100% - 225px)",
     },
     maxHeight: {
       "10vw": "10vw",
@@ -493,6 +527,7 @@ module.exports = {
       "100px": "100px",
       "200px": "200px",
       "300px": "300px",
+      "400px": "400px",
     },
     lineHeight: {
       "0px": "0px",
