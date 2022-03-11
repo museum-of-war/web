@@ -12,6 +12,12 @@ module.exports = {
       white: {
         DEFAULT: "#ffffff",
       },
+      dark_gray: {
+        DEFAULT: "#6b7280",
+      },
+      light_gray: {
+        DEFAULT: "#f1f6f6",
+      },
     },
     extend: {
       height: (theme) => ({
@@ -37,6 +43,7 @@ module.exports = {
         "35px": "35px",
         "40px": "40px",
         "75px": "75px",
+        "90px": "90px",
         "100px": "100px",
         "125px": "125px",
         "150px": "150px",
@@ -310,7 +317,6 @@ module.exports = {
       "95px": "95px",
       "100px": "100px",
       "150px": "150px",
-
       "175px": "175px",
       "8.5em": "8.5em",
       q: "calc(50%)-100",

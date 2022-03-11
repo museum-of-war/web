@@ -15,7 +15,7 @@ const TokenItem = ({ tokenData }: TokenItemProps) => {
         <p className="font-rblack mobile:text-36px tablet:text-36px laptop:text-30px desktop:text-36px">
           {tokenData.timeOfEvent}
         </p>
-        <p className="font-rnarrow mobile:text-30px tablet:text-26px laptop:text-30px">
+        <p className="font-rlight mobile:text-30px tablet:text-26px laptop:text-30px">
           {"Day " + tokenData.day}
         </p>
       </div>
