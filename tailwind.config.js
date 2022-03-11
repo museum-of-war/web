@@ -96,6 +96,7 @@ module.exports = {
         "18em": "18em",
         "20em": "20em",
         "10vw": "15vw",
+        "20vw": "20vw",
         "29.21vw": "29.21vw",
         all: "calc(100vh - 225px)",
       }),
@@ -200,6 +201,7 @@ module.exports = {
         "8vw": "8vw",
         "10vw": "10vw",
         "15vw": "15vw",
+        "20vw": "20vw",
         "25vw": "25vw",
         "30vw": "30vw",
         "35vw": "35vw",
@@ -463,6 +465,7 @@ module.exports = {
       "7vh": "7vh",
     },
     lineHeight: {
+      "0px": "0px",
       "11px": "11px",
       "12px": "12px",
       "14px": "14px",
