@@ -54,17 +54,11 @@ const daysMock: Array<DayType> = [
 ];
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
-  const [showPopup, setShowPopup] = useState<boolean>(false);
   return isMobile ? (
     <div className="">
       <div className="px-10%">
         {daysMock.map((dayData, idx) => (
-          <Day
-            key={idx}
-            dayData={dayData}
-            showPopup={showPopup}
-            setShowPopup={setShowPopup}
-          />
+          <Day key={idx} dayData={dayData} />
         ))}
       </div>
       <div className=" ">
@@ -75,12 +69,7 @@ const Warline = () => {
     <div className="">
       <div className="px-10%">
         {daysMock.map((dayData, idx) => (
-          <Day
-            key={idx}
-            dayData={dayData}
-            showPopup={showPopup}
-            setShowPopup={setShowPopup}
-          />
+          <Day key={idx} dayData={dayData} />
         ))}
       </div>
       <div className=" ">
@@ -90,12 +79,7 @@ const Warline = () => {
   ) : (
     <div className="px-10%">
       {daysMock.map((dayData, idx) => (
-        <Day
-          key={idx}
-          dayData={dayData}
-          showPopup={showPopup}
-          setShowPopup={setShowPopup}
-        />
+        <Day key={idx} dayData={dayData} />
       ))}
 
       <div className="ml-33% ">

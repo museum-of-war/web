@@ -4,11 +4,9 @@ import { useViewPort } from "@hooks/useViewport";
 
 type PropsDay = {
   dayData: DayType;
-  showPopup: boolean;
-  setShowPopup: (arg: boolean) => void;
 };
 
-const Day = ({ dayData, showPopup, setShowPopup }: PropsDay) => {
+const Day = ({ dayData }: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
   return isMobile ? (
     <div className="mb-40px flex flex-col">
@@ -29,8 +27,6 @@ const Day = ({ dayData, showPopup, setShowPopup }: PropsDay) => {
             eventData={eventData}
             dayNo={dayData.dayNo}
             date={dayData.date}
-            showPopup={showPopup}
-            setShowPopup={setShowPopup}
           />
         ))}
       </div>
@@ -54,8 +50,6 @@ const Day = ({ dayData, showPopup, setShowPopup }: PropsDay) => {
             eventData={eventData}
             dayNo={dayData.dayNo}
             date={dayData.date}
-            showPopup={showPopup}
-            setShowPopup={setShowPopup}
           />
         ))}
       </div>
@@ -77,8 +71,6 @@ const Day = ({ dayData, showPopup, setShowPopup }: PropsDay) => {
             eventData={eventData}
             dayNo={dayData.dayNo}
             date={dayData.date}
-            showPopup={showPopup}
-            setShowPopup={setShowPopup}
           />
         ))}
       </div>

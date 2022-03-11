@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
 import Popup from "./Popup";
@@ -7,18 +7,11 @@ type PropsEvent = {
   eventData: EventType;
   dayNo: number;
   date: string;
-  showPopup: boolean;
-  setShowPopup: (arg: boolean) => void;
 };
 
-const Event = ({
-  eventData,
-  dayNo,
-  date,
-  showPopup,
-  setShowPopup,
-}: PropsEvent) => {
+const Event = ({ eventData, dayNo, date }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
+  const [showPopup, setShowPopup] = useState<boolean>(false);
 
   return isMobile ? (
     <div className="flex flex-col items-top mb-60px">
