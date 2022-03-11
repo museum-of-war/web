@@ -3,6 +3,7 @@ import React from "react";
 import Day from "./Day";
 
 import SupportBanner from "./SupportBanner";
+import { useViewPort } from "@hooks/useViewport";
 
 const daysMock: Array<DayType> = [
   {
@@ -19,8 +20,29 @@ const daysMock: Array<DayType> = [
         username: "@DmytroKuleba",
       },
       {
-        imageUrl:
-          "https://m.economictimes.com/thumb/msid-89849235,width-1599,height-1315,resizemode-4,imgsize-155776/india-ukraine-russia-tensions.jpg",
+        imageUrl: "img/warline-dots.png",
+        time: "09:00",
+        description:
+          "Ми не дамо викреслити жодного дня цього періоду зі сторінок світової історії. Ми не дамо викреслити жодного дня цього періоду зі сторінок світової історії. Ми не дамо викреслити жодного дня цього періоду зі сторінок світової історії. Ми не дамо викреслити жодного дня цього періоду зі сторінок світової історії. Ми не дамо викреслити жодного дня цього періоду зі сто...",
+        tokenId: 2,
+        username: "@nickname",
+      },
+    ],
+  },
+  {
+    dayNo: 2,
+    date: "23 Feb 2022",
+    events: [
+      {
+        imageUrl: "img/warline-dots.png",
+        time: "05:00",
+        description:
+          "A package of additional tough sanctions against Russia from the EU is approaching. Discussed all the details with @EmmanuelMacron. We demand the disconnection of Russia from SWIFT, the introduction of a no-fly zone over Ukraine and other effective steps to stop the aggressor.",
+        tokenId: 1,
+        username: "@DmytroKuleba",
+      },
+      {
+        imageUrl: "img/warline-dots.png",
         time: "09:00",
         description:
           "Ми не дамо викреслити жодного дня цього періоду зі сторінок світової історії. Ми не дамо викреслити жодного дня цього періоду зі сторінок світової історії. Ми не дамо викреслити жодного дня цього періоду зі сторінок світової історії. Ми не дамо викреслити жодного дня цього періоду зі сторінок світової історії. Ми не дамо викреслити жодного дня цього періоду зі сто...",
@@ -31,13 +53,36 @@ const daysMock: Array<DayType> = [
   },
 ];
 const Warline = () => {
-  return (
+  const { isMobile, isTablet } = useViewPort();
+  return isMobile ? (
+    <div className="">
+      <div className="px-10%">
+        {daysMock.map((dayData, idx) => (
+          <Day dayData={dayData} />
+        ))}
+      </div>
+      <div className=" ">
+        <SupportBanner />
+      </div>
+    </div>
+  ) : isTablet ? (
+    <div className="">
+      <div className="px-10%">
+        {daysMock.map((dayData, idx) => (
+          <Day dayData={dayData} />
+        ))}
+      </div>
+      <div className=" ">
+        <SupportBanner />
+      </div>
+    </div>
+  ) : (
     <div className="px-10%">
       {daysMock.map((dayData, idx) => (
         <Day dayData={dayData} />
       ))}
 
-      <div className="ml-10% mr-10%">
+      <div className="ml-33% ">
         <SupportBanner />
       </div>
     </div>
