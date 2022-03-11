@@ -8,9 +8,9 @@ const PoweredByFrame = () => {
       <div className="absolute top-6">
         <img alt="banner" src={"img/pd-banner.png"} width="40%" />
       </div>
-      <div className="ml-60px pr-10% leading-20px text-16px ">
-        <p>An official collection by the Ministry of Digital Transformation</p>
-        <div className="flex flex-row items-center mt-15px ">
+      <div className="ml-60px pr-10% leading-20px text-16px">
+        <p>An official collection by the Ministry of Digital Transformation</p>
+        <div className="flex flex-row items-center mt-10px mb-5px">
           <p>Powered by</p>
           <img
             alt="frameLogo"

@@ -1,7 +1,13 @@
 import { useViewPort } from "@hooks/useViewport";
 import React from "react";
 
-const ConnectYourWalletChronology = () => {
+type ConnectYourWalletChronologyProps = {
+  handleConnect: () => void;
+};
+
+const ConnectYourWalletChronology = ({
+  handleConnect,
+}: ConnectYourWalletChronologyProps) => {
   const { isMobile } = useViewPort();
   return isMobile ? (
     <div className="mt-8% flex flex-col justify-center">
@@ -19,6 +25,9 @@ const ConnectYourWalletChronology = () => {
             px-30px py-20px mobile:text-12px
             whitespace-nowrap
             "
+            onClick={() => {
+              handleConnect();
+            }}
           >
             Connect Wallet
           </button>
@@ -53,6 +62,7 @@ const ConnectYourWalletChronology = () => {
             mobile:px-15px mobile:py-5px mobile:text-12px
             whitespace-nowrap
             "
+            onClick={handleConnect}
           >
             Connect Wallet
           </button>

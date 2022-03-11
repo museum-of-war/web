@@ -1,14 +1,12 @@
+import PoweredByFrame from "@components/PoweredByFrame";
 import { useViewPort } from "@hooks/useViewport";
 import React from "react";
-import PoweredByFrame from "@components/PoweredByFrame";
 
-const ContentTop = () => {
+const ContentTopConnected = () => {
   const { isMobile } = useViewPort();
-
-  console.log(isMobile);
   return isMobile ? (
     <div>
-      <div className="px-10% w-screen100% mb-8%">
+      <div className="px-10% w-screen100% my-8% ">
         <img alt="Logo" src={"img/logo.png"} className="w-full" />
         <div className="mt-30px font-rlight text-16px">
           <p>{"An NFT-museum of the war of putin's russia against Ukraine"}</p>
@@ -18,7 +16,6 @@ const ContentTop = () => {
           <PoweredByFrame />
         </div>
       </div>
-
       <div>
         <img alt="Logo" src={"img/pd-header.png"} className="w-full mb-15%" />
       </div>
@@ -44,4 +41,4 @@ const ContentTop = () => {
   );
 };
 
-export default ContentTop;
+export default ContentTopConnected;

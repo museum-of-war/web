@@ -3,7 +3,12 @@ import Blurb from "./Blurb";
 import { useViewPort } from "@hooks/useViewport";
 import ConnectYourWalletChronology from "@components/ConnectYourWalletChronology";
 
-const ContentMain = () => {
+type ContentTopProps = {
+  signerAddress: string;
+  handleConnect: () => void;
+};
+
+const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
   const { isMobile } = useViewPort();
   return isMobile ? (
     <div className="mb-8% mt-10">
@@ -29,12 +34,14 @@ const ContentMain = () => {
           ukrainian="NFT створюватимуться в хронологічній послідовності. Таким чином буде збережно виключно коректний перебіг подій. Художники відображатимуть військові події, пережиті мирним населенням суверенної України — від повних заперечень війни і до моменту святкування української перемоги."
         />
       </div>
-      <ConnectYourWalletChronology />
+      {!signerAddress && (
+        <ConnectYourWalletChronology handleConnect={handleConnect} />
+      )}
       <div className="mt-8% px-10%">
         <Blurb
           header={"TEAM AND PARTNERS"}
-          english="Ukrainian NFT artists community in collaboration with Ministry of digital trasformation of Ukraine"
-          ukrainian="Спільнота українських NFT художників у співпраці з Міністерством цифрової трансформації України"
+          english="Ukrainian NFT artists community in collaboration with Ministry of digital trasformation of Ukraine"
+          ukrainian="Спільнота українських NFT художників y співпраці з Міністерством цифрової трансформації України"
         />
         <img
           alt="partners"
@@ -65,7 +72,9 @@ const ContentMain = () => {
           <img className="" alt="Logo" src={"img/pd-dots2.png"} />
         </div>
       </div>
-      <ConnectYourWalletChronology />
+      {!signerAddress && (
+        <ConnectYourWalletChronology handleConnect={handleConnect} />
+      )}
       <div className="mt-8% px-10%">
         <Blurb
           header={"TEAM AND PARTNERS"}

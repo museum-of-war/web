@@ -58,7 +58,7 @@ const Warline = () => {
     <div className="">
       <div className="px-10%">
         {daysMock.map((dayData, idx) => (
-          <Day dayData={dayData} />
+          <Day dayData={dayData} key={idx} />
         ))}
       </div>
       <div className=" ">
@@ -69,7 +69,7 @@ const Warline = () => {
     <div className="">
       <div className="px-10%">
         {daysMock.map((dayData, idx) => (
-          <Day dayData={dayData} />
+          <Day dayData={dayData} key={idx} />
         ))}
       </div>
       <div className=" ">
@@ -79,7 +79,7 @@ const Warline = () => {
   ) : (
     <div className="px-10%">
       {daysMock.map((dayData, idx) => (
-        <Day dayData={dayData} />
+        <Day dayData={dayData} key={idx} />
       ))}
 
       <div className="ml-33% ">

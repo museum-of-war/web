@@ -27,6 +27,7 @@ const Day = ({ dayData }: PropsDay) => {
             eventData={eventData}
             dayNo={dayData.dayNo}
             date={dayData.date}
+            key={idx}
           />
         ))}
       </div>
@@ -49,6 +50,7 @@ const Day = ({ dayData }: PropsDay) => {
             eventData={eventData}
             dayNo={dayData.dayNo}
             date={dayData.date}
+            key={idx}
           />
         ))}
       </div>
@@ -69,6 +71,7 @@ const Day = ({ dayData }: PropsDay) => {
             eventData={eventData}
             dayNo={dayData.dayNo}
             date={dayData.date}
+            key={idx}
           />
         ))}
       </div>
