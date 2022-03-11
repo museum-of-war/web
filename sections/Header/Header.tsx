@@ -29,7 +29,7 @@ const Header = ({
     >
       <div className="flex flex-row justify-between items-center">
         <img
-          className="w-15% min-w-75px mr-15%"
+          className="w-15% min-w-100px mr-15%"
           src={"/img/pd-logoNoSymbol.png"}
           alt="Logo"
         />

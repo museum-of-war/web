@@ -16,7 +16,7 @@ const ConnectWalletButton = ({
   return (
     <div>
       <button
-        className="bg-carbon rounded-full text-white font-rblack px-20% py-5% whitespace-nowrap
+        className="bg-carbon rounded-full text-white font-rblack px-20% py-10px whitespace-nowrap
       mobile:text-12px laptop:text-14px desktop:text-16px"
         onClick={signerAddress ? handleDisconnect : handleConnect}
       >
