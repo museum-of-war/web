@@ -1,5 +1,6 @@
 import PoweredByFrame from "@components/PoweredByFrame";
 import { useViewPort } from "@hooks/useViewport";
+import Image from "next/image";
 import React from "react";
 
 const ContentTopConnected = () => {
@@ -17,7 +18,13 @@ const ContentTopConnected = () => {
         </div>
       </div>
       <div>
-        <img alt="Logo" src={"img/pd-header.png"} className="w-full mb-15%" />
+        <video
+          loop
+          autoPlay
+          muted
+          src={"vid/pd-header.mp4"}
+          className="w-full mb-15%"
+        />
       </div>
     </div>
   ) : (
@@ -34,7 +41,7 @@ const ContentTopConnected = () => {
             </p>
           </div>
         </div>
-        <img alt="Logo" src={"img/pd-header.png"} width="45%" />
+        <video loop autoPlay muted src={"vid/pd-header.mp4"} width="45%" />
       </div>
       <PoweredByFrame />
     </div>

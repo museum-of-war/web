@@ -35,7 +35,14 @@ const ContentTopNotConnected = ({
         </div>
       </div>
       <div>
-        <img alt="Logo" src={"img/pd-header.png"} className="w-full my-12%" />
+        {/* <img alt="Logo" src={"img/pd-header.png"} className="w-full my-12%" /> */}
+        <video
+          loop
+          autoPlay
+          muted
+          src={"vid/pd-header.mp4"}
+          className="w-full my-12%"
+        />
       </div>
     </div>
   ) : (
@@ -69,9 +76,17 @@ const ContentTopNotConnected = ({
         </div>
       </div>
       <PoweredByFrame />
-      <img
+      {/* <img
         alt="Logo"
         src={"img/pd-header.png"}
+        width="100%"
+        className="mt-8%"
+      /> */}
+      <video
+        loop
+        autoPlay
+        muted
+        src={"vid/pd-header.mp4"}
         width="100%"
         className="mt-8%"
       />
