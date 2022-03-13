@@ -11,11 +11,11 @@ const TokenItem = ({ tokenData }: TokenItemProps) => {
       <div>
         <img alt="token" src={tokenData.imageUrl} />
       </div>
-      <div className="flex flex-row align-center justify-between items-center">
-        <p className="font-rblack mobile:text-36px tablet:text-36px laptop:text-30px desktop:text-36px">
+      <div className="flex flex-row mt-10px align-center justify-between items-center">
+        <p className="font-rblack mobile:text-30px tablet:text-30px laptop:text-30px desktop:text-30px">
           {tokenData.timeOfEvent}
         </p>
-        <p className="font-rlight mobile:text-30px tablet:text-26px laptop:text-30px">
+        <p className="font-rlight mobile:text-20px tablet:text-20px laptop:text-20px">
           {"Day " + tokenData.day}
         </p>
       </div>

@@ -4,6 +4,11 @@ export type TokenDataType = {
   day: number;
 };
 
+export type TeamDataType = {
+  name: string;
+  role: string;
+};
+
 export type DayType = {
   dayNo: number;
   date: string;

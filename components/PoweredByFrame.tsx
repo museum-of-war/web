@@ -1,5 +1,7 @@
 import { useViewPort } from "@hooks/useViewport";
 import React from "react";
+import { FRAME_LINK } from "../sections/Constants";
+import { openInNewTab } from "../sections/utils";
 
 const PoweredByFrame = () => {
   const { isMobile, isTablet } = useViewPort();
@@ -10,7 +12,10 @@ const PoweredByFrame = () => {
       </div>
       <div className="ml-60px pr-10% leading-20px text-16px">
         <p>An official collection by the Ministry of Digital Transformation</p>
-        <div className="flex flex-row items-center mt-10px mb-5px">
+        <button
+          className="flex flex-row items-center mt-10px mb-5px"
+          onClick={() => openInNewTab(FRAME_LINK)}
+        >
           <p>Powered by</p>
           <img
             alt="frameLogo"
@@ -18,7 +23,7 @@ const PoweredByFrame = () => {
             width="90px"
             className="ml-10px"
           />
-        </div>
+        </button>
       </div>
     </div>
   ) : isTablet ? (
@@ -47,7 +52,10 @@ const PoweredByFrame = () => {
           An official collection by the Ministry of Digital Transformation
         </p>
       </div>
-      <div className="min-w-300px flex flex-row items-center justify-end ">
+      <button
+        className="min-w-300px flex flex-row items-center justify-end "
+        onClick={() => openInNewTab(FRAME_LINK)}
+      >
         <p className="font-rlight text-20px ">Powered by</p>
         <img
           alt="frameLogo"
@@ -55,7 +63,7 @@ const PoweredByFrame = () => {
           width="100px"
           className="ml-20px"
         />
-      </div>
+      </button>
     </div>
   );
 };

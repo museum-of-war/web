@@ -1,5 +1,7 @@
 import React from "react";
 import Blurb from "./Blurb";
+import Team from "./Team";
+
 import { useViewPort } from "@hooks/useViewport";
 import ConnectYourWalletChronology from "@components/ConnectYourWalletChronology";
 
@@ -46,8 +48,9 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
         <img
           alt="partners"
           src={"img/pd-partners.png"}
-          className="mb-8% mt-8%"
+          className="mb-5% mt-8%"
         />
+        <Team />
       </div>
     </div>
   ) : (
@@ -84,8 +87,9 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
         <img
           alt="partners"
           src={"img/pd-partners.png"}
-          className="mb-8% mobile:mt-8% tablet:mt-0"
+          className="mb-5% mobile:mt-8% tablet:mt-0"
         />
+        <Team />
       </div>
     </div>
   );

@@ -7,15 +7,27 @@ type PropsEvent = {
   eventData: EventType;
   dayNo: number;
   date: string;
+  idx: number;
 };
 
-const Event = ({ eventData, dayNo, date }: PropsEvent) => {
+const rand_imgs = [
+  "img/dots-1.png",
+  "img/dots-2.png",
+  "img/dots-3.png",
+  "img/dots-4.png",
+  "img/dots-5.png",
+  "img/dots-6.png",
+  "img/dots-7.png",
+  "img/dots-8.png",
+];
+
+const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
   const [showPopup, setShowPopup] = useState<boolean>(false);
 
   return isMobile ? (
     <div className="flex flex-col items-top mb-60px">
-      <img alt="Logo" src={eventData.imageUrl} className="w-100%" />
+      <img alt="Logo" src={rand_imgs[idx % 8]} className="w-100%" />
       <div className="mt-20px flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
@@ -49,6 +61,7 @@ const Event = ({ eventData, dayNo, date }: PropsEvent) => {
           dayNo={dayNo}
           date={date}
           setShowPopup={setShowPopup}
+          idx={idx}
         />
       ) : (
         <></>
@@ -58,7 +71,7 @@ const Event = ({ eventData, dayNo, date }: PropsEvent) => {
     <div className="flex flex-row items-top mb-60px">
       <img
         alt="Logo"
-        src={eventData.imageUrl}
+        src={rand_imgs[idx % 8]}
         className="w-40vw max-w-300px max-h-300px h-40vw mr-50px"
       />
       <div className="flex flex-col justify-between">
@@ -91,6 +104,7 @@ const Event = ({ eventData, dayNo, date }: PropsEvent) => {
           dayNo={dayNo}
           date={date}
           setShowPopup={setShowPopup}
+          idx={idx}
         />
       ) : (
         <></>
@@ -100,7 +114,7 @@ const Event = ({ eventData, dayNo, date }: PropsEvent) => {
     <div className="flex flex-row items-top mb-60px">
       <img
         alt="Logo"
-        src={eventData.imageUrl}
+        src={rand_imgs[idx % 8]}
         className="w-20vw max-w-300px max-h-300px h-20vw mr-50px"
       />
       <div className="flex flex-col justify-between">
@@ -133,6 +147,7 @@ const Event = ({ eventData, dayNo, date }: PropsEvent) => {
           dayNo={dayNo}
           date={date}
           setShowPopup={setShowPopup}
+          idx={idx}
         />
       ) : (
         <></>
