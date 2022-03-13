@@ -4,6 +4,7 @@ import Day from "./Day";
 
 import SupportBanner from "./SupportBanner";
 import { useViewPort } from "@hooks/useViewport";
+import SupportSticky from "./SupportSticky";
 
 const daysMock: Array<DayType> = [
   {
@@ -61,9 +62,10 @@ const Warline = () => {
           <Day key={idx} dayData={dayData} />
         ))}
       </div>
-      <div className=" ">
+      <div className="mb-20%">
         <SupportBanner />
       </div>
+      <SupportSticky />
     </div>
   ) : isTablet ? (
     <div className="">
@@ -72,9 +74,10 @@ const Warline = () => {
           <Day key={idx} dayData={dayData} />
         ))}
       </div>
-      <div className=" ">
+      <div className="mb-20% ">
         <SupportBanner />
       </div>
+      <SupportSticky />
     </div>
   ) : (
     <div className="px-10%">
@@ -85,6 +88,7 @@ const Warline = () => {
       <div className="ml-33% ">
         <SupportBanner />
       </div>
+      <SupportSticky />
     </div>
   );
 };

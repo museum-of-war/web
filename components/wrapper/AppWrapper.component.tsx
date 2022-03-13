@@ -44,7 +44,7 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
   }, [provider]);
 
   return (
-    <div className="min-h-screen text-carbon">
+    <div className=" min-h-screen text-carbon">
       <Header
         signerAddress={signerAddress}
         handleConnect={handleConnect}
@@ -53,9 +53,9 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
         setMenuOpen={setMenuOpen}
       />
       <div
-        className={`${
-          menuOpen && "blur-sm h-screen80% overflow-y-scroll relative"
-        }`}
+      // className={`${
+      //   menuOpen && "blur-sm h-screen80% overflow-y-scroll relative"
+      // }`}
       >
         <Child
           signerAddress={signerAddress}
