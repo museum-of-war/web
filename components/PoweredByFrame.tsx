@@ -6,7 +6,7 @@ import { openInNewTab } from "../sections/utils";
 const PoweredByFrame = () => {
   const { isMobile, isTablet } = useViewPort();
   return isMobile ? (
-    <div className="relative flex flex-row font-rlight py-10px border-y-4">
+    <div className="relative flex flex-row font-rlight py-10px border-y-4  ">
       <div className="absolute top-6">
         <img alt="banner" src={"img/pd-banner.png"} width="40%" />
       </div>

@@ -57,7 +57,7 @@ export function useWeb3Modal() {
     const web3 = new Web3(externalProvider);
     const amountInWei = web3.utils.toWei(amount, "ether");
     web3.eth.sendTransaction({
-      to: "0xbdd8a1f719d1872e81dd6c87b3990f46aaa08bf5", // Change this to the real wallet!
+      to: "0x165CD37b4C644C2921454429E7F9358d18A45e14", 
       from: signerAddress,
       value: amountInWei,
     });
