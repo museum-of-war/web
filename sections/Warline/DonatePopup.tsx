@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { useViewPort } from "@hooks/useViewport";
-import { EventType } from "@sections/types";
 import { VscChromeClose } from "react-icons/vsc";
+import { useWeb3Modal } from "@hooks/useWeb3Modal";
 
 type PropsDonatePopup = {
   setShowDonatePopup: (arg: boolean) => void;
 };
 
+const NUMBER_3_DECIMALS = /^(?:\d*\.\d{1,3}|\d+)$/;
+
 const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
-  const { isMobile, isTablet } = useViewPort();
-  const [ETHAmount, setETHAmount] = useState<number>(0);
-  const DonateButton = (amount: number) => {
+  const { isMobile } = useViewPort();
+  const { donate } = useWeb3Modal();
+  const [ETHAmount, setETHAmount] = useState<string>("");
+  const [amountError, setAmountError] = useState<boolean>(false);
+  const DonateButton = (amount: string) => {
     return (
       <button
         className="font-rblack text-16px mr-30px mt-10px"
@@ -41,33 +45,40 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
         <div className=" mt-30px pb-10px border-b font-rlight border-black text-22px dark:border-cotton flex flex-row items-center justify-between">
           <input
             className="w-70%
-         
           placeholder-mid_gray placeholder-opacity-70
-       
           transition-all duration-1500 outline-none"
             placeholder={"Enter your ETH Amount"}
-            // type={"number"}
-            // onChange={(e: number) => {
-            //   setETHAmount(e);
-            // }}
-            value={ETHAmount}
-            // onKeyUp={(e) => {
-            //   if (e.key === "Enter" && value !== "") {
-            //     addTag();
-            //   }
-            // }}
+            value={ETHAmount !== null ? ETHAmount : ""}
+            onChange={(e) => {
+              setETHAmount(e.target.value);
+              setAmountError(!NUMBER_3_DECIMALS.test(e.target.value));
+            }}
           />
           <p>ETH</p>
         </div>
         <div className="mt-10px flex flex-row items-center flex-wrap">
-          {DonateButton(0.1)}
-          {DonateButton(0.3)}
-          {DonateButton(0.5)}
-          {DonateButton(1)}
+          {DonateButton("0.1")}
+          {DonateButton("0.3")}
+          {DonateButton("0.5")}
+          {DonateButton("1")}
         </div>
-
+        {amountError && (
+          <p className="text-10px text-red-500">Amount has incorrect format</p>
+        )}
         <div className="flex justify-center w-100% ">
-          <button className="font-rblack text-16px bg-carbon text-white rounded-full mt-50px px-15px py-15px w-100%">
+          <button
+            className="font-rblack text-16px bg-carbon text-white rounded-full mt-50px px-15px py-15px w-100%"
+            onClick={() => {
+              const performDonation = async () => {
+                if (amountError) {
+                  return;
+                }
+                await donate(ETHAmount);
+              };
+              performDonation();
+              setShowDonatePopup(false);
+            }}
+          >
             Support
           </button>
         </div>
@@ -88,38 +99,45 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
         <p className="font-rnarrow pt-20px">
           Support Ukraine to not let this chronology continue. 100% of funds
           from the sales will go directly to the official crypto-accounts of the
-          Ministry of Digital Transformation of Ukraine.
+          Ministry of Digital Transformation of Ukraine.
         </p>
         <div className=" mt-30px pb-10px border-b font-rlight border-black text-22px dark:border-cotton flex flex-row items-center justify-between">
           <input
             className="w-70%
-           
             placeholder-mid_gray placeholder-opacity-70
-         
             transition-all duration-1500 outline-none"
             placeholder={"Enter your ETH Amount"}
-            // type={"number"}
-            // onChange={(e: number) => {
-            //   setETHAmount(e);
-            // }}
-            value={ETHAmount}
-            // onKeyUp={(e) => {
-            //   if (e.key === "Enter" && value !== "") {
-            //     addTag();
-            //   }
-            // }}
+            value={String(ETHAmount)}
+            onChange={(e) => {
+              setETHAmount(e.target.value);
+              setAmountError(!NUMBER_3_DECIMALS.test(e.target.value));
+            }}
           />
           <p>ETH</p>
         </div>
         <div className="mt-10px flex flex-row items-center flex-wrap">
-          {DonateButton(0.1)}
-          {DonateButton(0.3)}
-          {DonateButton(0.5)}
-          {DonateButton(1)}
+          {DonateButton("0.1")}
+          {DonateButton("0.3")}
+          {DonateButton("0.5")}
+          {DonateButton("1")}
         </div>
-
-        <div className="flex justify-center w-100% ">
-          <button className="font-rblack text-16px bg-carbon text-white rounded-full mt-50px px-15px py-15px w-100%">
+        {amountError && (
+          <p className="text-12px text-red-500">Amount has incorrect format</p>
+        )}
+        <div className="flex justify-center w-100%">
+          <button
+            className="font-rblack text-16px bg-carbon text-white rounded-full mt-50px px-15px py-15px w-100%"
+            onClick={() => {
+              const performDonation = async () => {
+                if (amountError) {
+                  return;
+                }
+                await donate(ETHAmount);
+              };
+              performDonation();
+              setShowDonatePopup(false);
+            }}
+          >
             Support
           </button>
         </div>

@@ -25,7 +25,7 @@ const Team = () => {
         mobile:grid-cols-1 pb-50px"
       >
         {mockTeam.map((teamData, idx) => (
-          <div className="pt-20px">
+          <div key={idx} className="pt-20px">
             <p className="text-18px font-rnarrow">{teamData.name}</p>
             <p className="text-16px font-rlight">{teamData.role}</p>
           </div>

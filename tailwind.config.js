@@ -5,24 +5,24 @@ module.exports = {
     "./sections/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      carbon: {
-        DEFAULT: "#212121",
-      },
-      white: {
-        DEFAULT: "#ffffff",
-      },
-      dark_gray: {
-        DEFAULT: "#6b7280",
-      },
-      light_gray: {
-        DEFAULT: "#f1f6f6",
-      },
-      beige: {
-        DEFAULT: "#E9E9E9",
-      },
-    },
     extend: {
+      colors: {
+        carbon: {
+          DEFAULT: "#212121",
+        },
+        white: {
+          DEFAULT: "#ffffff",
+        },
+        dark_gray: {
+          DEFAULT: "#6b7280",
+        },
+        light_gray: {
+          DEFAULT: "#f1f6f6",
+        },
+        beige: {
+          DEFAULT: "#E9E9E9",
+        },
+      },
       height: (theme) => ({
         "3%": "3%",
         "5%": "5%",

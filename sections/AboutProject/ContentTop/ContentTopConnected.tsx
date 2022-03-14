@@ -1,6 +1,5 @@
 import PoweredByFrame from "@components/PoweredByFrame";
 import { useViewPort } from "@hooks/useViewport";
-import Image from "next/image";
 import React from "react";
 
 const ContentTopConnected = () => {

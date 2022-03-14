@@ -1,7 +1,7 @@
-import { TokenDataType } from "@sections/types";
+// import { TokenDataType } from "@sections/types";
 import React from "react";
 import ExploreWarline from "./ExploreWarline";
-import TokenItem from "./TokenItem";
+// import TokenItem from "./TokenItem";
 
 const Tokens = () => {
   // const mockTokens: Array<TokenDataType> = [

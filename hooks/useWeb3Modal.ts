@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import Web3 from "web3";
 
 const providerOptions = {
   walletconnect: {
@@ -47,5 +48,20 @@ export function useWeb3Modal() {
     setProvider(undefined);
   }
 
-  return { connectWallet, disconnectWallet, provider };
+  async function donate(amount: string) {
+    const externalProvider = await web3Modal()?.connect();
+    const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
+    setProvider(ethersProvider);
+    const signer = ethersProvider.getSigner();
+    const signerAddress = await signer.getAddress();
+    const web3 = new Web3(externalProvider);
+    const amountInWei = web3.utils.toWei(amount, "ether");
+    web3.eth.sendTransaction({
+      to: "0xbdd8a1f719d1872e81dd6c87b3990f46aaa08bf5", // Change this to the real wallet!
+      from: signerAddress,
+      value: amountInWei,
+    });
+  }
+
+  return { connectWallet, disconnectWallet, provider, donate };
 }
