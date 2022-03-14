@@ -7,9 +7,6 @@ import Web3 from "web3";
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
-    options: {
-      infuraId: "196440d5d02d41dfa2a8ee5bfd2e96bd",
-    },
   },
 };
 
