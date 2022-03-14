@@ -1,8 +1,11 @@
 import React from "react";
 import SupportButton from "../../components/SupportButton";
 import { useViewPort } from "@hooks/useViewport";
+type PropsSupportSticky = {
+  setShowDonatePopup: (arg: boolean) => void;
+};
 
-const SupportSticky = () => {
+const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
   const { isMobile, isTablet } = useViewPort();
 
   return isMobile ? (
@@ -14,7 +17,12 @@ const SupportSticky = () => {
         Не дозволь цій хронології продовжитись
       </p> */}
       <div className="pt-20px">
-        <SupportButton label={"Support Ukraine"} onClick={() => {}} />
+        <SupportButton
+          label={"Support Ukraine"}
+          onClick={() => {
+            setShowDonatePopup(true);
+          }}
+        />
       </div>
     </div>
   ) : isTablet ? (
@@ -26,7 +34,12 @@ const SupportSticky = () => {
         Не дозволь цій хронології продовжитись
       </p> */}
       <div className="pt-20px">
-        <SupportButton label={"Support Ukraine"} onClick={() => {}} />
+        <SupportButton
+          label={"Support Ukraine"}
+          onClick={() => {
+            setShowDonatePopup(true);
+          }}
+        />
       </div>
     </div>
   ) : (
@@ -38,7 +51,12 @@ const SupportSticky = () => {
         Не дозволь цій хронології продовжитись
       </p> */}
       <div className="ml-30px mt-7">
-        <SupportButton label={"Support Ukraine"} onClick={() => {}} />
+        <SupportButton
+          label={"Support Ukraine"}
+          onClick={() => {
+            setShowDonatePopup(true);
+          }}
+        />
       </div>
     </div>
   );

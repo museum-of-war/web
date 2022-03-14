@@ -27,7 +27,7 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
 
   return isMobile ? (
     <div>
-      <div className="absolute z-20 w-screen90% min-h-screen90% bg-white top-5% left-5% flex flex-row px-7% py-10%	">
+      <div className="absolute -mt-50% z-20 w-screen90% min-h-screen90% bg-white left-5% flex flex-row px-7% py-10%	">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowPopup(false)}
@@ -76,7 +76,7 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
             truthful information among the digital community and in the world
             and to collect donations for the support of Ukraine.
           </p>
-          <p className="pt-2% font-rnarrow text-18px">
+          <p className="pt-5% font-rnarrow text-18px">
             {
               "Зберегти пам'ять про реальні події цього часу, розповсюдити правдиву інформацію серед діджитал-спільноти та й у світі та зібрати благодійні внески на підтримку України."
             }
@@ -88,7 +88,7 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
     </div>
   ) : isTablet ? (
     <div>
-      <div className="absolute z-20 w-screen90% min-h-screen90% bg-white top-5% left-5% flex flex-row px-7% py-10%	">
+      <div className="absolute z-20 -mt-20% w-screen90% min-h-screen90% bg-white  left-5% flex flex-row px-7% py-10%	">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowPopup(false)}
@@ -149,7 +149,7 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
     </div>
   ) : (
     <div>
-      <div className="absolute z-20 w-screen90% min-h-screen90% bg-white top-5% left-5%  flex flex-row px-5% py-3%	">
+      <div className="  absolute z-20 w-screen90% min-h-screen90% bg-white left-5%  flex flex-row px-5% py-3%	">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowPopup(false)}

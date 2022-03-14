@@ -1,7 +1,9 @@
 import React from "react";
 import SupportButton from "../../components/SupportButton";
-
-const SupportBanner = () => {
+type PropsSupportBanner = {
+  setShowDonatePopup: (arg: boolean) => void;
+};
+const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
   return (
     <div className="bg-carbon w-100% px-10% py-5%">
       <p className="font-rblack text-28px text-white">
@@ -11,7 +13,12 @@ const SupportBanner = () => {
         Не дозволь цій хронології продовжитись
       </p>
       <div className="pt-40px">
-        <SupportButton label={"Support Ukraine"} onClick={() => {}} />
+        <SupportButton
+          label={"Support Ukraine"}
+          onClick={() => {
+            setShowDonatePopup(true);
+          }}
+        />
       </div>
     </div>
   );

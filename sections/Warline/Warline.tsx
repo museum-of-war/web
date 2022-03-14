@@ -1,7 +1,7 @@
 import { DayType } from "@sections/types";
 import React, { useState } from "react";
 import Day from "./Day";
-
+import DonatePopup from "./DonatePopup";
 import SupportBanner from "./SupportBanner";
 import { useViewPort } from "@hooks/useViewport";
 import SupportSticky from "./SupportSticky";
@@ -55,6 +55,8 @@ const daysMock: Array<DayType> = [
 ];
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
+  const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
+
   return isMobile ? (
     <div className="">
       <div className="px-10%">
@@ -63,9 +65,14 @@ const Warline = () => {
         ))}
       </div>
       <div className="mb-20%">
-        <SupportBanner />
+        <SupportBanner setShowDonatePopup={setShowDonatePopup} />
       </div>
-      <SupportSticky />
+      <SupportSticky setShowDonatePopup={setShowDonatePopup} />
+      {showDonatePopup ? (
+        <DonatePopup setShowDonatePopup={setShowDonatePopup} />
+      ) : (
+        <></>
+      )}
     </div>
   ) : isTablet ? (
     <div className="">
@@ -75,9 +82,14 @@ const Warline = () => {
         ))}
       </div>
       <div className="mb-20% ">
-        <SupportBanner />
+        <SupportBanner setShowDonatePopup={setShowDonatePopup} />
       </div>
-      <SupportSticky />
+      <SupportSticky setShowDonatePopup={setShowDonatePopup} />
+      {showDonatePopup ? (
+        <DonatePopup setShowDonatePopup={setShowDonatePopup} />
+      ) : (
+        <></>
+      )}
     </div>
   ) : (
     <div className="px-10%">
@@ -86,9 +98,14 @@ const Warline = () => {
       ))}
 
       <div className="ml-33% ">
-        <SupportBanner />
+        <SupportBanner setShowDonatePopup={setShowDonatePopup} />
       </div>
-      <SupportSticky />
+      <SupportSticky setShowDonatePopup={setShowDonatePopup} />
+      {showDonatePopup ? (
+        <DonatePopup setShowDonatePopup={setShowDonatePopup} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

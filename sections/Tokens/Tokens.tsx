@@ -4,13 +4,13 @@ import ExploreWarline from "./ExploreWarline";
 import TokenItem from "./TokenItem";
 
 const Tokens = () => {
-  const mockTokens: Array<TokenDataType> = [
-    { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
-    { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
-    { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
-    { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
-    { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
-  ];
+  // const mockTokens: Array<TokenDataType> = [
+  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
+  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
+  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
+  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
+  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
+  // ];
 
   return (
     <div className="px-10%">
@@ -31,9 +31,9 @@ const Tokens = () => {
         tablet:grid-cols-2 tablet:gap-x-40px 
         mobile:grid-cols-1"
       >
-        {mockTokens.map((tokenData, idx) => (
+        {/* {mockTokens.map((tokenData, idx) => (
           <TokenItem tokenData={tokenData} key={idx} />
-        ))}
+        ))} */}
         <ExploreWarline />
       </div>
     </div>
