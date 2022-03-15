@@ -20,7 +20,7 @@ const PoweredByFrame = () => {
           <img
             alt="frameLogo"
             src={"img/pd-frameLogo.png"}
-            width="90px"
+            width="60px"
             className="ml-10px"
           />
         </button>
@@ -39,7 +39,7 @@ const PoweredByFrame = () => {
         <img
           alt="frameLogo"
           src={"img/pd-frameLogo.png"}
-          width="90px"
+          width="70px"
           className="ml-10px"
         />
       </div>
@@ -60,7 +60,7 @@ const PoweredByFrame = () => {
         <img
           alt="frameLogo"
           src={"img/pd-frameLogo.png"}
-          width="100px"
+          width="70px"
           className="ml-20px"
         />
       </button>

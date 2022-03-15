@@ -12,7 +12,7 @@ const Team = () => {
     { name: "Anastasia Vasiuk", role: "Art Coordination" },
     { name: "Andrei Barmalei", role: "Art Direction" },
     { name: "Valeria Panina", role: "Government Communications" },
-    { name: "The FRAME Team", role: "Blockchain and Infrastructure" },
+    { name: "The Fair.xyz Team", role: "Blockchain and Infrastructure" },
   ];
 
   return (
