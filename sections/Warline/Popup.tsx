@@ -2,6 +2,7 @@ import React from "react";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
 import { VscChromeClose } from "react-icons/vsc";
+import { openInNewTab } from "@sections/utils";
 
 type PropsPopup = {
   eventData: EventType;
@@ -24,7 +25,15 @@ const rand_imgs = [
 
 const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
   const { isMobile, isTablet } = useViewPort();
-
+  const TokenidFormatter = (tokenId: number) => {
+    return tokenId < 10
+      ? "#000" + tokenId.toString()
+      : tokenId < 100
+      ? "#00" + tokenId.toString()
+      : tokenId < 1000
+      ? "#0" + tokenId.toString()
+      : "#" + tokenId.toString();
+  };
   return isMobile ? (
     <div>
       <div className="absolute -mt-50% z-20 w-screen90% min-h-screen90% bg-white left-5% flex flex-row px-7% py-10%	">
@@ -37,20 +46,22 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
         <div className="w-100%">
           <div className="flex flex-row items-center justify-between ">
             <p className="font-rblack leading-32px text-32px">
-              Day {dayNo}, {eventData.time}
+              Day {dayNo}, {eventData.Time}
             </p>
-            <p className="font-rlight text-24px">#000{eventData.tokenId}</p>
+            <p className="font-rlight text-24px">
+              {TokenidFormatter(eventData.Tokenid)}
+            </p>
           </div>
           <div className="flex flex-row items-center justify-between pt-30px ">
             <div>
-              <p className="font-rlight text-16px">Author</p>
-              <p className="pt-5px font-rnarrow text-18px">Nickname</p>
+              <p className="font-rlight text-16px">Artist</p>
+              <p className="pt-5px font-rnarrow text-18px">
+                {eventData.ArtistName}
+              </p>
             </div>
             <div className="pr-10%">
               <p className="font-rlight text-16px ">Owner</p>
-              <p className="pt-5px font-rnarrow text-18px">
-                0x4EFesagas12...0x4E
-              </p>
+              <p className="pt-5px font-rnarrow text-18px">Unreleased</p>
             </div>
           </div>
           <img
@@ -60,14 +71,20 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
             // max-w-400px max-h-400px
           />
           <div className="bg-beige px-3% py-2% mt-8%">
-            <p className="font-rnarrow pt-15px"> {eventData.description}</p>
+            <p className="font-rnarrow pt-15px"> {eventData.Headline}</p>
             <div className="flex flex-row items-center justify-between pt-15px">
-              <p className="font-rlight ">{eventData.username}</p>
-              <img
-                alt="Logo"
-                src={"img/warline-TwitterLogo.png"}
-                className="w-50px"
-              />
+              <p className="font-rlight ">@{eventData.TwitterUsername}</p>
+              <button
+                onClick={() => {
+                  openInNewTab(eventData.TwitterUrl);
+                }}
+              >
+                <img
+                  alt="Logo"
+                  src={"img/warline-TwitterLogo.png"}
+                  className="w-50px"
+                />
+              </button>
             </div>
           </div>
           <p className="font-rlight text-24px mt-8%">Description</p>
@@ -98,20 +115,22 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
         <div className="w-100%">
           <div className="flex flex-row items-center justify-between ">
             <p className="font-rblack leading-32px text-32px">
-              Day {dayNo}, {eventData.time}
+              Day {dayNo}, {eventData.Time}
             </p>
-            <p className="font-rlight text-24px">#000{eventData.tokenId}</p>
+            <p className="font-rlight text-24px">
+              {TokenidFormatter(eventData.Tokenid)}
+            </p>
           </div>
           <div className="flex flex-row items-center justify-between pt-30px ">
             <div>
-              <p className="font-rlight text-16px">Author</p>
-              <p className="pt-5px font-rnarrow text-18px">Nickname</p>
+              <p className="font-rlight text-16px">Artist</p>
+              <p className="pt-5px font-rnarrow text-18px">
+                {eventData.ArtistName}
+              </p>
             </div>
             <div className="pr-10%">
               <p className="font-rlight text-16px ">Owner</p>
-              <p className="pt-5px font-rnarrow text-18px">
-                0x4EFesagas12...0x4E
-              </p>
+              <p className="pt-5px font-rnarrow text-18px">Unreleased</p>
             </div>
           </div>
           <img
@@ -121,14 +140,20 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
             // max-w-400px max-h-400px
           />
           <div className="bg-beige px-3% py-2% mt-8%">
-            <p className="font-rnarrow pt-15px"> {eventData.description}</p>
+            <p className="font-rnarrow pt-15px"> {eventData.Headline}</p>
             <div className="flex flex-row items-center justify-between pt-15px">
-              <p className="font-rlight ">{eventData.username}</p>
-              <img
-                alt="Logo"
-                src={"img/warline-TwitterLogo.png"}
-                className="w-50px"
-              />
+              <p className="font-rlight ">@{eventData.TwitterUsername}</p>
+              <button
+                onClick={() => {
+                  openInNewTab(eventData.TwitterUrl);
+                }}
+              >
+                <img
+                  alt="Logo"
+                  src={"img/warline-TwitterLogo.png"}
+                  className="w-50px"
+                />
+              </button>
             </div>
           </div>
           <p className="font-rlight text-24px mt-8%">Description</p>
@@ -167,32 +192,40 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
         <div className="w-65%">
           <div className="flex flex-row items-center justify-between ">
             <p className="font-rblack leading-32px text-32px">
-              Day {dayNo}, {eventData.time}
+              Day {dayNo}, {eventData.Time}
             </p>
-            <p className="font-rlight text-24px">#000{eventData.tokenId}</p>
+            <p className="font-rlight text-24px">
+              {TokenidFormatter(eventData.Tokenid)}
+            </p>
           </div>
           <div className="flex flex-row items-center justify-between pt-30px ">
             <div>
-              <p className="font-rlight text-16px">Author</p>
-              <p className="pt-5px font-rnarrow text-18px">Nickname</p>
+              <p className="font-rlight text-16px">Artist</p>
+              <p className="pt-5px font-rnarrow text-18px">
+                {eventData.ArtistName}
+              </p>
             </div>
             <div className="pr-10%">
               <p className="font-rlight text-16px ">Owner</p>
-              <p className="pt-5px font-rnarrow text-18px">
-                0x4EFesagas12...0x4E
-              </p>
+              <p className="pt-5px font-rnarrow text-18px">Unreleased</p>
             </div>
           </div>
 
           <div className="bg-beige px-3% py-2% mt-5%">
-            <p className="font-rnarrow pt-15px"> {eventData.description}</p>
+            <p className="font-rnarrow pt-15px"> {eventData.Headline}</p>
             <div className="flex flex-row items-center justify-between pt-15px">
-              <p className="font-rlight ">{eventData.username}</p>
-              <img
-                alt="Logo"
-                src={"img/warline-TwitterLogo.png"}
-                className="w-50px"
-              />
+              <p className="font-rlight ">@{eventData.TwitterUsername}</p>
+              <button
+                onClick={() => {
+                  openInNewTab(eventData.TwitterUrl);
+                }}
+              >
+                <img
+                  alt="Logo"
+                  src={"img/warline-TwitterLogo.png"}
+                  className="w-50px"
+                />
+              </button>
             </div>
           </div>
           <p className="font-rlight text-24px mt-5%">Description</p>

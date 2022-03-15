@@ -16,9 +16,14 @@ export type DayType = {
 };
 
 export type EventType = {
-  imageUrl: string;
-  time: string;
-  description: string;
-  tokenId: number;
-  username: string;
+  Time: string;
+  Tokenid: number;
+  DayNo: number;
+  FullDate: string;
+  TwitterUrl: string;
+  TwitterUsername: string;
+  Headline: string;
+  DescriptionEnglish: string;
+  DescriptionUkrainian: string;
+  ArtistName: string;
 };
