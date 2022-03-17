@@ -47,7 +47,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
         />
         <img
           alt="partners"
-          src={"img/pd-partners.png"}
+          src={"img/pd-partners.svg"}
           className="mb-5% mt-8%"
         />
         <Team />
@@ -67,8 +67,8 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
             ukrainian="NFT створюватимуться в хронологічній послідовності. Таким чином буде збережно виключно коректний перебіг подій. Художники відображатимуть військові події, пережиті мирним населенням суверенної України — від повних заперечень війни і до моменту святкування української перемоги."
           />
         </div>
-        <div className="ml-5% mt-28px mobile:w-20% tablet:justify-between flex flex-col">
-          <p className="font-rlight mobile:text-12px tablet:text-14px laptop:text-16px">
+        <div className="ml-5%  mobile:w-20% tablet:justify-between flex flex-col">
+          <p className="font-rlight mt-10px mobile:text-12px tablet:text-14px laptop:text-16px">
             Ми не дамо викреслити жодного дня цього періоду зі сторінок світової
             історії.
           </p>
@@ -86,8 +86,8 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
         />
         <img
           alt="partners"
-          src={"img/pd-partners.png"}
-          className="mb-5% mobile:mt-8% tablet:mt-0"
+          src={"img/pd-partners.svg"}
+          className="mb-5% mobile:mt-8% tablet:mt-0 w-100%"
         />
         <Team />
       </div>

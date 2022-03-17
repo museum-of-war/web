@@ -6,7 +6,7 @@ import { openInNewTab } from "../sections/utils";
 const PoweredByFrame = () => {
   const { isMobile, isTablet } = useViewPort();
   return isMobile ? (
-    <div className="relative flex flex-row font-rlight py-10px border-y-4  ">
+    <div className="relative flex flex-row font-rlight py-10px border-y-4 border-carbon  ">
       <div className="absolute top-6">
         <button onClick={() => openInNewTab(MINISTRY_LINK)}>
           <img alt="banner" src={"img/pd-banner.png"} width="40%" />
@@ -29,7 +29,7 @@ const PoweredByFrame = () => {
       </div>
     </div>
   ) : isTablet ? (
-    <div className="border-y-4 flex flex-row items-center justify-between py-5px mt-6% w-100%">
+    <div className="border-y-4 border-carbon flex flex-row items-center justify-between py-5px mt-6% w-100%">
       <div className="flex flex-row items-center ">
         <button onClick={() => openInNewTab(MINISTRY_LINK)}>
           <img alt="banner" src={"img/pd-banner.png"} width="30px" />
@@ -50,7 +50,7 @@ const PoweredByFrame = () => {
       </div>
     </div>
   ) : (
-    <div className="border-y-4 flex flex-row items-center justify-between py-5px mt-6% w-100%">
+    <div className="border-y-4 border-carbon flex flex-row items-center justify-between py-5px mt-6% w-100%">
       <div className="flex flex-row items-center ">
         <button onClick={() => openInNewTab(MINISTRY_LINK)}>
           <img alt="banner" src={"img/pd-banner.png"} width="40px" />

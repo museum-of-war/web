@@ -4,11 +4,11 @@ import React from "react";
 const Team = () => {
   const mockTeam: Array<TeamDataType> = [
     { name: "V K", role: "Genesis" },
+    { name: "Glib Kaporikov", role: "Identity" },
+    { name: "Serhii Revva", role: "User Experience" },
     { name: "Oleksandr Pokhylenko", role: "Technology" },
     { name: "Danil Melnyk", role: "Voice" },
     { name: "Ivan Kotelnikov", role: "Product" },
-    { name: "Glib Kaporikov", role: "Identity" },
-    { name: "Serhii Revva", role: "User Experience" },
     { name: "Anastasia Vasiuk", role: "Art Coordination" },
     { name: "Andrei Barmalei", role: "Art Direction" },
     { name: "Valeria Panina", role: "Government Communications" },
