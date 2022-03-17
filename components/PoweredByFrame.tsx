@@ -1,6 +1,6 @@
 import { useViewPort } from "@hooks/useViewport";
 import React from "react";
-import { FRAME_LINK } from "../sections/Constants";
+import { FRAME_LINK, MINISTRY_LINK } from "../sections/Constants";
 import { openInNewTab } from "../sections/utils";
 
 const PoweredByFrame = () => {
@@ -8,7 +8,9 @@ const PoweredByFrame = () => {
   return isMobile ? (
     <div className="relative flex flex-row font-rlight py-10px border-y-4  ">
       <div className="absolute top-6">
-        <img alt="banner" src={"img/pd-banner.png"} width="40%" />
+        <button onClick={() => openInNewTab(MINISTRY_LINK)}>
+          <img alt="banner" src={"img/pd-banner.png"} width="40%" />
+        </button>
       </div>
       <div className="ml-60px pr-10% leading-20px text-16px">
         <p>An official collection by the Ministry of Digital Transformation</p>
@@ -29,7 +31,10 @@ const PoweredByFrame = () => {
   ) : isTablet ? (
     <div className="border-y-4 flex flex-row items-center justify-between py-5px mt-6% w-100%">
       <div className="flex flex-row items-center ">
-        <img alt="banner" src={"img/pd-banner.png"} width="30px" />
+        <button onClick={() => openInNewTab(MINISTRY_LINK)}>
+          <img alt="banner" src={"img/pd-banner.png"} width="30px" />
+        </button>
+
         <p className="ml-20px font-rlight text-14px ">
           An official collection by the Ministry of Digital Transformation
         </p>
@@ -47,7 +52,10 @@ const PoweredByFrame = () => {
   ) : (
     <div className="border-y-4 flex flex-row items-center justify-between py-5px mt-6% w-100%">
       <div className="flex flex-row items-center ">
-        <img alt="banner" src={"img/pd-banner.png"} width="40px" />
+        <button onClick={() => openInNewTab(MINISTRY_LINK)}>
+          <img alt="banner" src={"img/pd-banner.png"} width="40px" />
+        </button>
+
         <p className="ml-20px font-rlight text-20px ">
           An official collection by the Ministry of Digital Transformation
         </p>

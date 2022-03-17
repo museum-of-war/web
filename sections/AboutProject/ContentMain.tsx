@@ -32,8 +32,8 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
         </div>
         <Blurb
           header={"THE NFT'S"}
-          english="will be created in chronological order, according to the events so the true history will be saved and cherished. And artists will depict how the war is perceived by the peaceful population of sovereign Ukraine — from its full outbreak to the moment of Ukrainian victory celebration. "
-          ukrainian="NFT створюватимуться в хронологічній послідовності. Таким чином буде збережно виключно коректний перебіг подій. Художники відображатимуть військові події, пережиті мирним населенням суверенної України — від повних заперечень війни і до моменту святкування української перемоги."
+          english="will be created in chronological order, according to the events so the true history will be saved and cherished. And artists will depict how the war is perceived by the peaceful population of sovereign Ukraine — from its full outbreak to the moment of Ukrainian victory celebration. "
+          ukrainian="NFT створюватимуться в хронологічній послідовності. Таким чином буде збережено виключно коректний перебіг подій. Художники відображатимуть військові події, пережиті мирним населенням суверенної України — від повних заперечень війни і до моменту святкування української перемоги."
         />
       </div>
       {!signerAddress && (
@@ -42,8 +42,8 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
       <div className="mt-8% px-10%">
         <Blurb
           header={"TEAM AND PARTNERS"}
-          english="Ukrainian NFT artists community in collaboration with Ministry of digital trasformation of Ukraine"
-          ukrainian="Спільнота українських NFT художників y співпраці з Міністерством цифрової трансформації України"
+          english="Ukrainian blockchain community in collaboration with the Ministry of Digital Transformation of Ukraine"
+          ukrainian="Українська блокчейн-спільнота разом з Міністерством цифрової трансформації України"
         />
         <img
           alt="partners"

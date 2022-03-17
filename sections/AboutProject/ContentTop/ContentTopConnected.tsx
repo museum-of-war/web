@@ -9,7 +9,7 @@ const ContentTopConnected = () => {
       <div className="px-10% w-screen100% my-8% ">
         <img alt="Logo" src={"img/logo.png"} className="w-full" />
         <div className="mt-30px font-rlight text-16px">
-          <p>{"An NFT-museum of the war of putin's russia against Ukraine"}</p>
+          <p>{"The NFT-museum of the war of Putin's Russia against Ukraine"}</p>
           <p className="mt-4% mb-4%">
             NFT-музей війни путінської росії проти України.
           </p>
@@ -34,10 +34,10 @@ const ContentTopConnected = () => {
           <img alt="Logo" src={"img/logo.png"} className="w-90%" />
           <div className="mt-30px relative flex flex-row font-rlight justify-between">
             <p className="w-45%	">
-              {"An NFT-museum of the war of putin's russia against Ukraine"}
+              {"The NFT-museum of the war of Putin's Russia against Ukraine"}{" "}
             </p>
             <p className="w-45%">
-              NFT-музей війни путінської росії проти України.
+              NFT-музей війни путінської росії проти України.{" "}
             </p>
           </div>
         </div>

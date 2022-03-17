@@ -3,3 +3,4 @@ export const TWITTER_LINK =
 export const INSTAGRAM_LINK =
   "https://instagram.com/meta_history_ua?utm_medium=copy_link";
 export const FRAME_LINK = "https://www.fair.xyz";
+export const MINISTRY_LINK = "https://thedigital.gov.ua/";
