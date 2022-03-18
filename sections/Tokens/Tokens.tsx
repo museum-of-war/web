@@ -15,7 +15,7 @@ const Tokens = () => {
   return (
     <div className="px-10%">
       <p
-        className="border-b-8 
+        className="border-black border-b-8 
         mobile:text-55px mobile:leading-55px 
         tablet:text-60px tablet:leading-70px 
         laptop:text-70px laptop:leading-80px

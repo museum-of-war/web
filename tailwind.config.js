@@ -107,6 +107,8 @@ module.exports = {
         "50vw": "50vw",
 
         "29.21vw": "29.21vw",
+        NFTDETS: "calc(100vh - 100px)",
+
         all: "calc(100vh - 225px)",
       }),
       spacing: {
@@ -471,6 +473,8 @@ module.exports = {
       "4vw": "4vw",
       "5vw": "5vw",
       "7vw": "7vw",
+      "9vw": "9vw",
+
       "10vw": "10vw",
       "12vw": "12vw",
       "10%": "10%",
