@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
+import { useAppRouter } from "@hooks/useAppRouter";
 import React from "react";
 
 const ExploreWarline = () => {
-  const { push } = useRouter();
+  const { push } = useAppRouter();
   return (
     <div className="desktop:mt-30px laptop:mt-25px tablet:mt-30px mobile:mt-30px">
       <div className="">

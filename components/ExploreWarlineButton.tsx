@@ -1,10 +1,10 @@
+import { useAppRouter } from "@hooks/useAppRouter";
 import { useViewPort } from "@hooks/useViewport";
-import { useRouter } from "next/router";
 import React from "react";
 
 const ExploreWarlineButton = () => {
   const { isMobile } = useViewPort();
-  const { push } = useRouter();
+  const { push } = useAppRouter();
   return (
     <div>
       <button
