@@ -5,11 +5,11 @@ const Team = () => {
   const mockTeam: Array<TeamDataType> = [
     { name: "V K", role: "Genesis" },
     { name: "Glib Kaporikov", role: "Identity" },
-    { name: "Serhii Revva", role: "User Experience" },
+    { name: "Serhii Revva", role: "Experience" },
     { name: "Oleksandr Pokhylenko", role: "Technology" },
     { name: "Danil Melnyk", role: "Voice" },
     { name: "Ivan Kotelnikov", role: "Product" },
-    { name: "Anastasia Vasiuk", role: "Art Coordination" },
+    { name: "Anna Feuerbach", role: "Art Coordination" },
     { name: "Andrei Barmalei", role: "Art Direction" },
     { name: "Valeria Panina", role: "Government Communications" },
     { name: "The Fair.xyz Team", role: "Blockchain and Infrastructure" },
