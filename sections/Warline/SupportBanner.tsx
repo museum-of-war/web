@@ -7,18 +7,14 @@ type PropsSupportBanner = {
 const calculateTimeLeft = () => {
   let difference = +new Date(`03/30/2022`) - +new Date();
 
-  let timeLeft = {};
-
-  if (difference > 0) {
-    timeLeft = {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
-    };
-  }
-
-  return timeLeft;
+  return (difference > 0) ?
+      {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      } :
+      {};
 };
 const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -30,9 +26,9 @@ const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
     return () => clearTimeout(timer);
   });
 
-  const timerComponents = [];
+  const timerComponents: JSX.Element[] = [];
 
-  Object.keys(timeLeft).forEach((interval) => {
+  (Object.keys(timeLeft) as (keyof typeof timeLeft)[]).forEach((interval) => {
     if (!timeLeft[interval]) {
       return;
     }

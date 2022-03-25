@@ -58,7 +58,7 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
               <button
                 className="pt-5px font-rnarrow text-18px"
                 onClick={() => {
-                  openInNewTab(eventData.ArtistLink);
+                  if (eventData.ArtistLink) openInNewTab(eventData.ArtistLink);
                 }}
               >
                 <p>{eventData.ArtistName}</p>
@@ -135,7 +135,7 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
               <button
                 className="pt-5px font-rnarrow text-18px"
                 onClick={() => {
-                  openInNewTab(eventData.ArtistLink);
+                  if (eventData.ArtistLink) openInNewTab(eventData.ArtistLink);
                 }}
               >
                 <p>{eventData.ArtistName}</p>
@@ -225,7 +225,7 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
               <button
                 className="pt-5px font-rnarrow text-18px"
                 onClick={() => {
-                  openInNewTab(eventData.ArtistLink);
+                  if (eventData.ArtistLink) openInNewTab(eventData.ArtistLink);
                 }}
               >
                 <p>{eventData.ArtistName}</p>
