@@ -7,6 +7,9 @@ import Web3 from "web3";
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
+    options: {
+      infuraId: "196440d5d02d41dfa2a8ee5bfd2e96bd",
+    },
   },
 };
 
@@ -54,10 +57,9 @@ export function useWeb3Modal() {
     const web3 = new Web3(externalProvider);
     const amountInWei = web3.utils.toWei(amount, "ether");
     web3.eth.sendTransaction({
-      to: "0x165CD37b4C644C2921454429E7F9358d18A45e14", 
+      to: "0x165CD37b4C644C2921454429E7F9358d18A45e14",
       from: signerAddress,
       value: amountInWei,
-
     });
   }
 
