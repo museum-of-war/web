@@ -3,7 +3,13 @@ import Blurb from "./Blurb";
 import Team from "./Team";
 
 import { useViewPort } from "@hooks/useViewport";
-import ConnectYourWalletChronology from "@components/ConnectYourWalletChronology";
+const ConnectYourWalletChronology = dynamic(
+  () => import("@components/ConnectYourWalletChronology"),
+  {
+    ssr: false,
+  }
+);
+import dynamic from "next/dynamic";
 
 type ContentTopProps = {
   signerAddress: string;

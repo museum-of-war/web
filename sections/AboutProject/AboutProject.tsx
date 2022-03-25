@@ -1,9 +1,12 @@
 import React from "react";
 import ContentMission from "./ContentMission";
-import ContentTop from "./ContentTop/ContentTop";
+const ContentTop = dynamic(() => import("./ContentTop/ContentTop"), {
+  ssr: false,
+});
 import ContentWar from "./ContentWar";
 import ContentMain from "./ContentMain";
 import ContentMedia from "./ContentMedia";
+import dynamic from "next/dynamic";
 
 type AboutProjectProps = {
   signerAddress: string;

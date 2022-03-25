@@ -1,5 +1,6 @@
 import { useViewPort } from "@hooks/useViewport";
 import React from "react";
+import "@dotlottie/player-component";
 
 type ConnectYourWalletChronologyProps = {
   handleConnect: () => void;
@@ -33,13 +34,8 @@ const ConnectYourWalletChronology = ({
           </button>
         </div>
       </div>
-      <div>
-        <img
-          alt="dots"
-          src={"/img/pd-dots1.png"}
-          width="80%"
-          className="block m-auto mt-2%"
-        />
+      <div className="w-80% block m-auto mt-2%">
+        <dotlottie-player src={"/lottie/loader.lottie"} autoplay loop />
       </div>
     </div>
   ) : (
@@ -68,13 +64,8 @@ const ConnectYourWalletChronology = ({
           </button>
         </div>
       </div>
-      <div>
-        <img
-          alt="dots"
-          src={"/img/pd-dots1.png"}
-          width="40%"
-          className="block m-auto mt-2%"
-        />
+      <div className="w-40% block m-auto mt-2%">
+        <dotlottie-player src={"/lottie/loader.lottie"} autoplay loop />
       </div>
     </div>
   );

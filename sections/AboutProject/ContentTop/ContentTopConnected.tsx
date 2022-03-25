@@ -1,6 +1,7 @@
 import PoweredByFrame from "@components/PoweredByFrame";
 import { useViewPort } from "@hooks/useViewport";
 import React from "react";
+import "@dotlottie/player-component";
 
 const ContentTopConnected = () => {
   const { isMobile } = useViewPort();
@@ -16,15 +17,8 @@ const ContentTopConnected = () => {
           <PoweredByFrame />
         </div>
       </div>
-      <div>
-        <img alt="header" src={"img/pd-header.svg"} className="w-full mb-15%" />
-        {/* <video
-          loop
-          autoPlay
-          muted
-          src={"vid/pd-header.mp4"}
-          className="w-full mb-15%"
-        /> */}
+      <div className="w-full mb-15%">
+        <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
       </div>
     </div>
   ) : (
@@ -41,8 +35,9 @@ const ContentTopConnected = () => {
             </p>
           </div>
         </div>
-        <img alt="header" src={"img/pd-header.svg"} width="45%" />
-        {/* <video loop autoPlay muted src={"vid/pd-header.mp4"} width="45%" /> */}
+        <div className="w-45%">
+          <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
+        </div>
       </div>
       <PoweredByFrame />
     </div>

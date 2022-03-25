@@ -1,7 +1,11 @@
 // import { TokenDataType } from "@sections/types";
+import dynamic from "next/dynamic";
 import React from "react";
-import ExploreWarline from "./ExploreWarline";
 // import TokenItem from "./TokenItem";
+
+const ExploreWarline = dynamic(() => import("./ExploreWarline"), {
+  ssr: false,
+});
 
 const Tokens = () => {
   // const mockTokens: Array<TokenDataType> = [

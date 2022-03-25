@@ -30,15 +30,8 @@ const ContentTopNotConnected = ({
           <PoweredByFrame />
         </div>
       </div>
-      <div>
-        <img alt="Logo" src={"img/pd-header.svg"} className="w-full my-12%" />
-        {/* <video
-          loop
-          autoPlay
-          muted
-          src={"vid/pd-header.mp4"}
-          className="w-full my-12%"
-        /> */}
+      <div className="w-full my-12%">
+        <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
       </div>
     </div>
   ) : (
@@ -68,20 +61,9 @@ const ContentTopNotConnected = ({
         </div>
       </div>
       <PoweredByFrame />
-      <img
-        alt="Logo"
-        src={"img/pd-header.svg"}
-        width="100%"
-        className="mt-8%"
-      />
-      {/* <video
-        loop
-        autoPlay
-        muted
-        src={"vid/pd-header.mp4"}
-        width="100%"
-        className="mt-8%"
-      /> */}
+      <div className="mt-8%">
+        <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
+      </div>
     </div>
   );
 };
