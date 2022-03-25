@@ -71,7 +71,13 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           </div>
           <img
             alt="Logo"
-            src={rand_imgs[idx % 8]}
+            src={
+              eventData.FileType === ""
+                ? rand_imgs[idx % 8]
+                : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+                  eventData.Tokenid +
+                  eventData.FileType
+            }
             className="w-100% mt-10%"
             // max-w-400px max-h-400px
           />
@@ -142,7 +148,13 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           </div>
           <img
             alt="Logo"
-            src={rand_imgs[idx % 8]}
+            src={
+              eventData.FileType === ""
+                ? rand_imgs[idx % 8]
+                : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+                  eventData.Tokenid +
+                  eventData.FileType
+            }
             className="w-100% mt-10%"
             // max-w-400px max-h-400px
           />
@@ -187,7 +199,13 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
         <div className="w-35%">
           <img
             alt="Logo"
-            src={rand_imgs[idx % 8]}
+            src={
+              eventData.FileType === ""
+                ? rand_imgs[idx % 8]
+                : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+                  eventData.Tokenid +
+                  eventData.FileType
+            }
             className="w-90% pr-5%"
             // max-w-400px max-h-400px
           />

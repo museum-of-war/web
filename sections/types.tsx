@@ -28,4 +28,5 @@ export type EventType = {
   ArtistName: string;
   isAuction?: boolean;
   ArtistLink?: string | undefined;
+  FileType?: string;
 };

@@ -36,7 +36,17 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
   };
   return isMobile ? (
     <div className="flex flex-col items-top mb-60px">
-      <img alt="Logo" src={rand_imgs[idx % 8]} className="w-100%" />
+      <img
+        alt="Logo"
+        src={
+          eventData.FileType === ""
+            ? rand_imgs[idx % 8]
+            : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+              eventData.Tokenid +
+              eventData.FileType
+        }
+        className="w-100%"
+      />
       <div className="mt-20px flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
@@ -97,7 +107,13 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
     <div className="flex flex-row items-top mb-60px">
       <img
         alt="Logo"
-        src={rand_imgs[idx % 8]}
+        src={
+          eventData.FileType === ""
+            ? rand_imgs[idx % 8]
+            : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+              eventData.Tokenid +
+              eventData.FileType
+        }
         className="w-40vw max-w-300px max-h-300px h-40vw mr-50px"
       />
       <div className="flex flex-col justify-between">
@@ -157,7 +173,13 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
     <div className="flex flex-row items-top mb-60px">
       <img
         alt="Logo"
-        src={rand_imgs[idx % 8]}
+        src={
+          eventData.FileType === ""
+            ? rand_imgs[idx % 8]
+            : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+              eventData.Tokenid +
+              eventData.FileType
+        }
         className="w-20vw max-w-300px max-h-300px h-20vw mr-50px"
       />
       <div className="w-100% flex flex-col justify-between">
