@@ -532,6 +532,7 @@ module.exports = {
       "200px": "200px",
       "300px": "300px",
       "400px": "400px",
+      "90vh": "90vh",
     },
     lineHeight: {
       "0px": "0px",
