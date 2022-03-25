@@ -1,19 +1,16 @@
 // import { TokenDataType } from "@sections/types";
 import dynamic from "next/dynamic";
 import React from "react";
-// import TokenItem from "./TokenItem";
 
 const ExploreWarline = dynamic(() => import("./ExploreWarline"), {
   ssr: false,
 });
 
 const Tokens = () => {
+  // Leaving 1 example:
   // const mockTokens: Array<TokenDataType> = [
-  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
-  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
-  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
-  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
-  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" },
+  //   ...
+  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" }
   // ];
 
   return (
