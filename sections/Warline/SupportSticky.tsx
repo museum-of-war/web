@@ -10,7 +10,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
 
   return isMobile ? (
     <div className="fixed left-0 bottom-0 bg-carbon w-100% px-10% py-30px">
-      <p className="font-rblack text-28px text-white">
+      <p className="font-rblack mobile:text-16px tablet:text-28px text-white">
         Support Ukraine while waiting for the drop
       </p>
       {/* <p className="font-rlight pt-15px text-14px text-white">

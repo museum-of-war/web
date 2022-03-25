@@ -1,7 +1,9 @@
 import ExploreWarlineButton from "@components/ExploreWarlineButton";
 import PoweredByFrame from "@components/PoweredByFrame";
 import { useViewPort } from "@hooks/useViewport";
+// import SupportBanner from "@sections/Warline/SupportBanner";
 import React from "react";
+// import Countdownbanner from "./Countdownbanner";
 
 type ContentTopNotConnectedProps = {
   signerAddress: string;
@@ -61,6 +63,7 @@ const ContentTopNotConnected = ({
         </div>
       </div>
       <PoweredByFrame />
+      {/* <Countdownbanner /> */}
       <div className="mt-8%">
         <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
       </div>
