@@ -55,9 +55,14 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           <div className="flex flex-row items-center justify-between pt-30px ">
             <div>
               <p className="font-rlight text-16px">Artist</p>
-              <p className="pt-5px font-rnarrow text-18px">
-                {eventData.ArtistName}
-              </p>
+              <button
+                className="pt-5px font-rnarrow text-18px"
+                onClick={() => {
+                  openInNewTab(eventData.ArtistLink);
+                }}
+              >
+                <p>{eventData.ArtistName}</p>
+              </button>
             </div>
             <div className="pr-10%">
               <p className="font-rlight text-16px ">Owner</p>
@@ -88,15 +93,12 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
             </div>
           </div>
           <p className="font-rlight text-24px mt-8%">Description</p>
+
           <p className="pt-2% font-rnarrow text-18px">
-            To preserve the memory of the real events of that time, to spread
-            truthful information among the digital community and in the world
-            and to collect donations for the support of Ukraine.
+            {eventData.DescriptionEnglish}
           </p>
           <p className="pt-5% font-rnarrow text-18px">
-            {
-              "Зберегти пам'ять про реальні події цього часу, розповсюдити правдиву інформацію серед діджитал-спільноти та й у світі та зібрати благодійні внески на підтримку України."
-            }
+            {eventData.DescriptionUkrainian}
           </p>
         </div>
       </div>
@@ -124,9 +126,14 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           <div className="flex flex-row items-center justify-between pt-30px ">
             <div>
               <p className="font-rlight text-16px">Artist</p>
-              <p className="pt-5px font-rnarrow text-18px">
-                {eventData.ArtistName}
-              </p>
+              <button
+                className="pt-5px font-rnarrow text-18px"
+                onClick={() => {
+                  openInNewTab(eventData.ArtistLink);
+                }}
+              >
+                <p>{eventData.ArtistName}</p>
+              </button>
             </div>
             <div className="pr-10%">
               <p className="font-rlight text-16px ">Owner</p>
@@ -158,14 +165,10 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           </div>
           <p className="font-rlight text-24px mt-8%">Description</p>
           <p className="pt-2% font-rnarrow text-18px">
-            To preserve the memory of the real events of that time, to spread
-            truthful information among the digital community and in the world
-            and to collect donations for the support of Ukraine.
+            {eventData.DescriptionEnglish}
           </p>
           <p className="pt-2% font-rnarrow text-18px">
-            {
-              "Зберегти пам'ять про реальні події цього часу, розповсюдити правдиву інформацію серед діджитал-спільноти та й у світі та зібрати благодійні внески на підтримку України."
-            }
+            {eventData.DescriptionUkrainian}
           </p>
         </div>
       </div>
@@ -174,7 +177,7 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
     </div>
   ) : (
     <div>
-      <div className="  absolute z-20 w-screen90% min-h-screen90% bg-white left-5%  flex flex-row px-5% py-3%	">
+      <div className="  fixed z-20 top-10% bg-white left-5% right-5%  flex flex-row px-5% py-3%	">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowPopup(false)}
@@ -201,9 +204,14 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           <div className="flex flex-row items-center justify-between pt-30px ">
             <div>
               <p className="font-rlight text-16px">Artist</p>
-              <p className="pt-5px font-rnarrow text-18px">
-                {eventData.ArtistName}
-              </p>
+              <button
+                className="pt-5px font-rnarrow text-18px"
+                onClick={() => {
+                  openInNewTab(eventData.ArtistLink);
+                }}
+              >
+                <p>{eventData.ArtistName}</p>
+              </button>
             </div>
             <div className="pr-10%">
               <p className="font-rlight text-16px ">Owner</p>
@@ -230,14 +238,10 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           </div>
           <p className="font-rlight text-24px mt-5%">Description</p>
           <p className="pt-2% font-rnarrow text-18px">
-            To preserve the memory of the real events of that time, to spread
-            truthful information among the digital community and in the world
-            and to collect donations for the support of Ukraine.
+            {eventData.DescriptionEnglish}
           </p>
           <p className="pt-2% font-rnarrow text-18px">
-            {
-              "Зберегти пам'ять про реальні події цього часу, розповсюдити правдиву інформацію серед діджитал-спільноти та й у світі та зібрати благодійні внески на підтримку України."
-            }
+            {eventData.DescriptionUkrainian}
           </p>
         </div>
       </div>

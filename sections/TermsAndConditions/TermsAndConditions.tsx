@@ -6,7 +6,9 @@ const TermsAndConditions = () => {
   return (
     <div className="font-rnarrow text-center px-10%">
       <EnglishTerms />
-      <UkrainianTerms />
+      <div className="pt-100px">
+        <UkrainianTerms />
+      </div>
     </div>
   );
 };

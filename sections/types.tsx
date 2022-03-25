@@ -27,4 +27,5 @@ export type EventType = {
   DescriptionUkrainian: string;
   ArtistName: string;
   isAuction?: boolean;
+  ArtistLink?: string | undefined;
 };
