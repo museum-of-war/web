@@ -61,14 +61,25 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
             </button>
           </div>
         </div>
-        <div>
-          <button
-            onClick={() => setShowPopup(true)}
-            className="font-rblack mt-15px "
-          >
-            See Details
-          </button>
-        </div>
+        {eventData.isAuction ? (
+          <div>
+            <button
+              onClick={() => setShowPopup(true)}
+              className="font-rnarrow  border-black border-y-4 py-5px mt-15px w-100%"
+            >
+              This NFT will be sold at an auction{" "}
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button
+              onClick={() => setShowPopup(true)}
+              className="font-rblack mt-15px "
+            >
+              See Details
+            </button>
+          </div>
+        )}
       </div>
       {showPopup ? (
         <Popup
@@ -113,11 +124,22 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
             </button>
           </div>
         </div>
-        <div>
-          <button onClick={() => setShowPopup(true)} className="font-rblack ">
-            See Details
-          </button>
-        </div>
+        {eventData.isAuction ? (
+          <div>
+            <button
+              onClick={() => setShowPopup(true)}
+              className="font-rnarrow  border-black border-y-4 py-5px w-100%"
+            >
+              This NFT will be sold at an auction{" "}
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button onClick={() => setShowPopup(true)} className="font-rblack ">
+              See Details
+            </button>
+          </div>
+        )}
       </div>
       {showPopup ? (
         <Popup
@@ -162,11 +184,22 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
             </button>
           </div>
         </div>
-        <div>
-          <button onClick={() => setShowPopup(true)} className="font-rblack ">
-            See Details
-          </button>
-        </div>
+        {eventData.isAuction ? (
+          <div>
+            <button
+              onClick={() => setShowPopup(true)}
+              className="font-rnarrow  border-black border-y-4 py-5px w-100%"
+            >
+              This NFT will be sold at an auction{" "}
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button onClick={() => setShowPopup(true)} className="font-rblack ">
+              See Details
+            </button>
+          </div>
+        )}
       </div>
       {showPopup ? (
         <Popup
