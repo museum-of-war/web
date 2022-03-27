@@ -9,7 +9,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
   const { isMobile, isTablet } = useViewPort();
 
   return isMobile ? (
-    <div className="fixed left-0 bottom-0 bg-carbon w-100% px-10% py-30px">
+    <div className="sticky left-0 bottom-0 bg-carbon w-100% px-10% py-30px">
       <p className="font-rblack mobile:text-16px tablet:text-28px text-white">
         Support Ukraine while waiting for the drop
       </p>
@@ -26,7 +26,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
       </div>
     </div>
   ) : isTablet ? (
-    <div className="fixed left-0 bottom-0 bg-carbon w-100% px-10% py-30px">
+    <div className="sticky left-0 bottom-0 bg-carbon w-100% px-10% py-30px">
       <p className="font-rblack text-32px text-white">
         Support Ukraine while waiting for the drop
       </p>
@@ -43,7 +43,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
       </div>
     </div>
   ) : (
-    <div className="fixed z-0 left-0 bottom-0 bg-carbon w-100% px-10% py-30px flex flex-row items-center">
+    <div className="sticky mt-[48px] z-0 left-0 bottom-0 bg-carbon w-100% px-10% py-30px flex flex-row items-center">
       <p className="font-rblack text-28px leading-28px text-white">
         Support Ukraine while waiting for the drop
       </p>

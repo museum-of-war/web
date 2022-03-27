@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         carbon: {
           DEFAULT: "#212121",
+          800: "#212121cc"
         },
         white: {
           DEFAULT: "#ffffff",

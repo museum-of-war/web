@@ -11,6 +11,7 @@ const Team = () => {
     { name: "Ivan Kotelnikov", role: "Product" },
     { name: "Anna Feuerbach", role: "Art Coordination" },
     { name: "Andrei Barmalei", role: "Art Direction" },
+    { name: "Anastasia Vasiuk", role:"Assistant Art Direction" },
     { name: "Valeria Panina", role: "Government Communications" },
     { name: "The Fair.xyz Team", role: "Blockchain and Infrastructure" },
   ];

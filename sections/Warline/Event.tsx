@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+import SimpleReactLightbox from "simple-react-lightbox";
+import { SRLWrapper } from "simple-react-lightbox";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
-import Popup from "./Popup";
 import { openInNewTab } from "@sections/utils";
+import { LinkButton } from "@components/LinkButton";
+import Popup from "./Popup";
 
 type PropsEvent = {
   eventData: EventType;
   dayNo: number;
   date: string;
   idx: number;
+  eventsData: EventType[];
 };
 
 const rand_imgs = [
@@ -22,7 +26,28 @@ const rand_imgs = [
   "img/dots-8.png",
 ];
 
-const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
+const wrapperOptions = {
+  buttons: {
+    showFullscreenButton: false,
+    showDownloadButton: false,
+    showAutoplayButton: false,
+    showCloseButton: false,
+    showThumbnailsButton: false,
+    showNextButton: false,
+    showPrevButton: false,
+  },
+  caption: {
+    showCaption: false,
+  },
+  settings: {
+    boxShadow: "5px 5px 15px black",
+  },
+  thumbnails: {
+    showThumbnails: false,
+  },
+};
+
+const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const TokenidFormatter = (tokenId: number) => {
@@ -34,19 +59,30 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
       ? "#0" + tokenId.toString()
       : "#" + tokenId.toString();
   };
+
+  const renderImage = (className:string) => {
+    return (
+      <SimpleReactLightbox>
+        <SRLWrapper options={wrapperOptions}>
+          <img
+            alt="Logo"
+            src={
+              eventData.FileType === ""
+                ? rand_imgs[idx % 8]
+                : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+                  eventData.Tokenid +
+                  eventData.FileType
+            }
+            className={className}
+          />
+        </SRLWrapper>
+      </SimpleReactLightbox>
+    );
+  };
+
   return isMobile ? (
     <div className="flex flex-col items-top mb-60px">
-      <img
-        alt="Logo"
-        src={
-          eventData.FileType === ""
-            ? rand_imgs[idx % 8]
-            : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-              eventData.Tokenid +
-              eventData.FileType
-        }
-        className="w-100%"
-      />
+      {renderImage("w-100%")}
       <div className="mt-20px flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
@@ -82,12 +118,12 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
           </div>
         ) : (
           <div>
-            <button
+            <LinkButton
               onClick={() => setShowPopup(true)}
               className="font-rblack mt-15px "
             >
               See Details
-            </button>
+            </LinkButton>
           </div>
         )}
       </div>
@@ -98,6 +134,7 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
           date={date}
           setShowPopup={setShowPopup}
           idx={idx}
+          eventsData={eventsData}
         />
       ) : (
         <></>
@@ -105,17 +142,7 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
     </div>
   ) : isTablet ? (
     <div className="flex flex-row items-top mb-60px">
-      <img
-        alt="Logo"
-        src={
-          eventData.FileType === ""
-            ? rand_imgs[idx % 8]
-            : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-              eventData.Tokenid +
-              eventData.FileType
-        }
-        className="w-40vw max-w-300px max-h-300px h-40vw mr-50px"
-      />
+      {renderImage("w-40vw max-w-300px max-h-300px h-40vw mr-50px")}
       <div className="flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
@@ -151,9 +178,12 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
           </div>
         ) : (
           <div>
-            <button onClick={() => setShowPopup(true)} className="font-rblack ">
+            <LinkButton
+              onClick={() => setShowPopup(true)}
+              className="font-rblack"
+            >
               See Details
-            </button>
+            </LinkButton>
           </div>
         )}
       </div>
@@ -164,6 +194,7 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
           date={date}
           setShowPopup={setShowPopup}
           idx={idx}
+          eventsData={eventsData}
         />
       ) : (
         <></>
@@ -171,17 +202,10 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
     </div>
   ) : (
     <div className="flex flex-row items-top mb-60px">
-      <img
-        alt="Logo"
-        src={
-          eventData.FileType === ""
-            ? rand_imgs[idx % 8]
-            : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-              eventData.Tokenid +
-              eventData.FileType
-        }
-        className="w-20vw max-w-300px max-h-300px h-20vw mr-50px"
-      />
+      {renderImage(
+        "w-20vw max-w-300px max-h-300px h-20vw mr-50px hover:cursor-pointer"
+      )}
+
       <div className="w-100% flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
@@ -217,9 +241,12 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
           </div>
         ) : (
           <div>
-            <button onClick={() => setShowPopup(true)} className="font-rblack ">
+            <LinkButton
+              onClick={() => setShowPopup(true)}
+              className="font-rblack"
+            >
               See Details
-            </button>
+            </LinkButton>
           </div>
         )}
       </div>
@@ -230,6 +257,7 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
           date={date}
           setShowPopup={setShowPopup}
           idx={idx}
+          eventsData={eventsData}
         />
       ) : (
         <></>

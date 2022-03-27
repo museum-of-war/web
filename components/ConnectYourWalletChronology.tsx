@@ -35,14 +35,14 @@ const ConnectYourWalletChronology = ({
         </div>
       </div>
       <div className="w-80% block m-auto mt-2%">
-        <dotlottie-player src={"/lottie/loader.lottie"} autoplay loop />
+        <img alt="Dots" src={"img/pd-dots1.png"}/>
       </div>
     </div>
   ) : (
     <div className="mt-8% flex flex-col justify-center laptop:px-10%">
       <div className="bg-carbon text-white p-6% flex flex-row items-center justify-between">
         <div className="laptop:w-60% tablet:w-70% mobile:w-70% mr-30%">
-          <p className="font-rblack mobile:text-22px tablet:text-22px laptop:text-30px desktpo:text-34px">
+          <p className="font-rblack mobile:text-22px tablet:text-22px laptop:text-30px desktop:text-34px leading-36px">
             Connect your wallet to see a chronology of the war
           </p>
           <p className="font-rnarrow">
@@ -64,8 +64,8 @@ const ConnectYourWalletChronology = ({
           </button>
         </div>
       </div>
-      <div className="w-40% block m-auto mt-2%">
-        <dotlottie-player src={"/lottie/loader.lottie"} autoplay loop />
+      <div className="w-50% block m-auto mt-2%">
+        <img alt="Dots" src="img/pd-dots1.png"/>
       </div>
     </div>
   );

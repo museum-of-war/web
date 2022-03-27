@@ -1,3 +1,5 @@
+import SupportSticky from "@sections/AboutProject/SupportSticky";
+import {RELEASE_DATE} from "@sections/Constants";
 import React from "react";
 import ContentMission from "./ContentMission";
 const ContentTop = dynamic(() => import("./ContentTop/ContentTop"), {
@@ -24,6 +26,7 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
         handleConnect={handleConnect}
       />
       <ContentMedia />
+      <SupportSticky endDate={RELEASE_DATE}/>
     </div>
   );
 };
