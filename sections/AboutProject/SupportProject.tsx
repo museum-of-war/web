@@ -31,11 +31,6 @@ const SupportProject = ({}: PropsSupportProject) => {
               />
             </div>
           </div>
-          <img
-            className="h-100%"
-            alt="dots"
-            src="/img/pd-dotsHorizontalMobile.png"
-          />
         </>
       ) : isTablet ? (
         <div className="bg-carbon w-100% p-72px flex flex-row items-center justify-between">
@@ -69,6 +64,9 @@ const SupportProject = ({}: PropsSupportProject) => {
       {showDonatePopup && (
         <DonateProjectPopup setShowDonatePopup={setShowDonatePopup} />
       )}
+       <div className="desktop:w-30% tablet:w-50% mobile:w-80% block m-auto mt-2%">
+        <img alt="Dots" src="img/pd-dots1.png"/>
+      </div>
     </>
   );
 };
