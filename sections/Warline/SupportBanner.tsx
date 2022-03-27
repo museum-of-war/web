@@ -58,7 +58,7 @@ const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
       <p className="font-rlight pt-15px text-14px text-white"></p>
       <div className="pt-40px">
         <SupportButton
-          label={"Support Ukraine"}
+          label={"Support the Project"}
           onClick={() => {
             setShowDonatePopup(true);
           }}

@@ -91,8 +91,8 @@ const WarlineData: Array<DayType> = [
         ImageType: "5.gif",
       },
       {
-        Tokenid: 6,
-        DayNo: 1,
+        Tokenid: "6",
+        DayNo: "1",
         FullDate: "2/24/2022",
         Time: "8:08",
         TwitterUrl:
