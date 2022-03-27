@@ -18,5 +18,6 @@ jobs:
           key: ${{ secrets.FRONT1_RSA_KEY }}
           script: |
             cd web
+            git pull --force
             docker-compose build
             docker-compose up -d
