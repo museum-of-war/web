@@ -14,10 +14,10 @@ const ConnectYourWalletChronology = ({
     <div className="mt-8% flex flex-col justify-center">
       <div className="bg-carbon text-white px-12% py-8%">
         <p className="font-rblack text-26px leading-30px mb-20px">
-          Connect your wallet to see a chronology of the war
+          Connect your wallet to support Ukraine
         </p>
         <p className="font-rnarrow mb-30px">
-          Під’єднайте свій гаманець, щоб побачити хроногію війни.
+          Під’єднай гаманець, щоб підтримати Україну
         </p>
         <div className="flex justify-center">
           <button
@@ -41,12 +41,12 @@ const ConnectYourWalletChronology = ({
   ) : (
     <div className="mt-8% flex flex-col justify-center laptop:px-10%">
       <div className="bg-carbon text-white p-6% flex flex-row items-center justify-between">
-        <div className="laptop:w-60% tablet:w-70% mobile:w-70% mr-30%">
+        <div className="laptop:w-60% tablet:w-70% mobile:w-70% mr-30% pt-24px">
           <p className="font-rblack mobile:text-22px tablet:text-22px laptop:text-30px desktop:text-34px leading-36px">
-            Connect your wallet to see a chronology of the war
+            Connect your wallet to support Ukraine
           </p>
-          <p className="font-rnarrow">
-            Під’єднайте свій гаманець, щоб побачити хроногію війни.
+          <p className="font-rnarrow pt-24px">
+            Під’єднай гаманець, щоб підтримати Україну
           </p>
         </div>
         <div className="">

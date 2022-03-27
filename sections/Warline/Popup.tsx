@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SimpleReactLightbox from "simple-react-lightbox";
-import { SRLWrapper } from "simple-react-lightbox";
+import FsLightbox from "fslightbox-react";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
 import { VscChromeClose } from "react-icons/vsc";
@@ -26,27 +25,6 @@ const rand_imgs = [
   "img/dots-8.png",
 ];
 
-const wrapperOptions = {
-  buttons: {
-    showFullscreenButton: false,
-    showDownloadButton: false,
-    showAutoplayButton: false,
-    showCloseButton: false,
-    showThumbnailsButton: false,
-    showNextButton: false,
-    showPrevButton: false,
-  },
-  caption: {
-    showCaption: false,
-  },
-  settings: {
-    boxShadow: "5px 5px 15px black",
-  },
-  thumbnails: {
-    showThumbnails: false,
-  },
-};
-
 const Popup = ({
   eventData,
   dayNo,
@@ -57,6 +35,7 @@ const Popup = ({
 }: PropsPopup) => {
   const [data, setData] = useState<EventType>(eventData);
   const [currIdx, setCurrIdx] = useState<number>(idx);
+  const [toggler, setToggler] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(currIdx);
@@ -64,6 +43,7 @@ const Popup = ({
   }, [currIdx]);
 
   const { isMobile, isTablet } = useViewPort();
+
   const TokenidFormatter = (tokenId: number) => {
     return tokenId < 10
       ? "#000" + tokenId.toString()
@@ -74,44 +54,49 @@ const Popup = ({
       : "#" + tokenId.toString();
   };
 
-  const renderPrevBtn = () => (
-    <div className="z-20">
-      <button onClick={() => currIdx > 1 && setCurrIdx(currIdx - 1)}>
-        <img src={"img/modal-left.svg"} />
+  const renderPrevBtn = (className: string = "", imgClass: string = "") => (
+    <div className={`z-20 ${className}`}>
+      <button onClick={() => currIdx > 0 && setCurrIdx(currIdx - 1)}>
+        <img src={"img/modal-left.svg"} className={imgClass} />
       </button>
     </div>
   );
 
-  const renderNextBtn = () => (
-    <div className="z-20">
+  const renderNextBtn = (className: string = "", imgClass: string = "") => (
+    <div className={`z-19 ${className}`}>
       <button
         onClick={() => currIdx < eventsData.length && setCurrIdx(currIdx + 1)}
       >
         <img
           src={"img/modal-left.svg"}
           style={{ transform: " scale(-1, 1)" }}
+          className={imgClass}
         />
       </button>
     </div>
   );
 
   const renderImg = (className = "w-100% mt-10%") => {
+    const src =
+      eventData.FileType === ""
+        ? rand_imgs[idx % 8]
+        : (("https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+            eventData.Tokenid +
+            eventData.FileType) as any);
+
     return (
-      <SimpleReactLightbox>
-        <SRLWrapper options={wrapperOptions}>
-          <img
-            alt="Logo"
-            src={
-              data.FileType === ""
-                ? rand_imgs[idx % 8]
-                : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-                  data.Tokenid +
-                  data.FileType
-            }
-            className={className}
-          />
-        </SRLWrapper>
-      </SimpleReactLightbox>
+      <>
+        <img
+          alt="Logo"
+          onClick={() => setToggler(!toggler)}
+          src={src}
+          className={`${className} hover:cursor-pointer`}
+        />
+        <FsLightbox
+          toggler={toggler}
+          sources={["https://www.youtube.com/watch?v=3nQNiWdeH2Q"]}
+        />
+      </>
     );
   };
 
@@ -182,10 +167,11 @@ const Popup = ({
       <div className="fixed z-10 w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70	"></div>
     </div>
   ) : isTablet ? (
-    <div className="absolute -mt-20% left-0 min-h-screen90% w-100% flex items-center justify-evenly ">
-      {renderPrevBtn()}
+    <>
+      {renderPrevBtn("z-20 fixed left-3% top-50%", "w-75%")}
+      {renderNextBtn("z-20 fixed right-3% top-50%", "w-75%")}
 
-      <div className="z-20 bg-white relative w-80% flex flex-row px-7% py-10%">
+      <div className="z-20 bg-white absolute flex flex-row px-7% left-10% right-8% w-80% py-10%">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowPopup(false)}
@@ -245,10 +231,8 @@ const Popup = ({
           </p>
         </div>
       </div>
-      {renderNextBtn()}
-
       <div className="fixed z-10 w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70	"></div>
-    </div>
+    </>
   ) : (
     <div className="fixed z-10 w-screen100% h-screen100% top-0 left-0 flex  items-center justify-evenly">
       {renderPrevBtn()}

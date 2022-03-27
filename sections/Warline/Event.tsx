@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import SimpleReactLightbox from "simple-react-lightbox";
-import { SRLWrapper } from "simple-react-lightbox";
+import FsLightbox from "fslightbox-react";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
 import { openInNewTab } from "@sections/utils";
@@ -26,30 +25,11 @@ const rand_imgs = [
   "img/dots-8.png",
 ];
 
-const wrapperOptions = {
-  buttons: {
-    showFullscreenButton: false,
-    showDownloadButton: false,
-    showAutoplayButton: false,
-    showCloseButton: false,
-    showThumbnailsButton: false,
-    showNextButton: false,
-    showPrevButton: false,
-  },
-  caption: {
-    showCaption: false,
-  },
-  settings: {
-    boxShadow: "5px 5px 15px black",
-  },
-  thumbnails: {
-    showThumbnails: false,
-  },
-};
-
 const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
   const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [toggler, setToggler] = useState<boolean>(false);
+
   const TokenidFormatter = (tokenId: number) => {
     return tokenId < 10
       ? "#000" + tokenId.toString()
@@ -60,23 +40,27 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
       : "#" + tokenId.toString();
   };
 
-  const renderImage = (className:string) => {
+  const renderImage = (className: string) => {
+    const src =
+      eventData.FileType === ""
+        ? rand_imgs[idx % 8]
+        : (("https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+            eventData.Tokenid +
+            eventData.FileType) as any);
+
     return (
-      <SimpleReactLightbox>
-        <SRLWrapper options={wrapperOptions}>
-          <img
-            alt="Logo"
-            src={
-              eventData.FileType === ""
-                ? rand_imgs[idx % 8]
-                : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-                  eventData.Tokenid +
-                  eventData.FileType
-            }
-            className={className}
-          />
-        </SRLWrapper>
-      </SimpleReactLightbox>
+      <>
+        <img
+          alt="Logo"
+          onClick={() => setToggler(!toggler)}
+          src={src}
+          className={className}
+        />
+        <FsLightbox
+          toggler={toggler}
+          sources={["https://www.youtube.com/watch?v=3nQNiWdeH2Q"]}
+        />
+      </>
     );
   };
 
@@ -91,7 +75,12 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
             </p>
             <p className="font-rlight">{TokenidFormatter(eventData.Tokenid)}</p>
           </div>
-          <p className="font-rnarrow pt-15px"> {eventData.Headline}</p>
+          <p
+            className="font-rnarrow pt-15px"
+            style={{ overflowWrap: "anywhere" }}
+          >
+            {eventData.Headline}
+          </p>
           <div className="flex flex-row items-center justify-between pt-5px">
             <p className="font-rlight ">@{eventData.TwitterUsername}</p>
             <button
@@ -151,7 +140,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
             </p>
             <p className="font-rlight">{TokenidFormatter(eventData.Tokenid)}</p>
           </div>
-          <p className="font-rnarrow pt-15px"> {eventData.Headline}</p>
+          <p className="font-rnarrow pt-15px" style={{ overflowWrap: "anywhere" }}> {eventData.Headline}</p>
           <div className="flex flex-row items-center justify-between pt-15px">
             <p className="font-rlight ">@{eventData.TwitterUsername}</p>
             <button
@@ -214,7 +203,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
             </p>
             <p className="font-rlight">{TokenidFormatter(eventData.Tokenid)}</p>
           </div>
-          <p className="font-rnarrow pt-15px"> {eventData.Headline}</p>
+          <p className="font-rnarrow pt-15px" style={{ overflowWrap: "anywhere" }}> {eventData.Headline}</p>
           <div className="flex flex-row items-center justify-between pt-15px">
             <p className="font-rlight ">@{eventData.TwitterUsername}</p>
             <button

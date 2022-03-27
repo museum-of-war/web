@@ -53,7 +53,7 @@ const Countdownbanner = ({ endDate }: PropsCountdownbanner) => {
   });
   return (
     <>
-      <div className="bg-carbon w-100% px-10% py-5% mt-4%">
+      <div className="bg-carbon w-100% px-10% py-5% mt-4%" id="countdown-banner">
         <p className="font-rblack text-28px text-white">Sale starts in: </p>
         <div className="flex flex-row items-center flex-wrap laptop:w-100% tablet:w-50% mobile:w-100%">
           {timerComponents.map((timer, idx) => (

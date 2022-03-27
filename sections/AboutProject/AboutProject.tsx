@@ -1,3 +1,4 @@
+import SupportProject from "@sections/AboutProject/SupportProject";
 import SupportSticky from "@sections/AboutProject/SupportSticky";
 import {RELEASE_DATE} from "@sections/Constants";
 import React from "react";
@@ -26,7 +27,8 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
         handleConnect={handleConnect}
       />
       <ContentMedia />
-      <SupportSticky endDate={RELEASE_DATE}/>
+      <SupportSticky endDate={RELEASE_DATE} targetAnchorId={"countdown-banner"}/>
+      <SupportProject/>
     </div>
   );
 };
