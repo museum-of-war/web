@@ -75,6 +75,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
               performDonation();
               setShowDonatePopup(false);
             }}
+            disabled={!ETHAmount || amountError}
           >
             Donate Now
           </button>
@@ -129,6 +130,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
               performDonation();
               setShowDonatePopup(false);
             }}
+            disabled={!ETHAmount || amountError}
           >
             Donate Now
           </button>
