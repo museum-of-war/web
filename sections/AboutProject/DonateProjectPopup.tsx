@@ -70,7 +70,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
                 if (amountError) {
                   return;
                 }
-                await donate(ETHAmount);
+                await donate(ETHAmount, "project");
               };
               performDonation();
               setShowDonatePopup(false);
@@ -124,7 +124,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
                 if (amountError) {
                   return;
                 }
-                await donate(ETHAmount);
+                await donate(ETHAmount, "project");
               };
               performDonation();
               setShowDonatePopup(false);

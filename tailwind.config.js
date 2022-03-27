@@ -333,6 +333,7 @@ module.exports = {
       "28px": "28px",
       "30px": "30px",
       "35px": "35px",
+      "36px": "36px",
       "40px": "40px",
       "48px": "48px",
       "45px": "45px",

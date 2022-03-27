@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SupportButton from "../../components/SupportButton";
+
 type PropsSupportBanner = {
   setShowDonatePopup: (arg: boolean) => void;
 };
@@ -7,14 +8,14 @@ type PropsSupportBanner = {
 const calculateTimeLeft = () => {
   let difference = +new Date(`03/30/2022`) - +new Date();
 
-  return (difference > 0) ?
-      {
+  return difference > 0
+    ? {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60),
-      } :
-      {};
+      }
+    : {};
 };
 const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());

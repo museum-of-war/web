@@ -11,7 +11,7 @@ const Footer = () => {
   const onClickTermsAndConditions = () => push("/terms-and-conditions");
   const onClickPrivacyPolicy = () => push("/privacy-policy");
   return isMobile ? (
-    <div className="px-10% font-rnarrow py-10% flex flex-col">
+    <div className="px-10% font-rnarrow pt-10% pb-20% flex flex-col">
       <div className="flex flex-row align-center mb-4%">
         <SocialMediaButton twitter />
         <SocialMediaButton instagram />
@@ -29,7 +29,7 @@ const Footer = () => {
       <p>© 2022 Copyright</p>
     </div>
   ) : (
-    <div className="flex flex-row px-10% font-rnarrow py-4% items-center justify-between">
+    <div className="flex flex-row px-10% font-rnarrow py-36px items-center justify-between">
       <p className="mr-50%">© 2022 Copyright</p>
       <HeaderAndFooterButton
         label="Privacy Policy"

@@ -44,14 +44,14 @@ const Popup = ({
 
   const { isMobile, isTablet } = useViewPort();
 
-  const TokenidFormatter = (tokenId: number) => {
-    return tokenId < 10
-      ? "#000" + tokenId.toString()
-      : tokenId < 100
-      ? "#00" + tokenId.toString()
-      : tokenId < 1000
-      ? "#0" + tokenId.toString()
-      : "#" + tokenId.toString();
+  const TokenidFormatter = (tokenId: string) => {
+    return parseInt(tokenId) < 10
+      ? "#000" + tokenId
+      : parseInt(tokenId) < 100
+      ? "#00" + tokenId
+      : parseInt(tokenId) < 1000
+      ? "#0" + tokenId
+      : "#" + tokenId;
   };
 
   const renderPrevBtn = (className: string = "", imgClass: string = "") => (
@@ -77,12 +77,12 @@ const Popup = ({
   );
 
   const renderImg = (className = "w-100% mt-10%") => {
+    console.log(data)
     const src =
-      eventData.FileType === ""
-        ? rand_imgs[idx % 8]
-        : (("https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-            eventData.Tokenid +
-            eventData.FileType) as any);
+      data.ImageType === ""
+                ? rand_imgs[idx % 8] as string
+                : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+                  data.ImageType
 
     return (
       <>
@@ -94,7 +94,7 @@ const Popup = ({
         />
         <FsLightbox
           toggler={toggler}
-          sources={["https://www.youtube.com/watch?v=3nQNiWdeH2Q"]}
+          sources={[src]}
         />
       </>
     );

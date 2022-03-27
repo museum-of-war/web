@@ -14,7 +14,7 @@ type PropsEvent = {
   eventsData: EventType[];
 };
 
-const rand_imgs = [
+const rand_imgs:string[] = [
   "img/dots-1.png",
   "img/dots-2.png",
   "img/dots-3.png",
@@ -30,23 +30,22 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [toggler, setToggler] = useState<boolean>(false);
 
-  const TokenidFormatter = (tokenId: number) => {
-    return tokenId < 10
-      ? "#000" + tokenId.toString()
-      : tokenId < 100
-      ? "#00" + tokenId.toString()
-      : tokenId < 1000
-      ? "#0" + tokenId.toString()
-      : "#" + tokenId.toString();
+ const TokenidFormatter = (tokenId: string):string => {
+    return parseInt(tokenId) < 10
+      ? "#000" + tokenId
+      : parseInt(tokenId) < 100
+      ? "#00" + tokenId
+      : parseInt(tokenId) < 1000
+      ? "#0" + tokenId
+      : "#" + tokenId;
   };
 
   const renderImage = (className: string) => {
-    const src =
-      eventData.FileType === ""
-        ? rand_imgs[idx % 8]
-        : (("https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-            eventData.Tokenid +
-            eventData.FileType) as any);
+    const src:string =
+      eventData.ImageType === ""
+            ? rand_imgs[idx % 8] as string
+            : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+              eventData.ImageType
 
     return (
       <>
@@ -58,7 +57,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
         />
         <FsLightbox
           toggler={toggler}
-          sources={["https://www.youtube.com/watch?v=3nQNiWdeH2Q"]}
+          sources={[src]}
         />
       </>
     );
