@@ -17,5 +17,6 @@ jobs:
           username: ${{ secrets.FRONT1_USERNAME }}
           key: ${{ secrets.FRONT1_RSA_KEY }}
           script: |
-            whoami
-            pwd
+            cd web
+            docker-compose build
+            docker-compose up -d
