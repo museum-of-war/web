@@ -14,10 +14,10 @@ const ConnectYourWalletChronology = ({
     <div className="mt-8% flex flex-col justify-center">
       <div className="bg-carbon text-white px-12% py-8%">
         <p className="font-rblack text-26px leading-30px mb-20px">
-          Connect your wallet to support the Project
+          Connect your wallet to support Ukraine
         </p>
         <p className="font-rnarrow mb-30px">
-          Під’єднай гаманець, щоб підтримати Україну{" "}
+          Під’єднай гаманець, щоб підтримати Україну
         </p>
         <div className="flex justify-center">
           <button
@@ -34,24 +34,19 @@ const ConnectYourWalletChronology = ({
           </button>
         </div>
       </div>
-      <div className="pt-30px">
-        <img
-          alt="dots"
-          src={"/img/pd-dots1.png"}
-          width="80%"
-          className="block m-auto mt-2%"
-        />
+      <div className="w-80% block m-auto mt-2%">
+        <img alt="Dots" src={"img/pd-dots1.png"}/>
       </div>
     </div>
   ) : (
     <div className="mt-8% flex flex-col justify-center laptop:px-10%">
       <div className="bg-carbon text-white p-6% flex flex-row items-center justify-between">
-        <div className="laptop:w-60% tablet:w-70% mobile:w-70% mr-30%">
-          <p className="font-rblack mobile:text-22px tablet:text-22px laptop:text-30px desktpo:text-34px">
-            Connect your wallet to support the Project
+        <div className="laptop:w-60% tablet:w-70% mobile:w-70% mr-30% pt-24px">
+          <p className="font-rblack mobile:text-22px tablet:text-22px laptop:text-30px desktop:text-34px leading-36px">
+            Connect your wallet to support Ukraine
           </p>
-          <p className="font-rnarrow">
-            Під’єднай гаманець, щоб підтримати Україну{" "}
+          <p className="font-rnarrow pt-24px">
+            Під’єднай гаманець, щоб підтримати Україну
           </p>
         </div>
         <div className="">
@@ -69,13 +64,8 @@ const ConnectYourWalletChronology = ({
           </button>
         </div>
       </div>
-      <div className="pt-20px">
-        <img
-          alt="dots"
-          src={"/img/pd-dots1.png"}
-          width="40%"
-          className="block m-auto mt-2%"
-        />
+      <div className="w-50% block m-auto mt-2%">
+        <img alt="Dots" src="img/pd-dots1.png"/>
       </div>
     </div>
   );

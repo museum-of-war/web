@@ -4,6 +4,9 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
 
+const ProjectWalletNo = "0x98c30d4B65b2A0ab0838E7b1E09352c0FD70736C";
+const CountryWalletNo = "0x165CD37b4C644C2921454429E7F9358d18A45e14";
+
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
@@ -48,7 +51,7 @@ export function useWeb3Modal() {
     setProvider(undefined);
   }
 
-  async function donate(amount: string) {
+  async function donate(amount: string, target: "country"|"project") {
     const externalProvider = await web3Modal()?.connect();
     const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
     setProvider(ethersProvider);
@@ -57,7 +60,7 @@ export function useWeb3Modal() {
     const web3 = new Web3(externalProvider);
     const amountInWei = web3.utils.toWei(amount, "ether");
     web3.eth.sendTransaction({
-      to: "0x98c30d4B65b2A0ab0838E7b1E09352c0FD70736C",
+      to: target === "country"? CountryWalletNo: ProjectWalletNo,
       from: signerAddress,
       value: amountInWei,
     });

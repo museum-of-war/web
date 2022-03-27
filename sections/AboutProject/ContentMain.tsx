@@ -25,13 +25,13 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
           We will never let any single day of this period disappear from the
           ledger of world history.
         </p>
-        <div className="flex flex-row mb-8% -ml-10% px-10%">
+        <div className="flex relative flex-row mb-8% -ml-10% px-5%">
           <img
-            className="w-15% mr-10% -mt-10px h-100%"
+            className="absolute h-100%"
             alt="dots"
             src="/img/pd-dotsHorizontalSmall.png"
           />{" "}
-          <div className="font-rlight text-12px">
+          <div className="font-rlight ml-[72px] text-12px">
             Ми не дамо викреслити жодного дня цього періоду зі сторінок світової
             історії.
           </div>

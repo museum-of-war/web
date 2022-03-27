@@ -16,6 +16,7 @@
     "@mui/material": "^5.5.0",
     "@walletconnect/web3-provider": "^1.7.4",
     "ethers": "^5.6.0",
+    "fslightbox-react": "^1.6.2-2",
     "lottie-react": "^2.2.1",
     "next": "12.1.0",
     "react": "17.0.2",
@@ -26,6 +27,7 @@
     "web3modal": "^1.9.5"
   },
   "devDependencies": {
+    "@types/fslightbox-react": "^1.4.2",
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
     "autoprefixer": "^10.4.2",

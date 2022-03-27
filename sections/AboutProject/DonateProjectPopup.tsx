@@ -9,15 +9,16 @@ type PropsDonatePopup = {
 
 const NUMBER_3_DECIMALS = /^(?:\d*\.\d{1,3}|\d+)$/;
 
-const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
+const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
   const { isMobile } = useViewPort();
   const { donate } = useWeb3Modal();
   const [ETHAmount, setETHAmount] = useState<string>("");
   const [amountError, setAmountError] = useState<boolean>(false);
+
   const DonateButton = (amount: string) => {
     return (
       <button
-        className="font-rblack text-16px mr-30px mt-10px"
+        className="font-rblack mobile:text-14px text-16px mr-30px mobile:mr-15px mt-10px"
         onClick={() => {
           setETHAmount(amount);
         }}
@@ -26,9 +27,10 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
       </button>
     );
   };
+
   return isMobile ? (
     <div>
-      <div className="  fixed z-20 w-screen100%  bg-white top-20% tablet:left-20% laptop:left-30%  px-10% h-80%	">
+      <div className="fixed z-20 w-screen100% bg-white top-0 tablet:left-20% laptop:left-30% px-10% h-100% flex flex-col justify-center">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowDonatePopup(false)}
@@ -36,12 +38,7 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           <VscChromeClose size={25} />
         </button>
 
-        <p className="font-rblack mt-20%  text-34px">Support Ukraine</p>
-        <p className="font-rnarrow pt-10%">
-          Support Ukraine to not let this chronology continue. 100% of funds
-          from the sales will go directly to the official crypto-accounts of the
-          Ministry of Digital Transformation of Ukraine.
-        </p>
+        <p className="font-rblack text-34px">Support our project</p>
         <div className=" mt-30px pb-10px border-b font-rlight border-black text-22px dark:border-cotton flex flex-row items-center justify-between">
           <input
             className="w-70%
@@ -73,14 +70,14 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
                 if (amountError) {
                   return;
                 }
-                await donate(ETHAmount, "country");
+                await donate(ETHAmount, "project");
               };
               performDonation();
               setShowDonatePopup(false);
             }}
             disabled={!ETHAmount || amountError}
           >
-            Support
+            Donate Now
           </button>
         </div>
       </div>
@@ -96,12 +93,7 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           <VscChromeClose size={25} />
         </button>
 
-        <p className="font-rblack text-34px">Support Ukraine</p>
-        <p className="font-rnarrow pt-20px">
-          Support Ukraine to not let this chronology continue. 100% of funds
-          from the sales will go directly to the official crypto-accounts of the
-          Ministry of Digital Transformation of Ukraine.
-        </p>
+        <p className="font-rblack text-34px">Support our project</p>
         <div className=" mt-30px pb-10px border-b font-rlight border-black text-22px dark:border-cotton flex flex-row items-center justify-between">
           <input
             className="w-70%
@@ -133,14 +125,14 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
                 if (amountError) {
                   return;
                 }
-                await donate(ETHAmount, "country");
+                await donate(ETHAmount, "project");
               };
               performDonation();
               setShowDonatePopup(false);
             }}
             disabled={!ETHAmount || amountError}
           >
-            Support
+            Donate Now
           </button>
         </div>
       </div>
@@ -149,4 +141,4 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
   );
 };
 
-export default Popup;
+export default DonateProjectPopup;

@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import SupportProject from "@sections/AboutProject/SupportProject";
+import SupportSticky from "@sections/AboutProject/SupportSticky";
+import {RELEASE_DATE} from "@sections/Constants";
+import React from "react";
 import ContentMission from "./ContentMission";
 const ContentTop = dynamic(() => import("./ContentTop/ContentTop"), {
   ssr: false,
@@ -7,16 +10,13 @@ import ContentWar from "./ContentWar";
 import ContentMain from "./ContentMain";
 import ContentMedia from "./ContentMedia";
 import dynamic from "next/dynamic";
-import SupportSticky from "@sections/Warline/SupportSticky";
-import DonatePopup from "../Warline/DonatePopup";
+
 type AboutProjectProps = {
   signerAddress: string;
   handleConnect: () => void;
 };
 
 const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
-  const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
-
   return (
     <div>
       <ContentTop signerAddress={signerAddress} handleConnect={handleConnect} />
@@ -27,12 +27,8 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
         handleConnect={handleConnect}
       />
       <ContentMedia />
-      <SupportSticky setShowDonatePopup={setShowDonatePopup} />
-      {showDonatePopup ? (
-        <DonatePopup setShowDonatePopup={setShowDonatePopup} />
-      ) : (
-        <></>
-      )}
+      <SupportSticky endDate={RELEASE_DATE} targetAnchorId={"countdown-banner"}/>
+      <SupportProject/>
     </div>
   );
 };

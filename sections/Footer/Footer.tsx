@@ -29,7 +29,7 @@ const Footer = () => {
       <p>© 2022 Copyright</p>
     </div>
   ) : (
-    <div className="flex flex-row px-10% font-rnarrow pt-4% pb-10% items-center justify-between">
+    <div className="flex flex-row px-10% font-rnarrow py-36px items-center justify-between">
       <p className="mr-50%">© 2022 Copyright</p>
       <HeaderAndFooterButton
         label="Privacy Policy"

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import FsLightbox from "fslightbox-react";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
 import { VscChromeClose } from "react-icons/vsc";
@@ -10,6 +11,7 @@ type PropsPopup = {
   date: string;
   setShowPopup: (arg: boolean) => void;
   idx: number;
+  eventsData: EventType[];
 };
 
 const rand_imgs = [
@@ -23,8 +25,25 @@ const rand_imgs = [
   "img/dots-8.png",
 ];
 
-const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
+const Popup = ({
+  eventData,
+  dayNo,
+  date,
+  setShowPopup,
+  idx,
+  eventsData,
+}: PropsPopup) => {
+  const [data, setData] = useState<EventType>(eventData);
+  const [currIdx, setCurrIdx] = useState<number>(idx);
+  const [toggler, setToggler] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(currIdx);
+    setData(eventsData[currIdx] as EventType);
+  }, [currIdx]);
+
   const { isMobile, isTablet } = useViewPort();
+
   const TokenidFormatter = (tokenId: string) => {
     return parseInt(tokenId) < 10
       ? "#000" + tokenId
@@ -34,9 +53,56 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
       ? "#0" + tokenId
       : "#" + tokenId;
   };
+
+  const renderPrevBtn = (className: string = "", imgClass: string = "") => (
+    <div className={`z-20 ${className}`}>
+      <button onClick={() => currIdx > 0 && setCurrIdx(currIdx - 1)}>
+        <img src={"img/modal-left.svg"} className={imgClass} />
+      </button>
+    </div>
+  );
+
+  const renderNextBtn = (className: string = "", imgClass: string = "") => (
+    <div className={`z-19 ${className}`}>
+      <button
+        onClick={() => currIdx < eventsData.length && setCurrIdx(currIdx + 1)}
+      >
+        <img
+          src={"img/modal-left.svg"}
+          style={{ transform: " scale(-1, 1)" }}
+          className={imgClass}
+        />
+      </button>
+    </div>
+  );
+
+  const renderImg = (className = "w-100% mt-10%") => {
+    console.log(data)
+    const src =
+      data.ImageType === ""
+                ? rand_imgs[idx % 8] as string
+                : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+                  data.ImageType
+
+    return (
+      <>
+        <img
+          alt="Logo"
+          onClick={() => setToggler(!toggler)}
+          src={src}
+          className={`${className} hover:cursor-pointer`}
+        />
+        <FsLightbox
+          toggler={toggler}
+          sources={[src]}
+        />
+      </>
+    );
+  };
+
   return isMobile ? (
     <div>
-      <div className="absolute -mt-50% z-20 w-screen90% min-h-screen90% bg-white left-5% flex flex-row px-7% py-10%	">
+      <div className="absolute -mt-50% z-20 w-screen100% min-h-screen90% bg-white left-0 flex flex-row px-7% py-10%	">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowPopup(false)}
@@ -44,49 +110,39 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           <VscChromeClose size={25} />
         </button>
         <div className="w-100%">
-          <div className="flex flex-row items-center justify-between ">
+          <div className="flex flex-col items-start justify-between ">
             <p className="font-rblack leading-32px text-32px">
-              Day {dayNo}, {eventData.Time}
+              Day {dayNo}, {data.Time}
             </p>
-            <p className="font-rlight text-24px">
-              {TokenidFormatter(eventData.Tokenid)}
+            <p className="font-rlight text-24px pt-20px">
+              {TokenidFormatter(data.Tokenid)}
             </p>
           </div>
-          <div className="flex flex-row items-center justify-between pt-30px ">
-            <div>
+          <div className="flex flex-col items-start justify-between">
+            <div className="pt-20px">
               <p className="font-rlight text-16px">Artist</p>
               <button
                 className="pt-5px font-rnarrow text-18px"
                 onClick={() => {
-                  if (eventData.ArtistLink) openInNewTab(eventData.ArtistLink);
+                  if (data.ArtistLink) openInNewTab(data.ArtistLink);
                 }}
               >
-                <p>{eventData.ArtistName}</p>
+                <p>{data.ArtistName}</p>
               </button>
             </div>
-            <div className="pr-10%">
+            <div className="pr-10% pt-20px">
               <p className="font-rlight text-16px ">Owner</p>
               <p className="pt-5px font-rnarrow text-18px">Unreleased</p>
             </div>
           </div>
-          <img
-            alt="Logo"
-            src={
-              eventData.ImageType === ""
-                ? rand_imgs[idx % 8]
-                : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-                  eventData.ImageType
-            }
-            className="w-100% mt-10%"
-            // max-w-400px max-h-400px
-          />
+          {renderImg()}
           <div className="bg-beige px-3% py-2% mt-8%">
-            <p className="font-rnarrow pt-15px"> {eventData.Headline}</p>
+            <p className="font-rnarrow pt-15px"> {data.Headline}</p>
             <div className="flex flex-row items-center justify-between pt-15px">
-              <p className="font-rlight ">@{eventData.TwitterUsername}</p>
+              <p className="font-rlight ">@{data.TwitterUsername}</p>
               <button
                 onClick={() => {
-                  openInNewTab(eventData.TwitterUrl);
+                  openInNewTab(data.TwitterUrl);
                 }}
               >
                 <img
@@ -100,10 +156,10 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           <p className="font-rlight text-24px mt-8%">Description</p>
 
           <p className="pt-2% font-rnarrow text-18px">
-            {eventData.DescriptionEnglish}
+            {data.DescriptionEnglish}
           </p>
           <p className="pt-5% font-rnarrow text-18px">
-            {eventData.DescriptionUkrainian}
+            {data.DescriptionUkrainian}
           </p>
         </div>
       </div>
@@ -111,8 +167,11 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
       <div className="fixed z-10 w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70	"></div>
     </div>
   ) : isTablet ? (
-    <div>
-      <div className="absolute z-20 -mt-20% w-screen90% min-h-screen90% bg-white  left-5% flex flex-row px-7% py-10%	">
+    <>
+      {renderPrevBtn("z-20 fixed left-3% top-50%", "w-75%")}
+      {renderNextBtn("z-20 fixed right-3% top-50%", "w-75%")}
+
+      <div className="z-20 bg-white absolute flex flex-row px-7% left-10% right-8% w-80% py-10%">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowPopup(false)}
@@ -122,10 +181,10 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
         <div className="w-100%">
           <div className="flex flex-row items-center justify-between ">
             <p className="font-rblack leading-32px text-32px">
-              Day {dayNo}, {eventData.Time}
+              Day {dayNo}, {data.Time}
             </p>
             <p className="font-rlight text-24px">
-              {TokenidFormatter(eventData.Tokenid)}
+              {TokenidFormatter(data.Tokenid)}
             </p>
           </div>
           <div className="flex flex-row items-center justify-between pt-30px ">
@@ -134,10 +193,10 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
               <button
                 className="pt-5px font-rnarrow text-18px"
                 onClick={() => {
-                  if (eventData.ArtistLink) openInNewTab(eventData.ArtistLink);
+                  if (data.ArtistLink) openInNewTab(data.ArtistLink);
                 }}
               >
-                <p>{eventData.ArtistName}</p>
+                <p>{data.ArtistName}</p>
               </button>
             </div>
             <div className="pr-10%">
@@ -145,24 +204,14 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
               <p className="pt-5px font-rnarrow text-18px">Unreleased</p>
             </div>
           </div>
-          <img
-            alt="Logo"
-            src={
-              eventData.ImageType === ""
-                ? rand_imgs[idx % 8]
-                : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-                  eventData.ImageType
-            }
-            className="w-100% mt-10%"
-            // max-w-400px max-h-400px
-          />
+          {renderImg()}
           <div className="bg-beige px-3% py-2% mt-8%">
-            <p className="font-rnarrow pt-15px"> {eventData.Headline}</p>
+            <p className="font-rnarrow pt-15px"> {data.Headline}</p>
             <div className="flex flex-row items-center justify-between pt-15px">
-              <p className="font-rlight ">@{eventData.TwitterUsername}</p>
+              <p className="font-rlight ">@{data.TwitterUsername}</p>
               <button
                 onClick={() => {
-                  openInNewTab(eventData.TwitterUrl);
+                  openInNewTab(data.TwitterUrl);
                 }}
               >
                 <img
@@ -175,45 +224,34 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           </div>
           <p className="font-rlight text-24px mt-8%">Description</p>
           <p className="pt-2% font-rnarrow text-18px">
-            {eventData.DescriptionEnglish}
+            {data.DescriptionEnglish}
           </p>
           <p className="pt-2% font-rnarrow text-18px">
-            {eventData.DescriptionUkrainian}
+            {data.DescriptionUkrainian}
           </p>
         </div>
       </div>
-
       <div className="fixed z-10 w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70	"></div>
-    </div>
+    </>
   ) : (
-    <div>
-      <div className="  fixed z-20 top-10% bg-white left-5% right-5%  flex flex-row px-5% py-3%	">
+    <div className="fixed z-10 w-screen100% h-screen100% top-0 left-0 flex  items-center justify-evenly">
+      {renderPrevBtn()}
+
+      <div className="z-20 bg-white relative w-80% flex flex-row px-5% py-3%	">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowPopup(false)}
         >
           <VscChromeClose size={25} />
         </button>
-        <div className="w-35%">
-          <img
-            alt="Logo"
-            src={
-              eventData.ImageType === ""
-                ? rand_imgs[idx % 8]
-                : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-                  eventData.ImageType
-            }
-            className="w-90% pr-5%"
-            // max-w-400px max-h-400px
-          />
-        </div>
+        <div className="w-35%">{renderImg("w-90% pr-5%")}</div>
         <div className="w-65%">
           <div className="flex flex-row items-center justify-between ">
             <p className="font-rblack leading-32px text-32px">
-              Day {dayNo}, {eventData.Time}
+              Day {dayNo}, {data.Time}
             </p>
             <p className="font-rlight text-24px">
-              {TokenidFormatter(eventData.Tokenid)}
+              {TokenidFormatter(data.Tokenid)}
             </p>
           </div>
           <div className="flex flex-row items-center justify-between pt-30px ">
@@ -222,10 +260,10 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
               <button
                 className="pt-5px font-rnarrow text-18px"
                 onClick={() => {
-                  if (eventData.ArtistLink) openInNewTab(eventData.ArtistLink);
+                  if (data.ArtistLink) openInNewTab(data.ArtistLink);
                 }}
               >
-                <p>{eventData.ArtistName}</p>
+                <p>{data.ArtistName}</p>
               </button>
             </div>
             <div className="pr-10%">
@@ -235,12 +273,12 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           </div>
 
           <div className="bg-beige px-3% py-2% mt-5%">
-            <p className="font-rnarrow pt-15px"> {eventData.Headline}</p>
+            <p className="font-rnarrow pt-15px"> {data.Headline}</p>
             <div className="flex flex-row items-center justify-between pt-15px">
-              <p className="font-rlight ">@{eventData.TwitterUsername}</p>
+              <p className="font-rlight ">@{data.TwitterUsername}</p>
               <button
                 onClick={() => {
-                  openInNewTab(eventData.TwitterUrl);
+                  openInNewTab(data.TwitterUrl);
                 }}
               >
                 <img
@@ -253,13 +291,14 @@ const Popup = ({ eventData, dayNo, date, setShowPopup, idx }: PropsPopup) => {
           </div>
           <p className="font-rlight text-24px mt-5%">Description</p>
           <p className="pt-2% font-rnarrow text-18px">
-            {eventData.DescriptionEnglish}
+            {data.DescriptionEnglish}
           </p>
           <p className="pt-2% font-rnarrow text-18px">
-            {eventData.DescriptionUkrainian}
+            {data.DescriptionUkrainian}
           </p>
         </div>
       </div>
+      {renderNextBtn()}
 
       <div className=" fixed z-10 w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70"></div>
     </div>
