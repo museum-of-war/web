@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [ devops/github_actions ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.FRONT1_HOST }}
+          username: ${{ secrets.FRONT1_USERNAME }}
+          key: ${{ secrets.FRONT1_RSA_KEY }}
+          script: |
+            whoami
+            pwd
