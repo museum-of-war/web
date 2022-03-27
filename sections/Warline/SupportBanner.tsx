@@ -7,14 +7,14 @@ type PropsSupportBanner = {
 const calculateTimeLeft = () => {
   let difference = +new Date(`03/30/2022`) - +new Date();
 
-  return (difference > 0) ?
-      {
+  return difference > 0
+    ? {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60),
-      } :
-      {};
+      }
+    : {};
 };
 const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -57,7 +57,7 @@ const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
       <p className="font-rlight pt-15px text-14px text-white"></p>
       <div className="pt-40px">
         <SupportButton
-          label={"Support Ukraine"}
+          label={"Support the Project"}
           onClick={() => {
             setShowDonatePopup(true);
           }}

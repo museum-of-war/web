@@ -25,25 +25,24 @@ const rand_imgs = [
 const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
   const [showPopup, setShowPopup] = useState<boolean>(false);
-  const TokenidFormatter = (tokenId: number) => {
-    return tokenId < 10
-      ? "#000" + tokenId.toString()
-      : tokenId < 100
-      ? "#00" + tokenId.toString()
-      : tokenId < 1000
-      ? "#0" + tokenId.toString()
-      : "#" + tokenId.toString();
+  const TokenidFormatter = (tokenId: string) => {
+    return parseInt(tokenId) < 10
+      ? "#000" + tokenId
+      : parseInt(tokenId) < 100
+      ? "#00" + tokenId
+      : parseInt(tokenId) < 1000
+      ? "#0" + tokenId
+      : "#" + tokenId;
   };
   return isMobile ? (
     <div className="flex flex-col items-top mb-60px">
       <img
         alt="Logo"
         src={
-          eventData.FileType === ""
+          eventData.ImageType === ""
             ? rand_imgs[idx % 8]
-            : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-              eventData.Tokenid +
-              eventData.FileType
+            : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+              eventData.ImageType
         }
         className="w-100%"
       />
@@ -108,11 +107,10 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
       <img
         alt="Logo"
         src={
-          eventData.FileType === ""
+          eventData.ImageType === ""
             ? rand_imgs[idx % 8]
-            : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-              eventData.Tokenid +
-              eventData.FileType
+            : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+              eventData.ImageType
         }
         className="w-40vw max-w-300px max-h-300px h-40vw mr-50px"
       />
@@ -174,11 +172,10 @@ const Event = ({ eventData, dayNo, date, idx }: PropsEvent) => {
       <img
         alt="Logo"
         src={
-          eventData.FileType === ""
+          eventData.ImageType === ""
             ? rand_imgs[idx % 8]
-            : "https://bafybeih2f4nluohqqaw4al5p2e4aoka4lynpoww4zuojmwxntb6q57m63a.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-              eventData.Tokenid +
-              eventData.FileType
+            : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
+              eventData.ImageType
         }
         className="w-20vw max-w-300px max-h-300px h-20vw mr-50px"
       />

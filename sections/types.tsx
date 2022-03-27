@@ -17,8 +17,8 @@ export type DayType = {
 
 export type EventType = {
   Time: string;
-  Tokenid: number;
-  DayNo: number;
+  Tokenid: string;
+  DayNo: string;
   FullDate: string;
   TwitterUrl: string;
   TwitterUsername: string;
@@ -28,5 +28,5 @@ export type EventType = {
   ArtistName: string;
   isAuction?: boolean;
   ArtistLink?: string | undefined;
-  FileType?: string;
+  ImageType?: string;
 };
