@@ -28,7 +28,7 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
   };
   return isMobile ? (
     <div>
-      <div className="  fixed z-20 w-screen100%  bg-white top-40% tablet:left-20% laptop:left-30%  px-10% h-60%	">
+      <div className="  fixed z-20 w-screen100%  bg-white top-20% tablet:left-20% laptop:left-30%  px-10% h-80%	">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowDonatePopup(false)}
@@ -36,16 +36,16 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           <VscChromeClose size={25} />
         </button>
 
-        <p className="font-rblack mt-20%  text-34px">Support our Project</p>
-        {/* <p className="font-rnarrow pt-10%">
+        <p className="font-rblack mt-20%  text-34px">Support Ukraine</p>
+        <p className="font-rnarrow pt-10%">
           Support Ukraine to not let this chronology continue. 100% of funds
           from the sales will go directly to the official crypto-accounts of the
           Ministry of Digital Transformation of Ukraine.
-        </p> */}
+        </p>
         <div className=" mt-30px pb-10px border-b font-rlight border-black text-22px dark:border-cotton flex flex-row items-center justify-between">
           <input
             className="w-70%
-          placeholder-mid_gray placeholder-opacity-70 text-16px
+          placeholder-mid_gray placeholder-opacity-70
           transition-all duration-1500 outline-none"
             placeholder={"Enter your ETH Amount"}
             value={ETHAmount !== null ? ETHAmount : ""}
@@ -95,12 +95,12 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           <VscChromeClose size={25} />
         </button>
 
-        <p className="font-rblack text-34px">Support our project</p>
-        {/* <p className="font-rnarrow pt-20px">
+        <p className="font-rblack text-34px">Support Ukraine</p>
+        <p className="font-rnarrow pt-20px">
           Support Ukraine to not let this chronology continue. 100% of funds
           from the sales will go directly to the official crypto-accounts of the
           Ministry of Digital Transformation of Ukraine.
-        </p> */}
+        </p>
         <div className=" mt-30px pb-10px border-b font-rlight border-black text-22px dark:border-cotton flex flex-row items-center justify-between">
           <input
             className="w-70%
