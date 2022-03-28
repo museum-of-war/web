@@ -18,7 +18,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
   const DonateButton = (amount: string) => {
     return (
       <button
-        className="font-rblack mobile:text-14px text-16px mr-30px mobile:mr-15px mt-10px"
+        className="font-rblack text-14px leading-40px tablet:leading-48px"
         onClick={() => {
           setETHAmount(amount);
         }}
@@ -30,7 +30,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
 
   return isMobile ? (
     <div>
-      <div className="fixed z-20 w-screen100% bg-white top-0 tablet:left-20% laptop:left-30% px-10% h-100% flex flex-col justify-center">
+      <div className="fixed z-20 w-screen100% bg-white top-0 px-24px h-100% flex flex-col justify-center">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowDonatePopup(false)}
@@ -38,7 +38,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           <VscChromeClose size={25} />
         </button>
 
-        <p className="font-rblack text-34px">Support our project</p>
+        <p className="font-rblack text-29px leading-30px">Support our project</p>
         <div className=" mt-30px pb-10px border-b font-rlight border-black text-22px dark:border-cotton flex flex-row items-center justify-between">
           <input
             className="w-70%
@@ -53,7 +53,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           />
           <p>ETH</p>
         </div>
-        <div className="mt-10px flex flex-row items-center flex-wrap">
+        <div className="mt-20px flex flex-row items-center flex-wrap gap-x-24px">
           {DonateButton("0.1")}
           {DonateButton("0.3")}
           {DonateButton("0.5")}
@@ -64,7 +64,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
         )}
         <div className="flex justify-center w-100% ">
           <button
-            className="font-rblack text-16px bg-carbon text-white rounded-full mt-50px px-15px py-15px w-100%"
+            className="font-rblack text-16px bg-carbon text-white rounded-full mt-20px px-15px py-18px w-100%"
             onClick={() => {
               const performDonation = async () => {
                 if (amountError) {
@@ -85,7 +85,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
     </div>
   ) : (
     <div>
-      <div className="  fixed z-20 w-screen60% latop:w-screen40%  bg-white top-20% left-20vw laptop:left-20vw  px-7%  laptop:px-5% py-3%	">
+      <div className="fixed z-20 w-496px laptop:w-544px bg-white top-20% left-50% -translate-x-50% px-48px p-72px">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowDonatePopup(false)}
@@ -93,8 +93,8 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           <VscChromeClose size={25} />
         </button>
 
-        <p className="font-rblack text-34px">Support our project</p>
-        <div className=" mt-30px pb-10px border-b font-rlight border-black text-22px dark:border-cotton flex flex-row items-center justify-between">
+        <p className="font-rblack text-32px leading-48px">Support our project</p>
+        <div className="mt-24px pb-10px border-b font-rlight border-black text-22px dark:border-cotton flex flex-row items-center justify-between">
           <input
             className="w-70%
             placeholder-mid_gray placeholder-opacity-70
@@ -108,7 +108,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           />
           <p>ETH</p>
         </div>
-        <div className="mt-10px flex flex-row items-center flex-wrap">
+        <div className="flex flex-row items-center flex-wrap gap-x-24px">
           {DonateButton("0.1")}
           {DonateButton("0.3")}
           {DonateButton("0.5")}
@@ -119,7 +119,7 @@ const DonateProjectPopup = ({ setShowDonatePopup }: PropsDonatePopup) => {
         )}
         <div className="flex justify-center w-100%">
           <button
-            className="font-rblack text-16px bg-carbon text-white rounded-full mt-50px px-15px py-15px w-100%"
+            className="font-rblack text-16px bg-carbon text-white rounded-full mt-24px px-15px py-12px w-100%"
             onClick={() => {
               const performDonation = async () => {
                 if (amountError) {
