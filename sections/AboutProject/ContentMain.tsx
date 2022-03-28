@@ -21,7 +21,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
   return isMobile ? (
     <div className="mb-8% mt-10">
       <div className="px-10%">
-        <p className="font-rblack text-10vw uppercase mb-15% leading-10.5vw">
+        <p className="font-rblack text-30px uppercase mb-15% leading-32px">
           We will never let any single day of this period disappear from the
           ledger of world history.
         </p>

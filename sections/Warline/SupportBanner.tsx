@@ -46,7 +46,7 @@ const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
     );
   });
   return (
-    <div className="bg-carbon w-100% px-10% py-5%">
+    <div className="bg-carbon w-100% pl-10% py-7%">
       <p className="font-rblack text-28px text-white">Sale starts in: </p>
       <div className="flex flex-row items-center flex-wrap w-100%">
         {timerComponents.map((timer, idx) => (

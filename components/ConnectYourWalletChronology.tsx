@@ -19,12 +19,12 @@ const ConnectYourWalletChronology = ({
         <p className="font-rnarrow mb-30px">
           Під’єднай гаманець, щоб підтримати Україну
         </p>
-        <div className="flex justify-center">
+        <div>
           <button
             className="border-2 rounded-full border-white 
         font-rblack
             px-30px py-20px mobile:text-12px
-            whitespace-nowrap
+            whitespace-nowrap w-100%
             "
             onClick={() => {
               handleConnect();
@@ -41,8 +41,8 @@ const ConnectYourWalletChronology = ({
   ) : (
     <div className="mt-8% flex flex-col justify-center laptop:px-10%">
       <div className="bg-carbon text-white p-6% flex flex-row items-center justify-between">
-        <div className="laptop:w-60% tablet:w-70% mobile:w-70% mr-30% pt-24px">
-          <p className="font-rblack mobile:text-22px tablet:text-22px laptop:text-30px desktop:text-34px leading-36px">
+        <div className="laptop:w-60% tablet:w-70% mobile:w-70% mr-30%">
+          <p className="font-rblack mobile:text-22px tablet:text-32px laptop:text-30px desktop:text-34px leading-36px">
             Connect your wallet to support Ukraine
           </p>
           <p className="font-rnarrow pt-24px">

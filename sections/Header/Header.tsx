@@ -99,14 +99,14 @@ const Header = ({
         )} */}
     </div>
   ) : (
-    <div className="flex flex-row w-screen pl-10% pr-13% items-center mb-8% pt-2% justify-between z-20">
+    <div className="flex flex-row w-screen pl-10% pr-10% items-center mb-8% pt-2% justify-between z-20">
       <img
         className="w-15% min-w-75px laptop:mr-30% tablet:mr-25%"
         src={"/img/pd-logoNoSymbol.png"}
         alt="Logo"
       />
       {!menuOpen && (
-        <>
+        <div className="flex flex-row items-center justify-between">
           <HeaderAndFooterButton
             label="About the project"
             onClick={() => {
@@ -137,7 +137,7 @@ const Header = ({
               handleDisconnect={handleDisconnect}
             />
           }
-        </>
+        </div>
       )}
       {menuOpen && (
         <HeaderAndFooterButton

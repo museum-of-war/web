@@ -30,17 +30,19 @@ const Footer = () => {
     </div>
   ) : (
     <div className="flex flex-row px-10% font-rnarrow py-36px items-center justify-between">
-      <p className="mr-50%">© 2022 Copyright</p>
-      <HeaderAndFooterButton
-        label="Privacy Policy"
-        onClick={onClickPrivacyPolicy}
-      />
-      <HeaderAndFooterButton
-        label="Terms"
-        onClick={onClickTermsAndConditions}
-      />
-      <SocialMediaButton twitter />
-      <SocialMediaButton instagram />
+      <p className="mr-30% w-200px">© 2022 Copyright</p>
+      <div className="flex flex-row items-center justify-end">
+        <HeaderAndFooterButton
+          label="Privacy Policy"
+          onClick={onClickPrivacyPolicy}
+        />
+        <HeaderAndFooterButton
+          label="Terms"
+          onClick={onClickTermsAndConditions}
+        />
+        <SocialMediaButton twitter />
+        <SocialMediaButton instagram />
+      </div>
     </div>
   );
 };
