@@ -39,7 +39,6 @@ const Popup = ({
   const [toggler, setToggler] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(currIdx);
     setData(eventsData[currIdx] as EventType);
   }, [currIdx]);
 
@@ -78,7 +77,6 @@ const Popup = ({
   );
 
   const renderImg = (className = "w-100% mt-10%") => {
-    console.log(data)
     const randomSrc = rand_imgs[idx % 8] as string
     const {
       previewSrc,
@@ -147,10 +145,6 @@ const Popup = ({
                 <p>{data.ArtistName}</p>
               </button>
             </div>
-            <div className="pr-10% pt-20px">
-              <p className="font-rlight text-16px ">Owner</p>
-              <p className="pt-5px font-rnarrow text-18px">Unreleased</p>
-            </div>
           </div>
           {renderImg()}
           <div className="bg-beige px-3% py-2% mt-8%">
@@ -216,10 +210,6 @@ const Popup = ({
                 <p>{data.ArtistName}</p>
               </button>
             </div>
-            <div className="pr-10%">
-              <p className="font-rlight text-16px ">Owner</p>
-              <p className="pt-5px font-rnarrow text-18px">Unreleased</p>
-            </div>
           </div>
           {renderImg()}
           <div className="bg-beige px-3% py-2% mt-8%">
@@ -282,10 +272,6 @@ const Popup = ({
               >
                 <p>{data.ArtistName}</p>
               </button>
-            </div>
-            <div className="pr-10%">
-              <p className="font-rlight text-16px ">Owner</p>
-              <p className="pt-5px font-rnarrow text-18px">Unreleased</p>
             </div>
           </div>
 
