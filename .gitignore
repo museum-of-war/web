@@ -40,3 +40,8 @@ yarn-error.log*
 
 # letsencrypt acme info
 letsencrypt
+
+#large folders
+/public/img/animation
+/public/img/original
+/public/img/preview
