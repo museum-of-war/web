@@ -16,20 +16,19 @@ const Tokens = () => {
   return (
     <div className="px-10%">
       <p
-        className="border-black border-b-8 
-        mobile:text-55px mobile:leading-55px 
-        tablet:text-60px tablet:leading-70px 
-        laptop:text-70px laptop:leading-80px
+        className="border-carbon border-b-4
+        mobile:text-38px mobile:leading-40px
+        tablet:text-70px tablet:leading-72px
         desktop:text-80px desktop:leading-100px
         font-rblack mb-10px"
       >
         MY TOKENS
       </p>
       <div
-        className="grid 
+        className="grid
         desktop:grid-cols-4 desktop:gap-x-60px
-        laptop:grid-cols-3 laptop:gap-x-50px 
-        tablet:grid-cols-2 tablet:gap-x-40px 
+        laptop:grid-cols-3 laptop:gap-x-50px
+        tablet:grid-cols-2 tablet:gap-x-40px
         mobile:grid-cols-1"
       >
         {/* {mockTokens.map((tokenData, idx) => (
