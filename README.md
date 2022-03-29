@@ -33,6 +33,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 *useWeb3Modal.ts* Web3 Integration for donations
 
+## Before Deploy
+
+These folders must be updated manually by uploading files to server:
+- `/public/img/animation`
+- `/public/img/original`
+- `/public/img/preview`
 
 ## Deploy on Vercel
 

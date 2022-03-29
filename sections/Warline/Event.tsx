@@ -5,6 +5,7 @@ import { EventType } from "@sections/types";
 import { openInNewTab } from "@sections/utils";
 import { LinkButton } from "@components/LinkButton";
 import Popup from "./Popup";
+import { getUrls } from "@sections/Warline/WarlineUrls";
 
 type PropsEvent = {
   eventData: EventType;
@@ -41,23 +42,29 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
   };
 
   const renderImage = (className: string) => {
-    const src:string =
-      eventData.ImageType === ""
-            ? rand_imgs[idx % 8] as string
-            : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-              eventData.ImageType
+    const randomSrc = rand_imgs[idx % 8] as string
+    const {
+        previewSrc,
+        originalSrc,
+        //animationSrc, //TODO: if animation, load by animationSrc after preview was loaded
+        //isAnimation,
+    } = getUrls(eventData.Tokenid, eventData.ImageType, randomSrc as string);
 
     return (
       <>
         <img
           alt="Logo"
           onClick={() => setToggler(!toggler)}
-          src={src}
+          src={previewSrc}
           className={className}
+          onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src = randomSrc;
+          }}
         />
         <FsLightbox
           toggler={toggler}
-          sources={[src]}
+          sources={[originalSrc]}
         />
       </>
     );

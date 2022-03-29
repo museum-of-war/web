@@ -4,6 +4,7 @@ import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
 import { VscChromeClose } from "react-icons/vsc";
 import { openInNewTab } from "@sections/utils";
+import {getUrls} from "@sections/Warline/WarlineUrls";
 
 type PropsPopup = {
   eventData: EventType;
@@ -78,23 +79,39 @@ const Popup = ({
 
   const renderImg = (className = "w-100% mt-10%") => {
     console.log(data)
-    const src =
-      data.ImageType === ""
-                ? rand_imgs[idx % 8] as string
-                : "https://bafybeifqjirsnaexyayhbvksfwq53vo4kiapd365mnjveylvgzp2xwslx4.ipfs.nftstorage.link/MetaHistory%20ARTWORKS/" +
-                  data.ImageType
+    const randomSrc = rand_imgs[idx % 8] as string
+    const {
+      previewSrc,
+      originalSrc,
+      animationSrc,
+      isAnimation,
+    } = getUrls(eventData.Tokenid, eventData.ImageType, randomSrc as string);
+
+    const logoSrc = isAnimation ? animationSrc : previewSrc;
 
     return (
       <>
         <img
           alt="Logo"
           onClick={() => setToggler(!toggler)}
-          src={src}
+          src={logoSrc}
           className={`${className} hover:cursor-pointer`}
+          onError={({ currentTarget }) => {
+            if (isAnimation) {
+              currentTarget.src = previewSrc;
+              currentTarget.onerror = () => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = randomSrc;
+              };
+            } else {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src = randomSrc;
+            }
+          }}
         />
         <FsLightbox
           toggler={toggler}
-          sources={[src]}
+          sources={[originalSrc]}
         />
       </>
     );
