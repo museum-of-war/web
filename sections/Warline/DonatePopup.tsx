@@ -47,7 +47,7 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
             className="w-70%
           placeholder-mid_gray placeholder-opacity-70
           transition-all duration-1500 outline-none"
-            placeholder={"Enter your ETH Amount"}
+            placeholder={"Enter Amount"}
             value={ETHAmount !== null ? ETHAmount : ""}
             onChange={(e) => {
               setETHAmount(e.target.value);
@@ -107,7 +107,7 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
             className="w-70%
             placeholder-mid_gray placeholder-opacity-70
             transition-all duration-1500 outline-none"
-            placeholder={"Enter your ETH Amount"}
+            placeholder={"Enter Amount"}
             value={String(ETHAmount)}
             onChange={(e) => {
               setETHAmount(e.target.value);
