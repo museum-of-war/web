@@ -22,7 +22,7 @@ const Tokens = () => {
         desktop:text-80px desktop:leading-100px
         font-rblack mb-10px"
       >
-        MY TOKENS
+        MY NFTs
       </p>
       <div
         className="grid
