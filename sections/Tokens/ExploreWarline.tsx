@@ -11,7 +11,7 @@ const ExploreWarline = () => {
       </div>
       <div className="flex justify-center whitespace-nowrap">
         <button
-          className="font-rblack bg-carbon text-white rounded-full mt-5px px-15px py-5px"
+          className="font-rblack bg-carbon text-white rounded-full mt-5px px-32px py-18px tablet:py-12px"
           onClick={() => push("/warline")}
         >
           Explore Warline
