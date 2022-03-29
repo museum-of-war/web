@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import SupportButton from "../../components/SupportButton";
+import { RELEASE_DATE } from "@sections/Constants";
 
 type PropsSupportBanner = {
   setShowDonatePopup: (arg: boolean) => void;
 };
 
 const calculateTimeLeft = () => {
-  let difference = +new Date(`03/30/2022`) - +new Date();
+  let difference = +new Date(RELEASE_DATE) - +new Date();
 
   return difference > 0
     ? {
