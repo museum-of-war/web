@@ -36,9 +36,9 @@ const Countdownbanner = ({ endDate }: PropsCountdownbanner) => {
   const timerComponents: JSX.Element[] = [];
 
   (Object.keys(timeLeft) as (keyof typeof timeLeft)[]).forEach((interval) => {
-    if (!timeLeft[interval]) {
-      return;
-    }
+    // if (!timeLeft[interval]) {
+    //   return;
+    // }
 
     timerComponents.push(
       <div className="text-white">
