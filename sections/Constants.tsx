@@ -5,4 +5,6 @@ export const INSTAGRAM_LINK =
 export const FRAME_LINK = "https://www.fair.xyz";
 export const MINISTRY_LINK = "https://thedigital.gov.ua/";
 
+// export const RELEASE_DATE = `2022-03-30T16:38:20.000+03:00`;
 export const RELEASE_DATE = `2022-03-30T16:59:59.000-04:00`;
+export const MINT_LINK = ``;

@@ -46,14 +46,14 @@ const SupportProject = ({}: PropsSupportProject) => {
           />
         </div>
       ) : (
-        <div className="px-10%">
-          <div className="bg-carbon w-100% p-72px flex flex-row items-center justify-between">
+        <div className="px-10% bg-carbon">
+          <div className="w-100% p-48px flex flex-row items-center justify-center">
             <p className="font-rblack text-32px text-white leading-36px">
               Support our project
             </p>
             <SupportButton
               label={"Donate"}
-              className={"text-14px"}
+              className={"text-14px ml-30px"}
               onClick={() => {
                 setShowDonatePopup(true);
               }}

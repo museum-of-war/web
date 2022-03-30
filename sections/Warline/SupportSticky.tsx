@@ -1,13 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SupportButton from "../../components/SupportButton";
 import { useViewPort } from "@hooks/useViewport";
+import { RELEASE_DATE, MINT_LINK } from "@sections/Constants";
+
 type PropsSupportSticky = {
   setShowDonatePopup: (arg: boolean) => void;
 };
 
 const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
+  const [difference, setDifference] = useState(+new Date(RELEASE_DATE) - +new Date());
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDifference(+new Date(RELEASE_DATE) - +new Date());
+    }, 1000);
+    return () => clearTimeout(timer);
+  });
+  const CTA =
+    difference > 0
+      ? "Support Ukraine while waiting for the drop"
+      : "Buy NFT to support Ukraine";
+
   const { isMobile, isTablet } = useViewPort();
   const [showBtn, setShowBtn] = useState<boolean>(false);
+
+  const stickyButton =
+    difference > 0 ? (
+      <SupportButton
+        label={"Support Ukraine"}
+        onClick={() => {
+          if (isMobile) setShowBtn(false);
+          setShowDonatePopup(true);
+        }}
+      />
+    ) : (
+      <div className={`mr-4% pb-5px  `}>
+        <button
+          className={`font-rblack text-white  rounded-full   border-2 px-25px py-12px whitespace-nowrap border-white mobile:text-12px laptop:text-14px desktop:text-16px
+        hover:border-2 hover:shadow-[0_0_0_1px_rgba(255,255,255,1)]`}
+        >
+          <a href={MINT_LINK}>Buy NFT</a>
+        </button>
+      </div>
+    );
 
   return isMobile ? (
     <div className="sticky left-0 bottom-0 bg-carbon w-100% px-10% py-20px">
@@ -16,7 +50,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
         onClick={() => setShowBtn(!showBtn)}
       >
         <p className="font-rblack mobile:text-16px tablet:text-28px text-white w-60%">
-          Support Ukraine while waiting for the next drop
+          {CTA}
         </p>
         <img
           src={"img/down-white.svg"}
@@ -26,48 +60,32 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
 
       {showBtn && (
         <div className="pt-20px">
-          <SupportButton
-            label={"Support Ukraine"}
-            onClick={() => {
-              setShowBtn(false);
-              setShowDonatePopup(true);
-            }}
-          />
+          {stickyButton}
         </div>
       )}
     </div>
   ) : isTablet ? (
     <div className="sticky left-0 bottom-0 bg-carbon w-100% px-10% py-30px justify-center">
       <p className="font-rblack text-32px text-white">
-        Support Ukraine while waiting for the drop
+        {CTA}
       </p>
       {/* <p className="font-rlight pt-15px text-14px text-white">
         Не дозволь цій хронології продовжитись
       </p> */}
       <div className="pt-20px">
-        <SupportButton
-          label={"Support Ukraine"}
-          onClick={() => {
-            setShowDonatePopup(true);
-          }}
-        />
+        {stickyButton}
       </div>
     </div>
   ) : (
     <div className="sticky mt-48px z-0 left-0 bottom-0 bg-carbon w-100% px-10% py-30px flex flex-row items-center justify-center">
       <p className="font-rblack text-28px leading-28px text-white">
-        Support Ukraine while waiting for the drop
+        {CTA}
       </p>
       {/* <p className="font-rlight pt-15px text-14px text-white">
         Не дозволь цій хронології продовжитись
       </p> */}
       <div className="ml-30px mt-7">
-        <SupportButton
-          label={"Support Ukraine"}
-          onClick={() => {
-            setShowDonatePopup(true);
-          }}
-        />
+        {stickyButton}
       </div>
     </div>
   );
