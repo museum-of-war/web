@@ -17,7 +17,9 @@ jobs:
           username: ${{ secrets.FRONT1_USERNAME }}
           key: ${{ secrets.FRONT1_RSA_KEY }}
           script: |
+            set -ex
             cd web
             git pull --force
             docker-compose build
             docker-compose up -d
+            docker system prune --volumes --all --force
