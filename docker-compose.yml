@@ -13,7 +13,9 @@ services:
       - "traefik.http.routers.app.tls.certresolver=appresolver"
       - "traefik.http.middlewares.httpredirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.httpredirect.redirectscheme.permanent=true"
-      - "traefik.http.routers.app.middlewares=httpredirect@docker"
+      - "traefik.http.middlewares.dos-ratelimit.ratelimit.average=10"
+      - "traefik.http.middlewares.dos-ratelimit.ratelimit.burst=5"
+      - "traefik.http.routers.app.middlewares=httpredirect@docker,dos-ratelimit@docker"
   traefik:
     image: "traefik:v2.6"
     container_name: "traefik"
