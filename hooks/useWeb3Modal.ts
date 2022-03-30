@@ -82,7 +82,7 @@ const web3 = createAlchemyWeb3(
 const ownerAddr = owner;
 
 const nfts = await web3.alchemy.getNfts({
-  owner: ownerAddr, contractAddresses: ['0x4034923c9070cf70a7c3bb5f11161a708b1aed22']
+  owner: ownerAddr, contractAddresses: ['0xd3228e099e6596988ae0b73eaa62591c875e5693']
 })
  
 console.log(apiKey,owner)
