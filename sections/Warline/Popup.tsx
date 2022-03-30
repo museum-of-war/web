@@ -83,7 +83,7 @@ const Popup = ({
       originalSrc,
       animationSrc,
       isAnimation,
-    } = getUrls(eventData.Tokenid, eventData.ImageType, randomSrc as string);
+    } = getUrls(data.Tokenid, data.ImageType, randomSrc as string);
 
     const logoSrc = isAnimation ? animationSrc : previewSrc;
 
