@@ -6,7 +6,7 @@ type PropsSupportBanner = {
   setShowDonatePopup: (arg: boolean) => void;
 };
 
-const calculateTimeLeft = (difference) => {
+const calculateTimeLeft = (difference: number) => {
   return difference > 0
     ? {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
