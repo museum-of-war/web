@@ -4,7 +4,7 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
 
-const ProjectWalletNo = "0xd3228e099e6596988ae0b73eaa62591c875e5693";
+const ProjectWalletNo = "0x98c30d4B65b2A0ab0838E7b1E09352c0FD70736C";
 const CountryWalletNo = "0x165CD37b4C644C2921454429E7F9358d18A45e14";
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
