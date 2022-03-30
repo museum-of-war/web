@@ -2,6 +2,8 @@ import PoweredByFrame from "@components/PoweredByFrame";
 import { useViewPort } from "@hooks/useViewport";
 import React from "react";
 import "@dotlottie/player-component";
+import Countdownbanner from "./Countdownbanner";
+import { RELEASE_DATE } from "@sections/Constants";
 
 const ContentTopConnected = () => {
   const { isMobile } = useViewPort();
@@ -40,6 +42,7 @@ const ContentTopConnected = () => {
         </div>
       </div>
       <PoweredByFrame />
+      <Countdownbanner endDate={RELEASE_DATE} />
     </div>
   );
 };

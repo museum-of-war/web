@@ -7,7 +7,7 @@ const EnglishPrivacyPolicy = () => {
       to ensure that you understand how we collect and use personal data as part
       of the services we provide, thus we created this Privacy Policy
       (“Policy”). By continuing to use our services or accessing our Website
-      http://art.metahistory.gallery, you acknowledge that you have read,
+      http://metahistory.gallery, you acknowledge that you have read,
       understood and accepted the information described in this Policy. IF YOU
       DO NOT AGREE WITH THIS PRIVACY POLICY IN GENERAL OR ANY PART OF IT, PLEASE
       DO NOT ACCESS OUR WEBSITE AND/OR USE OUR SERVICES. Please note that our

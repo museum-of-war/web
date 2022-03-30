@@ -17,7 +17,7 @@ const calculateTimeLeft = (difference: number) => {
     : {};
 };
 const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
-  let difference = +new Date(RELEASE_DATE) - +new Date();
+  let difference = +new Date(RELEASE_DATE) - +new Date() + 600*1000;
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(difference));
 
   useEffect(() => {

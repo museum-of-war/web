@@ -8,9 +8,10 @@ type PropsSupportSticky = {
   targetAnchorId: string;
 };
 
-
 const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
-  const [difference, setDifference] = useState(+new Date(RELEASE_DATE) - +new Date());
+  const [difference, setDifference] = useState(
+    +new Date(RELEASE_DATE) - +new Date()
+  );
   useEffect(() => {
     const timer = setTimeout(() => {
       setDifference(+new Date(RELEASE_DATE) - +new Date());
@@ -32,17 +33,10 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
     // ???
     const target = document.getElementById(targetAnchorId);
     if (target) {
-      console.log("target");
       const appear =
         window.scrollY > target?.offsetTop + target?.clientHeight - 200;
       setShow(appear);
     }
-    console.log(
-      "onScroll",
-      window.innerHeight,
-      window.scrollY,
-      document.body.offsetHeight
-    );
     window.innerHeight + window.scrollY <= document.body.offsetHeight - 300
       ? setShow(false)
       : setShow(true);
