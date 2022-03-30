@@ -1,15 +1,16 @@
 import React from "react";
-import {LinkButton} from "@components/LinkButton";
+import { LinkButton } from "@components/LinkButton";
 import { DayType } from "@sections/types";
-import Event from "./Event";
 import { useViewPort } from "@hooks/useViewport";
+import Event from "./Event";
 
 type PropsDay = {
   dayData: DayType,
   daysCount: number,
+  handleOpenShowDetailsPopup: (eventNum: number, dayNum: number) => void,
 };
 
-const Day = ({ dayData, daysCount }: PropsDay) => {
+const Day = ({ dayData, daysCount, handleOpenShowDetailsPopup }: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
 
   const onScrollClick = (targetId: string) => {
@@ -39,9 +40,8 @@ const Day = ({ dayData, daysCount }: PropsDay) => {
             key={idx}
             eventData={eventData}
             dayNo={dayData.dayNo}
-            date={dayData.date}
             idx={idx}
-            eventsData={dayData.events}
+            handleOpenShowDetailsPopup={handleOpenShowDetailsPopup}
           />
         ))}
       </div>
@@ -64,9 +64,8 @@ const Day = ({ dayData, daysCount }: PropsDay) => {
             key={idx}
             eventData={eventData}
             dayNo={dayData.dayNo}
-            date={dayData.date}
             idx={idx}
-            eventsData={dayData.events}
+            handleOpenShowDetailsPopup={handleOpenShowDetailsPopup}
           />
         ))}
       </div>
@@ -114,9 +113,8 @@ const Day = ({ dayData, daysCount }: PropsDay) => {
             key={idx}
             eventData={eventData}
             dayNo={dayData.dayNo}
-            date={dayData.date}
             idx={idx}
-            eventsData={dayData.events}
+            handleOpenShowDetailsPopup={handleOpenShowDetailsPopup}
           />
         ))}
       </div>
