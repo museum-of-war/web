@@ -19,7 +19,7 @@ const TokensPage: NextPage<SharedProps> = (props) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Tokens />
+      <Tokens signerAddress={props.signerAddress} />
     </>
   );
 };

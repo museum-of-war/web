@@ -15,7 +15,7 @@ type PropsEvent = {
   eventsData: EventType[];
 };
 
-const rand_imgs:string[] = [
+const rand_imgs: string[] = [
   "img/dots-1.png",
   "img/dots-2.png",
   "img/dots-3.png",
@@ -31,7 +31,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [toggler, setToggler] = useState<boolean>(false);
 
- const TokenidFormatter = (tokenId: string):string => {
+  const TokenidFormatter = (tokenId: string): string => {
     return parseInt(tokenId) < 10
       ? "#000" + tokenId
       : parseInt(tokenId) < 100
@@ -42,12 +42,12 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
   };
 
   const renderImage = (className: string) => {
-    const randomSrc = rand_imgs[idx % 8] as string
+    const randomSrc = rand_imgs[idx % 8] as string;
     const {
-        previewSrc,
-        originalSrc,
-        //animationSrc, //TODO: if animation, load by animationSrc after preview was loaded
-        //isAnimation,
+      previewSrc,
+      originalSrc,
+      //animationSrc, //TODO: if animation, load by animationSrc after preview was loaded
+      //isAnimation,
     } = getUrls(eventData.Tokenid, eventData.ImageType, randomSrc as string);
 
     return (
@@ -58,14 +58,11 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
           src={previewSrc}
           className={className}
           onError={({ currentTarget }) => {
-              currentTarget.onerror = null; // prevents looping
-              currentTarget.src = randomSrc;
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src = randomSrc;
           }}
         />
-        <FsLightbox
-          toggler={toggler}
-          sources={[originalSrc]}
-        />
+        <FsLightbox toggler={toggler} sources={[originalSrc]} />
       </>
     );
   };
@@ -146,7 +143,13 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
             </p>
             <p className="font-rlight">{TokenidFormatter(eventData.Tokenid)}</p>
           </div>
-          <p className="font-rnarrow pt-15px" style={{ overflowWrap: "anywhere" }}> {eventData.Headline}</p>
+          <p
+            className="font-rnarrow pt-15px"
+            style={{ overflowWrap: "anywhere" }}
+          >
+            {" "}
+            {eventData.Headline}
+          </p>
           <div className="flex flex-row items-center justify-between pt-15px">
             <p className="font-rlight ">@{eventData.TwitterUsername}</p>
             <button
@@ -209,7 +212,13 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
             </p>
             <p className="font-rlight">{TokenidFormatter(eventData.Tokenid)}</p>
           </div>
-          <p className="font-rnarrow pt-15px" style={{ overflowWrap: "anywhere" }}> {eventData.Headline}</p>
+          <p
+            className="font-rnarrow pt-15px"
+            style={{ overflowWrap: "anywhere" }}
+          >
+            {" "}
+            {eventData.Headline}
+          </p>
           <div className="flex flex-row items-center justify-between pt-15px">
             <p className="font-rlight ">@{eventData.TwitterUsername}</p>
             <button

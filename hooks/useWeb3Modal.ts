@@ -6,12 +6,15 @@ import Web3 from "web3";
 
 const ProjectWalletNo = "0x98c30d4B65b2A0ab0838E7b1E09352c0FD70736C";
 const CountryWalletNo = "0x165CD37b4C644C2921454429E7F9358d18A45e14";
+import { createAlchemyWeb3 } from "@alch/alchemy-web3";
+const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
+
 
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
     options: {
-      infuraId: "196440d5d02d41dfa2a8ee5bfd2e96bd",
+      infuraId: process.env.NEXT_PUBLIC_INFURA_API ,
     },
   },
 };
@@ -66,5 +69,25 @@ export function useWeb3Modal() {
     });
   }
 
-  return { connectWallet, disconnectWallet, provider, donate };
+
+
+  async function viewNFTs(owner: string) {
+  
+
+// Initialize an alchemy-web3 instance:
+const web3 = createAlchemyWeb3(
+  `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+);
+
+const ownerAddr = owner;
+
+const nfts = await web3.alchemy.getNfts({
+  owner: ownerAddr, contractAddresses: ['0x4034923c9070cf70a7c3bb5f11161a708b1aed22']
+})
+ 
+console.log(apiKey,owner)
+return  nfts.ownedNfts
+  }
+
+  return { connectWallet, disconnectWallet, provider, donate ,viewNFTs};
 }

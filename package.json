@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@alch/alchemy-web3": "^1.3.0",
     "@dotlottie/player-component": "^1.1.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",

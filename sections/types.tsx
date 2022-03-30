@@ -1,7 +1,6 @@
 export type TokenDataType = {
-  imageUrl: string;
-  timeOfEvent: string;
-  day: number;
+  metadata: any;
+  id: any;
 };
 
 export type TeamDataType = {

@@ -1,18 +1,28 @@
 // import { TokenDataType } from "@sections/types";
+import { useWeb3Modal } from "@hooks/useWeb3Modal";
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import TokenItem from "./TokenItem";
 
 const ExploreWarline = dynamic(() => import("./ExploreWarline"), {
   ssr: false,
 });
 
-const Tokens = () => {
-  // Leaving 1 example:
-  // const mockTokens: Array<TokenDataType> = [
-  //   ...
-  //   { imageUrl: "/img/pd-mockNFT.png", day: 1, timeOfEvent: "05:00" }
-  // ];
+type TokenProps = {
+  signerAddress: string;
+};
 
+const Tokens = ({ signerAddress }: TokenProps) => {
+  const { viewNFTs } = useWeb3Modal();
+  const [NFTs, setNFTs] = useState<Array<any>>([]);
+
+  useEffect(() => {
+    const myNFTs = async () => {
+      const newNFTs = await viewNFTs(signerAddress);
+      setNFTs(newNFTs);
+    };
+    myNFTs();
+  }, []);
   return (
     <div className="px-10%">
       <p
@@ -31,9 +41,9 @@ const Tokens = () => {
         tablet:grid-cols-2 tablet:gap-x-40px
         mobile:grid-cols-1"
       >
-        {/* {mockTokens.map((tokenData, idx) => (
+        {NFTs.map((tokenData, idx) => (
           <TokenItem tokenData={tokenData} key={idx} />
-        ))} */}
+        ))}
         <ExploreWarline />
       </div>
     </div>

@@ -13,7 +13,10 @@ const PoweredByFrame = () => {
         </button>
       </div>
       <div className="ml-60px pr-10% leading-20px text-16px">
-        <p>An official collection by the Ministry of Digital Transformation</p>
+        <p>
+          An official collection approved by the Ministry of Digital
+          Transformation
+        </p>
         <button
           className="flex flex-row items-center mt-10px mb-5px"
           onClick={() => openInNewTab(FRAME_LINK)}
@@ -36,7 +39,8 @@ const PoweredByFrame = () => {
         </button>
 
         <p className="ml-20px font-rlight text-14px ">
-          An official collection by the Ministry of Digital Transformation
+          An official collection approved by the Ministry of Digital
+          Transformation
         </p>
       </div>
       <div className="min-w-250px flex flex-row items-center justify-end ">
@@ -57,7 +61,8 @@ const PoweredByFrame = () => {
         </button>
 
         <p className="ml-20px font-rlight text-20px ">
-          An official collection by the Ministry of Digital Transformation
+          An official collection approved by the Ministry of Digital
+          Transformation
         </p>
       </div>
       <button
