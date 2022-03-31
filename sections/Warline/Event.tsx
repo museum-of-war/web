@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import FsLightbox from "fslightbox-react";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
@@ -31,6 +31,9 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
   const { isMobile, isTablet } = useViewPort();
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [toggler, setToggler] = useState<boolean>(false);
+  const alt = useMemo(() => {
+    return `Day ${eventData.DayNo}, ${eventData.Time}`
+  }, [eventData]);
 
   const TokenidFormatter = (tokenId: string): string => {
     return parseInt(tokenId) < 10
@@ -54,7 +57,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
     return (
       <>
         <img
-          alt="Logo"
+          alt={alt}
           onClick={() => setToggler(!toggler)}
           src={previewSrc}
           className={className}
@@ -98,7 +101,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
               }}
             >
               <img
-                alt="Logo"
+                alt="Twitter"
                 src={"img/warline-TwitterLogo.png"}
                 className="w-50px"
               />
@@ -165,7 +168,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
               }}
             >
               <img
-                alt="Logo"
+                alt="Twitter"
                 src={"img/warline-TwitterLogo.png"}
                 className="w-50px"
               />
@@ -235,7 +238,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
               }}
             >
               <img
-                alt="Logo"
+                alt="Twitter"
                 src={"img/warline-TwitterLogo.png"}
                 className="w-50px"
               />

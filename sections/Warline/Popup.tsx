@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import FsLightbox from "fslightbox-react";
 import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
@@ -42,9 +42,14 @@ const Popup = ({
   });
   const [toggler, setToggler] = useState<boolean>(false);
 
+  const alt = useMemo(() => {
+    return `Day ${data.DayNo}, ${data.Time}`
+  }, [data]);
+
   useEffect(() => {
     setData(allEvents[currIdx] as EventType);
   }, [currIdx]);
+
 
   const { isMobile, isTablet } = useViewPort();
 
@@ -94,7 +99,7 @@ const Popup = ({
     return (
       <>
         <img
-          alt="Logo"
+          alt={alt}
           onClick={() => setToggler(!toggler)}
           src={logoSrc}
           className={`${className} hover:cursor-pointer`}
@@ -161,7 +166,7 @@ const Popup = ({
                 }}
               >
                 <img
-                  alt="Logo"
+                  alt="Twitter"
                   src={"img/warline-TwitterLogo.png"}
                   className="w-50px"
                 />
@@ -226,7 +231,7 @@ const Popup = ({
                 }}
               >
                 <img
-                  alt="Logo"
+                  alt="Twitter"
                   src={"img/warline-TwitterLogo.png"}
                   className="w-50px"
                 />
@@ -289,7 +294,7 @@ const Popup = ({
                 }}
               >
                 <img
-                  alt="Logo"
+                  alt="Twitter"
                   src={"img/warline-TwitterLogo.png"}
                   className="w-50px"
                 />
