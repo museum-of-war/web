@@ -1,15 +1,16 @@
 import React from "react";
-import {LinkButton} from "@components/LinkButton";
-import { DayType } from "@sections/types";
+import { LinkButton } from "@components/LinkButton";
+import { DayType, EventType } from "@sections/types";
 import Event from "./Event";
 import { useViewPort } from "@hooks/useViewport";
 
 type PropsDay = {
   dayData: DayType,
   daysCount: number,
+  allEvents: Array<EventType>
 };
 
-const Day = ({ dayData, daysCount }: PropsDay) => {
+const Day = ({ dayData, daysCount, allEvents }: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
 
   const onScrollClick = (targetId: string) => {
@@ -42,6 +43,7 @@ const Day = ({ dayData, daysCount }: PropsDay) => {
             date={dayData.date}
             idx={idx}
             eventsData={dayData.events}
+            allEvents={allEvents}
           />
         ))}
       </div>
@@ -67,6 +69,7 @@ const Day = ({ dayData, daysCount }: PropsDay) => {
             date={dayData.date}
             idx={idx}
             eventsData={dayData.events}
+            allEvents={allEvents}
           />
         ))}
       </div>
@@ -117,6 +120,7 @@ const Day = ({ dayData, daysCount }: PropsDay) => {
             date={dayData.date}
             idx={idx}
             eventsData={dayData.events}
+            allEvents={allEvents}
           />
         ))}
       </div>

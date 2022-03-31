@@ -13,6 +13,7 @@ type PropsEvent = {
   date: string;
   idx: number;
   eventsData: EventType[];
+  allEvents: Array<EventType>;
 };
 
 const rand_imgs: string[] = [
@@ -26,7 +27,7 @@ const rand_imgs: string[] = [
   "img/dots-8.png",
 ];
 
-const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
+const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [toggler, setToggler] = useState<boolean>(false);
@@ -127,6 +128,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
           setShowPopup={setShowPopup}
           idx={idx}
           eventsData={eventsData}
+          allEvents={allEvents}
         />
       ) : (
         <></>
@@ -193,6 +195,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
           setShowPopup={setShowPopup}
           idx={idx}
           eventsData={eventsData}
+          allEvents={allEvents}
         />
       ) : (
         <></>
@@ -262,6 +265,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData }: PropsEvent) => {
           setShowPopup={setShowPopup}
           idx={idx}
           eventsData={eventsData}
+          allEvents={allEvents}
         />
       ) : (
         <></>
