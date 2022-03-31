@@ -4,7 +4,7 @@ import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
 import { VscChromeClose } from "react-icons/vsc";
 import { openInNewTab } from "@sections/utils";
-import {getUrls} from "@sections/Warline/WarlineUrls";
+import { getUrls } from "@sections/Warline/WarlineUrls";
 
 type PropsPopup = {
   eventData: EventType;
@@ -13,6 +13,7 @@ type PropsPopup = {
   setShowPopup: (arg: boolean) => void;
   idx: number;
   eventsData: EventType[];
+  allEvents: EventType[];
 };
 
 const rand_imgs = [
@@ -33,13 +34,16 @@ const Popup = ({
   setShowPopup,
   idx,
   eventsData,
+  allEvents
 }: PropsPopup) => {
   const [data, setData] = useState<EventType>(eventData);
-  const [currIdx, setCurrIdx] = useState<number>(idx);
+  const [currIdx, setCurrIdx] = useState<number>(() => {
+    return allEvents.filter(event => Number(event.DayNo) < dayNo).length + idx;
+  });
   const [toggler, setToggler] = useState<boolean>(false);
 
   useEffect(() => {
-    setData(eventsData[currIdx] as EventType);
+    setData(allEvents[currIdx] as EventType);
   }, [currIdx]);
 
   const { isMobile, isTablet } = useViewPort();
@@ -65,7 +69,7 @@ const Popup = ({
   const renderNextBtn = (className: string = "", imgClass: string = "") => (
     <div className={`z-19 ${className}`}>
       <button
-        onClick={() => currIdx < eventsData.length && setCurrIdx(currIdx + 1)}
+        onClick={() => currIdx < allEvents.length - 1 && setCurrIdx(currIdx + 1)}
       >
         <img
           src={"img/modal-left.svg"}
@@ -127,7 +131,7 @@ const Popup = ({
         <div className="w-100%">
           <div className="flex flex-col items-start justify-between ">
             <p className="font-rblack leading-32px text-32px">
-              Day {dayNo}, {data.Time}
+              Day {data.DayNo}, {data.Time}
             </p>
             <p className="font-rlight text-24px pt-20px">
               {TokenidFormatter(data.Tokenid)}
@@ -192,7 +196,7 @@ const Popup = ({
         <div className="w-100%">
           <div className="flex flex-row items-center justify-between ">
             <p className="font-rblack leading-32px text-32px">
-              Day {dayNo}, {data.Time}
+              Day {data.DayNo}, {data.Time}
             </p>
             <p className="font-rlight text-24px">
               {TokenidFormatter(data.Tokenid)}
@@ -255,7 +259,7 @@ const Popup = ({
         <div className="w-65%">
           <div className="flex flex-row items-center justify-between ">
             <p className="font-rblack leading-32px text-32px">
-              Day {dayNo}, {data.Time}
+              Day {data.DayNo}, {data.Time}
             </p>
             <p className="font-rlight text-24px">
               {TokenidFormatter(data.Tokenid)}
