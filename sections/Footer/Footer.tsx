@@ -12,6 +12,7 @@ const Footer = () => {
   const onClickTermsAndConditions = () => push("/terms-and-conditions");
   const onClickPrivacyPolicy = () => push("/privacy-policy");
   const onClickAuditReport = () => openInNewTab("/audit.pdf");
+  const onClickContactUs = () => openInNewTab("mailto:vk@metahistory.gallery?subject=Meta History");
 
   return isMobile ? (
     <div className="px-10% font-rnarrow pt-10% pb-20% flex flex-col">
@@ -32,6 +33,11 @@ const Footer = () => {
           onClick={onClickTermsAndConditions}
           wrapperClassName="mr-20px"
         />
+        <HeaderAndFooterButton
+          label="Contact Us"
+          onClick={onClickContactUs}
+          wrapperClassName="mr-20px"
+        />
       </div>
        <p className="m-0">© 2022 Copyright</p>
     </div>
@@ -48,6 +54,11 @@ const Footer = () => {
         <HeaderAndFooterButton
           label="Terms"
           onClick={onClickTermsAndConditions}
+          wrapperClassName="mr-24px"
+        />
+        <HeaderAndFooterButton
+          label="Contact Us"
+          onClick={onClickContactUs}
           wrapperClassName="mr-24px"
         />
         <SocialMediaButton github />
