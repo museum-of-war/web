@@ -12,11 +12,11 @@ const ConnectYourWalletChronology = ({
   const { isMobile } = useViewPort();
   return isMobile ? (
     <div className="mt-8% flex flex-col justify-center">
-      <div className="bg-carbon text-white px-12% py-8%">
-        <p className="font-rblack text-26px leading-30px mb-20px">
+      <div className="bg-carbon text-white p-40px">
+        <p className="font-rblack text-29px leading-30px mb-20px">
           Connect your wallet to support Ukraine
         </p>
-        <p className="font-rnarrow mb-30px">
+        <p className="font-rnarrow text-14px mb-30px">
           Під’єднай гаманець, щоб підтримати Україну
         </p>
         <div className="flex justify-center">
@@ -24,7 +24,7 @@ const ConnectYourWalletChronology = ({
             className="border-2 rounded-full border-white 
         font-rblack
             px-30px py-20px mobile:text-12px
-            whitespace-nowrap
+            whitespace-nowrap mobile:w-full
             "
             onClick={() => {
               handleConnect();
@@ -40,12 +40,12 @@ const ConnectYourWalletChronology = ({
     </div>
   ) : (
     <div className="mt-8% flex flex-col justify-center laptop:px-10%">
-      <div className="bg-carbon text-white p-6% flex flex-row items-center justify-between">
-        <div className="laptop:w-60% tablet:w-70% mobile:w-70% mr-30% pt-24px">
-          <p className="font-rblack mobile:text-22px tablet:text-22px laptop:text-30px desktop:text-34px leading-36px">
+      <div className="bg-carbon text-white laptop:px-96px tablet:px-72px py-72px flex flex-row items-center justify-between">
+        <div className="laptop:w-60% tablet:w-70% mobile:w-70%">
+          <p className="font-rblack text-32px leading-36px">
             Connect your wallet to support Ukraine
           </p>
-          <p className="font-rnarrow pt-24px">
+          <p className="font-rnarrow text-16px pt-24px">
             Під’єднай гаманець, щоб підтримати Україну
           </p>
         </div>
