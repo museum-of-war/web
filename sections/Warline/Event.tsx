@@ -63,7 +63,7 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
             currentTarget.src = randomSrc;
           }}
           onLoad={({ currentTarget }) => {
-            if (isAnimation && currentTarget.src === previewSrc) {
+            if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
               currentTarget.src = animationSrc
             }
           }}
