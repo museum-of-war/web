@@ -13,11 +13,11 @@ const Blurb = ({ header, english, ukrainian }: PropsBlurb) => {
         {header}
       </p>
       <div className="h-5px w-100% bg-carbon"></div>
-      <div className="pt-20px relative tablet:flex tablet:flex-row font-rlight tablet:justify-between">
-        <p className="pt-10 tablet:w-45% mobile:text-12px tablet:text-14px laptop:text-16px mobile:mb-6%">
+      <div className="pt-20px relative tablet:flex tablet:flex-row font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
+        <p className="pt-10 tablet:w-45% mobile:mb-6%">
           {english}
         </p>
-        <p className="tablet:w-45% mobile:text-12px tablet:text-14px laptop:text-16px">
+        <p className="tablet:w-45%">
           {ukrainian}
         </p>
       </div>
