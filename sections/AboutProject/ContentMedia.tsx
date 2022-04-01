@@ -13,7 +13,7 @@ const Media = (summary: string, outlet: string, url: string) => {
           openInNewTab(url);
         }}
       >
-        <p className="font-rblack tablet:mt-30px mobile:mt-10px mb-50px">
+        <p className="font-rblack tablet:mt-30px mobile:mt-10px py-5px border-b-4 hover:border-carbon hover:border-b-4  hover:border-solid hover:border-carbon border-transparent">
           Read Article
         </p>
       </button>
@@ -23,7 +23,7 @@ const Media = (summary: string, outlet: string, url: string) => {
 const ContentMedia = () => {
   return (
     <div className="px-10% mobile:mt-8% tablet:mt-0">
-      <p className="font-rblack tablet:text-5vw mobile:text-12vw mobile:leading-12vw tablet:leading-5.5vw uppercase">
+      <p className="font-rblack tablet:text-70px mobile:text-12vw mobile:leading-12vw tablet:leading-72px uppercase">
         IN PRESS
       </p>
       <div className="h-5px w-100% bg-carbon"></div>

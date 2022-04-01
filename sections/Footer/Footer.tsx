@@ -20,34 +20,40 @@ const Footer = () => {
         <SocialMediaButton twitter />
         <SocialMediaButton instagram />
       </div>
-      <div className="flex flex-row mb-4%">
-        <HeaderAndFooterButton label="Audit" onClick={onClickAuditReport} />
+      <div className="flex flex-row mb-4% flex-wrap">
+        <HeaderAndFooterButton label="Audit" onClick={onClickAuditReport} wrapperClassName="mr-20px" />
         <HeaderAndFooterButton
           label="Privacy Policy"
           onClick={onClickPrivacyPolicy}
+          wrapperClassName="mr-20px"
         />
         <HeaderAndFooterButton
           label="Terms"
           onClick={onClickTermsAndConditions}
+          wrapperClassName="mr-20px"
         />
       </div>
-      {/* <p className="m-0">© 2022 Copyright</p> */}
+       <p className="m-0">© 2022 Copyright</p>
     </div>
   ) : (
-    <div className="flex flex-row px-10% font-rnarrow py-36px items-center justify-between">
-      <p className="mr-50%">© 2022 Copyright</p>
-      <HeaderAndFooterButton label="Audit" onClick={onClickAuditReport} />
-      <HeaderAndFooterButton
-        label="Privacy Policy"
-        onClick={onClickPrivacyPolicy}
-      />
-      <HeaderAndFooterButton
-        label="Terms"
-        onClick={onClickTermsAndConditions}
-      />
-      <SocialMediaButton github />
-      <SocialMediaButton twitter />
-      <SocialMediaButton instagram />
+    <div className="flex laptop:flex-row tablet:flex-col-reverse px-10% font-rnarrow py-36px items-center laptop:justify-between w-full">
+      <p className="grow tablet:mt-24px laptop:mt-0">© 2022 Copyright</p>
+      <div className="flex flex-row items-center laptop:justify-end tablet:justify-center">
+        <HeaderAndFooterButton wrapperClassName="mr-24px" label="Audit" onClick={onClickAuditReport} />
+        <HeaderAndFooterButton
+          label="Privacy Policy"
+          onClick={onClickPrivacyPolicy}
+          wrapperClassName="mr-24px"
+        />
+        <HeaderAndFooterButton
+          label="Terms"
+          onClick={onClickTermsAndConditions}
+          wrapperClassName="mr-24px"
+        />
+        <SocialMediaButton github />
+        <SocialMediaButton twitter />
+        <SocialMediaButton instagram />
+      </div>
     </div>
   );
 };

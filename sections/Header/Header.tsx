@@ -34,13 +34,41 @@ const Header = ({
             src={"/img/pd-logoNoSymbol.png"}
             alt="Meta History: Museum of War"
           />
-          {
-            <HeaderAndFooterButton
-              label={menuOpen ? "" : "Menu"}
-              menu
-              onClick={() => setMenuOpen(!menuOpen)}
-            />
-          }
+          {isTablet && (
+            <div className="flex flex-row justify-between items-center grow">
+              <div className="ml-auto mr-96px">
+                <ConnectWalletButton
+                  signerAddress={signerAddress}
+                  handleConnect={() => {
+                    handleConnect();
+                    setMenuOpen(false);
+                  }}
+                  handleDisconnect={() => {
+                    handleDisconnect();
+                    setMenuOpen(false);
+                  }}
+                />
+              </div>
+              {
+                <HeaderAndFooterButton
+                  label={menuOpen ? "" : "Menu"}
+                  menu
+                  onClick={() => setMenuOpen(!menuOpen)}
+                />
+              }
+            </div>
+          )}
+          {isMobile && (
+            <>
+              {
+                <HeaderAndFooterButton
+                    label={menuOpen ? "" : "Menu"}
+                    menu
+                    onClick={() => setMenuOpen(!menuOpen)}
+                />
+              }
+            </>
+          )}
         </div>
         {menuOpen && (
           <div>
@@ -76,7 +104,7 @@ const Header = ({
                 />
               </div>
             )}
-            {
+            {isMobile && (
               <div className="w-60%">
                 <ConnectWalletButton
                   signerAddress={signerAddress}
@@ -90,7 +118,7 @@ const Header = ({
                   }}
                 />
               </div>
-            }
+            )}
           </div>
         )}
       </div>
