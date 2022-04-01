@@ -1,7 +1,7 @@
 import { useViewPort } from "@hooks/useViewport";
 import React from "react";
-import { FRAME_LINK, MINISTRY_LINK } from "../sections/Constants";
-import { openInNewTab } from "../sections/utils";
+import { FRAME_LINK, MINISTRY_LINK } from "@sections/Constants";
+import { openInNewTab } from "@sections/utils";
 
 const PoweredByFrame = () => {
   const { isMobile, isTablet } = useViewPort();
@@ -23,7 +23,7 @@ const PoweredByFrame = () => {
         >
           <p>Powered by</p>
           <img
-            alt="frameLogo"
+            alt="Fair Logo"
             src={"img/pd-frameLogo.png"}
             width="60px"
             className="ml-10px"
@@ -46,7 +46,7 @@ const PoweredByFrame = () => {
       <div className="min-w-250px flex flex-row items-center justify-end ">
         <p className="font-rlight text-14px ">Powered by</p>
         <img
-          alt="frameLogo"
+          alt="Fair Logo"
           src={"img/pd-frameLogo.png"}
           width="70px"
           className="ml-10px"
@@ -71,7 +71,7 @@ const PoweredByFrame = () => {
       >
         <p className="font-rlight text-20px ">Powered by</p>
         <img
-          alt="frameLogo"
+          alt="Fair Logo"
           src={"img/pd-frameLogo.png"}
           width="70px"
           className="ml-20px"

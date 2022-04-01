@@ -32,7 +32,7 @@ const Header = ({
           <img
             className="w-15% min-w-100px mr-15%"
             src={"/img/pd-logoNoSymbol.png"}
-            alt="Logo"
+            alt="Meta History: Museum of War"
           />
           {
             <HeaderAndFooterButton
@@ -103,7 +103,7 @@ const Header = ({
       <img
         className="w-15% min-w-75px laptop:mr-30% tablet:mr-25%"
         src={"/img/pd-logoNoSymbol.png"}
-        alt="Logo"
+        alt="Meta History: Museum of War"
       />
       {!menuOpen && (
         <>

@@ -78,7 +78,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
             Ми не дамо викреслити жодного дня цього періоду зі сторінок світової
             історії.
           </p>
-          <img className="" alt="Logo" src={"img/pd-dots2.png"} />
+          <img className="" alt="Dots" src={"img/pd-dots2.png"} />
         </div>
       </div>
       {!signerAddress && (

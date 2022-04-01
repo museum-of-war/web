@@ -1,7 +1,8 @@
 import { TokenDataType } from "@sections/types";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { getUrls } from "@sections/Warline/WarlineUrls";
 import FsLightbox from "fslightbox-react";
+import WarlineData from "@sections/Warline/WarlineData";
 
 type TokenItemProps = {
   tokenData: TokenDataType;
@@ -21,25 +22,37 @@ const rand_imgs: string[] = [
 const TokenItem = ({ tokenData }: TokenItemProps) => {
   console.log(tokenData);
   const [toggler, setToggler] = useState<boolean>(false);
+    const alt = useMemo(() => {
+        return tokenData.metadata.name ?? "Unknown"
+    }, [tokenData]);
+    const itemEvent = useMemo(() => {
+        return WarlineData.flatMap(data => data.events).find(event => event.Tokenid === tokenData.metadata?.item_number)
+    }, [tokenData]);
+
   const renderImage = (className: string, tokenId: string) => {
     const randomSrc = rand_imgs[1 % 8] as string;
     const {
       previewSrc,
       originalSrc,
-      //animationSrc, //TODO: if animation, load by animationSrc after preview was loaded
-      //isAnimation,
-    } = getUrls(tokenId, "previewSrc", randomSrc as string);
+      animationSrc,
+      isAnimation,
+    } = getUrls(tokenId, itemEvent?.ImageType, randomSrc as string);
 
     return (
       <>
         <img
-          alt="Logo"
+          alt={alt}
           onClick={() => setToggler(!toggler)}
           src={previewSrc}
           className={className}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
             currentTarget.src = randomSrc;
+          }}
+          onLoad={({ currentTarget }) => {
+              if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
+                  currentTarget.src = animationSrc
+              }
           }}
         />
         <FsLightbox toggler={toggler} sources={[originalSrc]} />
@@ -52,7 +65,7 @@ const TokenItem = ({ tokenData }: TokenItemProps) => {
       <div>{renderImage("w-100%", tokenData.metadata.item_number)}</div>
       <div className="flex flex-rsow mt-10px align-center justify-between items-center">
         <p className="font-rblack mobile:text-30px tablet:text-30px laptop:text-30px desktop:text-30px">
-          {tokenData.metadata.name}
+          {tokenData.metadata.name ?? "Unknown"}
         </p>
       </div>
     </div>
