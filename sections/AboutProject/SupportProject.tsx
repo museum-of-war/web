@@ -39,21 +39,21 @@ const SupportProject = ({}: PropsSupportProject) => {
           </p>
           <SupportButton
             label={"Donate"}
-            className={"tablet:text-14px px-32px"}
+            className={"tablet:text-14px px-48px"}
             onClick={() => {
               setShowDonatePopup(true);
             }}
           />
         </div>
       ) : (
-        <div className="px-10% bg-carbon mt-120px">
-          <div className="w-100% p-48px flex flex-row items-center justify-center">
+        <div className="mx-10% bg-carbon mt-120px">
+          <div className="w-100% px-96px py-72px flex flex-row items-center justify-between">
             <p className="font-rblack text-32px text-white leading-36px">
               Support our project
             </p>
             <SupportButton
               label={"Donate"}
-              className={"text-14px ml-30px px-32px"}
+              className={"text-14px ml-30px px-72px"}
               onClick={() => {
                 setShowDonatePopup(true);
               }}
@@ -64,7 +64,7 @@ const SupportProject = ({}: PropsSupportProject) => {
       {showDonatePopup && (
         <DonateProjectPopup setShowDonatePopup={setShowDonatePopup} />
       )}
-       <div className="desktop:w-30% tablet:w-50% mobile:w-80% block m-auto mt-2% mb-96px">
+       <div className="desktop:w-30% tablet:w-50% mobile:w-80% block m-auto mt-2% mb-120px">
         <img alt="Dots" src="img/pd-dots1.png"/>
       </div>
     </>
