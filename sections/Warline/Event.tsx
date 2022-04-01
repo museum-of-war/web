@@ -47,8 +47,8 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
     const {
       previewSrc,
       originalSrc,
-      //animationSrc, //TODO: if animation, load by animationSrc after preview was loaded
-      //isAnimation,
+      animationSrc,
+      isAnimation,
     } = getUrls(eventData.Tokenid, eventData.ImageType, randomSrc as string);
 
     return (
@@ -61,6 +61,11 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
           onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
             currentTarget.src = randomSrc;
+          }}
+          onLoad={({ currentTarget }) => {
+            if (isAnimation && currentTarget.src === previewSrc) {
+              currentTarget.src = animationSrc
+            }
           }}
         />
         <FsLightbox toggler={toggler} sources={[originalSrc]} />
