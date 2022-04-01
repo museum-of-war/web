@@ -3,8 +3,8 @@ import {
   TWITTER_LINK,
   INSTAGRAM_LINK,
   GITHUB_LINK,
-} from "../sections/Constants";
-import { openInNewTab } from "../sections/utils";
+} from "@sections/Constants";
+import { openInNewTab } from "@sections/utils";
 
 type SocialMediaButtonProps = {
   twitter?: boolean;
@@ -30,9 +30,9 @@ const SocialMediaButton = ({
             : undefined
         }
       >
-        {twitter && <img alt="Twitterlogo" src={"/img/pd-TwitterLogo.png"} />}
-        {instagram && <img alt="IGlogo" src={"/img/pd-IGLogo.png"} />}
-        {github && <img alt="GithubLogo" src={"/img/gh.png"} />}
+        {twitter && <img alt="Twitter Logo" src={"/img/pd-TwitterLogo.png"} />}
+        {instagram && <img alt="Instagram Logo" src={"/img/pd-IGLogo.png"} />}
+        {github && <img alt="GitHub Logo" src={"/img/gh.png"} />}
       </button>
     </div>
   );
