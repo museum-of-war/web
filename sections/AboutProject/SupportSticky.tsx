@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import SupportButton from "@components/SupportButton";
 import DonatePopup from "@sections/Warline/DonatePopup";
 import { useViewPort } from "@hooks/useViewport";
-import { MINT_LINK, RELEASE_DATE } from "@sections/Constants";
+import { MINT_LINK, RELEASE_DATE, OPENSEA_LINK } from "@sections/Constants";
+import { useWeb3Modal } from "@hooks/useWeb3Modal";
+import {openInNewTab} from "@sections/utils";
 
 type PropsSupportSticky = {
   targetAnchorId: string;
 };
 
 const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
+  const { canMint } = useWeb3Modal();
   const [difference, setDifference] = useState(
     +new Date(RELEASE_DATE) - +new Date()
   );
@@ -61,8 +64,15 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
         <button
           className={`font-rblack text-white  rounded-full   border-2 px-25px py-12px whitespace-nowrap border-white mobile:text-12px laptop:text-14px desktop:text-16px
         hover:border-2 hover:shadow-[0_0_0_1px_rgba(255,255,255,1)]`}
+          onClick={async () => {
+            if(await canMint()) {
+              openInNewTab(MINT_LINK)
+            } else {
+              openInNewTab(OPENSEA_LINK)
+            }
+          }}
         >
-          <a href={MINT_LINK}>Buy NFT</a>
+          Buy NFT
         </button>
       </div>
     );

@@ -5,8 +5,6 @@ export const INSTAGRAM_LINK =
 export const GITHUB_LINK = "https://github.com/museum-of-war";
 export const FRAME_LINK = "https://www.fair.xyz";
 export const MINISTRY_LINK = "https://thedigital.gov.ua/";
-export const AUDIT_REPORT_LINK =
-  "https://github.com/museum-of-war/nft/audit.pdf";
-// export const RELEASE_DATE = `2022-03-30T23:30:40.000+03:00`;
+export const OPENSEA_LINK = "https://opensea.io/collection/metahistorymuseum";
 export const RELEASE_DATE = `2022-03-30T16:59:59.000-04:00`;
 export const MINT_LINK = `https://app.fair.xyz/collection/MHXYZ/queue`;
