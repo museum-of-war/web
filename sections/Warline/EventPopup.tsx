@@ -1,11 +1,11 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import FsLightbox from "fslightbox-react";
-import {useViewPort} from "@hooks/useViewport";
-import {EventType} from "@sections/types";
-import {VscChromeClose} from "react-icons/vsc";
-import {openInNewTab} from "@sections/utils";
-import {getUrls} from "@sections/Warline/WarlineUrls";
-import {usePopup} from "../../providers/PopupProvider";
+import { useViewPort } from "@hooks/useViewport";
+import { EventType } from "@sections/types";
+import { VscChromeClose } from "react-icons/vsc";
+import { openInNewTab } from "@sections/utils";
+import { getUrls } from "@sections/Warline/WarlineUrls";
+import { usePopup } from "../../providers/PopupProvider";
 
 type PropsPopup = {
   eventData: EventType;
@@ -35,7 +35,7 @@ const Popup = ({
   const [currIdx, setCurrIdx] = useState<number>(() => {
     return allEvents.filter(event => Number(event.DayNo) < dayNo).length + idx;
   });
-  const {hidePopup} = usePopup();
+  const { hidePopup } = usePopup();
   const [toggler, setToggler] = useState<boolean>(false);
 
   const alt = useMemo(() => {
