@@ -3,10 +3,13 @@ import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
+import MetaHistoryContractAbi from "../abi/FairXYZMH.json";
 
 const ProjectWalletNo = "0x98c30d4B65b2A0ab0838E7b1E09352c0FD70736C";
 const CountryWalletNo = "0x165CD37b4C644C2921454429E7F9358d18A45e14";
+const MetaHistoryAddress = "0xd3228e099e6596988ae0b73eaa62591c875e5693";
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
+import { AbiItem } from "web3-utils";
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
 
@@ -70,24 +73,37 @@ export function useWeb3Modal() {
   }
 
 
-
   async function viewNFTs(owner: string) {
-  
+    // Initialize an alchemy-web3 instance:
+    const web3 = createAlchemyWeb3(
+    `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+    );
 
-// Initialize an alchemy-web3 instance:
-const web3 = createAlchemyWeb3(
-  `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
-);
+    const ownerAddr = owner;
 
-const ownerAddr = owner;
+    const nfts = await web3.alchemy.getNfts({
+    owner: ownerAddr, contractAddresses: [MetaHistoryAddress]
+    })
 
-const nfts = await web3.alchemy.getNfts({
-  owner: ownerAddr, contractAddresses: ['0xd3228e099e6596988ae0b73eaa62591c875e5693']
-})
- 
-console.log(apiKey,owner)
-return  nfts.ownedNfts
+    return  nfts.ownedNfts
   }
 
-  return { connectWallet, disconnectWallet, provider, donate ,viewNFTs};
+  async function canMint() {
+    // Initialize an alchemy-web3 instance:
+    const web3 = createAlchemyWeb3(
+    `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+    );
+
+    const nftContract = new web3.eth.Contract(MetaHistoryContractAbi as AbiItem[], MetaHistoryAddress);
+
+    const isPaused = await nftContract.methods.paused().call({ from: MetaHistoryAddress });
+    if(isPaused) return false;
+
+    const maxTokens = await nftContract.methods.maxTokens().call({ from: MetaHistoryAddress });
+    const mintedCount = await nftContract.methods.viewMinted().call({ from: MetaHistoryAddress });
+
+    return mintedCount < maxTokens;
+  }
+
+  return { connectWallet, disconnectWallet, provider, donate, viewNFTs, canMint };
 }
