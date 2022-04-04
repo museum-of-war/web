@@ -46,8 +46,8 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
   return (
     <div className={`min-h-screen
                      text-carbon overflow-clip
-                     desktop:px-132px tablet:px-72px mobile:px-32px
-                     py-36px mobile:py-30px`}>
+                     desktop:px-132px tablet:px-72px mobile:px-24px
+                     py-36px mobile:py-20px`}>
       <Header
         signerAddress={signerAddress}
         handleConnect={handleConnect}
