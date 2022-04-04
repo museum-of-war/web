@@ -6,9 +6,9 @@ const ContentWar = () => {
   const { isMobile } = useViewPort();
 
   return (
-    <div className="pr-10% mobile:pl-10% tablet:pl-0 flex flex-direction mobile:mt-8% tablet:mt-20 mobile:mb-15% tablet:mb-100px">
+    <div className="flex flex-direction mobile:mt-8% tablet:mt-20 mobile:mb-15% tablet:mb-100px">
       {!isMobile && (
-        <div className="w-50% mt-20px mr-6%">
+        <div className="w-50% mt-20px mr-6% tablet:-ml-72px">
           <img alt="Dots" src={"img/pd-dots1.png"} />
         </div>
       )}

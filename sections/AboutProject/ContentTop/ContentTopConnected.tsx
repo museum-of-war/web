@@ -9,7 +9,7 @@ const ContentTopConnected = () => {
   const { isMobile } = useViewPort();
   return isMobile ? (
     <div>
-      <div className="px-10% w-screen100% my-8% ">
+      <div className="my-8%">
         <img alt="Logo" src={"img/logo.svg"} className="w-full" />
         <div className="mt-30px font-rlight text-16px">
           <p>{"The NFT-museum of the war of Putin's Russia against Ukraine"}</p>
@@ -24,7 +24,7 @@ const ContentTopConnected = () => {
       </div>
     </div>
   ) : (
-    <div className="px-10% pb-100px w-screen100%">
+    <div className="pb-100px">
       <div className="flex flex-row justify-between items-center">
         <div className="w-45%">
           <img alt="Logo" src={"img/logo.svg"} className="w-90%" />

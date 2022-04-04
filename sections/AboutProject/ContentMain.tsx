@@ -20,7 +20,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
   const { isMobile } = useViewPort();
   return isMobile ? (
     <div className="mb-8% mt-10">
-      <div className="px-10%">
+      <div>
         <p className="font-rblack text-9vw uppercase mb-15% leading-10.5vw">
           We will never let any single day of this period disappear from the
           ledger of world history.
@@ -45,7 +45,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
       {!signerAddress && (
         <ConnectYourWalletChronology handleConnect={handleConnect} />
       )}
-      <div className="mt-8% px-10%">
+      <div className="mt-8%">
         <Blurb
           header={"TEAM AND PARTNERS"}
           english="Ukrainian blockchain community in collaboration with the Ministry of Digital Transformation of Ukraine"
@@ -61,7 +61,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
     </div>
   ) : (
     <div className="mt-20">
-      <div className="flex flex-row px-10%">
+      <div className="flex flex-row">
         <div className="mt-10 w-80% ">
           <p className="font-rblack tablet:text-5vw mobile:text-10vw uppercase tablet:mb-100px mobile:mb-15% tablet:leading-5vw mobile:leading-10.5vw">
             We will never let any single day of this period disappear from the
@@ -84,7 +84,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
       {!signerAddress && (
         <ConnectYourWalletChronology handleConnect={handleConnect} />
       )}
-      <div className="mt-8% px-10%">
+      <div className="mt-8%">
         <Blurb
           header={"TEAM AND PARTNERS"}
           english="Ukrainian NFT artists community in collaboration with Ministry of digital trasformation of Ukraine"

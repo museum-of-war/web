@@ -17,7 +17,7 @@ const ContentTopNotConnected = ({
   const { isMobile, isTablet } = useViewPort();
   return isMobile ? (
     <div className="mt-8%">
-      <div className="px-10% w-screen100% mb-8%">
+      <div className="mb-8%">
         <img alt="Logo" src={"img/logo.svg"} className="w-full" />
         <div className="mt-30px font-rlight text-16px">
           <p className="pr-10%">
@@ -33,13 +33,12 @@ const ContentTopNotConnected = ({
         </div>
       </div>
       <Countdownbanner endDate={RELEASE_DATE}/>
-      <div className="w-full my-12%">
+      <div className="w-screen my-12% -ml-32px">
         <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
       </div>
     </div>
   ) : isTablet? (
-    <div className="pb-100px w-screen100% laptop:mt-8vh">
-      <div className="px-10%">
+    <div className="pb-100px laptop:mt-8vh">
       <div className="laptop:flex laptop:flex-row justify-between items-start">
         <img
           alt="Logo"
@@ -65,14 +64,13 @@ const ContentTopNotConnected = ({
         </div>
       </div>
       <PoweredByFrame />
-      </div>
       <Countdownbanner endDate={RELEASE_DATE}/>
-      <div className="mt-4% px-10%">
+      <div className="mt-4%">
         <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
       </div>
     </div>
   ):(
-    <div className="px-10% pb-100px w-screen100% laptop:mt-8vh">
+    <div className="pb-100px laptop:mt-8vh">
       <div className="laptop:flex laptop:flex-row justify-between items-start">
         <img
           alt="Logo"

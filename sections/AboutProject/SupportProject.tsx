@@ -14,7 +14,7 @@ const SupportProject = ({}: PropsSupportProject) => {
     <>
       {isMobile ? (
         <>
-          <div className="bg-carbon w-100% mt-56px p-40px flex flex-col items-center justify-center">
+          <div className="bg-carbon mt-56px p-40px flex flex-col items-center justify-center -mx-32px">
             <div className="flex align-center justify-center">
               <p className="font-rblack mobile:text-29px text-white leading-30px">
                 Support our project
@@ -33,7 +33,7 @@ const SupportProject = ({}: PropsSupportProject) => {
           </div>
         </>
       ) : isTablet ? (
-        <div className="bg-carbon w-100% p-72px mt-96px flex flex-row items-center justify-between">
+        <div className="bg-carbon p-72px mt-96px flex flex-row items-center justify-between -mx-72px">
           <p className="font-rblack text-32px text-white leading-36px">
             Support our project
           </p>
@@ -46,7 +46,7 @@ const SupportProject = ({}: PropsSupportProject) => {
           />
         </div>
       ) : (
-        <div className="mx-10% bg-carbon mt-120px">
+        <div className="bg-carbon mt-120px">
           <div className="w-100% px-96px py-72px flex flex-row items-center justify-between">
             <p className="font-rblack text-32px text-white leading-36px">
               Support our project
@@ -64,9 +64,9 @@ const SupportProject = ({}: PropsSupportProject) => {
       {showDonatePopup && (
         <DonateProjectPopup setShowDonatePopup={setShowDonatePopup} />
       )}
-       <div className="desktop:w-30% tablet:w-50% mobile:w-80% block m-auto mt-2% mb-120px">
-        <img alt="Dots" src="img/pd-dots1.png"/>
-      </div>
+       <div className="desktop:w-30% tablet:w-65% block m-auto mt-2% mb-120px mobile:mb-48px">
+         <img alt="Dots" src="img/pd-dots1.png"/>
+       </div>
     </>
   );
 };
