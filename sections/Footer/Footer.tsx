@@ -4,9 +4,10 @@ import SocialMediaButton from "../../components/SocialMediaButton";
 import { useViewPort } from "@hooks/useViewport";
 import { useAppRouter } from "@hooks/useAppRouter";
 import { openInNewTab } from "../utils";
+import { GITHUB_LINK, INSTAGRAM_LINK, OPENSEA_LINK, TWITTER_LINK } from "@sections/Constants";
 
 const Footer = () => {
-  const { isMobile } = useViewPort();
+  const { isMobile, isTablet} = useViewPort();
   const { push } = useAppRouter();
 
   const onClickTermsAndConditions = () => push("/terms-and-conditions");
@@ -14,14 +15,15 @@ const Footer = () => {
   const onClickAuditReport = () => openInNewTab("/audit.pdf");
   const onClickContactUs = () => openInNewTab("mailto:vk@metahistory.gallery?subject=Meta History");
 
-  return isMobile ? (
-    <div className="px-10% font-rnarrow pt-10% pb-20% flex flex-col">
-      <div className="flex flex-row align-center mb-4%">
-        <SocialMediaButton github />
-        <SocialMediaButton twitter />
-        <SocialMediaButton instagram />
+  return isMobile || isTablet ? (
+    <div className="font-rnarrow pt-10% flex flex-col">
+      <div className="flex flex-row align-center justify-center mb-24px">
+        <SocialMediaButton opensea href={OPENSEA_LINK} />
+        <SocialMediaButton twitter href={TWITTER_LINK} />
+        <SocialMediaButton instagram href={INSTAGRAM_LINK} />
+        <SocialMediaButton github href={GITHUB_LINK} />
       </div>
-      <div className="flex flex-row mb-4% flex-wrap">
+      <div className="flex flex-row justify-center mb-32px flex-wrap">
         <HeaderAndFooterButton label="Audit" onClick={onClickAuditReport} wrapperClassName="mr-20px" />
         <HeaderAndFooterButton
           label="Privacy Policy"
@@ -36,13 +38,12 @@ const Footer = () => {
         <HeaderAndFooterButton
           label="Contact Us"
           onClick={onClickContactUs}
-          wrapperClassName="mr-20px"
         />
       </div>
-       <p className="m-0">© 2022 Copyright</p>
+      <p className="m-0 text-center">© 2022 Copyright</p>
     </div>
   ) : (
-    <div className="flex laptop:flex-row tablet:flex-col-reverse px-10% font-rnarrow py-36px items-center laptop:justify-between w-full">
+    <div className="flex laptop:flex-row tablet:flex-col-reverse font-rnarrow py-36px items-center laptop:justify-between w-full">
       <p className="grow tablet:mt-24px laptop:mt-0">© 2022 Copyright</p>
       <div className="flex flex-row items-center laptop:justify-end tablet:justify-center">
         <HeaderAndFooterButton wrapperClassName="mr-24px" label="Audit" onClick={onClickAuditReport} />
@@ -61,9 +62,10 @@ const Footer = () => {
           onClick={onClickContactUs}
           wrapperClassName="mr-24px"
         />
-        <SocialMediaButton github />
-        <SocialMediaButton twitter />
-        <SocialMediaButton instagram />
+        <SocialMediaButton opensea href={OPENSEA_LINK} />
+        <SocialMediaButton twitter href={TWITTER_LINK} />
+        <SocialMediaButton instagram href={INSTAGRAM_LINK} />
+        <SocialMediaButton github href={GITHUB_LINK} />
       </div>
     </div>
   );

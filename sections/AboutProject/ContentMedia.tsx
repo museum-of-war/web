@@ -22,7 +22,7 @@ const Media = (summary: string, outlet: string, url: string) => {
 };
 const ContentMedia = () => {
   return (
-    <div className="px-10% mobile:mt-8% tablet:mt-0">
+    <div className="mobile:mt-8% tablet:mt-0">
       <p className="font-rblack tablet:text-70px mobile:text-12vw mobile:leading-12vw tablet:leading-72px uppercase">
         IN PRESS
       </p>

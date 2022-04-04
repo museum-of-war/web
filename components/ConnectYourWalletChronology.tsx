@@ -12,7 +12,7 @@ const ConnectYourWalletChronology = ({
   const { isMobile } = useViewPort();
   return isMobile ? (
     <div className="mt-8% flex flex-col justify-center">
-      <div className="bg-carbon text-white p-40px">
+      <div className="bg-carbon text-white p-40px -mx-32px">
         <p className="font-rblack text-29px leading-30px mb-20px">
           Connect your wallet to support Ukraine
         </p>
@@ -34,12 +34,12 @@ const ConnectYourWalletChronology = ({
           </button>
         </div>
       </div>
-      <div className="w-80% block m-auto mt-2%">
+      <div className="block mt-2%">
         <img alt="Dots" src={"img/pd-dots1.png"}/>
       </div>
     </div>
   ) : (
-    <div className="mt-8% flex flex-col justify-center laptop:px-10%">
+    <div className="mt-8% flex flex-col justify-center laptop:mx-0 tablet:-mx-72px">
       <div className="bg-carbon text-white laptop:px-96px tablet:px-72px py-72px flex flex-row items-center justify-between">
         <div className="laptop:w-60% tablet:w-70% mobile:w-70%">
           <p className="font-rblack text-32px leading-36px">
@@ -64,7 +64,7 @@ const ConnectYourWalletChronology = ({
           </button>
         </div>
       </div>
-      <div className="w-50% block m-auto mt-2%">
+      <div className="w-50% tablet:w-50% block m-auto mt-2%">
         <img alt="Dots" src="img/pd-dots1.png"/>
       </div>
     </div>

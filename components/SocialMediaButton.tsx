@@ -1,39 +1,32 @@
 import React from "react";
-import {
-  TWITTER_LINK,
-  INSTAGRAM_LINK,
-  GITHUB_LINK,
-} from "@sections/Constants";
-import { openInNewTab } from "@sections/utils";
 
 type SocialMediaButtonProps = {
   twitter?: boolean;
   instagram?: boolean;
   github?: boolean;
+  opensea?: boolean;
+  href: string;
 };
 
 const SocialMediaButton = ({
   twitter,
   instagram,
   github,
+  opensea,
+  href,
 }: SocialMediaButtonProps) => {
   return (
-    <div className="mobile:w-20% tablet:w-4% mobile:mr-6% tablet:mr-2% tablet:min-w-50px">
-      <button
-        onClick={
-          twitter
-            ? () => openInNewTab(TWITTER_LINK)
-            : instagram
-            ? () => openInNewTab(INSTAGRAM_LINK)
-            : github
-            ? () => openInNewTab(GITHUB_LINK)
-            : undefined
-        }
+    <div className="mobile:w-40px w-48px mobile:mr-6% tablet:mr-24px">
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
       >
         {twitter && <img alt="Twitter Logo" src={"/img/pd-TwitterLogo.png"} />}
         {instagram && <img alt="Instagram Logo" src={"/img/pd-IGLogo.png"} />}
         {github && <img alt="GitHub Logo" src={"/img/gh.png"} />}
-      </button>
+        {opensea && <img alt="OpenSea Logo" src={"/img/opensea.png"} />}
+      </a>
     </div>
   );
 };

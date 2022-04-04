@@ -6,7 +6,7 @@ const ContentMission = () => {
   const { isMobile } = useViewPort();
   return (
     <>
-      <div className="px-10% laptop:flex laptop:flex-row laptop:justify-between mt-20 tablet:mb-75px mobile:mb-8%">
+      <div className="laptop:flex laptop:flex-row laptop:justify-between mt-20 tablet:mb-75px mobile:mb-8%">
         <div className="laptop:w-45%">
           <Blurb
             header="MISSION"
@@ -24,7 +24,7 @@ const ContentMission = () => {
       </div>
       {isMobile && (
         <img
-          className="w-100% pl-10%"
+          className="w-screen max-w-none"
           alt="dots"
           src="/img/pd-dotsHorizontalMobile.png"
         />
