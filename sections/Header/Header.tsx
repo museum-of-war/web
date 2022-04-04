@@ -1,8 +1,9 @@
-import React from "react";
-import ConnectWalletButton from "../../components/ConnectWalletButton";
+import React, { useCallback } from "react";
 import HeaderAndFooterButton from "../../components/HeaderAndFooterButton";
 import { useViewPort } from "@hooks/useViewport";
 import { useAppRouter } from "@hooks/useAppRouter";
+import Button from "@components/Button";
+import { truncateAddress } from "@sections/utils";
 
 type HeaderProps = {
   signerAddress: string;
@@ -21,58 +22,37 @@ const Header = ({
 }: HeaderProps) => {
   const { isMobile, isTablet } = useViewPort();
   const { push, route } = useAppRouter();
+
+  const handleConnectWallet = useCallback(() => {
+    handleConnect();
+    setMenuOpen(false);
+  }, [handleConnect, setMenuOpen]);
+
+  const handleDisconnectWallet = useCallback(() => {
+    handleDisconnect();
+    setMenuOpen(false);
+  }, [handleDisconnect, setMenuOpen]);
+
   return isMobile || isTablet ? (
     <div>
       <div
-        className={` w-screen px-10% pt-8% pb-15% ${
-          menuOpen && "border-b-4 mb-12%"
-        }`}
+        className={`mb-15% pb-32px ${menuOpen ? "border-b-4 mb-12%" : ""} ${menuOpen && isMobile ? "h-screen" : ''}`}
       >
         <div className="flex flex-row justify-between items-center">
           <img
-            className="w-15% min-w-100px mr-15%"
+            className="w-15% min-w-100px mr-15% py-10px"
             src={"/img/pd-logoNoSymbol.png"}
             alt="Meta History: Museum of War"
           />
-          {isTablet && (
-            <div className="flex flex-row justify-between items-center grow">
-              <div className="ml-auto mr-96px">
-                <ConnectWalletButton
-                  signerAddress={signerAddress}
-                  handleConnect={() => {
-                    handleConnect();
-                    setMenuOpen(false);
-                  }}
-                  handleDisconnect={() => {
-                    handleDisconnect();
-                    setMenuOpen(false);
-                  }}
-                />
-              </div>
-              {
-                <HeaderAndFooterButton
-                  label={menuOpen ? "" : "Menu"}
-                  menu
-                  onClick={() => setMenuOpen(!menuOpen)}
-                />
-              }
-            </div>
-          )}
-          {isMobile && (
-            <>
-              {
-                <HeaderAndFooterButton
-                    label={menuOpen ? "" : "Menu"}
-                    menu
-                    onClick={() => setMenuOpen(!menuOpen)}
-                />
-              }
-            </>
-          )}
+          <HeaderAndFooterButton
+            label={menuOpen ? "" : "Menu"}
+            menu
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
         </div>
         {menuOpen && (
-          <div>
-            <div className="my-8%">
+          <>
+            <div className={`pt-48px flex ${isTablet ? "flex-row flex-wrap justify-start items-center" : "flex-col"}`}>
               <HeaderAndFooterButton
                 label="About the project"
                 onClick={() => {
@@ -80,9 +60,8 @@ const Header = ({
                   setMenuOpen(false);
                 }}
                 underlined={route === "/"}
+                wrapperClassName={isMobile ? "pb-32px" : "mr-32px mb-32px"}
               />
-            </div>
-            <div className="mb-8%">
               <HeaderAndFooterButton
                 label="Warline"
                 onClick={() => {
@@ -90,10 +69,9 @@ const Header = ({
                   setMenuOpen(false);
                 }}
                 underlined={route === "/warline"}
+                wrapperClassName={isMobile ? "pb-32px" : "mr-32px mb-32px"}
               />
-            </div>
-            {signerAddress && (
-              <div className="mb-8%">
+              {signerAddress && (
                 <HeaderAndFooterButton
                   label="My NFTs"
                   onClick={() => {
@@ -101,25 +79,29 @@ const Header = ({
                     setMenuOpen(false);
                   }}
                   underlined={route === "/tokens"}
+                  wrapperClassName={isMobile ? "pb-32px" : "mr-32px mb-32px"}
                 />
-              </div>
-            )}
-            {isMobile && (
-              <div className="w-60%">
-                <ConnectWalletButton
-                  signerAddress={signerAddress}
-                  handleConnect={() => {
-                    handleConnect();
-                    setMenuOpen(false);
-                  }}
-                  handleDisconnect={() => {
-                    handleDisconnect();
-                    setMenuOpen(false);
-                  }}
+              )}
+            </div>
+            {!signerAddress ? (
+              <Button
+                mode="secondary"
+                label={signerAddress ? truncateAddress(signerAddress) : "Sign In"}
+                onClick={signerAddress ? handleDisconnectWallet : handleConnectWallet}
+                className={isMobile ? "w-full" : ""}
+              />
+            ) : (
+              <>
+                <span className="font-rlight text-14px mr-16px">{truncateAddress(signerAddress)}</span>
+                <Button
+                  mode="secondary"
+                  round
+                  label={<img src="/img/logout.svg" alt="Logout"/>}
+                  onClick={handleDisconnect}
                 />
-              </div>
+              </>
             )}
-          </div>
+          </>
         )}
       </div>
       {/* {menuOpen && (
@@ -127,27 +109,29 @@ const Header = ({
         )} */}
     </div>
   ) : (
-    <div className="flex flex-row w-screen px-10% items-center mb-8% pt-2% justify-between z-20">
+    <div className="flex flex-row items-center mb-8% justify-between z-20">
       <img
         className="w-15% min-w-75px laptop:mr-30% tablet:mr-25%"
         src={"/img/pd-logoNoSymbol.png"}
         alt="Meta History: Museum of War"
       />
-      {!menuOpen && (
-        <>
+      <div className="flex flex-row items-center justify-end">
+        <div className="flex flex-row items-center justify-end mr-48px">
           <HeaderAndFooterButton
             label="About the project"
             onClick={() => {
               push("/");
             }}
             underlined={route === "/"}
-          />{" "}
+            wrapperClassName="mr-32px"
+          />
           <HeaderAndFooterButton
             label="Warline"
             onClick={() => {
               push("/warline");
             }}
             underlined={route === "/warline"}
+            wrapperClassName={signerAddress ? "mr-32px" : ""}
           />
           {signerAddress && (
             <HeaderAndFooterButton
@@ -158,22 +142,26 @@ const Header = ({
               underlined={route === "/tokens"}
             />
           )}
-          {
-            <ConnectWalletButton
-              signerAddress={signerAddress}
-              handleConnect={handleConnect}
-              handleDisconnect={handleDisconnect}
+        </div>
+        {!signerAddress ? (
+          <Button
+            mode="secondary"
+            round={!!signerAddress}
+            label={signerAddress ? truncateAddress(signerAddress) : "Sign In"}
+            onClick={signerAddress ? handleDisconnect : handleConnect}
+          />
+        ) : (
+          <>
+            <span className="font-rlight text-14px mr-16px">{truncateAddress(signerAddress)}</span>
+            <Button
+              mode="secondary"
+              round
+              label={<img src="/img/logout.svg" alt="Logout"/>}
+              onClick={handleDisconnect}
             />
-          }
-        </>
-      )}
-      {menuOpen && (
-        <HeaderAndFooterButton
-          label=""
-          menu
-          onClick={() => setMenuOpen(!menuOpen)}
-        />
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 };
