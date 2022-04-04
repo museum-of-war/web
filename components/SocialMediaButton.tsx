@@ -16,7 +16,7 @@ const SocialMediaButton = ({
   href,
 }: SocialMediaButtonProps) => {
   return (
-    <div className="mobile:w-40px w-48px mobile:mr-6% tablet:mr-24px">
+    <div className="mobile:w-40px w-48px mobile:mr-6% tablet:mr-24px last:mr-0">
       <a
         href={href}
         target="_blank"

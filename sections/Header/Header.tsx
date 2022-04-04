@@ -146,7 +146,7 @@ const Header = ({
         {!signerAddress ? (
           <Button
             mode="secondary"
-            round
+            round={!!signerAddress}
             label={signerAddress ? truncateAddress(signerAddress) : "Sign In"}
             onClick={signerAddress ? handleDisconnect : handleConnect}
           />
