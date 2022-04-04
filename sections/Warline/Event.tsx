@@ -4,8 +4,8 @@ import { useViewPort } from "@hooks/useViewport";
 import { EventType } from "@sections/types";
 import { openInNewTab } from "@sections/utils";
 import { LinkButton } from "@components/LinkButton";
-import Popup from "./Popup";
 import { getUrls } from "@sections/Warline/WarlineUrls";
+import { usePopup } from "../../providers/PopupProvider";
 
 type PropsEvent = {
   eventData: EventType;
@@ -27,9 +27,9 @@ const rand_imgs: string[] = [
   "img/dots-8.png",
 ];
 
-const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEvent) => {
+const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
-  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const { showPopup } = usePopup();
   const [toggler, setToggler] = useState<boolean>(false);
   const alt = useMemo(() => {
     return `Day ${eventData.DayNo}, ${eventData.Time}`
@@ -111,7 +111,12 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
         {eventData.isAuction ? (
           <div>
             <button
-              onClick={() => setShowPopup(true)}
+              onClick={() => showPopup({
+                eventData,
+                dayNo,
+                idx,
+                allEvents,
+              })}
               className="font-rnarrow  border-black border-y-4 py-5px mt-15px w-100%"
             >
               This NFT will be sold at an auction{" "}
@@ -120,7 +125,12 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
         ) : (
           <div>
             <LinkButton
-              onClick={() => setShowPopup(true)}
+              onClick={() => showPopup({
+                eventData,
+                dayNo,
+                idx,
+                allEvents,
+              })}
               className="font-rblack mt-15px "
             >
               See Details
@@ -128,19 +138,6 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
           </div>
         )}
       </div>
-      {showPopup ? (
-        <Popup
-          eventData={eventData}
-          dayNo={dayNo}
-          date={date}
-          setShowPopup={setShowPopup}
-          idx={idx}
-          eventsData={eventsData}
-          allEvents={allEvents}
-        />
-      ) : (
-        <></>
-      )}
     </div>
   ) : isTablet ? (
     <div className="flex flex-row items-top mb-60px">
@@ -178,7 +175,12 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
         {eventData.isAuction ? (
           <div>
             <button
-              onClick={() => setShowPopup(true)}
+              onClick={() => showPopup({
+                eventData,
+                dayNo,
+                idx,
+                allEvents,
+              })}
               className="font-rnarrow  border-black border-y-4 py-5px w-100%"
             >
               This NFT will be sold at an auction{" "}
@@ -187,7 +189,12 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
         ) : (
           <div>
             <LinkButton
-              onClick={() => setShowPopup(true)}
+              onClick={() => showPopup({
+                eventData,
+                dayNo,
+                idx,
+                allEvents,
+              })}
               className="font-rblack"
             >
               See Details
@@ -195,19 +202,6 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
           </div>
         )}
       </div>
-      {showPopup ? (
-        <Popup
-          eventData={eventData}
-          dayNo={dayNo}
-          date={date}
-          setShowPopup={setShowPopup}
-          idx={idx}
-          eventsData={eventsData}
-          allEvents={allEvents}
-        />
-      ) : (
-        <></>
-      )}
     </div>
   ) : (
     <div className="flex flex-row items-top mb-60px">
@@ -248,7 +242,12 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
         {eventData.isAuction ? (
           <div>
             <button
-              onClick={() => setShowPopup(true)}
+              onClick={() => showPopup({
+                eventData,
+                dayNo,
+                idx,
+                allEvents,
+              })}
               className="font-rnarrow  border-black border-y-4 py-5px w-100%"
             >
               This NFT will be sold at an auction{" "}
@@ -257,7 +256,12 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
         ) : (
           <div>
             <LinkButton
-              onClick={() => setShowPopup(true)}
+              onClick={() => showPopup({
+                eventData,
+                dayNo,
+                idx,
+                allEvents,
+              })}
               className="font-rblack"
             >
               See Details
@@ -265,19 +269,6 @@ const Event = ({ eventData, dayNo, date, idx, eventsData, allEvents }: PropsEven
           </div>
         )}
       </div>
-      {showPopup ? (
-        <Popup
-          eventData={eventData}
-          dayNo={dayNo}
-          date={date}
-          setShowPopup={setShowPopup}
-          idx={idx}
-          eventsData={eventsData}
-          allEvents={allEvents}
-        />
-      ) : (
-        <></>
-      )}
     </div>
   );
 };

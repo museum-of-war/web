@@ -45,3 +45,5 @@ letsencrypt
 /public/img/animation
 /public/img/original
 /public/img/preview
+
+.idea/

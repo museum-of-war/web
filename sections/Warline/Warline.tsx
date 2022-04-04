@@ -6,6 +6,7 @@ import { useViewPort } from "@hooks/useViewport";
 import SupportSticky from "./SupportSticky";
 import WarlineData from "./WarlineData";
 import {DayType, EventType} from "@sections/types";
+import {PopupProvider} from "../../providers/PopupProvider";
 
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
@@ -20,9 +21,9 @@ const Warline = () => {
   }, []);
 
   return (
-    <>
+    <PopupProvider>
       {isMobile ? (
-        <div className="">
+        <div>
           <div className="px-10%">
             {WarlineData.map((dayData, idx, arr) => (
               <Day key={idx} dayData={dayData} daysCount={arr.length} allEvents={allEvents} />
@@ -33,7 +34,7 @@ const Warline = () => {
           </div>
         </div>
       ) : isTablet ? (
-        <div className="">
+        <div>
           <div className="px-10%">
             {WarlineData.map((dayData, idx, arr) => (
               <Day key={idx} dayData={dayData} daysCount={arr.length} allEvents={allEvents} />
@@ -59,7 +60,7 @@ const Warline = () => {
       ) : (
         <></>
       )}
-    </>
+    </PopupProvider>
   );
 };
 
