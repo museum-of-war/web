@@ -22,13 +22,15 @@ const providerOptions = {
   },
 };
 
-const web3Modal = () => {
-  if (typeof window === "undefined") return;
-  return new Web3Modal({
+let web3Modal: Web3Modal | null = null;
+const getWeb3Modal = () => {
+  if (typeof window === "undefined") return null;
+  if (!web3Modal) web3Modal = new Web3Modal({
     network: "mainnet",
     cacheProvider: true,
     providerOptions,
   });
+  return web3Modal;
 };
 
 export function useWeb3Modal() {
@@ -36,13 +38,13 @@ export function useWeb3Modal() {
     ethers.providers.Web3Provider | undefined
   >(undefined);
   // Automatically connect if the provider is cached but has not yet been set (e.g. page refresh)
-  if (web3Modal()?.cachedProvider && !provider) {
+  if (getWeb3Modal()?.cachedProvider && !provider) {
     connectWallet();
   }
 
   async function connectWallet() {
     try {
-      const externalProvider = await web3Modal()?.connect();
+      const externalProvider = await getWeb3Modal()?.connect();
       const ethersProvider = new ethers.providers.Web3Provider(
         externalProvider
       );
@@ -53,12 +55,12 @@ export function useWeb3Modal() {
   }
 
   function disconnectWallet() {
-    web3Modal()?.clearCachedProvider();
+    getWeb3Modal()?.clearCachedProvider();
     setProvider(undefined);
   }
 
   async function donate(amount: string, target: "country"|"project") {
-    const externalProvider = await web3Modal()?.connect();
+    const externalProvider = await getWeb3Modal()?.connect();
     const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
     setProvider(ethersProvider);
     const signer = ethersProvider.getSigner();
