@@ -1,9 +1,9 @@
-import { useWeb3Modal } from "@hooks/useWeb3Modal";
-import Footer from "@sections/Footer/Footer";
-import Header from "@sections/Header/Header";
-import { useEffect, useState } from "react";
-// import { configureAxios } from "@services/axios";
-// import { initialiseCachedProvider } from "auth/provider";
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import Footer from '@sections/Footer/Footer';
+import Header from '@sections/Header/Header';
+import { useEffect, useState } from 'react';
+import { PopupProvider } from '../../providers/PopupProvider';
+
 export interface SharedProps {
   signerAddress: string;
   handleConnect: () => void;
@@ -15,11 +15,7 @@ interface WrapperProps {
 }
 
 export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
-  // useEffect(() => {
-  //   configureAxios();
-  //   initialiseCachedProvider();
-  // }, []);
-  const [signerAddress, setSignerAddress] = useState<string>("");
+  const [signerAddress, setSignerAddress] = useState<string>('');
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const { provider, connectWallet, disconnectWallet } = useWeb3Modal();
 
@@ -37,36 +33,36 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
         const address = await signer.getAddress();
         setSignerAddress(address);
       } else {
-        setSignerAddress("");
+        setSignerAddress('');
       }
     };
     getAddress();
   }, [provider]);
 
   return (
-    <div className={`min-h-screen
+    <PopupProvider>
+      <div
+        className={`min-h-screen
                      text-carbon overflow-clip
                      desktop:px-132px tablet:px-72px mobile:px-24px
-                     py-36px mobile:py-20px`}>
-      <Header
-        signerAddress={signerAddress}
-        handleConnect={handleConnect}
-        handleDisconnect={handleDisconnect}
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-      />
-      <div
-      // className={`${
-      //   menuOpen && "blur-sm h-screen80% overflow-y-scroll relative"
-      // }`}
+                     py-36px mobile:py-20px`}
       >
-        <Child
+        <Header
           signerAddress={signerAddress}
           handleConnect={handleConnect}
           handleDisconnect={handleDisconnect}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
         />
-        <Footer />
+        <div>
+          <Child
+            signerAddress={signerAddress}
+            handleConnect={handleConnect}
+            handleDisconnect={handleDisconnect}
+          />
+          <Footer />
+        </div>
       </div>
-    </div>
+    </PopupProvider>
   );
 };

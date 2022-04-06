@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from "react";
-import FsLightbox from "fslightbox-react";
-import { useViewPort } from "@hooks/useViewport";
-import { EventType } from "@sections/types";
-import { openInNewTab } from "@sections/utils";
-import { LinkButton } from "@components/LinkButton";
-import { getUrls } from "@sections/Warline/WarlineUrls";
-import { usePopup } from "../../providers/PopupProvider";
+import React, { useMemo, useState } from 'react';
+import FsLightbox from 'fslightbox-react';
+import { useViewPort } from '@hooks/useViewport';
+import { EventType } from '@sections/types';
+import { openInNewTab } from '@sections/utils';
+import { LinkButton } from '@components/LinkButton';
+import { getUrls } from '@sections/Warline/WarlineUrls';
+import { usePopup } from '../../providers/PopupProvider';
 
 type PropsEvent = {
   eventData: EventType;
@@ -17,14 +17,14 @@ type PropsEvent = {
 };
 
 const rand_imgs: string[] = [
-  "img/dots-1.png",
-  "img/dots-2.png",
-  "img/dots-3.png",
-  "img/dots-4.png",
-  "img/dots-5.png",
-  "img/dots-6.png",
-  "img/dots-7.png",
-  "img/dots-8.png",
+  'img/dots-1.png',
+  'img/dots-2.png',
+  'img/dots-3.png',
+  'img/dots-4.png',
+  'img/dots-5.png',
+  'img/dots-6.png',
+  'img/dots-7.png',
+  'img/dots-8.png',
 ];
 
 const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
@@ -32,27 +32,26 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
   const { showPopup } = usePopup();
   const [toggler, setToggler] = useState<boolean>(false);
   const alt = useMemo(() => {
-    return `Day ${eventData.DayNo}, ${eventData.Time}`
+    return `Day ${eventData.DayNo}, ${eventData.Time}`;
   }, [eventData]);
 
   const TokenidFormatter = (tokenId: string): string => {
     return parseInt(tokenId) < 10
-      ? "#000" + tokenId
+      ? '#000' + tokenId
       : parseInt(tokenId) < 100
-      ? "#00" + tokenId
+      ? '#00' + tokenId
       : parseInt(tokenId) < 1000
-      ? "#0" + tokenId
-      : "#" + tokenId;
+      ? '#0' + tokenId
+      : '#' + tokenId;
   };
 
   const renderImage = (className: string) => {
     const randomSrc = rand_imgs[idx % 8] as string;
-    const {
-      previewSrc,
-      originalSrc,
-      animationSrc,
-      isAnimation,
-    } = getUrls(eventData.Tokenid, eventData.ImageType, randomSrc as string);
+    const { previewSrc, originalSrc, animationSrc, isAnimation } = getUrls(
+      eventData.Tokenid,
+      eventData.ImageType,
+      randomSrc as string,
+    );
 
     return (
       <>
@@ -67,7 +66,7 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
           }}
           onLoad={({ currentTarget }) => {
             if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
-              currentTarget.src = animationSrc
+              currentTarget.src = animationSrc;
             }
           }}
         />
@@ -78,7 +77,7 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
 
   return isMobile ? (
     <div className="flex flex-col items-top mb-60px">
-      {renderImage("w-100%")}
+      {renderImage('w-100%')}
       <div className="mt-20px flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
@@ -89,7 +88,7 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
           </div>
           <p
             className="font-rnarrow pt-15px"
-            style={{ overflowWrap: "anywhere" }}
+            style={{ overflowWrap: 'anywhere' }}
           >
             {eventData.Headline}
           </p>
@@ -102,7 +101,7 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
             >
               <img
                 alt="Twitter"
-                src={"img/warline-TwitterLogo.png"}
+                src={'img/warline-TwitterLogo.png'}
                 className="w-50px"
               />
             </button>
@@ -111,26 +110,30 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
         {eventData.isAuction ? (
           <div>
             <button
-              onClick={() => showPopup({
-                eventData,
-                dayNo,
-                idx,
-                allEvents,
-              })}
+              onClick={() =>
+                showPopup('event', {
+                  eventData,
+                  dayNo,
+                  idx,
+                  allEvents,
+                })
+              }
               className="font-rnarrow  border-black border-y-4 py-5px mt-15px w-100%"
             >
-              This NFT will be sold at an auction{" "}
+              This NFT will be sold at an auction{' '}
             </button>
           </div>
         ) : (
           <div>
             <LinkButton
-              onClick={() => showPopup({
-                eventData,
-                dayNo,
-                idx,
-                allEvents,
-              })}
+              onClick={() =>
+                showPopup('event', {
+                  eventData,
+                  dayNo,
+                  idx,
+                  allEvents,
+                })
+              }
               className="font-rblack mt-15px "
             >
               See Details
@@ -141,7 +144,7 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
     </div>
   ) : isTablet ? (
     <div className="flex flex-row items-top mb-60px">
-      {renderImage("w-40vw max-w-300px max-h-300px h-40vw mr-50px")}
+      {renderImage('w-40vw max-w-300px max-h-300px h-40vw mr-50px')}
       <div className="flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
@@ -152,9 +155,9 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
           </div>
           <p
             className="font-rnarrow pt-15px"
-            style={{ overflowWrap: "anywhere" }}
+            style={{ overflowWrap: 'anywhere' }}
           >
-            {" "}
+            {' '}
             {eventData.Headline}
           </p>
           <div className="flex flex-row items-center justify-between pt-15px">
@@ -166,7 +169,7 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
             >
               <img
                 alt="Twitter"
-                src={"img/warline-TwitterLogo.png"}
+                src={'img/warline-TwitterLogo.png'}
                 className="w-50px"
               />
             </button>
@@ -175,26 +178,30 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
         {eventData.isAuction ? (
           <div>
             <button
-              onClick={() => showPopup({
-                eventData,
-                dayNo,
-                idx,
-                allEvents,
-              })}
+              onClick={() =>
+                showPopup('event', {
+                  eventData,
+                  dayNo,
+                  idx,
+                  allEvents,
+                })
+              }
               className="font-rnarrow  border-black border-y-4 py-5px w-100%"
             >
-              This NFT will be sold at an auction{" "}
+              This NFT will be sold at an auction{' '}
             </button>
           </div>
         ) : (
           <div>
             <LinkButton
-              onClick={() => showPopup({
-                eventData,
-                dayNo,
-                idx,
-                allEvents,
-              })}
+              onClick={() =>
+                showPopup('event', {
+                  eventData,
+                  dayNo,
+                  idx,
+                  allEvents,
+                })
+              }
               className="font-rblack"
             >
               See Details
@@ -206,7 +213,7 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
   ) : (
     <div className="flex flex-row items-top mb-60px">
       {renderImage(
-        "w-20vw max-w-300px max-h-300px h-20vw mr-50px hover:cursor-pointer"
+        'w-20vw max-w-300px max-h-300px h-20vw mr-50px hover:cursor-pointer',
       )}
 
       <div className="w-100% flex flex-col justify-between">
@@ -219,9 +226,9 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
           </div>
           <p
             className="font-rnarrow pt-15px"
-            style={{ overflowWrap: "anywhere" }}
+            style={{ overflowWrap: 'anywhere' }}
           >
-            {" "}
+            {' '}
             {eventData.Headline}
           </p>
           <div className="flex flex-row items-center justify-between pt-15px">
@@ -233,7 +240,7 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
             >
               <img
                 alt="Twitter"
-                src={"img/warline-TwitterLogo.png"}
+                src={'img/warline-TwitterLogo.png'}
                 className="w-50px"
               />
             </button>
@@ -242,26 +249,30 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
         {eventData.isAuction ? (
           <div>
             <button
-              onClick={() => showPopup({
-                eventData,
-                dayNo,
-                idx,
-                allEvents,
-              })}
+              onClick={() =>
+                showPopup('event', {
+                  eventData,
+                  dayNo,
+                  idx,
+                  allEvents,
+                })
+              }
               className="font-rnarrow  border-black border-y-4 py-5px w-100%"
             >
-              This NFT will be sold at an auction{" "}
+              This NFT will be sold at an auction{' '}
             </button>
           </div>
         ) : (
           <div>
             <LinkButton
-              onClick={() => showPopup({
-                eventData,
-                dayNo,
-                idx,
-                allEvents,
-              })}
+              onClick={() =>
+                showPopup('event', {
+                  eventData,
+                  dayNo,
+                  idx,
+                  allEvents,
+                })
+              }
               className="font-rblack"
             >
               See Details
