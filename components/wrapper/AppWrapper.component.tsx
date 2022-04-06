@@ -49,7 +49,6 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
       >
         <Header
           signerAddress={signerAddress}
-          handleConnect={handleConnect}
           handleDisconnect={handleDisconnect}
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}

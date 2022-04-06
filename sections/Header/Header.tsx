@@ -5,21 +5,16 @@ import { useAppRouter } from '@hooks/useAppRouter';
 import Button from '@components/Button';
 import { truncateAddress } from '@sections/utils';
 import { usePopup } from '../../providers/PopupProvider';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 type HeaderProps = {
   signerAddress: string;
-  handleConnect: () => void;
-  handleDisconnect: () => void;
   menuOpen: boolean;
   setMenuOpen: (arg: boolean) => void;
 };
 
-const Header = ({
-  signerAddress,
-  handleDisconnect,
-  menuOpen,
-  setMenuOpen,
-}: HeaderProps) => {
+const Header = ({ signerAddress, menuOpen, setMenuOpen }: HeaderProps) => {
+  const { disconnectWallet } = useWeb3Modal();
   const { isMobile, isTablet } = useViewPort();
   const { push, route } = useAppRouter();
   const { showPopup } = usePopup();
@@ -102,7 +97,7 @@ const Header = ({
                   mode="secondary"
                   round
                   label={<img src="/img/logout.svg" alt="Logout" />}
-                  onClick={handleDisconnect}
+                  onClick={disconnectWallet}
                 />
               </>
             )}
@@ -161,7 +156,7 @@ const Header = ({
               mode="secondary"
               round
               label={<img src="/img/logout.svg" alt="Logout" />}
-              onClick={handleDisconnect}
+              onClick={disconnectWallet}
             />
           </>
         )}

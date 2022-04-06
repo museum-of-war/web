@@ -45,11 +45,15 @@ export function useWeb3Modal() {
 
   async function connectWallet() {
     try {
-      const externalProvider = await getWeb3Modal()?.connect();
-      const ethersProvider = new ethers.providers.Web3Provider(
-        externalProvider,
-      );
-      setProvider(ethersProvider);
+      const provider = new WalletConnectProvider({
+        infuraId: process.env.NEXT_PUBLIC_INFURA_API,
+      });
+
+      //  Enable session (triggers QR Code modal)
+      await provider.enable();
+
+      // @ts-ignore
+      new Web3(provider);
     } catch (e) {
       // alert(e)
     }
@@ -59,6 +63,7 @@ export function useWeb3Modal() {
     getWeb3Modal()?.clearCachedProvider();
     setProvider(undefined);
   }
+
   async function donate(amount: string, target: 'country' | 'project') {
     const externalProvider = await getWeb3Modal()?.connect();
     const ethersProvider = new ethers.providers.Web3Provider(externalProvider);

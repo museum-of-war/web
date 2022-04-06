@@ -4,15 +4,12 @@ import { VscChromeClose } from 'react-icons/vsc';
 import { usePopup } from '../../providers/PopupProvider';
 import { openInNewTab } from '@sections/utils';
 import Button from '@components/Button';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 const Popup = () => {
   const { hidePopup } = usePopup();
   const { isMobile } = useViewPort();
-  // const { provider, connectWallet, disconnectWallet } = useWeb3Modal();
-
-  const handleWalletConnect = async () => {
-    // TBD
-  };
+  const { connectWallet } = useWeb3Modal();
 
   const handleMetamask = useCallback(() => {
     if (window.ethereum.isMetaMask) {
@@ -20,6 +17,11 @@ const Popup = () => {
     } else {
       openInNewTab('https://metamask.io/download/');
     }
+  }, []);
+
+  const handleWalletConnect = useCallback(() => {
+    hidePopup();
+    connectWallet();
   }, []);
 
   return isMobile ? (
