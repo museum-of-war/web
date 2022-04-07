@@ -12,7 +12,7 @@ const Popup = () => {
   const { connectWallet } = useWeb3Modal();
 
   const handleMetamask = useCallback(() => {
-    if (window.ethereum.isMetaMask) {
+    if (window.ethereum?.isMetaMask) {
       window.ethereum.enable();
     } else {
       openInNewTab('https://metamask.io/download/');
