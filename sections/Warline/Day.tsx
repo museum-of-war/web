@@ -1,40 +1,59 @@
-import React from "react";
-import { LinkButton } from "@components/LinkButton";
+import React, {useEffect, useState} from "react";
 import { DayType, EventType } from "@sections/types";
 import Event from "./Event";
 import { useViewPort } from "@hooks/useViewport";
+import DaysNavigation from "@sections/Warline/DaysNavigation";
+import Toggle, { ToggleOptionsType } from "@components/Toggle";
 
 type PropsDay = {
   dayData: DayType,
   daysCount: number,
-  allEvents: Array<EventType>
+  allEvents: Array<EventType>,
+  pageView: ToggleOptionsType,
 };
 
-const Day = ({ dayData, daysCount, allEvents }: PropsDay) => {
+const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
+  const [view, setView] = useState<ToggleOptionsType>(pageView);
+
+  useEffect(() => {
+    setView(pageView);
+  }, [pageView]);
 
   const onScrollClick = (targetId: string) => {
     const targetPosition = document.getElementById(targetId);
 
     window.scroll({
-      top: targetPosition?.offsetTop,
+      top: (isMobile || isTablet) ? (targetPosition?.offsetTop ?? 0) - 80 : targetPosition?.offsetTop,
       behavior: "smooth",
     });
   };
 
   return isMobile ? (
-    <div className="mb-40px flex flex-col">
+    <div className="mb-40px flex flex-col" id={`day-sticky-${dayData.dayNo}`}>
       <div className="w-100%">
         <div className=" flex flex-row justify-between font-rblack items-top">
-          <p className="mt-20px text-16px font-rnarrow">{dayData.date}</p>
-          <div className=" flex flex-row">
-            <p className="text-32px mr-20px">Day</p>
-            <p className="text-70px leading-70px">{dayData.dayNo}</p>
+          <div className="flex flex-col">
+            <p className="text-32px mr-20px">Day {dayData.dayNo}</p>
+            <p className="mt-12px mb-24px text-14px font-rlight">{dayData.date}</p>
           </div>
+          <DaysNavigation
+            direction="vertical"
+            daysCount={daysCount}
+            dayData={dayData}
+            onNextDayClickHandler={() => onScrollClick(`day-sticky-${dayData.dayNo + 1}`)}
+            onPrevDayClickHandler={() => onScrollClick(`day-sticky-${dayData.dayNo - 1}`)}
+          />
         </div>
         <div className="mt-1px mb-20px h-5px w-100% bg-carbon"></div>
       </div>
-      <div className=" w-100%">
+      {/* @ts-ignore*/}
+      <div
+        {...view === 'days' ? {
+          className: "grid gap-24px",
+          style: { "grid-template-columns": "repeat(auto-fit, minmax(124px, 1fr))" }
+        } : {}}
+      >
         {dayData.events.map((eventData, idx) => (
           <Event
             key={idx}
@@ -44,23 +63,36 @@ const Day = ({ dayData, daysCount, allEvents }: PropsDay) => {
             idx={idx}
             eventsData={dayData.events}
             allEvents={allEvents}
+            view={view}
           />
         ))}
       </div>
     </div>
   ) : isTablet ? (
-    <div className="mb-40px flex flex-col">
+    <div className="mb-40px flex flex-col" id={`day-sticky-${dayData.dayNo}`}>
       <div className="w-100%">
-        <div className=" flex flex-row justify-between font-rblack items-top">
-          <p className="mt-20px text-16px font-rnarrow">{dayData.date}</p>
-          <div className=" flex flex-row">
-            <p className="text-32px mr-20px">Day</p>
-            <p className="text-70px leading-70px">{dayData.dayNo}</p>
+        <div className="flex flex-row justify-between font-rblack items-top">
+          <div className="flex flex-col">
+            <p className="text-32px">Day {dayData.dayNo}</p>
+            <p className="mt-12px mb-24px text-14px font-rlight">{dayData.date}</p>
           </div>
+          <DaysNavigation
+            daysCount={daysCount}
+            dayData={dayData}
+            onNextDayClickHandler={() => onScrollClick(`day-sticky-${dayData.dayNo + 1}`)}
+            onPrevDayClickHandler={() => onScrollClick(`day-sticky-${dayData.dayNo - 1}`)}
+            direction="horizontal"
+          />
         </div>
         <div className="mt-1px mb-20px h-5px w-100% bg-carbon"></div>
       </div>
-      <div className=" w-100%">
+      {/* @ts-ignore*/}
+      <div
+        {...view === 'days' ? {
+          className: "grid gap-x-48px gap-y-24px",
+          style: { "grid-template-columns": "repeat(auto-fit, minmax(176px, 1fr))" }
+        } : {}}
+      >
         {dayData.events.map((eventData, idx) => (
           <Event
             key={idx}
@@ -70,6 +102,7 @@ const Day = ({ dayData, daysCount, allEvents }: PropsDay) => {
             idx={idx}
             eventsData={dayData.events}
             allEvents={allEvents}
+            view={view}
           />
         ))}
       </div>
@@ -77,52 +110,45 @@ const Day = ({ dayData, daysCount, allEvents }: PropsDay) => {
   ) : (
     <div className="mb-40px flex flex-row" id={`day-sticky-${dayData.dayNo}`}>
       <div className="w-30%">
-        <div className="sticky" style={{ top: 36 }}>
-          <div className=" flex flex-row justify-between font-rblack items-top">
-            <p className="text-32px">Day</p>
-            <p className="text-70px leading-70px">{dayData.dayNo}</p>
+        <div className="sticky top-36px">
+          <div className="flex flex-col justify-start items-top">
+            <p className="text-32px font-rblack">Day {dayData.dayNo}</p>
+            <p className="mt-12px mb-24px text-14px font-rlight">{dayData.date}</p>
           </div>
           <div className="mt-1px h-5px w-100% bg-carbon"></div>
-          <p className="mt-20px text-16px font-rnarrow">{dayData.date}</p>
-          <div style={{ marginTop: 168 }}>
-            {dayData.dayNo > 1 && (
-              <span
-                onClick={() => {
-                  onScrollClick(`day-sticky-${dayData.dayNo - 1}`);
-                }}
-                className="flex flex-row items-center font-rblack hover:cursor-pointer"
-              >
-                <img alt="Up" src={"img/up.svg"} />
-                <LinkButton className="ml-10px border-b-4 border-transparent hover:border-solid hover:border-b-4 hover:border-carbon">  Day {dayData.dayNo - 1} </LinkButton>
-              </span>
-            )}
-            {dayData.dayNo < daysCount && (
-              <span
-                onClick={() => {
-                  onScrollClick(`day-sticky-${dayData.dayNo + 1}`);
-                }}
-               className="flex flex-row items-center font-rblack hover:cursor-pointer mt-5%"
-              >
-                <img alt="Down" src={"img/down.svg"} />
-                <LinkButton className="ml-10px "> Day {dayData.dayNo + 1} </LinkButton>
-              </span>
-            )}
+          <DaysNavigation
+            daysCount={daysCount}
+            dayData={dayData}
+            onNextDayClickHandler={() => onScrollClick(`day-sticky-${dayData.dayNo + 1}`)}
+            onPrevDayClickHandler={() => onScrollClick(`day-sticky-${dayData.dayNo - 1}`)}
+            direction="horizontal"
+          />
+          <div className="mt-48px">
+            <Toggle active={view} onClick={setView} />
           </div>
         </div>
       </div>
       <div className="ml-5% w-70%">
-
-        {dayData.events.map((eventData, idx) => (
-          <Event
-            key={idx}
-            eventData={eventData}
-            dayNo={dayData.dayNo}
-            date={dayData.date}
-            idx={idx}
-            eventsData={dayData.events}
-            allEvents={allEvents}
-          />
-        ))}
+        {/* @ts-ignore*/}
+        <div
+          {...view === 'days' ? {
+            className: "grid gap-x-48px gap-y-24px",
+            style: { "grid-template-columns": "repeat(auto-fit, minmax(248px, 1fr))" }
+          } : {}}
+        >
+          {dayData.events.map((eventData, idx) => (
+            <Event
+              key={idx}
+              eventData={eventData}
+              dayNo={dayData.dayNo}
+              date={dayData.date}
+              idx={idx}
+              eventsData={dayData.events}
+              allEvents={allEvents}
+              view={view}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
