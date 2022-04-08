@@ -26,7 +26,7 @@ const Popup = () => {
 
   return isMobile ? (
     <div className="fixed z-10 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
-      <div className="z-20 bg-white absolute w-100% h-100% flex flex-col px-5% py-3% overflow-auto top-0">
+      <div className="z-20 bg-white absolute w-100% h-100% flex flex-col p-24px overflow-auto top-0">
         <div className="w-100% text-right">
           <button className="right-20px top-20px" onClick={hidePopup}>
             <VscChromeClose size={25} />
@@ -40,38 +40,36 @@ const Popup = () => {
           </div>
           <Button
             mode="secondary"
-            round
             label={
               <div className="flex flex-row items-center">
                 <img
                   alt="Logo"
                   src={'img/metamask-fox.svg'}
-                  className="ml-20px mr-10px"
-                  height={30}
-                  width={30}
+                  className="mr-10px"
+                  height={24}
+                  width={24}
                 />
                 MetaMask
               </div>
             }
-            className="w-100% mt-30px"
+            className="w-100% mt-30px h-48px mobile:py-12px"
             onClick={handleMetamask}
           />
           <Button
             mode="secondary"
-            round
             label={
               <div className="flex flex-row items-center">
                 <img
                   alt="Logo"
                   src={'img/walletconnect.svg'}
-                  className="ml-20px mr-10px"
-                  height={30}
-                  width={30}
+                  className="mr-10px"
+                  height={24}
+                  width={24}
                 />
                 WalletConnect
               </div>
             }
-            className="w-100% mt-10px"
+            className="w-100% mt-10px h-48px mobile:py-12px"
             onClick={handleWalletConnect}
           />
         </div>
@@ -86,7 +84,7 @@ const Popup = () => {
         hidePopup();
       }}
     >
-      <div className="z-20 h-auto bg-white relative w-600px flex flex-row px-5% pt-3% pb-6% overflow-auto">
+      <div className="z-20 h-auto bg-white relative w-600px flex flex-row p-72px overflow-auto">
         <button className="absolute right-20px top-20px" onClick={hidePopup}>
           <VscChromeClose size={25} />
         </button>
@@ -98,38 +96,36 @@ const Popup = () => {
           </div>
           <Button
             mode="secondary"
-            round
             label={
               <div className="flex flex-row items-center">
                 <img
                   alt="Logo"
                   src={'img/metamask-fox.svg'}
-                  className="ml-20px mr-10px"
-                  height={30}
-                  width={30}
+                  className="mr-10px"
+                  height={24}
+                  width={24}
                 />
                 MetaMask
               </div>
             }
-            className="w-100% mt-30px"
+            className="w-100% mt-30px h-48px tablet:py-12px"
             onClick={handleMetamask}
           />
           <Button
             mode="secondary"
-            round
             label={
               <div className="flex flex-row items-center">
                 <img
                   alt="Logo"
                   src={'img/walletconnect.svg'}
-                  className="ml-20px mr-10px"
-                  height={30}
-                  width={30}
+                  className="mr-10px"
+                  height={24}
+                  width={24}
                 />
                 WalletConnect
               </div>
             }
-            className="w-100% mt-10px"
+            className="w-100% mt-10px h-48px tablet:py-12px"
             onClick={handleWalletConnect}
           />
         </div>
