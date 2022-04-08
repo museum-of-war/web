@@ -12,7 +12,6 @@ import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 import { AbiItem } from "web3-utils";
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
-
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
@@ -95,11 +94,10 @@ export function useWeb3Modal() {
     const web3 = createAlchemyWeb3(
     `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
     );
-
     const nftContract = new web3.eth.Contract(MetaHistoryContractAbi as AbiItem[], MetaHistoryAddress);
-
     const isPaused = await nftContract.methods.paused().call({ from: MetaHistoryAddress });
-    if(isPaused) return false;
+
+    if (isPaused) return false;
 
     const maxTokens = await nftContract.methods.maxTokens().call({ from: MetaHistoryAddress });
     const mintedCount = await nftContract.methods.viewMinted().call({ from: MetaHistoryAddress });

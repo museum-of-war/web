@@ -1,10 +1,10 @@
 // import { TokenDataType } from "@sections/types";
+import React, { useEffect, useState } from "react";
 import { useWeb3Modal } from "@hooks/useWeb3Modal";
 import dynamic from "next/dynamic";
-import React, { useEffect, useState } from "react";
 import TokenItem from "./TokenItem";
 
-const ExploreWarline = dynamic(() => import("./ExploreWarline"), {
+const BuyMoreNFTs = dynamic(() => import("./BuyMoreNFTs"), {
   ssr: false,
 });
 
@@ -13,8 +13,9 @@ type TokenProps = {
 };
 
 const Tokens = ({ signerAddress }: TokenProps) => {
-  const { viewNFTs } = useWeb3Modal();
+  const { viewNFTs, canMint } = useWeb3Modal();
   const [NFTs, setNFTs] = useState<Array<any>>([]);
+  const [mintable, setMintable] = useState(false);
 
   useEffect(() => {
     const myNFTs = async () => {
@@ -23,6 +24,16 @@ const Tokens = ({ signerAddress }: TokenProps) => {
     };
     myNFTs();
   }, []);
+
+  useEffect(() => {
+    const getCanMint = async () => {
+      const result = await canMint();
+
+      setMintable(result);
+    };
+    getCanMint();
+  }, [])
+
   return (
     <div className="px-10%">
       <p
@@ -44,7 +55,7 @@ const Tokens = ({ signerAddress }: TokenProps) => {
         {NFTs.map((tokenData, idx) => (
           <TokenItem tokenData={tokenData} key={idx} />
         ))}
-        <ExploreWarline />
+        {mintable ? <BuyMoreNFTs /> : null}
       </div>
     </div>
   );

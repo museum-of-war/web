@@ -22,10 +22,10 @@ const SocialMediaButton = ({
         target="_blank"
         rel="noreferrer"
       >
-        {twitter && <img alt="Twitter Logo" src={"/img/pd-TwitterLogo.png"} />}
-        {instagram && <img alt="Instagram Logo" src={"/img/pd-IGLogo.png"} />}
-        {github && <img alt="GitHub Logo" src={"/img/gh.png"} />}
-        {opensea && <img alt="OpenSea Logo" src={"/img/opensea.png"} />}
+        {twitter && <img alt="Twitter Logo" src={"/img/pd-TwitterLogo.svg"} />}
+        {instagram && <img alt="Instagram Logo" src={"/img/pd-IGLogo.svg"} />}
+        {github && <img alt="GitHub Logo" src={"/img/gh.svg"} />}
+        {opensea && <img alt="OpenSea Logo" src={"/img/opensea.svg"} />}
       </a>
     </div>
   );
