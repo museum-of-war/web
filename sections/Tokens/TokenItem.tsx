@@ -67,12 +67,13 @@ const TokenItem = ({ tokenData }: TokenItemProps) => {
   return (
     <div className="desktop:mt-50px laptop:mt-40px tablet:mt-30px mobile:mt-30px">
       <div>{renderImage("w-100% cursor-pointer", tokenData.metadata.item_number)}</div>
-      <div className="flex flex-rsow mt-10px align-center justify-between items-center">
-        <p className={`font-rblack mobile:text-30px tablet:text-30px laptop:text-30px desktop:text-30px pb-5px border-b-4 ${
+      <div style={{ lineHeight: '48px' }} className="flex flex-row mt-10px align-center justify-between items-center">
+        <p className={`font-rblack text-20px pb-5px border-b-4 ${
           hovered ? "border-carbon": "border-transparent"
         }`}>
           {tokenData.metadata.name ?? "Unknown"}
         </p>
+        <p className="font-rlight text-12px pb-5px">todo</p>
       </div>
     </div>
   );
