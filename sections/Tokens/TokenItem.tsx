@@ -20,12 +20,22 @@ const rand_imgs: string[] = [
 ];
 
 const TokenItem = ({ tokenData }: TokenItemProps) => {
-  console.log(tokenData);
   const [toggler, setToggler] = useState<boolean>(false);
   const [hovered, setHovered] = useState(false);
 
+  type Attribute = {
+      display_type: string;
+      max_value?: any;
+      trait_type: string;
+      value: any;
+  };
+
     const alt = useMemo(() => {
         return tokenData.metadata.name ?? "Unknown"
+    }, [tokenData]);
+    const editionInfo = useMemo(() => {
+        const edition = (tokenData.metadata?.attributes as Attribute[])?.find(attr => attr.trait_type === "Edition");
+        return edition ? `${edition.value} of ${edition.max_value ?? edition.value}` : "";
     }, [tokenData]);
     const itemEvent = useMemo(() => {
         return WarlineData.flatMap(data => data.events).find(event => event.Tokenid === tokenData.metadata?.item_number)
@@ -63,7 +73,7 @@ const TokenItem = ({ tokenData }: TokenItemProps) => {
       </>
     );
   };
-  console.log(tokenData.id.tokenId, Buffer.from(tokenData.id.tokenId, "hex"));
+
   return (
     <div className="desktop:mt-50px laptop:mt-40px tablet:mt-30px mobile:mt-30px">
       <div>{renderImage("w-100% cursor-pointer", tokenData.metadata.item_number)}</div>
@@ -73,7 +83,7 @@ const TokenItem = ({ tokenData }: TokenItemProps) => {
         }`}>
           {tokenData.metadata.name ?? "Unknown"}
         </p>
-        <p className="font-rlight text-12px pb-5px">todo</p>
+        <p className="font-rlight mobile:text-12px tablet:text-14px pb-5px">{editionInfo}</p>
       </div>
     </div>
   );
