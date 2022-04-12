@@ -36,7 +36,9 @@ const Header = ({
   return isMobile || isTablet ? (
     <div>
       <div
-        className={`mb-15% pb-32px ${menuOpen ? "border-b-4 mb-12%" : ""} ${menuOpen && isMobile ? "h-screen" : ''}`}
+        className={`mb-15% pb-32px ${menuOpen ? "border-b-4 mb-12%" : ""} ${
+          menuOpen && isMobile ? "h-screen" : ""
+        }`}
       >
         <div className="flex flex-row justify-between items-center">
           <img
@@ -52,9 +54,15 @@ const Header = ({
         </div>
         {menuOpen && (
           <>
-            <div className={`pt-48px flex ${isTablet ? "flex-row flex-wrap justify-start items-center" : "flex-col"}`}>
+            <div
+              className={`pt-48px flex ${
+                isTablet
+                  ? "flex-row flex-wrap justify-start items-center"
+                  : "flex-col"
+              }`}
+            >
               <HeaderAndFooterButton
-                label="About the project"
+                label="Home"
                 onClick={() => {
                   push("/");
                   setMenuOpen(false);
@@ -86,17 +94,23 @@ const Header = ({
             {!signerAddress ? (
               <Button
                 mode="secondary"
-                label={signerAddress ? truncateAddress(signerAddress) : "Sign In"}
-                onClick={signerAddress ? handleDisconnectWallet : handleConnectWallet}
+                label={
+                  signerAddress ? truncateAddress(signerAddress) : "Sign In"
+                }
+                onClick={
+                  signerAddress ? handleDisconnectWallet : handleConnectWallet
+                }
                 className={isMobile ? "w-full" : ""}
               />
             ) : (
               <>
-                <span className="font-rlight text-14px mr-16px">{truncateAddress(signerAddress)}</span>
+                <span className="font-rlight text-14px mr-16px">
+                  {truncateAddress(signerAddress)}
+                </span>
                 <Button
                   mode="secondary"
                   round
-                  label={<img src="/img/logout.svg" alt="Logout"/>}
+                  label={<img src="/img/logout.svg" alt="Logout" />}
                   onClick={handleDisconnect}
                 />
               </>
@@ -118,7 +132,7 @@ const Header = ({
       <div className="flex flex-row items-center justify-end">
         <div className="flex flex-row items-center justify-end mr-48px">
           <HeaderAndFooterButton
-            label="About the project"
+            label="Home"
             onClick={() => {
               push("/");
             }}
@@ -152,11 +166,13 @@ const Header = ({
           />
         ) : (
           <>
-            <span className="font-rlight text-14px mr-16px">{truncateAddress(signerAddress)}</span>
+            <span className="font-rlight text-14px mr-16px">
+              {truncateAddress(signerAddress)}
+            </span>
             <Button
               mode="secondary"
               round
-              label={<img src="/img/logout.svg" alt="Logout"/>}
+              label={<img src="/img/logout.svg" alt="Logout" />}
               onClick={handleDisconnect}
             />
           </>
