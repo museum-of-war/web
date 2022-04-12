@@ -37,4 +37,4 @@ export type HallItemType = {
   TwitterUsername: string;
   TwitterAccountName: string;
   TweetText: string;
-}
+};
