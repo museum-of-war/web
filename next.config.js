@@ -10,6 +10,7 @@ function assertEnvVar(name) {
   // if (!process.env[name]) {
   //   throw new Error(`${name} environment variable is not set`);
   // }
+  //TODO uncomit
 }
 
 assertEnvVar("NEXT_PUBLIC_INFURA_API");

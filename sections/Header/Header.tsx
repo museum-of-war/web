@@ -79,6 +79,15 @@ const Header = ({
                 underlined={route === "/warline"}
                 wrapperClassName={isMobile ? "pb-32px" : "mr-32px mb-32px"}
               />
+              <HeaderAndFooterButton
+                label="Auction"
+                onClick={() => {
+                  push("/auction");
+                  setMenuOpen(false);
+                }}
+                underlined={route === "/auction"}
+                wrapperClassName={isMobile ? "pb-32px" : "mr-32px mb-32px"}
+              />
               {signerAddress && (
                 <HeaderAndFooterButton
                   label="My NFTs"
@@ -145,6 +154,14 @@ const Header = ({
               push("/warline");
             }}
             underlined={route === "/warline"}
+            wrapperClassName="mr-32px"
+          />
+          <HeaderAndFooterButton
+            label="Auction"
+            onClick={() => {
+              push("/auction");
+            }}
+            underlined={route === "/auction"}
             wrapperClassName={signerAddress ? "mr-32px" : ""}
           />
           {signerAddress && (
