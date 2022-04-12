@@ -6,6 +6,7 @@ type SocialMediaButtonProps = {
   github?: boolean;
   opensea?: boolean;
   href: string;
+  customClasses?: string;
 };
 
 const SocialMediaButton = ({
@@ -14,9 +15,10 @@ const SocialMediaButton = ({
   github,
   opensea,
   href,
+  customClasses = '',
 }: SocialMediaButtonProps) => {
   return (
-    <div className="mobile:w-40px w-48px mobile:mr-6% tablet:mr-24px last:mr-0">
+    <div className={`mobile:w-40px w-48px mobile:mr-6% tablet:mr-24px last:mr-0 ${customClasses}`}>
       <a
         href={href}
         target="_blank"
