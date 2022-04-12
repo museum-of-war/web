@@ -29,3 +29,12 @@ export type EventType = {
   ArtistLink?: string | undefined;
   ImageType?: string;
 };
+
+export type HallItemType = {
+  Id: number;
+  TwitterUrl: string;
+  ImageSrc: string;
+  TwitterUsername: string;
+  TwitterAccountName: string;
+  TweetText: string;
+}
