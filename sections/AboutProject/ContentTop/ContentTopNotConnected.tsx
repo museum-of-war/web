@@ -1,9 +1,7 @@
-import ExploreWarlineButton from "@components/ExploreWarlineButton";
 import PoweredByFrame from "@components/PoweredByFrame";
 import { useViewPort } from "@hooks/useViewport";
-import {RELEASE_DATE} from "@sections/Constants";
-import Countdownbanner from "@sections/AboutProject/ContentTop/Countdownbanner";
 import React from "react";
+import Button from "@components/Button";
 
 type ContentTopNotConnectedProps = {
   signerAddress: string;
@@ -15,90 +13,68 @@ const ContentTopNotConnected = ({
   handleConnect,
 }: ContentTopNotConnectedProps) => {
   const { isMobile, isTablet } = useViewPort();
-  return isMobile ? (
-    <div className="mt-8%">
-      <div className="mb-8%">
-        <img alt="Logo" src={"img/logo.svg"} className="w-full" />
-        <div className="mt-30px font-rlight text-16px">
-          <p className="pr-10%">
-            {"An NFT-museum of the war of putin's russia against Ukraine"}
+
+  return (
+    <div
+      className={
+        isMobile
+          ? ""
+          : isTablet
+          ? ""
+          : "flex flex-row justify-between pb-100px mt-8vh"
+      }
+    >
+      <div
+        className={`${
+          isMobile || isTablet ? "w-100%" : "w-50%"
+        } flex flex-col justify-between`}
+      >
+        <div>
+          <p
+            className={`font-rblack uppercase ${
+              isMobile ? "text-46px leading-40px" : "text-84px leading-72px"
+            }`}
+          >
+            The NFT-museum
           </p>
-          <p className="mt-4% mb-10% pr-10%">
-            NFT-музей війни путінської росії проти України.
+          <p
+            className={`font-rblack lowercase ${
+              isMobile ? "text-27px leading-30px" : "text-32px leading-36px"
+            }`}
+          >
+            of the war of putin&apos;s russia against Ukraine
           </p>
-          <div className="w-100% laptop:mt-15px mobile:mt-25px mobile:mb-40px">
-            <ExploreWarlineButton />
-          </div>
-          <PoweredByFrame />
         </div>
-      </div>
-      <Countdownbanner endDate={RELEASE_DATE}/>
-      <div className="w-screen my-12% -ml-32px">
-        <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
-      </div>
-    </div>
-  ) : isTablet? (
-    <div className="pb-100px laptop:mt-8vh">
-      <div className="laptop:flex laptop:flex-row justify-between items-start">
-        <img
-          alt="Logo"
-          src={"img/logo.svg"}
-          className="mobile:w-50vw laptop:w-45vw desktop:w-50vw max-w-700px"
-        />
         <div
-          className="relative flex flex-row font-rlight
-            justify-between  mobile:text-20px laptop:text-16px desktop:text-20px
-            laptop:ml-10% mobile:pt-30px tablet:pt-0px laptop:-mt-2vw deskptop:-mt-1vw"
+          className={`w-100% ${
+            isTablet ? "mt-36px mb-48px" : isMobile ? "mt-30px mb-40px" : ""
+          }`}
         >
-          <div className="laptop:w-40% mobile:pr-10% laptop:pr-0 ">
-            <p>
-              {"An NFT-museum of the war of putin's russia against Ukraine"}
-            </p>
-            <div className="w-100% laptop:mt-30px mobile:my-25px">
-              <ExploreWarlineButton />
-            </div>
-          </div>
-          <p className="laptop:w-40% ">
-            NFT-музей війни путінської росії проти України.
-          </p>
+          <Button
+            mode="primary"
+            round={false}
+            label="Buy NFT Now"
+            onClick={() => console.log("ads")}
+          />
         </div>
       </div>
-      <PoweredByFrame />
-      <Countdownbanner endDate={RELEASE_DATE}/>
-      <div className="mt-4%">
-        <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
-      </div>
-    </div>
-  ):(
-    <div className="pb-100px laptop:mt-8vh">
-      <div className="laptop:flex laptop:flex-row justify-between items-start">
-        <img
-          alt="Logo"
-          src={"img/logo.svg"}
-          className="mobile:w-50vw laptop:w-45vw desktop:w-50vw max-w-700px"
-        />
+      <div
+        className={`${
+          isMobile || isTablet ? "w-100%" : "w-50%"
+        } flex flex-col justify-between`}
+      >
         <div
-          className="relative flex flex-row font-rlight 
-            justify-between  mobile:text-20px laptop:text-16px desktop:text-20px 
-            laptop:ml-10% mobile:pt-30px tablet:pt-0px laptop:-mt-2vw deskptop:-mt-1vw"
+          className={`inline-block ${
+            isMobile
+              ? "min-h-[67px]"
+              : isTablet
+              ? "min-h-[164px]"
+              : "min-h-[347px]"
+          }`}
         >
-          <div className="laptop:w-40% mobile:pr-10% laptop:pr-0 ">
-            <p>
-              {"An NFT-museum of the war of putin's russia against Ukraine"}
-            </p>
-            <div className="w-100% laptop:mt-30px mobile:my-25px">
-              <ExploreWarlineButton />
-            </div>
-          </div>
-          <p className="laptop:w-40% ">
-            NFT-музей війни путінської росії проти України.
-          </p>
+          <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
         </div>
-      </div>
-      <PoweredByFrame />
-      <Countdownbanner endDate={RELEASE_DATE}/>
-      <div className="mt-4%">
-        <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
+        <PoweredByFrame />
       </div>
     </div>
   );
