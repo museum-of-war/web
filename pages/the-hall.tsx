@@ -1,7 +1,7 @@
-import { SharedProps } from "@components/wrapper";
-import TheHall from "@sections/TheHall/TheHall";
-import type { NextPage } from "next";
-import Head from "next/head";
+import { SharedProps } from '@components/wrapper';
+import TheHall from '@sections/TheHall/TheHall';
+import Head from 'next/head';
+import type { NextPage } from 'next';
 
 const TheHallPage: NextPage<SharedProps> = () => {
   return (
