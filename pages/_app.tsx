@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { AppWrapper } from "@components/wrapper";
+import { ThemeProvider } from "next-themes";
 
 function SafeHydrate({ children }: any) {
   return (
@@ -13,7 +14,11 @@ function SafeHydrate({ children }: any) {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SafeHydrate>
-      <AppWrapper Child={(props) => <Component {...pageProps} {...props} />} />
+      <ThemeProvider enableSystem={true} attribute="class">
+        <AppWrapper
+          Child={(props) => <Component {...pageProps} {...props} />}
+        />
+      </ThemeProvider>
     </SafeHydrate>
   );
 }

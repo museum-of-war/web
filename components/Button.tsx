@@ -23,12 +23,16 @@ function Button({ mode, label, className = '', onClick, round = false }: ButtonP
                 border-4 border-white
                 rounded-full ${className}`;
         } else if (mode === "secondary") {
-            return `bg-white
-                    border-2 border-carbon
-                    ${round ? "px-10px tablet:py-10px mobile:py-10px" : "px-32px tablet:py-10px mobile:py-20px"}
+            return `bg-white dark:bg-carbon
+                    border-2 border-carbon dark:border-white
+                    ${
+                      round
+                        ? "px-10px tablet:py-10px mobile:py-10px"
+                        : "px-32px tablet:py-10px mobile:py-20px"
+                    }
                     whitespace-nowrap
                     font-rblack mobile:text-14px laptop:text-14px desktop:text-16px
-                    rounded-full ${className}`
+                    rounded-full ${className}`;
         }
     }, [className, mode, round]);
 

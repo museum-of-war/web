@@ -1,9 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import HeaderAndFooterButton from "../../components/HeaderAndFooterButton";
 import { useViewPort } from "@hooks/useViewport";
 import { useAppRouter } from "@hooks/useAppRouter";
 import Button from "@components/Button";
 import { truncateAddress } from "@sections/utils";
+import { useTheme } from "next-themes";
 
 type HeaderProps = {
   signerAddress: string;
@@ -22,6 +23,12 @@ const Header = ({
 }: HeaderProps) => {
   const { isMobile, isTablet } = useViewPort();
   const { push, route } = useAppRouter();
+  const { setTheme } = useTheme();
+
+  useEffect(() => {
+    if (route !== "/auction") return setTheme("light");
+    setTheme("dark");
+  }, [route]);
 
   const handleConnectWallet = useCallback(() => {
     handleConnect();
