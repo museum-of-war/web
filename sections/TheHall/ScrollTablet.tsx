@@ -24,7 +24,7 @@ export const ScrollTablet: React.FC<ScrollTabletProps> = ({ data }) => (
         }}
       >
         {data.map((datum) => (
-          <CardTablet {...datum} />
+          <CardTablet key={datum.Id} {...datum} />
         ))}
       </div>
     </div>
