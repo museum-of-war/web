@@ -7,7 +7,7 @@ const TheHallPage: NextPage<SharedProps> = () => {
   return (
     <>
       <Head>
-        <title>The Hall</title>
+        <title>The Hall of Meta History</title>
         <meta name="description" content="The Hall" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
