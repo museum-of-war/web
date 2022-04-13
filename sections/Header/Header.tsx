@@ -23,7 +23,8 @@ const Header = ({
 }: HeaderProps) => {
   const { isMobile, isTablet } = useViewPort();
   const { push, route } = useAppRouter();
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  console.log(theme);
 
   useEffect(() => {
     if (route !== "/auction") return setTheme("light");
@@ -50,7 +51,11 @@ const Header = ({
         <div className="flex flex-row justify-between items-center">
           <img
             className="w-15% min-w-100px mr-15% py-10px"
-            src={"/img/pd-logoNoSymbol.png"}
+            src={`${
+              theme !== "dark"
+                ? "/img/pd-logoNoSymbol.png"
+                : "/img/pd-logoNoSymbol-black.png"
+            }`}
             alt="Meta History: Museum of War"
           />
           <HeaderAndFooterButton
@@ -141,8 +146,12 @@ const Header = ({
   ) : (
     <div className="flex flex-row items-center mb-8% justify-between z-20">
       <img
-        className="w-15% min-w-75px laptop:mr-30% tablet:mr-25%"
-        src={"/img/pd-logoNoSymbol.png"}
+        className="w-10% min-w-75px laptop:mr-30% tablet:mr-25%"
+        src={`${
+          theme !== "dark"
+            ? "/img/pd-logoNoSymbol.png"
+            : "/img/pd-logoNoSymbol-black.png"
+        }`}
         alt="Meta History: Museum of War"
       />
       <div className="flex flex-row items-center justify-end">

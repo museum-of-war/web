@@ -1,4 +1,5 @@
 import { SharedProps } from "@components/wrapper";
+import Auction from "@sections/Auction/Auction";
 import type { NextPage } from "next";
 import Head from "next/head";
 
@@ -13,6 +14,10 @@ const AuctionPage: NextPage<SharedProps> = (props) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Auction
+        signerAddress={props.signerAddress}
+        handleConnect={props.handleConnect}
+      />
     </>
   );
 };
