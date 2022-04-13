@@ -74,6 +74,7 @@ const Footer = () => {
           onClick={onClickContactUs}
           wrapperClassName="mr-24px"
         />
+        {/*<SocialMediaButton telegram href={} />*/}
         <SocialMediaButton opensea href={OPENSEA_LINK} />
         <SocialMediaButton
           twitter
