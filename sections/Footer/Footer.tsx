@@ -8,6 +8,7 @@ import {
   GITHUB_LINK,
   INSTAGRAM_LINK,
   OPENSEA_LINK,
+  TELEGRAM_LINK,
   TWITTER_LINK,
   TWITTER_LINK_MOBILE,
 } from '@sections/Constants';
@@ -74,7 +75,7 @@ const Footer = () => {
           onClick={onClickContactUs}
           wrapperClassName="mr-24px"
         />
-        {/*<SocialMediaButton telegram href={} />*/}
+        <SocialMediaButton telegram href={TELEGRAM_LINK} />
         <SocialMediaButton opensea href={OPENSEA_LINK} />
         <SocialMediaButton
           twitter
