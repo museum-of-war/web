@@ -35,6 +35,7 @@ function PriceRange({ className }: PriceRangeProps) {
                     border-2 border-carbon dark:border-white
                     px-20px py-10px whitespace-nowrap
                     font-rblack text-14px
+                    hover:bg-carbon-800 focus:border-double
                     rounded-full ${className}`}
             aria-expanded="true"
             aria-haspopup="true"

@@ -25,7 +25,7 @@ function Button({
                 }
                 whitespace-nowrap text-14px
                 hover:bg-carbon-800 focus:border-double
-                border-4 border-white
+                border-2 border-white
                 rounded-full ${className}`;
     } else if (mode === "secondary") {
       return `bg-white dark:bg-carbon
