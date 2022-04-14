@@ -42,8 +42,8 @@ const ContentAuction = ({}: ContentAuctionProps) => {
 
   return (
     <>
-      <div className="flex justify-between">
-        <div className="flex -mx-10px">
+      <div className="flex justify-between mt-72px">
+        <div className="flex -mx-10px mb-[57px]">
           <div className="px-10px">
             <PriceRange />
           </div>
