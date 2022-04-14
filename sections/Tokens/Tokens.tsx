@@ -12,15 +12,28 @@ type TokenProps = {
   signerAddress: string;
 };
 
+const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
+  list.reduce((previous, currentItem) => {
+    const group = getKey(currentItem);
+    if (!previous[group]) previous[group] = [];
+    previous[group].push(currentItem);
+    return previous;
+  }, {} as Record<K, T[]>);
+
 const Tokens = ({ signerAddress }: TokenProps) => {
   const { viewNFTs, canMint } = useWeb3Modal();
-  const [NFTs, setNFTs] = useState<Array<any>>([]);
   const [mintable, setMintable] = useState(false);
+  const [grupped, setGrupped] = useState<Array<any>>([]);
 
   useEffect(() => {
     const myNFTs = async () => {
       const newNFTs = await viewNFTs(signerAddress);
-      setNFTs(newNFTs);
+      const res = groupBy(newNFTs, i => i.title);
+      const gruppedArr = [];
+      for (const key in res) {
+        gruppedArr.push(res[key]);
+      }
+      setGrupped(gruppedArr);
     };
     myNFTs();
   }, []);
@@ -52,8 +65,8 @@ const Tokens = ({ signerAddress }: TokenProps) => {
         tablet:grid-cols-2 tablet:gap-x-40px
         mobile:grid-cols-1"
       >
-        {NFTs.map((tokenData, idx) => (
-          <TokenItem tokenData={tokenData} key={idx} />
+        {grupped.map((group, idx) => (
+          <TokenItem tokenData={group[0]} key={idx} grouped={group.length > 1} groupLength={group.length} />
         ))}
         {mintable ? <BuyMoreNFTs /> : null}
       </div>
