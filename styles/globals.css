@@ -31,3 +31,42 @@
 .font-rnarrow {
   font-family: RockstarNarrowRegular;
 }
+
+/* TextField custom style */
+.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+  color: white !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+
+}
+
+.Mui-focused {
+  color: white !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+
+}
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
+  color: #FFFFFF !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+
+}
+
+.css-66dh3a-MuiInputBase-input-MuiInput-input {
+  color: #FFFFFF !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  border-color: #FFFFFF !important;
+}
+
+.css-5xn5lu-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: 2px solid #FFFFFF !important;
+}
+
+.css-5xn5lu-MuiInputBase-root-MuiInput-root:before {
+  border-bottom: 2px solid #FFFFFF !important;
+}
+
+/* END */

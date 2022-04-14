@@ -1,4 +1,5 @@
 import DropdownSelect, { SelectOption } from "@components/DropdownSelect";
+import PriceRange from "@components/PriceRange";
 import { useState } from "react";
 
 type ContentAuctionProps = {};
@@ -41,24 +42,35 @@ const ContentAuction = ({}: ContentAuctionProps) => {
 
   return (
     <>
-      <DropdownSelect
-        options={types}
-        selectedValue={selectedType}
-        onChange={handleChangeType}
-        className="w-[162px]"
-      />
-      <DropdownSelect
-        options={categories}
-        selectedValue={selectedCategory}
-        onChange={handleChangeCategory}
-        className="w-[211px]"
-      />
-      <DropdownSelect
-        options={sortTypes}
-        selectedValue={selectedSort}
-        onChange={handleChangeSort}
-        className="w-[236px]"
-      />
+      <div className="flex justify-between">
+        <div className="flex -mx-10px">
+          <div className="px-10px">
+            <PriceRange />
+          </div>
+          <div className="px-20px">
+            <DropdownSelect
+              options={types}
+              selectedValue={selectedType}
+              onChange={handleChangeType}
+              className="w-[162px]"
+            />
+          </div>
+          <div className="px-20px">
+            <DropdownSelect
+              options={categories}
+              selectedValue={selectedCategory}
+              onChange={handleChangeCategory}
+              className="w-[211px]"
+            />
+          </div>
+        </div>
+        <DropdownSelect
+          options={sortTypes}
+          selectedValue={selectedSort}
+          onChange={handleChangeSort}
+          className="w-[236px]"
+        />
+      </div>
       <div className="flex flex-wrap -mx-24px">
         {[1, 2, 3, 4, 5, 6].map((i, index) => (
           <div
