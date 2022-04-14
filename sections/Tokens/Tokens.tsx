@@ -12,10 +12,18 @@ type TokenProps = {
   signerAddress: string;
 };
 
+const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
+  list.reduce((previous, currentItem) => {
+    const group = getKey(currentItem);
+    if (!previous[group]) previous[group] = [];
+    previous[group].push(currentItem);
+    return previous;
+  }, {} as Record<K, T[]>);
+
 const Tokens = ({ signerAddress }: TokenProps) => {
   const { viewNFTs, canMint } = useWeb3Modal();
-  const [NFTs, setNFTs] = useState<Array<any>>([]);
   const [mintable, setMintable] = useState(false);
+  const [grupped, setGrupped] = useState<Array<any>>([]);
 
   useEffect(() => {
     const myNFTs = async () => {
@@ -26,10 +34,15 @@ const Tokens = ({ signerAddress }: TokenProps) => {
           a.contract.address > b.contract.address
             ? 1
             : b.contract.address > a.contract.address
-            ? -1
-            : 0,
+              ? -1
+              : 0,
         );
-      setNFTs(orderedNFTs);
+      const res = groupBy(orderedNFTs, i => `${i.contract.address}-${i.id.tokenId}`);
+      const gruppedArr = [];
+      for (const key in res) {
+        gruppedArr.push(res[key]);
+      }
+      setGrupped(gruppedArr);
     };
     myNFTs();
   }, [signerAddress]);
@@ -61,8 +74,8 @@ const Tokens = ({ signerAddress }: TokenProps) => {
         mobile:grid-cols-1"
       >
         {signerAddress ? (
-          NFTs.map((tokenData, idx) => (
-            <TokenItem tokenData={tokenData} key={idx} index={idx} />
+          grupped.map((group, idx) => (
+            <TokenItem tokenData={group[0]} key={idx} grouped={group.length > 1} groupLength={group.length} index={idx} />
           ))
         ) : (
           <div>Cannot get tokens, please sign in</div>

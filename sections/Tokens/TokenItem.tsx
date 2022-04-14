@@ -6,9 +6,12 @@ import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import ScaledImage from '@components/ScaledImage';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
+import Button from '../../components/Button';
 
 type TokenItemProps = {
   tokenData: TokenDataType;
+  grouped: boolean;
+  groupLength: number;
   index: number;
 };
 
@@ -23,7 +26,7 @@ const rand_imgs: string[] = [
   'img/dots-8.png',
 ];
 
-const TokenItem = ({ tokenData, index }: TokenItemProps) => {
+const TokenItem = ({ tokenData, grouped, groupLength, index }: TokenItemProps) => {
   const [hovered, setHovered] = useState(false);
 
   type Attribute = {
@@ -37,8 +40,7 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
     return tokenData.metadata.name ?? 'Unknown';
   }, [tokenData]);
   const editionInfo = useMemo(() => {
-    const edition = (tokenData.metadata?.attributes as Attribute[])?.find(
-      (attr) => attr.trait_type === 'Edition',
+    const edition = (tokenData.metadata?.attributes as Attribute[])?.find((attr) => attr.trait_type === 'Edition',
     );
     return edition
       ? `${edition.value} of ${edition.max_value ?? edition.value}`
@@ -84,7 +86,7 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
               lowerBound: 'tablet',
               ratio: 0.5,
             },
-            {
+             {
               lowerBound: 'desktop',
               ratio: 0.25,
             },
@@ -101,8 +103,17 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
       <div>
         {renderImage(
           'desktop:h-[240px] tablet:h-[288px] mobile:h-[270px] desktop:max-w-[240px] tablet:max-w-[288px] mobile:max-w-[270px] m-auto cursor-pointer object-contain',
-          tokenData.metadata.item_number,
+          tokenData.metadata.item_number
         )}
+        {grouped && <>
+          <Button
+            mode="secondary"
+            label="Upgrade Now"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-24px py-32px"
+            onClick={() => console.log('click')}
+            round={true} />
+          <div className="before:absolute before:content-[''] before:border-solid before:border-black before:border-b-8 before:border-r-8 before:w-8px before:h-80% before:-bottom-7 before:-right-7 after:absolute after:content-[''] after:border-solid after:border-black after:border-b-8 after:border-r-8 after:w-90% after:h-8px after:-bottom-7 after:-right-7"></div>
+        </>}
       </div>
       <div
         style={{ lineHeight: '48px' }}
@@ -116,7 +127,7 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
           {tokenData.metadata.name ?? 'Unknown'}
         </p>
         <p className="font-rlight mobile:text-12px tablet:text-14px pb-5px">
-          {editionInfo}
+          {grouped ? `x${groupLength}` : editionInfo}
         </p>
       </div>
     </div>
