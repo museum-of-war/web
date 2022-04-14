@@ -1,0 +1,27 @@
+name: QA
+
+on:
+  push:
+    branches: [ qa ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.QA1_HOST }}
+          username: ${{ secrets.QA1_USERNAME }}
+          key: ${{ secrets.QA1_RSA_KEY }}
+          script: |
+            set -ex
+            cd web
+            git fetch origin
+            git reset --hard origin/qa
+            docker build -t metahistory .
+            docker stop $(docker ps -q)
+            docker run -d -p 127.0.0.1:3000:3000/tcp metahistory
+            docker system prune --volumes --all --force
