@@ -4,7 +4,7 @@ import { CardDesktop } from '@sections/TheHall/CardDesktop';
 
 // @ts-ignore
 function useHorizontalScroll() {
-  const elRef = useRef<HTMLDivElement>();
+  const elRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const element = elRef.current;
@@ -41,7 +41,7 @@ type ScrollProps = {
   data: HallItemType[];
 };
 export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
-  // const scrollRef = useHorizontalScroll();
+  const scrollRef = useHorizontalScroll();
 
   return (
     <div>
@@ -60,7 +60,7 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
             top: -50,
             width: '100%',
           }}
-          // ref={scrollRef}
+          ref={scrollRef}
         >
           {data.map((datum) => (
             <CardDesktop key={datum.Id} {...datum} />
