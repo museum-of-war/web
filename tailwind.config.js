@@ -7,6 +7,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      shadow: {
+        "3xl": "0px 4px 32px 4px rgba(33, 33, 33, 0.3)",
+      },
       colors: {
         carbon: {
           DEFAULT: "#212121",
@@ -24,6 +27,7 @@ module.exports = {
         beige: {
           DEFAULT: "#E9E9E9",
         },
+        dropdown: { DEFAULT: "#383838" },
       },
       height: (theme) => ({
         "3%": "3%",

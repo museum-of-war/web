@@ -3,6 +3,7 @@ import Auction from "@sections/Auction/Auction";
 import type { NextPage } from "next";
 import Head from "next/head";
 
+
 const AuctionPage: NextPage<SharedProps> = (props) => {
   return (
     <>

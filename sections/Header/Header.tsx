@@ -24,7 +24,6 @@ const Header = ({
   const { isMobile, isTablet } = useViewPort();
   const { push, route } = useAppRouter();
   const { theme, setTheme } = useTheme();
-  console.log(theme);
 
   useEffect(() => {
     if (route !== "/auction") return setTheme("light");

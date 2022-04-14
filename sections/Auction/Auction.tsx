@@ -15,18 +15,6 @@ const Auction = ({ signerAddress, handleConnect }: AuctionProps) => {
         ukrainian="Обмежений набір рідкісних та відібраних робіт українських та світових художників. Плаваюча ціна, що базується на ставках та пропозиціях. На цей раз Музей запрошує колекціонерів мистецтва повністю сформувати благодійний збір коштів. Зверніть увагу, що лише колекціонери експонатів Warline можуть брати участь в аукціоні."
       />
       <ContentAuction />
-
-      {/* <ContentTop signerAddress={signerAddress} handleConnect={handleConnect} />
-      <ContentChapter />
-      <ContentMission />
-      <ContentWar />
-      <ContentMain
-        signerAddress={signerAddress}
-        handleConnect={handleConnect}
-      />
-      <ContentMedia />
-      <SupportSticky targetAnchorId={"countdown-banner"} />
-      <SupportProject /> */}
     </>
   );
 };
