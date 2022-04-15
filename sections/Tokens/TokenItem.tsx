@@ -1,6 +1,7 @@
 import { TokenDataType } from "@sections/types";
 import React, { useMemo, useState } from "react";
 import { getUrls } from "@sections/Warline/WarlineUrls";
+import { useAppRouter } from "@hooks/useAppRouter";
 import FsLightbox from "fslightbox-react";
 import WarlineData from "@sections/Warline/WarlineData";
 import Button from '../../components/Button';
@@ -25,6 +26,8 @@ const rand_imgs: string[] = [
 const TokenItem = ({ tokenData, grouped, groupLength }: TokenItemProps) => {
   const [toggler, setToggler] = useState<boolean>(false);
   const [hovered, setHovered] = useState(false);
+
+  const { push } = useAppRouter();
 
   type Attribute = {
     display_type: string;
@@ -86,9 +89,9 @@ const TokenItem = ({ tokenData, grouped, groupLength }: TokenItemProps) => {
             mode="secondary"
             label="Upgrade Now"
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-24px py-32px"
-            onClick={() => console.log('click')}
+            onClick={() => push(`/upgrade-your-nft/${tokenData.metadata.name ?? "Unknown"}`)}
             round={true} />
-          <div className="before:absolute before:content-[''] before:border-solid before:border-black before:border-b-8 before:border-r-8 before:w-8px before:h-80% before:-bottom-7 before:-right-7 after:absolute after:content-[''] after:border-solid after:border-black after:border-b-8 after:border-r-8 after:w-90% after:h-8px after:-bottom-7 after:-right-7"></div>
+          <div className="before:absolute before:content-[''] before:border-solid before:border-carbon before:border-b-8 before:border-r-8 before:w-8px before:h-80% before:-bottom-7 before:-right-7 after:absolute after:content-[''] after:border-solid after:border-carbon after:border-b-8 after:border-r-8 after:w-90% after:h-8px after:-bottom-7 after:-right-7"></div>
         </>}
       </div>
       <div style={{ lineHeight: '48px' }} className="flex flex-row mt-10px align-center justify-between items-center">
