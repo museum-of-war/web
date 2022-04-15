@@ -58,28 +58,28 @@ const UpgradeYourNFT = ({ nftTitle, signerAddress }: UpgradeYourNFTProps) => {
           mobile:grid-cols-1"
       >
         <UpgradeOption
-          onClick={() => selectedLevel === 0 ? setSelectedLevel(1) : setSelectedLevel(0)}
+          onClick={() => selectedLevel !== 1 ? setSelectedLevel(1) : setSelectedLevel(0)}
           selected={selectedLevel === 1}
           title={"1st level"}
           itemsToUpgrade={2}
           options={["AR-experience."]}
         />
         <UpgradeOption
-          onClick={() => selectedLevel === 0 ? setSelectedLevel(2) : setSelectedLevel(0)}
+          onClick={() => selectedLevel !== 2 ? setSelectedLevel(2) : setSelectedLevel(0)}
           selected={selectedLevel === 2}
           title={"2nd level"}
           itemsToUpgrade={4}
           options={["AR-experience.", "1 unique NFT from Prospect100 artists"]}
         />
         <UpgradeOption
-          onClick={() => selectedLevel === 0 ? setSelectedLevel(3) : setSelectedLevel(0)}
+          onClick={() => selectedLevel !== 3 ? setSelectedLevel(3) : setSelectedLevel(0)}
           selected={selectedLevel === 3}
           title={"3rd level"}
           itemsToUpgrade={8}
           options={["AR-experience.", "3 unique NFTs from Prostect100 artists"]}
         />
         <UpgradeOption
-          onClick={() => selectedLevel === 0 ? setSelectedLevel(4) : setSelectedLevel(0)}
+          onClick={() => selectedLevel !== 4 ? setSelectedLevel(4) : setSelectedLevel(0)}
           selected={selectedLevel === 4}
           title={"4th level"}
           itemsToUpgrade={16}
