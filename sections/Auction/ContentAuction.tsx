@@ -76,7 +76,7 @@ const FilterSvg = () => (
 );
 
 const ContentAuction = ({}: ContentAuctionProps) => {
-  const { isTablet } = useViewPort();
+  const { isTablet, isMobile } = useViewPort();
 
   const [selectedType, setSelectedType] = useState<string | undefined>(
     types[0]?.value
@@ -108,9 +108,9 @@ const ContentAuction = ({}: ContentAuctionProps) => {
 
   return (
     <>
-      <div className="flex justify-between mt-72px">
-        {!isTablet ? (
-          <div className="flex -mx-10px mb-[57px]">
+      <div className="flex justify-between tablet:mt-72px mobile:mt-[24px]">
+        {!isTablet && !isMobile ? (
+          <div className="flex -mx-10px tablet:mb-[57px] ">
             <div className="px-10px">
               <PriceRange
                 value={value}
@@ -139,22 +139,27 @@ const ContentAuction = ({}: ContentAuctionProps) => {
           <Button
             mode="primary"
             label={
-              <div className="flex align-center">
-                <span className="mr-16px">Filters</span>
+              <div className="flex align-center justify-between">
+                <span className="mr-16px">
+                  {isMobile ? "Filters and Sorting" : "Filters"}
+                </span>
                 <span>
                   <FilterSvg />
                 </span>
               </div>
             }
             onClick={openDrawer}
+            className={isMobile ? "mobile: w-full py-4px" : ""}
           />
         )}
-        <DropdownSelect
-          options={sortTypes}
-          selectedValue={selectedSort}
-          onChange={handleChangeSort}
-          className="w-[236px]"
-        />
+        {!isMobile && (
+          <DropdownSelect
+            options={sortTypes}
+            selectedValue={selectedSort}
+            onChange={handleChangeSort}
+            className="w-[236px]"
+          />
+        )}
       </div>
       <div className="flex flex-wrap -mx-24px">
         {[1, 2, 3, 4, 5, 6].map((i, index) => (
@@ -193,18 +198,20 @@ const ContentAuction = ({}: ContentAuctionProps) => {
           </div>
         ))}
       </div>
-      <TabletDrawer
-        toggleDrawer={toggleDrawer}
-        closeDrawer={closeDrawer}
-        isOpen={open}
-        selectedType={selectedType}
-        handleChangeType={handleChangeType}
-        selectedCategory={selectedCategory}
-        handleChangeCategory={handleChangeCategory}
-        value={value}
-        setValue={setValue}
-        handleChangeRange={handleChangeRange}
-      />
+      {(isTablet || isMobile) && (
+        <TabletDrawer
+          toggleDrawer={toggleDrawer}
+          closeDrawer={closeDrawer}
+          isOpen={open}
+          selectedType={selectedType}
+          handleChangeType={handleChangeType}
+          selectedCategory={selectedCategory}
+          handleChangeCategory={handleChangeCategory}
+          value={value}
+          setValue={setValue}
+          handleChangeRange={handleChangeRange}
+        />
+      )}
     </>
   );
 };

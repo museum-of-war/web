@@ -86,71 +86,81 @@ const TabletDrawer = ({
   return (
     <>
       <Drawer anchor="left" open={isOpen} onClose={toggleDrawer}>
-        <div className="h-100% bg-carbon text-white pt-[54px] px-48px pb-48px">
-          <div className="flex justify-between items-center ">
-            <h2 className="text-32px font-rblack">Filters</h2>
-            <div onClick={closeDrawer}>
-              <CloseSvg />
+        <div className="text-white tablet:pt-[54px] tablet:px-48px tablet:pb-48px mobile:pt-[35px] mobile:px-24px mobile:pb-20px">
+          <div className="flex flex-col justify-between">
+            <div className="flex justify-between items-center ">
+              <h2 className="tablet:text-32px mobile:text-27px font-rblack">
+                Filters
+              </h2>
+              <div onClick={closeDrawer}>
+                <CloseSvg />
+              </div>
             </div>
-          </div>
-          <div>
-            <p className="text-16px opacity-70 mt-[54px]">Price range</p>
-            <div className="flex justify-between">
-              <TextField
-                label="From"
-                multiline
-                variant="standard"
-                className="w-48%"
-                onChange={handleChangeRange("from")}
-                value={value.from}
+            <div>
+              <p className="tablet:text-16px mobile:text-14px opacity-70 tablet:mt-[54px] mobile:mt-[35px]">
+                Price range
+              </p>
+              <div className="flex justify-between">
+                <TextField
+                  label="From"
+                  multiline
+                  variant="standard"
+                  className="w-48%"
+                  onChange={handleChangeRange("from")}
+                  value={value.from}
+                />
+                <TextField
+                  label="To"
+                  multiline
+                  variant="standard"
+                  className="w-48%"
+                  onChange={handleChangeRange("to")}
+                  value={value.to}
+                />
+              </div>
+            </div>
+            <div>
+              <p className="tablet:text-16px mobile:text-14px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
+                Type
+              </p>
+              {types.map((i) => (
+                <SelectItem
+                  text={i.text}
+                  value={i.value}
+                  key={i.value}
+                  selected={selectedType}
+                  onChange={handleChangeType}
+                />
+              ))}
+            </div>
+            <div>
+              <p className="text-16px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
+                Category
+              </p>
+              {categories.map((i) => (
+                <SelectItem
+                  text={i.text}
+                  value={i.value}
+                  key={i.value}
+                  selected={selectedCategory}
+                  onChange={handleChangeCategory}
+                />
+              ))}
+            </div>
+            <div className="flex justify-between tablet:mt-100px mobile:mt-20px">
+              <Button
+                mode="custom"
+                label="Clear"
+                onClick={handleClear}
+                className="bg-carbon border-2 border-white w-48%"
               />
-              <TextField
-                label="To"
-                multiline
-                variant="standard"
-                className="w-48%"
-                onChange={handleChangeRange("to")}
-                value={value.to}
+              <Button
+                mode="custom"
+                label="Apply"
+                onClick={() => console.log("asd")}
+                className="bg-white text-carbon w-48%"
               />
             </div>
-          </div>
-          <div>
-            <p className="text-16px opacity-70 mt-[48px] pb-10px">Type</p>
-            {types.map((i) => (
-              <SelectItem
-                text={i.text}
-                value={i.value}
-                key={i.value}
-                selected={selectedType}
-                onChange={handleChangeType}
-              />
-            ))}
-          </div>
-          <div>
-            <p className="text-16px opacity-70 mt-[48px] pb-10px">Category</p>
-            {categories.map((i) => (
-              <SelectItem
-                text={i.text}
-                value={i.value}
-                key={i.value}
-                selected={selectedCategory}
-                onChange={handleChangeCategory}
-              />
-            ))}
-          </div>
-          <div className="flex justify-between relative mt-40%">
-            <Button
-              mode="custom"
-              label="Clear"
-              onClick={handleClear}
-              className="bg-dropdown border-2 border-white w-48%"
-            />
-            <Button
-              mode="custom"
-              label="Apply"
-              onClick={() => console.log("asd")}
-              className="bg-white text-carbon w-48%"
-            />
           </div>
         </div>
       </Drawer>
