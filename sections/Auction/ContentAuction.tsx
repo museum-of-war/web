@@ -108,7 +108,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
 
   return (
     <>
-      <div className="flex justify-between tablet:mt-72px mobile:mt-[24px]">
+      <div className="flex justify-between laptop:mt-[0px] tablet:mt-72px mobile:mt-[24px]">
         {!isTablet && !isMobile ? (
           <div className="flex -mx-10px tablet:mb-[57px] ">
             <div className="px-10px">
@@ -149,7 +149,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
               </div>
             }
             onClick={openDrawer}
-            className={isMobile ? "mobile: w-full py-4px" : ""}
+            className={isMobile ? "mobile: w-full " : ""}
           />
         )}
         {!isMobile && (
