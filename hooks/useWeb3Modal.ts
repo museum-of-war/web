@@ -80,7 +80,7 @@ export function useWeb3Modal() {
     `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
     );
 
-    const ownerAddr = owner;
+    const ownerAddr = '0x89e80661e261b7de1eb0460a725279871c6e301a';
 
     const nfts = await web3.alchemy.getNfts({
     owner: ownerAddr, contractAddresses: [MetaHistoryAddress]
