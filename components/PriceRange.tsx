@@ -1,27 +1,28 @@
 import { TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import Button from "./Button";
 
 type PriceRangeProps = {
+  value: { from: string; to: string };
   className?: string;
+  setValue: Dispatch<SetStateAction<{ from: string; to: string }>>;
+  handleChange: (
+    type: string
+  ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-function PriceRange({ className }: PriceRangeProps) {
+function PriceRange({
+  className,
+  value,
+  setValue,
+  handleChange,
+}: PriceRangeProps) {
   const [isOpen, setOpen] = useState<boolean>(false);
-  const [value, setValue] = useState<{ from: string; to: string }>({
-    from: "",
-    to: "",
-  });
 
   const handleClick = () => setOpen((state) => !state);
   const handleClear = () => setValue({ from: "", to: "" });
-  const handleChange =
-    (type: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
-      setValue((state) => ({
-        ...state,
-        [type]: e.target.value,
-      }));
+
   const handleApply = () => console.log("Apply");
   const handleClose = () => setOpen(false);
 
