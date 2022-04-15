@@ -29,6 +29,8 @@ const rand_imgs: string[] = [
 const TokenItem = ({ tokenData, grouped, groupLength, index }: TokenItemProps) => {
   const [hovered, setHovered] = useState(false);
 
+  const { push } = useAppRouter();
+
   type Attribute = {
     display_type: string;
     max_value?: any;
@@ -110,9 +112,9 @@ const TokenItem = ({ tokenData, grouped, groupLength, index }: TokenItemProps) =
             mode="secondary"
             label="Upgrade Now"
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-24px py-32px"
-            onClick={() => console.log('click')}
+            onClick={() => push(`/upgrade-your-nft/${tokenData.metadata.name ?? "Unknown"}`)}
             round={true} />
-          <div className="before:absolute before:content-[''] before:border-solid before:border-black before:border-b-8 before:border-r-8 before:w-8px before:h-80% before:-bottom-7 before:-right-7 after:absolute after:content-[''] after:border-solid after:border-black after:border-b-8 after:border-r-8 after:w-90% after:h-8px after:-bottom-7 after:-right-7"></div>
+          <div className="before:absolute before:content-[''] before:border-solid before:border-carbon before:border-b-8 before:border-r-8 before:w-8px before:h-80% before:-bottom-7 before:-right-7 after:absolute after:content-[''] after:border-solid after:border-carbon after:border-b-8 after:border-r-8 after:w-90% after:h-8px after:-bottom-7 after:-right-7"></div>
         </>}
       </div>
       <div
