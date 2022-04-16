@@ -78,7 +78,7 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
           // ref={scrollRef}
         >
           {data.map((datum) => (
-            <CardDesktop {...datum} />
+            <CardDesktop key={datum.Id} {...datum} />
           ))}
         </div>
       </div>
