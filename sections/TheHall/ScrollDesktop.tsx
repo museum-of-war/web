@@ -44,14 +44,29 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
   // const scrollRef = useHorizontalScroll();
 
   return (
-    <div>
-      <div className="relative" style={{ height: 552, marginTop: 100 }}>
+    <div
+      className="relative"
+      style={{
+        height: 552,
+        marginBottom: 120,
+        marginTop: 100,
+        left: -132,
+      }}
+    >
+      <div
+        className="absolute"
+        style={{
+          height: 552,
+          width: '100vw',
+        }}
+      >
         <div
           className="absolute z-1 bg-no-repeat"
           style={{
             backgroundImage: 'url(/img/theHall/bg-desktop.svg)',
             width: 828,
             height: 552,
+            left: 132,
           }}
         />
         <div

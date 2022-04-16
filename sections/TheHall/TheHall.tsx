@@ -17,17 +17,11 @@ export default () => {
         ukrainian="Це не просто війна двох країн. Це війна проти людства, проти світла. Весь світ — і частково ці дивовижні особистості — безпрецедентно об’єдналися в цій битві. The Hall — це колекція  NFT експонатів, створених на знак подяки громадським діячам, які виступають за Україну (і на них можуть претендувати лише вони). Це найменше, як ми можемо сказати «дякую»."
       />
       {isMobile ? (
-        <div>
-          <ScrollMobile data={data} />
-        </div>
+        <ScrollMobile data={data} />
       ) : isTablet ? (
-        <div>
-          <ScrollTablet data={data} />
-        </div>
+        <ScrollTablet data={data} />
       ) : (
-        <div className="px-10%">
-          <ScrollDesktop data={data} />
-        </div>
+        <ScrollDesktop data={data} />
       )}
     </div>
   );

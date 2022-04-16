@@ -6,14 +6,18 @@ type ScrollTabletProps = {
   data: HallItemType[];
 };
 export const ScrollTablet: React.FC<ScrollTabletProps> = ({ data }) => (
-  <div>
-    <div className="relative" style={{ height: 552, marginTop: 400 }}>
+  <div
+    className="relative"
+    style={{ height: 552, marginTop: 380, marginBottom: 60, left: -72 }}
+  >
+    <div className="absolute" style={{ height: 552, width: '100vw' }}>
       <div
         className="absolute z-1 bg-no-repeat"
         style={{
           backgroundImage: 'url(/img/theHall/bg-tablet.svg)',
           width: 492,
           height: 552,
+          left: 72,
         }}
       />
       <div

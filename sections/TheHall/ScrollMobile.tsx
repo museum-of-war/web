@@ -6,14 +6,15 @@ type ScrollMobileProps = {
   data: HallItemType[];
 };
 export const ScrollMobile: React.FC<ScrollMobileProps> = ({ data }) => (
-  <div>
-    <div className="relative" style={{ height: 400, marginTop: 240 }}>
+  <div className="relative" style={{ height: 400, marginTop: 240, left: -24 }}>
+    <div className="absolute" style={{ height: 400, width: '100vw' }}>
       <div
         className="z-1 absolute bg-no-repeat"
         style={{
           backgroundImage: 'url(/img/theHall/bg-mobile.svg)',
           width: 320,
           height: 340,
+          left: 24,
         }}
       />
       <div

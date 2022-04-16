@@ -1,5 +1,5 @@
 import React from 'react';
-import LinesEllipsis from 'react-lines-ellipsis';
+import Dotdotdot from 'react-dotdotdot';
 import SocialMediaButton from '@components/SocialMediaButton';
 import { HallItemType } from '@sections/types';
 
@@ -36,13 +36,7 @@ export const CardTablet: React.FC<HallItemType> = ({
         {TwitterAccountName}
       </h3>
       <div style={{ fontSize: 16, marginTop: 24 }} className="font-rlight">
-        <LinesEllipsis
-          text={TweetText}
-          maxLine="4"
-          ellipsis="..."
-          trimRight
-          basedOn="letters"
-        />
+        <Dotdotdot clamp={4}>{TweetText}</Dotdotdot>
       </div>
       <div
         style={{
@@ -51,7 +45,9 @@ export const CardTablet: React.FC<HallItemType> = ({
         }}
         className="flex justify-between flex-row items-center"
       >
-        <span className="font-rlight">@{TwitterUsername}</span>
+        <span className="font-rlight" style={{ fontSize: 14 }}>
+          @{TwitterUsername}
+        </span>
         <SocialMediaButton
           customClasses="border-white border-2 rounded-3xl"
           twitter
