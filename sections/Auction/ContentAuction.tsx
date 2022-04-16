@@ -1,5 +1,6 @@
 import Button from "@components/Button";
 import DropdownSelect, { SelectOption } from "@components/DropdownSelect";
+import NftCard from "@components/NftCard";
 import PriceRange from "@components/PriceRange";
 import { useViewPort } from "@hooks/useViewport";
 import { useState } from "react";
@@ -171,30 +172,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
             } mobile:w-full flex flex-col p-14px`}
             key={i}
           >
-            <div className="p-10px hover:border-4 hover:border-white hover:border-solid hover:cursor-pointer">
-              <img
-                alt="Dots"
-                src="img/img-big.jpg"
-                className="w-100% h-544px"
-              />
-              <h3 className="font-black text-20px leading-240%">NFT’s name</h3>
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-12px leading-100% opacity-70">
-                    Current bid
-                  </p>
-                  <p className="tablet:text-16px mobile:text-14px leading-150%">
-                    0.15 ETH
-                  </p>
-                </div>
-                <div>
-                  <p className="text-12px leading-100% opacity-70">Ends in</p>
-                  <p className="tablet:text-16px mobile:text-14px leading-150%">
-                    13h 45m 20s
-                  </p>
-                </div>
-              </div>
-            </div>
+            <NftCard />
           </div>
         ))}
       </div>

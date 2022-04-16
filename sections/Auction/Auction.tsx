@@ -1,4 +1,6 @@
 import Blurb from "@sections/AboutProject/Blurb";
+import { ethers } from "ethers";
+import { NFTAuctionConnect } from "@museum-of-war/auction";
 import ContentAuction from "./ContentAuction";
 import DropNft from "./DropNft";
 
@@ -8,6 +10,17 @@ type AuctionProps = {
 };
 
 const Auction = ({ signerAddress, handleConnect }: AuctionProps) => {
+  async function main() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    const auction = NFTAuctionConnect(provider, "rinkeby");
+    console.log(auction.address);
+  }
+
+  main().catch((error) => {
+    console.error(error);
+  });
+
   return (
     <>
       <Blurb
