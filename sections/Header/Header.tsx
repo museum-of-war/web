@@ -26,8 +26,9 @@ const Header = ({
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    if (route !== "/auction") return setTheme("light");
+    if (!route.split("/").includes("auction")) return setTheme("light");
     setTheme("dark");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route]);
 
   const handleConnectWallet = useCallback(() => {
