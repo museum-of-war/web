@@ -5,6 +5,8 @@ import PriceRange from "@components/PriceRange";
 import { useViewPort } from "@hooks/useViewport";
 import { useState } from "react";
 import TabletDrawer from "./TabletDrawer";
+import AuctionData from "@sections/Auction/AuctionData";
+import { AuctionCategories } from "@sections/types";
 
 type ContentAuctionProps = {};
 
@@ -15,11 +17,9 @@ export const types: SelectOption[] = [
 ];
 
 export const categories: SelectOption[] = [
-  { text: "All Categories", value: "all" },
-  { text: "Category 1", value: "1" },
-  { text: "Category 2", value: "2" },
-  { text: "Category 3", value: "3" },
-  { text: "Category 4", value: "4" },
+  { text: "All Categories", value: "" },
+  { text: AuctionCategories.firstDrop, value: AuctionCategories.firstDrop },
+  { text: AuctionCategories.prospect100, value: AuctionCategories.prospect100 },
 ];
 
 export const sortTypes: SelectOption[] = [
@@ -163,16 +163,16 @@ const ContentAuction = ({}: ContentAuctionProps) => {
         )}
       </div>
       <div className="flex flex-wrap -mx-24px">
-        {[1, 2, 3, 4, 5, 6].map((i, index) => (
+        {AuctionData.map((item, index) => (
           <div
             className={`${
-              index === 0 || index === 1 ? "laptop:w-1/2" : "laptop:w-1/4"
+              index < 2 ? "laptop:w-1/2" : "laptop:w-1/4"
             } ${
               index === 0 ? "tablet:w-full" : "tablet:w-1/2"
             } mobile:w-full flex flex-col p-14px`}
-            key={i}
+            key={index}
           >
-            <NftCard />
+            <NftCard index={index} imageSrc={item.imageSrc} name={item.name} />
           </div>
         ))}
       </div>

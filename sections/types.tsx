@@ -29,3 +29,21 @@ export type EventType = {
   ArtistLink?: string | undefined;
   ImageType?: string;
 };
+
+export enum AuctionCategories {
+ firstDrop = 'First Drop',
+ prospect100 = 'PROSPECT 100',
+}
+
+export type AuctionItemType = {
+  index?: number;
+  name: string;
+  endsIn: Date;
+  category: AuctionCategories;
+  contractAddress: string;
+  tokenId: number;
+  imageSrc: string;
+  artist: string;
+  descriptionEnglish?: string;
+  descriptionUkrainian?: string;
+};

@@ -8,3 +8,7 @@ export const FRAME_LINK = "https://www.fair.xyz";
 export const MINISTRY_LINK = "https://thedigital.gov.ua/";
 export const RELEASE_DATE = `2022-03-30T16:59:59.000-04:00`;
 export const MINT_LINK = `https://app.fair.xyz/collection/MHXYZ/queue`;
+export const PROJECT_WALLET_ADDRESS = "0x98c30d4B65b2A0ab0838E7b1E09352c0FD70736C";
+export const UKRAINE_WALLET_ADDRESS = "0x165CD37b4C644C2921454429E7F9358d18A45e14";
+export const FIRST_DROP_ADDRESS = "0xD3228e099E6596988Ae0b73EAa62591c875e5693";
+export const PROSPECT_100_ADDRESS = "TODO"; //TODO
