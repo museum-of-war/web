@@ -143,8 +143,6 @@ export function useWeb3Modal() {
     setProvider(ethersProvider);
     const signer = ethersProvider.getSigner();
 
-    console.log(contractAddress)
-    console.log(tokenId)
     const auction = NFTAuctionConnect(signer, chainName);
 
     await auction.makeBid(

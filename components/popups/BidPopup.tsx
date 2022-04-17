@@ -118,7 +118,15 @@ const BidPopup = ({ currentBid, contractAddress, tokenId }: PropsPopup) => {
             label="Place Bid"
             disabled={Boolean(amountError)}
             onClick={async () => {
-              await makeBid(contractAddress, tokenId, ETHAmount)
+              try {
+                await makeBid(contractAddress, tokenId, ETHAmount);
+              }
+              catch(error: any) {
+                alert(error?.message ?? error);
+              }
+              finally {
+                hidePopup();
+              }
             }}
             className="bg-white text-carbon w-100% mt-24px"
           />
