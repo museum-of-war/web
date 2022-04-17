@@ -1,8 +1,7 @@
-import { SharedProps } from "@components/wrapper";
-import type { NextPage } from "next";
-import Head from "next/head";
-import AboutProject from "../sections/AboutProject/AboutProject";
-
+import { SharedProps } from '@components/wrapper';
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import AboutProject from '../sections/AboutProject/AboutProject';
 
 const Home: NextPage<SharedProps> = (props) => {
   return (

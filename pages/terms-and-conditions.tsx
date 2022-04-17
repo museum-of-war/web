@@ -1,7 +1,7 @@
-import { SharedProps } from "@components/wrapper";
-import TermsAndConditions from "@sections/TermsAndConditions/TermsAndConditions";
-import type { NextPage } from "next";
-import Head from "next/head";
+import { SharedProps } from '@components/wrapper';
+import TermsAndConditions from '@sections/TermsAndConditions/TermsAndConditions';
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
 const WarlinePage: NextPage<SharedProps> = (props) => {
   return (
