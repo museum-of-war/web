@@ -1,5 +1,5 @@
-import Button from "@components/Button";
-import { useViewPort } from "@hooks/useViewport";
+import Button from '@components/Button';
+import { useViewPort } from '@hooks/useViewport';
 
 type DropNftProps = {
   desc: string;
@@ -15,6 +15,7 @@ const DropNft = ({
   handleClick,
 }: DropNftProps) => {
   const { isMobile } = useViewPort();
+
   return (
     <div className={`text-center ${className}`}>
       <p className="font-black tablet:text-32px mobile:text-27px tablet:mb-24px mobile:mb-20px">
@@ -28,7 +29,7 @@ const DropNft = ({
         label={buttonLabel}
         onClick={handleClick}
         className={`bg-white text-carbon tablet:mt-48px mobile:mt-36px ${
-          isMobile && "w-full"
+          isMobile && 'w-full'
         }`}
       />
     </div>

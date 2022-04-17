@@ -1,7 +1,7 @@
-import Button from "@components/Button";
-import { Drawer, TextField } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
-import { categories, types } from "./ContentAuction";
+import { Dispatch, SetStateAction } from 'react';
+import Button from '@components/Button';
+import { Drawer, TextField } from '@mui/material';
+import { FILTER_OPTIONS_CATEGORIES, FILTER_OPTIONS_TYPES } from './cosntants';
 
 const CloseSvg = () => (
   <svg
@@ -66,7 +66,7 @@ type TabletDrawerProps = {
   handleChangeCategory: (v?: string) => void;
   setValue: Dispatch<SetStateAction<{ from: string; to: string }>>;
   handleChangeRange: (
-    type: string
+    type: string,
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -82,7 +82,7 @@ const TabletDrawer = ({
   handleChangeCategory,
   handleChangeRange,
 }: TabletDrawerProps) => {
-  const handleClear = () => setValue({ from: "", to: "" });
+  const handleClear = () => setValue({ from: '', to: '' });
   return (
     <>
       <Drawer anchor="left" open={isOpen} onClose={toggleDrawer}>
@@ -106,7 +106,7 @@ const TabletDrawer = ({
                   multiline
                   variant="standard"
                   className="w-48%"
-                  onChange={handleChangeRange("from")}
+                  onChange={handleChangeRange('from')}
                   value={value.from}
                 />
                 <TextField
@@ -114,7 +114,7 @@ const TabletDrawer = ({
                   multiline
                   variant="standard"
                   className="w-48%"
-                  onChange={handleChangeRange("to")}
+                  onChange={handleChangeRange('to')}
                   value={value.to}
                 />
               </div>
@@ -123,7 +123,7 @@ const TabletDrawer = ({
               <p className="tablet:text-16px mobile:text-14px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
                 Type
               </p>
-              {types.map((i) => (
+              {FILTER_OPTIONS_TYPES.map((i) => (
                 <SelectItem
                   text={i.text}
                   value={i.value}
@@ -137,7 +137,7 @@ const TabletDrawer = ({
               <p className="text-16px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
                 Category
               </p>
-              {categories.map((i) => (
+              {FILTER_OPTIONS_CATEGORIES.map((i) => (
                 <SelectItem
                   text={i.text}
                   value={i.value}
@@ -157,7 +157,7 @@ const TabletDrawer = ({
               <Button
                 mode="custom"
                 label="Apply"
-                onClick={() => console.log("asd")}
+                onClick={() => console.log('asd')}
                 className="bg-white text-carbon w-48%"
               />
             </div>

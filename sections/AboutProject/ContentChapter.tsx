@@ -1,5 +1,5 @@
-import React from "react";
-import { useAppRouter } from "@hooks/useAppRouter";
+import React from 'react';
+import { useAppRouter } from '@hooks/useAppRouter';
 
 type ContentChapterProps = {};
 
@@ -13,7 +13,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
       <div className="tablet:w-1/2 mobile:w-full flex flex-col self-stretch px-24px">
         <div
           className="hover:cursor-pointer "
-          onClick={handleCardClick("/warline")}
+          onClick={handleCardClick('/warline')}
         >
           <div className="border-4 border-carbon border-solid flex-1 flex flex-col text-carbon">
             <div className="laptop:p-48px tablet:py-48px tablet:px:36px mobile:py-20px mobile:px-24px flex-1 flex flex-col">
@@ -26,14 +26,11 @@ const ContentChapter = ({}: ContentChapterProps) => {
               </p>
             </div>
             <div className="flex flex-wrap border-t-4 border-carbon border-solid ">
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
+              <img
+                alt="Dots"
+                src={'img/warline-animation.gif'}
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
@@ -41,7 +38,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
       <div className="tablet:w-1/2 mobile:w-full mt-30px tablet:mt-0 flex flex-col self-stretch px-24px">
         <div
           className="hover:cursor-pointer"
-          onClick={handleCardClick("/auction")}
+          onClick={handleCardClick('/auction')}
         >
           <div className="border-4 border-carbon border-solid  flex-1 flex flex-col">
             <div className="laptop:p-48px tablet:py-48px tablet:px:36px mobile:py-20px mobile:px-24px flex-1 flex flex-col text-white bg-carbon">
@@ -53,14 +50,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
               </p>
             </div>
             <div className="flex flex-wrap  border-t-4 border-carbon border-solid ">
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
-              <img alt="Dots" src={"img/pd-mockNFT.png"} className="w-1/4" />
+              <img src="/img/auction.svg" alt="Auction" className="w-full" />
             </div>
           </div>
         </div>

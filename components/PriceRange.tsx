@@ -1,14 +1,14 @@
-import { TextField } from "@mui/material";
-import React, { Dispatch, SetStateAction, useState } from "react";
-import OutsideClickHandler from "react-outside-click-handler";
-import Button from "./Button";
+import { TextField } from '@mui/material';
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
+import Button from './Button';
 
 type PriceRangeProps = {
   value: { from: string; to: string };
   className?: string;
   setValue: Dispatch<SetStateAction<{ from: string; to: string }>>;
   handleChange: (
-    type: string
+    type: string,
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -21,9 +21,9 @@ function PriceRange({
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const handleClick = () => setOpen((state) => !state);
-  const handleClear = () => setValue({ from: "", to: "" });
+  const handleClear = () => setValue({ from: '', to: '' });
 
-  const handleApply = () => console.log("Apply");
+  const handleApply = () => console.log('Apply');
   const handleClose = () => setOpen(false);
 
   return (
@@ -36,14 +36,14 @@ function PriceRange({
                     border-2 border-carbon dark:border-white
                     px-20px py-10px whitespace-nowrap
                     font-rblack text-14px
-                    hover:bg-carbon-800 focus:border-double
+                    hover:bg-carbon-800
                     rounded-full ${className}`}
             aria-expanded="true"
             aria-haspopup="true"
             onClick={handleClick}
           >
             <span className="mr-10px">Price Range</span>
-            <span className={`${!isOpen ? "rotate-180" : ""}`}>
+            <span className={`${!isOpen ? 'rotate-180' : ''}`}>
               <svg
                 width="24"
                 height="24"
@@ -70,13 +70,13 @@ function PriceRange({
             aria-labelledby="menu-button"
             tabIndex={-1}
           >
-            <div className="flex justify-between mb-24px">
+            <div className="flex justify-between mb-24px font-rlight-forced">
               <TextField
                 label="From"
                 multiline
                 variant="standard"
                 className="w-48%"
-                onChange={handleChange("from")}
+                onChange={handleChange('from')}
                 value={value.from}
               />
               <TextField
@@ -84,7 +84,7 @@ function PriceRange({
                 multiline
                 variant="standard"
                 className="w-48%"
-                onChange={handleChange("to")}
+                onChange={handleChange('to')}
                 value={value.to}
               />
             </div>

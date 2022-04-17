@@ -1,10 +1,11 @@
-import { AUCTION_END_DATE, FIRST_DROP_ADDRESS, PROSPECT_100_ADDRESS } from '@sections/Constants';
+import { AUCTION_END_DATE, AUCTION_START_DATE, FIRST_DROP_ADDRESS, PROSPECT_100_ADDRESS } from '@sections/Constants';
 import { AuctionCategories, AuctionItemType } from '@sections/types';
 import WarlineData from '@sections/Warline/WarlineData';
 
 const AuctionData: Array<AuctionItemType> = [
   ...WarlineData[0]!.events.slice(0, 4).map((event) => ({
     name: `Day ${event.DayNo}, ${event.Time}`,
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.firstDrop,
     contractAddress: FIRST_DROP_ADDRESS,
@@ -16,6 +17,7 @@ const AuctionData: Array<AuctionItemType> = [
   })),
   {
     name: 'PROSPECT 100 #2',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -29,6 +31,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #3',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -40,6 +43,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #4',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -51,6 +55,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #5',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -62,6 +67,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #6',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -73,6 +79,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #7',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -84,6 +91,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #8',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -96,6 +104,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #9',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -111,6 +120,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #10',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -122,6 +132,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #11',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
@@ -136,6 +147,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #12',
+    startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
