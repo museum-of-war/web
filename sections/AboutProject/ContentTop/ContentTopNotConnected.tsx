@@ -1,7 +1,7 @@
-import PoweredByFrame from "@components/PoweredByFrame";
-import { useViewPort } from "@hooks/useViewport";
-import React from "react";
-import Button from "@components/Button";
+import React from 'react';
+import PoweredByFrame from '@components/PoweredByFrame';
+import { useViewPort } from '@hooks/useViewport';
+import Button from '@components/Button';
 
 type ContentTopNotConnectedProps = {
   signerAddress: string;
@@ -18,28 +18,28 @@ const ContentTopNotConnected = ({
     <div
       className={
         isMobile
-          ? "pb-60px"
+          ? 'pb-60px'
           : isTablet
-          ? "pb-72px"
-          : "flex flex-row justify-between pb-100px mt-8vh"
+          ? 'pb-72px'
+          : 'flex flex-row justify-between pb-100px mt-8vh'
       }
     >
       <div
         className={`${
-          isMobile || isTablet ? "w-100%" : "w-50%"
+          isMobile || isTablet ? 'w-100%' : 'w-50%'
         } flex flex-col justify-between`}
       >
         <div>
           <p
             className={`font-rblack uppercase ${
-              isMobile ? "text-46px leading-40px" : "text-84px leading-72px"
+              isMobile ? 'text-46px leading-40px' : 'text-84px leading-72px'
             }`}
           >
             The NFT-museum
           </p>
           <p
-            className={`font-rblack lowercase ${
-              isMobile ? "text-27px leading-30px" : "text-32px leading-36px"
+            className={`font-rblack ${
+              isMobile ? 'text-27px leading-30px' : 'text-32px leading-36px'
             }`}
           >
             of the war of putin&apos;s russia against Ukraine
@@ -47,32 +47,32 @@ const ContentTopNotConnected = ({
         </div>
         <div
           className={`w-100% ${
-            isTablet ? "mt-36px mb-48px" : isMobile ? "mt-30px mb-40px" : ""
+            isTablet ? 'mt-36px mb-48px' : isMobile ? 'mt-30px mb-40px' : ''
           }`}
         >
           <Button
             mode="primary"
             round={false}
             label="Buy NFT Now"
-            onClick={() => console.log("ads")}
+            onClick={() => console.log('ads')}
           />
         </div>
       </div>
       <div
         className={`${
-          isMobile || isTablet ? "w-100%" : "w-50%"
+          isMobile || isTablet ? 'w-100%' : 'w-50%'
         } flex flex-col justify-between`}
       >
         <div
           className={`inline-block ${
             isMobile
-              ? "min-h-[67px]"
+              ? 'min-h-[67px]'
               : isTablet
-              ? "min-h-[164px]"
-              : "min-h-[347px]"
+              ? 'min-h-[164px]'
+              : 'min-h-[347px]'
           }`}
         >
-          <dotlottie-player src={"/lottie/main.lottie"} autoplay loop />
+          <dotlottie-player src={'/lottie/main.lottie'} autoplay loop />
         </div>
         <PoweredByFrame />
       </div>

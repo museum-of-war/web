@@ -1,7 +1,7 @@
-import { useViewPort } from "@hooks/useViewport";
-import React from "react";
-import { FRAME_LINK, MINISTRY_LINK } from "@sections/Constants";
-import { openInNewTab } from "@sections/utils";
+import { useViewPort } from '@hooks/useViewport';
+import React from 'react';
+import { FRAME_LINK, MINISTRY_LINK } from '@sections/Constants';
+import { openInNewTab } from '@sections/utils';
 
 const PoweredByFrame = () => {
   const { isMobile } = useViewPort();
@@ -58,21 +58,21 @@ const PoweredByFrame = () => {
     <div className="flex flex-row items-center justify-between py-5px mt-24px w-100%">
       <div className="flex flex-row items-center tablet:leading-24px laptop:leading-24px mobile:leading-20px">
         <button onClick={() => openInNewTab(MINISTRY_LINK)}>
-          <img alt="banner" src={"img/pd-banner.png"} width="40px" />
+          <img alt="banner" src={'img/pd-banner.png'} width="40px" />
         </button>
         <p
-          style={{ display: "inline-block" }}
-          className="ml-20px laptop:text-16px tablet:text-16px mobile:text-14px w-75%"
+          style={{ display: 'inline-block' }}
+          className="font-rlight ml-20px laptop:text-16px tablet:text-16px mobile:text-14px w-75%"
         >
           An official collection approved by the Ministry of Digital
-          Transformation.{" "}
+          Transformation.{' '}
           <button onClick={() => openInNewTab(FRAME_LINK)}>
             <span>Powered by</span>
             <img
               alt="Fair Logo"
-              src={"img/pd-frameLogo.png"}
-              width={!isMobile ? "62px" : "40px"}
-              style={{ display: "inline-block" }}
+              src={'img/pd-frameLogo.png'}
+              width={!isMobile ? '62px' : '40px'}
+              style={{ display: 'inline-block' }}
               className="laptop:ml-10px tablet:ml-10px mobile:ml-5px laptop:mb-5px tablet:mb-5px"
             />
           </button>
