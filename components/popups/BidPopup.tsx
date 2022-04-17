@@ -32,9 +32,12 @@ const BidPopup = ({ currentBid }: PropsPopup) => {
   const [amountError, setAmountError] = useState<string | undefined>(undefined);
   const amounts = useMemo(
     () =>
-      [currentBid, +currentBid * 1.5, +currentBid * 2, +currentBid * 2.5].map(
-        String,
-      ),
+      [+currentBid, +currentBid * 1.5, +currentBid * 2, +currentBid * 2.5]
+        .map(value => value.toFixed(3))
+        .map(parseFloat)
+        .map(
+          String,
+        ),
     [currentBid],
   );
 
