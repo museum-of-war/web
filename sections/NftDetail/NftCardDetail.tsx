@@ -8,6 +8,8 @@ import { Box, Modal } from "@mui/material";
 import { calculateTimeLeft } from "@sections/AboutProject/ContentTop/Countdownbanner";
 import { AuctionItemType } from "@sections/types";
 import { useEffect, useState } from "react";
+import { useAppRouter } from "@hooks/useAppRouter";
+import AuctionData from "@sections/Auction/AuctionData";
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -92,6 +94,8 @@ const BidCard = ({
 const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
 
+  const { push, query } = useAppRouter();
+
   const [isSold, setSold] = useState<boolean>(false);
   const [isOpenModal, setOpenModal] = useState<boolean>(false);
   const [currentBid, setCurrentBid] = useState<{
@@ -106,6 +110,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     .catch((error) => console.log(`NftCardDetail ${error}`));
 
   const toggleModal = () => setOpenModal((state) => !state);
+  const handleToAuction = () => push("/auction");
 
   const style = {
     position: "absolute" as "absolute",
@@ -195,18 +200,29 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                   More auctions
                 </p>
                 {!isMobile && (
-                  <p className="text-[14px] font-black ml-32px">
+                  <p
+                    onClick={handleToAuction}
+                    className="text-[14px] font-black ml-32px  hover:cursor-pointer"
+                  >
                     See all auctions
                   </p>
                 )}
               </div>
               <div className="flex flex-wrap -mx-24px">
-                {[1, 2].map((i, index) => (
+                {AuctionData.slice(0, 2).map((item, index) => (
                   <div
                     className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
-                    key={i}
+                    key={index}
                   >
-                    {/* <NftCard imageSrc="../img/pd-mockNFT.png" /> */}
+                    <NftCard
+                      index={index}
+                      imageSrc={`../${item.imageSrc}`}
+                      name={item.name}
+                      endsIn={item.endsIn}
+                      contractAddress={item.contractAddress}
+                      tokenId={item.tokenId}
+                      type="small"
+                    />
                   </div>
                 ))}
               </div>
