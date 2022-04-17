@@ -3,17 +3,17 @@ import { AuctionCategories, AuctionItemType } from "@sections/types";
 import WarlineData from "@sections/Warline/WarlineData";
 
 const AuctionData: Array<AuctionItemType> = [
-  ...WarlineData[0]!.events.slice(0, 4).map((event) => ({
-    name: `Day ${event.DayNo}, ${event.Time}`,
-    endsIn: new Date("2022-04-24T23:00:00.000+03:00"),
-    category: AuctionCategories.firstDrop,
-    contractAddress: FIRST_DROP_ADDRESS,
-    tokenId: +event.Tokenid,
-    imageSrc: "img/original/" + event.ImageType,
-    artist: event.ArtistName,
-    descriptionEnglish: event.DescriptionEnglish,
-    descriptionUkrainian: event.DescriptionUkrainian,
-  })),
+  // ...WarlineData[0]!.events.slice(0, 4).map((event) => ({
+  //   name: `Day ${event.DayNo}, ${event.Time}`,
+  //   endsIn: new Date("2022-04-24T23:00:00.000+03:00"),
+  //   category: AuctionCategories.firstDrop,
+  //   contractAddress: FIRST_DROP_ADDRESS,
+  //   tokenId: +event.Tokenid,
+  //   imageSrc: "img/original/" + event.ImageType,
+  //   artist: event.ArtistName,
+  //   descriptionEnglish: event.DescriptionEnglish,
+  //   descriptionUkrainian: event.DescriptionUkrainian,
+  // })),
   {
     name: "PROSPECT 100 #2",
     endsIn: new Date("2022-04-24T23:00:00.000+03:00"),
