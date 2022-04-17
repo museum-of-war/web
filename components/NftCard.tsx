@@ -57,7 +57,7 @@ function NftCard({
               ? "tablet:w-[624px] tablet:h-[624px]"
               : "tablet:w-[288px] tablet:h-[288px]"
           }
-          mobile:w-[272px] mobile:h-[270px]`}
+          mobile:w-[272px] mobile:h-[270px] object-contain`}
         />
       </div>
       <h3 className="font-black text-20px leading-240%">{name}</h3>
