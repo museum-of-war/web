@@ -1,47 +1,77 @@
 import BidsHistoryTable from "@components/BidsHistoryTable";
 import Button from "@components/Button";
+import { useWeb3Modal } from "@hooks/useWeb3Modal";
 import FormattedInputs from "@components/FormattedInputs";
 import NftCard from "@components/NftCard";
 import { useViewPort } from "@hooks/useViewport";
 import { Box, Modal } from "@mui/material";
-import { useState } from "react";
+import { calculateTimeLeft } from "@sections/AboutProject/ContentTop/Countdownbanner";
+import { AuctionItemType } from "@sections/types";
+import { useEffect, useState } from "react";
 
-type NftCardDetailProps = {};
+type NftCardDetailProps = {
+  item: AuctionItemType;
+};
 
 type BidCardProps = {
   isMobile?: boolean;
+  endsIn: Date;
+  currentBid: string;
   toggleModal: () => void;
 };
 
-const BidCard = ({ isMobile, toggleModal }: BidCardProps) => {
+const BidCard = ({
+  currentBid,
+  isMobile,
+  endsIn,
+  toggleModal,
+}: BidCardProps) => {
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft(`${endsIn}`));
+    }, 1000);
+    return () => clearTimeout(timer);
+  });
+
   return (
     <>
       <div className="flex justify-between tablet:items-end mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
         <div>
           <p className="text-14px opacity-70 tablet:mb-12px">Current bid</p>
           <p className="mobile:text-27px tablet:text-32px font-black">
-            0.24 ETH
+            {currentBid} ETH
           </p>
           <p className="text-16px">$903</p>
+          {/* TODO add $ */}
         </div>
         <div className="tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white"></div>
         <div>
           <p className="text-14px opacity-70 tablet:mb-12px">Ends in</p>
           <div className="flex -mx-10px">
             <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-black">0</p>
+              <p className="mobile:text-27px tablet:text-32px font-black">
+                {timeLeft.days}
+              </p>
               <p className="mobile:text-14px tablet:text-16px">days</p>
             </div>
             <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-black">23</p>
+              <p className="mobile:text-27px tablet:text-32px font-black">
+                {timeLeft.hours}
+              </p>
               <p className="mobile:text-14px tablet:text-16px">hours</p>
             </div>
             <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-black">59</p>
+              <p className="mobile:text-27px tablet:text-32px font-black">
+                {timeLeft.minutes}
+              </p>
               <p className="mobile:text-14px tablet:text-16px">minutes</p>
             </div>
             <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-black">59</p>
+              <p className="mobile:text-27px tablet:text-32px font-black">
+                {timeLeft.seconds}
+              </p>
               <p className="mobile:text-14px tablet:text-16px">seconds</p>
             </div>
           </div>
@@ -59,10 +89,21 @@ const BidCard = ({ isMobile, toggleModal }: BidCardProps) => {
   );
 };
 
-const NftCardDetail = ({}: NftCardDetailProps) => {
+const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
+
   const [isSold, setSold] = useState<boolean>(false);
   const [isOpenModal, setOpenModal] = useState<boolean>(false);
+  const [currentBid, setCurrentBid] = useState<{
+    bid: string;
+    nextMinBid: string;
+    fullInfo: any;
+  }>({ bid: "", nextMinBid: "", fullInfo: "" });
+
+  useWeb3Modal()
+    .getAuctionInfo(item.contractAddress, item.tokenId)
+    .then((i) => setCurrentBid({ ...i }))
+    .catch((error) => console.log(`NftCardDetail ${error}`));
 
   const toggleModal = () => setOpenModal((state) => !state);
 
@@ -82,7 +123,11 @@ const NftCardDetail = ({}: NftCardDetailProps) => {
         {(isTablet || isMobile) && !isSold && (
           <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
             {isTablet ? (
-              <BidCard toggleModal={toggleModal} />
+              <BidCard
+                toggleModal={toggleModal}
+                endsIn={item.endsIn}
+                currentBid={currentBid.bid}
+              />
             ) : (
               <Button
                 mode="custom"
@@ -95,7 +140,7 @@ const NftCardDetail = ({}: NftCardDetailProps) => {
         )}
         <div className="flex mt-40px mobile:flex-col laptop:flex-row  justify-between">
           <div className="laptop:w-[48%] mobile: w-full">
-            <img alt="Dots" src={"../img/pd-mockNFT.png"} />
+            <img alt="Dots" src={`../${item.imageSrc}`} />
           </div>
           <div className="laptop:w-[48%] mobile: w-full">
             {isSold ? (
@@ -105,25 +150,24 @@ const NftCardDetail = ({}: NftCardDetailProps) => {
             ) : isTablet ? (
               <></>
             ) : (
-              <BidCard isMobile={isMobile} toggleModal={toggleModal} />
+              <BidCard
+                isMobile={isMobile}
+                toggleModal={toggleModal}
+                endsIn={item.endsIn}
+                currentBid={currentBid.bid}
+              />
             )}
             <p className="mobile:text-14px tablet:text-16px mobile:mt-40px leading-[150%] tablet:mt-48px">
-              Russia launched rocket attacks on Ukrainian cities. The missile
-              had hit airport of Ivano-Frankivsk. Russia launched rocket attacks
-              on Ukrainian cities. The missile had hit airport of
-              Ivano-Frankivsk. Russia launched rocket attacks on Ukrainian
-              cities. The missile had hit airport of Ivano-Frankivsk.
+              {item.descriptionEnglish}
             </p>
             <p className="mobile:text-14px tablet:text-16px leading-[150%] mt-24px">
-              Росія завдала ракетних ударів по українських містах. Росія завдала
-              ракетних ударів по українських містах. Росія завдала ракетних
-              ударів по українських містах.
+              {item.descriptionUkrainian}
             </p>
             <div className="flex  mobile:flex-col laptop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
               <div className="flex mobile:flex-col tablet:flex-row text-16px">
                 <div className="flex">
                   <p>Artist:</p>
-                  <p className=" tablet:ml-[8px]">Nickname</p>
+                  <p className=" tablet:ml-[8px]">{item.artist}</p>
                 </div>
                 <div className="flex mobile:ml-[0px] tablet:ml-48px mobile:my-[20px] tablet:my-[0px]">
                   <p>Edition:</p>
@@ -162,7 +206,7 @@ const NftCardDetail = ({}: NftCardDetailProps) => {
                     className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
                     key={i}
                   >
-                    <NftCard imageSrc="../img/pd-mockNFT.png" />
+                    {/* <NftCard imageSrc="../img/pd-mockNFT.png" /> */}
                   </div>
                 ))}
               </div>

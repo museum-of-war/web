@@ -175,6 +175,8 @@ const ContentAuction = ({}: ContentAuctionProps) => {
               imageSrc={item.imageSrc}
               name={item.name}
               endsIn={item.endsIn}
+              contractAddress={item.contractAddress}
+              tokenId={item.tokenId}
             />
           </div>
         ))}
