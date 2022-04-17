@@ -41,38 +41,48 @@ const BidCard = ({
 
   return (
     <>
-      <div className="flex justify-between tablet:items-end mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
+      <div className="flex items-start justify-between mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
         <div>
-          <p className="text-14px opacity-70 tablet:mb-12px">Current bid</p>
-          <p className="mobile:text-27px tablet:text-32px font-black">
+          <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
+            Current bid
+          </p>
+          <p className="mobile:text-27px tablet:text-32px font-rblack">
             {currentBid} ETH
           </p>
           <p className="text-16px">{/* TODO add $ */}</p>
         </div>
-        <div className="tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
+        <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
         <div>
-          <p className="text-14px opacity-70 tablet:mb-12px">Ends in</p>
+          <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
+            Ends in
+          </p>
           <div className="flex -mx-10px">
             <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-black">
+              <p className="mobile:text-27px tablet:text-32px font-rblack">
                 {timeLeft.days}
               </p>
-              <p className="mobile:text-14px tablet:text-16px">days</p>
+              <p className="font-rlight mobile:text-14px tablet:text-16px">
+                days
+              </p>
             </div>
             <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-black">
+              <p className="mobile:text-27px tablet:text-32px font-rblack">
                 {timeLeft.hours}
               </p>
-              <p className="mobile:text-14px tablet:text-16px">hours</p>
+              <p className="font-rlight mobile:text-14px tablet:text-16px">
+                hours
+              </p>
             </div>
             <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-black">
+              <p className="mobile:text-27px tablet:text-32px font-rblack">
                 {timeLeft.minutes}
               </p>
-              <p className="mobile:text-14px tablet:text-16px">minutes</p>
+              <p className="font-rlight mobile:text-14px tablet:text-16px">
+                minutes
+              </p>
             </div>
             <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-black">
+              <p className="font-rblack mobile:text-27px tablet:text-32px font-rblack">
                 {timeLeft.seconds}
               </p>
               <p className="mobile:text-14px tablet:text-16px">seconds</p>
@@ -151,7 +161,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
           </div>
           <div className="laptop:w-[48%] mobile: w-full">
             {isSold ? (
-              <p className="mobile:text-27px tablet:text-32px font-black  mobile:mt-20px laptop:mt-[0px]">
+              <p className="mobile:text-27px tablet:text-32px font-rblack  mobile:mt-20px laptop:mt-[0px]">
                 Sold
               </p>
             ) : isTablet ? (
@@ -165,13 +175,13 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 tokenId={item.tokenId}
               />
             )}
-            <p className="mobile:text-14px tablet:text-16px mobile:mt-40px leading-[150%] tablet:mt-48px">
+            <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px mobile:mt-40px leading-[150%] tablet:mt-48px">
               {item.descriptionEnglish}
             </p>
-            <p className="mobile:text-14px tablet:text-16px leading-[150%] mt-24px">
+            <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px leading-[150%] mt-24px">
               {item.descriptionUkrainian}
             </p>
-            <div className="flex  mobile:flex-col laptop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
+            <div className="font-rlight flex mobile:flex-col laptop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
               <div className="flex mobile:flex-col tablet:flex-row text-16px">
                 <div className="flex">
                   <p>Artist:</p>
@@ -191,7 +201,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             </div>
             {isSold && (
               <div className="mobile:mt-60px tablet:mt-72px laptop:mt-96px">
-                <p className="mobile:text-27px tablet:text-32px font-black mobile:mb-30px tablet:mb-36px">
+                <p className="mobile:text-27px tablet:text-32px font-rblack mobile:mb-30px tablet:mb-36px">
                   Bids history
                 </p>
                 <BidsHistoryTable />
@@ -199,13 +209,13 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             )}
             <div className="laptop:mt-96px mobile:my-60px tablet:mt-72px">
               <div className="flex items-center mobile:mb-[20px] tablet:mb-24px">
-                <p className="mobile:text-27px tablet:text-32px font-black">
+                <p className="mobile:text-27px tablet:text-32px font-rblack">
                   More auctions
                 </p>
                 {!isMobile && (
                   <p
                     onClick={handleToAuction}
-                    className="text-[14px] font-black ml-32px  hover:cursor-pointer"
+                    className="text-[14px] font-rblack ml-32px  hover:cursor-pointer"
                   >
                     See all auctions
                   </p>

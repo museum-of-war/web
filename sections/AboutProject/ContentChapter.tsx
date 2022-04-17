@@ -17,7 +17,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
         >
           <div className="border-4 border-carbon border-solid flex-1 flex flex-col text-carbon">
             <div className="laptop:p-48px tablet:py-48px tablet:px:36px mobile:py-20px mobile:px-24px flex-1 flex flex-col">
-              <h1 className="tablet:text-32px mobile:text-27px font-black">
+              <h1 className="tablet:text-32px mobile:text-27px font-rblack">
                 Warline
               </h1>
               <p className="tablet:text-16px mobile:text-14px font-normal leading-150% font-rnarrow tablet:mt-24px mobile:mt-10px tracking-wider">
@@ -42,7 +42,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
         >
           <div className="border-4 border-carbon border-solid  flex-1 flex flex-col">
             <div className="laptop:p-48px tablet:py-48px tablet:px:36px mobile:py-20px mobile:px-24px flex-1 flex flex-col text-white bg-carbon">
-              <h1 className="tablet:text-32px mobile:text-27px font-black">
+              <h1 className="tablet:text-32px mobile:text-27px font-rblack">
                 Auction
               </h1>
               <p className="tablet:text-16px mobile:text-14px font-normal leading-150% font-rnarrow tablet:mt-24px mobile:mt-10px tracking-wider">

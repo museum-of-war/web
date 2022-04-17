@@ -69,17 +69,21 @@ function NftCard({
           mobile:w-[272px] mobile:h-[270px] object-contain`}
         />
       </div>
-      <h3 className="font-black text-20px leading-[240%]">{name}</h3>
+      <h3 className="font-rblack text-20px leading-[240%]">{name}</h3>
       <div className="flex justify-between">
         <div>
-          <p className="text-12px leading-100% opacity-70">Current bid</p>
-          <p className="tablet:text-16px mobile:text-14px leading-150%">
+          <p className="font-rlight text-12px leading-100% opacity-70">
+            Current bid
+          </p>
+          <p className="font-rlight tablet:text-16px mobile:text-14px leading-150%">
             {currentBid.bid} ETH
           </p>
         </div>
         <div className={`${timeLeft.days ? '' : 'w-[100px]'}`}>
-          <p className="text-12px leading-100% opacity-70 ">Ends in</p>
-          <p className="tablet:text-16px mobile:text-14px leading-150% w-100%">
+          <p className="font-rlight text-12px leading-100% opacity-70 ">
+            Ends in
+          </p>
+          <p className="font-rlight tablet:text-16px mobile:text-14px leading-150% w-100%">
             {timeLeft.days
               ? `${timeLeft.days} days`
               : `${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}

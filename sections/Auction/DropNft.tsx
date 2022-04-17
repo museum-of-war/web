@@ -17,8 +17,8 @@ const DropNft = ({
   const { isMobile } = useViewPort();
 
   return (
-    <div className={`text-center ${className}`}>
-      <p className="font-black tablet:text-32px mobile:text-27px tablet:mb-24px mobile:mb-20px">
+    <div className={`text-center ${className} font-rlight`}>
+      <p className="font-rblack tablet:text-32px mobile:text-27px tablet:mb-24px mobile:mb-20px">
         That’s it...
       </p>
       <p className="tablet:text-16px mobile:text-14px leading-150% laptop:w-[40%] mobile:w-full my-0 mx-[auto]">
