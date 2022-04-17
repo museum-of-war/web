@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { VscChromeClose } from 'react-icons/vsc';
 import Button from '@components/Button';
 import { usePopup } from '@providers/PopupProvider';
-import {useWeb3Modal} from "@hooks/useWeb3Modal";
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 const NUMBER_3_DECIMALS = /^(?:\d*\.\d{1,3}|\d+)$/;
 
@@ -37,11 +37,9 @@ const BidPopup = ({ currentBid, contractAddress, tokenId }: PropsPopup) => {
   const amounts = useMemo(
     () =>
       [+currentBid, +currentBid * 1.5, +currentBid * 2, +currentBid * 2.5]
-        .map(value => value.toFixed(3))
+        .map((value) => value.toFixed(3))
         .map(parseFloat)
-        .map(
-          String,
-        ),
+        .map(String),
     [currentBid],
   );
 
@@ -118,13 +116,16 @@ const BidPopup = ({ currentBid, contractAddress, tokenId }: PropsPopup) => {
             label="Place Bid"
             disabled={Boolean(amountError)}
             onClick={async () => {
+              if (window.ethereum) {
+                hidePopup();
+                return;
+              }
+
               try {
                 await makeBid(contractAddress, tokenId, ETHAmount);
-              }
-              catch(error: any) {
+              } catch (error: any) {
                 alert(error?.message ?? error);
-              }
-              finally {
+              } finally {
                 hidePopup();
               }
             }}
