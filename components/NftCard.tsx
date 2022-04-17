@@ -1,8 +1,8 @@
-import { useAppRouter } from "@hooks/useAppRouter";
-import React, { useEffect, useState } from "react";
-import { AuctionItemType } from "@sections/types";
-import { calculateTimeLeft } from "@sections/AboutProject/ContentTop/Countdownbanner";
-import { useWeb3Modal } from "@hooks/useWeb3Modal";
+import { useAppRouter } from '@hooks/useAppRouter';
+import React, { useEffect, useState } from 'react';
+import { AuctionItemType } from '@sections/types';
+import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 function NftCard({
   imageSrc,
@@ -13,7 +13,7 @@ function NftCard({
   tokenId,
 }: Pick<
   AuctionItemType,
-  "imageSrc" | "name" | "index" | "endsIn" | "contractAddress" | "tokenId"
+  'imageSrc' | 'name' | 'index' | 'endsIn' | 'contractAddress' | 'tokenId'
 >) {
   const { push } = useAppRouter();
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
@@ -21,7 +21,7 @@ function NftCard({
     bid: string;
     nextMinBid: string;
     fullInfo: any;
-  }>({ bid: "0", nextMinBid: "", fullInfo: "" });
+  }>({ bid: '0', nextMinBid: '', fullInfo: '' });
 
   const navlinkToNft = () => push(`/auction/${index}`);
 
@@ -68,7 +68,7 @@ function NftCard({
             {currentBid.bid} ETH
           </p>
         </div>
-        <div className={`${timeLeft.days ? "" : "w-[100px]"}`}>
+        <div className={`${timeLeft.days ? '' : 'w-[100px]'}`}>
           <p className="text-12px leading-100% opacity-70 ">Ends in</p>
           <p className="tablet:text-16px mobile:text-14px leading-150% w-100%">
             {timeLeft.days

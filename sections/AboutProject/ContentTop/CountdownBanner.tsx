@@ -1,9 +1,9 @@
-import SupportButton from "@components/SupportButton";
-import DonatePopup from "@sections/Warline/DonatePopup";
-import React, { useEffect, useState } from "react";
+import SupportButton from '@components/SupportButton';
+import DonatePopup from '@sections/Warline/DonatePopup';
+import React, { useEffect, useState } from 'react';
 
-type PropsCountdownbanner = {
-  endDate: string,
+type PropsCountdownBanner = {
+  endDate: string;
 };
 
 export const calculateTimeLeft = (endDate: string) => {
@@ -19,7 +19,7 @@ export const calculateTimeLeft = (endDate: string) => {
     : {};
 };
 
-const Countdownbanner = ({ endDate }: PropsCountdownbanner) => {
+const CountdownBanner = ({ endDate }: PropsCountdownBanner) => {
   const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(endDate));
@@ -46,14 +46,17 @@ const Countdownbanner = ({ endDate }: PropsCountdownbanner) => {
           {timeLeft[interval]}
         </p>
         <p className="font-rlight mobile:text-12px laptop:text-20px capitalize tracking-wide ">
-          {interval}{" "}
+          {interval}{' '}
         </p>
-      </div>
+      </div>,
     );
   });
   return (
     <>
-      <div className="bg-carbon w-100% px-10% py-5% mt-4%" id="countdown-banner">
+      <div
+        className="bg-carbon w-100% px-10% py-5% mt-4%"
+        id="countdown-banner"
+      >
         <p className="font-rblack text-28px text-white">Sale starts in: </p>
         <div className="flex flex-row items-center flex-wrap laptop:w-100% tablet:w-50% mobile:w-100%">
           {timerComponents.map((timer, idx) => (
@@ -65,7 +68,7 @@ const Countdownbanner = ({ endDate }: PropsCountdownbanner) => {
 
         <div className="pt-40px">
           <SupportButton
-            label={"Support Ukraine"}
+            label={'Support Ukraine'}
             onClick={() => {
               setShowDonatePopup(true);
             }}
@@ -81,4 +84,4 @@ const Countdownbanner = ({ endDate }: PropsCountdownbanner) => {
   );
 };
 
-export default Countdownbanner;
+export default CountdownBanner;

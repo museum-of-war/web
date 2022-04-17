@@ -19,6 +19,7 @@
     "baseUrl": ".",
     "incremental": true,
     "paths": {
+      "@providers/*": ["providers/*"],
       "@components/*": ["components/*"],
       "@parameters/*": ["parameters/*"],
       "@parameters": ["parameters"],

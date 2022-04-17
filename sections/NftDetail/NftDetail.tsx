@@ -1,14 +1,14 @@
-import { ArrowSvg } from "@components/DropdownSelect";
-import { useAppRouter } from "@hooks/useAppRouter";
-import Blurb from "@sections/AboutProject/Blurb";
-import AuctionData from "@sections/Auction/AuctionData";
-import NftCardDetail from "./NftCardDetail";
+import { ArrowSvg } from '@components/DropdownSelect';
+import { useAppRouter } from '@hooks/useAppRouter';
+import Blurb from '@sections/AboutProject/Blurb';
+import AuctionData from '@sections/Auction/AuctionData';
+import NftCardDetail from './NftCardDetail';
 
 type NftDetailProps = {};
 
 const NftDetail = ({}: NftDetailProps) => {
   const { push, query } = useAppRouter();
-  const handleToAuction = () => push("/auction");
+  const handleToAuction = () => push('/auction');
 
   const item = AuctionData[Number(query.id)];
   if (!item) return <></>;
