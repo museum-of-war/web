@@ -20,7 +20,6 @@ const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 const ProjectWalletNo = PROJECT_WALLET_ADDRESS;
 const CountryWalletNo = UKRAINE_WALLET_ADDRESS;
 const MetaHistoryAddress = FIRST_DROP_ADDRESS;
-const chainName = 'rinkeby'; //TODO: change to mainnet
 
 const providerOptions = {
   walletconnect: {
@@ -102,7 +101,7 @@ export function useWeb3Modal() {
 
   async function getAuctionInfo(contractAddress: string, tokenId: number) {
     const web3 = createAlchemyWeb3(
-      `https://eth-${chainName}.alchemyapi.io/v2/${apiKey}`,
+      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
     );
     const ethersProvider = new ethers.providers.Web3Provider(
       web3.currentProvider as ExternalProvider,
