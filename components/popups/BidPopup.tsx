@@ -2,11 +2,14 @@ import React, { useMemo, useState } from 'react';
 import { VscChromeClose } from 'react-icons/vsc';
 import Button from '@components/Button';
 import { usePopup } from '@providers/PopupProvider';
+import {useWeb3Modal} from "@hooks/useWeb3Modal";
 
 const NUMBER_3_DECIMALS = /^(?:\d*\.\d{1,3}|\d+)$/;
 
 type PropsPopup = {
   currentBid: string;
+  contractAddress: string;
+  tokenId: number;
 };
 
 const BidButton = ({
@@ -26,7 +29,8 @@ const BidButton = ({
   );
 };
 
-const BidPopup = ({ currentBid }: PropsPopup) => {
+const BidPopup = ({ currentBid, contractAddress, tokenId }: PropsPopup) => {
+  const { makeBid } = useWeb3Modal();
   const { hidePopup } = usePopup();
   const [ETHAmount, setETHAmount] = useState<number | string>(currentBid);
   const [amountError, setAmountError] = useState<string | undefined>(undefined);
@@ -113,9 +117,16 @@ const BidPopup = ({ currentBid }: PropsPopup) => {
             mode="custom"
             label="Place Bid"
             disabled={Boolean(amountError)}
-            onClick={() => {
-              // TODO
-              console.log('place bid logic goes here');
+            onClick={async () => {
+              try {
+                await makeBid(contractAddress, tokenId, ETHAmount);
+              }
+              catch(error: any) {
+                alert(error?.message ?? error);
+              }
+              finally {
+                hidePopup();
+              }
             }}
             className="bg-white text-carbon w-100% mt-24px"
           />
