@@ -98,7 +98,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     bid: string;
     nextMinBid: string;
     fullInfo: any;
-  }>({ bid: "", nextMinBid: "", fullInfo: "" });
+  }>({ bid: "0", nextMinBid: "", fullInfo: "" });
 
   useWeb3Modal()
     .getAuctionInfo(item.contractAddress, item.tokenId)
