@@ -10,7 +10,7 @@ const NftDetail = ({}: NftDetailProps) => {
   const { push, query } = useAppRouter();
   const handleToAuction = () => push("/auction");
 
-  const item = AuctionData.find((i) => i.tokenId === Number(query.id));
+  const item = AuctionData[Number(query.id)];
   if (!item) return <></>;
 
   return (
