@@ -116,7 +116,7 @@ const BidPopup = ({ currentBid, contractAddress, tokenId }: PropsPopup) => {
             label="Place Bid"
             disabled={Boolean(amountError)}
             onClick={async () => {
-              if (window.ethereum) {
+              if (!window.ethereum) {
                 hidePopup();
                 return;
               }
