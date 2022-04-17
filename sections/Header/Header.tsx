@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect } from "react";
-import HeaderAndFooterButton from "../../components/HeaderAndFooterButton";
-import { useViewPort } from "@hooks/useViewport";
-import { useAppRouter } from "@hooks/useAppRouter";
-import Button from "@components/Button";
-import { truncateAddress } from "@sections/utils";
-import { useTheme } from "next-themes";
+import React, { useCallback } from 'react';
+import HeaderAndFooterButton from '@components/HeaderAndFooterButton';
+import { useViewPort } from '@hooks/useViewport';
+import { useAppRouter } from '@hooks/useAppRouter';
+import Button from '@components/Button';
+import { truncateAddress } from '@sections/utils';
+import { useTheme } from 'next-themes';
 
 type HeaderProps = {
   signerAddress: string;
@@ -23,13 +23,7 @@ const Header = ({
 }: HeaderProps) => {
   const { isMobile, isTablet } = useViewPort();
   const { push, route } = useAppRouter();
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    if (!route.split("/").includes("auction")) return setTheme("light");
-    setTheme("dark");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [route]);
+  const { theme } = useTheme();
 
   const handleConnectWallet = useCallback(() => {
     handleConnect();
@@ -44,22 +38,22 @@ const Header = ({
   return isMobile || isTablet ? (
     <div>
       <div
-        className={`mb-15% pb-32px ${menuOpen ? "border-b-4 mb-12%" : ""} ${
-          menuOpen && isMobile ? "h-screen" : ""
+        className={`mb-15% pb-32px ${menuOpen ? 'border-b-4 mb-12%' : ''} ${
+          menuOpen && isMobile ? 'h-screen' : ''
         }`}
       >
         <div className="flex flex-row justify-between items-center">
           <img
             className="w-15% min-w-100px mr-15% py-10px"
             src={`${
-              theme !== "dark"
-                ? "/img/pd-logoNoSymbol.png"
-                : "/img/pd-logoNoSymbol-black.png"
+              theme !== 'dark'
+                ? '/img/pd-logoNoSymbol.png'
+                : '/img/pd-logoNoSymbol-black.png'
             }`}
             alt="Meta History: Museum of War"
           />
           <HeaderAndFooterButton
-            label={menuOpen ? "" : "Menu"}
+            label={menuOpen ? '' : 'Menu'}
             menu
             onClick={() => setMenuOpen(!menuOpen)}
           />
@@ -69,46 +63,46 @@ const Header = ({
             <div
               className={`pt-48px flex ${
                 isTablet
-                  ? "flex-row flex-wrap justify-start items-center"
-                  : "flex-col"
+                  ? 'flex-row flex-wrap justify-start items-center'
+                  : 'flex-col'
               }`}
             >
               <HeaderAndFooterButton
                 label="Home"
                 onClick={() => {
-                  push("/");
+                  push('/');
                   setMenuOpen(false);
                 }}
-                underlined={route === "/"}
-                wrapperClassName={isMobile ? "pb-32px" : "mr-32px mb-32px"}
+                underlined={route === '/'}
+                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
               />
               <HeaderAndFooterButton
                 label="Warline"
                 onClick={() => {
-                  push("/warline");
+                  push('/warline');
                   setMenuOpen(false);
                 }}
-                underlined={route === "/warline"}
-                wrapperClassName={isMobile ? "pb-32px" : "mr-32px mb-32px"}
+                underlined={route === '/warline'}
+                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
               />
               <HeaderAndFooterButton
                 label="Auction"
                 onClick={() => {
-                  push("/auction");
+                  push('/auction');
                   setMenuOpen(false);
                 }}
-                underlined={route === "/auction"}
-                wrapperClassName={isMobile ? "pb-32px" : "mr-32px mb-32px"}
+                underlined={route === '/auction'}
+                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
               />
               {signerAddress && (
                 <HeaderAndFooterButton
                   label="My NFTs"
                   onClick={() => {
-                    push("/tokens");
+                    push('/tokens');
                     setMenuOpen(false);
                   }}
-                  underlined={route === "/tokens"}
-                  wrapperClassName={isMobile ? "pb-32px" : "mr-32px mb-32px"}
+                  underlined={route === '/tokens'}
+                  wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
                 />
               )}
             </div>
@@ -116,12 +110,12 @@ const Header = ({
               <Button
                 mode="secondary"
                 label={
-                  signerAddress ? truncateAddress(signerAddress) : "Sign In"
+                  signerAddress ? truncateAddress(signerAddress) : 'Sign In'
                 }
                 onClick={
                   signerAddress ? handleDisconnectWallet : handleConnectWallet
                 }
-                className={isMobile ? "w-full" : ""}
+                className={isMobile ? 'w-full' : ''}
               />
             ) : (
               <>
@@ -148,9 +142,9 @@ const Header = ({
       <img
         className="w-10% min-w-75px laptop:mr-30% tablet:mr-25%"
         src={`${
-          theme !== "dark"
-            ? "/img/pd-logoNoSymbol.png"
-            : "/img/pd-logoNoSymbol-black.png"
+          theme !== 'dark'
+            ? '/img/pd-logoNoSymbol.png'
+            : '/img/pd-logoNoSymbol-black.png'
         }`}
         alt="Meta History: Museum of War"
       />
@@ -159,34 +153,34 @@ const Header = ({
           <HeaderAndFooterButton
             label="Home"
             onClick={() => {
-              push("/");
+              push('/');
             }}
-            underlined={route === "/"}
+            underlined={route === '/'}
             wrapperClassName="mr-32px"
           />
           <HeaderAndFooterButton
             label="Warline"
             onClick={() => {
-              push("/warline");
+              push('/warline');
             }}
-            underlined={route === "/warline"}
+            underlined={route === '/warline'}
             wrapperClassName="mr-32px"
           />
           <HeaderAndFooterButton
             label="Auction"
             onClick={() => {
-              push("/auction");
+              push('/auction');
             }}
-            underlined={route === "/auction"}
-            wrapperClassName={signerAddress ? "mr-32px" : ""}
+            underlined={route === '/auction'}
+            wrapperClassName={signerAddress ? 'mr-32px' : ''}
           />
           {signerAddress && (
             <HeaderAndFooterButton
               label="My NFTs"
               onClick={() => {
-                push("/tokens");
+                push('/tokens');
               }}
-              underlined={route === "/tokens"}
+              underlined={route === '/tokens'}
             />
           )}
         </div>
@@ -194,7 +188,7 @@ const Header = ({
           <Button
             mode="secondary"
             round={!!signerAddress}
-            label={signerAddress ? truncateAddress(signerAddress) : "Sign In"}
+            label={signerAddress ? truncateAddress(signerAddress) : 'Sign In'}
             onClick={signerAddress ? handleDisconnect : handleConnect}
           />
         ) : (

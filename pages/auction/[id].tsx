@@ -3,7 +3,7 @@ import NftDetail from '@sections/NftDetail/NftDetail';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-const NftDetailPage: NextPage<SharedProps> = (props) => {
+const NftDetailPage: NextPage<SharedProps> = () => {
   return (
     <>
       <Head>
