@@ -9,7 +9,13 @@ type PropsPopup = {
   currentBid: string;
 };
 
-const BidButton = ({ handleClick, amount }: any) => {
+const BidButton = ({
+  handleClick,
+  amount,
+}: {
+  handleClick: () => void;
+  amount: string;
+}) => {
   return (
     <button
       className="font-rblack text-14px leading-40px tablet:leading-48px"
@@ -25,7 +31,10 @@ const BidPopup = ({ currentBid }: PropsPopup) => {
   const [ETHAmount, setETHAmount] = useState<number | string>(currentBid);
   const [amountError, setAmountError] = useState<string | undefined>(undefined);
   const amounts = useMemo(
-    () => [currentBid, +currentBid * 1.5, +currentBid * 2, +currentBid * 2.5],
+    () =>
+      [currentBid, +currentBid * 1.5, +currentBid * 2, +currentBid * 2.5].map(
+        String,
+      ),
     [currentBid],
   );
 
