@@ -7,6 +7,7 @@ import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
+  //AUCTION_ADDRESS,//TODO
   FIRST_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
@@ -140,14 +141,21 @@ export function useWeb3Modal() {
     const externalProvider = await getWeb3Modal()?.connect();
     const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
     setProvider(ethersProvider);
-    const auction = NFTAuctionConnect(ethersProvider, chainName);
+    const signer = ethersProvider.getSigner();
+
+    console.log(contractAddress)
+    console.log(tokenId)
+    const auction = NFTAuctionConnect(signer, chainName);
 
     await auction.makeBid(
       contractAddress,
       tokenId,
       ethers.constants.AddressZero,
       0,
-      { value },
+      {
+        value: ethers.utils.parseEther('' + value),
+        gasLimit: 250000
+      },
     );
   }
 

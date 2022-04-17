@@ -18,9 +18,11 @@ type BidCardProps = {
   isMobile?: boolean;
   endsIn: Date;
   currentBid: string;
+  contractAddress: string;
+  tokenId: number;
 };
 
-const BidCard = ({ currentBid, isMobile, endsIn }: BidCardProps) => {
+const BidCard = ({ currentBid, isMobile, endsIn, contractAddress, tokenId }: BidCardProps) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
   const { showPopup } = usePopup();
 
@@ -39,8 +41,7 @@ const BidCard = ({ currentBid, isMobile, endsIn }: BidCardProps) => {
           <p className="mobile:text-27px tablet:text-32px font-black">
             {currentBid} ETH
           </p>
-          <p className="text-16px">$903</p>
-          {/* TODO add $ */}
+          <p className="text-16px">{/* TODO add $ */}</p>
         </div>
         <div className="tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
         <div>
@@ -78,7 +79,7 @@ const BidCard = ({ currentBid, isMobile, endsIn }: BidCardProps) => {
           mode="custom"
           label="Place Bid"
           onClick={() => {
-            showPopup('bid', { currentBid });
+            showPopup('bid', { currentBid, contractAddress, tokenId });
           }}
           className="bg-white text-carbon w-100% mt-24px"
         />
@@ -112,12 +113,18 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
         {(isTablet || isMobile) && !isSold && !activePopupName && (
           <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
             {isTablet ? (
-              <BidCard endsIn={item.endsIn} currentBid={currentBid.bid} />
+              <BidCard endsIn={item.endsIn} currentBid={currentBid.bid} contractAddress={item.contractAddress} tokenId={item.tokenId} />
             ) : (
               <Button
                 mode="custom"
                 label="Place Bid"
-                onClick={() => showPopup('bid', { currentBid: currentBid.bid })}
+                onClick={() => showPopup(
+                    'bid',
+                    {
+                      currentBid: currentBid.bid,
+                      contractAddress: item.contractAddress,
+                      tokenId: item.tokenId
+                    })}
                 className="bg-white text-carbon w-100%"
               />
             )}
@@ -139,6 +146,8 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 isMobile={isMobile}
                 endsIn={item.endsIn}
                 currentBid={currentBid.bid}
+                contractAddress={item.contractAddress}
+                tokenId={item.tokenId}
               />
             )}
             <p className="mobile:text-14px tablet:text-16px mobile:mt-40px leading-[150%] tablet:mt-48px">
