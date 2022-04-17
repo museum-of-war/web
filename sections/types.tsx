@@ -36,7 +36,7 @@ export enum AuctionCategories {
 }
 
 export type AuctionItemType = {
-  index?: number;
+  index: number;
   name: string;
   startsAt: Date;
   endsIn: Date;

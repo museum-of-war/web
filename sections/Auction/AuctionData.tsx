@@ -157,6 +157,9 @@ const AuctionData: Array<AuctionItemType> = [
     descriptionEnglish:
       'Inspired by sources depicting both the physical and mental harm deployed on young children, as a result of this war. This digital art piece aims to communicate that ‘they shouldn’t have to know’; that this conflict is robbing them of their deserved childhood liveliness. The subject of the piece displays a childrens shape sorter toy without the usual shapes, but rather the imagery of war and violence - toys of bombs, bomber planes, explosions and bullets, with the bomb sorted into the wrong slot. It grapples with the idea that children shouldn’t have to understand the structure of war when they are so young, but it is the unfortunate reality of what these children will remember.',
   },
-];
+].map((item, index) => ({
+  index,
+  ...item,
+}));
 
 export default AuctionData;

@@ -215,10 +215,11 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 {AuctionData.slice(0, 2).map((item, index) => (
                   <div
                     className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
-                    key={index}
+                    key={item.index}
                   >
                     <NftCard
-                      index={index}
+                      orderIndex={index}
+                      index={item.index}
                       imageSrc={`../${item.imageSrc}`}
                       name={item.name}
                       endsIn={item.endsIn}

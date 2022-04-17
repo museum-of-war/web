@@ -180,10 +180,11 @@ const ContentAuction = ({}: ContentAuctionProps) => {
             className={`${index < 2 ? 'laptop:w-1/2' : 'laptop:w-1/4'} ${
               index === 0 ? 'tablet:w-full' : 'tablet:w-1/2'
             } mobile:w-full flex flex-col py-14px px-6px`}
-            key={index}
+            key={item.index}
           >
             <NftCard
-              index={index}
+              orderIndex={index}
+              index={item.index}
               imageSrc={item.imageSrc}
               name={item.name}
               endsIn={item.endsIn}

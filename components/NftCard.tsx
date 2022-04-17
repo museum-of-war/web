@@ -6,12 +6,14 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 type NftCardProps = {
   type?: string;
+  orderIndex: number;
 };
 
 function NftCard({
   imageSrc,
   name,
   index,
+  orderIndex,
   endsIn,
   contractAddress,
   tokenId,
@@ -56,11 +58,11 @@ function NftCard({
           alt={name}
           src={imageSrc}
           className={`${
-            index! < 2 && !type
+            orderIndex! < 2 && !type
               ? 'laptop:w-[544px] laptop:h-[544px]'
               : 'laptop:w-[248px] laptop:h-[240px]'
           } ${
-            !index && !type
+            !orderIndex && !type
               ? 'tablet:w-[624px] tablet:h-[624px]'
               : 'tablet:w-[288px] tablet:h-[288px]'
           }
