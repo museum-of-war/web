@@ -35,7 +35,7 @@ function NftCard({
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft(`${endsIn}`));
     }, 1000);
-    return () => clearTimeout(interval);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
