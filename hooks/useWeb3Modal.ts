@@ -7,12 +7,12 @@ import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
-  //AUCTION_ADDRESS,//TODO
+  AUCTION_ADDRESS,
   FIRST_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
 } from '@sections/Constants';
-import { NFTAuctionConnect } from '@museum-of-war/auction';
+import { NFTAuctionConnectByAddress } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
@@ -20,7 +20,6 @@ const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 const ProjectWalletNo = PROJECT_WALLET_ADDRESS;
 const CountryWalletNo = UKRAINE_WALLET_ADDRESS;
 const MetaHistoryAddress = FIRST_DROP_ADDRESS;
-const chainName = 'rinkeby'; //TODO: change to mainnet
 
 const providerOptions = {
   walletconnect: {
@@ -102,12 +101,12 @@ export function useWeb3Modal() {
 
   async function getAuctionInfo(contractAddress: string, tokenId: number) {
     const web3 = createAlchemyWeb3(
-      `https://eth-${chainName}.alchemyapi.io/v2/${apiKey}`,
+      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
     );
     const ethersProvider = new ethers.providers.Web3Provider(
       web3.currentProvider as ExternalProvider,
     );
-    const auction = NFTAuctionConnect(ethersProvider, chainName);
+    const auction = NFTAuctionConnectByAddress(ethersProvider, AUCTION_ADDRESS);
 
     const auctionInfo = await auction.nftContractAuctions(
       contractAddress,
@@ -143,7 +142,7 @@ export function useWeb3Modal() {
     setProvider(ethersProvider);
     const signer = ethersProvider.getSigner();
 
-    const auction = NFTAuctionConnect(signer, chainName);
+    const auction = NFTAuctionConnectByAddress(signer, AUCTION_ADDRESS);
 
     await auction.makeBid(
       contractAddress,
