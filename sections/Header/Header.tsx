@@ -4,7 +4,6 @@ import { useViewPort } from '@hooks/useViewport';
 import { useAppRouter } from '@hooks/useAppRouter';
 import Button from '@components/Button';
 import { truncateAddress } from '@sections/utils';
-import { useTheme } from 'next-themes';
 
 type HeaderProps = {
   signerAddress: string;
@@ -23,7 +22,6 @@ const Header = ({
 }: HeaderProps) => {
   const { isMobile, isTablet } = useViewPort();
   const { push, route } = useAppRouter();
-  const { theme } = useTheme();
 
   const handleConnectWallet = useCallback(() => {
     handleConnect();
@@ -34,6 +32,7 @@ const Header = ({
     handleDisconnect();
     setMenuOpen(false);
   }, [handleDisconnect, setMenuOpen]);
+  const isDarkTheme = route.split('/').includes('auction');
 
   return isMobile || isTablet ? (
     <div>
@@ -46,9 +45,9 @@ const Header = ({
           <img
             className="w-15% min-w-100px mr-15% py-10px"
             src={`${
-              theme !== 'dark'
-                ? '/img/pd-logoNoSymbol.png'
-                : '/img/pd-logoNoSymbol-black.png'
+              isDarkTheme
+                ? '/img/pd-logoNoSymbol-black.svg'
+                : '/img/pd-logoNoSymbol.svg'
             }`}
             alt="Meta History: Museum of War"
             onClick={() => {
@@ -145,9 +144,9 @@ const Header = ({
       <img
         className="w-10% min-w-75px laptop:mr-30% tablet:mr-25% cursor-pointer"
         src={`${
-          theme !== 'dark'
-            ? '/img/pd-logoNoSymbol.png'
-            : '/img/pd-logoNoSymbol-black.png'
+          isDarkTheme
+            ? '/img/pd-logoNoSymbol-black.svg'
+            : '/img/pd-logoNoSymbol.svg'
         }`}
         alt="Meta History: Museum of War"
         onClick={() => {
