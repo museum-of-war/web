@@ -1,12 +1,12 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
-import { AppWrapper } from "@components/wrapper";
-import { ThemeProvider } from "next-themes";
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
+import { AppWrapper } from '@components/wrapper';
+import { ThemeProvider } from 'next-themes';
 
 function SafeHydrate({ children }: any) {
   return (
     <div suppressHydrationWarning>
-      {typeof window === "undefined" ? null : children}
+      {typeof window === 'undefined' ? null : children}
     </div>
   );
 }
