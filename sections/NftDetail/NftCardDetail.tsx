@@ -22,16 +22,22 @@ type BidCardProps = {
   tokenId: number;
 };
 
-const BidCard = ({ currentBid, isMobile, endsIn, contractAddress, tokenId }: BidCardProps) => {
+const BidCard = ({
+  currentBid,
+  isMobile,
+  endsIn,
+  contractAddress,
+  tokenId,
+}: BidCardProps) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
   const { showPopup } = usePopup();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft(`${endsIn}`));
     }, 1000);
-    return () => clearTimeout(timer);
-  });
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -92,39 +98,48 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
   const { activePopupName, showPopup } = usePopup();
   const { push } = useAppRouter();
+  const { getAuctionInfo } = useWeb3Modal();
 
   const [isSold, _setSold] = useState<boolean>(false);
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     nextMinBid: string;
     fullInfo: any;
-  }>({ bid: '1', nextMinBid: '', fullInfo: '' });
+  }>({ bid: '0', nextMinBid: '', fullInfo: '' });
 
-  useWeb3Modal()
-    .getAuctionInfo(item.contractAddress, item.tokenId)
-    .then((i) => setCurrentBid({ ...i }))
-    .catch((error) => console.log(`NftCardDetail ${error}`));
+  useEffect(() => {
+    getAuctionInfo(item.contractAddress, item.tokenId)
+      .then((i) => {
+        setCurrentBid({ ...i });
+      })
+      .catch((error) => console.log(`NftCardDetail ${error}`));
+  }, []);
 
-  const handleToAuction = () => push("/auction");
-
+  const handleToAuction = () => push('/auction');
+  console.log(currentBid);
   return (
     <>
       <div>
         {(isTablet || isMobile) && !isSold && !activePopupName && (
           <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
             {isTablet ? (
-              <BidCard endsIn={item.endsIn} currentBid={currentBid.bid} contractAddress={item.contractAddress} tokenId={item.tokenId} />
+              <BidCard
+                endsIn={item.endsIn}
+                currentBid={currentBid.nextMinBid}
+                contractAddress={item.contractAddress}
+                tokenId={item.tokenId}
+              />
             ) : (
               <Button
                 mode="custom"
                 label="Place Bid"
-                onClick={() => showPopup(
-                    'bid',
-                    {
-                      currentBid: currentBid.bid,
-                      contractAddress: item.contractAddress,
-                      tokenId: item.tokenId
-                    })}
+                onClick={() =>
+                  showPopup('bid', {
+                    currentBid: currentBid.bid,
+                    contractAddress: item.contractAddress,
+                    tokenId: item.tokenId,
+                  })
+                }
                 className="bg-white text-carbon w-100%"
               />
             )}
@@ -145,7 +160,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
               <BidCard
                 isMobile={isMobile}
                 endsIn={item.endsIn}
-                currentBid={currentBid.bid}
+                currentBid={currentBid.nextMinBid}
                 contractAddress={item.contractAddress}
                 tokenId={item.tokenId}
               />

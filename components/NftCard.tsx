@@ -18,32 +18,33 @@ function NftCard({
   type,
 }: Pick<
   AuctionItemType,
-  "imageSrc" | "name" | "index" | "endsIn" | "contractAddress" | "tokenId"
+  'imageSrc' | 'name' | 'index' | 'endsIn' | 'contractAddress' | 'tokenId'
 > &
   NftCardProps) {
   const { push } = useAppRouter();
+  const { getAuctionInfo } = useWeb3Modal();
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     nextMinBid: string;
-    fullInfo: any;
-  }>({ bid: '0', nextMinBid: '', fullInfo: '' });
+  }>({ bid: '0', nextMinBid: '' });
 
   const navlinkToNft = () => push(`/auction/${index}`);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft(`${endsIn}`));
     }, 1000);
-    return () => clearTimeout(timer);
-  });
+    return () => clearTimeout(interval);
+  }, []);
 
-  useWeb3Modal()
-    .getAuctionInfo(contractAddress, tokenId)
-    .then((i) => setCurrentBid({ ...i }))
-    .catch((error) => console.log(`NftCard ${error}`));
-
-  // if (!Object.keys(timeLeft).length) return null;
+  useEffect(() => {
+    getAuctionInfo(contractAddress, tokenId)
+      .then(({ bid, nextMinBid }) => {
+        setCurrentBid({ bid, nextMinBid });
+      })
+      .catch((error) => console.error(`NftCard ${error}`));
+  }, []);
 
   return (
     <div
@@ -56,12 +57,12 @@ function NftCard({
           src={imageSrc}
           className={`${
             index! < 2 && !type
-              ? "laptop:w-[544px] laptop:h-[544px]"
-              : "laptop:w-[248px] laptop:h-[240px]"
+              ? 'laptop:w-[544px] laptop:h-[544px]'
+              : 'laptop:w-[248px] laptop:h-[240px]'
           } ${
             !index && !type
-              ? "tablet:w-[624px] tablet:h-[624px]"
-              : "tablet:w-[288px] tablet:h-[288px]"
+              ? 'tablet:w-[624px] tablet:h-[624px]'
+              : 'tablet:w-[288px] tablet:h-[288px]'
           }
           mobile:w-[272px] mobile:h-[270px] object-contain`}
         />
