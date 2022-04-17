@@ -1,8 +1,7 @@
-import { SharedProps } from "@components/wrapper";
-import Auction from "@sections/Auction/Auction";
-import NftDetail from "@sections/NftDetail/NftDetail";
-import type { NextPage } from "next";
-import Head from "next/head";
+import { SharedProps } from '@components/wrapper';
+import NftDetail from '@sections/NftDetail/NftDetail';
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
 const NftDetailPage: NextPage<SharedProps> = (props) => {
   return (
