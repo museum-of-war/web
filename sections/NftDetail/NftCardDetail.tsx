@@ -1,16 +1,19 @@
 import BidsHistoryTable from "@components/BidsHistoryTable";
 import Button from "@components/Button";
+import FormattedInputs from "@components/FormattedInputs";
 import NftCard from "@components/NftCard";
 import { useViewPort } from "@hooks/useViewport";
+import { Box, Modal } from "@mui/material";
 import { useState } from "react";
 
 type NftCardDetailProps = {};
 
 type BidCardProps = {
   isMobile?: boolean;
+  toggleModal: () => void;
 };
 
-const BidCard = ({ isMobile }: BidCardProps) => {
+const BidCard = ({ isMobile, toggleModal }: BidCardProps) => {
   return (
     <>
       <div className="flex justify-between tablet:items-end mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
@@ -48,7 +51,7 @@ const BidCard = ({ isMobile }: BidCardProps) => {
         <Button
           mode="custom"
           label="Place Bid"
-          onClick={() => console.log("asd")}
+          onClick={toggleModal}
           className="bg-white text-carbon w-100% mt-24px"
         />
       )}
@@ -57,101 +60,142 @@ const BidCard = ({ isMobile }: BidCardProps) => {
 };
 
 const NftCardDetail = ({}: NftCardDetailProps) => {
-  const [isSold, setSold] = useState<boolean>(false);
   const { isTablet, isMobile } = useViewPort();
+  const [isSold, setSold] = useState<boolean>(false);
+  const [isOpenModal, setOpenModal] = useState<boolean>(true);
+
+  const toggleModal = () => setOpenModal((state) => !state);
+
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    width: isMobile ? "100%" : "auto",
+    height: isMobile ? "100%" : "auto",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "#212121",
+  };
+
   return (
-    <div>
-      {(isTablet || isMobile) && !isSold && (
-        <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
-          {isTablet ? (
-            <BidCard />
-          ) : (
-            <Button
-              mode="custom"
-              label="Place Bid"
-              onClick={() => console.log("asd")}
-              className="bg-white text-carbon w-100%"
-            />
-          )}
-        </div>
-      )}
-      <div className="flex mt-40px mobile:flex-col laptop:flex-row  justify-between">
-        <div className="laptop:w-[48%] mobile: w-full">
-          <img alt="Dots" src={"../img/pd-mockNFT.png"} />
-        </div>
-        <div className="laptop:w-[48%] mobile: w-full">
-          {isSold ? (
-            <p className="mobile:text-27px tablet:text-32px font-black  mobile:mt-20px laptop:mt-[0px]">
-              Sold
-            </p>
-          ) : isTablet ? (
-            <></>
-          ) : (
-            <BidCard isMobile={isMobile} />
-          )}
-          <p className="mobile:text-14px tablet:text-16px mobile:mt-40px leading-[150%] tablet:mt-48px">
-            Russia launched rocket attacks on Ukrainian cities. The missile had
-            hit airport of Ivano-Frankivsk. Russia launched rocket attacks on
-            Ukrainian cities. The missile had hit airport of Ivano-Frankivsk.
-            Russia launched rocket attacks on Ukrainian cities. The missile had
-            hit airport of Ivano-Frankivsk.
-          </p>
-          <p className="mobile:text-14px tablet:text-16px leading-[150%] mt-24px">
-            Росія завдала ракетних ударів по українських містах. Росія завдала
-            ракетних ударів по українських містах. Росія завдала ракетних ударів
-            по українських містах.
-          </p>
-          <div className="flex  mobile:flex-col laptop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
-            <div className="flex mobile:flex-col tablet:flex-row text-16px">
-              <div className="flex">
-                <p>Artist:</p>
-                <p className=" tablet:ml-[8px]">Nickname</p>
-              </div>
-              <div className="flex mobile:ml-[0px] tablet:ml-48px mobile:my-[20px] tablet:my-[0px]">
-                <p>Edition:</p>
-                <p className="ml-[8px]">1 of 1</p>
-              </div>
-            </div>
-            {isSold && (
-              <div className="flex text-16px laptop:mt-24px tablet:ml-48px laptop:ml-[0px]">
-                <p>Owner:</p>
-                <p className="ml-[8px]">0x4EFesagas12...0x4E</p>
-              </div>
+    <>
+      <div>
+        {(isTablet || isMobile) && !isSold && (
+          <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
+            {isTablet ? (
+              <BidCard toggleModal={toggleModal} />
+            ) : (
+              <Button
+                mode="custom"
+                label="Place Bid"
+                onClick={toggleModal}
+                className="bg-white text-carbon w-100%"
+              />
             )}
           </div>
-          {isSold && (
-            <div className="mobile:mt-60px tablet:mt-72px laptop:mt-96px">
-              <p className="mobile:text-27px tablet:text-32px font-black mobile:mb-30px tablet:mb-36px">
-                Bids history
+        )}
+        <div className="flex mt-40px mobile:flex-col laptop:flex-row  justify-between">
+          <div className="laptop:w-[48%] mobile: w-full">
+            <img alt="Dots" src={"../img/pd-mockNFT.png"} />
+          </div>
+          <div className="laptop:w-[48%] mobile: w-full">
+            {isSold ? (
+              <p className="mobile:text-27px tablet:text-32px font-black  mobile:mt-20px laptop:mt-[0px]">
+                Sold
               </p>
-              <BidsHistoryTable />
-            </div>
-          )}
-          <div className="laptop:mt-96px mobile:my-60px tablet:mt-72px">
-            <div className="flex items-center mobile:mb-[20px] tablet:mb-24px">
-              <p className="mobile:text-27px tablet:text-32px font-black">
-                More auctions
-              </p>
-              {!isMobile && (
-                <p className="text-[14px] font-black ml-32px">
-                  See all auctions
-                </p>
+            ) : isTablet ? (
+              <></>
+            ) : (
+              <BidCard isMobile={isMobile} toggleModal={toggleModal} />
+            )}
+            <p className="mobile:text-14px tablet:text-16px mobile:mt-40px leading-[150%] tablet:mt-48px">
+              Russia launched rocket attacks on Ukrainian cities. The missile
+              had hit airport of Ivano-Frankivsk. Russia launched rocket attacks
+              on Ukrainian cities. The missile had hit airport of
+              Ivano-Frankivsk. Russia launched rocket attacks on Ukrainian
+              cities. The missile had hit airport of Ivano-Frankivsk.
+            </p>
+            <p className="mobile:text-14px tablet:text-16px leading-[150%] mt-24px">
+              Росія завдала ракетних ударів по українських містах. Росія завдала
+              ракетних ударів по українських містах. Росія завдала ракетних
+              ударів по українських містах.
+            </p>
+            <div className="flex  mobile:flex-col laptop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
+              <div className="flex mobile:flex-col tablet:flex-row text-16px">
+                <div className="flex">
+                  <p>Artist:</p>
+                  <p className=" tablet:ml-[8px]">Nickname</p>
+                </div>
+                <div className="flex mobile:ml-[0px] tablet:ml-48px mobile:my-[20px] tablet:my-[0px]">
+                  <p>Edition:</p>
+                  <p className="ml-[8px]">1 of 1</p>
+                </div>
+              </div>
+              {isSold && (
+                <div className="flex text-16px laptop:mt-24px tablet:ml-48px laptop:ml-[0px]">
+                  <p>Owner:</p>
+                  <p className="ml-[8px]">0x4EFesagas12...0x4E</p>
+                </div>
               )}
             </div>
-            <div className="flex flex-wrap -mx-24px">
-              {[1, 2].map((i, index) => (
-                <div
-                  className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
-                  key={i}
-                >
-                  <NftCard img="../img/pd-mockNFT.png" />
-                </div>
-              ))}
+            {isSold && (
+              <div className="mobile:mt-60px tablet:mt-72px laptop:mt-96px">
+                <p className="mobile:text-27px tablet:text-32px font-black mobile:mb-30px tablet:mb-36px">
+                  Bids history
+                </p>
+                <BidsHistoryTable />
+              </div>
+            )}
+            <div className="laptop:mt-96px mobile:my-60px tablet:mt-72px">
+              <div className="flex items-center mobile:mb-[20px] tablet:mb-24px">
+                <p className="mobile:text-27px tablet:text-32px font-black">
+                  More auctions
+                </p>
+                {!isMobile && (
+                  <p className="text-[14px] font-black ml-32px">
+                    See all auctions
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-wrap -mx-24px">
+                {[1, 2].map((i, index) => (
+                  <div
+                    className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
+                    key={i}
+                  >
+                    <NftCard imageSrc="../img/pd-mockNFT.png" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <Modal
+        open={isOpenModal}
+        onClose={toggleModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="mobile:px-20px mobile:py-[50%] tablet:p-48px  laptop:p-72px">
+            <p className="mobile:text-29px tablet:text-32px font-black">
+              Place bid
+            </p>
+            <p className="mobile:text-14px tablet:text-16px my-24px">
+              You must bid at least 0.26 ETH. Once a bid is placed it cannot be
+              withdrawn.
+            </p>
+            <FormattedInputs />
+            <Button
+              mode="custom"
+              label="Place Bid"
+              onClick={toggleModal}
+              className="bg-white text-carbon w-100% mt-24px"
+            />
+          </div>
+        </Box>
+      </Modal>
+    </>
   );
 };
 
