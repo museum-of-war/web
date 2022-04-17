@@ -27,7 +27,81 @@
 .font-rlight {
   font-family: RockstarLight;
 }
+.font-rlight-forced,
+.font-rlight-forced * {
+  font-family: RockstarLight!important;
+}
 
 .font-rnarrow {
   font-family: RockstarNarrowRegular;
 }
+
+/* TextField custom style */
+.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+  color: white !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+
+}
+
+.Mui-focused {
+  color: white !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+
+}
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
+  color: #FFFFFF !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+
+}
+
+.css-66dh3a-MuiInputBase-input-MuiInput-input {
+  color: #FFFFFF !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  border-color: #FFFFFF !important;
+  padding-left: 10px !important;
+}
+
+.css-5xn5lu-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: 2px solid #FFFFFF !important;
+}
+
+.css-5xn5lu-MuiInputBase-root-MuiInput-root:before {
+  border-bottom: 2px solid #FFFFFF !important;
+}
+
+/* END */
+/* Drawer custom style */
+.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+  background-color: #212121 !important;
+}
+
+/* END */
+/* Table custom style */
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+  background-color: #212121 !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+.css-1howxi1-MuiTableCell-root {
+  color: #FFFFFF !important;
+  border-bottom: 4px solid #FFFFFF !important;
+  padding: 0px 0px 6px !important;
+  font-weight: 900 !important;
+  font-size: 14px !important;
+}
+
+.css-dsuxgy-MuiTableCell-root {
+  color: #FFFFFF !important;
+  border-bottom: none !important;
+  padding: 12px 12px 12px 0px !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+}
+
+/* END */

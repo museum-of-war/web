@@ -1,14 +1,15 @@
-import SupportProject from "@sections/AboutProject/SupportProject";
-import SupportSticky from "@sections/AboutProject/SupportSticky";
-import React from "react";
-import ContentMission from "./ContentMission";
-const ContentTop = dynamic(() => import("./ContentTop/ContentTop"), {
+import SupportProject from '@sections/AboutProject/SupportProject';
+import SupportSticky from '@sections/AboutProject/SupportSticky';
+import React from 'react';
+import ContentMission from './ContentMission';
+const ContentTop = dynamic(() => import('./ContentTop/ContentTop'), {
   ssr: false,
 });
-import ContentWar from "./ContentWar";
-import ContentMain from "./ContentMain";
-import ContentMedia from "./ContentMedia";
-import dynamic from "next/dynamic";
+import ContentWar from './ContentWar';
+import ContentMain from './ContentMain';
+import ContentMedia from './ContentMedia';
+import dynamic from 'next/dynamic';
+import ContentChapter from './ContentChapter';
 
 type AboutProjectProps = {
   signerAddress: string;
@@ -19,6 +20,7 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
   return (
     <div>
       <ContentTop signerAddress={signerAddress} handleConnect={handleConnect} />
+      <ContentChapter />
       <ContentMission />
       <ContentWar />
       <ContentMain
@@ -26,8 +28,8 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
         handleConnect={handleConnect}
       />
       <ContentMedia />
-      <SupportSticky targetAnchorId={"countdown-banner"}/>
-      <SupportProject/>
+      <SupportSticky targetAnchorId={'countdown-banner'} />
+      <SupportProject />
     </div>
   );
 };

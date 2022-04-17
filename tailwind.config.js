@@ -4,8 +4,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./sections/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
+      shadow: {
+        "3xl": "0px 4px 32px 4px rgba(33, 33, 33, 0.3)",
+      },
       colors: {
         carbon: {
           DEFAULT: "#212121",
@@ -23,6 +27,7 @@ module.exports = {
         beige: {
           DEFAULT: "#E9E9E9",
         },
+        dropdown: { DEFAULT: "#383838" },
       },
       height: (theme) => ({
         "3%": "3%",
@@ -308,11 +313,11 @@ module.exports = {
         "20em": "20em",
       }),
       zIndex: {
-        "15": "15",
-        "16": "16",
-        "17": "17",
-        "18": "18",
-        "19": "19",
+        15: "15",
+        16: "16",
+        17: "17",
+        18: "18",
+        19: "19",
       },
     },
     spacing: {
@@ -471,6 +476,7 @@ module.exports = {
       "40px": "40px",
       "44px": "44px",
       "45px": "45px",
+      "46px": "46px",
       "50px": "50px",
       "55px": "55px",
       "57px": "57px",
@@ -479,6 +485,7 @@ module.exports = {
       "70px": "70px",
       "75px": "75px",
       "80px": "80px",
+      "84px": "84px",
       "85px": "85px",
       "90px": "90px",
       "100px": "100px",
@@ -507,7 +514,7 @@ module.exports = {
       "7vh": "7vh",
     },
     maxWidth: {
-      "none": "none",
+      none: "none",
       "10vw": "10vw",
       "50px": "50px",
       "100px": "100px",
