@@ -1,21 +1,22 @@
-import { PROSPECT_100_ADDRESS } from '@sections/Constants';
+import { AUCTION_END_DATE, FIRST_DROP_ADDRESS, PROSPECT_100_ADDRESS } from '@sections/Constants';
 import { AuctionCategories, AuctionItemType } from '@sections/types';
+import WarlineData from '@sections/Warline/WarlineData';
 
 const AuctionData: Array<AuctionItemType> = [
-  // ...WarlineData[0]!.events.slice(0, 4).map((event) => ({
-  //   name: `Day ${event.DayNo}, ${event.Time}`,
-  //   endsIn: new Date("2022-04-24T23:00:00.000+03:00"),
-  //   category: AuctionCategories.firstDrop,
-  //   contractAddress: FIRST_DROP_ADDRESS,
-  //   tokenId: +event.Tokenid,
-  //   imageSrc: "img/original/" + event.ImageType,
-  //   artist: event.ArtistName,
-  //   descriptionEnglish: event.DescriptionEnglish,
-  //   descriptionUkrainian: event.DescriptionUkrainian,
-  // })),
+  ...WarlineData[0]!.events.slice(0, 4).map((event) => ({
+    name: `Day ${event.DayNo}, ${event.Time}`,
+    endsIn: new Date(AUCTION_END_DATE),
+    category: AuctionCategories.firstDrop,
+    contractAddress: FIRST_DROP_ADDRESS,
+    tokenId: +event.Tokenid,
+    imageSrc: 'img/original/' + event.ImageType,
+    artist: event.ArtistName,
+    descriptionEnglish: event.DescriptionEnglish,
+    descriptionUkrainian: event.DescriptionUkrainian,
+  })),
   {
     name: 'PROSPECT 100 #2',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 2,
@@ -28,7 +29,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #3',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 3,
@@ -39,7 +40,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #4',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 4,
@@ -50,7 +51,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #5',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 5,
@@ -61,7 +62,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #6',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 6,
@@ -72,7 +73,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #7',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 7,
@@ -83,7 +84,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #8',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 8,
@@ -95,7 +96,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #9',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 9,
@@ -110,7 +111,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #10',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 10,
@@ -121,7 +122,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #11',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 11,
@@ -135,7 +136,7 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #12',
-    endsIn: new Date('2022-04-24T23:00:00.000+03:00'),
+    endsIn: new Date(AUCTION_END_DATE),
     category: AuctionCategories.prospect100,
     contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 12,
