@@ -1,20 +1,20 @@
-import { useAppRouter } from "@hooks/useAppRouter";
-import React from "react";
-import { AuctionItemType } from "@sections/types";
+import { useAppRouter } from '@hooks/useAppRouter';
+import React from 'react';
+import { AuctionItemType } from '@sections/types';
 
-function NftCard({ imageSrc, name, index }: Pick<AuctionItemType, "imageSrc" | "name" | "index">) {
+function NftCard({
+  imageSrc,
+  name,
+  index,
+}: Pick<AuctionItemType, 'imageSrc' | 'name' | 'index'>) {
   const { push } = useAppRouter();
   const navlinkToNft = () => push(`/auction/${index}`);
   return (
     <div
       onClick={navlinkToNft}
-      className="p-10px hover:border-4 hover:border-white hover:border-solid hover:cursor-pointer"
+      className="p-10px hover:border-4 hover:border-white hover:border-solid hover:cursor-pointer border-4 border-transparent"
     >
-      <img
-        alt={name}
-        src={imageSrc}
-        className="w-100% h-544px"
-      />
+      <img alt={name} src={imageSrc} className="w-100% h-544px" />
       <h3 className="font-black text-20px leading-240%">{name}</h3>
       <div className="flex justify-between">
         <div>

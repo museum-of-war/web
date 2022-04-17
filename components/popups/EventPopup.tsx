@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
-import FsLightbox from "fslightbox-react";
-import { useViewPort } from "@hooks/useViewport";
-import { EventType } from "@sections/types";
-import { VscChromeClose } from "react-icons/vsc";
-import { openInNewTab } from "@sections/utils";
-import { getUrls } from "@sections/Warline/WarlineUrls";
-import { usePopup } from "../../providers/PopupProvider";
+import React, { useEffect, useMemo, useState } from 'react';
+import FsLightbox from 'fslightbox-react';
+import { useViewPort } from '@hooks/useViewport';
+import { EventType } from '@sections/types';
+import { VscChromeClose } from 'react-icons/vsc';
+import { openInNewTab } from '@sections/utils';
+import { getUrls } from '@sections/Warline/WarlineUrls';
+import { usePopup } from '../../providers/PopupProvider';
 
 type PropsPopup = {
   eventData: EventType;
@@ -15,79 +15,77 @@ type PropsPopup = {
 };
 
 const rand_imgs = [
-  "img/dots-1.png",
-  "img/dots-2.png",
-  "img/dots-3.png",
-  "img/dots-4.png",
-  "img/dots-5.png",
-  "img/dots-6.png",
-  "img/dots-7.png",
-  "img/dots-8.png",
+  'img/dots-1.png',
+  'img/dots-2.png',
+  'img/dots-3.png',
+  'img/dots-4.png',
+  'img/dots-5.png',
+  'img/dots-6.png',
+  'img/dots-7.png',
+  'img/dots-8.png',
 ];
 
-const Popup = ({
-  eventData,
-  dayNo,
-  idx,
-  allEvents
-}: PropsPopup) => {
+const Popup = ({ eventData, dayNo, idx, allEvents }: PropsPopup) => {
   const [data, setData] = useState<EventType>(eventData);
   const [currIdx, setCurrIdx] = useState<number>(() => {
-    return allEvents.filter(event => Number(event.DayNo) < dayNo).length + idx;
+    return (
+      allEvents.filter((event) => Number(event.DayNo) < dayNo).length + idx
+    );
   });
   const { hidePopup } = usePopup();
   const [toggler, setToggler] = useState<boolean>(false);
 
   const alt = useMemo(() => {
-    return `Day ${data.DayNo}, ${data.Time}`
+    return `Day ${data.DayNo}, ${data.Time}`;
   }, [data]);
 
   useEffect(() => {
     setData(allEvents[currIdx] as EventType);
   }, [currIdx]);
 
-  const {isMobile, isTablet} = useViewPort();
+  const { isMobile, isTablet } = useViewPort();
 
   const TokenidFormatter = (tokenId: string) => {
     return parseInt(tokenId) < 10
-      ? "#000" + tokenId
+      ? '#000' + tokenId
       : parseInt(tokenId) < 100
-        ? "#00" + tokenId
-        : parseInt(tokenId) < 1000
-          ? "#0" + tokenId
-          : "#" + tokenId;
+      ? '#00' + tokenId
+      : parseInt(tokenId) < 1000
+      ? '#0' + tokenId
+      : '#' + tokenId;
   };
 
-  const renderPrevBtn = (className: string = "", imgClass: string = "") => (
+  const renderPrevBtn = (className: string = '', imgClass: string = '') => (
     <div className={`z-20 ${className}`}>
       <button onClick={() => currIdx > 0 && setCurrIdx(currIdx - 1)}>
-        <img src={"img/modal-left.svg"} className={imgClass}/>
+        <img src={'img/modal-left.svg'} className={imgClass} />
       </button>
     </div>
   );
 
-  const renderNextBtn = (className: string = "", imgClass: string = "") => (
+  const renderNextBtn = (className: string = '', imgClass: string = '') => (
     <div className={`z-19 ${className}`}>
       <button
-        onClick={() => currIdx < allEvents.length - 1 && setCurrIdx(currIdx + 1)}
+        onClick={() =>
+          currIdx < allEvents.length - 1 && setCurrIdx(currIdx + 1)
+        }
       >
         <img
-          src={"img/modal-left.svg"}
-          style={{transform: " scale(-1, 1)"}}
+          src={'img/modal-left.svg'}
+          style={{ transform: ' scale(-1, 1)' }}
           className={imgClass}
         />
       </button>
     </div>
   );
 
-  const renderImg = (className = "w-100% mt-10%") => {
-    const randomSrc = rand_imgs[idx % 8] as string
-    const {
-      previewSrc,
-      originalSrc,
-      animationSrc,
-      isAnimation,
-    } = getUrls(data.Tokenid, data.ImageType, randomSrc as string);
+  const renderImg = (className = 'w-100% mt-10%') => {
+    const randomSrc = rand_imgs[idx % 8] as string;
+    const { previewSrc, originalSrc, animationSrc, isAnimation } = getUrls(
+      data.Tokenid,
+      data.ImageType,
+      randomSrc as string,
+    );
 
     const logoSrc = isAnimation ? animationSrc : previewSrc;
 
@@ -98,7 +96,7 @@ const Popup = ({
           onClick={() => setToggler(!toggler)}
           src={logoSrc}
           className={`${className} hover:cursor-pointer`}
-          onError={({currentTarget}) => {
+          onError={({ currentTarget }) => {
             if (isAnimation) {
               currentTarget.src = previewSrc;
               currentTarget.onerror = () => {
@@ -111,23 +109,20 @@ const Popup = ({
             }
           }}
         />
-        <FsLightbox
-          toggler={toggler}
-          sources={[originalSrc]}
-        />
+        <FsLightbox toggler={toggler} sources={[originalSrc]} />
       </>
     );
   };
 
   return isMobile || isTablet ? (
     <div className="fixed z-10 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
-      <div className="z-20 bg-white absolute w-100% flex flex-col px-5% py-3% overflow-auto top-0" style={{ height: 'calc(100% - 60px)' }}>
+      <div
+        className="z-20 bg-white absolute w-100% flex flex-col px-5% py-3% overflow-auto top-0"
+        style={{ height: 'calc(100% - 60px)' }}
+      >
         <div className="w-100% text-right">
-          <button
-            className="right-20px top-20px"
-            onClick={hidePopup}
-          >
-            <VscChromeClose size={25}/>
+          <button className="right-20px top-20px" onClick={hidePopup}>
+            <VscChromeClose size={25} />
           </button>
         </div>
         <div className="w-100%">
@@ -164,7 +159,7 @@ const Popup = ({
               >
                 <img
                   alt="Twitter"
-                  src={"img/warline-TwitterLogo.png"}
+                  src={'img/warline-TwitterLogo.png'}
                   className="w-50px"
                 />
               </button>
@@ -180,26 +175,25 @@ const Popup = ({
         </div>
       </div>
       <div className="fixed bottom-0 bg-black left-0 right-0 z-20 flex items-center justify-evenly h-60px">
-        {renderPrevBtn("", "w-75%")}
-        {renderNextBtn("", "w-75%")}
+        {renderPrevBtn('', 'w-75%')}
+        {renderNextBtn('', 'w-75%')}
       </div>
     </div>
   ) : (
-    <div className="fixed z-10 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly"
-         onClick={(e) => {
-           if (e.target !== e.currentTarget) return;
+    <div
+      className="fixed z-10 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly"
+      onClick={(e) => {
+        if (e.target !== e.currentTarget) return;
 
-           hidePopup();
-         }}>
+        hidePopup();
+      }}
+    >
       {renderPrevBtn()}
       <div className="z-20 h-4/6 bg-white relative w-80% flex flex-row px-5% py-3% overflow-auto">
-        <button
-          className="absolute right-20px top-20px"
-          onClick={hidePopup}
-        >
-          <VscChromeClose size={25}/>
+        <button className="absolute right-20px top-20px" onClick={hidePopup}>
+          <VscChromeClose size={25} />
         </button>
-        <div className="w-35%">{renderImg("w-90% pr-5%")}</div>
+        <div className="w-35%">{renderImg('w-90% pr-5%')}</div>
         <div className="w-65%">
           <div className="flex flex-row items-center justify-between ">
             <p className="font-rblack leading-32px text-32px">
@@ -233,7 +227,7 @@ const Popup = ({
               >
                 <img
                   alt="Twitter"
-                  src={"img/warline-TwitterLogo.png"}
+                  src={'img/warline-TwitterLogo.png'}
                   className="w-50px"
                 />
               </button>

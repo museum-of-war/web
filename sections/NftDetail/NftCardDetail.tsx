@@ -1,16 +1,18 @@
-import BidsHistoryTable from "@components/BidsHistoryTable";
-import Button from "@components/Button";
-import NftCard from "@components/NftCard";
-import { useViewPort } from "@hooks/useViewport";
-import { useState } from "react";
+import BidsHistoryTable from '@components/BidsHistoryTable';
+import Button from '@components/Button';
+import NftCard from '@components/NftCard';
+import { useViewPort } from '@hooks/useViewport';
+import { useState } from 'react';
+import { usePopup } from '../../providers/PopupProvider';
 
 type NftCardDetailProps = {};
-
 type BidCardProps = {
   isMobile?: boolean;
 };
 
 const BidCard = ({ isMobile }: BidCardProps) => {
+  const { showPopup } = usePopup();
+
   return (
     <>
       <div className="flex justify-between tablet:items-end mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
@@ -21,7 +23,7 @@ const BidCard = ({ isMobile }: BidCardProps) => {
           </p>
           <p className="text-16px">$903</p>
         </div>
-        <div className="tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white"></div>
+        <div className="tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
         <div>
           <p className="text-14px opacity-70 tablet:mb-12px">Ends in</p>
           <div className="flex -mx-10px">
@@ -48,7 +50,9 @@ const BidCard = ({ isMobile }: BidCardProps) => {
         <Button
           mode="custom"
           label="Place Bid"
-          onClick={() => console.log("asd")}
+          onClick={() => {
+            showPopup('bid', { currentBid: 1 });
+          }}
           className="bg-white text-carbon w-100% mt-24px"
         />
       )}
@@ -57,11 +61,13 @@ const BidCard = ({ isMobile }: BidCardProps) => {
 };
 
 const NftCardDetail = ({}: NftCardDetailProps) => {
-  const [isSold, setSold] = useState<boolean>(false);
+  const [isSold] = useState<boolean>(false);
   const { isTablet, isMobile } = useViewPort();
+  const { activePopupName, showPopup } = usePopup();
+
   return (
     <div>
-      {(isTablet || isMobile) && !isSold && (
+      {(isTablet || isMobile) && !isSold && !activePopupName && (
         <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
           {isTablet ? (
             <BidCard />
@@ -69,7 +75,7 @@ const NftCardDetail = ({}: NftCardDetailProps) => {
             <Button
               mode="custom"
               label="Place Bid"
-              onClick={() => console.log("asd")}
+              onClick={() => showPopup('bid', { currentBid: 1 })}
               className="bg-white text-carbon w-100%"
             />
           )}
@@ -77,7 +83,7 @@ const NftCardDetail = ({}: NftCardDetailProps) => {
       )}
       <div className="flex mt-40px mobile:flex-col laptop:flex-row  justify-between">
         <div className="laptop:w-[48%] mobile: w-full">
-          <img alt="Dots" src={"../img/pd-mockNFT.png"} />
+          <img alt="Dots" src={'../img/pd-mockNFT.png'} />
         </div>
         <div className="laptop:w-[48%] mobile: w-full">
           {isSold ? (
@@ -144,7 +150,7 @@ const NftCardDetail = ({}: NftCardDetailProps) => {
                   className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
                   key={i}
                 >
-                  <NftCard img="../img/pd-mockNFT.png" />
+                  <NftCard name="temp" imageSrc="../img/pd-mockNFT.png" />
                 </div>
               ))}
             </div>
