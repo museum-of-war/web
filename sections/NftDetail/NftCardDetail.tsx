@@ -62,7 +62,7 @@ const BidCard = ({ isMobile, toggleModal }: BidCardProps) => {
 const NftCardDetail = ({}: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
   const [isSold, setSold] = useState<boolean>(false);
-  const [isOpenModal, setOpenModal] = useState<boolean>(true);
+  const [isOpenModal, setOpenModal] = useState<boolean>(false);
 
   const toggleModal = () => setOpenModal((state) => !state);
 
