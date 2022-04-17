@@ -6,8 +6,8 @@ type PropsCountdownbanner = {
   endDate: string,
 };
 
-const calculateTimeLeft = (endDate: string) => {
-  let difference = +new Date(endDate) - +new Date() + 600*1000;
+export const calculateTimeLeft = (endDate: string) => {
+  let difference = +new Date(endDate) - +new Date() + 600 * 1000;
 
   return difference > 0
     ? {

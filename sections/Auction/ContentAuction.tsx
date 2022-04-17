@@ -162,17 +162,20 @@ const ContentAuction = ({}: ContentAuctionProps) => {
           />
         )}
       </div>
-      <div className="flex flex-wrap -mx-24px">
+      <div className="flex flex-wrap -mx-16px">
         {AuctionData.map((item, index) => (
           <div
-            className={`${
-              index < 2 ? "laptop:w-1/2" : "laptop:w-1/4"
-            } ${
+            className={`${index < 2 ? "laptop:w-1/2" : "laptop:w-1/4"} ${
               index === 0 ? "tablet:w-full" : "tablet:w-1/2"
-            } mobile:w-full flex flex-col p-14px`}
+            } mobile:w-full flex flex-col py-14px px-6px`}
             key={index}
           >
-            <NftCard index={index} imageSrc={item.imageSrc} name={item.name} />
+            <NftCard
+              index={index}
+              imageSrc={item.imageSrc}
+              name={item.name}
+              endsIn={item.endsIn}
+            />
           </div>
         ))}
       </div>
