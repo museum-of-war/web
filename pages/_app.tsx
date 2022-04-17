@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { AppWrapper } from '@components/wrapper';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
-import '../styles/globals.css';
 import { useAppRouter } from '@hooks/useAppRouter';
+import '../styles/globals.css';
 
 function SafeHydrate({ children }: { children: React.ReactNode }) {
   return (

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import OutsideClickHandler from "react-outside-click-handler";
+import React, { useEffect, useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 
 export const ArrowSvg = () => (
   <svg
@@ -59,7 +59,7 @@ function DropdownSelect({
                     border-2 border-carbon dark:border-white
                     px-20px py-10px whitespace-nowrap
                     font-rblack text-14px
-                    hover:bg-carbon-800 focus:border-double
+                    hover:bg-carbon-800
                     rounded-full ${className}`}
             aria-expanded="true"
             aria-haspopup="true"
@@ -68,7 +68,7 @@ function DropdownSelect({
             <span className="mr-10px">
               {options.find((i) => i.value === selected)?.text}
             </span>
-            <span className={`${!isOpen ? "rotate-180" : ""}`}>
+            <span className={`${!isOpen ? 'rotate-180' : ''}`}>
               <ArrowSvg />
             </span>
           </button>

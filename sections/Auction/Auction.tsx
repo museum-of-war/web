@@ -1,10 +1,10 @@
-import Blurb from "@sections/AboutProject/Blurb";
-import ContentAuction from "./ContentAuction";
-import DropNft from "./DropNft";
-import { useWeb3Modal } from "@hooks/useWeb3Modal";
-import { useEffect, useState } from "react";
-import { openInNewTab } from "@sections/utils";
-import { MINT_LINK, OPENSEA_LINK } from "@sections/Constants";
+import Blurb from '@sections/AboutProject/Blurb';
+import ContentAuction from './ContentAuction';
+import DropNft from './DropNft';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useEffect, useState } from 'react';
+import { openInNewTab } from '@sections/utils';
+import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
 
 type AuctionProps = {
   signerAddress: string;
@@ -30,7 +30,6 @@ const Auction = ({ signerAddress, handleConnect }: AuctionProps) => {
         ukrainian="Обмежений набір рідкісних та відібраних робіт українських та світових художників. Плаваюча ціна, що базується на ставках та пропозиціях. На цей раз Музей запрошує колекціонерів мистецтва повністю сформувати благодійний збір коштів. Зверніть увагу, що лише колекціонери експонатів Warline можуть брати участь в аукціоні."
       />
       <ContentAuction />
-
       {isCanMint && (
         <DropNft
           desc="Meanwhile, the current drop is still on sale. The NFTs are unique but any NFT will support Ukraine. Get yours."

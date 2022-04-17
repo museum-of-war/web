@@ -51,6 +51,9 @@ const Header = ({
                 : '/img/pd-logoNoSymbol-black.png'
             }`}
             alt="Meta History: Museum of War"
+            onClick={() => {
+              push('/');
+            }}
           />
           <HeaderAndFooterButton
             label={menuOpen ? '' : 'Menu'}
@@ -140,13 +143,16 @@ const Header = ({
   ) : (
     <div className="flex flex-row items-center mb-8% justify-between z-20">
       <img
-        className="w-10% min-w-75px laptop:mr-30% tablet:mr-25%"
+        className="w-10% min-w-75px laptop:mr-30% tablet:mr-25% cursor-pointer"
         src={`${
           theme !== 'dark'
             ? '/img/pd-logoNoSymbol.png'
             : '/img/pd-logoNoSymbol-black.png'
         }`}
         alt="Meta History: Museum of War"
+        onClick={() => {
+          push('/');
+        }}
       />
       <div className="flex flex-row items-center justify-end">
         <div className="flex flex-row items-center justify-end mr-48px">

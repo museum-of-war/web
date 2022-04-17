@@ -27,6 +27,10 @@
 .font-rlight {
   font-family: RockstarLight;
 }
+.font-rlight-forced,
+.font-rlight-forced * {
+  font-family: RockstarLight!important;
+}
 
 .font-rnarrow {
   font-family: RockstarNarrowRegular;
