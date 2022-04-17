@@ -4,6 +4,10 @@ import { AuctionItemType } from '@sections/types';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
+type NftCardProps = {
+  type?: string;
+};
+
 function NftCard({
   imageSrc,
   name,
@@ -11,10 +15,12 @@ function NftCard({
   endsIn,
   contractAddress,
   tokenId,
+  type,
 }: Pick<
   AuctionItemType,
-  'imageSrc' | 'name' | 'index' | 'endsIn' | 'contractAddress' | 'tokenId'
->) {
+  "imageSrc" | "name" | "index" | "endsIn" | "contractAddress" | "tokenId"
+> &
+  NftCardProps) {
   const { push } = useAppRouter();
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
   const [currentBid, setCurrentBid] = useState<{
@@ -49,18 +55,18 @@ function NftCard({
           alt={name}
           src={imageSrc}
           className={`${
-            index! < 2
+            index! < 2 && !type
               ? "laptop:w-[544px] laptop:h-[544px]"
               : "laptop:w-[248px] laptop:h-[240px]"
           } ${
-            !index
+            !index && !type
               ? "tablet:w-[624px] tablet:h-[624px]"
               : "tablet:w-[288px] tablet:h-[288px]"
           }
           mobile:w-[272px] mobile:h-[270px] object-contain`}
         />
       </div>
-      <h3 className="font-black text-20px leading-240%">{name}</h3>
+      <h3 className="font-black text-20px leading-[240%]">{name}</h3>
       <div className="flex justify-between">
         <div>
           <p className="text-12px leading-100% opacity-70">Current bid</p>

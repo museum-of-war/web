@@ -5,7 +5,10 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
 import { AuctionItemType } from '@sections/types';
-import { usePopup } from '@providers/PopupProvider';
+import { useAppRouter } from '@hooks/useAppRouter';
+import AuctionData from '@sections/Auction/AuctionData';
+import NftCard from '@components/NftCard';
+import { usePopup } from 'providers/PopupProvider';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -87,6 +90,7 @@ const BidCard = ({ currentBid, isMobile, endsIn }: BidCardProps) => {
 const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
   const { activePopupName, showPopup } = usePopup();
+  const { push } = useAppRouter();
 
   const [isSold, _setSold] = useState<boolean>(false);
   const [currentBid, setCurrentBid] = useState<{
@@ -99,6 +103,8 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     .getAuctionInfo(item.contractAddress, item.tokenId)
     .then((i) => setCurrentBid({ ...i }))
     .catch((error) => console.log(`NftCardDetail ${error}`));
+
+  const handleToAuction = () => push("/auction");
 
   return (
     <>
@@ -173,18 +179,29 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                   More auctions
                 </p>
                 {!isMobile && (
-                  <p className="text-[14px] font-black ml-32px">
+                  <p
+                    onClick={handleToAuction}
+                    className="text-[14px] font-black ml-32px  hover:cursor-pointer"
+                  >
                     See all auctions
                   </p>
                 )}
               </div>
               <div className="flex flex-wrap -mx-24px">
-                {[1, 2].map((i, index) => (
+                {AuctionData.slice(0, 2).map((item, index) => (
                   <div
                     className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
-                    key={i}
+                    key={index}
                   >
-                    {/* <NftCard imageSrc="../img/pd-mockNFT.png" /> */}
+                    <NftCard
+                      index={index}
+                      imageSrc={`../${item.imageSrc}`}
+                      name={item.name}
+                      endsIn={item.endsIn}
+                      contractAddress={item.contractAddress}
+                      tokenId={item.tokenId}
+                      type="small"
+                    />
                   </div>
                 ))}
               </div>

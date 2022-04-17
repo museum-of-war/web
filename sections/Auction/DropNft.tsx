@@ -5,9 +5,15 @@ type DropNftProps = {
   desc: string;
   buttonLabel: string;
   className?: string;
+  handleClick: () => void;
 };
 
-const DropNft = ({ className, desc, buttonLabel }: DropNftProps) => {
+const DropNft = ({
+  className,
+  desc,
+  buttonLabel,
+  handleClick,
+}: DropNftProps) => {
   const { isMobile } = useViewPort();
   return (
     <div className={`text-center ${className}`}>
@@ -20,7 +26,7 @@ const DropNft = ({ className, desc, buttonLabel }: DropNftProps) => {
       <Button
         mode="custom"
         label={buttonLabel}
-        onClick={() => console.log("asd")}
+        onClick={handleClick}
         className={`bg-white text-carbon tablet:mt-48px mobile:mt-36px ${
           isMobile && "w-full"
         }`}
