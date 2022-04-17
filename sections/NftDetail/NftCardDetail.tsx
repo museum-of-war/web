@@ -135,7 +135,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 label="Place Bid"
                 onClick={() =>
                   showPopup('bid', {
-                    currentBid: currentBid.bid,
+                    currentBid: currentBid.nextMinBid,
                     contractAddress: item.contractAddress,
                     tokenId: item.tokenId,
                   })
