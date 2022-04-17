@@ -5,7 +5,7 @@ import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
 import { LinkButton } from '@components/LinkButton';
 import { getUrls } from '@sections/Warline/WarlineUrls';
-import { usePopup } from '../../providers/PopupProvider';
+import { usePopup } from '@providers/PopupProvider';
 
 type PropsEvent = {
   eventData: EventType;

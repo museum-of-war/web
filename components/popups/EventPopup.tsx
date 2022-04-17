@@ -5,7 +5,7 @@ import { EventType } from '@sections/types';
 import { VscChromeClose } from 'react-icons/vsc';
 import { openInNewTab } from '@sections/utils';
 import { getUrls } from '@sections/Warline/WarlineUrls';
-import { usePopup } from '../../providers/PopupProvider';
+import { usePopup } from '@providers/PopupProvider';
 
 type PropsPopup = {
   eventData: EventType;

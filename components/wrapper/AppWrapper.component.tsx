@@ -2,7 +2,7 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import Footer from '@sections/Footer/Footer';
 import Header from '@sections/Header/Header';
 import { useEffect, useState } from 'react';
-import { PopupProvider } from '../../providers/PopupProvider';
+import { PopupProvider } from '@providers/PopupProvider';
 
 export interface SharedProps {
   signerAddress: string;
