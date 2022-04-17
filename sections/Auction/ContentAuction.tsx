@@ -1,32 +1,32 @@
-import Button from "@components/Button";
-import DropdownSelect, { SelectOption } from "@components/DropdownSelect";
-import NftCard from "@components/NftCard";
-import PriceRange from "@components/PriceRange";
-import { useViewPort } from "@hooks/useViewport";
-import { useState } from "react";
-import TabletDrawer from "./TabletDrawer";
-import AuctionData from "@sections/Auction/AuctionData";
-import { AuctionCategories } from "@sections/types";
+import Button from '@components/Button';
+import DropdownSelect, { SelectOption } from '@components/DropdownSelect';
+import NftCard from '@components/NftCard';
+import PriceRange from '@components/PriceRange';
+import { useViewPort } from '@hooks/useViewport';
+import { useState } from 'react';
+import TabletDrawer from './TabletDrawer';
+import AuctionData from '@sections/Auction/AuctionData';
+import { AuctionCategories } from '@sections/types';
 
 type ContentAuctionProps = {};
 
 export const types: SelectOption[] = [
-  { text: "On Sale", value: "On Sale" },
-  { text: "Sold", value: "Sold" },
-  { text: "All Types", value: "All Types" },
+  { text: 'On Sale', value: 'On Sale' },
+  { text: 'Sold', value: 'Sold' },
+  { text: 'All Types', value: 'All Types' },
 ];
 
 export const categories: SelectOption[] = [
-  { text: "All Categories", value: "" },
+  { text: 'All Categories', value: '' },
   { text: AuctionCategories.firstDrop, value: AuctionCategories.firstDrop },
   { text: AuctionCategories.prospect100, value: AuctionCategories.prospect100 },
 ];
 
 export const sortTypes: SelectOption[] = [
-  { text: "Ending Soon", value: "Ending Soon" },
-  { text: "Recently Added", value: "Recently Added" },
-  { text: "Price: Low to High", value: "Price: Low to High" },
-  { text: "Price: High to Low", value: "Price: High to Low" },
+  { text: 'Ending Soon', value: 'Ending Soon' },
+  { text: 'Recently Added', value: 'Recently Added' },
+  { text: 'Price: Low to High', value: 'Price: Low to High' },
+  { text: 'Price: High to Low', value: 'Price: High to Low' },
 ];
 
 const FilterSvg = () => (
@@ -80,18 +80,18 @@ const ContentAuction = ({}: ContentAuctionProps) => {
   const { isTablet, isMobile } = useViewPort();
 
   const [selectedType, setSelectedType] = useState<string | undefined>(
-    types[0]?.value
+    types[0]?.value,
   );
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
-    categories[0]?.value
+    categories[0]?.value,
   );
   const [selectedSort, selSelectedSort] = useState<string | undefined>(
-    sortTypes[0]?.value
+    sortTypes[0]?.value,
   );
   const [open, setOpen] = useState<boolean>(false);
   const [value, setValue] = useState<{ from: string; to: string }>({
-    from: "",
-    to: "",
+    from: '',
+    to: '',
   });
 
   const handleChangeType = (v?: string) => setSelectedType(v);
@@ -142,7 +142,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
             label={
               <div className="flex align-center justify-between">
                 <span className="mr-16px">
-                  {isMobile ? "Filters and Sorting" : "Filters"}
+                  {isMobile ? 'Filters and Sorting' : 'Filters'}
                 </span>
                 <span>
                   <FilterSvg />
@@ -150,7 +150,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
               </div>
             }
             onClick={openDrawer}
-            className={isMobile ? "mobile: w-full " : ""}
+            className={isMobile ? 'mobile: w-full ' : ''}
           />
         )}
         {!isMobile && (
@@ -165,8 +165,8 @@ const ContentAuction = ({}: ContentAuctionProps) => {
       <div className="flex flex-wrap -mx-16px">
         {AuctionData.map((item, index) => (
           <div
-            className={`${index < 2 ? "laptop:w-1/2" : "laptop:w-1/4"} ${
-              index === 0 ? "tablet:w-full" : "tablet:w-1/2"
+            className={`${index < 2 ? 'laptop:w-1/2' : 'laptop:w-1/4'} ${
+              index === 0 ? 'tablet:w-full' : 'tablet:w-1/2'
             } mobile:w-full flex flex-col py-14px px-6px`}
             key={index}
           >

@@ -1,15 +1,13 @@
-import Blurb from "@sections/AboutProject/Blurb";
-import { ethers } from "ethers";
-import { NFTAuctionConnect } from "@museum-of-war/auction";
-import ContentAuction from "./ContentAuction";
-import DropNft from "./DropNft";
+import Blurb from '@sections/AboutProject/Blurb';
+import ContentAuction from './ContentAuction';
+import DropNft from './DropNft';
 
 type AuctionProps = {
   signerAddress: string;
   handleConnect: () => void;
 };
 
-const Auction = ({ signerAddress, handleConnect }: AuctionProps) => {
+const Auction = ({}: AuctionProps) => {
   return (
     <>
       <Blurb

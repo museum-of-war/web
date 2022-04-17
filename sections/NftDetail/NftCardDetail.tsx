@@ -1,13 +1,11 @@
-import BidsHistoryTable from "@components/BidsHistoryTable";
-import Button from "@components/Button";
-import { useWeb3Modal } from "@hooks/useWeb3Modal";
-import FormattedInputs from "@components/FormattedInputs";
-import NftCard from "@components/NftCard";
-import { useViewPort } from "@hooks/useViewport";
-import { Box, Modal } from "@mui/material";
-import { calculateTimeLeft } from "@sections/AboutProject/ContentTop/Countdownbanner";
-import { AuctionItemType } from "@sections/types";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import BidsHistoryTable from '@components/BidsHistoryTable';
+import Button from '@components/Button';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useViewPort } from '@hooks/useViewport';
+import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
+import { AuctionItemType } from '@sections/types';
+import { usePopup } from '@providers/PopupProvider';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -17,16 +15,11 @@ type BidCardProps = {
   isMobile?: boolean;
   endsIn: Date;
   currentBid: string;
-  toggleModal: () => void;
 };
 
-const BidCard = ({
-  currentBid,
-  isMobile,
-  endsIn,
-  toggleModal,
-}: BidCardProps) => {
+const BidCard = ({ currentBid, isMobile, endsIn }: BidCardProps) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
+  const { showPopup } = usePopup();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -46,7 +39,7 @@ const BidCard = ({
           <p className="text-16px">$903</p>
           {/* TODO add $ */}
         </div>
-        <div className="tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white"></div>
+        <div className="tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
         <div>
           <p className="text-14px opacity-70 tablet:mb-12px">Ends in</p>
           <div className="flex -mx-10px">
@@ -81,7 +74,9 @@ const BidCard = ({
         <Button
           mode="custom"
           label="Place Bid"
-          onClick={toggleModal}
+          onClick={() => {
+            showPopup('bid', { currentBid });
+          }}
           className="bg-white text-carbon w-100% mt-24px"
         />
       )}
@@ -91,48 +86,32 @@ const BidCard = ({
 
 const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
+  const { activePopupName, showPopup } = usePopup();
 
-  const [isSold, setSold] = useState<boolean>(false);
-  const [isOpenModal, setOpenModal] = useState<boolean>(false);
+  const [isSold, _setSold] = useState<boolean>(false);
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     nextMinBid: string;
     fullInfo: any;
-  }>({ bid: "0", nextMinBid: "", fullInfo: "" });
+  }>({ bid: '1', nextMinBid: '', fullInfo: '' });
 
   useWeb3Modal()
     .getAuctionInfo(item.contractAddress, item.tokenId)
     .then((i) => setCurrentBid({ ...i }))
     .catch((error) => console.log(`NftCardDetail ${error}`));
 
-  const toggleModal = () => setOpenModal((state) => !state);
-
-  const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    width: isMobile ? "100%" : "auto",
-    height: isMobile ? "100%" : "auto",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "#212121",
-  };
-
   return (
     <>
       <div>
-        {(isTablet || isMobile) && !isSold && (
+        {(isTablet || isMobile) && !isSold && !activePopupName && (
           <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
             {isTablet ? (
-              <BidCard
-                toggleModal={toggleModal}
-                endsIn={item.endsIn}
-                currentBid={currentBid.bid}
-              />
+              <BidCard endsIn={item.endsIn} currentBid={currentBid.bid} />
             ) : (
               <Button
                 mode="custom"
                 label="Place Bid"
-                onClick={toggleModal}
+                onClick={() => showPopup('bid', { currentBid: currentBid.bid })}
                 className="bg-white text-carbon w-100%"
               />
             )}
@@ -152,7 +131,6 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             ) : (
               <BidCard
                 isMobile={isMobile}
-                toggleModal={toggleModal}
                 endsIn={item.endsIn}
                 currentBid={currentBid.bid}
               />
@@ -214,31 +192,6 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
           </div>
         </div>
       </div>
-      <Modal
-        open={isOpenModal}
-        onClose={toggleModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div className="mobile:px-20px mobile:py-[50%] tablet:p-48px  laptop:p-72px">
-            <p className="mobile:text-29px tablet:text-32px font-black">
-              Place bid
-            </p>
-            <p className="mobile:text-14px tablet:text-16px my-24px">
-              You must bid at least 0.26 ETH. Once a bid is placed it cannot be
-              withdrawn.
-            </p>
-            <FormattedInputs />
-            <Button
-              mode="custom"
-              label="Place Bid"
-              onClick={toggleModal}
-              className="bg-white text-carbon w-100% mt-24px"
-            />
-          </div>
-        </Box>
-      </Modal>
     </>
   );
 };
