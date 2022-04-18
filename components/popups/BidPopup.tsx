@@ -108,7 +108,7 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
               const unlocked: boolean = await isUnlocked();
 
               if (!unlocked) {
-                await openModal();
+                openModal();
                 hidePopup();
 
                 return;
