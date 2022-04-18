@@ -193,11 +193,10 @@ export function useWeb3Modal() {
   }
 
   async function isUnlocked() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-
     let unlocked;
 
     try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       const accounts = await provider.listAccounts();
 
       unlocked = accounts.length > 0;
