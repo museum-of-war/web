@@ -95,11 +95,11 @@ const ContentAuction = ({}: ContentAuctionProps) => {
       );
     } else if (selectedSort === FILTER_OPTIONS_SORT_TYPE[2]?.value) {
       result = result.sort((datumA, datumB) =>
-        +datumA.bid > +datumB.bid ? -1 : 1,
+        +datumA.bid < +datumB.bid ? -1 : 1,
       );
     } else if (selectedSort === FILTER_OPTIONS_SORT_TYPE[3]?.value) {
       result = result.sort((datumA, datumB) =>
-        datumA.bid < datumB.bid ? -1 : 1,
+        datumA.bid > datumB.bid ? -1 : 1,
       );
     }
 
