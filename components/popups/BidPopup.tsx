@@ -28,7 +28,7 @@ const BidButton = ({
 };
 
 const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
-  const { makeBid } = useWeb3Modal();
+  const { makeBid, isUnlocked } = useWeb3Modal();
   const { hidePopup } = usePopup();
   const minBid = useMemo(() => proposedBids[0]!, [proposedBids]);
   const [ETHAmount, setETHAmount] = useState<string | number>(minBid);
@@ -62,8 +62,8 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
             className="font-rlight mt-24px"
             style={{ fontSize: 16, lineHeight: '24px' }}
           >
-            You must bid at least {minBid} ETH. Once a bid is placed it
-            cannot be withdrawn.
+            You must bid at least {minBid} ETH. Once a bid is placed it cannot
+            be withdrawn.
           </p>
           <div className="mt-24px pb-10px border-b-4 font-rlight border-white text-22px dark:border-cotton flex flex-row items-center justify-between">
             <input
@@ -87,7 +87,7 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
             <p>ETH</p>
           </div>
           <div className="flex flex-row items-center flex-wrap gap-x-24px">
-            {proposedBids.map(amount => (
+            {proposedBids.map((amount) => (
               <BidButton
                 key={amount}
                 handleClick={() => {
@@ -105,8 +105,16 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
             label="Place Bid"
             disabled={Boolean(amountError)}
             onClick={async () => {
-              if (!window.ethereum) {
+              const unlocked: boolean = await isUnlocked();
+
+              if (!unlocked) {
+                try {
+                  makeBid(contractAddress, tokenId, ETHAmount);
+                } catch (error) {
+                  console.error(error);
+                }
                 hidePopup();
+
                 return;
               }
 
