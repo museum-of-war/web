@@ -125,8 +125,15 @@ export function useWeb3Modal() {
       ? bid.mul(10000 + increasePercentage).div(10000)
       : auctionInfo.minPrice;
 
-    const proposedBidsWei: BigNumber[] = [nextMinBid, bid.mul(3).div(2), bid.mul(2), bid.mul(5).div(2)];
-    const proposedBidsETH = proposedBidsWei.map(bn => bn.toString()).map(wei => web3.utils.fromWei(wei));
+    const proposedBidsWei: BigNumber[] = [
+      nextMinBid,
+      bid.mul(3).div(2),
+      bid.mul(2),
+      bid.mul(5).div(2),
+    ];
+    const proposedBidsETH = proposedBidsWei
+      .map((bn) => bn.toString())
+      .map((wei) => web3.utils.fromWei(wei));
 
     return {
       bid: web3.utils.fromWei(bid.toString()),
@@ -155,7 +162,7 @@ export function useWeb3Modal() {
       0,
       {
         value: ethers.utils.parseEther(value.toString()),
-        gasLimit: 250000
+        gasLimit: 250000,
       },
     );
   }
@@ -185,6 +192,30 @@ export function useWeb3Modal() {
     return mintedCount < maxTokens;
   }
 
+  async function isUnlocked() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    let unlocked;
+
+    try {
+      const accounts = await provider.listAccounts();
+
+      unlocked = accounts.length > 0;
+    } catch (e) {
+      unlocked = false;
+    }
+
+    return unlocked;
+  }
+
+  async function openModal() {
+    try {
+      await getWeb3Modal()?.connect();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return {
     connectWallet,
     disconnectWallet,
@@ -194,5 +225,7 @@ export function useWeb3Modal() {
     getAuctionInfo,
     makeBid,
     canMint,
+    isUnlocked,
+    openModal,
   };
 }
