@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ethers } from 'ethers';
+import { BigNumber, BigNumberish, ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import Web3 from 'web3';
@@ -113,7 +113,7 @@ export function useWeb3Modal() {
       tokenId,
     );
 
-    const hasBid = auctionInfo.nftHighestBid.gt(auctionInfo.minPrice);
+    const hasBid = auctionInfo.nftHighestBid.gte(auctionInfo.minPrice);
     const bid = hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice;
 
     const increasePercentage =
@@ -125,9 +125,13 @@ export function useWeb3Modal() {
       ? bid.mul(10000 + increasePercentage).div(10000)
       : auctionInfo.minPrice;
 
+    const proposedBidsWei: BigNumber[] = [nextMinBid, bid.mul(3).div(2), bid.mul(2), bid.mul(5).div(2)];
+    const proposedBidsETH = proposedBidsWei.map(bn => bn.toString()).map(wei => web3.utils.fromWei(wei));
+
     return {
       bid: web3.utils.fromWei(bid.toString()),
       nextMinBid: web3.utils.fromWei(nextMinBid.toString()),
+      proposedBids: proposedBidsETH,
       fullInfo: auctionInfo,
     };
   }
@@ -135,7 +139,7 @@ export function useWeb3Modal() {
   async function makeBid(
     contractAddress: string,
     tokenId: number,
-    value: number | string,
+    value: BigNumberish,
   ) {
     const externalProvider = await getWeb3Modal()?.connect();
     const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
@@ -150,7 +154,7 @@ export function useWeb3Modal() {
       ethers.constants.AddressZero,
       0,
       {
-        value: ethers.utils.parseEther('' + value),
+        value: ethers.utils.parseEther(value.toString()),
         gasLimit: 250000
       },
     );

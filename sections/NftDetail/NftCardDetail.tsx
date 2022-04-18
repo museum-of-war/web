@@ -18,12 +18,14 @@ type BidCardProps = {
   isMobile?: boolean;
   endsIn: Date;
   currentBid: string;
+  proposedBids: string[];
   contractAddress: string;
   tokenId: number;
 };
 
 const BidCard = ({
   currentBid,
+  proposedBids,
   isMobile,
   endsIn,
   contractAddress,
@@ -95,7 +97,7 @@ const BidCard = ({
           mode="custom"
           label="Place Bid"
           onClick={() => {
-            showPopup('bid', { currentBid, contractAddress, tokenId });
+            showPopup('bid', { proposedBids, contractAddress, tokenId });
           }}
           className="bg-white text-carbon w-100% mt-24px"
         />
@@ -113,9 +115,9 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const [isSold, _setSold] = useState<boolean>(false);
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
-    nextMinBid: string;
+    proposedBids: string[];
     fullInfo: any;
-  }>({ bid: '0', nextMinBid: '', fullInfo: '' });
+  }>({ bid: '0', proposedBids: ['0'], fullInfo: '' });
 
   useEffect(() => {
     getAuctionInfo(item.contractAddress, item.tokenId)
@@ -135,7 +137,8 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             {isTablet ? (
               <BidCard
                 endsIn={item.endsIn}
-                currentBid={currentBid.nextMinBid}
+                proposedBids={currentBid.proposedBids}
+                currentBid={currentBid.bid}
                 contractAddress={item.contractAddress}
                 tokenId={item.tokenId}
               />
@@ -145,7 +148,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 label="Place Bid"
                 onClick={() =>
                   showPopup('bid', {
-                    currentBid: currentBid.nextMinBid,
+                    proposedBids: currentBid.proposedBids,
                     contractAddress: item.contractAddress,
                     tokenId: item.tokenId,
                   })
@@ -170,7 +173,8 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
               <BidCard
                 isMobile={isMobile}
                 endsIn={item.endsIn}
-                currentBid={currentBid.nextMinBid}
+                proposedBids={currentBid.proposedBids}
+                currentBid={currentBid.bid}
                 contractAddress={item.contractAddress}
                 tokenId={item.tokenId}
               />

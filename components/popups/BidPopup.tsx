@@ -4,10 +4,8 @@ import Button from '@components/Button';
 import { usePopup } from '@providers/PopupProvider';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
-const NUMBER_3_DECIMALS = /^(?:\d*\.\d{1,3}|\d+)$/;
-
 type PropsPopup = {
-  currentBid: string;
+  proposedBids: string[];
   contractAddress: string;
   tokenId: number;
 };
@@ -29,19 +27,12 @@ const BidButton = ({
   );
 };
 
-const BidPopup = ({ currentBid, contractAddress, tokenId }: PropsPopup) => {
+const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
   const { makeBid } = useWeb3Modal();
   const { hidePopup } = usePopup();
-  const [ETHAmount, setETHAmount] = useState<number | string>(currentBid);
+  const minBid = useMemo(() => proposedBids[0]!, [proposedBids]);
+  const [ETHAmount, setETHAmount] = useState<string | number>(minBid);
   const [amountError, setAmountError] = useState<string | undefined>(undefined);
-  const amounts = useMemo(
-    () =>
-      [+currentBid, +currentBid * 1.5, +currentBid * 2, +currentBid * 2.5]
-        .map((value) => value.toFixed(3))
-        .map(parseFloat)
-        .map(String),
-    [currentBid],
-  );
 
   return (
     <div
@@ -71,7 +62,7 @@ const BidPopup = ({ currentBid, contractAddress, tokenId }: PropsPopup) => {
             className="font-rlight mt-24px"
             style={{ fontSize: 16, lineHeight: '24px' }}
           >
-            You must bid at least {currentBid} ETH. Once a bid is placed it
+            You must bid at least {minBid} ETH. Once a bid is placed it
             cannot be withdrawn.
           </p>
           <div className="mt-24px pb-10px border-b-4 font-rlight border-white text-22px dark:border-cotton flex flex-row items-center justify-between">
@@ -86,9 +77,7 @@ const BidPopup = ({ currentBid, contractAddress, tokenId }: PropsPopup) => {
 
                 if (value === '') {
                   setAmountError(undefined);
-                } else if (!NUMBER_3_DECIMALS.test(value)) {
-                  setAmountError('Amount has incorrect format');
-                } else if (+value < +currentBid) {
+                } else if (+value < +minBid) {
                   setAmountError('Amount should exceed current bid');
                 } else {
                   setAmountError(undefined);
@@ -98,7 +87,7 @@ const BidPopup = ({ currentBid, contractAddress, tokenId }: PropsPopup) => {
             <p>ETH</p>
           </div>
           <div className="flex flex-row items-center flex-wrap gap-x-24px">
-            {amounts.map((amount) => (
+            {proposedBids.map(amount => (
               <BidButton
                 key={amount}
                 handleClick={() => {
