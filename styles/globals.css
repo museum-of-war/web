@@ -110,3 +110,7 @@
 }
 
 /* END */
+
+#WEB3_CONNECT_MODAL_ID * {
+  z-index: 100;
+}
