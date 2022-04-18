@@ -208,6 +208,14 @@ export function useWeb3Modal() {
     return unlocked;
   }
 
+  async function openModal() {
+    try {
+      await getWeb3Modal()?.connect();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return {
     connectWallet,
     disconnectWallet,
@@ -218,5 +226,6 @@ export function useWeb3Modal() {
     makeBid,
     canMint,
     isUnlocked,
+    openModal,
   };
 }

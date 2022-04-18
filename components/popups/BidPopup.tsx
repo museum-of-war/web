@@ -28,7 +28,7 @@ const BidButton = ({
 };
 
 const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
-  const { makeBid, isUnlocked } = useWeb3Modal();
+  const { makeBid, isUnlocked, openModal } = useWeb3Modal();
   const { hidePopup } = usePopup();
   const minBid = useMemo(() => proposedBids[0]!, [proposedBids]);
   const [ETHAmount, setETHAmount] = useState<string | number>(minBid);
@@ -108,11 +108,7 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
               const unlocked: boolean = await isUnlocked();
 
               if (!unlocked) {
-                try {
-                  makeBid(contractAddress, tokenId, ETHAmount);
-                } catch (error) {
-                  console.error(error);
-                }
+                await openModal();
                 hidePopup();
 
                 return;
