@@ -36,6 +36,11 @@
   font-family: RockstarNarrowRegular;
 }
 
+#WEB3_CONNECT_MODAL_ID,
+#WEB3_CONNECT_MODAL_ID * {
+  z-index: 100;
+}
+
 /* TextField custom style */
 .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
   color: white !important;
