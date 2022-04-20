@@ -27,7 +27,7 @@ function Button({
                     : 'px-32px tablet:py-10px mobile:py-8%'
                 }
                 whitespace-nowrap text-14px
-                hover:bg-carbon-800 focus:border-double
+                hover:bg-carbon-800
                 border-2 border-white
                 rounded-full ${className}`;
     } else if (mode === 'secondary') {
