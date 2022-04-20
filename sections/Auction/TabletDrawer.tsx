@@ -91,8 +91,13 @@ const TabletDrawer = ({
 
   const handleClear = () => {
     setPriceRange({ from: '', to: '' });
+    setPriceRangeState({ from: '', to: '' });
+
     handleChangeCategory(FILTER_OPTIONS_CATEGORIES[0]?.value);
+    setSelectedCategoryState(FILTER_OPTIONS_CATEGORIES[0]?.value);
+
     handleChangeType(FILTER_OPTIONS_TYPES[0]?.value);
+    setSelectedTypeState(FILTER_OPTIONS_TYPES[0]?.value);
   };
   const handleApply = () => {
     setPriceRange(priceRangeState);

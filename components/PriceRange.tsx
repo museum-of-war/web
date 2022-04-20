@@ -15,7 +15,10 @@ function PriceRange({ className, value, setValue }: PriceRangeProps) {
   );
 
   const handleClick = () => setOpen((state) => !state);
-  const handleClear = () => setValue({ from: '', to: '' });
+  const handleClear = () => {
+    setValue({ from: '', to: '' });
+    setPriceRange({ from: '', to: '' });
+  };
   const handleClose = () => setOpen(false);
 
   return (
@@ -56,7 +59,7 @@ function PriceRange({ className, value, setValue }: PriceRangeProps) {
 
         {isOpen && (
           <div
-            className="origin-top-right absolute bg-dropdown  w-[296px] top-60px rounded-[12px] shadow-3xl p-24px"
+            className="origin-top-right z-10 absolute bg-dropdown  w-[296px] top-60px rounded-[12px] shadow-3xl p-24px"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
