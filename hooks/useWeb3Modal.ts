@@ -7,10 +7,11 @@ import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
+  AUCTION_ADDRESS,
   FIRST_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
-  UKRAINE_WALLET_ADDRESS,
-} from '@sections/Constants';
+  UKRAINE_WALLET_ADDRESS
+} from "@sections/Constants";
 import { NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 
@@ -35,7 +36,7 @@ const getWeb3Modal = () => {
   if (typeof window === 'undefined') return null;
   if (!web3Modal)
     web3Modal = new Web3Modal({
-      network: 'mainnet',
+      network: chain,
       cacheProvider: true,
       providerOptions,
     });
@@ -86,14 +87,14 @@ export function useWeb3Modal() {
   async function viewNFTs(owner: string) {
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
-      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
 
     const ownerAddr = owner;
 
     const nfts = await web3.alchemy.getNfts({
       owner: ownerAddr,
-      contractAddresses: [MetaHistoryAddress],
+      contractAddresses: [MetaHistoryAddress, AUCTION_ADDRESS],
     });
 
     return nfts.ownedNfts;
@@ -101,7 +102,7 @@ export function useWeb3Modal() {
 
   async function getAuctionInfo(contractAddress: string, tokenId: number) {
     const web3 = createAlchemyWeb3(
-      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
     const ethersProvider = new ethers.providers.Web3Provider(
       web3.currentProvider as ExternalProvider,
@@ -170,7 +171,7 @@ export function useWeb3Modal() {
   async function canMint() {
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
-      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
     const nftContract = new web3.eth.Contract(
       MetaHistoryContractAbi as AbiItem[],
