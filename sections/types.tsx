@@ -30,6 +30,25 @@ export type EventType = {
   ImageType?: string;
 };
 
+export enum AuctionCategories {
+ firstDrop = 'First Drop',
+ prospect100 = 'PROSPECT 100',
+}
+
+export type AuctionItemType = {
+  index: number;
+  name: string;
+  startsAt: Date;
+  endsIn: Date;
+  category: AuctionCategories;
+  contractAddress: string;
+  tokenId: number;
+  imageSrc: string;
+  artist: string;
+  descriptionEnglish?: string;
+  descriptionUkrainian?: string;
+};
+
 export type HallItemType = {
   Id: number;
   TwitterUrl: string;

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import HeaderAndFooterButton from '../../components/HeaderAndFooterButton';
+import HeaderAndFooterButton from '@components/HeaderAndFooterButton';
 import { useViewPort } from '@hooks/useViewport';
 import { useAppRouter } from '@hooks/useAppRouter';
 import Button from '@components/Button';
@@ -32,6 +32,7 @@ const Header = ({
     handleDisconnect();
     setMenuOpen(false);
   }, [handleDisconnect, setMenuOpen]);
+  const isDarkTheme = route.split('/').includes('auction');
 
   return isMobile || isTablet ? (
     <div>
@@ -43,8 +44,15 @@ const Header = ({
         <div className="flex flex-row justify-between items-center">
           <img
             className="w-15% min-w-100px mr-15% py-10px"
-            src={'/img/pd-logoNoSymbol.png'}
+            src={`${
+              isDarkTheme
+                ? '/img/pd-logoNoSymbol-black.svg'
+                : '/img/pd-logoNoSymbol.svg'
+            }`}
             alt="Meta History: Museum of War"
+            onClick={() => {
+              push('/');
+            }}
           />
           <HeaderAndFooterButton
             label={menuOpen ? '' : 'Menu'}
@@ -62,7 +70,7 @@ const Header = ({
               }`}
             >
               <HeaderAndFooterButton
-                label="About the project"
+                label="Home"
                 onClick={() => {
                   push('/');
                   setMenuOpen(false);
@@ -77,6 +85,15 @@ const Header = ({
                   setMenuOpen(false);
                 }}
                 underlined={route === '/warline'}
+                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
+              />
+              <HeaderAndFooterButton
+                label="Auction"
+                onClick={() => {
+                  push('/auction');
+                  setMenuOpen(false);
+                }}
+                underlined={route === '/auction'}
                 wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
               />
               <HeaderAndFooterButton
@@ -134,14 +151,21 @@ const Header = ({
   ) : (
     <div className="flex flex-row items-center mb-8% justify-between z-20">
       <img
-        className="w-15% min-w-75px laptop:mr-30% tablet:mr-25%"
-        src={'/img/pd-logoNoSymbol.png'}
+        className="w-10% min-w-75px laptop:mr-30% tablet:mr-25% cursor-pointer"
+        src={`${
+          isDarkTheme
+            ? '/img/pd-logoNoSymbol-black.svg'
+            : '/img/pd-logoNoSymbol.svg'
+        }`}
         alt="Meta History: Museum of War"
+        onClick={() => {
+          push('/');
+        }}
       />
       <div className="flex flex-row items-center justify-end">
         <div className="flex flex-row items-center justify-end mr-48px">
           <HeaderAndFooterButton
-            label="About the project"
+            label="Home"
             onClick={() => {
               push('/');
             }}
@@ -163,6 +187,14 @@ const Header = ({
               setMenuOpen(false);
             }}
             underlined={route === '/the-hall'}
+            wrapperClassName={signerAddress ? 'mr-32px' : ''}
+          />
+          <HeaderAndFooterButton
+            label="Auction"
+            onClick={() => {
+              push('/auction');
+            }}
+            underlined={route === '/auction'}
             wrapperClassName={signerAddress ? 'mr-32px' : ''}
           />
           {signerAddress && (

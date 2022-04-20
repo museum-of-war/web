@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useViewPort } from "@hooks/useViewport";
-import { VscChromeClose } from "react-icons/vsc";
-import { useWeb3Modal } from "@hooks/useWeb3Modal";
+import React, { useState } from 'react';
+import { useViewPort } from '@hooks/useViewport';
+import { VscChromeClose } from 'react-icons/vsc';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 type PropsDonatePopup = {
   setShowDonatePopup: (arg: boolean) => void;
@@ -12,7 +12,7 @@ const NUMBER_3_DECIMALS = /^(?:\d*\.\d{1,3}|\d+)$/;
 const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
   const { isMobile } = useViewPort();
   const { donate } = useWeb3Modal();
-  const [ETHAmount, setETHAmount] = useState<string>("");
+  const [ETHAmount, setETHAmount] = useState<string>('');
   const [amountError, setAmountError] = useState<boolean>(false);
   const DonateButton = (amount: string) => {
     return (
@@ -47,8 +47,8 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
             className="w-70%
           placeholder-mid_gray placeholder-opacity-70
           transition-all duration-1500 outline-none"
-            placeholder={"Enter Amount"}
-            value={ETHAmount !== null ? ETHAmount : ""}
+            placeholder={'Enter Amount'}
+            value={ETHAmount !== null ? ETHAmount : ''}
             onChange={(e) => {
               setETHAmount(e.target.value);
               setAmountError(!NUMBER_3_DECIMALS.test(e.target.value));
@@ -57,13 +57,15 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           <p>ETH</p>
         </div>
         <div className="mt-20px flex flex-row items-center flex-wrap gap-x-24px">
-          {DonateButton("0.1")}
-          {DonateButton("0.3")}
-          {DonateButton("0.5")}
-          {DonateButton("1")}
+          {DonateButton('0.1')}
+          {DonateButton('0.3')}
+          {DonateButton('0.5')}
+          {DonateButton('1')}
         </div>
         {amountError && (
-          <p className="text-10px text-red-500">Amount has incorrect format</p>
+          <p className="text-10px text-red-500 font-rlight">
+            Amount has incorrect format
+          </p>
         )}
         <div className="flex justify-center w-100%">
           <button
@@ -73,7 +75,7 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
                 if (amountError) {
                   return;
                 }
-                await donate(ETHAmount, "country");
+                await donate(ETHAmount, 'country');
               };
               performDonation();
               setShowDonatePopup(false);
@@ -107,7 +109,7 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
             className="w-70%
             placeholder-mid_gray placeholder-opacity-70
             transition-all duration-1500 outline-none"
-            placeholder={"Enter Amount"}
+            placeholder={'Enter Amount'}
             value={String(ETHAmount)}
             onChange={(e) => {
               setETHAmount(e.target.value);
@@ -117,10 +119,10 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
           <p>ETH</p>
         </div>
         <div className="flex flex-row items-center flex-wrap gap-x-24px">
-          {DonateButton("0.1")}
-          {DonateButton("0.3")}
-          {DonateButton("0.5")}
-          {DonateButton("1")}
+          {DonateButton('0.1')}
+          {DonateButton('0.3')}
+          {DonateButton('0.5')}
+          {DonateButton('1')}
         </div>
         {amountError && (
           <p className="text-12px text-red-500">Amount has incorrect format</p>
@@ -133,7 +135,7 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
                 if (amountError) {
                   return;
                 }
-                await donate(ETHAmount, "country");
+                await donate(ETHAmount, 'country');
               };
               performDonation();
               setShowDonatePopup(false);

@@ -1,18 +1,29 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import EventPopup from '@sections/Warline/EventPopup';
+import EventPopup from '@components/popups/EventPopup';
+import BidPopup from '@components/popups/BidPopup';
+
+const POPUPS_MAP = {
+  event: EventPopup,
+  bid: BidPopup,
+};
 
 export const PopupContext = createContext<{
-  showPopup: (data: any | null) => void;
+  showPopup: (name: keyof typeof POPUPS_MAP, data: any | null) => void;
   hidePopup: () => void;
+  activePopupName: string | null;
 }>({
   showPopup: () => {},
   hidePopup: () => {},
+  activePopupName: null,
 });
 
 export const PopupProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [popupData, setPopupData] = useState<any>(null);
+  const [activePopupName, setActivePopupName] = useState<
+    keyof typeof POPUPS_MAP | null
+  >(null);
 
   useEffect(() => {
     const handleKeyPress = (event: any) => {
@@ -38,20 +49,29 @@ export const PopupProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [popupData]);
 
-  const hidePopup = () => setPopupData(null);
+  const hidePopup = () => {
+    setPopupData(null);
+    setActivePopupName(null);
+  };
+  const showPopup = (popupName: keyof typeof POPUPS_MAP, popupData: any) => {
+    setPopupData(popupData);
+    setActivePopupName(popupName);
+  };
+  const Component = activePopupName ? POPUPS_MAP[activePopupName] : null;
 
   return (
     <PopupContext.Provider
       value={{
-        showPopup: setPopupData,
+        showPopup,
         hidePopup,
+        activePopupName,
       }}
     >
       {children}
-      {popupData ? (
+      {popupData && Component ? (
         <>
           <div className="fixed z-10 w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70" />
-          <EventPopup {...popupData} />
+          <Component {...popupData} />
         </>
       ) : null}
     </PopupContext.Provider>
