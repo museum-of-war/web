@@ -69,8 +69,8 @@ export function useWeb3Modal() {
         return null;
       }
 
-
       setProvider(ethersProvider);
+
       return ethersProvider;
     } catch (e) {
       console.error(e);

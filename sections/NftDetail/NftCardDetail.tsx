@@ -23,6 +23,13 @@ type BidCardProps = {
   tokenId: number;
 };
 
+const getUsdPriceFromETH = async (ethPrice: string | number): Promise<string> => {
+  return await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum')
+    .then(res => res.json())
+    .then(json => json[0].current_price as number)
+    .then(usdPrice => (usdPrice * +ethPrice).toFixed(0));
+}
+
 const BidCard = ({
   currentBid,
   proposedBids,
@@ -32,7 +39,10 @@ const BidCard = ({
   tokenId,
 }: BidCardProps) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
+  const [usdPrice, setUsdPrice] = useState<string | null>(null);
   const { showPopup } = usePopup();
+
+  getUsdPriceFromETH(currentBid).then(setUsdPrice);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,6 +50,14 @@ const BidCard = ({
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const price = await getUsdPriceFromETH(currentBid);
+      if (price) setUsdPrice(price);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [currentBid]);
 
   return (
     <>
@@ -51,7 +69,9 @@ const BidCard = ({
           <p className="mobile:text-27px tablet:text-32px font-rblack">
             {currentBid} ETH
           </p>
-          <p className="text-16px">{/* TODO add $ */}</p>
+          {!!usdPrice &&
+            (<p className="font-rlight mobile:text-14px tablet:text-16px">${usdPrice}</p>)
+          }
         </div>
         <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
         <div>
