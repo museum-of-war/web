@@ -10,8 +10,8 @@ import {
   AUCTION_ADDRESS,
   FIRST_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
-  UKRAINE_WALLET_ADDRESS
-} from "@sections/Constants";
+  UKRAINE_WALLET_ADDRESS,
+} from '@sections/Constants';
 import { NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 
@@ -31,6 +31,7 @@ const providerOptions = {
   },
 };
 
+let triedToConnect = false;
 let web3Modal: Web3Modal | null = null;
 const getWeb3Modal = () => {
   if (typeof window === 'undefined') return null;
@@ -48,19 +49,32 @@ export function useWeb3Modal() {
     ethers.providers.Web3Provider | undefined
   >(undefined);
   // Automatically connect if the provider is cached but has not yet been set (e.g. page refresh)
-  if (getWeb3Modal()?.cachedProvider && !provider) {
+  if (!triedToConnect && getWeb3Modal()?.cachedProvider && !provider) {
     connectWallet();
+    triedToConnect = true;
   }
 
-  async function connectWallet() {
+  async function connectWallet(): Promise<ethers.providers.Web3Provider | null> {
     try {
       const externalProvider = await getWeb3Modal()?.connect();
       const ethersProvider = new ethers.providers.Web3Provider(
         externalProvider,
       );
+
+      const network = await ethersProvider.getNetwork();
+
+      if ((chain === 'mainnet' && network.chainId !== 1) ||
+        (chain !== 'mainnet' && network.name !== chain)) {
+        alert("Wrong network! Please, connect to " + chain);
+        return null;
+      }
+
+
       setProvider(ethersProvider);
+      return ethersProvider;
     } catch (e) {
-      // alert(e)
+      console.error(e);
+      return null;
     }
   }
 
@@ -149,9 +163,8 @@ export function useWeb3Modal() {
     tokenId: number,
     value: BigNumberish,
   ) {
-    const externalProvider = await getWeb3Modal()?.connect();
-    const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
-    setProvider(ethersProvider);
+    const ethersProvider = await connectWallet();
+    if (!ethersProvider) return;
     const signer = ethersProvider.getSigner();
 
     const auction = NFTAuctionConnect(signer, chain);
