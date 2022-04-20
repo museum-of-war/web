@@ -1,4 +1,3 @@
-import { TextField } from '@mui/material';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import Button from './Button';
@@ -7,23 +6,16 @@ type PriceRangeProps = {
   value: { from: string; to: string };
   className?: string;
   setValue: Dispatch<SetStateAction<{ from: string; to: string }>>;
-  handleChange: (
-    type: string,
-  ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-function PriceRange({
-  className,
-  value,
-  setValue,
-  handleChange,
-}: PriceRangeProps) {
+function PriceRange({ className, value, setValue }: PriceRangeProps) {
   const [isOpen, setOpen] = useState<boolean>(false);
+  const [priceRange, setPriceRange] = useState<{ from: string; to: string }>(
+    value,
+  );
 
   const handleClick = () => setOpen((state) => !state);
   const handleClear = () => setValue({ from: '', to: '' });
-
-  const handleApply = () => console.log('Apply');
   const handleClose = () => setOpen(false);
 
   return (
@@ -71,21 +63,23 @@ function PriceRange({
             tabIndex={-1}
           >
             <div className="flex justify-between mb-24px font-rlight-forced">
-              <TextField
-                label="From"
-                multiline
-                variant="standard"
-                className="w-48%"
-                onChange={handleChange('from')}
-                value={value.from}
+              <input
+                type="text"
+                placeholder="From"
+                className="w-48% outline-none bg-transparent border-b-4 border-white"
+                onChange={(event) =>
+                  setPriceRange({ ...priceRange, from: event.target.value })
+                }
+                value={priceRange.from}
               />
-              <TextField
-                label="To"
-                multiline
-                variant="standard"
-                className="w-48%"
-                onChange={handleChange('to')}
-                value={value.to}
+              <input
+                type="text"
+                placeholder="To"
+                className="w-48% outline-none bg-transparent border-b-4 border-white"
+                onChange={(event) =>
+                  setPriceRange({ ...priceRange, to: event.target.value })
+                }
+                value={priceRange.to}
               />
             </div>
             <div className="flex justify-between">
@@ -98,7 +92,7 @@ function PriceRange({
               <Button
                 mode="custom"
                 label="Apply"
-                onClick={handleApply}
+                onClick={() => setValue(priceRange)}
                 className="bg-white text-carbon "
               />
             </div>

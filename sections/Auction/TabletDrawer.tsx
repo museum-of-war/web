@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import Button from '@components/Button';
 import { Drawer, TextField } from '@mui/material';
 import { FILTER_OPTIONS_CATEGORIES, FILTER_OPTIONS_TYPES } from './cosntants';
@@ -56,7 +56,7 @@ const SelectItem = ({ text, value, selected, onChange }: SelectItemProps) => {
 };
 
 type TabletDrawerProps = {
-  value: { from: string; to: string };
+  priceRange: { from: string; to: string };
   selectedCategory?: string;
   isOpen: boolean;
   selectedType?: string;
@@ -64,25 +64,42 @@ type TabletDrawerProps = {
   closeDrawer: () => void;
   handleChangeType: (v?: string) => void;
   handleChangeCategory: (v?: string) => void;
-  setValue: Dispatch<SetStateAction<{ from: string; to: string }>>;
-  handleChangeRange: (
-    type: string,
-  ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setPriceRange: Dispatch<SetStateAction<{ from: string; to: string }>>;
 };
 
 const TabletDrawer = ({
-  value,
+  priceRange,
   isOpen,
   selectedType,
   selectedCategory,
   toggleDrawer,
   closeDrawer,
-  setValue,
+  setPriceRange,
   handleChangeType,
   handleChangeCategory,
-  handleChangeRange,
 }: TabletDrawerProps) => {
-  const handleClear = () => setValue({ from: '', to: '' });
+  const [selectedTypeState, setSelectedTypeState] = useState<
+    string | undefined
+  >(selectedType);
+  const [selectedCategoryState, setSelectedCategoryState] = useState<
+    string | undefined
+  >(selectedCategory);
+  const [priceRangeState, setPriceRangeState] = useState<{
+    from: string;
+    to: string;
+  }>(priceRange);
+
+  const handleClear = () => {
+    setPriceRange({ from: '', to: '' });
+    handleChangeCategory(FILTER_OPTIONS_CATEGORIES[0]?.value);
+    handleChangeType(FILTER_OPTIONS_TYPES[0]?.value);
+  };
+  const handleApply = () => {
+    setPriceRange(priceRangeState);
+    handleChangeCategory(selectedCategoryState);
+    handleChangeType(selectedTypeState);
+  };
+
   return (
     <>
       <Drawer anchor="left" open={isOpen} onClose={toggleDrawer}>
@@ -97,7 +114,7 @@ const TabletDrawer = ({
               </div>
             </div>
             <div>
-              <p className="tablet:text-16px mobile:text-14px opacity-70 tablet:mt-[54px] mobile:mt-[35px]">
+              <p className="font-rlight tablet:text-16px mobile:text-14px opacity-70 tablet:mt-[54px] mobile:mt-[35px]">
                 Price range
               </p>
               <div className="flex justify-between">
@@ -105,22 +122,32 @@ const TabletDrawer = ({
                   label="From"
                   multiline
                   variant="standard"
-                  className="w-48%"
-                  onChange={handleChangeRange('from')}
-                  value={value.from}
+                  className="w-48% font-rlight-forced"
+                  onChange={(event) =>
+                    setPriceRangeState({
+                      ...priceRangeState,
+                      from: event.target.value,
+                    })
+                  }
+                  value={priceRangeState.from}
                 />
                 <TextField
                   label="To"
                   multiline
                   variant="standard"
-                  className="w-48%"
-                  onChange={handleChangeRange('to')}
-                  value={value.to}
+                  className="w-48% font-rlight-forced"
+                  onChange={(event) =>
+                    setPriceRangeState({
+                      ...priceRangeState,
+                      to: event.target.value,
+                    })
+                  }
+                  value={priceRangeState.to}
                 />
               </div>
             </div>
             <div>
-              <p className="tablet:text-16px mobile:text-14px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
+              <p className="font-rlight tablet:text-16px mobile:text-14px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
                 Type
               </p>
               {FILTER_OPTIONS_TYPES.map((i) => (
@@ -129,12 +156,12 @@ const TabletDrawer = ({
                   value={i.value}
                   key={i.value}
                   selected={selectedType}
-                  onChange={handleChangeType}
+                  onChange={(value) => setSelectedTypeState(value)}
                 />
               ))}
             </div>
             <div>
-              <p className="text-16px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
+              <p className="font-rlight text-16px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
                 Category
               </p>
               {FILTER_OPTIONS_CATEGORIES.map((i) => (
@@ -142,8 +169,8 @@ const TabletDrawer = ({
                   text={i.text}
                   value={i.value}
                   key={i.value}
-                  selected={selectedCategory}
-                  onChange={handleChangeCategory}
+                  selected={selectedCategoryState}
+                  onChange={(value) => setSelectedCategoryState(value)}
                 />
               ))}
             </div>
@@ -157,7 +184,7 @@ const TabletDrawer = ({
               <Button
                 mode="custom"
                 label="Apply"
-                onClick={() => console.log('asd')}
+                onClick={handleApply}
                 className="bg-white text-carbon w-48%"
               />
             </div>
