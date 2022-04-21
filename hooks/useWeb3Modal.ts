@@ -4,6 +4,7 @@ import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import Web3 from 'web3';
 import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
+import IERC721InterfaceAbi from '../abi/IERC721.json';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
@@ -114,6 +115,20 @@ export function useWeb3Modal() {
     return nfts.ownedNfts;
   }
 
+  async function getOwnerOfNFT(contractAddress: string, tokenId: number) {
+    // Initialize an alchemy-web3 instance:
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+    const nftContract = new web3.eth.Contract(
+      IERC721InterfaceAbi as AbiItem[],
+      contractAddress,
+    );
+    return await nftContract.methods
+      .ownerOf(tokenId)
+      .call({ from: MetaHistoryAddress });
+  }
+
   async function getAuctionInfo(contractAddress: string, tokenId: number) {
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
@@ -151,6 +166,7 @@ export function useWeb3Modal() {
       .map((wei) => web3.utils.fromWei(wei));
 
     return {
+      isSold: auctionInfo.nftSeller === ethers.constants.AddressZero,
       bid: web3.utils.fromWei(bid.toString()),
       nextMinBid: web3.utils.fromWei(nextMinBid.toString()),
       proposedBids: proposedBidsETH,
@@ -235,6 +251,7 @@ export function useWeb3Modal() {
     provider,
     donate,
     viewNFTs,
+    getOwnerOfNFT,
     getAuctionInfo,
     makeBid,
     canMint,

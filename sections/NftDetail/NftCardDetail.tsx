@@ -9,6 +9,7 @@ import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
 import { usePopup } from 'providers/PopupProvider';
+import { truncateAddress } from '@sections/utils';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -134,9 +135,10 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
   const { activePopupName, showPopup } = usePopup();
   const { push } = useAppRouter();
-  const { getAuctionInfo } = useWeb3Modal();
+  const { getAuctionInfo, getOwnerOfNFT } = useWeb3Modal();
 
-  const [isSold, _setSold] = useState<boolean>(false);
+  const [isSold, setSold] = useState<boolean>(false);
+  const [tokenOwner, setTokenOwner] = useState<string>('');
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     proposedBids: string[];
@@ -145,8 +147,10 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
 
   useEffect(() => {
     getAuctionInfo(item.contractAddress, item.tokenId)
-      .then((i) => {
+      .then(async (i) => {
         setCurrentBid({ ...i });
+        setSold(i.isSold);
+        if (i.isSold) setTokenOwner(await getOwnerOfNFT(item.contractAddress, item.tokenId));
       })
       .catch((error) => console.log(`NftCardDetail ${error}`));
   }, []);
@@ -223,7 +227,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
               {isSold && (
                 <div className="flex text-16px laptop:mt-24px tablet:ml-48px laptop:ml-[0px]">
                   <p>Owner:</p>
-                  <p className="ml-[8px]">0x4EFesagas12...0x4E</p>
+                  <p className="ml-[8px]" title={tokenOwner}>{truncateAddress(tokenOwner, 11)}</p>
                 </div>
               )}
             </div>
