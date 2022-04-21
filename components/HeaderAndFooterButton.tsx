@@ -1,5 +1,5 @@
-import React from "react";
-import { VscChromeClose } from "react-icons/vsc";
+import React from 'react';
+import { VscChromeClose } from 'react-icons/vsc';
 
 type HeaderAndFooterButtonProps = {
   label: string;
@@ -7,6 +7,7 @@ type HeaderAndFooterButtonProps = {
   underlined?: boolean;
   menu?: boolean;
   wrapperClassName?: string;
+  isDarkTheme?: boolean;
 };
 
 const HeaderAndFooterButton = ({
@@ -15,15 +16,18 @@ const HeaderAndFooterButton = ({
   underlined,
   menu,
   wrapperClassName = '',
+  isDarkTheme = false,
 }: HeaderAndFooterButtonProps) => {
   return (
     <div className={`${wrapperClassName}`}>
       <button
-        className={`font-rblack mobile:text-16px tablet:text-16px laptop:text-14px desktop:text-16px ${
+        className={`font-rblack mobile:text-16px tablet:text-16px laptop:text-14px desktop:text-16px pb-5px ${
           underlined
-            ? "pb-5px border-b-4 border-carbon dark:border-white"
-            : "border-transparent"
-        } hover:border-solid hover:border-carbon`}
+            ? 'border-b-4 border-carbon dark:border-white'
+            : 'border-b-4 border-transparent'
+        } hover:border-solid ${
+          isDarkTheme ? 'hover:border-white' : 'hover:border-carbon'
+        }`}
         onClick={onClick}
       >
         {label}

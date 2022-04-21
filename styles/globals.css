@@ -120,7 +120,8 @@
   font-size: 16px !important;
 }
 
-/* END */
+.zoom-hover { transition: all .2s ease-in-out; }
+.zoom-hover:hover { transform: scale(1.03); }
 
 #WEB3_CONNECT_MODAL_ID * {
   z-index: 100;

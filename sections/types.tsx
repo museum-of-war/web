@@ -57,3 +57,9 @@ export type HallItemType = {
   TwitterAccountName: string;
   TweetText: string;
 };
+
+export type BidInfo = {
+  eth: string;
+  date: Date;
+  bidder: string;
+};
