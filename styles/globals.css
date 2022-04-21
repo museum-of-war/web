@@ -126,3 +126,18 @@
 #WEB3_CONNECT_MODAL_ID * {
   z-index: 100;
 }
+
+@media (min-width: 680px) {
+  .the-hall-scroll {
+    left: -72px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .the-hall-scroll {
+    left: -132px;
+  }
+}
+
+
+

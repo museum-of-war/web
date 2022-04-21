@@ -193,6 +193,15 @@ const Header = ({
           />
           <HeaderAndFooterButton
             isDarkTheme={isDarkTheme}
+            label="Auction"
+            onClick={() => {
+              push('/auction');
+            }}
+            underlined={route === '/auction'}
+            wrapperClassName="mr-32px"
+          />
+          <HeaderAndFooterButton
+            isDarkTheme={isDarkTheme}
             label="The Hall"
             onClick={() => {
               push('/the-hall');
@@ -201,15 +210,7 @@ const Header = ({
             underlined={route === '/the-hall'}
             wrapperClassName={signerAddress ? 'mr-32px' : ''}
           />
-          <HeaderAndFooterButton
-            isDarkTheme={isDarkTheme}
-            label="Auction"
-            onClick={() => {
-              push('/auction');
-            }}
-            underlined={route === '/auction'}
-            wrapperClassName={signerAddress ? 'mr-32px' : ''}
-          />
+
           {signerAddress && (
             <HeaderAndFooterButton
               isDarkTheme={isDarkTheme}

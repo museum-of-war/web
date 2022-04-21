@@ -15,6 +15,7 @@ export const CardMobile: React.FC<HallItemType> = ({
     style={{
       height: 552,
       margin: 20,
+      minWidth: '80%',
     }}
   >
     <img
@@ -22,12 +23,11 @@ export const CardMobile: React.FC<HallItemType> = ({
       src={ImageSrc}
       style={{
         minHeight: 250,
-        maxWidth: 248,
+        maxWidth: '100%',
       }}
     />
     <div
       style={{
-        width: 248,
         padding: 24,
       }}
       className="bg-carbon text-white h-auto"
@@ -49,7 +49,8 @@ export const CardMobile: React.FC<HallItemType> = ({
           @{TwitterUsername}
         </span>
         <SocialMediaButton
-          customClasses="border-white border-2 rounded-3xl"
+          customClasses="border-white border-2 mobile:rounded-20px box-content"
+          customStyle={{ borderRadius: '50%' }}
           twitter
           href={TwitterUrl}
         />

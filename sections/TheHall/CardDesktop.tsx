@@ -49,7 +49,8 @@ export const CardDesktop: React.FC<HallItemType> = ({
           @{TwitterUsername}
         </span>
         <SocialMediaButton
-          customClasses="border-white border-2 rounded-3xl"
+          customClasses="border-white border-2 box-content"
+          customStyle={{ borderRadius: '50%' }}
           twitter
           href={TwitterUrl}
         />
