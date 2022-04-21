@@ -160,7 +160,7 @@ export function useWeb3Modal() {
       ) : [];
 
     const hasBid = auctionInfo.nftHighestBid.gte(auctionInfo.minPrice);
-    const bid = hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice;
+    const bid = (hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice) as BigNumber;
 
     const increasePercentage =
       auctionInfo.bidIncreasePercentage > 0
@@ -171,11 +171,14 @@ export function useWeb3Modal() {
       ? bid.mul(10000 + increasePercentage).div(10000)
       : auctionInfo.minPrice;
 
+    const bidStep = ethers.constants.WeiPerEther.div(4);
+    const nearestPrettyBid = nextMinBid.div(bidStep).mul(bidStep);
+
     const proposedBidsWei: BigNumber[] = [
       nextMinBid,
-      bid.mul(3).div(2),
-      bid.mul(2),
-      bid.mul(5).div(2),
+      nearestPrettyBid.add(bidStep),
+      nearestPrettyBid.add(bidStep.mul(2)),
+      nearestPrettyBid.add(bidStep.mul(3)),
     ];
     const proposedBidsETH = proposedBidsWei
       .map((bn) => bn.toString())
