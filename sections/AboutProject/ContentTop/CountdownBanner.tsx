@@ -34,15 +34,11 @@ const CountdownBanner = ({ endDate }: PropsCountdownBanner) => {
     return () => clearTimeout(timer);
   });
 
-  if (!Object.keys(timeLeft).length) return null;
+  if (!timeLeft.isLeft) return null;
 
   const timerComponents: JSX.Element[] = [];
 
   (Object.keys(timeLeft) as (keyof typeof timeLeft)[]).forEach((interval) => {
-    // if (!timeLeft[interval]) {
-    //   return;
-    // }
-
     timerComponents.push(
       <div className="text-white">
         <p className="font-rblack mobile:text-30px mobile:leading-30px laptop:text-50px laptop:leading-50px pt-20px tracking-wide">
