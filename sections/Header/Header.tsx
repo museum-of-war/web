@@ -192,6 +192,7 @@ const Header = ({
             wrapperClassName="mr-32px"
           />
           <HeaderAndFooterButton
+            isDarkTheme={isDarkTheme}
             label="The Hall"
             onClick={() => {
               push('/the-hall');
