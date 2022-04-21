@@ -73,44 +73,48 @@ const BidCard = ({
             (<p className="font-rlight mobile:text-14px tablet:text-16px">${usdPrice}</p>)
           }
         </div>
-        <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
-        <div>
-          <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
-            Ends in
-          </p>
-          <div className="flex -mx-10px">
-            <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-rblack">
-                {timeLeft.days}
+        { timeLeft.isLeft && (
+          <>
+            <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
+            <div>
+              <p className='font-rlight text-14px opacity-70 tablet:mb-12px'>
+                Ends in
               </p>
-              <p className="font-rlight mobile:text-14px tablet:text-16px">
-                days
-              </p>
+              <div className='flex -mx-10px'>
+                <div className='text-center px-10px'>
+                  <p className='mobile:text-27px tablet:text-32px font-rblack'>
+                    {timeLeft.days}
+                  </p>
+                  <p className='font-rlight mobile:text-14px tablet:text-16px'>
+                    days
+                  </p>
+                </div>
+                <div className='text-center px-10px'>
+                  <p className='mobile:text-27px tablet:text-32px font-rblack'>
+                    {timeLeft.hours}
+                  </p>
+                  <p className='font-rlight mobile:text-14px tablet:text-16px'>
+                    hours
+                  </p>
+                </div>
+                <div className='text-center px-10px'>
+                  <p className='mobile:text-27px tablet:text-32px font-rblack'>
+                    {timeLeft.minutes}
+                  </p>
+                  <p className='font-rlight mobile:text-14px tablet:text-16px'>
+                    minutes
+                  </p>
+                </div>
+                <div className='text-center px-10px'>
+                  <p className='font-rblack mobile:text-27px tablet:text-32px font-rblack'>
+                    {timeLeft.seconds}
+                  </p>
+                  <p className='mobile:text-14px tablet:text-16px'>seconds</p>
+                </div>
+              </div>
             </div>
-            <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-rblack">
-                {timeLeft.hours}
-              </p>
-              <p className="font-rlight mobile:text-14px tablet:text-16px">
-                hours
-              </p>
-            </div>
-            <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-rblack">
-                {timeLeft.minutes}
-              </p>
-              <p className="font-rlight mobile:text-14px tablet:text-16px">
-                minutes
-              </p>
-            </div>
-            <div className="text-center px-10px">
-              <p className="font-rblack mobile:text-27px tablet:text-32px font-rblack">
-                {timeLeft.seconds}
-              </p>
-              <p className="mobile:text-14px tablet:text-16px">seconds</p>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
       {!isMobile && (
         <Button

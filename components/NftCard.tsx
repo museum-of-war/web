@@ -74,16 +74,18 @@ function NftCard({
               {currentBid.bid} ETH
             </p>
           </div>
-          <div className={`${timeLeft.days ? '' : 'w-[100px]'}`}>
-            <p className="font-rlight text-12px leading-100% opacity-70 ">
-              Ends in
-            </p>
-            <p className="font-rlight tablet:text-16px mobile:text-14px leading-150% w-100%">
-              {timeLeft.days
-                ? `${timeLeft.days} days`
-                : `${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
-            </p>
-          </div>
+          { timeLeft.isLeft && (
+            <div className={`${timeLeft.days ? '' : 'w-[100px]'}`}>
+              <p className='font-rlight text-12px leading-100% opacity-70 '>
+                Ends in
+              </p>
+              <p className='font-rlight tablet:text-16px mobile:text-14px leading-150% w-100%'>
+                {timeLeft.days
+                  ? `${timeLeft.days} days`
+                  : `${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
