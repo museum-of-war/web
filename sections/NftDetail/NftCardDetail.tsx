@@ -4,7 +4,7 @@ import Button from '@components/Button';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
-import { AuctionItemType } from '@sections/types';
+import { AuctionItemType, BidInfo } from '@sections/types';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
@@ -143,7 +143,8 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     bid: string;
     proposedBids: string[];
     fullInfo: any;
-  }>({ bid: '0', proposedBids: ['0'], fullInfo: '' });
+    bidHistory: BidInfo[];
+  }>({ bid: '0', proposedBids: ['0'], fullInfo: '', bidHistory: [] });
 
   useEffect(() => {
     getAuctionInfo(item.contractAddress, item.tokenId)
@@ -227,7 +228,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
               {isSold && (
                 <div className="flex text-16px laptop:mt-24px tablet:ml-48px laptop:ml-[0px]">
                   <p>Owner:</p>
-                  <p className="ml-[8px]" title={tokenOwner}>{truncateAddress(tokenOwner, 11)}</p>
+                  <p className="ml-[8px]" title={tokenOwner}>{truncateAddress(tokenOwner, 13)}</p>
                 </div>
               )}
             </div>
@@ -236,7 +237,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 <p className="mobile:text-27px tablet:text-32px font-rblack mobile:mb-30px tablet:mb-36px">
                   Bids history
                 </p>
-                <BidsHistoryTable />
+                <BidsHistoryTable bids={currentBid.bidHistory} />
               </div>
             )}
             <div className="laptop:mt-96px mobile:my-60px tablet:mt-72px">

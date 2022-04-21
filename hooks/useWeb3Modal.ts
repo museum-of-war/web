@@ -15,6 +15,7 @@ import {
 } from '@sections/Constants';
 import { NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
+import { BidInfo } from '@sections/types';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -143,6 +144,21 @@ export function useWeb3Modal() {
       tokenId,
     );
 
+    const isSold = auctionInfo.nftSeller === ethers.constants.AddressZero;
+
+    const bidInfos = isSold ?
+      await Promise.all((await auction.queryFilter(auction.filters.BidMade()) as any[])
+        .filter((bid: any) =>
+          bid.args.nftContractAddress === contractAddress &&
+          bid.args.tokenId.eq(tokenId)
+        ).map(async (bid: any) => ({
+          eth: web3.utils.fromWei(bid.args.ethAmount.toString()),
+          bidder: bid.args.bidder,
+          date: new Date(+(await web3.eth.getBlock(bid.blockNumber)).timestamp * 1000),
+          full: bid,
+        } as BidInfo & { full: any }))
+      ) : [];
+
     const hasBid = auctionInfo.nftHighestBid.gte(auctionInfo.minPrice);
     const bid = hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice;
 
@@ -166,7 +182,8 @@ export function useWeb3Modal() {
       .map((wei) => web3.utils.fromWei(wei));
 
     return {
-      isSold: auctionInfo.nftSeller === ethers.constants.AddressZero,
+      isSold,
+      bidHistory: bidInfos,
       bid: web3.utils.fromWei(bid.toString()),
       nextMinBid: web3.utils.fromWei(nextMinBid.toString()),
       proposedBids: proposedBidsETH,

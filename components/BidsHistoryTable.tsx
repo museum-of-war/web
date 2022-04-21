@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,20 +6,49 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { BidInfo } from '@sections/types';
+import { truncateAddress } from '@sections/utils';
 
-type BidsHistoryTableProps = {};
+type BidsHistoryTableProps = {
+  bids: BidInfo[];
+};
 
-function createData(price: string, time: string, from: string) {
-  return { price, time, from };
+function calculateTimeFrom(date: Date) {
+  let difference = +new Date() - +date;
+
+  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+  if (days > 0) return days === 1 ? '1 day ago' : `${days} days ago`;
+
+  const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+
+  if (hours > 0) return hours === 1 ? '1 hour ago' : `${hours} hours ago`;
+
+  const minutes = Math.floor((difference / 1000 / 60) % 60);
+
+  if (minutes > 0) return minutes === 1 ? '1 minute ago' : `${minutes} minutes ago`;
+
+  return 'few moments ago';
 }
 
-const rows = [
-  createData("0.15 ETH", "3 days ago", "0x4EFesagas12...0x4E"),
-  createData("0.15 ETH", "3 days ago", "0x4EFesagas12...0x4E"),
-  createData("0.15 ETH", "3 days ago", "0x4EFesagas12...0x4E"),
-];
+function createData(bidInfo: BidInfo) {
+  return {
+    price: bidInfo.eth,
+    time: calculateTimeFrom(bidInfo.date),
+    from: truncateAddress(bidInfo.bidder, 13),
+  };
+}
 
-function BidsHistoryTable({}: BidsHistoryTableProps) {
+function BidsHistoryTable({ bids }: BidsHistoryTableProps) {
+  const [rows, setRows] = useState(bids.map(createData));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRows(bids.map(createData));
+    }, 60 * 1000);
+    return () => clearInterval(interval);
+  }, [bids]);
+
   return (
     <TableContainer component={Paper}>
       <Table size="small">
@@ -36,7 +65,7 @@ function BidsHistoryTable({}: BidsHistoryTableProps) {
               key={index}
               //   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell>{row.price}</TableCell>
+              <TableCell>{row.price} ETH</TableCell>
               <TableCell>{row.time}</TableCell>
               <TableCell>{row.from}</TableCell>
             </TableRow>
