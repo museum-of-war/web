@@ -18,7 +18,7 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 type ContentAuctionProps = {};
 
 const ContentAuction = ({}: ContentAuctionProps) => {
-  const { isTablet, isMobile } = useViewPort();
+  const { isTablet, isMobile, isDesktop } = useViewPort();
   const [data, setData] = useState<any[]>([]);
   const { getAuctionInfo } = useWeb3Modal();
 
@@ -112,12 +112,47 @@ const ContentAuction = ({}: ContentAuctionProps) => {
   const toggleDrawer = () => setOpen((state) => !state);
   const closeDrawer = () => setOpen(false);
   const openDrawer = () => setOpen(true);
-  const handleChangeRange =
-    (type: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
-      setPriceRange((state) => ({
-        ...state,
-        [type]: e.target.value,
-      }));
+
+  const getItemStyle = (index: number) => {
+    const result: React.CSSProperties = {};
+
+    if (isDesktop) {
+      if (index < 2) {
+        result.width = 'calc((100% - 48px) / 2)';
+      } else {
+        result.width = 'calc((100% - 144px) / 4)';
+      }
+      if (index === 0) {
+        result.marginRight = 48;
+      } else {
+        result.marginRight = (index - 1) % 4 ? 48 : 0;
+      }
+
+      result.marginTop = 72;
+
+      return result;
+    }
+
+    if (isTablet) {
+      if (index === 0) {
+        result.width = '100%';
+        result.marginRight = 0;
+      } else {
+        result.width = 'calc((99% - 48px) / 2)';
+        result.marginRight = index % 2 ? 48 : 0;
+      }
+
+      result.marginTop = 72;
+
+      return result;
+    }
+
+    result.width = '100%';
+    result.marginRight = 0;
+    result.marginTop = 30;
+
+    return result;
+  };
 
   return (
     <>
@@ -125,11 +160,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
         {!isTablet && !isMobile ? (
           <div className="flex -mx-10px tablet:mb-[57px] ">
             <div className="px-20px">
-              <PriceRange
-                value={priceRange}
-                setValue={setPriceRange}
-                handleChange={handleChangeRange}
-              />
+              <PriceRange value={priceRange} setValue={setPriceRange} />
             </div>
             <div className="px-20px">
               <DropdownSelect
@@ -177,10 +208,11 @@ const ContentAuction = ({}: ContentAuctionProps) => {
       <div className="flex flex-wrap -mx-16px">
         {filteredData.map((item, index) => (
           <div
-            className={`${index < 2 ? 'laptop:w-1/2' : 'laptop:w-1/4'} ${
-              index === 0 ? 'tablet:w-full' : 'tablet:w-1/2'
-            } mobile:w-full flex flex-col py-14px px-6px`}
+            className={`mobile:px-24px tablet:px-0 desktop:px-0 ${
+              isDesktop ? 'zoom-hover' : ''
+            }`}
             key={item.index}
+            style={getItemStyle(index)}
           >
             <NftCard
               orderIndex={index}
@@ -203,9 +235,8 @@ const ContentAuction = ({}: ContentAuctionProps) => {
           handleChangeType={handleChangeType}
           selectedCategory={selectedCategory}
           handleChangeCategory={handleChangeCategory}
-          value={priceRange}
-          setValue={setPriceRange}
-          handleChangeRange={handleChangeRange}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
         />
       )}
     </>

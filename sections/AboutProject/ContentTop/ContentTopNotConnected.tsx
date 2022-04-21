@@ -2,6 +2,9 @@ import React from 'react';
 import PoweredByFrame from '@components/PoweredByFrame';
 import { useViewPort } from '@hooks/useViewport';
 import Button from '@components/Button';
+import { openInNewTab } from '@sections/utils';
+import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 type ContentTopNotConnectedProps = {
   signerAddress: string;
@@ -13,6 +16,7 @@ const ContentTopNotConnected = ({
   handleConnect,
 }: ContentTopNotConnectedProps) => {
   const { isMobile, isTablet } = useViewPort();
+  const { canMint } = useWeb3Modal();
 
   return (
     <div
@@ -32,14 +36,18 @@ const ContentTopNotConnected = ({
         <div>
           <p
             className={`font-rblack uppercase ${
-              isMobile ? 'text-46px leading-40px' : 'text-84px leading-72px'
+              isMobile ? 'text-46px leading-40px' : ''
             }`}
+            style={{
+              fontSize: isMobile ? '' : '110px',
+              lineHeight: isMobile ? '' : '100px',
+            }}
           >
             The NFT-museum
           </p>
           <p
             className={`font-rblack ${
-              isMobile ? 'text-27px leading-30px' : 'text-32px leading-36px'
+              isMobile ? 'text-27px leading-30px' : 'text-45px leading-48px'
             }`}
           >
             of the war of putin&apos;s russia against Ukraine
@@ -52,9 +60,16 @@ const ContentTopNotConnected = ({
         >
           <Button
             mode="primary"
+            className="h-48px"
             round={false}
             label="Buy NFT Now"
-            onClick={() => console.log('ads')}
+            onClick={async () => {
+              if (await canMint()) {
+                openInNewTab(MINT_LINK);
+              } else {
+                openInNewTab(OPENSEA_LINK);
+              }
+            }}
           />
         </div>
       </div>

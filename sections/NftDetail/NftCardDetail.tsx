@@ -4,11 +4,12 @@ import Button from '@components/Button';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
-import { AuctionItemType } from '@sections/types';
+import { AuctionItemType, BidInfo } from '@sections/types';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
 import { usePopup } from 'providers/PopupProvider';
+import { truncateAddress } from '@sections/utils';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -23,6 +24,13 @@ type BidCardProps = {
   tokenId: number;
 };
 
+const getUsdPriceFromETH = async (ethPrice: string | number): Promise<string> => {
+  return await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum')
+    .then(res => res.json())
+    .then(json => json[0].current_price as number)
+    .then(usdPrice => (usdPrice * +ethPrice).toFixed(0));
+}
+
 const BidCard = ({
   currentBid,
   proposedBids,
@@ -32,7 +40,10 @@ const BidCard = ({
   tokenId,
 }: BidCardProps) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
+  const [usdPrice, setUsdPrice] = useState<string | null>(null);
   const { showPopup } = usePopup();
+
+  getUsdPriceFromETH(currentBid).then(setUsdPrice);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,6 +51,14 @@ const BidCard = ({
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const price = await getUsdPriceFromETH(currentBid);
+      if (price) setUsdPrice(price);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [currentBid]);
 
   return (
     <>
@@ -51,46 +70,52 @@ const BidCard = ({
           <p className="mobile:text-27px tablet:text-32px font-rblack">
             {currentBid} ETH
           </p>
-          <p className="text-16px">{/* TODO add $ */}</p>
+          {!!usdPrice &&
+            (<p className="font-rlight mobile:text-14px tablet:text-16px">${usdPrice}</p>)
+          }
         </div>
-        <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
-        <div>
-          <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
-            Ends in
-          </p>
-          <div className="flex -mx-10px">
-            <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-rblack">
-                {timeLeft.days}
+        { timeLeft.isLeft && (
+          <>
+            <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
+            <div>
+              <p className='font-rlight text-14px opacity-70 tablet:mb-12px'>
+                Ends in
               </p>
-              <p className="font-rlight mobile:text-14px tablet:text-16px">
-                days
-              </p>
+              <div className='flex -mx-10px'>
+                <div className='text-center px-10px'>
+                  <p className='mobile:text-27px tablet:text-32px font-rblack'>
+                    {timeLeft.days}
+                  </p>
+                  <p className='font-rlight mobile:text-14px tablet:text-16px'>
+                    days
+                  </p>
+                </div>
+                <div className='text-center px-10px'>
+                  <p className='mobile:text-27px tablet:text-32px font-rblack'>
+                    {timeLeft.hours}
+                  </p>
+                  <p className='font-rlight mobile:text-14px tablet:text-16px'>
+                    hours
+                  </p>
+                </div>
+                <div className='text-center px-10px'>
+                  <p className='mobile:text-27px tablet:text-32px font-rblack'>
+                    {timeLeft.minutes}
+                  </p>
+                  <p className='font-rlight mobile:text-14px tablet:text-16px'>
+                    minutes
+                  </p>
+                </div>
+                <div className='text-center px-10px'>
+                  <p className='font-rblack mobile:text-27px tablet:text-32px font-rblack'>
+                    {timeLeft.seconds}
+                  </p>
+                  <p className='mobile:text-14px tablet:text-16px'>seconds</p>
+                </div>
+              </div>
             </div>
-            <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-rblack">
-                {timeLeft.hours}
-              </p>
-              <p className="font-rlight mobile:text-14px tablet:text-16px">
-                hours
-              </p>
-            </div>
-            <div className="text-center px-10px">
-              <p className="mobile:text-27px tablet:text-32px font-rblack">
-                {timeLeft.minutes}
-              </p>
-              <p className="font-rlight mobile:text-14px tablet:text-16px">
-                minutes
-              </p>
-            </div>
-            <div className="text-center px-10px">
-              <p className="font-rblack mobile:text-27px tablet:text-32px font-rblack">
-                {timeLeft.seconds}
-              </p>
-              <p className="mobile:text-14px tablet:text-16px">seconds</p>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
       {!isMobile && (
         <Button
@@ -110,19 +135,23 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
   const { activePopupName, showPopup } = usePopup();
   const { push } = useAppRouter();
-  const { getAuctionInfo } = useWeb3Modal();
+  const { getAuctionInfo, getOwnerOfNFT } = useWeb3Modal();
 
-  const [isSold, _setSold] = useState<boolean>(false);
+  const [isSold, setSold] = useState<boolean>(false);
+  const [tokenOwner, setTokenOwner] = useState<string>('');
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     proposedBids: string[];
     fullInfo: any;
-  }>({ bid: '0', proposedBids: ['0'], fullInfo: '' });
+    bidHistory: BidInfo[];
+  }>({ bid: '0', proposedBids: ['0'], fullInfo: '', bidHistory: [] });
 
   useEffect(() => {
     getAuctionInfo(item.contractAddress, item.tokenId)
-      .then((i) => {
+      .then(async (i) => {
         setCurrentBid({ ...i });
+        setSold(i.isSold);
+        if (i.isSold) setTokenOwner(await getOwnerOfNFT(item.contractAddress, item.tokenId));
       })
       .catch((error) => console.log(`NftCardDetail ${error}`));
   }, []);
@@ -199,7 +228,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
               {isSold && (
                 <div className="flex text-16px laptop:mt-24px tablet:ml-48px laptop:ml-[0px]">
                   <p>Owner:</p>
-                  <p className="ml-[8px]">0x4EFesagas12...0x4E</p>
+                  <p className="ml-[8px]" title={tokenOwner}>{truncateAddress(tokenOwner, 13)}</p>
                 </div>
               )}
             </div>
@@ -208,7 +237,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 <p className="mobile:text-27px tablet:text-32px font-rblack mobile:mb-30px tablet:mb-36px">
                   Bids history
                 </p>
-                <BidsHistoryTable />
+                <BidsHistoryTable bids={currentBid.bidHistory} />
               </div>
             )}
             <div className="laptop:mt-96px mobile:my-60px tablet:mt-72px">

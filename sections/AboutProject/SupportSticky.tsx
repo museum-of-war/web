@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import SupportButton from "@components/SupportButton";
-import DonatePopup from "@sections/Warline/DonatePopup";
-import { useViewPort } from "@hooks/useViewport";
-import { MINT_LINK, RELEASE_DATE, OPENSEA_LINK } from "@sections/Constants";
-import { useWeb3Modal } from "@hooks/useWeb3Modal";
-import {openInNewTab} from "@sections/utils";
+import React, { useEffect, useState } from 'react';
+import SupportButton from '@components/SupportButton';
+import DonatePopup from '@sections/Warline/DonatePopup';
+import { useViewPort } from '@hooks/useViewport';
+import { MINT_LINK, RELEASE_DATE, OPENSEA_LINK } from '@sections/Constants';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { openInNewTab } from '@sections/utils';
 
 type PropsSupportSticky = {
   targetAnchorId: string;
@@ -13,7 +13,7 @@ type PropsSupportSticky = {
 const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
   const { canMint } = useWeb3Modal();
   const [difference, setDifference] = useState(
-    +new Date(RELEASE_DATE) - +new Date()
+    +new Date(RELEASE_DATE) - +new Date(),
   );
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,8 +24,8 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
 
   const CTA =
     difference > 0
-      ? "Support Ukraine while waiting for the drop"
-      : "Buy NFT to support Ukraine";
+      ? 'Support Ukraine while waiting for the drop'
+      : 'Buy NFT to support Ukraine';
 
   const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(true);
@@ -33,7 +33,6 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
   const { isMobile, isTablet } = useViewPort();
 
   const onScroll = () => {
-    // ???
     const target = document.getElementById(targetAnchorId);
     if (target) {
       const appear =
@@ -46,14 +45,14 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
   };
 
   useEffect(() => {
-    document.addEventListener("scroll", onScroll);
-    return () => document.removeEventListener("scroll", onScroll);
+    document.addEventListener('scroll', onScroll);
+    return () => document.removeEventListener('scroll', onScroll);
   }, []);
 
   const stickyButton =
     difference > 0 ? (
       <SupportButton
-        label={"Support Ukraine"}
+        label={'Support Ukraine'}
         onClick={() => {
           if (isMobile) setShowBtn(false);
           setShowDonatePopup(true);
@@ -65,10 +64,10 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
           className="font-rblack text-white rounded-full border-2 px-25px py-12px whitespace-nowrap border-white mobile:text-12px laptop:text-14px desktop:text-16px
             hover:border-2 hover:shadow-[0_0_0_1px_rgba(255,255,255,1)]"
           onClick={async () => {
-            if(await canMint()) {
-              openInNewTab(MINT_LINK)
+            if (await canMint()) {
+              openInNewTab(MINT_LINK);
             } else {
-              openInNewTab(OPENSEA_LINK)
+              openInNewTab(OPENSEA_LINK);
             }
           }}
         >
@@ -91,8 +90,8 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
               {CTA}
             </p>
             <img
-              src={"img/down-white.svg"}
-              style={showBtn ? {} : { transform: "rotate(-90deg)" }}
+              src={'img/down-white.svg'}
+              style={showBtn ? {} : { transform: 'rotate(-90deg)' }}
             />
           </div>
 

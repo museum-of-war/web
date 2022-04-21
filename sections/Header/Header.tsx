@@ -127,7 +127,16 @@ const Header = ({
                 <Button
                   mode="secondary"
                   round
-                  label={<img src="/img/logout.svg" alt="Logout" />}
+                  label={
+                    <img
+                      src={
+                        isDarkTheme
+                          ? '/img/logout-white.svg'
+                          : '/img/logout.svg'
+                      }
+                      alt="Logout"
+                    />
+                  }
                   onClick={handleDisconnect}
                 />
               </>
@@ -156,6 +165,7 @@ const Header = ({
       <div className="flex flex-row items-center justify-end">
         <div className="flex flex-row items-center justify-end mr-48px">
           <HeaderAndFooterButton
+            isDarkTheme={isDarkTheme}
             label="Home"
             onClick={() => {
               push('/');
@@ -164,6 +174,7 @@ const Header = ({
             wrapperClassName="mr-32px"
           />
           <HeaderAndFooterButton
+            isDarkTheme={isDarkTheme}
             label="Warline"
             onClick={() => {
               push('/warline');
@@ -172,6 +183,7 @@ const Header = ({
             wrapperClassName="mr-32px"
           />
           <HeaderAndFooterButton
+            isDarkTheme={isDarkTheme}
             label="Auction"
             onClick={() => {
               push('/auction');
@@ -181,6 +193,7 @@ const Header = ({
           />
           {signerAddress && (
             <HeaderAndFooterButton
+              isDarkTheme={isDarkTheme}
               label="My NFTs"
               onClick={() => {
                 push('/tokens');
@@ -204,7 +217,14 @@ const Header = ({
             <Button
               mode="secondary"
               round
-              label={<img src="/img/logout.svg" alt="Logout" />}
+              label={
+                <img
+                  src={
+                    isDarkTheme ? '/img/logout-white.svg' : '/img/logout.svg'
+                  }
+                  alt="Logout"
+                />
+              }
               onClick={handleDisconnect}
             />
           </>
