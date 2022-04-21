@@ -1,4 +1,4 @@
-import { NftDetails } from '@components/nft-details/NftDetails';
+import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
 import { EventType } from '@sections/types';
 import WarlineData from '@sections/Warline/WarlineData';
 import { getUrls } from '@sections/Warline/WarlineUrls';
@@ -30,28 +30,72 @@ const WarlineItemPage: React.FC = () => {
   );
 
   return event ? (
-    <WarlineItem id={id} event={event} allEvents={allEvents} />
+    <WarlineItem event={event} allEvents={allEvents} />
   ) : (
     <div>Event not found</div>
   );
 };
 
+const getImageSources = (event: EventType) => {
+  const randomSrc = rand_imgs[parseInt(event.Tokenid, 10) % 8] as string;
+  return getUrls(event.Tokenid, event.ImageType, randomSrc as string);
+};
+
+const getTitle = (event: EventType) => `Day ${event.DayNo}, ${event.Time}`;
+
 const WarlineItem: React.FC<{
-  id: string;
   event: EventType;
   allEvents: EventType[];
-}> = ({ id, event, allEvents }) => {
+}> = ({ event, allEvents }) => {
   const imageSources = React.useMemo(() => {
-    const randomSrc = rand_imgs[parseInt(id, 10) % 8] as string;
-    return getUrls(id, event.ImageType, randomSrc as string);
-  }, [event.ImageType, id]);
+    return getImageSources(event);
+  }, [event.ImageType]);
+
+  const prevEventData = React.useMemo(() => {
+    const eventIndex = allEvents.indexOf(event);
+    if (eventIndex > 0) {
+      const event = allEvents[eventIndex - 1];
+      if (event) {
+        return {
+          imageSources: getImageSources(event),
+          title: getTitle(event),
+          path: `/warline/${event.Tokenid}`,
+        };
+      }
+    }
+    return undefined;
+  }, [allEvents, event]);
+
+  const nextEventData = React.useMemo<PrevNextRecord | undefined>(() => {
+    const eventIndex = allEvents.indexOf(event);
+    if (eventIndex !== -1 && eventIndex < allEvents.length - 1) {
+      const event = allEvents[eventIndex + 1];
+      if (event) {
+        return {
+          imageSources: getImageSources(event),
+          title: getTitle(event),
+          path: `/warline/${event.Tokenid}`,
+        };
+      }
+    }
+    return undefined;
+  }, [allEvents, event]);
+
+  console.log('a');
 
   return (
     <NftDetails
-      title={`Day ${event.DayNo}, ${event.Time}`}
+      title={getTitle(event)}
       descriptionEnglish={event.DescriptionEnglish}
       descriptionUkrainian={event.DescriptionUkrainian}
+      twitterUrl={event.TwitterUrl}
+      twitterUsername={event.TwitterUsername}
+      headline={event.Headline}
+      artistUrl={event.ArtistLink}
+      artistName={event.ArtistName}
       imageSources={imageSources}
+      nextRecord={nextEventData}
+      prevRecord={prevEventData}
     />
   );
 };

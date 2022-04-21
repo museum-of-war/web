@@ -19,5 +19,6 @@ export function getUrls(
     originalSrc,
     animationSrc,
     isAnimation,
+    randomSrc,
   };
 }
