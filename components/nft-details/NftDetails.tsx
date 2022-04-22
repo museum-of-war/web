@@ -75,9 +75,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         className={className}
         style={style}
         onError={({ currentTarget }) => {
-          currentTarget.onerror = null;
+          currentTarget.onerror = null; // prevents looping
           currentTarget.src = '/' + imageSources.randomSrc;
-          console.log(currentTarget.onerror); // prevents looping
         }}
         onLoad={({ currentTarget }) => {
           if (
