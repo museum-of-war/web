@@ -131,13 +131,22 @@
   .the-hall-scroll {
     left: -72px;
   }
+  .the-hall-buttons-wrapper {
+    right: 72px;
+  }
 }
 
 @media (min-width: 1500px) {
   .the-hall-scroll {
     left: -132px;
   }
+  .the-hall-buttons-wrapper {
+    right: 132px;
+  }
 }
 
+.the-hall-cards-wrapper {
+  transition: all .5s ease-in-out
+}
 
 
