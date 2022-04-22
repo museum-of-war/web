@@ -1,6 +1,7 @@
 import SupportButton from '@components/SupportButton';
 import DonatePopup from '@sections/Warline/DonatePopup';
 import React, { useEffect, useState } from 'react';
+import { useAppRouter } from '@hooks/useAppRouter';
 
 type PropsCountdownBanner = {
   endDate: string;
@@ -23,6 +24,7 @@ export const calculateTimeLeft = (endDate: string) => {
 };
 
 const CountdownBanner = ({ endDate }: PropsCountdownBanner) => {
+  const { push } = useAppRouter();
   const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(endDate));
@@ -39,6 +41,8 @@ const CountdownBanner = ({ endDate }: PropsCountdownBanner) => {
   const timerComponents: JSX.Element[] = [];
 
   (Object.keys(timeLeft) as (keyof typeof timeLeft)[]).forEach((interval) => {
+    if (interval === 'isLeft') return;
+
     timerComponents.push(
       <div className="text-white">
         <p className="font-rblack mobile:text-30px mobile:leading-30px laptop:text-50px laptop:leading-50px pt-20px tracking-wide">
@@ -56,7 +60,7 @@ const CountdownBanner = ({ endDate }: PropsCountdownBanner) => {
         className="bg-carbon w-100% px-10% py-5% mt-4%"
         id="countdown-banner"
       >
-        <p className="font-rblack text-28px text-white">Sale starts in: </p>
+        <p className="font-rblack text-28px text-white">Auction Closing Ceremony starts in: </p>
         <div className="flex flex-row items-center flex-wrap laptop:w-100% tablet:w-50% mobile:w-100%">
           {timerComponents.map((timer, idx) => (
             <div key={idx} className="mobile:mr-20px laptop:mr-50px">
@@ -67,9 +71,9 @@ const CountdownBanner = ({ endDate }: PropsCountdownBanner) => {
 
         <div className="pt-40px">
           <SupportButton
-            label={'Support Ukraine'}
+            label={'Go to Auction'}
             onClick={() => {
-              setShowDonatePopup(true);
+              push('/auction');
             }}
           />
         </div>
