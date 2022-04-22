@@ -131,7 +131,6 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
               <CardDesktop key={datum.Id} {...datum} />
             ))}
           </div>
-          <div style={{ minWidth: 400 }} />
         </div>
       </div>
     </div>
