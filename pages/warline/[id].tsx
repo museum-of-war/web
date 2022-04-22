@@ -81,8 +81,6 @@ const WarlineItem: React.FC<{
     return undefined;
   }, [allEvents, event]);
 
-  console.log('a');
-
   return (
     <NftDetails
       id={event.Tokenid}
