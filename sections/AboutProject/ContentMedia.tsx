@@ -13,7 +13,7 @@ const Media = (summary: string, outlet: string, url: string) => {
           openInNewTab(url);
         }}
       >
-        <p className="font-rblack tablet:mt-30px mobile:mt-10px py-5px border-b-4 hover:border-carbon hover:border-b-4  hover:border-solid hover:border-carbon border-transparent">
+        <p className="font-rblack tablet:mt-30px mobile:mt-10px py-5px border-b-4 hover:border-carbon hover:border-b-4  hover:border-solid border-transparent">
           Read Article
         </p>
       </button>
@@ -22,12 +22,12 @@ const Media = (summary: string, outlet: string, url: string) => {
 };
 const ContentMedia = () => {
   return (
-    <div className="mobile:mt-8% tablet:mt-0">
+    <div className="mobile:my-60px tablet:my-100px desktop:my-120px">
       <p className="font-rblack tablet:text-70px mobile:text-12vw mobile:leading-12vw tablet:leading-72px uppercase">
         IN PRESS
       </p>
       <div className="h-5px w-100% bg-carbon"></div>
-      <div className="mt-20px relative tablet:flex tablet:flex-row font-rlight justify-between">
+      <div className="mt-20px tablet:flex tablet:flex-row font-rlight justify-between">
         <div className="tablet:flex laptop:flex-row tablet:flex-col">
           <div className="mr-3%">
             {Media(

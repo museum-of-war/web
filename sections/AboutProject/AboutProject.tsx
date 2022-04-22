@@ -10,6 +10,9 @@ import ContentMain from './ContentMain';
 import ContentMedia from './ContentMedia';
 import dynamic from 'next/dynamic';
 import ContentChapter from './ContentChapter';
+import ContentCounterDaysAndRised from './ContentCounterDaysAndRised';
+import Partners from './Partners';
+
 
 type AboutProjectProps = {
   signerAddress: string;
@@ -22,14 +25,16 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
       <ContentTop signerAddress={signerAddress} handleConnect={handleConnect} />
       <ContentChapter />
       <ContentMission />
+      <ContentCounterDaysAndRised />
       <ContentWar />
       <ContentMain
         signerAddress={signerAddress}
         handleConnect={handleConnect}
       />
-      <ContentMedia />
       <SupportSticky targetAnchorId={'countdown-banner'} />
       <SupportProject />
+      <Partners />
+      <ContentMedia />
     </div>
   );
 };

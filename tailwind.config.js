@@ -10,6 +10,9 @@ module.exports = {
       shadow: {
         "3xl": "0px 4px 32px 4px rgba(33, 33, 33, 0.3)",
       },
+      scale: {
+        "43": ".43",
+      },
       colors: {
         carbon: {
           DEFAULT: "#212121",
@@ -56,6 +59,7 @@ module.exports = {
         "100px": "100px",
         "125px": "125px",
         "150px": "150px",
+        "192px": "192px",
         "200px": "200px",
         "225px": "225px",
         "250px": "250px",
@@ -159,6 +163,7 @@ module.exports = {
         "100px": "100px",
         "120px": "120px",
         "132px": "132px",
+        "144px": "144px",
         "175px": "175px",
         "8.5em": "8.5em",
         q: "calc(50%)-100",
@@ -318,6 +323,12 @@ module.exports = {
         17: "17",
         18: "18",
         19: "19",
+      },
+      keyframes: {
+        carousel: {
+          "0%": {transform: 'translateX(0%)'},
+          "100%": {transform: 'translateX(-100%)'},
+        }
       },
     },
     spacing: {

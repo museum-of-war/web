@@ -86,9 +86,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
       )}
       <div className="mt-8%">
         <Blurb
-          header={"TEAM AND PARTNERS"}
-          english="Ukrainian NFT artists community in collaboration with Ministry of digital trasformation of Ukraine"
-          ukrainian="Спільнота українських NFT художників у співпраці з Міністерством цифрової трансформації України"
+          header={"TEAM"}
         />
         <img
           alt="partners"

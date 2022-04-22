@@ -16,11 +16,11 @@ const ContentTopConnected = () => {
           <p className="mt-4% mb-4%">
             NFT-музей війни путінської росії проти України.
           </p>
-          <PoweredByFrame />
         </div>
       </div>
       <div className="w-full mb-15%">
         <dotlottie-player src={'/lottie/main.lottie'} autoplay loop />
+        <PoweredByFrame />
       </div>
     </div>
   ) : (
@@ -41,7 +41,11 @@ const ContentTopConnected = () => {
           <dotlottie-player src={'/lottie/main.lottie'} autoplay loop />
         </div>
       </div>
-      <PoweredByFrame />
+      <div className="w-100% flex justify-end">
+        <div className="w-45%">
+          <PoweredByFrame />
+        </div>
+      </div>
       <CountdownBanner endDate={RELEASE_DATE} />
     </div>
   );
