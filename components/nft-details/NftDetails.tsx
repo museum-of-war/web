@@ -2,6 +2,7 @@ import FsLightbox from 'fslightbox-react';
 import Link from 'next/link';
 import React from 'react';
 import { VscTwitter } from 'react-icons/vsc';
+import { useInView } from 'react-intersection-observer';
 
 type ImageSources = {
   previewSrc: string;
@@ -48,7 +49,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   imageSources,
 }) => {
   const [toggler, setToggler] = React.useState<boolean>(false);
-  console.log('qqa', prevRecord, nextRecord);
+  const { ref, inView } = useInView();
 
   const renderImage = ({
     title,
@@ -56,11 +57,13 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     className,
     style,
     withLightbox = true,
+    loadOriginal = false,
   }: {
     title: string;
     imageSources: ImageSources;
     className: string;
     withLightbox?: boolean;
+    loadOriginal?: boolean;
     style?: React.CSSProperties;
   }) => {
     const img = (
@@ -68,7 +71,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         alt={title}
         title={title}
         onClick={withLightbox ? () => setToggler(!toggler) : undefined}
-        src={imageSources.previewSrc}
+        src={loadOriginal ? imageSources.originalSrc : imageSources.previewSrc}
         className={className}
         style={style}
         onError={({ currentTarget }) => {
@@ -109,7 +112,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     <img
       alt="Previous"
       src={'/img/down.svg'}
-      className={`rotate-90 flex-grow-0 rounded-full p-[11px] border-carbon border ${
+      className={`rotate-90 flex-grow-0 rounded-full p-7px tablet:p-[11px] border-carbon border ${
         active ? 'cursor-pointer active:translate-y-1' : 'opacity-20'
       } `}
     />
@@ -118,7 +121,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     <img
       alt="Next"
       src={'/img/down.svg'}
-      className={`-rotate-90 flex-grow-0 rounded-full p-[11px] border-carbon border ${
+      className={`-rotate-90 flex-grow-0 rounded-full p-7px tablet:p-[11px] border-carbon border ${
         active ? 'cursor-pointer active:translate-y-1' : 'opacity-20'
       } `}
     />
@@ -148,7 +151,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   return (
     <div className="font-rnarrow">
       <div className="flex items-center mt-[-36px] mb-[24px]">
-        <Link href="/warline">
+        <Link href="/warline" passHref>
           <div className="h-[48px] flex items-center  cursor-pointer group">
             <img
               alt="Previous"
@@ -181,22 +184,22 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
           {getNavButtonsJsx()}
         </div>
       </div>
-      <div className="flex flex-col laptop:flex-row laptop:gap-[20px] gap-[48px] pt-[40px]">
+      <div className="flex flex-col laptop:flex-row laptop:gap-[48px] gap-[20px] pt-[40px]">
         {renderImage({
           imageSources,
           title,
-          style: { maxHeight: 'calc(100vh - 400px)' },
+          loadOriginal: true,
           className:
-            'flex-1 overflow-auto object-contain cursor-pointer transition-transform hover:scale-[101%] aspect-square]',
+            'flex-1 overflow-auto object-contain cursor-pointer transition-transform hover:scale-[101%] h-fit max-h-[800px] object-left-top',
         })}
-        <div className="px-[20px] laptop:w-[544px] mobile:w-full box-border flex flex-col gap-[48px] text-[14px] tablet:text-[16px]">
+        <div className="laptop:w-[544px] mobile:w-full box-border flex flex-col gap-[48px] text-[14px] tablet:text-[16px]">
           <div>
             <p>{descriptionEnglish}</p>
             <br />
             <p className="">{descriptionUkrainian}</p>
           </div>
           <a href={twitterUrl} target="_blank" rel="noreferrer">
-            <div className="border-carbon border-4 p-[20px] flex flex-row gap-[24px]">
+            <div className="border-carbon border-4 p-[20px] flex flex-col tablet:flex-row gap-[24px]">
               <div className="flex-1">
                 {headline}
                 <p className="text-[14px] mt-[24px] font-rlight">{`@${twitterUsername}`}</p>
@@ -222,10 +225,10 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
             </div>
             <div>{editions ? `Editions: ${editions}` : null}</div>
           </div>
-          <div className="flex flew-row gap-[48px] mt-[24px] items-start">
+          <div className="flex flex-col-reverse tablet:flex-row gap-[36px] tablet:gap-[48px] mt-[24px] items-start  mb-60px">
             <div className="flex-1 flex">
               {prevRecord ? (
-                <Link href={prevRecord.path}>
+                <Link href={prevRecord.path} passHref>
                   <div role="button" className="flex-1 flex-col group">
                     {renderImage({
                       title: prevRecord.title,
@@ -247,9 +250,9 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                 </Link>
               ) : null}
             </div>
-            <div className="flex-1 flex mb-60px">
+            <div className="flex-1 flex">
               {nextRecord ? (
-                <Link href={nextRecord.path}>
+                <Link href={nextRecord.path} passHref>
                   <div role="button" className="flex-1 flex-col group">
                     {renderImage({
                       title: nextRecord.title,
@@ -274,10 +277,13 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
           </div>
         </div>
       </div>
-      {getNavButtonsJsx(
-        'tablet:hidden mobile:fixed bottom-0 left-0 right-0 flex flex-row w-full justify-between px-60px py-10px bg-white',
-        true,
-      )}
+      <div ref={ref} />
+
+      {!inView &&
+        getNavButtonsJsx(
+          'tablet:hidden mobile:fixed bottom-0 left-0 right-0 flex flex-row w-full justify-between px-60px py-10px bg-white',
+          true,
+        )}
     </div>
   );
 };

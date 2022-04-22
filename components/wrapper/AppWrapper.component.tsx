@@ -42,7 +42,7 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
   return (
     <PopupProvider>
       <div
-        className={`min-h-screen dark:bg-carbon
+        className={`desktop:container mx-auto min-h-screen dark:bg-carbon
                      text-carbon dark:text-white overflow-clip
                      desktop:px-132px tablet:px-72px mobile:px-24px
                      py-36px mobile:py-20px`}

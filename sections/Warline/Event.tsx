@@ -6,6 +6,7 @@ import { openInNewTab } from '@sections/utils';
 import { LinkButton } from '@components/LinkButton';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import { usePopup } from '@providers/PopupProvider';
+import Link from 'next/link';
 
 type PropsEvent = {
   eventData: EventType;
@@ -55,22 +56,24 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
 
     return (
       <>
-        <img
-          alt={alt}
-          onClick={() => setToggler(!toggler)}
-          src={previewSrc}
-          className={className}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null; // prevents looping
-            currentTarget.src = randomSrc;
-          }}
-          onLoad={({ currentTarget }) => {
-            if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
-              currentTarget.src = animationSrc;
-            }
-          }}
-        />
-        <FsLightbox toggler={toggler} sources={[originalSrc]} />
+        <Link href={`/warline/${idx + 1}`} passHref>
+          <img
+            alt={alt}
+            onClick={() => setToggler(!toggler)}
+            src={previewSrc}
+            className={className}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src = randomSrc;
+            }}
+            onLoad={({ currentTarget }) => {
+              if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
+                currentTarget.src = animationSrc;
+              }
+            }}
+          />
+          {/* <FsLightbox toggler={toggler} sources={[originalSrc]} /> */}
+        </Link>
       </>
     );
   };
@@ -125,19 +128,11 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
           </div>
         ) : (
           <div>
-            <LinkButton
-              onClick={() =>
-                showPopup('event', {
-                  eventData,
-                  dayNo,
-                  idx,
-                  allEvents,
-                })
-              }
-              className="font-rblack mt-15px "
-            >
-              See Details
-            </LinkButton>
+            <Link href={`/warline/${eventData.Tokenid}`} passHref>
+              <span className="cursor-pointer font-rblack border-b-4 border-transparent hover:border-solid hover:border-carbon mt-15px">
+                See Details
+              </span>
+            </Link>
           </div>
         )}
       </div>
@@ -193,19 +188,11 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
           </div>
         ) : (
           <div>
-            <LinkButton
-              onClick={() =>
-                showPopup('event', {
-                  eventData,
-                  dayNo,
-                  idx,
-                  allEvents,
-                })
-              }
-              className="font-rblack"
-            >
-              See Details
-            </LinkButton>
+            <Link href={`/warline/${eventData.Tokenid}`} passHref>
+              <span className="cursor-pointer font-rblack border-b-4 border-transparent hover:border-solid hover:border-carbon mt-15px">
+                See Details
+              </span>
+            </Link>
           </div>
         )}
       </div>
@@ -264,19 +251,11 @@ const Event = ({ eventData, dayNo, idx, allEvents }: PropsEvent) => {
           </div>
         ) : (
           <div>
-            <LinkButton
-              onClick={() =>
-                showPopup('event', {
-                  eventData,
-                  dayNo,
-                  idx,
-                  allEvents,
-                })
-              }
-              className="font-rblack"
-            >
-              See Details
-            </LinkButton>
+            <Link href={`/warline/${eventData.Tokenid}`} passHref>
+              <span className="cursor-pointer font-rblack border-b-4 border-transparent hover:border-solid hover:border-carbon mt-15px">
+                See Details
+              </span>
+            </Link>
           </div>
         )}
       </div>
