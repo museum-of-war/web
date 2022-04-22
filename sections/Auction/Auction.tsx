@@ -2,9 +2,10 @@ import Blurb from '@sections/AboutProject/Blurb';
 import ContentAuction from './ContentAuction';
 import DropNft from './DropNft';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { openInNewTab } from '@sections/utils';
-import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
+import { AUCTION_CLOSING_DATE, AUCTION_END_DATE, MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
+import CountdownBanner from '@sections/AboutProject/ContentTop/CountdownBanner';
 
 type AuctionProps = {
   signerAddress: string;
@@ -29,6 +30,7 @@ const Auction = ({ signerAddress, handleConnect }: AuctionProps) => {
         english="A limited set of rare, selected, and generative artworks by both Ukrainian and global artists. Floating price, based on bids and offers. For this time, the Museum invites art collectors to fully shape the charity fundraising. Please note that only Warline art collectors are allowed to bid in the auction."
         ukrainian="Обмежений набір рідкісних та відібраних робіт українських та світових художників. Плаваюча ціна, що базується на ставках та пропозиціях. На цей раз Музей запрошує колекціонерів мистецтва повністю сформувати благодійний збір коштів. Зверніть увагу, що лише колекціонери експонатів Warline можуть брати участь в аукціоні."
       />
+      <CountdownBanner className={'mb-4% border-4'} endDate={AUCTION_CLOSING_DATE} hideDate={AUCTION_END_DATE} />
       <ContentAuction />
       {isCanMint && (
         <DropNft
