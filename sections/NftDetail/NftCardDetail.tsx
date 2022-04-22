@@ -232,7 +232,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 </div>
               )}
             </div>
-            {isSold && (
+            {isSold && false /*TODO*/ && (
               <div className="mobile:mt-60px tablet:mt-72px laptop:mt-96px">
                 <p className="mobile:text-27px tablet:text-32px font-rblack mobile:mb-30px tablet:mb-36px">
                   Bids history
