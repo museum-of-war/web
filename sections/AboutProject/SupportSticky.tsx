@@ -81,7 +81,7 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
   ) : (
     <>
       {isMobile ? (
-        <div className="fixed left-0 bottom-0 bg-carbon w-100% px-10% py-20px">
+        <div className="fixed z-10 left-0 bottom-0 bg-carbon w-100% px-10% py-20px">
           <div
             className="flex align-center justify-between"
             onClick={() => setShowBtn(!showBtn)}
@@ -98,12 +98,12 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
           {showBtn && <div className="pt-20px">{stickyButton}</div>}
         </div>
       ) : isTablet ? (
-        <div className="fixed left-0 bottom-0 bg-carbon w-100% px-10% py-30px">
+        <div className="fixed z-10 left-0 bottom-0 bg-carbon w-100% px-10% py-30px">
           <p className="font-rblack text-32px text-white">{CTA}</p>
           <div className="pt-20px">{stickyButton}</div>
         </div>
       ) : (
-        <div className="fixed z-0 left-0 bottom-0 bg-carbon w-100% px-10% py-30px flex flex-row items-center justify-center">
+        <div className="fixed z-10 left-0 bottom-0 bg-carbon w-100% px-10% py-30px flex flex-row items-center justify-center">
           <p className="font-rblack text-28px leading-28px text-white">{CTA}</p>
           <div className="ml-30px mt-7">{stickyButton}</div>
         </div>
