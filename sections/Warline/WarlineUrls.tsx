@@ -8,11 +8,11 @@ export function getUrls(
 
   const previewSrc: string = isNoImage
     ? randomSrc
-    : 'img/preview/' + tokenId + '.webp';
-  const originalSrc: string = isNoImage ? randomSrc : 'img/original/' + image;
+    : '/img/preview/' + tokenId + '.webp';
+  const originalSrc: string = isNoImage ? randomSrc : '/img/original/' + image;
   const animationSrc: string = isNoImage
     ? randomSrc
-    : 'img/animation/' + tokenId + '.webp';
+    : '/img/animation/' + tokenId + '.webp';
 
   return {
     previewSrc,

@@ -49,7 +49,7 @@ const WarlineItem: React.FC<{
 }> = ({ event, allEvents }) => {
   const imageSources = React.useMemo(() => {
     return getImageSources(event);
-  }, [event.ImageType]);
+  }, [event]);
 
   const prevEventData = React.useMemo(() => {
     const eventIndex = allEvents.indexOf(event);
@@ -85,6 +85,7 @@ const WarlineItem: React.FC<{
 
   return (
     <NftDetails
+      id={event.Tokenid}
       title={getTitle(event)}
       descriptionEnglish={event.DescriptionEnglish}
       descriptionUkrainian={event.DescriptionUkrainian}
