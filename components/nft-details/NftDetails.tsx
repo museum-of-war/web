@@ -102,7 +102,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     'cursor-pointer flex-1 object-contain aspect-square transition-transform hover:scale-[101%]';
 
   const counterJsx = (
-    <div className="tablet:ml-48px mobile:ml-auto text-14px font-rlight">
+    <div className="mobile:ml-auto desktop:ml-48px mobile:text-12px tablet:text-14px font-rlight">
       #{id.toString().padStart(4, '0')}
     </div>
   );
@@ -127,7 +127,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   );
 
   const getNavButtonsJsx = (
-    className: string = 'tablet:flex mobile:hidden gap-[24px] ml-auto',
+    className: string = 'tablet:flex mobile:hidden gap-[24px] mobile:ml-auto tablet:ml-48px desktop:ml-auto',
     hasShadow = false,
   ) => (
     <div
@@ -171,10 +171,9 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
       <div className="flex items-center pb-10px border-carbon border-b-4">
         <div
           className="
-  mobile:text-38px mobile:leading-40px
-  tablet:text-70px tablet:leading-72px
-  laptop:text-80px laptop:leading-100px
-  font-rblack"
+          mobile:text-27px mobile:leading-30px
+          tablet:text-70px tablet:leading-72px
+          font-rblack"
         >
           {title}
         </div>
