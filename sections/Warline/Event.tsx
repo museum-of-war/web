@@ -1,15 +1,12 @@
 import React, { useMemo, useState } from 'react';
-import FsLightbox from 'fslightbox-react';
 import { useViewPort } from '@hooks/useViewport';
 import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
-import { LinkButton } from '@components/LinkButton';
 import { getUrls } from '@sections/Warline/WarlineUrls';
-import { usePopup } from '@providers/PopupProvider';
 import Link from 'next/link';
-import { rand_imgs } from "@sections/Warline/constants";
-import { TokenidFormatter } from "@sections/Warline/utils";
 import { ToggleOptionsType } from "@components/Toggle";
+import Button from '@components/Button';
+import { useAppRouter } from '@hooks/useAppRouter';
 
 type PropsEvent = {
   eventData: EventType;
@@ -32,9 +29,9 @@ const rand_imgs: string[] = [
   'img/dots-8.png',
 ];
 
-const Event = ({ eventData, dayNo, idx, allEvents, view }: PropsEvent) => {
+const Event = ({ eventData, idx, view }: PropsEvent) => {
+  const { push } = useAppRouter();
   const { isMobile, isTablet } = useViewPort();
-  const { showPopup } = usePopup();
   const [toggler, setToggler] = useState<boolean>(false);
 
   const alt = useMemo(() => {
@@ -54,7 +51,7 @@ const Event = ({ eventData, dayNo, idx, allEvents, view }: PropsEvent) => {
 
   const renderImage = (className: string) => {
     const randomSrc = rand_imgs[idx % 8] as string;
-    const { previewSrc, originalSrc, animationSrc, isAnimation } = getUrls(
+    const { previewSrc, animationSrc, isAnimation } = getUrls(
       eventData.Tokenid,
       eventData.ImageType,
       randomSrc as string,
@@ -78,7 +75,6 @@ const Event = ({ eventData, dayNo, idx, allEvents, view }: PropsEvent) => {
               }
             }}
           />
-          {/* <FsLightbox toggler={toggler} sources={[originalSrc]} /> */}
         </Link>
       </>
     );
@@ -88,41 +84,14 @@ const Event = ({ eventData, dayNo, idx, allEvents, view }: PropsEvent) => {
     auctionBtnCn: string = "",
     linkBtnCn: string = ""
   ): React.ReactElement => {
-    return eventData.isAuction ? (
-      <div>
-        <button
-          onClick={() => showPopup({
-            eventData,
-            dayNo,
-            idx,
-            allEvents,
-          })}
-          className={auctionBtnCn}
-        >
-          This NFT will be sold at an auction{" "}
-        </button>
-      </div>
-    ) : (
-      <div>
-        <LinkButton
-          onClick={() => showPopup({
-            eventData,
-            dayNo,
-            idx,
-            allEvents,
-          })}
-          className={linkBtnCn}
-        >
-          See Details
-        </LinkButton>
-        {/* TODO uncommnet when details page is ready */}
-        {/*<Button*/}
-        {/*  onClick={() => {}}*/}
-        {/*  mode="secondary"*/}
-        {/*  label="See Details"*/}
-        {/*/>*/}
-      </div>
-    )
+    return <div>
+      <Button
+        onClick={async () => { await push(`/warline/${eventData.Tokenid}`) }}
+        mode="secondary"
+        label="See Details"
+        className={linkBtnCn}
+      />
+    </div>
   }
 
   return isMobile ? (
