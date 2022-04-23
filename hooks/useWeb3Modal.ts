@@ -65,9 +65,11 @@ export function useWeb3Modal() {
 
       const network = await ethersProvider.getNetwork();
 
-      if ((chain === 'mainnet' && network.chainId !== 1) ||
-        (chain !== 'mainnet' && network.name !== chain)) {
-        alert("Wrong network! Please, connect to " + chain);
+      if (
+        (chain === 'mainnet' && network.chainId !== 1) ||
+        (chain !== 'mainnet' && network.name !== chain)
+      ) {
+        alert('Wrong network! Please, connect to ' + chain);
         return null;
       }
 
@@ -146,21 +148,33 @@ export function useWeb3Modal() {
 
     const isSold = auctionInfo.nftSeller === ethers.constants.AddressZero;
 
-    const bidInfos = isSold ?
-      await Promise.all((await auction.queryFilter(auction.filters.BidMade()) as any[])
-        .filter((bid: any) =>
-          bid.args.nftContractAddress === contractAddress &&
-          bid.args.tokenId.eq(tokenId)
-        ).map(async (bid: any) => ({
-          eth: web3.utils.fromWei(bid.args.ethAmount.toString()),
-          bidder: bid.args.bidder,
-          date: new Date(+(await web3.eth.getBlock(bid.blockNumber)).timestamp * 1000),
-          full: bid,
-        } as BidInfo & { full: any }))
-      ) : [];
+    const bidInfos = isSold
+      ? await Promise.all(
+          ((await auction.queryFilter(auction.filters.BidMade())) as any[])
+            .filter(
+              (bid: any) =>
+                bid.args.nftContractAddress === contractAddress &&
+                bid.args.tokenId.eq(tokenId),
+            )
+            .map(
+              async (bid: any) =>
+                ({
+                  eth: web3.utils.fromWei(bid.args.ethAmount.toString()),
+                  bidder: bid.args.bidder,
+                  date: new Date(
+                    +(await web3.eth.getBlock(bid.blockNumber)).timestamp *
+                      1000,
+                  ),
+                  full: bid,
+                } as BidInfo & { full: any }),
+            ),
+        )
+      : [];
 
     const hasBid = auctionInfo.nftHighestBid.gte(auctionInfo.minPrice);
-    const bid = (hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice) as BigNumber;
+    const bid = (
+      hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice
+    ) as BigNumber;
 
     const increasePercentage =
       auctionInfo.bidIncreasePercentage > 0

@@ -1,10 +1,10 @@
 // import { TokenDataType } from "@sections/types";
-import React, { useEffect, useState } from "react";
-import { useWeb3Modal } from "@hooks/useWeb3Modal";
-import dynamic from "next/dynamic";
-import TokenItem from "./TokenItem";
+import React, { useEffect, useState } from 'react';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import dynamic from 'next/dynamic';
+import TokenItem from './TokenItem';
 
-const BuyMoreNFTs = dynamic(() => import("./BuyMoreNFTs"), {
+const BuyMoreNFTs = dynamic(() => import('./BuyMoreNFTs'), {
   ssr: false,
 });
 
@@ -32,7 +32,7 @@ const Tokens = ({ signerAddress }: TokenProps) => {
       setMintable(result);
     };
     getCanMint();
-  }, [])
+  }, []);
 
   return (
     <div className="px-10%">
