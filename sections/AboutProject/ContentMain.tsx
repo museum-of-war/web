@@ -47,9 +47,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
       )}
       <div className="mt-8%">
         <Blurb
-          header={"TEAM AND PARTNERS"}
-          english="Ukrainian blockchain community in collaboration with the Ministry of Digital Transformation of Ukraine"
-          ukrainian="Українська блокчейн-спільнота разом з Міністерством цифрової трансформації України"
+          header={"TEAM"}
         />
         <img
           alt="partners"

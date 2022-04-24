@@ -60,7 +60,7 @@ const ContentTopNotConnected = ({
         >
           <Button
             mode="primary"
-            className="h-48px"
+            className="h-48px mb-15"
             round={false}
             label="Buy NFT Now"
             onClick={async () => {
