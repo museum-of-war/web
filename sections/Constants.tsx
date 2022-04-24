@@ -7,6 +7,7 @@ export const TELEGRAM_LINK = "https://t.me/metahistory_ua";
 export const OPENSEA_LINK = 'https://opensea.io/collection/metahistorymuseum';
 export const FRAME_LINK = 'https://www.fair.xyz';
 export const MINISTRY_LINK = 'https://thedigital.gov.ua/';
+export const MINISTRY_OF_CULTURE_LINK = 'https://mkip.gov.ua/';
 export const RELEASE_DATE = `2022-03-30T16:59:59.000-04:00`;
 export const MINT_LINK = `https://app.fair.xyz/collection/MHXYZ/queue`;
 export const PROJECT_WALLET_ADDRESS =
