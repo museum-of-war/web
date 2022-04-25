@@ -1,4 +1,4 @@
-import { useAbsoluteUrl } from "@hooks/useAbsoluteUrl";
+import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import type { NextPage } from 'next';
