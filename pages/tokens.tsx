@@ -11,7 +11,18 @@ const TokensPage: NextPage<SharedProps> = (props) => {
   }
   return (
     <>
-      <PageHead title="Tokens - Meta History: Museum of War" />
+      <PageHead
+          title="Tokens - Meta History: Museum of War"
+          data={{
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [{
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Tokens',
+              }]
+          }}
+      />
       <Tokens signerAddress={props.signerAddress} />
     </>
   );
