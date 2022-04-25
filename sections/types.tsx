@@ -31,8 +31,8 @@ export type EventType = {
 };
 
 export enum AuctionCategories {
- firstDrop = 'First Drop',
- prospect100 = 'PROSPECT 100',
+  firstDrop = 'First Drop',
+  prospect100 = 'PROSPECT 100',
 }
 
 export type AuctionItemType = {
@@ -47,6 +47,8 @@ export type AuctionItemType = {
   artist: string;
   descriptionEnglish?: string;
   descriptionUkrainian?: string;
+  isSale: boolean;
+  buyNowPrice: string;
 };
 
 export type BidInfo = {

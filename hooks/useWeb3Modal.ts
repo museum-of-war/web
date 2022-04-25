@@ -205,6 +205,8 @@ export function useWeb3Modal() {
       nextMinBid: web3.utils.fromWei(nextMinBid.toString()),
       proposedBids: proposedBidsETH,
       fullInfo: auctionInfo,
+      // todo
+      buyNowPrice: '0',
     };
   }
 
