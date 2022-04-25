@@ -36,6 +36,17 @@
   font-family: RockstarNarrowRegular;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge add Firefox */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
+
 #WEB3_CONNECT_MODAL_ID,
 #WEB3_CONNECT_MODAL_ID * {
   z-index: 100;
@@ -115,3 +126,27 @@
 #WEB3_CONNECT_MODAL_ID * {
   z-index: 100;
 }
+
+@media (min-width: 680px) {
+  .the-hall-scroll {
+    left: -72px;
+  }
+  .the-hall-buttons-wrapper {
+    right: 72px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .the-hall-scroll {
+    left: -132px;
+  }
+  .the-hall-buttons-wrapper {
+    right: 132px;
+  }
+}
+
+.the-hall-cards-wrapper {
+  transition: all .5s ease-in-out
+}
+
+
