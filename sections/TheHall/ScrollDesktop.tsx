@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { HallItemType } from '@sections/types';
 import { CardDesktop } from '@sections/TheHall/CardDesktop';
+import { ComingSoon } from '@sections/TheHall/ComingSoon';
 
 const CARD_WIDTH = 990;
 
@@ -87,19 +88,21 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
         width: '100vw',
       }}
     >
-      <div
-        className="absolute right-0 z-10 the-hall-buttons-wrapper"
-        style={{ top: -110 }}
-      >
-        <PrevButton
-          active={activeButton.prev}
-          onClick={() => handleScroll(1)}
-        />
-        <NextButton
-          active={activeButton.next}
-          onClick={() => handleScroll(-1)}
-        />
-      </div>
+      {data.length ? (
+        <div
+          className="absolute right-0 z-10 the-hall-buttons-wrapper"
+          style={{ top: -110 }}
+        >
+          <PrevButton
+            active={activeButton.prev}
+            onClick={() => handleScroll(1)}
+          />
+          <NextButton
+            active={activeButton.next}
+            onClick={() => handleScroll(-1)}
+          />
+        </div>
+      ) : null}
       <div
         className="absolute"
         style={{
@@ -114,8 +117,18 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
             width: 828,
             height: 552,
             left: 132,
+            ...{
+              ...(data.length
+                ? {}
+                : {
+                    left: 0,
+                    right: 0,
+                    margin: 'auto',
+                  }),
+            },
           }}
         />
+        {data.length ? null : <ComingSoon />}
         <div
           className="overflow-hidden absolute z-2"
           style={{

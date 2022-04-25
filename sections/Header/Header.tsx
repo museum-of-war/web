@@ -231,7 +231,10 @@ const Header = ({
           />
         ) : (
           <>
-            <span className="font-rlight text-14px mr-16px">
+            <span
+              className="font-rlight text-14px mr-16px"
+              style={{ paddingBottom: 9 }}
+            >
               {truncateAddress(signerAddress)}
             </span>
             <Button

@@ -1,6 +1,7 @@
 import React from 'react';
 import { HallItemType } from '@sections/types';
 import { CardTablet } from '@sections/TheHall/CardTablet';
+import { ComingSoon } from '@sections/TheHall/ComingSoon';
 
 type ScrollTabletProps = {
   data: HallItemType[];
@@ -10,9 +11,8 @@ export const ScrollTablet: React.FC<ScrollTabletProps> = ({ data }) => (
     className="relative the-hall-scroll"
     style={{
       height: 552,
-      marginTop: 380,
+      marginTop: data.length ? 380 : 96,
       marginBottom: 60,
-      // left: -72,
       width: '100vw',
     }}
   >
@@ -24,8 +24,18 @@ export const ScrollTablet: React.FC<ScrollTabletProps> = ({ data }) => (
           width: 492,
           height: 552,
           left: 72,
+          ...{
+            ...(data.length
+              ? {}
+              : {
+                  left: 0,
+                  right: 0,
+                  margin: 'auto',
+                }),
+          },
         }}
       />
+      {data.length ? null : <ComingSoon />}
       <div
         className="flex flex-row z-2 absolute overflow-auto scrollbar-hidden"
         style={{
