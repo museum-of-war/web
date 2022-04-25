@@ -1,10 +1,11 @@
+import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
 import { EventType } from '@sections/types';
 import WarlineData from '@sections/Warline/WarlineData';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import { useRouter } from 'next/router';
 import React from 'react';
-import PageHead from '@components/PageHead';
+import PageHead from "@components/PageHead";
 
 const rand_imgs: string[] = [
   'img/dots-1.png',
@@ -48,6 +49,8 @@ const WarlineItem: React.FC<{
   event: EventType;
   allEvents: EventType[];
 }> = ({ event, allEvents }) => {
+  const url = useAbsoluteUrl();
+
   const imageSources = React.useMemo(() => {
     return getImageSources(event);
   }, [event]);
@@ -82,9 +85,27 @@ const WarlineItem: React.FC<{
     return undefined;
   }, [allEvents, event]);
 
+  const title = getTitle(event);
+
   return (
     <>
-      <PageHead title="Warline - Meta History: Museum of War" />
+      <PageHead
+          title={`${title} - Warline - Meta History: Museum of War`}
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [{
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Warline',
+              item: url('/warline'),
+            }, {
+              '@type': 'ListItem',
+              position: 2,
+              name: title,
+            }]
+          }}
+      />
       <NftDetails
         id={event.Tokenid}
         title={getTitle(event)}
