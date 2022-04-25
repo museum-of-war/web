@@ -48,6 +48,8 @@ export type AuctionItemType = {
   artist: string;
   descriptionEnglish?: string;
   descriptionUkrainian?: string;
+  isSale: boolean;
+  buyNowPrice: string;
 };
 
 export type HallItemType = {
