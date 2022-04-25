@@ -99,10 +99,10 @@ const Header = ({
               <HeaderAndFooterButton
                 label="The Hall"
                 onClick={() => {
-                  push('/the-hall');
+                  push('/hall');
                   setMenuOpen(false);
                 }}
-                underlined={route === '/the-hall'}
+                underlined={route === '/hall'}
                 wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
               />
               {signerAddress && (
@@ -204,10 +204,10 @@ const Header = ({
             isDarkTheme={isDarkTheme}
             label="The Hall"
             onClick={() => {
-              push('/the-hall');
+              push('/hall');
               setMenuOpen(false);
             }}
-            underlined={route === '/the-hall'}
+            underlined={route === '/hall'}
             wrapperClassName={signerAddress ? 'mr-32px' : ''}
           />
 

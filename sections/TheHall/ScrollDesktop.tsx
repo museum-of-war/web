@@ -132,7 +132,7 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
         <div
           className="overflow-hidden absolute z-2"
           style={{
-            top: -50,
+            top: -56,
             width: '100%',
           }}
         >
