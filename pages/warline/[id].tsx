@@ -1,11 +1,11 @@
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
+import PageHead from '@components/PageHead';
 import { EventType } from '@sections/types';
 import WarlineData from '@sections/Warline/WarlineData';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import { useRouter } from 'next/router';
 import React from 'react';
-import PageHead from "@components/PageHead";
 
 const rand_imgs: string[] = [
   'img/dots-1.png',
