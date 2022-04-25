@@ -1,9 +1,11 @@
+import { useAbsoluteUrl } from "@hooks/useAbsoluteUrl";
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import type { NextPage } from 'next';
 import AboutProject from '../sections/AboutProject/AboutProject';
 
 const Home: NextPage<SharedProps> = (props) => {
+  const url = useAbsoluteUrl();
   return (
     <>
       <PageHead
@@ -11,8 +13,8 @@ const Home: NextPage<SharedProps> = (props) => {
           data={{
               '@context': 'https://schema.org',
               '@type': 'Organization',
-              url: location.origin,
-              logo: `${location.origin}/logo.svg`,
+              url: url(),
+              logo: url('/logo.svg'),
           }}
       />
       <AboutProject
