@@ -26,6 +26,26 @@ const Media = (summary: string, outlet: string, url: string) => {
 
 const media = [
   {
+    summary: "Ukraine's government has said it will issue non-fungible tokens (NFTs) to fund its military as they defend the country against the Russian invasion.",
+    outlet: "BBC",
+    url: "https://www.bbc.co.uk/news/business-60613613",
+  },
+  {
+    summary: "The Ukrainian government is to launch a non-fungible token marking the history of the Russian invasion with unique digital art, in its latest use of digital assets to fund its war efforts.",
+    outlet: "The Guardian",
+    url: "https://www.theguardian.com/world/2022/mar/13/ukraine-nft-history-of-russian-invasion-war",
+  },
+  {
+    summary: "After careful consideration we decided to cancel airdrop,” Mr Fedorov tweeted … “Instead, we will announce NFTs to support Ukrainian Armed Forces soon. We DO NOT HAVE any plans to issue any fungible tokens.",
+    outlet: "The Independent",
+    url: "https://www.independent.co.uk/tech/ukraine-nft-russia-crypto-airdrop-war-b2027648.html",
+  },
+  {
+    summary: "Ukraine plans to become the first developed country to issue its own collection of non-fungible tokens, as it looks to capitalise on a flood of crypto donations to back its war against Russia.",
+    outlet: "Financial Times",
+    url: "https://www.ft.com/content/b4e13435-a818-4d80-94a4-4149a702a094",
+  },
+  {
     summary: "In addition to raising funds for Ukraine’s military, the NFT campaign seems to be targeted in opposition to Russian state media which many worldwide have criticized for spreading propaganda and misinformation, particularly in regard to the events in Ukraine following Feb. 24.",
     outlet: "Cointelegraph",
     url: "https://cointelegraph.com/news/ukraine-launches-nft-museum-to-keep-the-memory-of-war",

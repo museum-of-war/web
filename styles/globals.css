@@ -115,3 +115,12 @@
 #WEB3_CONNECT_MODAL_ID * {
   z-index: 100;
 }
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

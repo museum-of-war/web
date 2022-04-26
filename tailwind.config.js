@@ -324,16 +324,6 @@ module.exports = {
         18: '18',
         19: '19',
       },
-      keyframes: {
-        carousel: {
-          '0%': {
-            transform: 'translateX(0%)',
-          },
-          '100%': {
-            transform: 'translateX(-100%)',
-          },
-        },
-      },
     },
     spacing: {
       0: '0px',

@@ -115,12 +115,12 @@ const Partners = () => {
       <div className="h-5px w-100% tablet:mb-16px mobile:mb-12px bg-carbon dark:bg-white" />
       {
         isMobile
-        ? <InfiniteLoop speed={20} direction={'left'} className={'h-80px'}>
+        ? <InfiniteLoop speed={20} className={'h-80px'}>
             {partnersSmall.map((partner, idx) => (
               <img className="mr-80px" key={idx} src={partner.src} alt={partner.alt}></img>
             ))}
           </InfiniteLoop>
-        : <InfiniteLoop speed={20} direction={'left'} className={'h-192px'}>
+        : <InfiniteLoop speed={20} className={'h-192px'}>
             {partners.map((partner, idx) => (
               <img className="mr-144px" key={idx} src={partner.src} alt={partner.alt}></img>
             ))}
