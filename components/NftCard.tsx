@@ -55,33 +55,33 @@ function NftCard({
       onClick={navlinkToNft}
       className="mobile:my-15px tablet:my-0 desktop:my-0 mobile:border-0 tablet:border-4 desktop:border-4 border-carbon border-solid hover:border-4 hover:border-white hover:border-solid hover:cursor-pointer"
     >
-      <div className="flex justify-center">
-        <img
-          alt={name}
-          src={imageSrc}
-          className={`${
-            orderIndex! < 2 && !type ? 'laptop:h-[544px]' : 'laptop:h-[240px]'
-          } ${!orderIndex && !type ? 'tablet:h-[624px]' : 'tablet:h-[288px]'}
-          mobile:h-[270px] object-contain`}
-        />
+      <div
+        className={`flex justify-center ${
+          orderIndex! < 2 && !type ? 'laptop:h-[544px]' : 'laptop:h-[240px]'
+        } ${!orderIndex && !type ? 'tablet:h-[624px]' : 'tablet:h-[288px]'}
+          mobile:h-[270px] `}
+      >
+        <img alt={name} src={imageSrc} className={`object-contain`} />
       </div>
       <div className="p-10px">
         <h3 className="font-rblack text-20px leading-[240%]">{name}</h3>
         <div className="flex justify-between">
-          {!isSold && (<div>
-            <p className='font-rlight text-12px leading-100% opacity-70'>
-              Current bid
-            </p>
-            <p className='font-rlight tablet:text-16px mobile:text-14px leading-150%'>
-              {currentBid.bid} ETH
-            </p>
-          </div>)}
-          { timeLeft.isLeft && (
+          {!isSold && (
+            <div>
+              <p className="font-rlight text-12px leading-100% opacity-70">
+                Current bid
+              </p>
+              <p className="font-rlight tablet:text-16px mobile:text-14px leading-150%">
+                {currentBid.bid} ETH
+              </p>
+            </div>
+          )}
+          {timeLeft.isLeft && (
             <div className={`${timeLeft.days ? '' : 'w-[100px]'}`}>
-              <p className='font-rlight text-12px leading-100% opacity-70 '>
+              <p className="font-rlight text-12px leading-100% opacity-70 ">
                 Ends in
               </p>
-              <p className='font-rlight tablet:text-16px mobile:text-14px leading-150% w-100%'>
+              <p className="font-rlight tablet:text-16px mobile:text-14px leading-150% w-100%">
                 {timeLeft.days
                   ? `${timeLeft.days} days`
                   : `${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
