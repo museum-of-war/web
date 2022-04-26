@@ -113,18 +113,20 @@ const Partners = () => {
         PARTNERS
       </p>
       <div className="h-5px w-100% tablet:mb-16px mobile:mb-12px bg-carbon dark:bg-white" />
-      <InfiniteLoop speed={20} direction={'left'} className={'tablet:h-192px mobile:h-80px'}>
-        {
-          isMobile
-            ? partnersSmall.map((partner, idx) => (
-              <img className='ml-80px' key={idx} src={`${partner.src}`} alt={partner.alt} />
-            ))
-            : partners.map((partner, idx) => (
-              <img className="ml-144px" key={idx} src={`${partner.src}`} alt={partner.alt} />
-            ))
-        }
-      </InfiniteLoop>
-      <div className="h-5px w-100% tablet:mt-16px mobile:mt-12px bg-carbon dark:bg-white" />
+      {
+        isMobile
+        ? <InfiniteLoop speed={20} direction={'left'} className={'h-80px'}>
+            {partnersSmall.map((partner, idx) => (
+              <img className="mr-80px" key={idx} src={partner.src} alt={partner.alt}></img>
+            ))}
+          </InfiniteLoop>
+        : <InfiniteLoop speed={20} direction={'left'} className={'h-192px'}>
+            {partners.map((partner, idx) => (
+              <img className="mr-144px" key={idx} src={partner.src} alt={partner.alt}></img>
+            ))}
+          </InfiniteLoop>
+      }
+      <div className="h-5px w-100% tablet:mb-16px mobile:mb-12px bg-carbon dark:bg-white" />
     </div>
   )
 }
