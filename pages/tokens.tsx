@@ -12,7 +12,7 @@ const TokensPage: NextPage<SharedProps> = (props) => {
   return (
     <>
       <PageHead
-          title="Tokens - Meta History: Museum of War"
+          title="Tokens"
           data={{
               '@context': 'https://schema.org',
               '@type': 'BreadcrumbList',

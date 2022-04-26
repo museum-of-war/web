@@ -90,7 +90,9 @@ const WarlineItem: React.FC<{
   return (
     <>
       <PageHead
-          title={`${title} - Warline - Meta History: Museum of War`}
+          title={`${title} - Warline`}
+          description="Help Ukraine by bidding on war-related art created by those affected."
+          image={url(imageSources.originalSrc)}
           data={{
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',

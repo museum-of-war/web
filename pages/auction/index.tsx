@@ -7,7 +7,8 @@ const AuctionPage: NextPage<SharedProps> = (props) => {
   return (
     <>
       <PageHead
-          title="Auction - Meta History: Museum of War"
+          title="Auction"
+          description="Help Ukraine by bidding on war-related art created by those affected."
           data={{
               '@context': 'https://schema.org',
               '@type': 'BreadcrumbList',

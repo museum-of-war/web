@@ -11,10 +11,13 @@ const NftDetailPage: NextPage<SharedProps> = () => {
   const url = useAbsoluteUrl();
   const { query } = useAppRouter();
   const item = AuctionData[Number(query.id)];
+  const image = url(`/${item?.imageSrc || ''}`);
   return (
     <>
       <PageHead
-          title={`${item ? `${item.name} - ` : ''}Auction - Meta History: Museum of War`}
+          title={`${item ? `${item.name} - ` : ''}Auction`}
+          description="Help Ukraine by bidding on war-related art created by those affected."
+          image={image}
           data={[{
               '@context': 'https://schema.org',
               '@type': 'BreadcrumbList',
@@ -39,7 +42,7 @@ const NftDetailPage: NextPage<SharedProps> = () => {
                   '@type': 'VirtualLocation',
                   url: url(`/auction/${item?.index || ''}`),
               },
-              image: url(`/${item?.imageSrc || ''}`),
+              image,
               description: 'Help Ukraine by bidding on war-related art created by those affected.',
               organizer: {
                   '@type': 'Organization',

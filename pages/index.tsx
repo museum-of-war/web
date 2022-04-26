@@ -9,12 +9,13 @@ const Home: NextPage<SharedProps> = (props) => {
   return (
     <>
       <PageHead
-          title="About - Meta History: Museum of War"
+          title="About"
+          description="Help Ukraine by bidding on war-related art created by those affected."
           data={{
               '@context': 'https://schema.org',
               '@type': 'Organization',
               url: url(),
-              logo: url('/logo.svg'),
+              logo: url('/img/logo-icon.svg'),
           }}
       />
       <AboutProject

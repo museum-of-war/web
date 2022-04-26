@@ -6,7 +6,8 @@ import Warline from '@sections/Warline/Warline';
 const WarlinePage: NextPage<SharedProps> = () => (
   <>
     <PageHead
-        title="Warline - Meta History: Museum of War"
+        title="Warline"
+        description="Help Ukraine by bidding on war-related art created by those affected."
         data={{
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
