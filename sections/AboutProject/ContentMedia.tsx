@@ -2,9 +2,9 @@ import { openInNewTab } from "@sections/utils";
 import React, { useEffect, useState } from "react";
 import { useViewPort } from "@hooks/useViewport";
 
-const Media = (summary: string, outlet: string, url: string) => {
+const Media = (summary: string, outlet: string, url: string, key: number) => {
   return (
-    <div className="flex flex-col justify-start items-start">
+    <div key={key} className="flex flex-col justify-start items-start">
       <p className="font-rnarrow mobile:text-18px laptop:text-16px desktop:text-18px">
         {summary}
       </p>
@@ -133,7 +133,7 @@ const ContentMedia = () => {
       <div className="mt-20px flex flex-row">
         <div className="grid tablet:grid-cols-2 laptop:grid-cols-4 mobile:grid-cols-1 auto-rows-max gap-48px">
         {toShow.map((m, idx) => (
-          Media(m.summary, m.outlet, m.url)
+          Media(m.summary, m.outlet, m.url, idx)
         ))}
         </div>
       </div>
