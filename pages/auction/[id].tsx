@@ -1,3 +1,4 @@
+import { AUCTION_START_DATE, AUCTION_END_DATE } from '@sections/Constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { useAppRouter } from '@hooks/useAppRouter';
 import PageHead from '@components/PageHead';
@@ -14,7 +15,7 @@ const NftDetailPage: NextPage<SharedProps> = () => {
     <>
       <PageHead
           title={`${item ? `${item.name} - ` : ''}Auction - Meta History: Museum of War`}
-          data={{
+          data={[{
               '@context': 'https://schema.org',
               '@type': 'BreadcrumbList',
               itemListElement: [{
@@ -27,7 +28,25 @@ const NftDetailPage: NextPage<SharedProps> = () => {
                   position: 2,
                   name: item?.name || 'Auction item',
               }]
-          }}
+          }, {
+              '@context': 'https://schema.org',
+              '@type': 'Event',
+              name: `Charity NFT Auction for Ukraine${item ? `: ${item.name}` : ''}`,
+              startDate: AUCTION_START_DATE,
+              endDate: AUCTION_END_DATE,
+              eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+              location: {
+                  '@type': 'VirtualLocation',
+                  url: url(`/auction/${item?.index || ''}`),
+              },
+              image: url(`/${item?.imageSrc || ''}`),
+              description: 'Help Ukraine by bidding on war-related art created by those affected.',
+              organizer: {
+                  '@type': 'Organization',
+                  name: 'Ministry of Digital Transformation of Ukraine',
+                  url: 'https://thedigital.gov.ua',
+              },
+          }]}
       />
       <NftDetail />
     </>
