@@ -1,6 +1,6 @@
-import React from "react";
-import Blurb from "./Blurb";
-import { useViewPort } from "@hooks/useViewport";
+import React from 'react';
+import Blurb from './Blurb';
+import { useViewPort } from '@hooks/useViewport';
 
 const ContentWar = () => {
   const { isMobile } = useViewPort();
@@ -8,8 +8,8 @@ const ContentWar = () => {
   return (
     <div className="flex flex-direction mobile:mt-8% tablet:mt-20 mobile:mb-15% tablet:mb-100px">
       {!isMobile && (
-        <div className="w-50% mt-20px mr-6% tablet:-ml-72px">
-          <img alt="Dots" src={"img/pd-dots1.png"} />
+        <div className="w-50% mt-20px mr-6%">
+          <img alt="Dots" src="img/pd-dots1.png" />
         </div>
       )}
       <div className="w-100%">

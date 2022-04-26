@@ -28,7 +28,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
             <div className="flex flex-wrap border-t-4 border-carbon border-solid ">
               <img
                 alt="Dots"
-                src={'img/warline-animation.gif'}
+                src="img/warline-animation.gif"
                 className="object-cover"
               />
             </div>

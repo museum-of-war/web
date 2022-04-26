@@ -111,19 +111,17 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
         }}
       >
         <div
-          className="absolute z-1 bg-no-repeat"
+          className="absolute z-1 bg-no-repeat the-hall-background"
           style={{
             backgroundImage: 'url(/img/theHall/bg-desktop.svg)',
             width: 828,
             height: 552,
-            left: 132,
             ...{
               ...(data.length
                 ? {}
                 : {
-                    left: 0,
-                    right: 0,
                     margin: 'auto',
+                    right: 0,
                   }),
             },
           }}

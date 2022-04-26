@@ -28,7 +28,7 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
         handleConnect={handleConnect}
       />
       <ContentMedia />
-      <SupportSticky targetAnchorId={'countdown-banner'} />
+      <SupportSticky targetAnchorId="countdown-banner" />
       <SupportProject />
     </div>
   );

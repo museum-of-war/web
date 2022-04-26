@@ -22,13 +22,7 @@ const ContentTopNotConnected = ({}: ContentTopNotConnectedProps) => {
   const { canMint } = useWeb3Modal();
 
   return (
-    <div className={
-      isMobile
-        ? 'pb-60px'
-        : isTablet
-          ? 'pb-72px'
-          : 'pb-100px'
-    }>
+    <div className={isMobile ? 'pb-60px' : isTablet ? 'pb-72px' : 'pb-100px'}>
       <div
         className={
           isMobile || isTablet ? '' : 'flex flex-row justify-between mt-8vh'
@@ -45,7 +39,7 @@ const ContentTopNotConnected = ({}: ContentTopNotConnectedProps) => {
                 isMobile ? 'text-46px leading-40px' : ''
               }`}
               style={{
-                fontSize: isMobile ? '' : '110px',
+                fontSize: isMobile ? '' : '105px',
                 lineHeight: isMobile ? '' : '100px',
               }}
             >
@@ -89,16 +83,19 @@ const ContentTopNotConnected = ({}: ContentTopNotConnectedProps) => {
               isMobile
                 ? 'min-h-[67px]'
                 : isTablet
-                  ? 'min-h-[164px]'
-                  : 'min-h-[347px]'
+                ? 'min-h-[164px]'
+                : 'min-h-[347px]'
             }`}
           >
-            <dotlottie-player src={'/lottie/main.lottie'} autoplay loop />
+            <dotlottie-player src="/lottie/main.lottie" autoplay loop />
           </div>
           <PoweredByFrame />
         </div>
       </div>
-      <CountdownBanner endDate={AUCTION_CLOSING_DATE} hideDate={AUCTION_END_DATE} />
+      <CountdownBanner
+        endDate={AUCTION_CLOSING_DATE}
+        hideDate={AUCTION_END_DATE}
+      />
     </div>
   );
 };
