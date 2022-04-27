@@ -13,6 +13,7 @@ import ContentChapter from './ContentChapter';
 import ContentCounterDaysAndRised from './ContentCounterDaysAndRised';
 import Partners from './Partners';
 import Countdown from './Countdown';
+import { SECOND_DROP_DATE } from '@sections/Constants';
 
 
 type AboutProjectProps = {
@@ -24,7 +25,7 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
   return (
     <div>
       <ContentTop signerAddress={signerAddress} handleConnect={handleConnect} />
-      <Countdown countDownDate={"05/01/2022 23:59:59"} />
+      <Countdown countDownDate={SECOND_DROP_DATE} />
       <ContentChapter />
       <ContentMission />
       <ContentCounterDaysAndRised />

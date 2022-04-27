@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { WAR_START_DATE } from '@sections/Constants';
 
 const ContentCounterDaysAndRised = () => {
   const [daysFromWarStart, setDaysFromWarStart] = useState<number>();
   const daysCounter = () => {
-    const startDate = new Date('02/24/2022');
+    const startDate = new Date(WAR_START_DATE);
     const now = new Date();
     const days = (now.getTime() - startDate.getTime()) / (1000 * 3600 * 24);
     return Math.round(days);
@@ -25,7 +26,7 @@ const ContentCounterDaysAndRised = () => {
             {daysFromWarStart} days
           </p>
           <p className='font-rnarrow tablet:text-20px mobile:text-12px mobile:leading-40px'>
-            22 February 2022 – Until now
+            24 February 2022 – Until now
           </p>
         </div>
 

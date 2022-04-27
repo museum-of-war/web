@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCountdown } from '@hooks/useCountDown';
+import { useCountdown } from '@hooks/useCountdown';
 
 
 type CountdownProp = {
