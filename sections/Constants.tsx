@@ -9,7 +9,6 @@ export const TELEGRAM_LINK = "https://t.me/metahistory_ua";
 export const OPENSEA_LINK = 'https://opensea.io/collection/metahistorymuseum';
 export const FRAME_LINK = 'https://www.fair.xyz';
 export const MINISTRY_LINK = 'https://thedigital.gov.ua/';
-export const MINISTRY_OF_CULTURE_LINK = 'https://mkip.gov.ua/';
 export const WAR_START_DATE = '02/24/2022';
 export const RELEASE_DATE = '2022-03-30T16:59:59.000-04:00';
 export const SECOND_DROP_DATE = '2022-05-01T23:59:59.000+03:00';

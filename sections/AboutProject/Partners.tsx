@@ -11,10 +11,6 @@ const Partners = () => {
       alt: 'Ministry_of_Digital_Transformation',
     },
     {
-      src: 'img/partners/Logo_of_Ministry_of_Culture_of_Ukraine_(english).png',
-      alt: 'Ministry_of_Culture',
-    },
-    {
       src: 'img/partners/fair.png',
       alt: 'FAIR',
     },
@@ -54,16 +50,16 @@ const Partners = () => {
       src: 'img/partners/vector.png',
       alt: 'vector',
     },
+    {
+      src: 'img/partners/lliwell.png',
+      alt: 'lliwell'
+    }
   ];
 
   const partnersSmall = [
     {
       src: 'img/partners/small/Ministry_of_Digital_small.png',
       alt: 'Ministry_of_Digital_Transformation',
-    },
-    {
-      src: 'img/partners/small/Ministry_of_Culture_of_Ukraine_small.png',
-      alt: 'Ministry_of_Culture',
     },
     {
       src: 'img/partners/small/fair_small.png',
@@ -105,6 +101,10 @@ const Partners = () => {
       src: 'img/partners/small/vector_small.png',
       alt: 'vector',
     },
+    {
+      src: 'img/partners/small/lliwell_small.png',
+      alt: 'lliwell'
+    }
   ];
 
   return (
