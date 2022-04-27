@@ -28,28 +28,12 @@ const ContentTopNotConnected = ({
           : 'flex flex-row justify-between pb-100px mt-8vh'
       }
     >
-      <div
-        className={`${
-          isMobile || isTablet ? 'w-100%' : 'w-50%'
-        } flex flex-col justify-between`}
-      >
+      <div className={`${isMobile || isTablet ? 'w-100%' : 'w-50%'} flex flex-col justify-between`}>
         <div>
-          <p
-            className={`font-rblack uppercase ${
-              isMobile ? 'text-46px leading-40px' : ''
-            }`}
-            style={{
-              fontSize: isMobile ? '' : '110px',
-              lineHeight: isMobile ? '' : '100px',
-            }}
-          >
+          <p className="font-rblack uppercase laptop:mt-10px tablet:mt-0 tablet:text-84px tablet:leading-72px mobile:text-46px mobile:leading-40px">
             The NFT-museum
           </p>
-          <p
-            className={`font-rblack ${
-              isMobile ? 'text-27px leading-30px' : 'text-45px leading-48px'
-            }`}
-          >
+          <p className="font-rblack mobile:mt-10px mobile:text-27px mobile:leading-30px tablet:text-32px tablet:leading-36px tablet:mt-12px">
             of the war of putin&apos;s russia against Ukraine
           </p>
         </div>
@@ -60,7 +44,7 @@ const ContentTopNotConnected = ({
         >
           <Button
             mode="primary"
-            className="h-48px mb-15"
+            className="tablet:h-48px mobile:h-60px mb-15 mobile:w-100% tablet:w-auto"
             round={false}
             label="Buy NFT Now"
             onClick={async () => {

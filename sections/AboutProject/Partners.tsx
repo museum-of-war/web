@@ -109,7 +109,7 @@ const Partners = () => {
 
   return (
     <div className="laptop:mt-120px tablet:mt-175px">
-      <p className="font-rblack mobile:text-38px mobile:leading-12vw tablet:text-9vw tablet:leading-9vw laptop:text-5vw laptop:leading-5.5vw uppercase">
+      <p className="font-rblack mobile:text-38px mobile:leading-40px tablet:text-70px tablet:leading-72px uppercase">
         PARTNERS
       </p>
       <div className="h-5px w-100% tablet:mb-16px mobile:mb-12px bg-carbon dark:bg-white" />

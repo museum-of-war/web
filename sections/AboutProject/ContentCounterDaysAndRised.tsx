@@ -26,10 +26,10 @@ const ContentCounterDaysAndRised = () => {
             The war’s been going on for
           </p>
           <div className="h-5px w-100% bg-carbon dark:bg-white" />
-          <p className="font-rblack mt-4 mobile:text-38px mobile:leading-12vw tablet:text-9vw tablet:leading-9vw laptop:text-5vw laptop:leading-5.5vw uppercase">
+          <p className="font-rblack mt-4 mobile:text-38px mobile:leading-40px tablet:text-70px tablet:leading-72px uppercase">
             {daysFromWarStart} days
           </p>
-          <p className='font-rnarrow tablet:text-20px mobile:text-12px mobile:leading-40px'>
+          <p className='font-rlight tablet:text-20px mobile:text-12px mobile:leading-40px'>
             24 February 2022 – Until now
           </p>
         </div>
@@ -39,21 +39,14 @@ const ContentCounterDaysAndRised = () => {
             Total funds raised
           </p>
           <div className="h-5px w-100% bg-carbon dark:bg-white" />
-          <p className="font-rblack mt-4 mobile:text-38px mobile:leading-12vw tablet:text-9vw tablet:leading-9vw laptop:text-5vw laptop:leading-5.5vw uppercase">
+          <p className="font-rblack mt-4 mobile:text-38px mobile:leading-40px tablet:text-70px tablet:leading-72px uppercase">
             ${fundsRaised.usd}
           </p>
-          <p className='font-rnarrow tablet:text-20px mobile:text-12px mobile:leading-40px'>
+          <p className='font-rlight tablet:text-20px mobile:text-12px mobile:leading-40px'>
             {fundsRaised.eth} ETH
           </p>
         </div>
       </div>
-      {/* {isMobile && (
-        <img
-          className="w-screen max-w-none"
-          alt="dots"
-          src="/img/pd-dotsHorizontalMobile.png"
-        />
-      )} */}
     </>
   );
 }
