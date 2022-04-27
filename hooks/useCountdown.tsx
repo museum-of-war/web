@@ -24,9 +24,9 @@ const getReturnValues = (countDown: number) => {
   let minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((countDown % (1000 * 60)) / 1000);
   if (days < 0 && hours < 0 && minutes < 0 && seconds < 0) {
-    return {days: "0", hours: "0", minutes: "0", seconds: "0"};
+    return {days: "0", hours: "0", minutes: "0", seconds: "0", timerEnd: true};
   } else {
-    return {days: days.toString(), hours: hours.toString(), minutes: minutes.toString(), seconds: seconds.toString()};
+    return {days: days.toString(), hours: hours.toString(), minutes: minutes.toString(), seconds: seconds.toString(), timerEnd: false};
   }
 };
 

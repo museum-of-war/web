@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PoweredByFrame from '@components/PoweredByFrame';
 import { useViewPort } from '@hooks/useViewport';
 import Button from '@components/Button';
 import { openInNewTab } from '@sections/utils';
 import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useCountdown } from '@hooks/useCountdown';
+import { SECOND_DROP_DATE } from '@sections/Constants';
+import MintingModal from '../MintingModal';
 
 type ContentTopNotConnectedProps = {
   signerAddress: string;
@@ -17,6 +20,8 @@ const ContentTopNotConnected = ({
 }: ContentTopNotConnectedProps) => {
   const { isMobile, isTablet } = useViewPort();
   const { canMint } = useWeb3Modal();
+  const { timerEnd } = useCountdown(SECOND_DROP_DATE);
+  const [openMintingModal, setOpenMintingModal] = useState<boolean>(false)
 
   return (
     <div
@@ -48,10 +53,14 @@ const ContentTopNotConnected = ({
             round={false}
             label="Buy NFT Now"
             onClick={async () => {
-              if (await canMint()) {
-                openInNewTab(MINT_LINK);
+              if (timerEnd) {
+                setOpenMintingModal(true);
               } else {
-                openInNewTab(OPENSEA_LINK);
+                if (await canMint()) {
+                  openInNewTab(MINT_LINK);
+                } else {
+                  openInNewTab(OPENSEA_LINK);
+                }
               }
             }}
           />
@@ -75,6 +84,9 @@ const ContentTopNotConnected = ({
         </div>
         <PoweredByFrame />
       </div>
+      {openMintingModal
+      ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
+      : <></>}
     </div>
   );
 };
