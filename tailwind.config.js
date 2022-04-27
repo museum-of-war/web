@@ -10,9 +10,6 @@ module.exports = {
       shadow: {
         '3xl': '0px 4px 32px 4px rgba(33, 33, 33, 0.3)',
       },
-      scale: {
-        43: '.43',
-      },
       colors: {
         carbon: {
           DEFAULT: '#212121',
@@ -152,6 +149,7 @@ module.exports = {
         '35px': '35px',
         '40px': '40px',
         '45px': '45px',
+        '48px': '48px',
         '50px': '50px',
         '55px': '55px',
         '56px': '56px',
@@ -165,6 +163,9 @@ module.exports = {
         '132px': '132px',
         '144px': '144px',
         '175px': '175px',
+        '176px': '176px',
+        '240px': '240px',
+        '248px': '248px',
         '8.5em': '8.5em',
         q: 'calc(50%)-100',
         '0.3%': '0.3%',
@@ -323,6 +324,14 @@ module.exports = {
         17: '17',
         18: '18',
         19: '19',
+      },
+      gridTemplateColumns: {
+        'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
+        'auto-fill': 'repeat(auto-fill, minmax(0, 1fr))',
+      },
+      gridTemplateRows: {
+        'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
+        'auto-fill': 'repeat(auto-fill, minmax(0, 1fr))',
       },
     },
     spacing: {
@@ -523,6 +532,7 @@ module.exports = {
       '10vw': '10vw',
       '50px': '50px',
       '100px': '100px',
+      '176px': '176px',
       '200px': '200px',
       '283px': '283px',
       '80vw': '80vw',
@@ -637,5 +647,5 @@ module.exports = {
       new_md: '900px',
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };
