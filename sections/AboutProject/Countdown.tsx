@@ -46,7 +46,7 @@ const Countdown = ({countDownDate}: CountdownProp) => {
           </div>
 
           <div className="flex laptop:flex-row mobile:flex-col laptop:items-center mobile:items-start ml-24px">
-            <span className="font-rblack tablet:text-32px mobile:text-27px laptop:leading-48px tablet:leading-36px mobile:leading-30px mr-7px">
+            <span className="font-rblack tablet:text-32px mobile:text-27px laptop:leading-48px laptop:w-50px tablet:w-auto tablet:leading-36px mobile:leading-30px mr-7px">
               {seconds.length < 2 ? '0' + seconds : seconds}
             </span>
             <p className="text-16px leading-24px laptop:mb-6 tablet:mb-0">
