@@ -96,6 +96,15 @@ const Header = ({
                 underlined={route === '/auction'}
                 wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
               />
+              <HeaderAndFooterButton
+                label="The Hall"
+                onClick={() => {
+                  push('/hall');
+                  setMenuOpen(false);
+                }}
+                underlined={route === '/hall'}
+                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
+              />
               {signerAddress && (
                 <HeaderAndFooterButton
                   label="My NFTs"
@@ -189,8 +198,19 @@ const Header = ({
               push('/auction');
             }}
             underlined={route === '/auction'}
+            wrapperClassName="mr-32px"
+          />
+          <HeaderAndFooterButton
+            isDarkTheme={isDarkTheme}
+            label="The Hall"
+            onClick={() => {
+              push('/hall');
+              setMenuOpen(false);
+            }}
+            underlined={route === '/hall'}
             wrapperClassName={signerAddress ? 'mr-32px' : ''}
           />
+
           {signerAddress && (
             <HeaderAndFooterButton
               isDarkTheme={isDarkTheme}
@@ -211,7 +231,10 @@ const Header = ({
           />
         ) : (
           <>
-            <span className="font-rlight text-14px mr-16px">
+            <span
+              className="font-rlight text-14px mr-16px"
+              style={{ paddingBottom: 9 }}
+            >
               {truncateAddress(signerAddress)}
             </span>
             <Button

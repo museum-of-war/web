@@ -1,9 +1,10 @@
-import { useViewPort } from "@hooks/useViewport";
-import React from "react";
-import Blurb from "./Blurb";
+import React from 'react';
+import { useViewPort } from '@hooks/useViewport';
+import Blurb from './Blurb';
 
 const ContentMission = () => {
   const { isMobile } = useViewPort();
+
   return (
     <>
       <div className="laptop:flex laptop:flex-row laptop:justify-between mt-20 tablet:mb-75px mobile:mb-8%">
