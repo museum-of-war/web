@@ -7,7 +7,7 @@ import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useCountdown } from '@hooks/useCountdown';
 import { SECOND_DROP_DATE } from '@sections/Constants';
-import MintingModal from '../MintingModal';
+import MintingModal from '../../../components/MintingModal';
 
 type ContentTopNotConnectedProps = {
   signerAddress: string;
@@ -21,7 +21,7 @@ const ContentTopNotConnected = ({
   const { isMobile, isTablet } = useViewPort();
   const { canMint } = useWeb3Modal();
   const { timerEnd } = useCountdown(SECOND_DROP_DATE);
-  const [openMintingModal, setOpenMintingModal] = useState<boolean>(false)
+  const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
 
   return (
     <div
