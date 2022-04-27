@@ -4,15 +4,18 @@ import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import Web3 from 'web3';
 import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
+import IERC721InterfaceAbi from '../abi/IERC721.json';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
+  AUCTION_ADDRESS,
   FIRST_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
 } from '@sections/Constants';
 import { NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
+import { BidInfo } from '@sections/types';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -30,12 +33,13 @@ const providerOptions = {
   },
 };
 
+let triedToConnect = false;
 let web3Modal: Web3Modal | null = null;
 const getWeb3Modal = () => {
   if (typeof window === 'undefined') return null;
   if (!web3Modal)
     web3Modal = new Web3Modal({
-      network: 'mainnet',
+      network: chain,
       cacheProvider: true,
       providerOptions,
     });
@@ -47,19 +51,34 @@ export function useWeb3Modal() {
     ethers.providers.Web3Provider | undefined
   >(undefined);
   // Automatically connect if the provider is cached but has not yet been set (e.g. page refresh)
-  if (getWeb3Modal()?.cachedProvider && !provider) {
+  if (!triedToConnect && getWeb3Modal()?.cachedProvider && !provider) {
     connectWallet();
+    triedToConnect = true;
   }
 
-  async function connectWallet() {
+  async function connectWallet(): Promise<ethers.providers.Web3Provider | null> {
     try {
       const externalProvider = await getWeb3Modal()?.connect();
       const ethersProvider = new ethers.providers.Web3Provider(
         externalProvider,
       );
+
+      const network = await ethersProvider.getNetwork();
+
+      if (
+        (chain === 'mainnet' && network.chainId !== 1) ||
+        (chain !== 'mainnet' && network.name !== chain)
+      ) {
+        alert('Wrong network! Please, connect to ' + chain);
+        return null;
+      }
+
       setProvider(ethersProvider);
+
+      return ethersProvider;
     } catch (e) {
-      // alert(e)
+      console.error(e);
+      return null;
     }
   }
 
@@ -86,22 +105,36 @@ export function useWeb3Modal() {
   async function viewNFTs(owner: string) {
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
-      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
 
     const ownerAddr = owner;
 
     const nfts = await web3.alchemy.getNfts({
       owner: ownerAddr,
-      contractAddresses: [MetaHistoryAddress],
+      contractAddresses: [MetaHistoryAddress, AUCTION_ADDRESS],
     });
 
     return nfts.ownedNfts;
   }
 
+  async function getOwnerOfNFT(contractAddress: string, tokenId: number) {
+    // Initialize an alchemy-web3 instance:
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+    const nftContract = new web3.eth.Contract(
+      IERC721InterfaceAbi as AbiItem[],
+      contractAddress,
+    );
+    return await nftContract.methods
+      .ownerOf(tokenId)
+      .call({ from: MetaHistoryAddress });
+  }
+
   async function getAuctionInfo(contractAddress: string, tokenId: number) {
     const web3 = createAlchemyWeb3(
-      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
     const ethersProvider = new ethers.providers.Web3Provider(
       web3.currentProvider as ExternalProvider,
@@ -113,8 +146,35 @@ export function useWeb3Modal() {
       tokenId,
     );
 
+    const isSold = auctionInfo.nftSeller === ethers.constants.AddressZero;
+
+    const bidInfos = isSold
+      ? await Promise.all(
+          ((await auction.queryFilter(auction.filters.BidMade())) as any[])
+            .filter(
+              (bid: any) =>
+                bid.args.nftContractAddress === contractAddress &&
+                bid.args.tokenId.eq(tokenId),
+            )
+            .map(
+              async (bid: any) =>
+                ({
+                  eth: web3.utils.fromWei(bid.args.ethAmount.toString()),
+                  bidder: bid.args.bidder,
+                  date: new Date(
+                    +(await web3.eth.getBlock(bid.blockNumber)).timestamp *
+                      1000,
+                  ),
+                  full: bid,
+                } as BidInfo & { full: any }),
+            ),
+        )
+      : [];
+
     const hasBid = auctionInfo.nftHighestBid.gte(auctionInfo.minPrice);
-    const bid = hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice;
+    const bid = (
+      hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice
+    ) as BigNumber;
 
     const increasePercentage =
       auctionInfo.bidIncreasePercentage > 0
@@ -125,17 +185,22 @@ export function useWeb3Modal() {
       ? bid.mul(10000 + increasePercentage).div(10000)
       : auctionInfo.minPrice;
 
+    const bidStep = ethers.constants.WeiPerEther.div(4);
+    const nearestPrettyBid = nextMinBid.div(bidStep).mul(bidStep);
+
     const proposedBidsWei: BigNumber[] = [
       nextMinBid,
-      bid.mul(3).div(2),
-      bid.mul(2),
-      bid.mul(5).div(2),
+      nearestPrettyBid.add(bidStep),
+      nearestPrettyBid.add(bidStep.mul(2)),
+      nearestPrettyBid.add(bidStep.mul(3)),
     ];
     const proposedBidsETH = proposedBidsWei
       .map((bn) => bn.toString())
       .map((wei) => web3.utils.fromWei(wei));
 
     return {
+      isSold,
+      bidHistory: bidInfos,
       bid: web3.utils.fromWei(bid.toString()),
       nextMinBid: web3.utils.fromWei(nextMinBid.toString()),
       proposedBids: proposedBidsETH,
@@ -148,9 +213,8 @@ export function useWeb3Modal() {
     tokenId: number,
     value: BigNumberish,
   ) {
-    const externalProvider = await getWeb3Modal()?.connect();
-    const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
-    setProvider(ethersProvider);
+    const ethersProvider = await connectWallet();
+    if (!ethersProvider) return;
     const signer = ethersProvider.getSigner();
 
     const auction = NFTAuctionConnect(signer, chain);
@@ -184,7 +248,7 @@ export function useWeb3Modal() {
   async function canMint() {
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
-      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
     const nftContract = new web3.eth.Contract(
       MetaHistoryContractAbi as AbiItem[],
@@ -259,6 +323,7 @@ export function useWeb3Modal() {
     provider,
     donate,
     viewNFTs,
+    getOwnerOfNFT,
     getAuctionInfo,
     makeBid,
     canMint,

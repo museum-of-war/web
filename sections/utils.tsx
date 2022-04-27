@@ -3,9 +3,9 @@ export const openInNewTab = (url: string) => {
   if (newWindow) newWindow.opener = null;
 };
 
-export const truncateAddress = (address: string) => {
+export const truncateAddress = (address: string, start = 5) => {
   return (
-    address.substring(0, 5) +
+    address.substring(0, start) +
     "..." +
     address.substring(address.length - 4, address.length)
   );

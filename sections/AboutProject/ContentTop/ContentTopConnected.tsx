@@ -37,7 +37,6 @@ const ContentTopConnected = () => {
           <PoweredByFrame />
         </div>
       </div>
-      {/* <CountdownBanner endDate={AUCTION_CLOSING_DATE} hideDate={AUCTION_END_DATE} /> */}
     </div>
   );
 };

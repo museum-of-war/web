@@ -48,3 +48,9 @@ export type AuctionItemType = {
   descriptionEnglish?: string;
   descriptionUkrainian?: string;
 };
+
+export type BidInfo = {
+  eth: string;
+  date: Date;
+  bidder: string;
+};
