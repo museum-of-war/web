@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { WAR_START_DATE } from '@sections/Constants';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 const ContentCounterDaysAndRised = () => {
   const [daysFromWarStart, setDaysFromWarStart] = useState<number>();
+  const [fundsRaised, setFundsRaised] = useState({ eth: "", usd: "" });
+  const { getTotalFundsRaised } = useWeb3Modal();
   const daysCounter = () => {
     const startDate = new Date(WAR_START_DATE);
     const now = new Date();
@@ -12,6 +15,7 @@ const ContentCounterDaysAndRised = () => {
 
   useEffect(() => {
     setDaysFromWarStart(daysCounter());
+    getTotalFundsRaised().then(setFundsRaised);
   }, [])
 
   return (
@@ -36,10 +40,10 @@ const ContentCounterDaysAndRised = () => {
           </p>
           <div className="h-5px w-100% bg-carbon dark:bg-white" />
           <p className="font-rblack mt-4 mobile:text-38px mobile:leading-12vw tablet:text-9vw tablet:leading-9vw laptop:text-5vw laptop:leading-5.5vw uppercase">
-            $800,000
+            ${fundsRaised.usd}
           </p>
           <p className='font-rnarrow tablet:text-20px mobile:text-12px mobile:leading-40px'>
-            1000.9 ETH
+            {fundsRaised.eth} ETH
           </p>
         </div>
       </div>
