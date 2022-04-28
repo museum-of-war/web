@@ -8,7 +8,7 @@ type ScrollTabletProps = {
 };
 export const ScrollTablet: React.FC<ScrollTabletProps> = ({ data }) => (
   <div
-    className="relative the-hall-scroll"
+    className="relative"
     style={{
       height: 552,
       marginTop: data.length ? 380 : 96,
