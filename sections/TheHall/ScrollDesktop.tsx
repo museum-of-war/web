@@ -111,7 +111,7 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
 
   return (
     <>
-      <div style={{ paddingBottom: 800 }} />
+      <div style={{ paddingBottom: data.length ? 800 : 700 }} />
       <div
         className="absolute"
         style={{
@@ -119,7 +119,7 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
           width: '100vw',
           overflow: 'hidden',
           left: 0,
-          top: 500,
+          top: data.length ? 500 : 350,
           zIndex: 100,
         }}
       >
