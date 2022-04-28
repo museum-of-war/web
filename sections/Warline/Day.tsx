@@ -171,7 +171,7 @@ const Day = ({
                 className: 'grid gap-x-48px gap-y-24px',
                 style: {
                   'grid-template-columns':
-                    'repeat(auto-fit, minmax(248px, 1fr))',
+                    'repeat(auto-fit, minmax(238px, 1fr))',
                 },
               }
             : {})}
