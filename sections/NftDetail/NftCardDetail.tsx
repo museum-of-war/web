@@ -158,7 +158,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { activePopupName, showPopup } = usePopup();
   const { push } = useAppRouter();
   const { makeBid, getAuctionInfo, getOwnerOfNFT } = useWeb3Modal();
-  const { hidePreloader } = usePreloader();
+  const { hidePreloader, showPreloader } = usePreloader();
 
   const [isSold, setSold] = useState<boolean>(false);
   const [tokenOwner, setTokenOwner] = useState<string>('');
@@ -169,6 +169,8 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     bidHistory: BidInfo[];
     buyNowPrice?: string;
   }>({ bid: '0', proposedBids: ['0'], fullInfo: '', bidHistory: [] });
+
+  useEffect(showPreloader, []);
 
   useEffect(() => {
     getAuctionInfo(item.contractAddress, item.tokenId)

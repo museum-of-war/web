@@ -13,7 +13,7 @@ export const PreloaderContext = createContext<{
 export const PreloaderProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [preloaderVisible, setPreloaderVisible] = useState<boolean>(true);
+  const [preloaderVisible, setPreloaderVisible] = useState<boolean>(false);
 
   const hidePreloader = () => {
     setPreloaderVisible(false);
