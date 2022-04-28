@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect  } from 'react';
 import { DayType, EventType } from '@sections/types';
 import Event from './Event';
 import { useViewPort } from '@hooks/useViewport';
@@ -10,11 +10,17 @@ type PropsDay = {
   daysCount: number;
   allEvents: Array<EventType>;
   pageView: ToggleOptionsType;
+  setView: Dispatch<SetStateAction<ToggleOptionsType>>;
 };
 
-const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
+const Day = ({
+  dayData,
+  daysCount,
+  allEvents,
+  pageView,
+  setView,
+}: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
-  const [view, setView] = useState<ToggleOptionsType>(pageView);
 
   useEffect(() => {
     setView(pageView);
@@ -54,11 +60,11 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
             }
           />
         </div>
-        <div className="mt-1px mb-20px h-5px w-100% bg-carbon"></div>
+        <div className="mt-1px mb-20px h-5px w-100% bg-carbon" />
       </div>
       {/* @ts-ignore*/}
       <div
-        {...(view === 'days'
+        {...(pageView === 'days'
           ? {
               className: 'grid gap-24px',
               style: {
@@ -76,7 +82,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
             idx={idx}
             eventsData={dayData.events}
             allEvents={allEvents}
-            view={view}
+            view={pageView}
           />
         ))}
       </div>
@@ -107,7 +113,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
       </div>
       {/* @ts-ignore*/}
       <div
-        {...(view === 'days'
+        {...(pageView === 'days'
           ? {
               className: 'grid gap-x-48px gap-y-24px',
               style: {
@@ -125,7 +131,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
             idx={idx}
             eventsData={dayData.events}
             allEvents={allEvents}
-            view={view}
+            view={pageView}
           />
         ))}
       </div>
@@ -140,7 +146,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
               {dayData.date}
             </p>
           </div>
-          <div className="mt-1px h-5px w-100% bg-carbon"></div>
+          <div className="mt-1px h-5px w-100% bg-carbon" />
           <DaysNavigation
             daysCount={daysCount}
             dayData={dayData}
@@ -153,14 +159,14 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
             direction="horizontal"
           />
           <div className="mt-48px">
-            <Toggle active={view} onClick={setView} />
+            <Toggle active={pageView} onClick={setView} />
           </div>
         </div>
       </div>
       <div className="ml-5% w-70%">
         {/* @ts-ignore*/}
         <div
-          {...(view === 'days'
+          {...(pageView === 'days'
             ? {
                 className: 'grid gap-x-48px gap-y-24px',
                 style: {
@@ -179,7 +185,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
               idx={idx}
               eventsData={dayData.events}
               allEvents={allEvents}
-              view={view}
+              view={pageView}
             />
           ))}
         </div>
