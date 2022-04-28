@@ -43,13 +43,13 @@ const ContentTopNotConnected = ({
           </p>
         </div>
         <div
-          className={`w-100% ${
+          className={`w-100% flex content-center ${
             isTablet ? 'mt-36px mb-48px' : isMobile ? 'mt-30px mb-40px' : ''
           }`}
         >
           <Button
             mode="primary"
-            className="tablet:h-48px mobile:h-60px mb-15 mobile:w-100% tablet:w-auto"
+            className="px-48px mb-0 tablet:h-48px mobile:h-60px mb-15 mobile:w-100% tablet:w-auto"
             round={false}
             label="Buy NFT Now"
             onClick={async () => {

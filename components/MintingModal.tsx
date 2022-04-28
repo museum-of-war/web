@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Button from '@components/Button';
-import { VscChromeClose } from "react-icons/vsc";
+import { VscChromeClose } from 'react-icons/vsc';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 type MintingModalProps = {
   setOpenMintingModal: (arg: boolean) => void;
 }
 
 const MintingModal = ({setOpenMintingModal}: MintingModalProps) => {
+  const { mintSecondDrop } = useWeb3Modal();
   const [amount, setAmount] = useState<number>(1);
   const [disabled, setDisabled] = useState<boolean>(true);
   const decreaseAmount = () => {
@@ -66,7 +68,7 @@ const MintingModal = ({setOpenMintingModal}: MintingModalProps) => {
             className="tablet:h-48px mobile:h-60px w-100% mt-48px"
             round={false}
             label="Buy NFT Now"
-            onClick={() => console.log('click')}
+            onClick={() => mintSecondDrop(amount).then(() => setOpenMintingModal(false)).catch(alert)}
           />
       </div>
     </>

@@ -7,10 +7,10 @@ type CountdownProp = {
 }
 
 const Countdown = ({countDownDate}: CountdownProp) => {  
-  let { days, hours, minutes, seconds } = useCountdown(countDownDate);
+  let { days, hours, minutes, seconds, timerEnd } = useCountdown(countDownDate);
 
-  return (
-    <div className="font-rnarrow laptop:mb-95px tablet:mb-72px mobile:mb-60px">
+  return !timerEnd ?
+    (<div className="font-rnarrow laptop:mb-95px tablet:mb-72px mobile:mb-60px">
       <div className="h-5px w-100% bg-carbon dark:bg-white" />
       <div className="flex mobile:my-16px tablet:my-0 tablet:flex-row mobile:flex-col justify-between tablet:items-center mobile:items-start">
         <div className="tablet:text-20px tablet:leading-48px tablet:mb-0 mobile:mb-10px mobile:text-18px mobile:leading-20px font-rlight">
@@ -57,8 +57,8 @@ const Countdown = ({countDownDate}: CountdownProp) => {
         </div>
       </div>
       <div className="h-5px w-100% bg-carbon dark:bg-white" />
-    </div>
-  )
+    </div>) :
+    null;
 }
 
 export default Countdown;

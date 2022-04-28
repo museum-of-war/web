@@ -46,10 +46,12 @@ const Partners = () => {
       src: 'img/partners/financevote.png',
       alt: 'financevote',
     },
+    /*
     {
       src: 'img/partners/vector.png',
       alt: 'vector',
     },
+    */
     {
       src: 'img/partners/lliwell.png',
       alt: 'lliwell'
@@ -97,10 +99,12 @@ const Partners = () => {
       src: 'img/partners/small/financevote_small.png',
       alt: 'financevote',
     },
+    /*
     {
       src: 'img/partners/small/vector_small.png',
       alt: 'vector',
     },
+    */
     {
       src: 'img/partners/small/lliwell_small.png',
       alt: 'lliwell'

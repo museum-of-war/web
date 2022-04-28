@@ -11,6 +11,7 @@ import {
   AUCTION_ADDRESS,
   FIRST_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
+  SECOND_DROP_DATE,
   UKRAINE_WALLET_ADDRESS,
 } from '@sections/Constants';
 import { NFTAuctionConnect } from '@museum-of-war/auction';
@@ -270,6 +271,16 @@ export function useWeb3Modal() {
     return mintedCount < maxTokens;
   }
 
+  async function canMintSecondDrop() {
+    // TODO: add logic after smart-contract deploy
+    return new Date(SECOND_DROP_DATE) <= new Date();
+  }
+
+  async function mintSecondDrop(tokensCount: number) {
+    //TODO: add logic after smart-contract deploy
+    throw new Error("not implemented")
+  }
+
   async function isUnlocked() {
     let unlocked;
 
@@ -327,6 +338,8 @@ export function useWeb3Modal() {
     getAuctionInfo,
     makeBid,
     canMint,
+    canMintSecondDrop,
+    mintSecondDrop,
     isUnlocked,
     openModal,
     getUsdPriceFromETH,
