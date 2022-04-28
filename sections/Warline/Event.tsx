@@ -4,7 +4,7 @@ import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import Link from 'next/link';
-import { ToggleOptionsType } from "@components/Toggle";
+import { ToggleOptionsType } from '@components/Toggle';
 import Button from '@components/Button';
 import { useAppRouter } from '@hooks/useAppRouter';
 
@@ -81,37 +81,51 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
   };
 
   const renderLinkButton = (
-    auctionBtnCn: string = "",
-    linkBtnCn: string = ""
+    auctionBtnCn: string = '',
+    linkBtnCn: string = '',
   ): React.ReactElement => {
-    return <div>
-      <Button
-        onClick={async () => { await push(`/warline/${eventData.Tokenid}`) }}
-        mode="secondary"
-        label="See Details"
-        className={linkBtnCn}
-      />
-    </div>
-  }
+    return (
+      <div>
+        <Button
+          onClick={async () => {
+            await push(`/warline/${eventData.Tokenid}`);
+          }}
+          mode="secondary"
+          label="See Details"
+          className={linkBtnCn}
+        />
+      </div>
+    );
+  };
 
   return isMobile ? (
-    <div className={`flex flex-col items-top ${!shortView ? "mb-60px" : "min-w-124px w-full"}`}>
-      {renderImage("w-100%")}
+    <div
+      className={`flex flex-col items-top ${
+        !shortView ? 'mb-60px' : 'min-w-124px w-full'
+      }`}
+    >
+      {renderImage('w-100%')}
       <div className="mt-20px flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
-            <p className={`font-rblack ${!shortView ? "leading-32px text-32px" : "text-14px"} `}>
+            <p
+              className={`font-rblack ${
+                !shortView ? 'leading-32px text-32px' : 'text-14px'
+              } `}
+            >
               {eventData.Time}
             </p>
-            <p className={`font-rlight ${shortView ? "text-12px" : ""}`}>{TokenidFormatter(eventData.Tokenid)}</p>
+            <p className={`font-rlight ${shortView ? 'text-12px' : ''}`}>
+              {TokenidFormatter(eventData.Tokenid)}
+            </p>
           </div>
           {!shortView && (
             <>
               <p
                 className="font-rnarrow pt-15px"
-                style={{ overflowWrap: "anywhere" }}
+                style={{ overflowWrap: 'anywhere' }}
               >
-               {eventData.Headline}
+                {eventData.Headline}
               </p>
               <div
                 className="flex flex-row items-center justify-between mt-16px"
@@ -127,55 +141,74 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
       </div>
     </div>
   ) : isTablet ? (
-    <div className={shortView
-      ? "flex flex-col justify-between min-w-176px w-full"
-      : "flex flex-row items-top mb-60px"}>
-      {renderImage(shortView
-        ? "w-40vw w-full"
-        : "w-40vw max-w-300px max-h-300px h-40vw mr-50px")}
+    <div
+      className={
+        shortView
+          ? 'flex flex-col justify-between min-w-176px w-full'
+          : 'flex flex-row items-top mb-60px'
+      }
+    >
+      {renderImage(
+        shortView
+          ? 'w-40vw w-full'
+          : 'w-40vw max-w-300px max-h-300px h-40vw mr-50px',
+      )}
       <div className="flex flex-col justify-between">
         <div>
-          <div className={`flex flex-row items-center justify-between
-                          ${shortView ? "" : "mb-32px"}`}>
-            <p className={`font-rblack leading-32px
-            ${!shortView ? "text-32px" : "text-20px"}`}>
+          <div
+            className={`flex flex-row items-center justify-between
+                          ${shortView ? '' : 'mb-32px'}`}
+          >
+            <p
+              className={`font-rblack leading-32px
+            ${!shortView ? 'text-32px' : 'text-20px'}`}
+            >
               {eventData.Time}
             </p>
-            <p className={`font-rlight ${shortView ? "text-14px" : ""}`}>{TokenidFormatter(eventData.Tokenid)}</p>
+            <p className={`font-rlight ${shortView ? 'text-14px' : ''}`}>
+              {TokenidFormatter(eventData.Tokenid)}
+            </p>
           </div>
           {!shortView && (
             <>
-              <p
-                className="font-rnarrow line-clamp-3"
-              >
-                {eventData.Headline}
-              </p>
+              <p className="font-rnarrow line-clamp-3">{eventData.Headline}</p>
               <div className="flex flex-row items-center justify-between pt-15px">
-                <p className="font-rligh" onClick={() => openInNewTab(eventData.TwitterUrl)}>
+                <p
+                  className="font-rligh"
+                  onClick={() => openInNewTab(eventData.TwitterUrl)}
+                >
                   @{eventData.TwitterUsername}
                 </p>
               </div>
             </>
           )}
         </div>
-        {!shortView && renderLinkButton(
-          "font-rnarrow  border-black border-y-4 py-5px w-100%",
-          "font-rblack"
-        )}
+        {!shortView &&
+          renderLinkButton(
+            'font-rnarrow  border-black border-y-4 py-5px w-100%',
+            'font-rblack',
+          )}
       </div>
     </div>
   ) : (
-    <div className={shortView
-      ? "flex flex-col justify-between min-w-248px w-full"
-      : "flex flex-row items-top mb-60px"}>
-      {renderImage(shortView
-        ? "w-full hover:cursor-pointer"
-        : "max-w-300px max-h-300px h-240px w-248px mr-50px hover:cursor-pointer"
+    <div
+      className={
+        shortView
+          ? 'flex flex-col justify-between min-w-200px w-full'
+          : 'flex flex-row items-top mb-60px'
+      }
+    >
+      {renderImage(
+        shortView
+          ? 'w-full hover:cursor-pointer'
+          : 'max-w-300px max-h-300px h-240px w-248px mr-50px hover:cursor-pointer',
       )}
       <div className="w-100% flex flex-col justify-between">
         <div>
-          <div className={`flex flex-row items-center justify-between
-                            ${shortView ? "py-16px" : ""}`}>
+          <div
+            className={`flex flex-row items-center justify-between
+                            ${shortView ? 'py-16px' : ''}`}
+          >
             <p className="font-rblack leading-32px text-32px">
               {eventData.Time}
             </p>
@@ -198,8 +231,8 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
         {!shortView && (
           <>
             {renderLinkButton(
-              "font-rnarrow  border-black border-y-4 py-5px w-100%",
-              "font-rblack"
+              'font-rnarrow  border-black border-y-4 py-5px w-100%',
+              'font-rblack',
             )}
           </>
         )}

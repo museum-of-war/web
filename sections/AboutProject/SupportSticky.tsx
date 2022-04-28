@@ -54,7 +54,7 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
   const stickyButton =
     difference > 0 ? (
       <SupportButton
-        label={'Support Ukraine'}
+        label="Support Ukraine"
         onClick={() => {
           if (isMobile) setShowBtn(false);
           setShowDonatePopup(true);
@@ -86,11 +86,11 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
     <>
       {isMobile ? (
         <div className="fixed z-10 left-0 bottom-0 bg-carbon w-100% px-10% py-20px">
-          {
-            openMintingModal
-              ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
-              : <></>
-          }
+          {openMintingModal ? (
+            <MintingModal setOpenMintingModal={setOpenMintingModal} />
+          ) : (
+            <></>
+          )}
           <div
             className="flex align-center justify-between"
             onClick={() => setShowBtn(!showBtn)}
@@ -99,32 +99,35 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
               {CTA}
             </p>
             <img
-              src={'img/down-white.svg'}
+              src="img/down-white.svg"
               style={showBtn ? {} : { transform: 'rotate(-90deg)' }}
             />
           </div>
-
           {showBtn && <div className="pt-20px">{stickyButton}</div>}
         </div>
       ) : isTablet ? (
-        <div className="fixed z-10 left-0 bottom-0 bg-carbon w-100% px-10% py-30px">
+        <div className="fixed z-10 left-0 bottom-24px bg-carbon w-100% px-10% py-30px">
           <p className="font-rblack text-32px text-white">{CTA}</p>
           <div className="pt-20px">{stickyButton}</div>
-          {
-            openMintingModal
-              ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
-              : <></>
-          }
+          {openMintingModal ? (
+            <MintingModal setOpenMintingModal={setOpenMintingModal} />
+          ) : (
+            <></>
+          )}
         </div>
       ) : (
-        <div className="fixed z-10 left-0 bottom-0 bg-carbon w-100% px-10% py-30px flex flex-row items-center justify-center">
-          <p className="font-rblack text-28px leading-28px text-white">{CTA}</p>
-          <div className="ml-30px mt-7">{stickyButton}</div>
-          {
-            openMintingModal
-              ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
-              : <></>
-          }
+        <div className="sticky mt-48px z-0 left-0 bottom-24px bg-carbon w-100% px-10% py-30px shadow-sticky">
+          <div className="flex flex-row items-center justify-center">
+            <p className="font-rblack text-28px leading-28px text-white">
+              {CTA}
+            </p>
+            <div className="ml-30px mt-7">{stickyButton}</div>
+            {openMintingModal ? (
+              <MintingModal setOpenMintingModal={setOpenMintingModal} />
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       )}
       {showDonatePopup ? (

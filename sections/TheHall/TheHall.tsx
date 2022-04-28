@@ -10,7 +10,7 @@ const TheHall = () => {
   const { isMobile, isTablet } = useViewPort();
 
   return (
-    <div>
+    <div className="the-hall-wrapper">
       <Blurb
         header="The hall"
         english={`This is not just a war between two countries. This is a war against humanity, against the light. The whole world — and these amazing individuals, in part — unprecedentedly united in this battle. The Hall is a collection of NFT art that was created in gratitude for public figures that stand for Ukraine (and can be claimed only by them.) It's the least how we can say "thank you".`}
