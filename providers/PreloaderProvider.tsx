@@ -41,8 +41,8 @@ export const PreloaderProvider: React.FC<{ children: React.ReactNode }> = ({
         ) : null}
         <div
           style={{
-            height: preloaderVisible ? '0' : 'auto',
-            overflow: preloaderVisible ? 'hidden' : 'auto',
+            height: preloaderVisible ? '0' : 'initial',
+            overflow: preloaderVisible ? 'hidden' : 'initial',
           }}
         >
           {children}
