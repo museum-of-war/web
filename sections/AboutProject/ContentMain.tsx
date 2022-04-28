@@ -1,15 +1,8 @@
-import React from "react";
-import Blurb from "./Blurb";
-import Team from "./Team";
+import React from 'react';
+import Blurb from './Blurb';
+import Team from './Team';
 
-import { useViewPort } from "@hooks/useViewport";
-const ConnectYourWalletChronology = dynamic(
-  () => import("@components/ConnectYourWalletChronology"),
-  {
-    ssr: false,
-  }
-);
-import dynamic from "next/dynamic";
+import { useViewPort } from '@hooks/useViewport';
 
 type ContentTopProps = {
   signerAddress: string;
@@ -30,7 +23,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
             className="absolute h-100%"
             alt="dots"
             src="/img/pd-dotsHorizontalSmall.png"
-          />{" "}
+          />{' '}
           <div className="font-rlight ml-[72px] text-12px">
             Ми не дамо викреслити жодного дня цього періоду зі сторінок світової
             історії.
@@ -42,16 +35,11 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
           ukrainian="NFT створюватимуться в хронологічній послідовності. Таким чином буде збережено виключно коректний перебіг подій. Художники відображатимуть військові події, пережиті мирним населенням суверенної України — від повних заперечень війни і до моменту святкування української перемоги."
         />
       </div>
-      {!signerAddress && (
-        <ConnectYourWalletChronology handleConnect={handleConnect} />
-      )}
       <div className="mt-8%">
-        <Blurb
-          header={"TEAM"}
-        />
+        <Blurb header={'TEAM'} />
         <img
           alt="partners"
-          src={"img/pd-partners.png"}
+          src={'img/pd-partners.png'}
           className="mb-5% mt-8%"
         />
         <Team />
@@ -76,19 +64,14 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
             Ми не дамо викреслити жодного дня цього періоду зі сторінок світової
             історії.
           </p>
-          <img className="" alt="Dots" src={"img/pd-dots2.png"} />
+          <img className="" alt="Dots" src={'img/pd-dots2.png'} />
         </div>
       </div>
-      {!signerAddress && (
-        <ConnectYourWalletChronology handleConnect={handleConnect} />
-      )}
       <div className="mt-8%">
-        <Blurb
-          header={"TEAM"}
-        />
+        <Blurb header={'TEAM'} />
         <img
           alt="partners"
-          src={"img/pd-partners.png"}
+          src={'img/pd-partners.png'}
           className="mb-5% mobile:mt-8% tablet:mt-0 w-100%"
         />
         <Team />

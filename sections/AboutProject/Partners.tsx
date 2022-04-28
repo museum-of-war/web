@@ -54,8 +54,8 @@ const Partners = () => {
     */
     {
       src: 'img/partners/lliwell.png',
-      alt: 'lliwell'
-    }
+      alt: 'lliwell',
+    },
   ];
 
   const partnersSmall = [
@@ -107,8 +107,8 @@ const Partners = () => {
     */
     {
       src: 'img/partners/small/lliwell_small.png',
-      alt: 'lliwell'
-    }
+      alt: 'lliwell',
+    },
   ];
 
   return (
@@ -117,22 +117,32 @@ const Partners = () => {
         PARTNERS
       </p>
       <div className="h-5px w-100% tablet:mb-16px mobile:mb-12px bg-carbon dark:bg-white" />
-      {
-        isMobile
-        ? <InfiniteLoop speed={20} className={'h-80px'}>
-            {partnersSmall.map((partner, idx) => (
-              <img className="mr-80px" key={idx} src={partner.src} alt={partner.alt}></img>
-            ))}
-          </InfiniteLoop>
-        : <InfiniteLoop speed={20} className={'h-192px'}>
-            {partners.map((partner, idx) => (
-              <img className="mr-144px" key={idx} src={partner.src} alt={partner.alt}></img>
-            ))}
-          </InfiniteLoop>
-      }
+      {isMobile ? (
+        <InfiniteLoop speed={partnersSmall.length * 2.5} className={'h-80px'}>
+          {partnersSmall.map((partner, idx) => (
+            <img
+              className="mr-80px"
+              key={idx}
+              src={partner.src}
+              alt={partner.alt}
+            />
+          ))}
+        </InfiniteLoop>
+      ) : (
+        <InfiniteLoop speed={partners.length * 2.5} className={'h-192px'}>
+          {partners.map((partner, idx) => (
+            <img
+              className="mr-144px"
+              key={idx}
+              src={partner.src}
+              alt={partner.alt}
+            />
+          ))}
+        </InfiniteLoop>
+      )}
       <div className="h-5px w-100% tablet:mb-16px mobile:mb-12px bg-carbon dark:bg-white" />
     </div>
-  )
-}
+  );
+};
 
 export default Partners;
