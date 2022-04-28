@@ -1,26 +1,27 @@
-import React from "react";
-import HeaderAndFooterButton from "../../components/HeaderAndFooterButton";
-import SocialMediaButton from "../../components/SocialMediaButton";
-import { useViewPort } from "@hooks/useViewport";
-import { useAppRouter } from "@hooks/useAppRouter";
-import { openInNewTab } from "../utils";
+import React from 'react';
+import HeaderAndFooterButton from '../../components/HeaderAndFooterButton';
+import SocialMediaButton from '../../components/SocialMediaButton';
+import { useViewPort } from '@hooks/useViewport';
+import { useAppRouter } from '@hooks/useAppRouter';
+import { openInNewTab } from '../utils';
 import {
   GITHUB_LINK,
   INSTAGRAM_LINK,
   OPENSEA_LINK,
   TELEGRAM_LINK,
   TWITTER_LINK,
-} from "@sections/Constants";
+  TWITTER_LINK_MOBILE,
+} from '@sections/Constants';
 
 const Footer = () => {
   const { isMobile, isTablet } = useViewPort();
   const { push } = useAppRouter();
 
-  const onClickTermsAndConditions = () => push("/terms-and-conditions");
-  const onClickPrivacyPolicy = () => push("/privacy-policy");
-  const onClickAuditReport = () => openInNewTab("/audit.pdf");
+  const onClickTermsAndConditions = () => push('/terms-and-conditions');
+  const onClickPrivacyPolicy = () => push('/privacy-policy');
+  const onClickAuditReport = () => openInNewTab('/audit.pdf');
   const onClickContactUs = () =>
-    openInNewTab("mailto:vk@metahistory.gallery?subject=Meta History");
+    openInNewTab('mailto:vk@metahistory.gallery?subject=Meta History');
 
   return isMobile || isTablet ? (
     <div className="font-rnarrow pt-10% flex flex-col">
@@ -76,7 +77,10 @@ const Footer = () => {
         />
         <SocialMediaButton telegram href={TELEGRAM_LINK} />
         <SocialMediaButton opensea href={OPENSEA_LINK} />
-        <SocialMediaButton twitter href={TWITTER_LINK} />
+        <SocialMediaButton
+          twitter
+          href={isMobile ? TWITTER_LINK_MOBILE : TWITTER_LINK}
+        />
         <SocialMediaButton instagram href={INSTAGRAM_LINK} />
         <SocialMediaButton github href={GITHUB_LINK} />
       </div>
