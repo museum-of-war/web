@@ -123,8 +123,13 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
           zIndex: 100,
         }}
       >
-        {data.length > 1 ? (
-          <div className="absolute right-0 z-10 top-0" ref={buttonsRef}>
+        {data.length > 0 ? (
+          <div
+            className={`absolute right-0 z-10 top-0 ${
+              data.length > 1 ? '' : 'hidden'
+            }`}
+            ref={buttonsRef}
+          >
             <PrevButton
               active={activeButton.prev}
               onClick={() => handleScroll(1)}
