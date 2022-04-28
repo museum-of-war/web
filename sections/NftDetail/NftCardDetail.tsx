@@ -189,7 +189,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
         )}
         <div className="flex mt-40px mobile:flex-col laptop:flex-row  justify-between">
           <div className="laptop:w-[48%] mobile: w-full">
-            <img alt={item.name} src={`../${item.imageSrc}`} />
+            <img alt={item.name} src={item.imageSrc} />
           </div>
           <div className="laptop:w-[48%] mobile: w-full">
             {isSold ? (
@@ -263,7 +263,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                     <NftCard
                       orderIndex={index}
                       index={item.index}
-                      imageSrc={`../${item.imageSrc}`}
+                      imageSrc={item.imageSrc}
                       name={item.name}
                       endsIn={item.endsIn}
                       contractAddress={item.contractAddress}
