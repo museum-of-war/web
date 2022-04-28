@@ -24,7 +24,7 @@ function Button({
                 ${
                   round
                     ? 'px-20px tablet:py-10px mobile:py-10px'
-                    : 'px-32px tablet:py-10px mobile:py-8%'
+                    : 'px-32px tablet:py-10px '
                 }
                 whitespace-nowrap text-14px
                 hover:bg-carbon-800

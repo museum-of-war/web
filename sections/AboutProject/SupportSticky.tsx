@@ -5,13 +5,15 @@ import { useViewPort } from '@hooks/useViewport';
 import { MINT_LINK, RELEASE_DATE, OPENSEA_LINK } from '@sections/Constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { openInNewTab } from '@sections/utils';
+import MintingModal from '@components/MintingModal';
 
 type PropsSupportSticky = {
   targetAnchorId: string;
 };
 
 const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
-  const { canMint } = useWeb3Modal();
+  const { canMint, canMintSecondDrop } = useWeb3Modal();
+  const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
   const [difference, setDifference] = useState(
     +new Date(RELEASE_DATE) - +new Date(),
   );
@@ -64,7 +66,9 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
           className="font-rblack text-white rounded-full border-2 px-25px py-12px whitespace-nowrap border-white mobile:text-12px laptop:text-14px desktop:text-16px
             hover:border-2 hover:shadow-[0_0_0_1px_rgba(255,255,255,1)]"
           onClick={async () => {
-            if (await canMint()) {
+            if (await canMintSecondDrop()) {
+              setOpenMintingModal(true);
+            } else if (await canMint()) {
               openInNewTab(MINT_LINK);
             } else {
               openInNewTab(OPENSEA_LINK);
@@ -81,7 +85,12 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
   ) : (
     <>
       {isMobile ? (
-        <div className="fixed left-0 bottom-0 bg-carbon w-100% px-10% py-20px">
+        <div className="fixed z-10 left-0 bottom-0 bg-carbon w-100% px-10% py-20px">
+          {
+            openMintingModal
+              ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
+              : <></>
+          }
           <div
             className="flex align-center justify-between"
             onClick={() => setShowBtn(!showBtn)}
@@ -97,18 +106,24 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
           {showBtn && <div className="pt-20px">{stickyButton}</div>}
         </div>
       ) : isTablet ? (
-        <div className="fixed left-0 bottom-24px bg-carbon w-100% px-10% py-30px shadow-sticky">
+        <div className="fixed z-10 left-0 bottom-24px bg-carbon w-100% px-10% py-30px">
           <p className="font-rblack text-32px text-white">{CTA}</p>
           <div className="pt-20px">{stickyButton}</div>
+          {
+            openMintingModal
+              ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
+              : <></>
+          }
         </div>
       ) : (
-        <div className="sticky mt-48px z-0 left-0 bottom-24px bg-carbon w-100% px-10% py-30px shadow-sticky">
-          <div className="flex flex-row items-center justify-center">
-            <p className="font-rblack text-28px leading-28px text-white">
-              {CTA}
-            </p>
-            <div className="ml-30px mt-7">{stickyButton}</div>
-          </div>
+        <div className="fixed z-10 left-0 bottom-24px bg-carbon w-100% px-10% py-30px flex flex-row items-center justify-center">
+          <p className="font-rblack text-28px leading-28px text-white">{CTA}</p>
+          <div className="ml-30px mt-7">{stickyButton}</div>
+          {
+            openMintingModal
+              ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
+              : <></>
+          }
         </div>
       )}
       {showDonatePopup ? (

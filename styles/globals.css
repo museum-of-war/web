@@ -127,6 +127,14 @@
   z-index: 100;
 }
 
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 @media (min-width: 680px) {
   .the-hall-scroll {
     left: -72px;

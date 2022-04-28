@@ -11,6 +11,7 @@ import {
   AUCTION_ADDRESS,
   FIRST_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
+  SECOND_DROP_DATE,
   UKRAINE_WALLET_ADDRESS,
 } from '@sections/Constants';
 import { NFTAuctionConnect } from '@museum-of-war/auction';
@@ -231,6 +232,20 @@ export function useWeb3Modal() {
     );
   }
 
+  async function getFirstDropMintedCount() {
+    const web3 = createAlchemyWeb3(
+      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
+    );
+    const nftContract = new web3.eth.Contract(
+      MetaHistoryContractAbi as AbiItem[],
+      MetaHistoryAddress,
+    );
+
+    return await nftContract.methods
+      .viewMinted()
+      .call({ from: MetaHistoryAddress });
+  }
+
   async function canMint() {
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
@@ -256,6 +271,16 @@ export function useWeb3Modal() {
     return mintedCount < maxTokens;
   }
 
+  async function canMintSecondDrop() {
+    // TODO: add logic after smart-contract deploy
+    return new Date(SECOND_DROP_DATE) <= new Date();
+  }
+
+  async function mintSecondDrop(tokensCount: number) {
+    //TODO: add logic after smart-contract deploy
+    throw new Error("not implemented")
+  }
+
   async function isUnlocked() {
     let unlocked;
 
@@ -279,6 +304,30 @@ export function useWeb3Modal() {
     }
   }
 
+  async function getUsdPriceFromETH(ethPrice: string | number): Promise<string> {
+    return await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum')
+      .then(res => res.json())
+      .then(json => json[0].current_price as number)
+      .then(usdPrice => (usdPrice * +ethPrice).toFixed(0));
+  }
+
+  async function getTotalFundsRaised() {
+    const firstDropUnique = 4; // first four tokens were sold at auction
+    const firstDropAirdrop = 3; // three tokens were airdropped as quiz prizes
+    const firstDropWeth = ethers.constants.WeiPerEther.mul(15).div(100) // 0.15 ETH
+      .mul(await getFirstDropMintedCount() - firstDropUnique - firstDropAirdrop);
+    const firstAuctionWeth = BigNumber.from("4724827773016000000") /*First auction*/;
+
+    const wethTotal = firstDropWeth.add(firstAuctionWeth);
+    const ethTotal = ethers.utils.formatEther(wethTotal);
+    const usdTotal = await getUsdPriceFromETH(ethTotal);
+
+    return {
+      eth: (+ethTotal).toFixed(2),
+      usd: usdTotal.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),
+    };
+  }
+
   return {
     connectWallet,
     disconnectWallet,
@@ -289,7 +338,11 @@ export function useWeb3Modal() {
     getAuctionInfo,
     makeBid,
     canMint,
+    canMintSecondDrop,
+    mintSecondDrop,
     isUnlocked,
     openModal,
+    getUsdPriceFromETH,
+    getTotalFundsRaised,
   };
 }
