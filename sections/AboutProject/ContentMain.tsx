@@ -47,7 +47,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
         <p className="font-rblack uppercase tablet:text-70px tablet:leading-72px tablet:w-100% laptop:w-70%">
           We will never let any single day of this period disappear from the ledger of world history.
         </p>
-        <div className="flex laptop:flex-col tablet:flex-row-reverse tablet:mt-48px laptop:mt-0">
+        <div className="flex laptop:flex-col laptop:justify-between tablet:flex-row-reverse tablet:mt-48px laptop:mt-0">
           <p className="font-rnarrow tablet:text-16px tablet:leading-24px reltive">
             Ми не дамо викреслити<br/>жодного дня цього періоду<br/>зі сторінок світової
             історії.
