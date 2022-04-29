@@ -19,7 +19,8 @@ const Footer = () => {
 
   const onClickTermsAndConditions = () => push('/terms-and-conditions');
   const onClickPrivacyPolicy = () => push('/privacy-policy');
-  const onClickAuditReport = () => openInNewTab('/audit.pdf');
+  const onClickAuditReport = () =>
+    openInNewTab('https://github.com/museum-of-war/nft/tree/master/audits');
   const onClickContactUs = () =>
     openInNewTab('mailto:vk@metahistory.gallery?subject=Meta History');
 
@@ -33,7 +34,7 @@ const Footer = () => {
       </div>
       <div className="flex flex-row justify-center mb-32px flex-wrap">
         <HeaderAndFooterButton
-          label="Audit"
+          label="Audits"
           onClick={onClickAuditReport}
           wrapperClassName="mr-20px"
         />
@@ -57,7 +58,7 @@ const Footer = () => {
       <div className="flex flex-row items-center laptop:justify-end tablet:justify-center">
         <HeaderAndFooterButton
           wrapperClassName="mr-24px"
-          label="Audit"
+          label="Audits"
           onClick={onClickAuditReport}
         />
         <HeaderAndFooterButton
