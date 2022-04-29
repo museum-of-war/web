@@ -23,7 +23,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
             alt="dots"
             src="/img/pd-dotsHorizontalSmall.png"
           />{" "}
-          <div className="font-rlight text-12px leading-20px">
+          <div className="font-rnarrow text-14px leading-20px">
             Ми не дамо викреслити<br/>жодного дня цього періоду<br/>зі сторінок світової
             історії.
           </div>
