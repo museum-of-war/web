@@ -52,7 +52,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
             Ми не дамо викреслити<br/>жодного дня цього періоду<br/>зі сторінок світової
             історії.
           </p>
-          <img className="h-72px absolute -left-0 tablet:block desktop:hidden" alt="Dots" src={"img/pd_horisontal_dots.svg"} />
+          <img className="h-72px absolute -left-0 tablet:block laptop:hidden" alt="Dots" src={"img/pd_horisontal_dots.svg"} />
           <img className="mt-50px h-377px tablet:hidden laptop:block" alt="Dots" src={"img/vertical_dots.svg"} /> 
         </div>
       </div>
