@@ -333,7 +333,7 @@ export function useWeb3Modal() {
 
     return {
       eth: (+ethTotal).toFixed(2),
-      usd: usdTotal.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ','),
+      usd: (+usdTotal).toLocaleString('en-US'),
     };
   }
 
