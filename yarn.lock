@@ -1330,6 +1330,11 @@ acorn@^8.7.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.7.0.tgz#90951fde0f8f09df93549481e5fc141445b791cf"
   integrity sha512-V/LGr1APy+PXIwKebEWrkZPwoeoF+w1jiOBUmuxuiUIaOHtob8Qc9BTrYo7VuI5fR8tqsy+buA2WFooR5olqvQ==
 
+add-to-calendar-button@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/add-to-calendar-button/-/add-to-calendar-button-1.8.3.tgz#958806b7ee4d055e467f55249729ca7f4c20ce5e"
+  integrity sha512-Hz48Yoi/BfR75im1Ll6OH/lIoigN9jcrhfUTkvHe1n+W8CSUbeF7P4Ns04GUUGN6TVV7UffxMM9zcwv7ITidSw==
+
 aes-js@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/aes-js/-/aes-js-3.0.0.tgz#e21df10ad6c2053295bcbb8dab40b09dbea87e4d"
