@@ -63,6 +63,7 @@ module.exports = {
         '283px': '283px',
         '300px': '300px',
         '350px': '350px',
+        '377px': '377px',
         '400px': '400px',
         '500px': '500px',
         'screen5%': '5vh',
