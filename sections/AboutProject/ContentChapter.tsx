@@ -50,7 +50,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
               </p>
             </div>
             <div className="flex flex-wrap  border-t-4 border-carbon border-solid ">
-              <img src="/img/auction.svg" alt="Auction" className="w-full" />
+              <img src="/img/auction.gif" alt="Auction" className="w-full" />
             </div>
           </div>
         </div>

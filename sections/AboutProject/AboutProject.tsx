@@ -5,7 +5,6 @@ import ContentMission from './ContentMission';
 const ContentTop = dynamic(() => import('./ContentTop/ContentTop'), {
   ssr: false,
 });
-import ContentWar from './ContentWar';
 import ContentMain from './ContentMain';
 import ContentMedia from './ContentMedia';
 import dynamic from 'next/dynamic';
@@ -28,7 +27,6 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
       <ContentChapter />
       <ContentMission />
       <ContentCounterDaysAndRised />
-      <ContentWar />
       <ContentMain
         signerAddress={signerAddress}
         handleConnect={handleConnect}

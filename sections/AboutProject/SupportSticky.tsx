@@ -99,7 +99,8 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
               {CTA}
             </p>
             <img
-              src="img/down-white.svg"
+              alt="down-white"
+              src={'img/down-white.svg'}
               style={showBtn ? {} : { transform: 'rotate(-90deg)' }}
             />
           </div>
