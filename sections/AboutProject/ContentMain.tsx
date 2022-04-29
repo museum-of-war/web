@@ -62,7 +62,7 @@ const ContentMain = ({ signerAddress, handleConnect }: ContentTopProps) => {
         />
         <img
           alt="partners"
-          src={"img/pd-partners.png"}
+          src={'img/pd-partners.png'}
           className="mb-5% mobile:mt-8% tablet:mt-0 w-100%"
         />
         <Team />

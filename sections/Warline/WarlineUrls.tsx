@@ -1,3 +1,5 @@
+import { IMG_STORAGE } from '@sections/Constants';
+
 export function getUrls(
   tokenId: string,
   image: string | undefined,
@@ -8,11 +10,11 @@ export function getUrls(
 
   const previewSrc: string = isNoImage
     ? randomSrc
-    : '/img/preview/' + tokenId + '.webp';
-  const originalSrc: string = isNoImage ? randomSrc : '/img/original/' + image;
+    : `${IMG_STORAGE}/preview/${tokenId}.webp`;
+  const originalSrc: string = isNoImage ? randomSrc : `${IMG_STORAGE}/original/${image}`;
   const animationSrc: string = isNoImage
     ? randomSrc
-    : '/img/animation/' + tokenId + '.webp';
+    : `${IMG_STORAGE}/animation/${tokenId}.webp`;
 
   return {
     previewSrc,

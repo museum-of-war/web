@@ -10,7 +10,7 @@ const ContentCounterDaysAndRised = () => {
     const startDate = new Date(WAR_START_DATE);
     const now = new Date();
     const days = (now.getTime() - startDate.getTime()) / (1000 * 3600 * 24);
-    return Math.round(days);
+    return Math.ceil(days);
   }
 
   useEffect(() => {

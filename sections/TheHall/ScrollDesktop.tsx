@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { HallItemType } from '@sections/types';
 import { CardDesktop } from '@sections/TheHall/CardDesktop';
 import { ComingSoon } from '@sections/TheHall/ComingSoon';
@@ -50,9 +50,15 @@ const NextButton = ({
 type ScrollProps = {
   data: HallItemType[];
 };
-export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
+export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeButton, setActiveButton] = useState({ next: true, prev: false });
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
+
+  const [activeButton, setActiveButton] = useState({
+    next: true,
+    prev: false,
+  });
 
   const handleScroll = (direction: number) => {
     if (!scrollRef.current) {
@@ -70,82 +76,116 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }) => {
       setActiveButton({ next: true, prev: true });
     }
 
-    requestAnimationFrame(() => {
-      if (!scrollRef.current) {
-        return;
-      }
-      scrollRef.current.style.left = `${left}px`;
-    });
+    if (!scrollRef.current) {
+      return;
+    }
+    scrollRef.current.style.left = `${left}px`;
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      const element = document.querySelector('.the-hall-wrapper');
+
+      if (
+        element &&
+        backgroundRef.current &&
+        buttonsRef.current &&
+        scrollRef.current
+      ) {
+        // @ts-ignore
+        const { offsetLeft: offset } = element;
+
+        backgroundRef.current.style.left = `${offset}px`;
+        buttonsRef.current.style.right = `${offset}px`;
+        scrollRef.current.style.paddingLeft = `${offset + 40}px`;
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <div
-      className="relative the-hall-scroll"
-      style={{
-        height: 552,
-        marginBottom: 120,
-        marginTop: 100,
-        width: '100vw',
-      }}
-    >
-      {data.length ? (
-        <div
-          className="absolute right-0 z-10 the-hall-buttons-wrapper"
-          style={{ top: -110 }}
-        >
-          <PrevButton
-            active={activeButton.prev}
-            onClick={() => handleScroll(1)}
-          />
-          <NextButton
-            active={activeButton.next}
-            onClick={() => handleScroll(-1)}
-          />
-        </div>
-      ) : null}
+    <>
+      <div style={{ paddingBottom: data.length ? 800 : 700 }} />
       <div
         className="absolute"
         style={{
-          height: 552,
+          height: 800,
           width: '100vw',
+          overflow: 'hidden',
+          left: 0,
+          top: data.length ? 500 : 350,
+          zIndex: 100,
         }}
       >
+        {data.length > 0 ? (
+          <div
+            className={`absolute right-0 z-10 top-0 ${
+              data.length > 1 ? '' : 'hidden'
+            }`}
+            ref={buttonsRef}
+          >
+            <PrevButton
+              active={activeButton.prev}
+              onClick={() => handleScroll(1)}
+            />
+            <NextButton
+              active={activeButton.next}
+              onClick={() => handleScroll(-1)}
+            />
+          </div>
+        ) : null}
         <div
-          className="absolute z-1 bg-no-repeat"
+          className="absolute"
           style={{
-            backgroundImage: 'url(/img/theHall/bg-desktop.svg)',
-            width: 828,
             height: 552,
-            left: 132,
-            ...{
-              ...(data.length
-                ? {}
-                : {
-                    left: 0,
-                    right: 0,
-                    margin: 'auto',
-                  }),
-            },
-          }}
-        />
-        {data.length ? null : <ComingSoon />}
-        <div
-          className="overflow-hidden absolute z-2"
-          style={{
-            top: -56,
-            width: '100%',
+            width: '100vw',
+            top: 100,
           }}
         >
           <div
-            ref={scrollRef}
-            className="relative inline-flex flex-row the-hall-cards-wrapper"
+            ref={backgroundRef}
+            className="absolute z-1 bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/img/theHall/bg-desktop.svg)',
+              width: 828,
+              height: 552,
+              top: 100,
+              ...{
+                ...(data.length
+                  ? {}
+                  : {
+                      margin: 'auto',
+                      right: 0,
+                      left: 0,
+                    }),
+              },
+            }}
+          />
+          {data.length ? null : <ComingSoon />}
+          <div
+            className="overflow-hidden absolute z-2"
+            style={{
+              width: '100%',
+            }}
           >
-            {data.map((datum) => (
-              <CardDesktop key={datum.Id} {...datum} />
-            ))}
+            <div
+              ref={scrollRef}
+              className="relative inline-flex flex-row the-hall-cards-wrapper"
+              style={{ left: 0 }}
+            >
+              {data.map((datum) => (
+                <CardDesktop key={datum.Id} {...datum} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import DonateProjectPopup from "@sections/AboutProject/DonateProjectPopup";
-import SupportButton from "@components/SupportButton";
+import React, { useState } from 'react';
+import DonateProjectPopup from '@sections/AboutProject/DonateProjectPopup';
+import SupportButton from '@components/SupportButton';
 
-import { useViewPort } from "@hooks/useViewport";
+import { useViewPort } from '@hooks/useViewport';
 
 type PropsSupportProject = {};
 
@@ -20,11 +20,12 @@ const SupportProject = ({}: PropsSupportProject) => {
                 Support our project
               </p>
             </div>
-
             <div className="pt-40px mobile:w-full">
               <SupportButton
-                label={"Donate"}
-                className={"min-w-240px leading-36px mobile:text-14px mobile:w-full"}
+                label="Donate"
+                className={
+                  'min-w-240px leading-36px mobile:text-14px mobile:w-full'
+                }
                 onClick={() => {
                   setShowDonatePopup(true);
                 }}
@@ -38,8 +39,8 @@ const SupportProject = ({}: PropsSupportProject) => {
             Support our project
           </p>
           <SupportButton
-            label={"Donate"}
-            className={"tablet:text-14px px-48px"}
+            label="Donate"
+            className="tablet:text-14px px-48px"
             onClick={() => {
               setShowDonatePopup(true);
             }}
@@ -52,8 +53,8 @@ const SupportProject = ({}: PropsSupportProject) => {
               Support our project
             </p>
             <SupportButton
-              label={"Donate"}
-              className={"text-14px ml-30px px-72px"}
+              label="Donate"
+              className="text-14px ml-30px px-72px"
               onClick={() => {
                 setShowDonatePopup(true);
               }}
@@ -64,9 +65,9 @@ const SupportProject = ({}: PropsSupportProject) => {
       {showDonatePopup && (
         <DonateProjectPopup setShowDonatePopup={setShowDonatePopup} />
       )}
-       <div className="desktop:w-30% tablet:w-65% block m-auto mt-2% mb-120px mobile:mb-48px">
-         <img alt="Dots" src="img/pd-dots1.png"/>
-       </div>
+      <div className="desktop:w-30% tablet:w-65% block m-auto mt-2% mb-120px mobile:mb-48px">
+        <img alt="Dots" src="img/pd-dots1.png" />
+      </div>
     </>
   );
 };

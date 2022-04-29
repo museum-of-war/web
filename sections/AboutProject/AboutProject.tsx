@@ -14,7 +14,6 @@ import Partners from './Partners';
 import Countdown from './Countdown';
 import { SECOND_DROP_DATE } from '@sections/Constants';
 
-
 type AboutProjectProps = {
   signerAddress: string;
   handleConnect: () => void;
@@ -32,10 +31,10 @@ const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
         signerAddress={signerAddress}
         handleConnect={handleConnect}
       />
-      <SupportSticky targetAnchorId={'countdown-banner'} />
       <SupportProject />
       <Partners />
       <ContentMedia />
+      <SupportSticky targetAnchorId="countdown-banner" />
     </div>
   );
 };
