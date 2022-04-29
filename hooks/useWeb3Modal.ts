@@ -278,7 +278,7 @@ export function useWeb3Modal() {
 
   async function mintSecondDrop(tokensCount: number) {
     //TODO: add logic after smart-contract deploy
-    throw new Error("not implemented")
+    throw new Error('not implemented');
   }
 
   async function isUnlocked() {
@@ -304,19 +304,28 @@ export function useWeb3Modal() {
     }
   }
 
-  async function getUsdPriceFromETH(ethPrice: string | number): Promise<string> {
-    return await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum')
-      .then(res => res.json())
-      .then(json => json[0].current_price as number)
-      .then(usdPrice => (usdPrice * +ethPrice).toFixed(0));
+  async function getUsdPriceFromETH(
+    ethPrice: string | number,
+  ): Promise<string> {
+    return await fetch(
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum',
+    )
+      .then((res) => res.json())
+      .then((json) => json[0].current_price as number)
+      .then((usdPrice) => (usdPrice * +ethPrice).toFixed(0));
   }
 
   async function getTotalFundsRaised() {
     const firstDropUnique = 4; // first four tokens were sold at auction
-    const firstDropAirdrop = 3; // three tokens were airdropped as quiz prizes
-    const firstDropWeth = ethers.constants.WeiPerEther.mul(15).div(100) // 0.15 ETH
-      .mul(await getFirstDropMintedCount() - firstDropUnique - firstDropAirdrop);
-    const firstAuctionWeth = BigNumber.from("4724827773016000000") /*First auction*/;
+    const firstDropAirdrop =
+      3 + // three tokens were airdropped as quiz prizes
+      1; // one token was airdropped for retweet
+    const firstDropWeth = ethers.constants.WeiPerEther.mul(15)
+      .div(100) // 0.15 ETH
+      .mul(
+        (await getFirstDropMintedCount()) - firstDropUnique - firstDropAirdrop,
+      );
+    const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
 
     const wethTotal = firstDropWeth.add(firstAuctionWeth);
     const ethTotal = ethers.utils.formatEther(wethTotal);
@@ -324,7 +333,7 @@ export function useWeb3Modal() {
 
     return {
       eth: (+ethTotal).toFixed(2),
-      usd: usdTotal.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),
+      usd: usdTotal.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ','),
     };
   }
 
