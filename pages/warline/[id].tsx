@@ -4,6 +4,7 @@ import WarlineData from '@sections/Warline/WarlineData';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import { useRouter } from 'next/router';
 import React from 'react';
+import PageHead from '@components/PageHead';
 
 const rand_imgs: string[] = [
   'img/dots-1.png',
@@ -82,20 +83,23 @@ const WarlineItem: React.FC<{
   }, [allEvents, event]);
 
   return (
-    <NftDetails
-      id={event.Tokenid}
-      title={getTitle(event)}
-      descriptionEnglish={event.DescriptionEnglish}
-      descriptionUkrainian={event.DescriptionUkrainian}
-      twitterUrl={event.TwitterUrl}
-      twitterUsername={event.TwitterUsername}
-      headline={event.Headline}
-      artistUrl={event.ArtistLink}
-      artistName={event.ArtistName}
-      imageSources={imageSources}
-      nextRecord={nextEventData}
-      prevRecord={prevEventData}
-    />
+    <>
+      <PageHead title="Warline - Meta History: Museum of War" />
+      <NftDetails
+        id={event.Tokenid}
+        title={getTitle(event)}
+        descriptionEnglish={event.DescriptionEnglish}
+        descriptionUkrainian={event.DescriptionUkrainian}
+        twitterUrl={event.TwitterUrl}
+        twitterUsername={event.TwitterUsername}
+        headline={event.Headline}
+        artistUrl={event.ArtistLink}
+        artistName={event.ArtistName}
+        imageSources={imageSources}
+        nextRecord={nextEventData}
+        prevRecord={prevEventData}
+      />
+    </>
   );
 };
 
