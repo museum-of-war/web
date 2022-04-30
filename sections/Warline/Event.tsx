@@ -59,7 +59,7 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
 
     return (
       <>
-        <Link href={`/warline/${idx + 1}`} passHref>
+        <Link href={`/warline/${eventData.Tokenid}`} passHref>
           <img
             alt={alt}
             onClick={() => setToggler(!toggler)}
