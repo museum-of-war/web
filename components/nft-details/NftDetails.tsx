@@ -66,6 +66,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     loadOriginal?: boolean;
     style?: React.CSSProperties;
   }) => {
+    loadOriginal = loadOriginal && !imageSources.originalSrc.endsWith('.mp4');
     const img = (
       <img
         alt={title}
@@ -200,27 +201,31 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
             <div className="border-carbon border-4 p-[20px] flex flex-col tablet:flex-row gap-[24px]">
               <div className="flex-1">
                 {headline}
-                <p className="text-[14px] mt-[24px] font-rlight">{`@${twitterUsername}`}</p>
+                {twitterUsername?.length > 0 && (
+                  <p className="text-[14px] mt-[24px] font-rlight">{`@${twitterUsername}`}</p>
+                )}
               </div>
               <VscTwitter className="w-[48px] h-[48px] box-border border border-carbon rounded-full p-[12px]" />
             </div>
           </a>
           <div className="flex flex-row gap-[48px]">
-            <div>
-              Artist:{' '}
-              {artistUrl ? (
-                <a
-                  href={artistUrl}
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {artistName}
-                </a>
-              ) : (
-                artistName
-              )}
-            </div>
+            {artistName?.length > 0 && (
+              <div>
+                Artist:{' '}
+                {artistUrl ? (
+                  <a
+                    href={artistUrl}
+                    className="underline"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {artistName}
+                  </a>
+                ) : (
+                  artistName
+                )}
+              </div>
+            )}
             <div>{editions ? `Editions: ${editions}` : null}</div>
           </div>
           <div className="flex flex-col-reverse tablet:flex-row gap-[36px] tablet:gap-[48px] mt-[24px] items-start  mb-60px">

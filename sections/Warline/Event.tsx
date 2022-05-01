@@ -133,7 +133,9 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
                   openInNewTab(eventData.TwitterUrl);
                 }}
               >
-                <p className="font-rlight ">@{eventData.TwitterUsername}</p>
+                {eventData.TwitterUsername?.length > 0 && (
+                  <p className="font-rlight ">@{eventData.TwitterUsername}</p>
+                )}
               </div>
             </>
           )}
@@ -173,12 +175,14 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
             <>
               <p className="font-rnarrow line-clamp-3">{eventData.Headline}</p>
               <div className="flex flex-row items-center justify-between pt-15px">
-                <p
-                  className="font-rligh"
-                  onClick={() => openInNewTab(eventData.TwitterUrl)}
-                >
-                  @{eventData.TwitterUsername}
-                </p>
+                {eventData.TwitterUsername?.length > 0 && (
+                  <p
+                    className="font-rligh"
+                    onClick={() => openInNewTab(eventData.TwitterUrl)}
+                  >
+                    @{eventData.TwitterUsername}
+                  </p>
+                )}
               </div>
             </>
           )}
@@ -219,12 +223,14 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
               <p className="font-rnarrow mt-24px line-clamp-3">
                 {eventData.Headline}
               </p>
-              <div
-                className="font-rlight pt-24px hover:cursor-pointer"
-                onClick={() => openInNewTab(eventData.TwitterUrl)}
-              >
-                @{eventData.TwitterUsername}
-              </div>
+              {eventData.TwitterUsername?.length > 0 && (
+                <div
+                  className="font-rlight pt-24px hover:cursor-pointer"
+                  onClick={() => openInNewTab(eventData.TwitterUrl)}
+                >
+                  @{eventData.TwitterUsername}
+                </div>
+              )}
             </>
           )}
         </div>

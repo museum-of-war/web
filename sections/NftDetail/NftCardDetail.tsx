@@ -24,12 +24,16 @@ type BidCardProps = {
   tokenId: number;
 };
 
-const getUsdPriceFromETH = async (ethPrice: string | number): Promise<string> => {
-  return await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum')
-    .then(res => res.json())
-    .then(json => json[0].current_price as number)
-    .then(usdPrice => (usdPrice * +ethPrice).toFixed(0));
-}
+const getUsdPriceFromETH = async (
+  ethPrice: string | number,
+): Promise<string> => {
+  return await fetch(
+    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum',
+  )
+    .then((res) => res.json())
+    .then((json) => json[0].current_price as number)
+    .then((usdPrice) => (usdPrice * +ethPrice).toFixed(0));
+};
 
 const BidCard = ({
   currentBid,
@@ -70,47 +74,49 @@ const BidCard = ({
           <p className="mobile:text-27px tablet:text-32px font-rblack">
             {currentBid} ETH
           </p>
-          {!!usdPrice &&
-            (<p className="font-rlight mobile:text-14px tablet:text-16px">${usdPrice}</p>)
-          }
+          {!!usdPrice && (
+            <p className="font-rlight mobile:text-14px tablet:text-16px">
+              ${usdPrice}
+            </p>
+          )}
         </div>
-        { timeLeft.isLeft && (
+        {timeLeft.isLeft && (
           <>
             <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
             <div>
-              <p className='font-rlight text-14px opacity-70 tablet:mb-12px'>
+              <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
                 Ends in
               </p>
-              <div className='flex -mx-10px'>
-                <div className='text-center px-10px'>
-                  <p className='mobile:text-27px tablet:text-32px font-rblack'>
+              <div className="flex -mx-10px">
+                <div className="text-center px-10px">
+                  <p className="mobile:text-27px tablet:text-32px font-rblack">
                     {timeLeft.days}
                   </p>
-                  <p className='font-rlight mobile:text-14px tablet:text-16px'>
+                  <p className="font-rlight mobile:text-14px tablet:text-16px">
                     days
                   </p>
                 </div>
-                <div className='text-center px-10px'>
-                  <p className='mobile:text-27px tablet:text-32px font-rblack'>
+                <div className="text-center px-10px">
+                  <p className="mobile:text-27px tablet:text-32px font-rblack">
                     {timeLeft.hours}
                   </p>
-                  <p className='font-rlight mobile:text-14px tablet:text-16px'>
+                  <p className="font-rlight mobile:text-14px tablet:text-16px">
                     hours
                   </p>
                 </div>
-                <div className='text-center px-10px'>
-                  <p className='mobile:text-27px tablet:text-32px font-rblack'>
+                <div className="text-center px-10px">
+                  <p className="mobile:text-27px tablet:text-32px font-rblack">
                     {timeLeft.minutes}
                   </p>
-                  <p className='font-rlight mobile:text-14px tablet:text-16px'>
+                  <p className="font-rlight mobile:text-14px tablet:text-16px">
                     minutes
                   </p>
                 </div>
-                <div className='text-center px-10px'>
-                  <p className='font-rblack mobile:text-27px tablet:text-32px font-rblack'>
+                <div className="text-center px-10px">
+                  <p className="font-rblack mobile:text-27px tablet:text-32px font-rblack">
                     {timeLeft.seconds}
                   </p>
-                  <p className='mobile:text-14px tablet:text-16px'>seconds</p>
+                  <p className="mobile:text-14px tablet:text-16px">seconds</p>
                 </div>
               </div>
             </div>
@@ -151,7 +157,10 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
       .then(async (i) => {
         setCurrentBid({ ...i });
         setSold(i.isSold);
-        if (i.isSold) setTokenOwner(await getOwnerOfNFT(item.contractAddress, item.tokenId));
+        if (i.isSold)
+          setTokenOwner(
+            await getOwnerOfNFT(item.contractAddress, item.tokenId),
+          );
       })
       .catch((error) => console.log(`NftCardDetail ${error}`));
   }, []);
@@ -217,8 +226,12 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             <div className="font-rlight flex mobile:flex-col laptop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
               <div className="flex mobile:flex-col tablet:flex-row text-16px">
                 <div className="flex">
-                  <p>Artist:</p>
-                  <p className=" tablet:ml-[8px]">{item.artist}</p>
+                  {item.artist?.length > 0 && (
+                    <>
+                      <p>Artist:</p>
+                      <p className=" tablet:ml-[8px]">{item.artist}</p>
+                    </>
+                  )}
                 </div>
                 <div className="flex mobile:ml-[0px] tablet:ml-48px mobile:my-[20px] tablet:my-[0px]">
                   <p>Edition:</p>
@@ -228,7 +241,9 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
               {isSold && (
                 <div className="flex text-16px laptop:mt-24px tablet:ml-48px laptop:ml-[0px]">
                   <p>Owner:</p>
-                  <p className="ml-[8px]" title={tokenOwner}>{truncateAddress(tokenOwner, 13)}</p>
+                  <p className="ml-[8px]" title={tokenOwner}>
+                    {truncateAddress(tokenOwner, 13)}
+                  </p>
                 </div>
               )}
             </div>
