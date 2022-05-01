@@ -5,14 +5,15 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import Web3 from 'web3';
 import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
 import IERC721InterfaceAbi from '../abi/IERC721.json';
+import MetaHistoryDropContractAbi from '../abi/DropMH.json';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
-  AUCTION_ADDRESS,
   FIRST_DROP_ADDRESS,
+  SECOND_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
-  SECOND_DROP_DATE,
   UKRAINE_WALLET_ADDRESS,
+  PROSPECT_100_ADDRESS,
 } from '@sections/Constants';
 import { NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
@@ -23,6 +24,8 @@ const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 const ProjectWalletNo = PROJECT_WALLET_ADDRESS;
 const CountryWalletNo = UKRAINE_WALLET_ADDRESS;
 const MetaHistoryAddress = FIRST_DROP_ADDRESS;
+const SecondDropAddress = SECOND_DROP_ADDRESS;
+
 const chain = 'mainnet';
 
 const providerOptions = {
@@ -113,7 +116,11 @@ export function useWeb3Modal() {
 
     const nfts = await web3.alchemy.getNfts({
       owner: ownerAddr,
-      contractAddresses: [MetaHistoryAddress, AUCTION_ADDRESS],
+      contractAddresses: [
+        MetaHistoryAddress,
+        PROSPECT_100_ADDRESS,
+        SECOND_DROP_ADDRESS,
+      ],
     });
 
     return nfts.ownedNfts;
@@ -234,16 +241,42 @@ export function useWeb3Modal() {
 
   async function getFirstDropMintedCount() {
     const web3 = createAlchemyWeb3(
-      `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`,
-    );
-    const nftContract = new web3.eth.Contract(
-      MetaHistoryContractAbi as AbiItem[],
-      MetaHistoryAddress,
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
 
-    return await nftContract.methods
-      .viewMinted()
-      .call({ from: MetaHistoryAddress });
+    try {
+      const nftContract = new web3.eth.Contract(
+        MetaHistoryContractAbi as AbiItem[],
+        MetaHistoryAddress,
+      );
+
+      return +(await nftContract.methods
+        .viewMinted()
+        .call({ from: MetaHistoryAddress }));
+    } catch (e) {
+      console.warn(e);
+      return 0;
+    }
+  }
+
+  async function getSecondDropMintedCount() {
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+
+    try {
+      const nftContract = new web3.eth.Contract(
+        MetaHistoryDropContractAbi as AbiItem[],
+        SecondDropAddress,
+      );
+
+      return +(await nftContract.methods
+        .viewMinted()
+        .call({ from: SecondDropAddress }));
+    } catch (e) {
+      console.warn(e);
+      return 0;
+    }
   }
 
   async function canMint() {
@@ -272,13 +305,54 @@ export function useWeb3Modal() {
   }
 
   async function canMintSecondDrop() {
-    // TODO: add logic after smart-contract deploy
-    return new Date(SECOND_DROP_DATE) <= new Date();
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+
+    try {
+      const nftContract = new web3.eth.Contract(
+        MetaHistoryDropContractAbi as AbiItem[],
+        SecondDropAddress,
+      );
+      const isPaused = await nftContract.methods
+        .paused()
+        .call({ from: SecondDropAddress });
+
+      if (isPaused) return false;
+
+      const maxTokens = await nftContract.methods
+        .getMaxTokens()
+        .call({ from: SecondDropAddress });
+      const mintedCount = await nftContract.methods
+        .viewMinted()
+        .call({ from: SecondDropAddress });
+
+      return mintedCount < maxTokens;
+    } catch (e) {
+      console.warn(e);
+      return false;
+    }
   }
 
   async function mintSecondDrop(tokensCount: number) {
-    //TODO: add logic after smart-contract deploy
-    throw new Error('not implemented');
+    const ethersProvider = await connectWallet();
+    if (!ethersProvider) return;
+    const signer = ethersProvider.getSigner();
+
+    let nftContract = new ethers.Contract(
+      SecondDropAddress,
+      MetaHistoryDropContractAbi,
+      signer,
+    );
+
+    const price: BigNumber = await nftContract.price();
+
+    const tx = await nftContract.mint(tokensCount, {
+      value: price.mul(tokensCount),
+      gasLimit: 58100 + 13200 * tokensCount,
+    });
+
+    await tx.wait();
   }
 
   async function isUnlocked() {
@@ -323,7 +397,10 @@ export function useWeb3Modal() {
     const firstDropWeth = ethers.constants.WeiPerEther.mul(15)
       .div(100) // 0.15 ETH
       .mul(
-        (await getFirstDropMintedCount()) - firstDropUnique - firstDropAirdrop,
+        (await getFirstDropMintedCount()) -
+          firstDropUnique -
+          firstDropAirdrop +
+          (await getSecondDropMintedCount()),
       );
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
 

@@ -19,7 +19,7 @@ const ContentTopNotConnected = ({
   handleConnect,
 }: ContentTopNotConnectedProps) => {
   const { isMobile, isTablet } = useViewPort();
-  const { canMint } = useWeb3Modal();
+  const { canMint, canMintSecondDrop } = useWeb3Modal();
   const { timerEnd } = useCountdown(SECOND_DROP_DATE);
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
 
@@ -33,7 +33,11 @@ const ContentTopNotConnected = ({
           : 'flex flex-row justify-between pb-100px mt-8vh'
       }
     >
-      <div className={`${isMobile || isTablet ? 'w-100%' : 'w-50%'} flex flex-col justify-between`}>
+      <div
+        className={`${
+          isMobile || isTablet ? 'w-100%' : 'w-50%'
+        } flex flex-col justify-between`}
+      >
         <div>
           <p className="font-rblack uppercase laptop:mt-10px tablet:mt-0 tablet:text-84px tablet:leading-72px mobile:text-46px mobile:leading-40px">
             The NFT-museum
@@ -53,7 +57,7 @@ const ContentTopNotConnected = ({
             round={false}
             label="Buy NFT Now"
             onClick={async () => {
-              if (timerEnd) {
+              if (timerEnd && (await canMintSecondDrop())) {
                 setOpenMintingModal(true);
               } else {
                 if (await canMint()) {
@@ -84,9 +88,11 @@ const ContentTopNotConnected = ({
         </div>
         <PoweredByFrame />
       </div>
-      {openMintingModal
-      ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
-      : <></>}
+      {openMintingModal ? (
+        <MintingModal setOpenMintingModal={setOpenMintingModal} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

@@ -6,7 +6,7 @@ export const TWITTER_LINK_MOBILE =
 export const INSTAGRAM_LINK =
   'https://instagram.com/meta_history_ua?utm_medium=copy_link';
 export const GITHUB_LINK = 'https://github.com/museum-of-war';
-export const TELEGRAM_LINK = "https://t.me/metahistory_ua";
+export const TELEGRAM_LINK = 'https://t.me/metahistory_ua';
 export const OPENSEA_LINK = 'https://opensea.io/collection/metahistorymuseum';
 export const FRAME_LINK = 'https://www.fair.xyz';
 export const MINISTRY_LINK = 'https://thedigital.gov.ua/';
@@ -19,10 +19,10 @@ export const PROJECT_WALLET_ADDRESS =
 export const UKRAINE_WALLET_ADDRESS =
   '0x165CD37b4C644C2921454429E7F9358d18A45e14';
 export const FIRST_DROP_ADDRESS = '0xD3228e099E6596988Ae0b73EAa62591c875e5693';
+export const SECOND_DROP_ADDRESS = '0x01F86f668f00Ea8d929479EDF81c232C1bcA8307';
 export const PROSPECT_100_ADDRESS =
   '0x932aEAc0eEBaA1fE8fdB53C4f81312cBA5F771A8';
-export const AUCTION_ADDRESS =
-  '0x806Ca46e7df33F6C6f4e28839162F8F85755116A';
+export const AUCTION_ADDRESS = '0x806Ca46e7df33F6C6f4e28839162F8F85755116A';
 export const AUCTION_END_DATE = '2022-04-22T23:00:00.000+03:00';
 export const AUCTION_CLOSING_DATE = '2022-04-22T20:00:00.000+03:00';
 export const AUCTION_START_DATE = '2022-04-17T23:00:00.000+03:00';
