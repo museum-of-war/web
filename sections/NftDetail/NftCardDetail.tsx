@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ScaledImage from '@components/ScaledImage';
 import BidsHistoryTable from '@components/BidsHistoryTable';
 import Button from '@components/Button';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
@@ -253,7 +254,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
         )}
         <div className="flex mt-40px mobile:flex-col desktop:flex-row justify-between">
           <div className="desktop:w-[48%] mobile: w-full">
-            <img alt={item.name} src={item.imageSrc} />
+            <ScaledImage alt={item.name} src={item.imageSrc} laptop={0.5} />
           </div>
           <div className="desktop:w-[48%] mobile: w-full">
             {isSold ? (

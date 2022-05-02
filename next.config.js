@@ -4,6 +4,9 @@ const nextConfig = {
   experimental: {
     outputStandalone: true,
   },
+  images: {
+    domains: ['metahistory.gallery'],
+  },
 };
 
 function assertEnvVar(name) {
