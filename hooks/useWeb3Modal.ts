@@ -294,12 +294,12 @@ export function useWeb3Modal() {
 
     if (isPaused) return false;
 
-    const maxTokens = await nftContract.methods
+    const maxTokens = +(await nftContract.methods
       .maxTokens()
-      .call({ from: MetaHistoryAddress });
-    const mintedCount = await nftContract.methods
+      .call({ from: MetaHistoryAddress }));
+    const mintedCount = +(await nftContract.methods
       .viewMinted()
-      .call({ from: MetaHistoryAddress });
+      .call({ from: MetaHistoryAddress }));
 
     return mintedCount < maxTokens;
   }
@@ -320,12 +320,12 @@ export function useWeb3Modal() {
 
       if (isPaused) return false;
 
-      const maxTokens = await nftContract.methods
+      const maxTokens = +(await nftContract.methods
         .getMaxTokens()
-        .call({ from: SecondDropAddress });
-      const mintedCount = await nftContract.methods
+        .call({ from: SecondDropAddress }));
+      const mintedCount = +(await nftContract.methods
         .viewMinted()
-        .call({ from: SecondDropAddress });
+        .call({ from: SecondDropAddress }));
 
       return mintedCount < maxTokens;
     } catch (e) {
