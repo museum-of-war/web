@@ -18,6 +18,7 @@ import {
 import { NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 import { BidInfo } from '@sections/types';
+import { Drop2Data } from '@sections/Warline/WarlineData';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -114,16 +115,47 @@ export function useWeb3Modal() {
 
     const ownerAddr = owner;
 
-    const nfts = await web3.alchemy.getNfts({
-      owner: ownerAddr,
-      contractAddresses: [
-        MetaHistoryAddress,
-        PROSPECT_100_ADDRESS,
-        SECOND_DROP_ADDRESS,
-      ],
-    });
+    const ownedNfts = (
+      await web3.alchemy.getNfts({
+        owner: ownerAddr,
+        contractAddresses: [
+          MetaHistoryAddress,
+          PROSPECT_100_ADDRESS,
+          SECOND_DROP_ADDRESS,
+        ],
+      })
+    ).ownedNfts;
 
-    return nfts.ownedNfts;
+    function recreateNftForDrop2(
+      nft: typeof ownedNfts[number],
+    ): typeof ownedNfts[number] {
+      const tokenId = nft.id.tokenId;
+      const event = Drop2Data.flatMap((day) => day.events).find((event) =>
+        event.ImageType?.includes(`drop2/${tokenId}`),
+      )!;
+      return {
+        ...nft,
+        metadata: {
+          name: `Day ${event.DayNo}, ${event.Time}`,
+          description: event.Headline,
+          image: event.ImageType,
+          item_number: event.Tokenid,
+          attributes: [
+            {
+              trait_type: 'Edition',
+              max_value: 16,
+              value: 'x',
+            },
+          ],
+        },
+      };
+    }
+
+    return ownedNfts.map((nft) =>
+      nft.contract.address === SECOND_DROP_ADDRESS.toLowerCase()
+        ? recreateNftForDrop2(nft)
+        : nft,
+    );
   }
 
   async function getOwnerOfNFT(contractAddress: string, tokenId: number) {
