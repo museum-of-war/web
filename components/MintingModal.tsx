@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from '@components/Button';
 import { VscChromeClose } from 'react-icons/vsc';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useAppRouter } from '@hooks/useAppRouter';
 
 type MintingModalProps = {
   setOpenMintingModal: (arg: boolean) => void;
@@ -9,6 +10,7 @@ type MintingModalProps = {
 
 const MintingModal = ({ setOpenMintingModal }: MintingModalProps) => {
   const { mintSecondDrop } = useWeb3Modal();
+  const { push } = useAppRouter();
   const [amount, setAmount] = useState<number>(1);
   const [disabled, setDisabled] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -80,7 +82,7 @@ const MintingModal = ({ setOpenMintingModal }: MintingModalProps) => {
           onClick={() => {
             setIsLoading(true);
             mintSecondDrop(amount)
-              .then(() => setOpenMintingModal(false))
+              .then(() => push('/tokens'))
               .catch((e) => alert(e?.message ?? e))
               .finally(() => setIsLoading(false));
           }}
