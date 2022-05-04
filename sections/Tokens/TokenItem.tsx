@@ -1,11 +1,12 @@
 import { TokenDataType } from '@sections/types';
 import React, { useMemo, useState } from 'react';
 import { getUrls } from '@sections/Warline/WarlineUrls';
-import FsLightbox from 'fslightbox-react';
 import WarlineData from '@sections/Warline/WarlineData';
+import { useAppRouter } from '@hooks/useAppRouter';
 
 type TokenItemProps = {
   tokenData: TokenDataType;
+  index: number;
 };
 
 const rand_imgs: string[] = [
@@ -19,8 +20,7 @@ const rand_imgs: string[] = [
   'img/dots-8.png',
 ];
 
-const TokenItem = ({ tokenData }: TokenItemProps) => {
-  const [toggler, setToggler] = useState<boolean>(false);
+const TokenItem = ({ tokenData, index }: TokenItemProps) => {
   const [hovered, setHovered] = useState(false);
 
   type Attribute = {
@@ -49,7 +49,8 @@ const TokenItem = ({ tokenData }: TokenItemProps) => {
 
   const renderImage = (className: string, tokenId: string) => {
     const randomSrc = rand_imgs[1 % 8] as string;
-    const { previewSrc, originalSrc, animationSrc, isAnimation } = getUrls(
+    const { push } = useAppRouter();
+    const { previewSrc, animationSrc, isAnimation } = getUrls(
       tokenId,
       itemEvent?.ImageType,
       randomSrc as string,
@@ -59,7 +60,7 @@ const TokenItem = ({ tokenData }: TokenItemProps) => {
       <>
         <img
           alt={alt}
-          onClick={() => setToggler(!toggler)}
+          onClick={() => push(`/tokens/${index}`)}
           src={previewSrc}
           className={className}
           onError={({ currentTarget }) => {
@@ -74,7 +75,6 @@ const TokenItem = ({ tokenData }: TokenItemProps) => {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         />
-        <FsLightbox toggler={toggler} sources={[originalSrc]} />
       </>
     );
   };

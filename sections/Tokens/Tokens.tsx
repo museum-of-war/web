@@ -35,7 +35,7 @@ const Tokens = ({ signerAddress }: TokenProps) => {
   }, []);
 
   return (
-    <div className="px-10%">
+    <div>
       <p
         className="border-carbon border-b-4
         mobile:text-38px mobile:leading-40px
@@ -53,7 +53,7 @@ const Tokens = ({ signerAddress }: TokenProps) => {
         mobile:grid-cols-1"
       >
         {NFTs.map((tokenData, idx) => (
-          <TokenItem tokenData={tokenData} key={idx} />
+          <TokenItem tokenData={tokenData} key={idx} index={idx} />
         ))}
         {mintable ? <BuyMoreNFTs /> : null}
       </div>

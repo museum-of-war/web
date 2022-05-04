@@ -32,6 +32,8 @@ type NftDetailsProps = {
   imageSources: ImageSources;
   prevRecord?: PrevNextRecord;
   nextRecord?: PrevNextRecord;
+  linkBack: string;
+  linkBackText: string;
 };
 export const NftDetails: React.FC<NftDetailsProps> = ({
   id,
@@ -47,6 +49,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   prevRecord,
   nextRecord,
   imageSources,
+  linkBack,
+  linkBackText,
 }) => {
   const [toggler, setToggler] = React.useState<boolean>(false);
   const { ref, inView } = useInView();
@@ -151,7 +155,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   return (
     <div className="font-rnarrow">
       <div className="flex items-center mt-[-36px] mb-[24px]">
-        <Link href="/warline" passHref>
+        <Link href={linkBack} passHref>
           <div className="h-[48px] flex items-center  cursor-pointer group">
             <img
               alt="Previous"
@@ -159,7 +163,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
               className="rotate-90 flex-grow-0"
             />
             <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
-              Warline
+              {linkBackText}
             </span>
           </div>
         </Link>

@@ -107,13 +107,19 @@ export function useWeb3Modal() {
     });
   }
 
+  async function initProvider() {
+    const externalProvider = await getWeb3Modal()?.connect();
+    const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
+    setProvider(ethersProvider);
+  }
+
   async function viewNFTs(owner: string) {
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
 
-    const ownerAddr = owner;
+    const ownerAddr = '0x89e80661e261b7de1eb0460a725279871c6e301a';
 
     const ownedNfts = (
       await web3.alchemy.getNfts({
@@ -462,5 +468,6 @@ export function useWeb3Modal() {
     openModal,
     getUsdPriceFromETH,
     getTotalFundsRaised,
+    initProvider,
   };
 }

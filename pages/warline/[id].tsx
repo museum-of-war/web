@@ -126,6 +126,8 @@ const WarlineItem: React.FC<{
         imageSources={imageSources}
         nextRecord={nextEventData}
         prevRecord={prevEventData}
+        linkBack="/warline"
+        linkBackText="Warline"
       />
     </>
   );
