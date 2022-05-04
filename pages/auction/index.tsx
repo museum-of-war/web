@@ -6,7 +6,21 @@ import type { NextPage } from 'next';
 const AuctionPage: NextPage<SharedProps> = (props) => {
   return (
     <>
-      <PageHead title="Auction - Meta History: Museum of War" />
+      <PageHead
+        title="Auction"
+        description="Unique NFTs of special collections are auctioned by MetaHistory together with partners from Avatars for Ukraine & Prospect100 design competition."
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Auction',
+            },
+          ],
+        }}
+      />
       <Auction
         signerAddress={props.signerAddress}
         handleConnect={props.handleConnect}

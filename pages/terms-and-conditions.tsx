@@ -6,7 +6,18 @@ import type { NextPage } from 'next';
 const WarlinePage: NextPage<SharedProps> = (props) => {
   return (
     <>
-      <PageHead title="Terms and Conditions" />
+      <PageHead
+          title="Terms and Conditions"
+          data={{
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [{
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Terms and Conditions',
+              }]
+          }}
+      />
       <TermsAndConditions />
     </>
   );
