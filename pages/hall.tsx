@@ -7,17 +7,19 @@ const TheHallPage: NextPage<SharedProps> = () => {
   return (
     <>
       <PageHead
-          title="The Hall"
-          description="Help Ukraine by bidding on war-related art created by those affected."
-          data={{
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [{
-                  '@type': 'ListItem',
-                  position: 1,
-                  name: 'The Hall',
-              }]
-          }}
+        title="The Hall of Fame"
+        description="One-of-a-kind NFTs of public personalities who vocally support Ukraine. Our team - and our country wants to express gratitude for their contributions."
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'The Hall',
+            },
+          ],
+        }}
       />
       <TheHall />
     </>

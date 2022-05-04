@@ -1,4 +1,4 @@
-import { AUCTION_START_DATE, AUCTION_END_DATE } from '@sections/Constants';
+//import { AUCTION_START_DATE, AUCTION_END_DATE } from '@sections/Constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { useAppRouter } from '@hooks/useAppRouter';
 import PageHead from '@components/PageHead';
@@ -15,23 +15,31 @@ const NftDetailPage: NextPage<SharedProps> = () => {
   return (
     <>
       <PageHead
-          title={`${item ? `${item.name} - ` : ''}Auction`}
-          description="Help Ukraine by bidding on war-related art created by those affected."
-          image={image}
-          data={[{
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [{
-                  '@type': 'ListItem',
-                  position: 1,
-                  name: 'Auction',
-                  item: url('/auction'),
-              }, {
-                  '@type': 'ListItem',
-                  position: 2,
-                  name: item?.name || 'Auction item',
-              }]
-          }, {
+        title={`${item ? `${item.name} - ` : ''}Auction`}
+        description={
+          item
+            ? `NFT of ${item.name} created by ${item.artist}.\n${item.descriptionEnglish}`
+            : ''
+        }
+        image={image}
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Auction',
+                item: url('/auction'),
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: item?.name || 'Auction item',
+              },
+            ],
+          } /*{
               '@context': 'https://schema.org',
               '@type': 'Event',
               name: `Charity NFT Auction for Ukraine${item ? `: ${item.name}` : ''}`,
@@ -49,7 +57,8 @@ const NftDetailPage: NextPage<SharedProps> = () => {
                   name: 'Ministry of Digital Transformation of Ukraine',
                   url: 'https://thedigital.gov.ua',
               },
-          }]}
+          }*/, //TODO: uncomment for auctions
+        ]}
       />
       <NftDetail />
     </>

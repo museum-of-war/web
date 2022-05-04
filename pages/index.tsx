@@ -9,14 +9,14 @@ const Home: NextPage<SharedProps> = (props) => {
   return (
     <>
       <PageHead
-          title="About"
-          description="Help Ukraine by bidding on war-related art created by those affected."
-          data={{
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              url: url(),
-              logo: url('/img/logo-icon.svg'),
-          }}
+        title="About"
+        description="Ukraine's NFT museum, supported by the Ministry of Digital Transformation. We created an NFT collection to preserve the memory of the events of the war & collect donations."
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          url: url(),
+          logo: url('/img/logo-icon.svg'),
+        }}
       />
       <AboutProject
         signerAddress={props.signerAddress}

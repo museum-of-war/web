@@ -7,17 +7,19 @@ const AuctionPage: NextPage<SharedProps> = (props) => {
   return (
     <>
       <PageHead
-          title="Auction"
-          description="Help Ukraine by bidding on war-related art created by those affected."
-          data={{
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [{
-                  '@type': 'ListItem',
-                  position: 1,
-                  name: 'Auction',
-              }]
-          }}
+        title="Auction"
+        description="Unique NFTs of special collections are auctioned by MetaHistory together with partners from Avatars for Ukraine & Prospect100 design competition."
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Auction',
+            },
+          ],
+        }}
       />
       <Auction
         signerAddress={props.signerAddress}

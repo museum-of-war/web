@@ -90,23 +90,28 @@ const WarlineItem: React.FC<{
   return (
     <>
       <PageHead
-          title={`${title} - Warline`}
-          description="Help Ukraine by bidding on war-related art created by those affected."
-          image={url(imageSources.originalSrc)}
-          data={{
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [{
+        title={`${title} - Warline`}
+        description={`NFT of ${getTitle(event)} created by ${
+          event.ArtistName
+        }.\n${event.DescriptionEnglish}`}
+        image={url(imageSources.originalSrc)}
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
               '@type': 'ListItem',
               position: 1,
               name: 'Warline',
               item: url('/warline'),
-            }, {
+            },
+            {
               '@type': 'ListItem',
               position: 2,
               name: title,
-            }]
-          }}
+            },
+          ],
+        }}
       />
       <NftDetails
         id={event.Tokenid}
