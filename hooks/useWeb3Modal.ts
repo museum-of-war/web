@@ -18,7 +18,7 @@ import {
 import { NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 import { BidInfo } from '@sections/types';
-import { Drop2Data } from '@sections/Warline/WarlineData';
+import { Drop1Data, Drop2Data } from '@sections/Warline/WarlineData';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -107,19 +107,13 @@ export function useWeb3Modal() {
     });
   }
 
-  async function initProvider() {
-    const externalProvider = await getWeb3Modal()?.connect();
-    const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
-    setProvider(ethersProvider);
-  }
-
   async function viewNFTs(owner: string) {
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
 
-    const ownerAddr = '0x89e80661e261b7de1eb0460a725279871c6e301a';
+    const ownerAddr = owner;
 
     const ownedNfts = (
       await web3.alchemy.getNfts({
@@ -132,10 +126,38 @@ export function useWeb3Modal() {
       })
     ).ownedNfts;
 
+    function fixNftForDrop1(
+      nft: typeof ownedNfts[number],
+    ): typeof ownedNfts[number] {
+      const tokenId = parseInt(nft.id.tokenId, 16);
+      const tokenNumber = ((tokenId - 5) % 99) + 5;
+      const editionNumber = (tokenId - tokenNumber) / 99 + 1;
+      const event = Drop1Data.flatMap((day) => day.events).find(
+        (event) => '' + tokenNumber == event.Tokenid,
+      )!;
+      return {
+        ...nft,
+        metadata: {
+          name: `Day ${event.DayNo}, ${event.Time}`,
+          description: event.Headline,
+          image: event.ImageType,
+          item_number: event.Tokenid,
+          attributes: [
+            {
+              trait_type: 'Edition',
+              max_value: 22,
+              value: editionNumber,
+            },
+          ],
+        },
+      };
+    }
+
     function recreateNftForDrop2(
       nft: typeof ownedNfts[number],
     ): typeof ownedNfts[number] {
       const tokenId = nft.id.tokenId;
+      console.log(tokenId);
       const event = Drop2Data.flatMap((day) => day.events).find((event) =>
         event.ImageType?.includes(`drop2/${tokenId}`),
       )!;
@@ -158,7 +180,11 @@ export function useWeb3Modal() {
     }
 
     return ownedNfts.map((nft) =>
-      nft.contract.address === SECOND_DROP_ADDRESS.toLowerCase()
+      nft.contract.address === FIRST_DROP_ADDRESS.toLowerCase()
+        ? nft.metadata?.image === undefined
+          ? fixNftForDrop1(nft)
+          : nft
+        : nft.contract.address === SECOND_DROP_ADDRESS.toLowerCase()
         ? recreateNftForDrop2(nft)
         : nft,
     );
@@ -468,6 +494,5 @@ export function useWeb3Modal() {
     openModal,
     getUsdPriceFromETH,
     getTotalFundsRaised,
-    initProvider,
   };
 }
