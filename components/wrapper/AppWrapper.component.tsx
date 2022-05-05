@@ -6,7 +6,7 @@ import { PopupProvider } from '@providers/PopupProvider';
 
 export interface SharedProps {
   signerAddress: string;
-  handleConnect: () => void;
+  handleConnect: () => Promise<void>;
   handleDisconnect: () => void;
 }
 

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import React from 'react';
 import { VscTwitter } from 'react-icons/vsc';
 import { useInView } from 'react-intersection-observer';
+import { openInNewTab } from '@sections/utils';
+import Button from '@components/Button';
 
 type ImageSources = {
   previewSrc: string;
@@ -29,9 +31,14 @@ type NftDetailsProps = {
   artistUrl?: string;
   artistName: string;
   editions?: number;
+  editionInfo?: string;
+  owner?: string;
+  openSeaLink?: string;
   imageSources: ImageSources;
   prevRecord?: PrevNextRecord;
   nextRecord?: PrevNextRecord;
+  linkBack: string;
+  linkBackText: string;
 };
 export const NftDetails: React.FC<NftDetailsProps> = ({
   id,
@@ -44,9 +51,14 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   artistName,
   artistUrl,
   editions,
+  editionInfo,
+  owner,
+  openSeaLink,
   prevRecord,
   nextRecord,
   imageSources,
+  linkBack,
+  linkBackText,
 }) => {
   const [toggler, setToggler] = React.useState<boolean>(false);
   const { ref, inView } = useInView();
@@ -130,28 +142,29 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   const getNavButtonsJsx = (
     className: string = 'tablet:flex mobile:hidden gap-[24px] mobile:ml-auto tablet:ml-48px desktop:ml-auto',
     hasShadow = false,
-  ) => (
-    <div
-      className={className}
-      style={{ boxShadow: hasShadow ? '0px 0 10px rgba(0, 0, 0, 0.8)' : '' }}
-    >
-      {prevRecord ? (
-        <Link href={prevRecord.path}>{getPrevButtonJsx(true)}</Link>
-      ) : (
-        getPrevButtonJsx(false)
-      )}
-      {nextRecord ? (
-        <Link href={nextRecord.path}>{getNextButtonJsx(true)}</Link>
-      ) : (
-        getNextButtonJsx(false)
-      )}
-    </div>
-  );
+  ) =>
+    prevRecord || nextRecord ? (
+      <div
+        className={className}
+        style={{ boxShadow: hasShadow ? '0px 0 10px rgba(0, 0, 0, 0.8)' : '' }}
+      >
+        {prevRecord ? (
+          <Link href={prevRecord.path}>{getPrevButtonJsx(true)}</Link>
+        ) : (
+          getPrevButtonJsx(false)
+        )}
+        {nextRecord ? (
+          <Link href={nextRecord.path}>{getNextButtonJsx(true)}</Link>
+        ) : (
+          getNextButtonJsx(false)
+        )}
+      </div>
+    ) : undefined;
 
   return (
     <div className="font-rnarrow">
       <div className="flex items-center mt-[-36px] mb-[24px]">
-        <Link href="/warline" passHref>
+        <Link href={linkBack} passHref>
           <div className="h-[48px] flex items-center  cursor-pointer group">
             <img
               alt="Previous"
@@ -159,7 +172,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
               className="rotate-90 flex-grow-0"
             />
             <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
-              Warline
+              {linkBackText}
             </span>
           </div>
         </Link>
@@ -226,8 +239,23 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                 )}
               </div>
             )}
-            <div>{editions ? `Editions: ${editions}` : null}</div>
+            <div>
+              {editionInfo
+                ? `Edition: ${editionInfo}`
+                : editions
+                ? `Editions: ${editions}`
+                : null}
+            </div>
           </div>
+          {owner && <div>Owner: {owner}</div>}
+          {openSeaLink && (
+            <Button
+              mode="secondary"
+              label="Open on OpenSea"
+              onClick={() => openInNewTab(openSeaLink)}
+              className="self-start"
+            />
+          )}
           <div className="flex flex-col-reverse tablet:flex-row gap-[36px] tablet:gap-[48px] mt-[24px] items-start  mb-60px">
             <div className="flex-1 flex">
               {prevRecord ? (

@@ -19,11 +19,11 @@ const Tokens = ({ signerAddress }: TokenProps) => {
 
   useEffect(() => {
     const myNFTs = async () => {
-      const newNFTs = await viewNFTs(signerAddress);
+      const newNFTs = signerAddress ? await viewNFTs(signerAddress) : [];
       setNFTs(newNFTs);
     };
     myNFTs();
-  }, []);
+  }, [signerAddress]);
 
   useEffect(() => {
     const getCanMint = async () => {
@@ -35,7 +35,7 @@ const Tokens = ({ signerAddress }: TokenProps) => {
   }, []);
 
   return (
-    <div className="px-10%">
+    <div>
       <p
         className="border-carbon border-b-4
         mobile:text-38px mobile:leading-40px
@@ -52,10 +52,14 @@ const Tokens = ({ signerAddress }: TokenProps) => {
         tablet:grid-cols-2 tablet:gap-x-40px
         mobile:grid-cols-1"
       >
-        {NFTs.map((tokenData, idx) => (
-          <TokenItem tokenData={tokenData} key={idx} />
-        ))}
-        {mintable ? <BuyMoreNFTs /> : null}
+        {signerAddress ? (
+          NFTs.map((tokenData, idx) => (
+            <TokenItem tokenData={tokenData} key={idx} index={idx} />
+          ))
+        ) : (
+          <div>Cannot get tokens, please sign in</div>
+        )}
+        {signerAddress && mintable ? <BuyMoreNFTs /> : null}
       </div>
     </div>
   );
