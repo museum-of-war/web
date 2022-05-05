@@ -1,7 +1,7 @@
 import { IMG_STORAGE } from '@sections/Constants';
 
 export function getUrls(
-  tokenId: string,
+  tokenId: string | number,
   image: string | undefined,
   randomSrc: string,
 ) {

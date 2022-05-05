@@ -210,19 +210,21 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
             <br />
             <p className="">{descriptionUkrainian}</p>
           </div>
-          <a href={twitterUrl} target="_blank" rel="noreferrer">
-            <div className="border-carbon border-4 p-[20px] flex flex-col tablet:flex-row gap-[24px]">
-              <div className="flex-1">
-                {headline}
-                {twitterUsername?.length > 0 && (
-                  <p className="text-[14px] mt-[24px] font-rlight">{`@${twitterUsername}`}</p>
-                )}
+          {headline && (
+            <a href={twitterUrl} target="_blank" rel="noreferrer">
+              <div className="border-carbon border-4 p-[20px] flex flex-col tablet:flex-row gap-[24px]">
+                <div className="flex-1">
+                  {headline}
+                  {twitterUsername?.length > 0 && (
+                    <p className="text-[14px] mt-[24px] font-rlight">{`@${twitterUsername}`}</p>
+                  )}
+                </div>
+                <VscTwitter className="w-[48px] h-[48px] box-border border border-carbon rounded-full p-[12px]" />
               </div>
-              <VscTwitter className="w-[48px] h-[48px] box-border border border-carbon rounded-full p-[12px]" />
-            </div>
-          </a>
-          <div className="flex flex-row gap-[48px]">
-            {artistName?.length > 0 && (
+            </a>
+          )}
+          {artistName?.length > 0 && (
+            <div className="flex flex-row gap-[48px]">
               <div>
                 Artist:{' '}
                 {artistUrl ? (
@@ -238,15 +240,15 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                   artistName
                 )}
               </div>
-            )}
-            <div>
-              {editionInfo
-                ? `Edition: ${editionInfo}`
-                : editions
-                ? `Editions: ${editions}`
-                : null}
+              <div>
+                {editionInfo
+                  ? `Edition: ${editionInfo}`
+                  : editions
+                  ? `Editions: ${editions}`
+                  : null}
+              </div>
             </div>
-          </div>
+          )}
           {owner && <div>Owner: {owner}</div>}
           {openSeaLink && (
             <Button

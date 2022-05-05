@@ -23,7 +23,12 @@ const BuyMoreNFTs = () => {
     <>
       <div className="desktop:mt-30px laptop:mt-25px tablet:mt-30px mobile:mt-30px">
         <div className="">
-          <dotlottie-player src={'/lottie/nft_cover.lottie'} autoplay loop />
+          <dotlottie-player
+            class="laptop:h-[240px] tablet:h-[288px] mobile:h-[270px] laptop:max-w-[240px] tablet:max-w-[288px] mobile:max-w-[270px] m-auto object-contain"
+            src={'/lottie/nft_cover.lottie'}
+            autoplay
+            loop
+          />
         </div>
         <div className="flex justify-center whitespace-nowrap">
           <button

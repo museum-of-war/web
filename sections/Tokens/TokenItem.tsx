@@ -1,8 +1,9 @@
-import { TokenDataType } from '@sections/types';
+import { AuctionItemType, TokenDataType } from '@sections/types';
 import React, { useMemo, useState } from 'react';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import WarlineData from '@sections/Warline/WarlineData';
 import { useAppRouter } from '@hooks/useAppRouter';
+import AuctionData from '@sections/Auction/AuctionData';
 
 type TokenItemProps = {
   tokenData: TokenDataType;
@@ -39,22 +40,27 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
     );
     return edition
       ? `${edition.value} of ${edition.max_value ?? edition.value}`
-      : '';
+      : '1 of 1';
   }, [tokenData]);
   const itemEvent = useMemo(() => {
-    return WarlineData.flatMap((data) => data.events).find(
-      (event) => event.Tokenid === tokenData.metadata?.item_number,
+    return (
+      WarlineData.flatMap((data) => data.events).find(
+        (event) => event.Tokenid === tokenData.metadata?.item_number,
+      ) ?? AuctionData.find((data) => data.name === tokenData.metadata.name)
     );
   }, [tokenData]);
 
   const renderImage = (className: string, tokenId: string) => {
     const randomSrc = rand_imgs[1 % 8] as string;
     const { push } = useAppRouter();
-    const { previewSrc, animationSrc, isAnimation } = getUrls(
-      tokenId,
-      itemEvent?.ImageType,
-      randomSrc as string,
-    );
+    const { previewSrc, animationSrc, isAnimation } =
+      itemEvent && 'ImageType' in itemEvent
+        ? getUrls(tokenId, itemEvent?.ImageType, randomSrc as string)
+        : {
+            previewSrc: (itemEvent as AuctionItemType)?.imageSrc,
+            animationSrc: (itemEvent as AuctionItemType)?.animationSrc,
+            isAnimation: !!(itemEvent as AuctionItemType)?.animationSrc,
+          };
 
     return (
       <>
@@ -69,7 +75,7 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
           }}
           onLoad={({ currentTarget }) => {
             if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
-              currentTarget.src = animationSrc;
+              currentTarget.src = animationSrc ?? '';
             }
           }}
           onMouseEnter={() => setHovered(true)}
@@ -82,14 +88,17 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
   return (
     <div className="desktop:mt-50px laptop:mt-40px tablet:mt-30px mobile:mt-30px">
       <div>
-        {renderImage('w-100% cursor-pointer', tokenData.metadata.item_number)}
+        {renderImage(
+          'laptop:h-[240px] tablet:h-[288px] mobile:h-[270px] laptop:max-w-[240px] tablet:max-w-[288px] mobile:max-w-[270px] m-auto cursor-pointer object-contain',
+          tokenData.metadata.item_number,
+        )}
       </div>
       <div
         style={{ lineHeight: '48px' }}
-        className="flex flex-row mt-10px align-center justify-between items-center"
+        className="flex flex-row mt-10px align-center justify-between items-center whitespace-nowrap"
       >
         <p
-          className={`font-rblack text-20px pb-5px border-b-4 ${
+          className={`font-rblack text-20px pb-5px border-b-4 overflow-hidden text-ellipsis ${
             hovered ? 'border-carbon' : 'border-transparent'
           }`}
         >

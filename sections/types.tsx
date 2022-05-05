@@ -31,8 +31,8 @@ export type EventType = {
 };
 
 export enum AuctionCategories {
- firstDrop = 'First Drop',
- prospect100 = 'PROSPECT 100',
+  firstDrop = 'First Drop',
+  prospect100 = 'PROSPECT 100',
 }
 
 export type AuctionItemType = {
@@ -44,6 +44,7 @@ export type AuctionItemType = {
   contractAddress: string;
   tokenId: number;
   imageSrc: string;
+  animationSrc?: string;
   artist: string;
   descriptionEnglish?: string;
   descriptionUkrainian?: string;
