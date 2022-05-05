@@ -165,7 +165,7 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
           twitterUrl={(event as EventType).TwitterUrl ?? null}
           twitterUsername={(event as EventType).TwitterUsername ?? null}
           headline={(event as EventType).Headline ?? null}
-          artistUrl={(event as EventType).ArtistLink ?? null}
+          artistUrl={(event as EventType).ArtistLink ?? undefined}
           artistName={
             (event as EventType).ArtistName ?? (event as AuctionItemType).artist
           }
