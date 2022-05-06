@@ -14,13 +14,17 @@ import {
   EMPTY_NFT_SELLER,
 } from './cosntants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useAppRouter } from '@hooks/useAppRouter';
 
-type ContentAuctionProps = {};
+type ContentAuctionProps = {
+  isCollection?: boolean;
+};
 
-const ContentAuction = ({}: ContentAuctionProps) => {
+const ContentAuction = ({ isCollection = false }: ContentAuctionProps) => {
   const { isTablet, isMobile, isDesktop } = useViewPort();
   const [data, setData] = useState<any[]>([]);
   const { getAuctionInfo } = useWeb3Modal();
+  const { push } = useAppRouter();
 
   useEffect(() => {
     const getEnrichedData = async () => {
@@ -107,7 +111,14 @@ const ContentAuction = ({}: ContentAuctionProps) => {
   }, [data, selectedType, selectedCategory, priceRange, selectedSort]);
 
   const handleChangeType = (v?: string) => setSelectedType(v);
-  const handleChangeCategory = (v?: string) => setSelectedCategory(v);
+  const handleChangeCategory = (v?: string) => {
+    push(
+      `/auction/collection/${FILTER_OPTIONS_CATEGORIES.findIndex(
+        (category) => category.text === v,
+      )}`,
+    );
+    setSelectedCategory(v);
+  };
   const handleChangeSort = (v?: string) => selSelectedSort(v);
   const toggleDrawer = () => setOpen((state) => !state);
   const closeDrawer = () => setOpen(false);
@@ -170,14 +181,16 @@ const ContentAuction = ({}: ContentAuctionProps) => {
                 className="w-[162px]"
               />
             </div>
-            <div className="px-20px">
-              <DropdownSelect
-                options={FILTER_OPTIONS_CATEGORIES}
-                selectedValue={selectedCategory}
-                onChange={handleChangeCategory}
-                className="w-[211px]"
-              />
-            </div>
+            {isCollection ? null : (
+              <div className="px-20px">
+                <DropdownSelect
+                  options={FILTER_OPTIONS_CATEGORIES}
+                  selectedValue={selectedCategory}
+                  onChange={handleChangeCategory}
+                  className="w-[211px]"
+                />
+              </div>
+            )}
           </div>
         ) : (
           <Button
@@ -193,7 +206,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
               </div>
             }
             onClick={openDrawer}
-            className={isMobile ? 'mobile: w-full leading-48px' : ''}
+            className={isMobile ? 'mobile:w-full h-48px' : ''}
           />
         )}
         {!isMobile && (

@@ -7,6 +7,7 @@ type ButtonProps = {
   className?: string;
   round?: boolean;
   disabled?: boolean;
+  extraStyles?: React.CSSProperties;
 };
 
 // TODO: Add disabled styles
@@ -17,6 +18,7 @@ function Button({
   onClick,
   disabled = false,
   round = false,
+  extraStyles,
 }: ButtonProps) {
   const cn = useMemo(() => {
     if (mode === 'primary') {
@@ -55,7 +57,13 @@ function Button({
   }, [className, mode, round]);
 
   return (
-    <button disabled={disabled} type="button" className={cn} onClick={onClick}>
+    <button
+      style={extraStyles}
+      disabled={disabled}
+      type="button"
+      className={cn}
+      onClick={onClick}
+    >
       {label}
     </button>
   );

@@ -37,11 +37,11 @@ const Header = ({
   return isMobile || isTablet ? (
     <div>
       <div
-        className={`mb-15% pb-32px ${menuOpen ? 'border-b-4 mb-12%' : ''} ${
+        className={`${menuOpen ? 'border-b-4 mb-12%' : ''} ${
           menuOpen && isMobile ? 'h-screen' : ''
         }`}
       >
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-row justify-between items-center w-full h-100px">
           <img
             className="w-15% min-w-100px mr-15% py-10px"
             src={`${
@@ -61,11 +61,15 @@ const Header = ({
           />
         </div>
         {menuOpen && (
-          <>
+          <div
+            className={`relative z-10 px-10px ${
+              isDarkTheme ? 'bg-carbon' : 'bg-white'
+            }`}
+          >
             <div
-              className={`pt-48px flex ${
+              className={`flex ${
                 isTablet
-                  ? 'flex-row flex-wrap justify-start items-center'
+                  ? 'flex-row flex-wrap justify-start items-center  h-60px'
                   : 'flex-col'
               }`}
             >
@@ -76,7 +80,7 @@ const Header = ({
                   setMenuOpen(false);
                 }}
                 underlined={route === '/'}
-                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
+                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
               />
               <HeaderAndFooterButton
                 label="Warline"
@@ -85,7 +89,7 @@ const Header = ({
                   setMenuOpen(false);
                 }}
                 underlined={route === '/warline'}
-                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
+                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
               />
               <HeaderAndFooterButton
                 label="Auction"
@@ -93,8 +97,8 @@ const Header = ({
                   push('/auction');
                   setMenuOpen(false);
                 }}
-                underlined={route === '/auction'}
-                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
+                underlined={route.split('/').includes('auction')}
+                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
               />
               <HeaderAndFooterButton
                 label="The Hall"
@@ -103,7 +107,7 @@ const Header = ({
                   setMenuOpen(false);
                 }}
                 underlined={route === '/hall'}
-                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
+                wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
               />
               {signerAddress && (
                 <HeaderAndFooterButton
@@ -113,44 +117,50 @@ const Header = ({
                     setMenuOpen(false);
                   }}
                   underlined={route === '/tokens'}
-                  wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px mb-32px'}
+                  wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
                 />
               )}
             </div>
-            {!signerAddress ? (
-              <Button
-                mode="secondary"
-                label={
-                  signerAddress ? truncateAddress(signerAddress) : 'Sign In'
-                }
-                onClick={
-                  signerAddress ? handleDisconnectWallet : handleConnectWallet
-                }
-                className={isMobile ? 'w-full' : ''}
-              />
-            ) : (
-              <>
-                <span className="font-rlight text-14px mr-16px">
-                  {truncateAddress(signerAddress)}
-                </span>
+            <div className={`flex items-center ${isTablet ? 'h-60px' : ''}`}>
+              {!signerAddress ? (
                 <Button
                   mode="secondary"
-                  round
                   label={
-                    <img
-                      src={
-                        isDarkTheme
-                          ? '/img/logout-white.svg'
-                          : '/img/logout.svg'
-                      }
-                      alt="Logout"
-                    />
+                    signerAddress ? truncateAddress(signerAddress) : 'Sign In'
                   }
-                  onClick={handleDisconnect}
+                  onClick={
+                    signerAddress ? handleDisconnectWallet : handleConnectWallet
+                  }
+                  extraStyles={
+                    isMobile
+                      ? { width: '100%' }
+                      : { paddingTop: 10, paddingBottom: 10 }
+                  }
                 />
-              </>
-            )}
-          </>
+              ) : (
+                <div className="flex items-center">
+                  <span className="font-rlight text-14px mr-16px">
+                    {truncateAddress(signerAddress)}
+                  </span>
+                  <Button
+                    mode="secondary"
+                    round
+                    label={
+                      <img
+                        src={
+                          isDarkTheme
+                            ? '/img/logout-white.svg'
+                            : '/img/logout.svg'
+                        }
+                        alt="Logout"
+                      />
+                    }
+                    onClick={handleDisconnect}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
         )}
       </div>
       {/* {menuOpen && (
@@ -158,7 +168,7 @@ const Header = ({
         )} */}
     </div>
   ) : (
-    <div className="flex flex-row items-center mb-8% justify-between z-20">
+    <div className="h-100px flex flex-row items-center mb-8% justify-between z-20">
       <img
         className="w-10% min-w-75px laptop:mr-30% tablet:mr-25% cursor-pointer"
         src={`${
@@ -197,7 +207,7 @@ const Header = ({
             onClick={() => {
               push('/auction');
             }}
-            underlined={route === '/auction'}
+            underlined={route.split('/').includes('auction')}
             wrapperClassName="mr-32px"
           />
           <HeaderAndFooterButton
@@ -210,7 +220,6 @@ const Header = ({
             underlined={route === '/hall'}
             wrapperClassName={signerAddress ? 'mr-32px' : ''}
           />
-
           {signerAddress && (
             <HeaderAndFooterButton
               isDarkTheme={isDarkTheme}
@@ -240,6 +249,7 @@ const Header = ({
             <Button
               mode="secondary"
               round
+              extraStyles={{ marginBottom: 9, minWidth: 40 }}
               label={
                 <img
                   src={
