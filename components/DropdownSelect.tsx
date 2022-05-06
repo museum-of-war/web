@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 
 export const ArrowSvg = () => (
@@ -39,14 +39,12 @@ function DropdownSelect({
   const [isOpen, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<string | undefined>(selectedValue);
 
-  useEffect(() => {
-    onChange(selected);
-    setOpen(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected]);
-
   const handleClick = () => setOpen((state) => !state);
-  const handleChangeValue = (v: string) => () => setSelected(v);
+  const handleChangeValue = (value: string) => () => {
+    setSelected(value);
+    setOpen(false);
+    onChange(value);
+  };
   const handleClose = () => setOpen(false);
 
   return (
