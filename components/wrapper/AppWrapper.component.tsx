@@ -48,7 +48,7 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
           className={`desktop:container mx-auto min-h-screen dark:bg-carbon
                      text-carbon dark:text-white overflow-clip
                      desktop:px-132px tablet:px-72px mobile:px-24px
-                     pb-36px mobile:pb-20px relative`}
+                     pb-36px mobile:pb-20px`}
         >
           <Header
             signerAddress={signerAddress}
@@ -57,7 +57,7 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
             menuOpen={menuOpen}
             setMenuOpen={setMenuOpen}
           />
-          <div>
+          <div className="pt-8%">
             <Child
               signerAddress={signerAddress}
               handleConnect={handleConnect}
