@@ -14,21 +14,12 @@ const ApprovedBy = () => {
         An official collection {isMobile ? <br /> : <></>} approved by:
       </p>
       <button onClick={() => openInNewTab(MINISTRY_LINK)}>
-        {isMobile ? (
-          <img
-            src={'img/MoDT_mobile_top.png'}
-            alt="logo_Ministry_of_Digital"
-            height="26"
-            width="115"
-          />
-        ) : (
-          <img
-            src={'img/Logo_Ministry_Digital_Transformation.png'}
-            alt="logo_Ministry_of_Digital"
-            height="48"
-            width="212"
-          />
-        )}
+        <img
+          src={'img/Logo_of_Ministry_of_Digital_Transformation.svg'}
+          alt="Ministry of Digital Transformation logo"
+          height={isMobile ? 26 : 48}
+          width={isMobile ? 115 : 212}
+        />
       </button>
     </div>
   );
