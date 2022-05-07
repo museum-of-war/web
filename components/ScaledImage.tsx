@@ -82,7 +82,7 @@ function ScaledImage({
             alt={alt ?? ''}
             layout="responsive"
             sizes={[
-              ...(pixelBreakpoints.length == 0 || pixelBreakpoints[0]!.lowerBound <= desktopWidth ? [
+              ...(pixelBreakpoints.length === 0 || pixelBreakpoints[0]!.lowerBound <= desktopWidth ? [
                 `${lowerBoundCondition(desktopWidth)} ${applyRatio(pixelBreakpoints.length > 0
                   ? pixelBreakpoints[0]!.ratio
                   : defaultRatio, `${pixels(desktopWidth)}`)}`
