@@ -2,6 +2,41 @@ import Image from 'next/image';
 import { useState } from 'react';
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from 'tailwind.config'
+import { Breakpoint as MaterialBreakpoint, Theme, useTheme } from '@mui/material';
+
+type TailwindBreakpoint = 'mobile' | 'tablet' | 'laptop' | 'desktop';
+
+export type Breakpoint = TailwindBreakpoint | MaterialBreakpoint;
+
+function isMaterialBreakpoint(breakpoint: Breakpoint, theme: Theme): breakpoint is MaterialBreakpoint {
+  return breakpoint in theme.breakpoints.values;
+}
+
+function getBreakpointValue(breakpoint: Breakpoint, materialTheme: Theme): number {
+  return isMaterialBreakpoint(breakpoint, materialTheme)
+    ? materialTheme.breakpoints.values[breakpoint]
+    : parseInt((resolveConfig(tailwindConfig).theme.screens as any)[breakpoint]);
+}
+
+function applyRatio(ratio: number, value: string): string {
+  const match = value.match(/^(?<number>\d+)(?<unit>[a-z]+)$/);
+  if (!match) {
+    throw new Error(`"${value}" is not in the format NUMBER + UNIT as expected`);
+  }
+  return Math.round(Number(match.groups!.number) * ratio) + match.groups!.unit!;
+}
+
+function ratioToViewport(ratio: number): string {
+  return applyRatio(ratio, '100vw');
+}
+
+function pixels(value: number): string {
+  return `${value}px`;
+}
+
+function lowerBoundCondition(bound: number): string {
+  return `(min-width: ${pixels(bound)})`;
+}
 
 type ScaledImageProps = {
   src: string;
@@ -10,30 +45,19 @@ type ScaledImageProps = {
     width: number;
     height: number;
   };
-  mobile?: number;
-  laptop?: number;
+  breakpoints?: {
+    lowerBound: Breakpoint;
+    ratio: number;
+  }[];
 };
-
-function applyRatio(ratio: number | undefined, value: string): string {
-  const match = value.match(/^(?<number>\d+)(?<unit>[a-z]+)$/);
-  if (!match) {
-    throw new Error(`"${value}" is not in the format NUMBER + UNIT as expected`);
-  }
-  return Math.round(Number(match.groups!.number) * (ratio ?? 1)) + match.groups!.unit!;
-}
-
-function ratioToViewport(ratio: number | undefined): string {
-  return applyRatio(ratio, '100vw');
-}
 
 function ScaledImage({
   src,
   alt,
   dims,
-  mobile,
-  laptop,
+  breakpoints,
 }: ScaledImageProps) {
-  const screens = resolveConfig(tailwindConfig).theme.screens as any;
+  const defaultRatio = 1;
   const [{ width, height, shown }, setDims] = useState({
     ...(dims || {
       width: 1,
@@ -43,6 +67,12 @@ function ScaledImage({
     }),
     shown: !!dims,
   });
+  const materialTheme = useTheme();
+  const pixelBreakpoints = (breakpoints || []).map(({lowerBound, ratio}) => ({
+    lowerBound: getBreakpointValue(lowerBound, materialTheme),
+    ratio,
+  })).sort(({lowerBound: a}, {lowerBound: b}) => b - a);
+  const desktopWidth = getBreakpointValue('desktop', materialTheme);
   return (
       <div style={shown ? {} : {
         visibility: 'hidden',
@@ -51,11 +81,16 @@ function ScaledImage({
             src={src}
             alt={alt ?? ''}
             layout="responsive"
-            sizes={`
-              (min-width: ${screens.desktop}) ${applyRatio(laptop, screens.desktop)},
-              (min-width: ${screens.laptop}) ${ratioToViewport(laptop)},
-              ${ratioToViewport(mobile)}
-            `}
+            sizes={[
+              ...(pixelBreakpoints.length == 0 || pixelBreakpoints[0]!.lowerBound <= desktopWidth ? [
+                `${lowerBoundCondition(desktopWidth)} ${applyRatio(pixelBreakpoints.length > 0
+                  ? pixelBreakpoints[0]!.ratio
+                  : defaultRatio, `${pixels(desktopWidth)}`)}`
+              ] : []),
+              ...pixelBreakpoints.map(({lowerBound, ratio}) =>
+                `${lowerBoundCondition(lowerBound)} ${ratioToViewport(ratio)}`),
+              ratioToViewport(defaultRatio),
+            ].join(', ')}
             width={width}
             height={height}
             onLoadingComplete={

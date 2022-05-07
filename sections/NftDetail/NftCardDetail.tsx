@@ -254,7 +254,16 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
         )}
         <div className="flex mt-40px mobile:flex-col desktop:flex-row justify-between">
           <div className="desktop:w-[48%] mobile: w-full">
-            <ScaledImage alt={item.name} src={item.imageSrc} laptop={0.5} />
+            <ScaledImage
+              alt={item.name}
+              src={item.imageSrc}
+              breakpoints={[
+                {
+                  lowerBound: 'laptop',
+                  ratio: 0.5,
+                },
+              ]}
+            />
           </div>
           <div className="desktop:w-[48%] mobile: w-full">
             {isSold ? (
