@@ -298,7 +298,7 @@ export function useWeb3Modal() {
       0,
       {
         value: ethers.utils.parseEther(value.toString()),
-        gasLimit: 250000,
+        gasLimit: 250000, //TODO
       },
     );
   }
@@ -411,9 +411,13 @@ export function useWeb3Modal() {
 
     const price: BigNumber = await nftContract.price();
 
+    const estimatedGas = await nftContract.estimateGas.mint!(tokensCount, {
+      value: price.mul(tokensCount),
+    });
+
     const tx = await nftContract.mint(tokensCount, {
       value: price.mul(tokensCount),
-      gasLimit: 175000 + 17500 * tokensCount,
+      gasLimit: estimatedGas.mul(11).div(10),
     });
 
     await tx.wait();
