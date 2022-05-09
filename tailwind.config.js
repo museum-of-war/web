@@ -7,7 +7,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      shadow: {
+      boxShadow: {
         '3xl': '0px 4px 32px 4px rgba(33, 33, 33, 0.3)',
       },
       colors: {
@@ -298,6 +298,7 @@ module.exports = {
         '110px': '110px',
         '120px': '120px',
         '150px': '150px',
+        '192px': '192px',
         '200px': '200px',
         '250px': '250px',
         '300px': '300px',

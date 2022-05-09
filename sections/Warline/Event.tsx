@@ -4,9 +4,10 @@ import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import Link from 'next/link';
-import { ToggleOptionsType } from '@components/Toggle';
+// import { ToggleOptionsType } from '@components/Toggle';
 import Button from '@components/Button';
 import { useAppRouter } from '@hooks/useAppRouter';
+import { BY_DAY } from './constants';
 
 type PropsEvent = {
   eventData: EventType;
@@ -15,7 +16,7 @@ type PropsEvent = {
   idx: number;
   eventsData: EventType[];
   allEvents: Array<EventType>;
-  view: ToggleOptionsType;
+  view: string;
 };
 
 const rand_imgs: string[] = [
@@ -42,12 +43,12 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
     return parseInt(tokenId) < 10
       ? '#000' + tokenId
       : parseInt(tokenId) < 100
-      ? '#00' + tokenId
-      : parseInt(tokenId) < 1000
-      ? '#0' + tokenId
-      : '#' + tokenId;
+        ? '#00' + tokenId
+        : parseInt(tokenId) < 1000
+          ? '#0' + tokenId
+          : '#' + tokenId;
   };
-  const shortView = useMemo(() => view === 'days', [view]);
+  const shortView = useMemo(() => view === BY_DAY, [view]);
 
   const renderImage = (className: string) => {
     const randomSrc = rand_imgs[idx % 8] as string;
@@ -100,18 +101,16 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
 
   return isMobile ? (
     <div
-      className={`flex flex-col items-top ${
-        !shortView ? 'mb-60px' : 'min-w-124px w-full'
-      }`}
+      className={`flex flex-col items-top ${!shortView ? 'mb-60px' : 'min-w-124px w-full'
+        }`}
     >
       {renderImage('w-100%')}
       <div className="mt-20px flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
             <p
-              className={`font-rblack ${
-                !shortView ? 'leading-32px text-32px' : 'text-14px'
-              } `}
+              className={`font-rblack ${!shortView ? 'leading-32px text-32px' : 'text-14px'
+                } `}
             >
               {eventData.Time}
             </p>

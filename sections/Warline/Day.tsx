@@ -3,18 +3,18 @@ import { DayType, EventType } from '@sections/types';
 import Event from './Event';
 import { useViewPort } from '@hooks/useViewport';
 import DaysNavigation from '@sections/Warline/DaysNavigation';
-import Toggle, { ToggleOptionsType } from '@components/Toggle';
+import { BY_DAY } from './constants';
 
 type PropsDay = {
   dayData: DayType;
   daysCount: number;
   allEvents: Array<EventType>;
-  pageView: ToggleOptionsType;
+  pageView: string;
 };
 
 const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
-  const [view, setView] = useState<ToggleOptionsType>(pageView);
+  const [view, setView] = useState<string>(pageView);
 
   useEffect(() => {
     setView(pageView);
@@ -58,13 +58,13 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
       </div>
       {/* @ts-ignore*/}
       <div
-        {...(view === 'days'
+        {...(view === BY_DAY
           ? {
-              className: 'grid gap-24px',
-              style: {
-                'grid-template-columns': 'repeat(auto-fit, minmax(124px, 1fr))',
-              },
-            }
+            className: 'grid gap-24px',
+            style: {
+              'grid-template-columns': 'repeat(auto-fit, minmax(124px, 1fr))',
+            },
+          }
           : {})}
       >
         {dayData.events.map((eventData, idx) => (
@@ -107,13 +107,13 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
       </div>
       {/* @ts-ignore*/}
       <div
-        {...(view === 'days'
+        {...(view === BY_DAY
           ? {
-              className: 'grid gap-x-48px gap-y-24px',
-              style: {
-                'grid-template-columns': 'repeat(auto-fit, minmax(176px, 1fr))',
-              },
-            }
+            className: 'grid gap-x-48px gap-y-24px',
+            style: {
+              'grid-template-columns': 'repeat(auto-fit, minmax(176px, 1fr))',
+            },
+          }
           : {})}
       >
         {dayData.events.map((eventData, idx) => (
@@ -152,22 +152,22 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
             }
             direction="horizontal"
           />
-          <div className="mt-48px">
+          {/* <div className="mt-48px">
             <Toggle active={view} onClick={setView} />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="ml-5% w-70%">
         {/* @ts-ignore*/}
         <div
-          {...(view === 'days'
+          {...(view === BY_DAY
             ? {
-                className: 'grid gap-x-48px gap-y-24px',
-                style: {
-                  'grid-template-columns':
-                    'repeat(auto-fit, minmax(200px, 1fr))',
-                },
-              }
+              className: 'grid gap-x-48px gap-y-24px',
+              style: {
+                gridTemplateColumns:
+                  'repeat(auto-fit, minmax(200px, 1fr))',
+              },
+            }
             : {})}
         >
           {dayData.events.map((eventData, idx) => (
