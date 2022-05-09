@@ -10,9 +10,10 @@ type PropsDay = {
   daysCount: number;
   allEvents: Array<EventType>;
   pageView: string;
+  selectedByNewest: string | undefined;
 };
 
-const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
+const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
   const [view, setView] = useState<string>(pageView);
 
@@ -52,6 +53,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
             onPrevDayClickHandler={() =>
               onScrollClick(`day-sticky-${dayData.dayNo - 1}`)
             }
+            selectedByNewest={selectedByNewest}
           />
         </div>
         <div className="mt-1px mb-20px h-5px w-100% bg-carbon"></div>
@@ -101,6 +103,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
               onScrollClick(`day-sticky-${dayData.dayNo - 1}`)
             }
             direction="horizontal"
+            selectedByNewest={selectedByNewest}
           />
         </div>
         <div className="mt-1px mb-20px h-5px w-100% bg-carbon"></div>
@@ -151,6 +154,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView }: PropsDay) => {
               onScrollClick(`day-sticky-${dayData.dayNo - 1}`)
             }
             direction="horizontal"
+            selectedByNewest={selectedByNewest}
           />
           {/* <div className="mt-48px">
             <Toggle active={view} onClick={setView} />
