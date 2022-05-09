@@ -64,7 +64,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
           ? {
             className: 'grid gap-24px',
             style: {
-              'grid-template-columns': 'repeat(auto-fit, minmax(124px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(124px, 1fr))',
             },
           }
           : {})}
