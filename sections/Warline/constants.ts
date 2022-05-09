@@ -21,11 +21,11 @@ export const NEWEST = 'newest';
 
 export const BY_NEWEST_BY_OLDEST_OPTIONS: SelectOption[] = [
   {
-    text: 'Oldest first',
-    value: OLDEST,
-  },
-  {
     text: 'Newest first',
     value: NEWEST,
+  },
+  {
+    text: 'Oldest first',
+    value: OLDEST,
   },
 ]

@@ -20,7 +20,7 @@ const Warline = () => {
   const [warlineData, setWarlineData] = useState<DayType[]>([]);
   const [view, setView] = useState<string>(BY_HOUR);
   const [byType, setByType] = useState<string>(ALL_ARTS);
-  const [selectedByNewest, setSelectedByNewest] = useState<string | undefined>(BY_NEWEST_BY_OLDEST_OPTIONS[0]?.value);
+  const [selectedByNewest, setSelectedByNewest] = useState<string | undefined>(BY_NEWEST_BY_OLDEST_OPTIONS[1]?.value);
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
 
   const sordByNewestHandler = (v?: string) => setSelectedByNewest(v);
@@ -52,7 +52,7 @@ const Warline = () => {
   }, []);
 
   const sortByDate = (warlineData: DayType[]) => {
-    if (selectedByNewest === BY_NEWEST_BY_OLDEST_OPTIONS[0]?.value) {
+    if (selectedByNewest === BY_NEWEST_BY_OLDEST_OPTIONS[1]?.value) {
       return warlineData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     }
     return warlineData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
