@@ -11,15 +11,17 @@ import Blurb from "@sections/AboutProject/Blurb";
 import Toggle from "@components/Toggle";
 import DropdownSelect from "@components/DropdownSelect";
 import { BY_HOUR, BY_DAY, ALL_ARTS, ON_SALE, BY_NEWEST_BY_OLDEST_OPTIONS } from "./constants";
+import SideMenu from "./SideMenu";
 
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
   const toggleComponentRef = useRef<HTMLDivElement>(null);
   const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
   const [warlineData, setWarlineData] = useState<DayType[]>([]);
-  const [byTime, setByTime] = useState<string>(BY_HOUR);
-  const [bySale, setBySale] = useState<string>(ALL_ARTS);
+  const [view, setView] = useState<string>(BY_HOUR);
+  const [byType, setByType] = useState<string>(ALL_ARTS);
   const [selectedByNewest, setSelectedByNewest] = useState<string | undefined>(BY_NEWEST_BY_OLDEST_OPTIONS[0]?.value);
+  const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
 
   const sordByNewestHandler = (v?: string) => setSelectedByNewest(v);
 
@@ -51,7 +53,6 @@ const Warline = () => {
 
   const sortByDate = (warlineData: DayType[]) => {
     if (selectedByNewest === BY_NEWEST_BY_OLDEST_OPTIONS[0]?.value) {
-      console.log(selectedByNewest === BY_NEWEST_BY_OLDEST_OPTIONS[0]?.value);
       return warlineData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     }
     return warlineData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -64,7 +65,7 @@ const Warline = () => {
 
   return (
     <PopupProvider>
-      <div>
+      <div className="">
         <div className="laptop:flex laptop:flex-row laptop:justify-between mt-20 mobile:mb-8% tablet:mb-0">
           <Blurb
             header="WARLINE"
@@ -72,26 +73,40 @@ const Warline = () => {
             ukrainian="Відверта хронологія подій новітньої історії України. Експонати — це факти, супроводжені емоційними спогадами. Формула експонату проста і прозора, кожен токен — реальне новинне повідомлення з офіційних джерел та ілюстрація до нього від художників — як українських, так і світових."
           />
         </div>
-        <div className="w-full mb-48px flex justify-between" ref={toggleComponentRef}>
+        <div className={`w-full mb-48px tablet:flex mobile:block tablet:justify-between mobile:justify-center tablet:sticky laptop:static`} ref={toggleComponentRef}>
           <div className="flex">
-            <div className="mr-32px">
-              <Toggle active={byTime} onClick={setByTime} option1={BY_HOUR} option2={BY_DAY} />
-            </div>
+            {!isMobile && (
+              <div className="mr-32px mobile:w-100%">
+                <Toggle active={view} onClick={setView} option1={BY_HOUR} option2={BY_DAY} />
+              </div>
+            )}
+            {!isMobile && !isTablet && (
+              <div>
+                <Toggle active={byType} onClick={setByType} option1={ALL_ARTS} option2={ON_SALE} />
+              </div>
+            )}
+          </div>
+          {!isMobile && !isTablet ?
             <div>
-              <Toggle active={bySale} onClick={setBySale} option1={ALL_ARTS} option2={ON_SALE} />
+              <DropdownSelect
+                options={BY_NEWEST_BY_OLDEST_OPTIONS}
+                selectedValue={selectedByNewest}
+                isDark={false}
+                onChange={sordByNewestHandler}
+                className="ml-auto w-192px pl-32px" />
             </div>
-          </div>
-          <div>
-            <DropdownSelect
-              options={BY_NEWEST_BY_OLDEST_OPTIONS}
-              selectedValue={selectedByNewest}
-              isDark={false}
-              onChange={sordByNewestHandler}
-              className="ml-auto w-192px pl-32px" />
-          </div>
+            : <div>
+              <button
+                className="font-rblack flex mobile:w-100% mobile:justify-center items-center tablet:text-16px tablet:leading-44px mobile:text-14px mobile:leading-36px border-carbon border-2 rounded-full pl-32px pr-24px"
+                onClick={() => setShowSideMenu(true)}
+              >
+                <span className="mr-12px">Filters and Sorting</span>
+                <img src="img/filter_icon.svg" alt="filter" />
+              </button>
+            </div>}
         </div>
         {warlineData.map((dayData, idx, arr) => (
-          <Day key={idx} dayData={dayData} daysCount={arr.length} allEvents={allEvents} pageView={byTime} selectedByNewest={selectedByNewest} />
+          <Day key={idx} dayData={dayData} daysCount={arr.length} allEvents={allEvents} pageView={view} selectedByNewest={selectedByNewest} />
         ))}
         <div className={`${isMobile || isTablet ? "mb-20%" : "ml-33%"}`}>
           <SupportBanner setShowDonatePopup={setShowDonatePopup} />
@@ -99,6 +114,17 @@ const Warline = () => {
       </div>
       <SupportSticky setShowDonatePopup={setShowDonatePopup} />
       {showDonatePopup && (<DonatePopup setShowDonatePopup={setShowDonatePopup} />)}
+      <SideMenu
+        showSideMenu={showSideMenu}
+        setShowSideMenu={setShowSideMenu}
+        byType={byType}
+        setByType={setByType}
+        selectedByNewest={selectedByNewest}
+        setSelectedByNewest={setSelectedByNewest}
+        view={view}
+        setView={setView}
+      />
+
     </PopupProvider>
   );
 };
