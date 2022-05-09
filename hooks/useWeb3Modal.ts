@@ -413,7 +413,7 @@ export function useWeb3Modal() {
 
     const tx = await nftContract.mint(tokensCount, {
       value: price.mul(tokensCount),
-      gasLimit: 150000 + 15000 * tokensCount,
+      gasLimit: 175000 + 17500 * tokensCount,
     });
 
     await tx.wait();
