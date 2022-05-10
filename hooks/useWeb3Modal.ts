@@ -460,14 +460,16 @@ export function useWeb3Modal() {
   async function getTotalFundsRaised() {
     const firstDropUnique = 4; // first four tokens were sold at auction
     const firstDropAirdrop =
-      3 + // three tokens were airdropped as quiz prizes
-      1; // one token was airdropped for retweet
+      3 + // quiz prizes
+      1; // for retweet
+    const secondDropAirdrop = 30; // for artsy
     const firstDropWeth = ethers.constants.WeiPerEther.mul(15)
       .div(100) // 0.15 ETH
       .mul(
         (await getFirstDropMintedCount()) -
           firstDropUnique -
-          firstDropAirdrop +
+          firstDropAirdrop -
+          secondDropAirdrop +
           (await getSecondDropMintedCount()),
       );
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
