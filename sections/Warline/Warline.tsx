@@ -36,17 +36,22 @@ const Warline = () => {
 
   useEffect(() => {
     const height = toggleComponentRef.current?.offsetTop;
+    let padding = 132;
+    if (window && window.innerWidth >= 1500) {
+      padding += (window.innerWidth - 1500) / 2;
+      console.log(padding)
+    }
+    const desktopPaddingX = `desktop:px-[${padding}px]`
+    console.log(desktopPaddingX);
     function onScrollHandler() {
       if (window && window.scrollY > (height ?? 0)) {
-        toggleComponentRef.current?.classList.add("sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
+        toggleComponentRef.current?.classList.add("mobile:sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "laptop:py-24px", "laptop:fixed", "laptop:left-60px", "laptop:px-72px", desktopPaddingX, "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
       } else {
-        toggleComponentRef.current?.classList.remove("sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
+        toggleComponentRef.current?.classList.remove("mobile:sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "laptop:py-24px", "laptop:fixed", "laptop:left-60", "laptop:px-72px", desktopPaddingX, "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
       }
     }
 
-    if (isMobile || isTablet) {
-      window.addEventListener('scroll', onScrollHandler);
-    }
+    window.addEventListener('scroll', onScrollHandler);
 
     return () => window.removeEventListener('scroll', onScrollHandler);
   }, []);
@@ -65,7 +70,7 @@ const Warline = () => {
 
   return (
     <PopupProvider>
-      <div className="">
+      <div className="relative">
         <div className="laptop:flex laptop:flex-row laptop:justify-between mt-20 mobile:mb-8% tablet:mb-0">
           <Blurb
             header="WARLINE"
@@ -73,7 +78,8 @@ const Warline = () => {
             ukrainian="Відверта хронологія подій новітньої історії України. Експонати — це факти, супроводжені емоційними спогадами. Формула експонату проста і прозора, кожен токен — реальне новинне повідомлення з офіційних джерел та ілюстрація до нього від художників — як українських, так і світових."
           />
         </div>
-        <div className={`w-full mb-48px tablet:flex mobile:block tablet:justify-between mobile:justify-center tablet:sticky laptop:static`} ref={toggleComponentRef}>
+
+        <div className={`w-full mb-48px tablet:flex mobile:block tablet:justify-between mobile:justify-center laptop:z-10 desktop:px-[${(window.innerWidth - 1500)}px]`} ref={toggleComponentRef}>
           <div className="flex">
             {!isMobile && (
               <div className="mr-32px mobile:w-100%">
@@ -105,6 +111,7 @@ const Warline = () => {
               </button>
             </div>}
         </div>
+
         {warlineData.map((dayData, idx, arr) => (
           <Day key={idx} dayData={dayData} daysCount={arr.length} allEvents={allEvents} pageView={view} selectedByNewest={selectedByNewest} />
         ))}

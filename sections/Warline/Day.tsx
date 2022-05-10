@@ -136,7 +136,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
   ) : (
     <div className="mb-40px flex flex-row" id={`day-sticky-${dayData.dayNo}`}>
       <div className="w-248px">
-        <div className="sticky top-36px">
+        <div className="sticky top-100px">
           <div className="flex flex-col justify-start items-top">
             <p className="text-32px font-rblack">Day {dayData.dayNo}</p>
             <p className="mt-12px mb-24px text-14px font-rlight">
