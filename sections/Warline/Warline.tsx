@@ -4,7 +4,7 @@ import DonatePopup from "./DonatePopup";
 import SupportBanner from "./SupportBanner";
 import { useViewPort } from "@hooks/useViewport";
 import SupportSticky from "./SupportSticky";
-import WarlineData from "./WarlineData";
+import WarlineData, { Drop2Data } from "./WarlineData";
 import { DayType, EventType } from "@sections/types";
 import { PopupProvider } from "../../providers/PopupProvider";
 import Blurb from "@sections/AboutProject/Blurb";
@@ -12,6 +12,8 @@ import Toggle from "@components/Toggle";
 import DropdownSelect from "@components/DropdownSelect";
 import { BY_HOUR, BY_DAY, ALL_ARTS, ON_SALE, BY_NEWEST_BY_OLDEST_OPTIONS } from "./constants";
 import SideMenu from "./SideMenu";
+import { useWeb3Modal } from "@hooks/useWeb3Modal";
+export { default as Drop2Data } from './WarlineData/drop2/data';
 
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
@@ -24,6 +26,28 @@ const Warline = () => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
 
   const sordByNewestHandler = (v?: string) => setSelectedByNewest(v);
+
+  const { canMint } = useWeb3Modal();
+
+  const sortByTypeHandler = async () => {
+    const isMinting = await canMint();
+    if (isMinting && byType === ON_SALE) {
+      const drop2 = [...Drop2Data];
+      const toSetData = sortByDate(drop2);
+      setWarlineData(toSetData);
+    }
+    if (!isMinting && byType === ON_SALE) {
+      setWarlineData([]);
+    }
+    if (byType === ALL_ARTS) {
+      let result = sortByDate(WarlineData);
+      setWarlineData([...result]);
+    }
+  }
+
+  useEffect(() => {
+    sortByTypeHandler();
+  }, [byType]);
 
   const allEvents = useMemo(() => {
     return WarlineData.reduce((all: Array<EventType>, dayData: DayType) => {
@@ -64,8 +88,14 @@ const Warline = () => {
   }
 
   useEffect(() => {
-    let result = sortByDate(WarlineData);
-    setWarlineData([...result])
+    if (byType === ALL_ARTS) {
+      let result = sortByDate(WarlineData);
+      setWarlineData([...result])
+    }
+    if (byType === ON_SALE) {
+      let result = sortByDate([...Drop2Data]);
+      setWarlineData([...result])
+    }
   }, [selectedByNewest]);
 
   return (
