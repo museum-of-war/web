@@ -115,16 +115,17 @@ export function useWeb3Modal() {
 
     const ownerAddr = owner;
 
-    const ownedNfts = (
-      await web3.alchemy.getNfts({
-        owner: ownerAddr,
-        contractAddresses: [
-          MetaHistoryAddress,
-          PROSPECT_100_ADDRESS,
-          SECOND_DROP_ADDRESS,
-        ],
-      })
-    ).ownedNfts;
+    const ownedNfts =
+      (
+        await web3.alchemy.getNfts({
+          owner: ownerAddr,
+          contractAddresses: [
+            MetaHistoryAddress,
+            PROSPECT_100_ADDRESS,
+            SECOND_DROP_ADDRESS,
+          ],
+        })
+      ).ownedNfts ?? [];
 
     function fixNftForDrop1(
       nft: typeof ownedNfts[number],

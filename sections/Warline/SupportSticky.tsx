@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import SupportButton from "../../components/SupportButton";
-import { useViewPort } from "@hooks/useViewport";
-import { MINT_LINK, OPENSEA_LINK } from "@sections/Constants";
-import { openInNewTab } from "@sections/utils";
-import {useWeb3Modal} from "@hooks/useWeb3Modal";
+import React, { useEffect, useState } from 'react';
+import SupportButton from '../../components/SupportButton';
+import { useViewPort } from '@hooks/useViewport';
+import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
+import { openInNewTab } from '@sections/utils';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { SECOND_DROP_DATE } from '@sections/Constants';
-import { useCountdown } from "@hooks/useCountdown";
-import MintingModal from "@components/MintingModal";
+import { useCountdown } from '@hooks/useCountdown';
+import MintingModal from '@components/MintingModal';
 
 type PropsSupportSticky = {
   setShowDonatePopup: (arg: boolean) => void;
@@ -33,7 +33,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
 
   const CTA = !isNFTDrop
     ? 'Support Ukraine while waiting for the drop'
-    : 'Buy NFT to support Ukraine';
+    : 'Mint NFT to support Ukraine';
 
   const { isMobile, isTablet } = useViewPort();
   const [showBtn, setShowBtn] = useState<boolean>(false);
@@ -51,30 +51,30 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
       <button
         className={`font-rblack text-white  rounded-full   border-2 px-25px py-12px whitespace-nowrap border-white mobile:text-12px laptop:text-14px desktop:text-16px
         hover:border-2 hover:shadow-[0_0_0_1px_rgba(255,255,255,1)]`}
-          onClick={ () => {
-            if (timerEnd) {
-              setOpenMintingModal(true);
+        onClick={() => {
+          if (timerEnd) {
+            setOpenMintingModal(true);
+          } else {
+            if (isNFTDrop) {
+              openInNewTab(MINT_LINK);
             } else {
-              if(isNFTDrop) {
-                  openInNewTab(MINT_LINK)
-              } else {
-                  openInNewTab(OPENSEA_LINK)
-              }
+              openInNewTab(OPENSEA_LINK);
             }
-          }}
-        >
-            Buy NFT
-        </button>
-      </div>
-    );
+          }
+        }}
+      >
+        Mint NFT
+      </button>
+    </div>
+  );
 
   return isMobile ? (
     <div className="sticky left-0 bottom-0 bg-carbon w-100% px-10% py-20px">
-      {
-        openMintingModal
-        ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
-        : <></>
-      }
+      {openMintingModal ? (
+        <MintingModal setOpenMintingModal={setOpenMintingModal} />
+      ) : (
+        <></>
+      )}
       <div
         className="flex align-center justify-between"
         onClick={() => setShowBtn(!showBtn)}
@@ -92,20 +92,16 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
     </div>
   ) : isTablet ? (
     <div className="sticky left-0 bottom-24px bg-carbon w-100% px-10% py-30px justify-center">
-      <p className="font-rblack text-32px text-white">
-        {CTA}
-      </p>
+      <p className="font-rblack text-32px text-white">{CTA}</p>
       {/* <p className="font-rlight pt-15px text-14px text-white">
         Не дозволь цій хронології продовжитись
       </p> */}
-      <div className="pt-20px">
-        {stickyButton}
-      </div>
-      {
-        openMintingModal
-        ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
-        : <></>
-      }
+      <div className="pt-20px">{stickyButton}</div>
+      {openMintingModal ? (
+        <MintingModal setOpenMintingModal={setOpenMintingModal} />
+      ) : (
+        <></>
+      )}
     </div>
   ) : (
     <div className="sticky mt-48px z-0 left-0 bottom-24px bg-carbon w-100% px-10% py-30px shadow-sticky">
@@ -113,11 +109,11 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
         <p className="font-rblack text-28px leading-28px text-white">{CTA}</p>
         <div className="ml-30px mt-7">{stickyButton}</div>
       </div>
-      {
-        openMintingModal
-        ? <MintingModal setOpenMintingModal={setOpenMintingModal} />
-        : <></>
-      }
+      {openMintingModal ? (
+        <MintingModal setOpenMintingModal={setOpenMintingModal} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
