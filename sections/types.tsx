@@ -12,6 +12,7 @@ export type DayType = {
   dayNo: number;
   date: string;
   events: Array<EventType>;
+  isOnSale?: boolean;
 };
 
 export type EventType = {

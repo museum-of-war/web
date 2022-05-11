@@ -77,7 +77,7 @@ function DropdownSelect({
 
         {isOpen && (
           <div
-            className={`origin-top-right absolute ${isDark ? 'bg-dropdown' : 'bg-white'}  w-full top-60px rounded-[12px] shadow-3xl`}
+            className={`origin-top-right z-10 absolute ${isDark ? 'bg-dropdown' : 'bg-white'}  w-full top-60px rounded-[12px] shadow-3xl`}
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"

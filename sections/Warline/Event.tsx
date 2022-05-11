@@ -17,6 +17,7 @@ type PropsEvent = {
   eventsData: EventType[];
   allEvents: Array<EventType>;
   view: string;
+  isOnSale: boolean | undefined;
 };
 
 const rand_imgs: string[] = [
@@ -30,7 +31,7 @@ const rand_imgs: string[] = [
   'img/dots-8.png',
 ];
 
-const Event = ({ eventData, idx, view }: PropsEvent) => {
+const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
   const { push } = useAppRouter();
   const { isMobile, isTablet } = useViewPort();
   const [toggler, setToggler] = useState<boolean>(false);
@@ -61,21 +62,28 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
     return (
       <>
         <Link href={`/warline/${eventData.Tokenid}`} passHref>
-          <img
-            alt={alt}
-            onClick={() => setToggler(!toggler)}
-            src={previewSrc}
-            className={className}
-            onError={({ currentTarget }) => {
-              currentTarget.onerror = null; // prevents looping
-              currentTarget.src = randomSrc;
-            }}
-            onLoad={({ currentTarget }) => {
-              if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
-                currentTarget.src = animationSrc;
-              }
-            }}
-          />
+          <div className="relative">
+            <img
+              alt={alt}
+              onClick={() => setToggler(!toggler)}
+              src={previewSrc}
+              className={className}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = randomSrc;
+              }}
+              onLoad={({ currentTarget }) => {
+                if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
+                  currentTarget.src = animationSrc;
+                }
+              }}
+            />
+            {isOnSale && (
+              <div className="font-rblack absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
+                OnSale
+              </div>
+            )}
+          </div>
         </Link>
       </>
     );
@@ -152,9 +160,9 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
       {renderImage(
         shortView
           ? 'w-40vw w-full'
-          : 'w-40vw max-w-300px max-h-300px h-40vw mr-50px',
+          : 'w-40vw max-w-300px max-h-300px h-40vw',
       )}
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between ml-50px">
         <div>
           <div
             className={`flex flex-row items-center justify-between
@@ -204,9 +212,9 @@ const Event = ({ eventData, idx, view }: PropsEvent) => {
       {renderImage(
         shortView
           ? 'w-full hover:cursor-pointer'
-          : 'max-w-300px max-h-300px h-240px w-248px mr-50px hover:cursor-pointer',
+          : 'max-w-300px max-h-300px h-240px w-248px hover:cursor-pointer',
       )}
-      <div className="w-100% flex flex-col justify-between">
+      <div className="w-100% flex flex-col justify-between ml-50px">
         <div>
           <div
             className={`flex flex-row items-center justify-between

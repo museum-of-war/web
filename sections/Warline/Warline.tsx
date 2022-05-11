@@ -1,19 +1,20 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useViewPort } from "@hooks/useViewport";
+import { useWeb3Modal } from "@hooks/useWeb3Modal";
+import { PopupProvider } from "../../providers/PopupProvider";
+
+import Blurb from "@sections/AboutProject/Blurb";
 import Day from "./Day";
 import DonatePopup from "./DonatePopup";
 import SupportBanner from "./SupportBanner";
-import { useViewPort } from "@hooks/useViewport";
 import SupportSticky from "./SupportSticky";
-import WarlineData, { Drop2Data } from "./WarlineData";
-import { DayType, EventType } from "@sections/types";
-import { PopupProvider } from "../../providers/PopupProvider";
-import Blurb from "@sections/AboutProject/Blurb";
+import SideMenu from "./SideMenu";
 import Toggle from "@components/Toggle";
 import DropdownSelect from "@components/DropdownSelect";
+
+import WarlineData, { Drop2Data } from "./WarlineData";
+import { DayType, EventType } from "@sections/types";
 import { BY_HOUR, BY_DAY, ALL_ARTS, ON_SALE, BY_NEWEST_BY_OLDEST_OPTIONS } from "./constants";
-import SideMenu from "./SideMenu";
-import { useWeb3Modal } from "@hooks/useWeb3Modal";
-export { default as Drop2Data } from './WarlineData/drop2/data';
 
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
@@ -63,10 +64,8 @@ const Warline = () => {
     let padding = 132;
     if (window && window.innerWidth >= 1500) {
       padding += (window.innerWidth - 1500) / 2;
-      console.log(padding)
     }
-    const desktopPaddingX = `desktop:px-[${padding}px]`
-    console.log(desktopPaddingX);
+    const desktopPaddingX = `px-[${padding}px]`
     function onScrollHandler() {
       if (window && window.scrollY > (height ?? 0)) {
         toggleComponentRef.current?.classList.add("mobile:sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "laptop:py-24px", "laptop:fixed", "laptop:left-60px", "laptop:px-72px", desktopPaddingX, "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
@@ -104,12 +103,12 @@ const Warline = () => {
         <div className="laptop:flex laptop:flex-row laptop:justify-between mt-20 mobile:mb-8% tablet:mb-0">
           <Blurb
             header="WARLINE"
-            english="A chronology of events of the Ukrainian history of modern times, set in stone. The NFTs are facts accompanied by personal reflections. The formula of each NFT is clear and simple: each token is a real news piece from an official source and an illustration from artists, both Ukrainian and international."
-            ukrainian="Відверта хронологія подій новітньої історії України. Експонати — це факти, супроводжені емоційними спогадами. Формула експонату проста і прозора, кожен токен — реальне новинне повідомлення з офіційних джерел та ілюстрація до нього від художників — як українських, так і світових."
+            english="A chronology of events of the Ukrainian history of modern times, set in stone. The NFTs are facts accompanied by personal reflections. The formula of each NFT is clear and simple: each token is a real news piece from an official source and an illustration from artists, both Ukrainian and international."
+            ukrainian="Відверта хронологія подій новітньої історії України. Експонати — це факти, супроводжені емоційними спогадами. Формула експонату проста і прозора, кожен токен — реальне новинне повідомлення з офіційних джерел та ілюстрація до нього від художників — як українських, так і світових."
           />
         </div>
 
-        <div className={`w-full mb-48px tablet:flex mobile:block tablet:justify-between mobile:justify-center laptop:z-10 desktop:px-[${(window.innerWidth - 1500)}px]`} ref={toggleComponentRef}>
+        <div className={`w-full z-10 mb-48px tablet:flex mobile:block tablet:justify-between mobile:justify-center laptop:z-10`} ref={toggleComponentRef}>
           <div className="flex">
             {!isMobile && (
               <div className="mr-32px mobile:w-100%">

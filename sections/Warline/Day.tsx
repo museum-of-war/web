@@ -79,6 +79,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
             eventsData={dayData.events}
             allEvents={allEvents}
             view={view}
+            isOnSale={dayData.isOnSale}
           />
         ))}
       </div>
@@ -129,6 +130,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
             eventsData={dayData.events}
             allEvents={allEvents}
             view={view}
+            isOnSale={dayData.isOnSale}
           />
         ))}
       </div>
@@ -184,6 +186,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
               eventsData={dayData.events}
               allEvents={allEvents}
               view={view}
+              isOnSale={dayData.isOnSale}
             />
           ))}
         </div>
