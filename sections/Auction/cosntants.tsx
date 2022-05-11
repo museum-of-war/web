@@ -1,5 +1,5 @@
 import { SelectOption } from '@components/DropdownSelect';
-import { AuctionCategories } from '@sections/types';
+import { AuctionCollections } from '@sections/types';
 
 export const FILTER_OPTIONS_TYPES: SelectOption[] = [
   { text: 'On Sale', value: 'On Sale' },
@@ -9,8 +9,15 @@ export const FILTER_OPTIONS_TYPES: SelectOption[] = [
 
 export const FILTER_OPTIONS_CATEGORIES: SelectOption[] = [
   { text: 'All Collections', value: '' },
-  { text: AuctionCategories.firstDrop, value: AuctionCategories.firstDrop },
-  { text: AuctionCategories.prospect100, value: AuctionCategories.prospect100 },
+  { text: 'First Drop', value: AuctionCollections.firstDrop },
+  {
+    text: 'PROSPECT 100',
+    value: AuctionCollections.prospect100,
+  },
+  {
+    text: 'Avatars for Ukraine',
+    value: AuctionCollections.avatarsForUkraine,
+  },
 ];
 
 export const FILTER_OPTIONS_SORT_TYPE: SelectOption[] = [

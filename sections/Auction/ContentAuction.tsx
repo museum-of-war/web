@@ -15,6 +15,7 @@ import {
 } from './cosntants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 
 type ContentAuctionProps = {
   isCollection?: boolean;
@@ -31,7 +32,10 @@ const ContentAuction = ({ isCollection = false }: ContentAuctionProps) => {
       try {
         const response = await Promise.all(
           AuctionData.map((datum) => {
-            return getAuctionInfo(datum.contractAddress, datum.tokenId);
+            return getAuctionInfo(
+              AuctionCollectionData[datum.category].contractAddress,
+              datum.tokenId,
+            );
           }),
         );
 
@@ -112,11 +116,7 @@ const ContentAuction = ({ isCollection = false }: ContentAuctionProps) => {
 
   const handleChangeType = (v?: string) => setSelectedType(v);
   const handleChangeCategory = (v?: string) => {
-    push(
-      `/auction/collection/${FILTER_OPTIONS_CATEGORIES.findIndex(
-        (category) => category.text === v,
-      )}`,
-    );
+    push(`/auction/collection/${v}`);
     setSelectedCategory(v);
   };
   const handleChangeSort = (v?: string) => selSelectedSort(v);

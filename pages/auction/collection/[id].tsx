@@ -6,10 +6,11 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { openInNewTab } from '@sections/utils';
 import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
 import { useAppRouter } from '@hooks/useAppRouter';
-import { FILTER_OPTIONS_CATEGORIES } from '@sections/Auction/cosntants';
 import Link from 'next/link';
 import { Dialog } from '@mui/material';
 import { SharedProps } from '@components/wrapper';
+import { AuctionCollections, AuctionCollectionType } from '@sections/types';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 
 const NavBack = ({ classNames }: { classNames?: string }) => (
   <div className={classNames}>
@@ -35,12 +36,17 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
   const [isCanMint, setCanMint] = useState<boolean>(false);
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
   const [videoOpen, setVideoOpen] = useState(false);
+  const [collectionData, setCollectionData] = useState<AuctionCollectionType>();
 
   useEffect(() => {
     canMintSecondDrop().then((val) =>
       val ? setCanMint(true) : canMint().then((i) => setCanMint(i)),
     );
-  }, []);
+  }, [canMint, canMintSecondDrop]);
+
+  useEffect(() => {
+    setCollectionData(AuctionCollectionData[query.id as AuctionCollections]);
+  }, [query.id]);
 
   const handleBuyNft = async () => {
     if (await canMintSecondDrop()) {
@@ -52,13 +58,13 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
     }
   };
 
-  if (query.id === undefined) return null;
+  if (!collectionData) return null;
 
   return (
     <div>
       <img
-        src="/img/temp/img_1.png"
-        alt=""
+        src={collectionData.headerImageSrc}
+        alt={collectionData.name + ' Cover Image'}
         width="100%"
         style={{ height: 456 }}
         className="absolute left-0 top-100px z-0 object-cover"
@@ -78,23 +84,51 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
         </div>
         <NavBack classNames="desktop:hidden tablet:hidden h-100px  flex items-center" />
         <p className="font-rblack mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase">
-          {FILTER_OPTIONS_CATEGORIES[+query.id]?.text}
+          {collectionData.name}
         </p>
         <div className="h-5px w-100% bg-carbon dark:bg-white" />
         <div className="desktop:py-40px laptop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-row mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
-          <p className="pt-10 desktop:w-65% tablet:w-65% mobile:w-100% mobile:mb-6% desktop:pr-48px tablet:pr-48px mobile:pr-0">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-            aut delectus deserunt error hic ipsum odit perspiciatis possimus
-            quas ut!
+          <p className="whitespace-pre-line pt-10 desktop:w-65% tablet:w-65% mobile:w-100% mobile:mb-6% desktop:pr-48px tablet:pr-48px mobile:pr-0">
+            {collectionData.description}
           </p>
           <p className="desktop:w-35% tablet:w-35% mobile-w100%">
-            <img
-              src="/img/temp/img.png"
-              width="100%"
-              height="auto"
-              alt=""
-              onClick={() => setVideoOpen(true)}
-            />
+            {collectionData.videoSrc?.includes('youtube') ? (
+              <iframe
+                src={collectionData.videoSrc}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="m-auto h-100% w-100%"
+              />
+            ) : collectionData.posterSrc && !collectionData.videoSrc ? (
+              <img
+                src={collectionData.posterSrc}
+                width="100%"
+                height="auto"
+                alt={collectionData.name + ' Poster'}
+                className={`${
+                  !!collectionData.videoSrc ? 'cursor-pointer' : ''
+                } object-contain laptop:max-h-300px`}
+                onClick={() => setVideoOpen(!!collectionData.videoSrc)}
+              />
+            ) : (
+              <video
+                className="cursor-pointer object-contain laptop:max-h-300px"
+                role="presentation"
+                crossOrigin="anonymous"
+                playsInline
+                preload="auto"
+                muted
+                loop
+                width="100%"
+                height="100%"
+                autoPlay
+                src={collectionData.videoSrc}
+                poster={collectionData.posterSrc}
+                onClick={() => setVideoOpen(true)}
+              />
+            )}
           </p>
         </div>
         <ContentAuction isCollection />
@@ -116,10 +150,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
           disablePortal
           onClose={() => setVideoOpen(false)}
         >
-          <video
-            src="https://ia804503.us.archive.org/15/items/kikTXNL6MvX6ZpRXM/kikTXNL6MvX6ZpRXM.mp4"
-            autoPlay
-          ></video>
+          <video src={collectionData.videoSrc} autoPlay />
         </Dialog>
       </div>
     </div>
