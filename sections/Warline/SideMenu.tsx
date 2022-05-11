@@ -56,7 +56,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, byType, setByType, selectedBy
 
   return (
     <OutsideClickHandler onOutsideClick={() => setShowSideMenu(false)}>
-      <div className={`fixed top-0 left-0 ease-in-out duration-300 ${showSideMenu ? 'translate-x-0' : '-translate-x-100%'} flex flex-col tablet:w-3/4 mobile:w-100% h-screen tablet:border-r-4 border-carbon bg-white tablet:p-48px mobile:p-24px`}>
+      <div className={`fixed z-10 top-0 left-0 ease-in-out duration-300 ${showSideMenu ? 'translate-x-0' : '-translate-x-100%'} flex flex-col tablet:w-3/4 mobile:w-100% h-screen tablet:border-r-4 border-carbon bg-white tablet:p-48px mobile:p-24px`}>
 
         <div className="flex justify-between items-center">
           <p className="font-rblack text-32px leading-36px">Filters</p>
