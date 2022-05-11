@@ -158,9 +158,6 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
             direction="horizontal"
             selectedByNewest={selectedByNewest}
           />
-          {/* <div className="mt-48px">
-            <Toggle active={view} onClick={setView} />
-          </div> */}
         </div>
       </div>
       <div className="ml-5% w-70%">

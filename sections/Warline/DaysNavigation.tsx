@@ -39,9 +39,9 @@ function DaysNavigation(props: DaysNavigationProps) {
       {dayData.dayNo < daysCount && (
         <span
           onClick={onNextDayClickHandler}
-          className="flex flex-row items-center hover:cursor-pointer tablet:ml-32px mobile:ml-0"
+          className="flex flex-row items-center hover:cursor-pointer laptop:ml-0 tablet:ml-32px mobile:ml-0"
         >
-          <LinkButton>Day {dayData.dayNo + 1}</LinkButton>
+          <LinkButton >Day {dayData.dayNo + 1}</LinkButton>
           <img className="ml-10px" alt={selectedByNewest === OLDEST ? 'Down' : 'Up'} src={props.selectedByNewest === OLDEST ? 'img/down.svg' : 'img/up.svg'} />
         </span>
       )}
