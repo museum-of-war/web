@@ -103,6 +103,7 @@ const TabletDrawer = ({
     setPriceRange(priceRangeState);
     handleChangeCategory(selectedCategoryState);
     handleChangeType(selectedTypeState);
+    closeDrawer();
   };
 
   return (
@@ -160,7 +161,7 @@ const TabletDrawer = ({
                   text={i.text}
                   value={i.value}
                   key={i.value}
-                  selected={selectedType}
+                  selected={selectedTypeState}
                   onChange={(value) => setSelectedTypeState(value)}
                 />
               ))}

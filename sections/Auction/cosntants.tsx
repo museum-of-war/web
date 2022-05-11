@@ -8,7 +8,7 @@ export const FILTER_OPTIONS_TYPES: SelectOption[] = [
 ];
 
 export const FILTER_OPTIONS_CATEGORIES: SelectOption[] = [
-  { text: 'All Categories', value: '' },
+  { text: 'All Collections', value: '' },
   { text: AuctionCategories.firstDrop, value: AuctionCategories.firstDrop },
   { text: AuctionCategories.prospect100, value: AuctionCategories.prospect100 },
 ];

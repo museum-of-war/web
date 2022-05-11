@@ -1,26 +1,23 @@
-import React, {useEffect, useMemo, useRef, useState} from "react";
-import Day from "./Day";
-import DonatePopup from "./DonatePopup";
-import SupportBanner from "./SupportBanner";
-import { useViewPort } from "@hooks/useViewport";
-import SupportSticky from "./SupportSticky";
-import WarlineData from "./WarlineData";
-import {DayType, EventType} from "@sections/types";
-import {PopupProvider} from "../../providers/PopupProvider";
-import Blurb from "@sections/AboutProject/Blurb";
-import Toggle, { ToggleOptionsType } from "@components/Toggle";
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import Day from './Day';
+import DonatePopup from './DonatePopup';
+import SupportBanner from './SupportBanner';
+import { useViewPort } from '@hooks/useViewport';
+import SupportSticky from './SupportSticky';
+import WarlineData from './WarlineData';
+import { DayType, EventType } from '@sections/types';
+import { PopupProvider } from '@providers/PopupProvider';
+import Blurb from '@sections/AboutProject/Blurb';
+import Toggle, { ToggleOptionsType } from '@components/Toggle';
 
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
   const toggleComponentRef = useRef<HTMLDivElement>(null);
   const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
-  const [view, setView] = useState<ToggleOptionsType>("hours");
+  const [view, setView] = useState<ToggleOptionsType>('hours');
   const allEvents = useMemo(() => {
-    return WarlineData.reduce((all: Array<EventType> , dayData: DayType) => {
-      return [
-          ...all,
-          ...dayData.events,
-        ]
+    return WarlineData.reduce((all: Array<EventType>, dayData: DayType) => {
+      return [...all, ...dayData.events];
     }, []);
   }, []);
 
@@ -28,9 +25,33 @@ const Warline = () => {
     const height = toggleComponentRef.current?.offsetTop;
     function onScrollHandler() {
       if (window && window.scrollY > (height ?? 0)) {
-        toggleComponentRef.current?.classList.add("sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
+        toggleComponentRef.current?.classList.add(
+          'sticky',
+          'top-0',
+          'w-screen',
+          'bg-white',
+          'shadow-lg',
+          'tablet:-mx-72px',
+          'tablet:py-32px',
+          'tablet:px-72px',
+          'mobile:-mx-24px',
+          'mobile:px-24px',
+          'mobile:py-16px',
+        );
       } else {
-        toggleComponentRef.current?.classList.remove("sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
+        toggleComponentRef.current?.classList.remove(
+          'sticky',
+          'top-0',
+          'w-screen',
+          'bg-white',
+          'shadow-lg',
+          'tablet:-mx-72px',
+          'tablet:py-32px',
+          'tablet:px-72px',
+          'mobile:-mx-24px',
+          'mobile:px-24px',
+          'mobile:py-16px',
+        );
       }
     }
 
@@ -53,18 +74,27 @@ const Warline = () => {
         </div>
         {(isMobile || isTablet) && (
           <div className="w-full mb-48px" ref={toggleComponentRef}>
-            <Toggle active={view} onClick={setView}  />
+            <Toggle active={view} onClick={setView} />
           </div>
         )}
         {WarlineData.map((dayData, idx, arr) => (
-          <Day key={idx} dayData={dayData} daysCount={arr.length} allEvents={allEvents} pageView={view} />
+          <Day
+            key={idx}
+            dayData={dayData}
+            daysCount={arr.length}
+            allEvents={allEvents}
+            pageView={view}
+            setView={setView}
+          />
         ))}
-        <div className={`${isMobile || isTablet ? "mb-20%" : "ml-33%"}`}>
+        <div className={`${isMobile || isTablet ? 'mb-20%' : 'ml-33%'}`}>
           <SupportBanner setShowDonatePopup={setShowDonatePopup} />
         </div>
       </div>
       <SupportSticky setShowDonatePopup={setShowDonatePopup} />
-      {showDonatePopup && (<DonatePopup setShowDonatePopup={setShowDonatePopup} />)}
+      {showDonatePopup && (
+        <DonatePopup setShowDonatePopup={setShowDonatePopup} />
+      )}
     </PopupProvider>
   );
 };
