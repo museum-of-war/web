@@ -8,6 +8,11 @@ type TailwindBreakpoint = 'mobile' | 'tablet' | 'laptop' | 'desktop';
 
 export type Breakpoint = TailwindBreakpoint | MaterialBreakpoint;
 
+export type BreakpointRatios = {
+  lowerBound: Breakpoint;
+ratio: number;
+}[];
+
 function isMaterialBreakpoint(breakpoint: Breakpoint, theme: Theme): breakpoint is MaterialBreakpoint {
   return breakpoint in theme.breakpoints.values;
 }
@@ -41,19 +46,18 @@ function lowerBoundCondition(bound: number): string {
 type ScaledImageProps = {
   src: string;
   alt?: string;
+  className?: string;
   dims?: {
     width: number;
     height: number;
   };
-  breakpoints?: {
-    lowerBound: Breakpoint;
-    ratio: number;
-  }[];
+  breakpoints?: BreakpointRatios;
 };
 
 function ScaledImage({
   src,
   alt,
+  className,
   dims,
   breakpoints,
 }: ScaledImageProps) {
@@ -80,6 +84,7 @@ function ScaledImage({
         <Image
             src={src}
             alt={alt ?? ''}
+            className={className}
             layout="responsive"
             sizes={[
               ...(pixelBreakpoints.length === 0 || pixelBreakpoints[0]!.lowerBound <= desktopWidth ? [
