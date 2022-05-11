@@ -162,7 +162,7 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
           ? 'w-40vw w-full'
           : 'w-40vw max-w-300px max-h-300px h-40vw',
       )}
-      <div className="flex flex-col justify-between ml-50px">
+      <div className={`flex flex-col justify-between ${shortView ? '' : 'ml-50px'}`}>
         <div>
           <div
             className={`flex flex-row items-center justify-between
@@ -214,7 +214,7 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
           ? 'w-full hover:cursor-pointer'
           : 'max-w-300px max-h-300px h-240px w-248px hover:cursor-pointer',
       )}
-      <div className="w-100% flex flex-col justify-between ml-50px">
+      <div className={`w-100% flex flex-col justify-between ${shortView ? '' : 'ml-50px'}`}>
         <div>
           <div
             className={`flex flex-row items-center justify-between
