@@ -273,13 +273,13 @@ export function useWeb3Modal() {
 
     return {
       isSold,
+      isSale: auctionInfo.minPrice.eq(0) && auctionInfo.buyNowPrice.gt(0),
       bidHistory: bidInfos,
       bid: web3.utils.fromWei(bid.toString()),
       nextMinBid: web3.utils.fromWei(nextMinBid.toString()),
       proposedBids: proposedBidsETH,
       fullInfo: auctionInfo,
-      // todo
-      buyNowPrice: '0',
+      buyNowPrice: web3.utils.fromWei(auctionInfo.buyNowPrice.toString()),
     };
   }
 

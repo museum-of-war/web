@@ -49,7 +49,6 @@ export type AuctionItemType = {
   descriptionEnglish?: string;
   descriptionUkrainian?: string;
   isSale: boolean;
-  buyNowPrice: string;
 };
 
 export type HallItemType = {

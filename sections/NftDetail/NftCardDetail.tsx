@@ -214,7 +214,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                       makeBid(
                         item.contractAddress,
                         item.tokenId,
-                        +item.buyNowPrice,
+                        currentBid.buyNowPrice!,
                       );
                     } catch (error: any) {
                       console.error(error?.message ?? error);

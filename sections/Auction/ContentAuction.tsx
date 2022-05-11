@@ -183,7 +183,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
           <Button
             mode="primary"
             label={
-              <div className="flex align-center justify-between">
+              <div className="flex items-center justify-between">
                 <span className="mr-16px">
                   {isMobile ? 'Filters and Sorting' : 'Filters'}
                 </span>
@@ -193,7 +193,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
               </div>
             }
             onClick={openDrawer}
-            className={isMobile ? 'mobile: w-full ' : ''}
+            className={isMobile ? 'mobile: w-full leading-48px' : ''}
           />
         )}
         {!isMobile && (

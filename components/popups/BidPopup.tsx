@@ -117,7 +117,7 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
               try {
                 await makeBid(contractAddress, tokenId, ETHAmount);
               } catch (error: any) {
-                console.error(error?.message ?? error);
+                alert(error?.message ?? error);
               } finally {
                 hidePopup();
               }
