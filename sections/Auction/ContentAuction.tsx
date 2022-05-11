@@ -222,6 +222,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
               endsIn={item.endsIn}
               contractAddress={item.contractAddress}
               tokenId={item.tokenId}
+              isSale={item.isSale}
             />
           </div>
         ))}

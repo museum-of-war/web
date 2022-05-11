@@ -18,9 +18,16 @@ function NftCard({
   contractAddress,
   tokenId,
   type,
+  isSale,
 }: Pick<
   AuctionItemType,
-  'imageSrc' | 'name' | 'index' | 'endsIn' | 'contractAddress' | 'tokenId'
+  | 'imageSrc'
+  | 'name'
+  | 'index'
+  | 'endsIn'
+  | 'contractAddress'
+  | 'tokenId'
+  | 'isSale'
 > &
   NftCardProps) {
   const { push } = useAppRouter();
@@ -71,7 +78,7 @@ function NftCard({
           {!isSold && (
             <div>
               <p className="font-rlight text-12px leading-100% opacity-70">
-                Current bid
+                {isSale ? 'Current price' : 'Current bid'}
               </p>
               <p className="font-rlight tablet:text-16px mobile:text-14px leading-150%">
                 {currentBid.bid} ETH

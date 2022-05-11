@@ -77,7 +77,7 @@ const BidCard = ({
       <div className="flex items-start justify-between mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
         <div>
           <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
-            Current bid
+            {isSale ? 'Current price' : 'Current bid'}
           </p>
           <p className="mobile:text-27px tablet:text-32px font-rblack">
             {currentBid} ETH
@@ -136,9 +136,9 @@ const BidCard = ({
           mode="custom"
           label={isSale ? 'Buy Now' : 'Place Bid'}
           onClick={() => {
-            if (isSale && buyNowPrice) {
+            if (isSale) {
               try {
-                makeBid(contractAddress, tokenId, +buyNowPrice);
+                makeBid(contractAddress, tokenId, buyNowPrice!);
               } catch (error: any) {
                 console.error(error?.message ?? error);
               }
@@ -320,6 +320,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                       endsIn={item.endsIn}
                       contractAddress={item.contractAddress}
                       tokenId={item.tokenId}
+                      isSale={item.isSale}
                       type="small"
                     />
                   </div>
