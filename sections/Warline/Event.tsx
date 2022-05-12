@@ -78,7 +78,7 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
                 }
               }}
             />
-            {isOnSale && (
+            {isOnSale && eventData.ImageType !== 'placeholder.png' && (
               <div className="font-rblack absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
                 OnSale
               </div>
