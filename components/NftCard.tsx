@@ -67,12 +67,10 @@ function NftCard({
           alt={name}
           src={imageSrc}
           className={`${
-            orderIndex! < 2 && !type ? 'desktop:h-[544px]' : 'desktop:h-[240px]'
-          } ${
-            !orderIndex && !type
-              ? 'tablet:h-[624px] laptop:h-[624px]'
-              : 'tablet:h-[288px] laptop:h-[288px]'
-          }
+            orderIndex! < 2 && !type
+              ? 'desktop:h-[544px] laptop:h-[544px]'
+              : 'desktop:h-[240px] laptop:h-[240px]'
+          } ${!orderIndex && !type ? 'tablet:h-[624px]' : 'tablet:h-[288px]'}
           mobile:h-[270px] object-contain`}
         />
       </div>

@@ -140,7 +140,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
   const getItemStyle = (index: number) => {
     const result: React.CSSProperties = {};
 
-    if (isDesktop) {
+    if (isDesktop || isLaptop) {
       if (index < 2) {
         result.width = 'calc((100% - 48px) / 2)';
       } else {
@@ -157,7 +157,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
       return result;
     }
 
-    if (isTablet || isLaptop) {
+    if (isTablet) {
       if (index === 0) {
         result.width = '100%';
         result.marginRight = 0;

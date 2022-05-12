@@ -1,16 +1,14 @@
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 
 export const useViewPort = () => {
-  const theme = useTheme();
-
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'), {
+  const isMobile = useMediaQuery('(max-width:680px)', { noSsr: true });
+  const isTablet = useMediaQuery('(min-width:680px)', {
     noSsr: true,
   });
-  const isLaptop = useMediaQuery(theme.breakpoints.between('md', 'lg'), {
+  const isLaptop = useMediaQuery('(min-width:1024px)', {
     noSsr: true,
   });
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), { noSsr: true });
+  const isDesktop = useMediaQuery('(min-width:1500px)', { noSsr: true });
 
   return { isMobile, isTablet, isDesktop, isLaptop };
 };
