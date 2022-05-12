@@ -29,22 +29,22 @@ const NavBack = () => (
   </Link>
 );
 
-const CollectionLogo = ({ size }: { size: number }) => (
-  <div
-    className="border-4 border-white"
-    style={{
-      width: size,
-      height: size,
-      background: 'red',
-      borderRadius: '50%',
-      top: -size / 2,
-      left: 0,
-      right: 0,
-      margin: 'auto',
-      position: 'absolute',
-    }}
-  />
-);
+const CollectionLogo = ({ size, src }: { size: number; src?: string }) =>
+  src ? (
+    <img
+      src={src}
+      style={{
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        top: -size / 2,
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        position: 'absolute',
+      }}
+    />
+  ) : null;
 
 const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
   const { query } = useAppRouter();
@@ -129,16 +129,16 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
         >
           <div
             className="absolute h-120px bg-carbon m-auto items-center
-              desktop:container mx-auto min-h-screen desktop:px-72px tablet:px-72px w-full mobile:hidden tablet:flex desktop:flex"
+              mx-auto min-h-screen mobile:hidden tablet:flex desktop:flex left-[-72px] right-[-72px] px-72px"
             style={{
               marginTop: -60,
             }}
           >
-            <CollectionLogo size={120} />
+            <CollectionLogo size={120} src={collectionData.logoSrc} />
             <NavBack />
           </div>
           <div className="h-100px flex items-center desktop:hidden tablet:hidden relative">
-            <CollectionLogo size={80} />
+            <CollectionLogo size={80} src={collectionData.logoSrc} />
             <NavBack />
           </div>
           <p className="font-rblack mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase desktop:pt-60px tablet:pt-60px mobile:pt-0">
