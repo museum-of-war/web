@@ -119,7 +119,25 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
             <p className="whitespace-pre-line pt-10 desktop:w-65% tablet:w-65% mobile:w-100% mobile:mb-6% desktop:pr-48px tablet:pr-48px mobile:pr-0">
               {collectionData.description}
             </p>
-            <p className="desktop:w-35% tablet:w-35% mobile-w100%">
+            <p
+              className="desktop:w-35% tablet:w-35% mobile-w100% relative self-center"
+              onClick={() => setVideoOpen(!!collectionData.videoSrc)}
+            >
+              {!!collectionData.videoSrc && (
+                <svg
+                  data-bbox="22.5 22.5 155 155"
+                  viewBox="0 0 200 200"
+                  height="100"
+                  width="100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  data-type="shape"
+                  className="fill-white hover:fill-black cursor-pointer absolute m-auto left-0 top-0 right-0 bottom-0 z-[1]"
+                >
+                  <g>
+                    <path d="M100 177.5c-42.8 0-77.5-34.7-77.5-77.5S57.2 22.5 100 22.5s77.5 34.7 77.5 77.5-34.7 77.5-77.5 77.5zm0-150.6c-40.4 0-73.1 32.7-73.1 73.1s32.7 73.1 73.1 73.1 73.1-32.7 73.1-73.1c-.1-40.3-32.8-73-73.1-73.1zm-15.2 99.6v-53l46 26.5-46 26.5zm4.4-45.4v37.7l32.7-18.9-32.7-18.8z" />
+                  </g>
+                </svg>
+              )}
               {collectionData.videoSrc?.includes('youtube') &&
               !collectionData.posterSrc ? (
                 <iframe
