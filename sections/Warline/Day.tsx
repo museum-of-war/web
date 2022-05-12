@@ -112,12 +112,18 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
       {/* @ts-ignore*/}
       <div
         {...(view === BY_DAY
-          ? {
+          ? dayData.events.length > 1 ? {
             className: 'grid gap-x-48px gap-y-24px',
             style: {
-              'grid-template-columns': 'repeat(auto-fit, minmax(176px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(176px, 1fr))',
             },
           }
+            : {
+              className: 'grid gap-x-48px gap-y-24px',
+              style: {
+                gridTemplateColumns: 'repeat(3, 1fr)'
+              }
+            }
           : {})}
       >
         {dayData.events.map((eventData, idx) => (
@@ -164,13 +170,27 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
         {/* @ts-ignore*/}
         <div
           {...(view === BY_DAY
-            ? {
-              className: 'grid gap-x-48px gap-y-24px',
-              style: {
-                gridTemplateColumns:
-                  'repeat(auto-fit, minmax(200px, 1fr))',
-              },
-            }
+            ? dayData.events.length > 1
+              ? {
+                className: 'grid gap-x-48px gap-y-24px',
+                style: {
+                  gridTemplateColumns:
+                    'repeat(auto-fit, minmax(200px, 1fr))',
+                },
+              }
+              : window && window.innerWidth <= 1155
+                ? {
+                  className: 'grid gap-x-48px gap-y-24px',
+                  style: {
+                    gridTemplateColumns: 'repeat(2, 1fr)',
+                  },
+                }
+                : {
+                  className: 'grid gap-x-48px gap-y-24px',
+                  style: {
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                  },
+                }
             : {})}
         >
           {dayData.events.map((eventData, idx) => (
