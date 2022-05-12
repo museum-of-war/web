@@ -14,21 +14,36 @@ import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import PageHead from '@components/PageHead';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 
-const NavBack = ({ classNames }: { classNames?: string }) => (
-  <div className={classNames}>
-    <Link href={'/auction'} passHref>
-      <div className="h-[48px] flex items-center cursor-pointer group desktop:mt-20px tablet:mt-20px mobile:mt-0">
-        <img
-          alt="arrow back"
-          src={'/img/down-white.svg'}
-          className="rotate-90 flex-grow-0 leading-[48px]"
-        />
-        <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
-          All collections
-        </span>
-      </div>
-    </Link>
-  </div>
+const NavBack = () => (
+  <Link href={'/auction'} passHref>
+    <div className="h-[48px] flex items-center cursor-pointer group">
+      <img
+        alt="arrow back"
+        src={'/img/down-white.svg'}
+        className="rotate-90 flex-grow-0 leading-[48px]"
+      />
+      <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
+        All collections
+      </span>
+    </div>
+  </Link>
+);
+
+const CollectionLogo = ({ size }: { size: number }) => (
+  <div
+    className="border-4 border-white"
+    style={{
+      width: size,
+      height: size,
+      background: 'red',
+      borderRadius: '50%',
+      top: -size / 2,
+      left: 0,
+      right: 0,
+      margin: 'auto',
+      position: 'absolute',
+    }}
+  />
 );
 
 const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
@@ -40,12 +55,23 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [collectionData, setCollectionData] = useState<AuctionCollectionType>();
+  const [mintFetched, setMintFetched] = useState(false);
 
   useEffect(() => {
-    canMintSecondDrop().then((val) =>
-      val ? setCanMint(true) : canMint().then((i) => setCanMint(i)),
-    );
-  }, [canMint, canMintSecondDrop]);
+    if (collectionData && !mintFetched) {
+      canMintSecondDrop().then((val) => {
+        if (val) {
+          setCanMint(true);
+          setMintFetched(true);
+        } else {
+          canMint().then((i) => {
+            setCanMint(i);
+            setMintFetched(true);
+          });
+        }
+      });
+    }
+  }, [collectionData]);
 
   useEffect(() => {
     setCollectionData(AuctionCollectionData[query.id as AuctionCollections]);
@@ -102,16 +128,20 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
           style={{ marginTop: '-8%', paddingTop: menuOpen ? 452 : 456 }}
         >
           <div
-            className="absolute h-100px bg-carbon m-auto items-center
-          desktop:container mx-auto min-h-screen desktop:px-72px tablet:px-72px mobile:px-24px w-full mobile:hidden tablet:flex desktop:flex"
+            className="absolute h-120px bg-carbon m-auto items-center
+              desktop:container mx-auto min-h-screen desktop:px-72px tablet:px-72px w-full mobile:hidden tablet:flex desktop:flex"
             style={{
-              marginTop: -100,
+              marginTop: -60,
             }}
           >
+            <CollectionLogo size={120} />
             <NavBack />
           </div>
-          <NavBack classNames="desktop:hidden tablet:hidden h-100px  flex items-center" />
-          <p className="font-rblack mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase">
+          <div className="h-100px flex items-center desktop:hidden tablet:hidden relative">
+            <CollectionLogo size={80} />
+            <NavBack />
+          </div>
+          <p className="font-rblack mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase desktop:pt-60px tablet:pt-60px mobile:pt-0">
             {collectionData.name}
           </p>
           <div className="h-5px w-100% bg-carbon dark:bg-white" />
@@ -204,4 +234,3 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
 
 export default CollectionDetailsPage;
 // todo @current back link underline
-// todo @current breakpoints

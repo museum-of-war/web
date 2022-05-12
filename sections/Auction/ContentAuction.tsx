@@ -51,10 +51,6 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
           }),
         );
 
-        console.log(response);
-        console.log(filteredData[0]);
-        console.log(AuctionCollectionData[filteredData[0]!.category]);
-
         setData(
           response.map((datum, index) => ({
             ...AuctionCollectionData[filteredData[index]!.category],
