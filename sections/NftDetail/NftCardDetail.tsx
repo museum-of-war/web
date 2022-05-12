@@ -61,14 +61,14 @@ const BidCard = ({
 
   useEffect(() => {
     getUsdPriceFromETH(currentBid).then(setUsdPrice);
-  }, []);
+  }, [currentBid]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft(`${endsIn}`));
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [endsIn]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -336,6 +336,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                       index={item.index}
                       imageSrc={item.imageSrc}
                       name={item.name}
+                      startsAt={collectionData.startsAt}
                       endsIn={collectionData.endsIn}
                       contractAddress={collectionData.contractAddress}
                       tokenId={item.tokenId}

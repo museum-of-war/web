@@ -16,31 +16,43 @@ import {
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
+import { AuctionCollections } from '@sections/types';
 
 type ContentAuctionProps = {
-  isCollection?: boolean;
+  collection?: AuctionCollections;
 };
 
-const ContentAuction = ({ isCollection = false }: ContentAuctionProps) => {
+const ContentAuction = ({ collection }: ContentAuctionProps) => {
   const { isTablet, isMobile, isDesktop } = useViewPort();
   const [data, setData] = useState<any[]>([]);
+  const [isCollection, setIsCollection] = useState<boolean>(false);
   const { getAuctionInfo } = useWeb3Modal();
   const { push } = useAppRouter();
+
+  useEffect(() => {
+    setIsCollection(!!collection);
+    setSelectedCategory(collection ?? FILTER_OPTIONS_CATEGORIES[0]?.value);
+  }, [collection]);
 
   useEffect(() => {
     const getEnrichedData = async () => {
       try {
         const response = await Promise.all(
-          AuctionData.map((datum) => {
-            return getAuctionInfo(
-              AuctionCollectionData[datum.category].contractAddress,
-              datum.tokenId,
-            );
+          AuctionData.filter((d) =>
+            collection ? d.category === collection : true,
+          ).map((datum) => {
+            return AuctionCollectionData[datum.category].contractAddress
+              ? getAuctionInfo(
+                  AuctionCollectionData[datum.category].contractAddress,
+                  datum.tokenId,
+                )
+              : null;
           }),
         );
 
         setData(
           response.map((datum, index) => ({
+            ...AuctionCollectionData[AuctionData[index]!.category],
             ...AuctionData[index],
             ...datum,
           })),
@@ -51,11 +63,11 @@ const ContentAuction = ({ isCollection = false }: ContentAuctionProps) => {
     };
 
     getEnrichedData();
-  }, []);
+  }, [collection, getAuctionInfo]);
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedType, setSelectedType] = useState<string | undefined>(
-    FILTER_OPTIONS_TYPES[0]?.value,
+    FILTER_OPTIONS_TYPES[FILTER_OPTIONS_TYPES.length - 1]?.value,
   );
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
     FILTER_OPTIONS_CATEGORIES[0]?.value,
@@ -232,6 +244,7 @@ const ContentAuction = ({ isCollection = false }: ContentAuctionProps) => {
               index={item.index}
               imageSrc={item.imageSrc}
               name={item.name}
+              startsAt={item.startsAt}
               endsIn={item.endsIn}
               contractAddress={item.contractAddress}
               tokenId={item.tokenId}

@@ -131,7 +131,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
             )}
           </p>
         </div>
-        <ContentAuction isCollection />
+        <ContentAuction collection={query.id as AuctionCollections} />
         {openMintingModal ? (
           <MintingModal setOpenMintingModal={setOpenMintingModal} />
         ) : (

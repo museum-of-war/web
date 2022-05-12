@@ -40,8 +40,8 @@ const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
       videoSrc:
         'https://video.wixstatic.com/video/23d6fe_84f2f12b18864b0a8ac0c97402ebbe1a/1080p/mp4/file.mp4',
       contractAddress: AVATARS_ADDRESS,
-      startsAt: new Date('2022-05-19T21:15:00.000+03:00'),
-      endsIn: new Date('2022-05-22T21:15:00.000+03:00'),
+      startsAt: new Date('2022-05-19T21:45:00.000+03:00'),
+      endsIn: new Date('2022-05-22T22:00:00.000+03:00'),
     },
   };
 
