@@ -22,7 +22,7 @@ const NavBack = () => (
         src={'/img/down-white.svg'}
         className="rotate-90 flex-grow-0 leading-[48px]"
       />
-      <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
+      <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] hover:border-b-4 hover:border-white transition-[border-width]">
         All collections
       </span>
     </div>
@@ -233,4 +233,3 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
 };
 
 export default CollectionDetailsPage;
-// todo @current back link underline
