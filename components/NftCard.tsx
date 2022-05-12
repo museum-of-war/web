@@ -55,7 +55,7 @@ function NftCard({
           setIsSold(isSold);
         })
         .catch((error) => console.error(`NftCard ${error}`));
-  }, [contractAddress, getAuctionInfo, tokenId]);
+  }, [contractAddress, tokenId]);
 
   return (
     <div

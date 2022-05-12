@@ -36,24 +36,29 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
 
   useEffect(() => {
     const getEnrichedData = async () => {
+      const filteredData = AuctionData.filter((d) =>
+        collection ? d.category === collection : true,
+      );
       try {
         const response = await Promise.all(
-          AuctionData.filter((d) =>
-            collection ? d.category === collection : true,
-          ).map((datum) => {
+          filteredData.map((datum) => {
             return AuctionCollectionData[datum.category].contractAddress
               ? getAuctionInfo(
                   AuctionCollectionData[datum.category].contractAddress,
                   datum.tokenId,
                 )
-              : null;
+              : {};
           }),
         );
 
+        console.log(response);
+        console.log(filteredData[0]);
+        console.log(AuctionCollectionData[filteredData[0]!.category]);
+
         setData(
           response.map((datum, index) => ({
-            ...AuctionCollectionData[AuctionData[index]!.category],
-            ...AuctionData[index],
+            ...AuctionCollectionData[filteredData[index]!.category],
+            ...filteredData[index],
             ...datum,
           })),
         );
@@ -63,7 +68,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
     };
 
     getEnrichedData();
-  }, [collection, getAuctionInfo]);
+  }, [collection]);
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedType, setSelectedType] = useState<string | undefined>(

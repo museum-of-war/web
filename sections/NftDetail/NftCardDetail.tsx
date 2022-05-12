@@ -199,13 +199,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
       .finally(() => {
         hidePreloader();
       });
-  }, [
-    collectionData.contractAddress,
-    getAuctionInfo,
-    getOwnerOfNFT,
-    hidePreloader,
-    item.tokenId,
-  ]);
+  }, [collectionData.contractAddress, item.tokenId]);
 
   const handleToAuction = () => push('/auction');
 
