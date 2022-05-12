@@ -39,6 +39,7 @@ export enum AuctionCollections {
 export type AuctionCollectionType = {
   name: string;
   description: string;
+  logoSrc?: string;
   headerImageSrc: string;
   posterSrc?: string;
   videoSrc?: string;
