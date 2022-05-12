@@ -4,13 +4,19 @@ import Button from '@components/Button';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
-import { AuctionItemType, BidInfo } from '@sections/types';
+import {
+  AuctionCollections,
+  AuctionCollectionType,
+  AuctionItemType,
+  BidInfo,
+} from '@sections/types';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
 import { usePopup } from 'providers/PopupProvider';
 import { truncateAddress } from '@sections/utils';
 import { usePreloader } from '@providers/PreloaderProvider';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -55,14 +61,14 @@ const BidCard = ({
 
   useEffect(() => {
     getUsdPriceFromETH(currentBid).then(setUsdPrice);
-  }, []);
+  }, [currentBid]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft(`${endsIn}`));
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [endsIn]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -162,6 +168,9 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
 
   const [isSold, setSold] = useState<boolean>(false);
   const [tokenOwner, setTokenOwner] = useState<string>('');
+  const [collectionData, setCollectionData] = useState<AuctionCollectionType>(
+    AuctionCollectionData[AuctionCollections.firstDrop],
+  );
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     proposedBids: string[];
@@ -170,23 +179,27 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     buyNowPrice?: string;
   }>({ bid: '0', proposedBids: ['0'], fullInfo: '', bidHistory: [] });
 
-  useEffect(showPreloader, []);
+  useEffect(showPreloader, [showPreloader]);
 
   useEffect(() => {
-    getAuctionInfo(item.contractAddress, item.tokenId)
+    setCollectionData(AuctionCollectionData[item.category]);
+  }, [item.category]);
+
+  useEffect(() => {
+    getAuctionInfo(collectionData.contractAddress, item.tokenId)
       .then(async (i) => {
         setCurrentBid({ ...i });
         setSold(i.isSold);
         if (i.isSold)
           setTokenOwner(
-            await getOwnerOfNFT(item.contractAddress, item.tokenId),
+            await getOwnerOfNFT(collectionData.contractAddress, item.tokenId),
           );
       })
       .catch((error) => console.log(`NftCardDetail ${error}`))
       .finally(() => {
         hidePreloader();
       });
-  }, []);
+  }, [collectionData.contractAddress, item.tokenId]);
 
   const handleToAuction = () => push('/auction');
 
@@ -197,10 +210,10 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
           <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
             {isTablet ? (
               <BidCard
-                endsIn={item.endsIn}
+                endsIn={collectionData.endsIn}
                 proposedBids={currentBid.proposedBids}
                 currentBid={currentBid.bid}
-                contractAddress={item.contractAddress}
+                contractAddress={collectionData.contractAddress}
                 tokenId={item.tokenId}
                 isSale={item.isSale}
               />
@@ -212,7 +225,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                   if (item.isSale) {
                     try {
                       makeBid(
-                        item.contractAddress,
+                        collectionData.contractAddress,
                         item.tokenId,
                         currentBid.buyNowPrice!,
                       );
@@ -222,7 +235,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                   } else {
                     showPopup('bid', {
                       proposedBids: currentBid.proposedBids,
-                      contractAddress: item.contractAddress,
+                      contractAddress: collectionData.contractAddress,
                       tokenId: item.tokenId,
                     });
                   }
@@ -246,10 +259,10 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             ) : (
               <BidCard
                 isMobile={isMobile}
-                endsIn={item.endsIn}
+                endsIn={collectionData.endsIn}
                 proposedBids={currentBid.proposedBids}
                 currentBid={currentBid.bid}
-                contractAddress={item.contractAddress}
+                contractAddress={collectionData.contractAddress}
                 tokenId={item.tokenId}
                 isSale={item.isSale}
               />
@@ -317,8 +330,9 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                       index={item.index}
                       imageSrc={item.imageSrc}
                       name={item.name}
-                      endsIn={item.endsIn}
-                      contractAddress={item.contractAddress}
+                      startsAt={collectionData.startsAt}
+                      endsIn={collectionData.endsIn}
+                      contractAddress={collectionData.contractAddress}
                       tokenId={item.tokenId}
                       isSale={item.isSale}
                       type="small"

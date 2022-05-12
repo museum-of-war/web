@@ -22,6 +22,10 @@
     url("/fonts/RockStar-NarrowRegular.otf") format("truetype");
 }
 
+html.dark body {
+  background: rgb(33, 33, 33);
+}
+
 .font-rblack {
   font-family: RockstarBlack;
 }
