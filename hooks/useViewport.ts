@@ -7,7 +7,10 @@ export const useViewPort = () => {
   const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'), {
     noSsr: true,
   });
+  const isLaptop = useMediaQuery(theme.breakpoints.between('md', 'lg'), {
+    noSsr: true,
+  });
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), { noSsr: true });
 
-  return { isMobile, isTablet, isDesktop };
+  return { isMobile, isTablet, isDesktop, isLaptop };
 };

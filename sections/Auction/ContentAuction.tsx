@@ -23,7 +23,7 @@ type ContentAuctionProps = {
 };
 
 const ContentAuction = ({ collection }: ContentAuctionProps) => {
-  const { isTablet, isMobile, isDesktop } = useViewPort();
+  const { isTablet, isMobile, isDesktop, isLaptop } = useViewPort();
   const [data, setData] = useState<any[]>([]);
   const [isCollection, setIsCollection] = useState<boolean>(false);
   const { getAuctionInfo } = useWeb3Modal();
@@ -157,7 +157,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
       return result;
     }
 
-    if (isTablet) {
+    if (isTablet || isLaptop) {
       if (index === 0) {
         result.width = '100%';
         result.marginRight = 0;
