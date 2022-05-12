@@ -182,7 +182,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
     <>
       <div className="flex justify-between laptop:mt-[0px] tablet:mt-72px mobile:mt-[24px]">
         {!isTablet && !isMobile ? (
-          <div className="flex tablet:mb-[57px] ">
+          <div className="flex tablet:mb-[57px] laptop:mb-0">
             <div className="pr-20px">
               <PriceRange value={priceRange} setValue={setPriceRange} />
             </div>
