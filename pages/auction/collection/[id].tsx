@@ -120,7 +120,8 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
               {collectionData.description}
             </p>
             <p className="desktop:w-35% tablet:w-35% mobile-w100%">
-              {collectionData.videoSrc?.includes('youtube') ? (
+              {collectionData.videoSrc?.includes('youtube') &&
+              !collectionData.posterSrc ? (
                 <iframe
                   src={collectionData.videoSrc}
                   title="YouTube video player"
@@ -129,7 +130,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
                   allowFullScreen
                   className="m-auto h-100% w-100%"
                 />
-              ) : collectionData.posterSrc && !collectionData.videoSrc ? (
+              ) : collectionData.posterSrc ? (
                 <img
                   src={collectionData.posterSrc}
                   width="100%"
@@ -139,22 +140,6 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
                     !!collectionData.videoSrc ? 'cursor-pointer' : ''
                   } object-contain laptop:max-h-300px`}
                   onClick={() => setVideoOpen(!!collectionData.videoSrc)}
-                />
-              ) : collectionData.videoSrc ? (
-                <video
-                  className="cursor-pointer object-contain laptop:max-h-300px"
-                  role="presentation"
-                  crossOrigin="anonymous"
-                  playsInline
-                  preload="auto"
-                  muted
-                  loop
-                  width="100%"
-                  height="100%"
-                  autoPlay
-                  src={collectionData.videoSrc}
-                  poster={collectionData.posterSrc}
-                  onClick={() => setVideoOpen(true)}
                 />
               ) : null}
             </p>
@@ -176,9 +161,22 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
           <Dialog
             open={videoOpen}
             disablePortal
+            fullWidth
+            maxWidth="lg"
             onClose={() => setVideoOpen(false)}
           >
-            <video src={collectionData.videoSrc} autoPlay />
+            {collectionData.videoSrc?.includes('youtube') ? (
+              <iframe
+                src={collectionData.videoSrc}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="m-auto h-100% w-100% min-h-[75vmin]"
+              />
+            ) : (
+              <video src={collectionData.videoSrc} autoPlay />
+            )}
           </Dialog>
         </div>
       </div>
