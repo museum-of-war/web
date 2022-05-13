@@ -152,7 +152,7 @@ const Warline = () => {
         {warlineData.map((dayData, idx, arr) => (
           <Day key={idx} dayData={dayData} daysCount={arr.length} allEvents={allEvents} pageView={view} selectedByNewest={selectedByNewest} />
         ))}
-        <div className={`${isMobile || isTablet ? "mb-20%" : "ml-33%"}`}>
+        <div className={`${isMobile || isTablet ? 'mb-20%' : 'ml-33%'}`}>
           <SupportBanner setShowDonatePopup={setShowDonatePopup} />
         </div>
       </div>

@@ -1,32 +1,9 @@
-import {
-  AUCTION_END_DATE,
-  AUCTION_START_DATE,
-  FIRST_DROP_ADDRESS,
-  IMG_STORAGE,
-  PROSPECT_100_ADDRESS,
-} from '@sections/Constants';
-import { AuctionCategories, AuctionItemType } from '@sections/types';
-import WarlineData from '@sections/Warline/WarlineData';
+import { IMG_STORAGE } from '@sections/Constants';
+import { AuctionCollections, AuctionItemType } from '@sections/types';
 
-const AuctionData: Array<AuctionItemType> = [
-  ...WarlineData[0]!.events.slice(0, 4).map((event) => ({
-    name: `Day ${event.DayNo}, ${event.Time}`,
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.firstDrop,
-    contractAddress: FIRST_DROP_ADDRESS,
-    tokenId: +event.Tokenid,
-    imageSrc: `${IMG_STORAGE}/original/${event.ImageType}`,
-    artist: event.ArtistName,
-    descriptionEnglish: event.DescriptionEnglish,
-    descriptionUkrainian: event.DescriptionUkrainian,
-  })),
+const Prospect100AuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'PROSPECT 100 #2',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 2,
     imageSrc: `${IMG_STORAGE}/original/prospect100/2.jpg`,
     artist: 'Alexandra Lytle',
@@ -37,10 +14,6 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #3',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 3,
     imageSrc: `${IMG_STORAGE}/original/prospect100/3.jpg`,
     artist: 'Carl Knapper',
@@ -49,10 +22,6 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #4',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 4,
     imageSrc: `${IMG_STORAGE}/original/prospect100/4.jpg`,
     artist: 'Craig Howell',
@@ -61,10 +30,6 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #5',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 5,
     imageSrc: `${IMG_STORAGE}/original/prospect100/5.jpg`,
     artist: 'Flo Meissner',
@@ -73,10 +38,6 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #6',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 6,
     imageSrc: `${IMG_STORAGE}/original/prospect100/6.jpg`,
     artist: 'Jona Schmidt',
@@ -85,10 +46,6 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #7',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 7,
     imageSrc: `${IMG_STORAGE}/original/prospect100/7.jpg`,
     artist: 'Jordan Fretz',
@@ -97,10 +54,6 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #8',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 8,
     imageSrc: `${IMG_STORAGE}/original/prospect100/8.jpg`,
     artist: 'Kamil Przybylski',
@@ -110,10 +63,6 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #9',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 9,
     imageSrc: `${IMG_STORAGE}/original/prospect100/9.jpg`,
     artist: 'Nathan Zerafa',
@@ -126,10 +75,6 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #10',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 10,
     imageSrc: `${IMG_STORAGE}/original/prospect100/10.png`,
     artist: 'Luke Dixon',
@@ -138,10 +83,6 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #11',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 11,
     imageSrc: `${IMG_STORAGE}/original/prospect100/11.jpg`,
     artist: 'Stephen Sidney',
@@ -153,19 +94,16 @@ const AuctionData: Array<AuctionItemType> = [
   },
   {
     name: 'PROSPECT 100 #12',
-    startsAt: new Date(AUCTION_START_DATE),
-    endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCategories.prospect100,
-    contractAddress: PROSPECT_100_ADDRESS,
     tokenId: 12,
     imageSrc: `${IMG_STORAGE}/original/prospect100/12.jpg`,
     artist: 'Tanya Dare',
     descriptionEnglish:
       'Inspired by sources depicting both the physical and mental harm deployed on young children, as a result of this war. This digital art piece aims to communicate that ‘they shouldn’t have to know’; that this conflict is robbing them of their deserved childhood liveliness. The subject of the piece displays a childrens shape sorter toy without the usual shapes, but rather the imagery of war and violence - toys of bombs, bomber planes, explosions and bullets, with the bomb sorted into the wrong slot. It grapples with the idea that children shouldn’t have to understand the structure of war when they are so young, but it is the unfortunate reality of what these children will remember.',
   },
-].map((item, index) => ({
-  index,
+].map((item) => ({
+  isSale: false,
+  category: AuctionCollections.prospect100,
   ...item,
 }));
 
-export default AuctionData;
+export default Prospect100AuctionData;

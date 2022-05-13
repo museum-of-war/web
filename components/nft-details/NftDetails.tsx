@@ -165,7 +165,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     <div className="font-rnarrow">
       <div className="flex items-center mt-[-36px] mb-[24px]">
         <Link href={linkBack} passHref>
-          <div className="h-[48px] flex items-center  cursor-pointer group">
+          <div className="h-[48px] flex items-center cursor-pointer group">
             <img
               alt="Previous"
               src={'/img/down.svg'}

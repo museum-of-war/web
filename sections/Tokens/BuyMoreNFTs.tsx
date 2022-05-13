@@ -35,7 +35,7 @@ const BuyMoreNFTs = () => {
             className="font-rblack bg-carbon text-white rounded-full mt-5px px-32px py-18px tablet:py-12px"
             onClick={handleBuyNft}
           >
-            Buy more NFTs
+            Get more NFTs
           </button>
         </div>
       </div>

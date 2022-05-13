@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { DayType, EventType } from '@sections/types';
 import Event from './Event';
 import { useViewPort } from '@hooks/useViewport';
@@ -56,7 +56,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
             selectedByNewest={selectedByNewest}
           />
         </div>
-        <div className="mt-1px mb-20px h-5px w-100% bg-carbon"></div>
+        <div className="mt-1px mb-20px h-5px w-100% bg-carbon" />
       </div>
       {/* @ts-ignore*/}
       <div
@@ -151,7 +151,7 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
               {dayData.date}
             </p>
           </div>
-          <div className="mt-1px h-5px w-100% bg-carbon"></div>
+          <div className="mt-1px h-5px w-100% bg-carbon" />
           <DaysNavigation
             daysCount={daysCount}
             dayData={dayData}

@@ -27,7 +27,7 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
   const CTA =
     difference > 0
       ? 'Support Ukraine while waiting for the drop'
-      : 'Buy NFT to support Ukraine';
+      : 'Mint NFT to support Ukraine';
 
   const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(true);
@@ -75,7 +75,7 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
             }
           }}
         >
-          Buy NFT
+          Mint NFT
         </button>
       </div>
     );

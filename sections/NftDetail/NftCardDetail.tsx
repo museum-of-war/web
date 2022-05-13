@@ -4,12 +4,19 @@ import Button from '@components/Button';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
-import { AuctionItemType, BidInfo } from '@sections/types';
+import {
+  AuctionCollections,
+  AuctionCollectionType,
+  AuctionItemType,
+  BidInfo,
+} from '@sections/types';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
 import { usePopup } from 'providers/PopupProvider';
 import { truncateAddress } from '@sections/utils';
+import { usePreloader } from '@providers/PreloaderProvider';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -22,6 +29,8 @@ type BidCardProps = {
   proposedBids: string[];
   contractAddress: string;
   tokenId: number;
+  isSale: boolean;
+  buyNowPrice?: string;
 };
 
 const getUsdPriceFromETH = async (
@@ -42,19 +51,24 @@ const BidCard = ({
   endsIn,
   contractAddress,
   tokenId,
+  isSale,
+  buyNowPrice,
 }: BidCardProps) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
   const [usdPrice, setUsdPrice] = useState<string | null>(null);
   const { showPopup } = usePopup();
+  const { makeBid } = useWeb3Modal();
 
-  getUsdPriceFromETH(currentBid).then(setUsdPrice);
+  useEffect(() => {
+    getUsdPriceFromETH(currentBid).then(setUsdPrice);
+  }, [currentBid]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft(`${endsIn}`));
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [endsIn]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -69,7 +83,7 @@ const BidCard = ({
       <div className="flex items-start justify-between mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
         <div>
           <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
-            Current bid
+            {isSale ? 'Current price' : 'Current bid'}
           </p>
           <p className="mobile:text-27px tablet:text-32px font-rblack">
             {currentBid} ETH
@@ -126,9 +140,17 @@ const BidCard = ({
       {!isMobile && (
         <Button
           mode="custom"
-          label="Place Bid"
+          label={isSale ? 'Buy Now' : 'Place Bid'}
           onClick={() => {
-            showPopup('bid', { proposedBids, contractAddress, tokenId });
+            if (isSale) {
+              try {
+                makeBid(contractAddress, tokenId, buyNowPrice!);
+              } catch (error: any) {
+                console.error(error?.message ?? error);
+              }
+            } else {
+              showPopup('bid', { proposedBids, contractAddress, tokenId });
+            }
           }}
           className="bg-white text-carbon w-100% mt-24px"
         />
@@ -141,32 +163,46 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
   const { activePopupName, showPopup } = usePopup();
   const { push } = useAppRouter();
-  const { getAuctionInfo, getOwnerOfNFT } = useWeb3Modal();
+  const { makeBid, getAuctionInfo, getOwnerOfNFT } = useWeb3Modal();
+  const { hidePreloader, showPreloader } = usePreloader();
 
   const [isSold, setSold] = useState<boolean>(false);
   const [tokenOwner, setTokenOwner] = useState<string>('');
+  const [collectionData, setCollectionData] = useState<AuctionCollectionType>(
+    AuctionCollectionData[AuctionCollections.firstDrop],
+  );
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     proposedBids: string[];
     fullInfo: any;
     bidHistory: BidInfo[];
+    buyNowPrice?: string;
   }>({ bid: '0', proposedBids: ['0'], fullInfo: '', bidHistory: [] });
 
+  useEffect(showPreloader, [showPreloader]);
+
   useEffect(() => {
-    getAuctionInfo(item.contractAddress, item.tokenId)
+    setCollectionData(AuctionCollectionData[item.category]);
+  }, [item.category]);
+
+  useEffect(() => {
+    getAuctionInfo(collectionData.contractAddress, item.tokenId)
       .then(async (i) => {
         setCurrentBid({ ...i });
         setSold(i.isSold);
         if (i.isSold)
           setTokenOwner(
-            await getOwnerOfNFT(item.contractAddress, item.tokenId),
+            await getOwnerOfNFT(collectionData.contractAddress, item.tokenId),
           );
       })
-      .catch((error) => console.log(`NftCardDetail ${error}`));
-  }, []);
+      .catch((error) => console.log(`NftCardDetail ${error}`))
+      .finally(() => {
+        hidePreloader();
+      });
+  }, [collectionData.contractAddress, item.tokenId]);
 
   const handleToAuction = () => push('/auction');
-  console.log(currentBid);
+
   return (
     <>
       <div>
@@ -174,23 +210,36 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
           <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
             {isTablet ? (
               <BidCard
-                endsIn={item.endsIn}
+                endsIn={collectionData.endsIn}
                 proposedBids={currentBid.proposedBids}
                 currentBid={currentBid.bid}
-                contractAddress={item.contractAddress}
+                contractAddress={collectionData.contractAddress}
                 tokenId={item.tokenId}
+                isSale={item.isSale}
               />
             ) : (
               <Button
                 mode="custom"
-                label="Place Bid"
-                onClick={() =>
-                  showPopup('bid', {
-                    proposedBids: currentBid.proposedBids,
-                    contractAddress: item.contractAddress,
-                    tokenId: item.tokenId,
-                  })
-                }
+                label={item.isSale ? 'Buy Now' : 'Place Bid'}
+                onClick={() => {
+                  if (item.isSale) {
+                    try {
+                      makeBid(
+                        collectionData.contractAddress,
+                        item.tokenId,
+                        currentBid.buyNowPrice!,
+                      );
+                    } catch (error: any) {
+                      console.error(error?.message ?? error);
+                    }
+                  } else {
+                    showPopup('bid', {
+                      proposedBids: currentBid.proposedBids,
+                      contractAddress: collectionData.contractAddress,
+                      tokenId: item.tokenId,
+                    });
+                  }
+                }}
                 className="bg-white text-carbon w-100%"
               />
             )}
@@ -210,11 +259,12 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             ) : (
               <BidCard
                 isMobile={isMobile}
-                endsIn={item.endsIn}
+                endsIn={collectionData.endsIn}
                 proposedBids={currentBid.proposedBids}
                 currentBid={currentBid.bid}
-                contractAddress={item.contractAddress}
+                contractAddress={collectionData.contractAddress}
                 tokenId={item.tokenId}
+                isSale={item.isSale}
               />
             )}
             <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px mobile:mt-40px leading-[150%] tablet:mt-48px">
@@ -280,9 +330,11 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                       index={item.index}
                       imageSrc={item.imageSrc}
                       name={item.name}
-                      endsIn={item.endsIn}
-                      contractAddress={item.contractAddress}
+                      startsAt={collectionData.startsAt}
+                      endsIn={collectionData.endsIn}
+                      contractAddress={collectionData.contractAddress}
                       tokenId={item.tokenId}
+                      isSale={item.isSale}
                       type="small"
                     />
                   </div>

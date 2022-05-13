@@ -17,7 +17,6 @@ import {
 } from '@sections/Constants';
 import { NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
-import { BidInfo } from '@sections/types';
 import { Drop1Data, Drop2Data } from '@sections/Warline/WarlineData';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
@@ -115,16 +114,17 @@ export function useWeb3Modal() {
 
     const ownerAddr = owner;
 
-    const ownedNfts = (
-      await web3.alchemy.getNfts({
-        owner: ownerAddr,
-        contractAddresses: [
-          MetaHistoryAddress,
-          PROSPECT_100_ADDRESS,
-          SECOND_DROP_ADDRESS,
-        ],
-      })
-    ).ownedNfts;
+    const ownedNfts =
+      (
+        await web3.alchemy.getNfts({
+          owner: ownerAddr,
+          contractAddresses: [
+            MetaHistoryAddress,
+            PROSPECT_100_ADDRESS,
+            SECOND_DROP_ADDRESS,
+          ],
+        })
+      ).ownedNfts ?? [];
 
     function fixNftForDrop1(
       nft: typeof ownedNfts[number],
@@ -220,6 +220,7 @@ export function useWeb3Modal() {
 
     const isSold = auctionInfo.nftSeller === ethers.constants.AddressZero;
 
+    /*
     const bidInfos = isSold
       ? await Promise.all(
           ((await auction.queryFilter(auction.filters.BidMade())) as any[])
@@ -242,6 +243,7 @@ export function useWeb3Modal() {
             ),
         )
       : [];
+      */
 
     const hasBid = auctionInfo.nftHighestBid.gte(auctionInfo.minPrice);
     const bid = (
@@ -272,11 +274,14 @@ export function useWeb3Modal() {
 
     return {
       isSold,
-      bidHistory: bidInfos,
+      isSale: auctionInfo.minPrice.eq(0) && auctionInfo.buyNowPrice.gt(0),
+      //bidHistory: bidInfos,
+      bidHistory: [],
       bid: web3.utils.fromWei(bid.toString()),
       nextMinBid: web3.utils.fromWei(nextMinBid.toString()),
       proposedBids: proposedBidsETH,
       fullInfo: auctionInfo,
+      buyNowPrice: web3.utils.fromWei(auctionInfo.buyNowPrice.toString()),
     };
   }
 
@@ -298,7 +303,7 @@ export function useWeb3Modal() {
       0,
       {
         value: ethers.utils.parseEther(value.toString()),
-        gasLimit: 250000,
+        gasLimit: 250000, //TODO
       },
     );
   }
@@ -411,9 +416,13 @@ export function useWeb3Modal() {
 
     const price: BigNumber = await nftContract.price();
 
+    const estimatedGas = await nftContract.estimateGas.mint!(tokensCount, {
+      value: price.mul(tokensCount),
+    });
+
     const tx = await nftContract.mint(tokensCount, {
       value: price.mul(tokensCount),
-      gasLimit: 150000 + 15000 * tokensCount,
+      gasLimit: estimatedGas.mul(11).div(10),
     });
 
     await tx.wait();
@@ -456,14 +465,16 @@ export function useWeb3Modal() {
   async function getTotalFundsRaised() {
     const firstDropUnique = 4; // first four tokens were sold at auction
     const firstDropAirdrop =
-      3 + // three tokens were airdropped as quiz prizes
-      1; // one token was airdropped for retweet
+      3 + // quiz prizes
+      1; // for retweet
+    const secondDropAirdrop = 30; // for artsy
     const firstDropWeth = ethers.constants.WeiPerEther.mul(15)
       .div(100) // 0.15 ETH
       .mul(
         (await getFirstDropMintedCount()) -
           firstDropUnique -
-          firstDropAirdrop +
+          firstDropAirdrop -
+          secondDropAirdrop +
           (await getSecondDropMintedCount()),
       );
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction

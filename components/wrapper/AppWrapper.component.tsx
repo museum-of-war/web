@@ -3,11 +3,13 @@ import Footer from '@sections/Footer/Footer';
 import Header from '@sections/Header/Header';
 import { useEffect, useState } from 'react';
 import { PopupProvider } from '@providers/PopupProvider';
+import { PreloaderProvider } from '@providers/PreloaderProvider';
 
 export interface SharedProps {
   signerAddress: string;
   handleConnect: () => Promise<void>;
   handleDisconnect: () => void;
+  menuOpen: boolean;
 }
 
 interface WrapperProps {
@@ -40,29 +42,32 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
   }, [provider]);
 
   return (
-    <PopupProvider>
-      <div
-        className={`desktop:container mx-auto min-h-screen dark:bg-carbon
+    <PreloaderProvider>
+      <PopupProvider>
+        <div
+          className={`desktop:container mx-auto min-h-screen dark:bg-carbon
                      text-carbon dark:text-white overflow-clip
                      desktop:px-132px tablet:px-72px mobile:px-24px
-                     py-36px mobile:py-20px`}
-      >
-        <Header
-          signerAddress={signerAddress}
-          handleConnect={handleConnect}
-          handleDisconnect={handleDisconnect}
-          menuOpen={menuOpen}
-          setMenuOpen={setMenuOpen}
-        />
-        <div>
-          <Child
+                     pb-36px mobile:pb-20px`}
+        >
+          <Header
             signerAddress={signerAddress}
             handleConnect={handleConnect}
             handleDisconnect={handleDisconnect}
+            menuOpen={menuOpen}
+            setMenuOpen={setMenuOpen}
           />
-          <Footer />
+          <div className="pt-8%">
+            <Child
+              signerAddress={signerAddress}
+              handleConnect={handleConnect}
+              handleDisconnect={handleDisconnect}
+            menuOpen={menuOpen}
+            />
+            <Footer />
+          </div>
         </div>
-      </div>
-    </PopupProvider>
+      </PopupProvider>
+    </PreloaderProvider>
   );
 };

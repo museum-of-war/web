@@ -38,13 +38,13 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
 
   // set date and time according to ISO8601 !!!
   const event: AddToCallendarEvent = {
-    name: 'META HISTORY NFTs second drop',
+    name: 'Avatars for Ukraine Auction',
     description:
-      'META HISTORY NFTs second drop on [url]https://metahistory.gallery/[/url]',
-    startDate: '2022-05-01',
-    startTime: '23:59:59',
-    endDate: '2022-05-02',
-    endTime: '00:15:00',
+      'Avatars for Ukraine Auction on [url]https://metahistory.gallery/auction/collection/avatars[/url]',
+    startDate: '2022-05-19',
+    startTime: '21:45:00',
+    endDate: '2022-05-22',
+    endTime: '22:00:00',
     timeZone: 'Europe/Kiev',
     options: [
       'Apple',
@@ -56,7 +56,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
       'Yahoo',
     ],
     trigger: 'click',
-    iCalFileName: 'MetaHistory second drop',
+    iCalFileName: 'Avatars for Ukraine Auction',
   };
 
   return !timerEnd ? (
@@ -65,7 +65,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
       <div className="flex mobile:my-16px tablet:my-0 tablet:flex-row laptop:items-center tablet:items-center mobile:flex-col mobile:items-start">
         <div className="flex laptop:items-center tablet:items-start laptop:flex-row mobile:flex-col">
           <div className="tablet:text-20px laptop:mr-24px tablet:leading-48px tablet:mb-0 mobile:mb-10px mobile:text-18px mobile:leading-20px font-rlight">
-            The next drop will be in:
+            Avatars for Ukraine will be in:
           </div>
           <div className="flex flex-row items-center tablet:my-7 mobile:my-0">
             <div className="flex laptop:flex-row mobile:flex-col laptop:items-center mobile:items-start">

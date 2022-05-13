@@ -14,26 +14,51 @@ import {
   EMPTY_NFT_SELLER,
 } from './cosntants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useAppRouter } from '@hooks/useAppRouter';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
+import { AuctionCollections } from '@sections/types';
 
-type ContentAuctionProps = {};
+type ContentAuctionProps = {
+  collection?: AuctionCollections;
+};
 
-const ContentAuction = ({}: ContentAuctionProps) => {
+const ContentAuction = ({ collection }: ContentAuctionProps) => {
   const { isTablet, isMobile, isDesktop } = useViewPort();
   const [data, setData] = useState<any[]>([]);
+  const [isCollection, setIsCollection] = useState<boolean>(false);
   const { getAuctionInfo } = useWeb3Modal();
+  const { push } = useAppRouter();
+
+  useEffect(() => {
+    setIsCollection(!!collection);
+    setSelectedCategory(collection ?? FILTER_OPTIONS_CATEGORIES[0]?.value);
+  }, [collection]);
 
   useEffect(() => {
     const getEnrichedData = async () => {
+      const filteredData = AuctionData.filter((d) =>
+        collection ? d.category === collection : true,
+      );
       try {
         const response = await Promise.all(
-          AuctionData.map((datum) => {
-            return getAuctionInfo(datum.contractAddress, datum.tokenId);
+          filteredData.map((datum) => {
+            return AuctionCollectionData[datum.category].contractAddress
+              ? getAuctionInfo(
+                  AuctionCollectionData[datum.category].contractAddress,
+                  datum.tokenId,
+                )
+              : {};
           }),
         );
 
+        console.log(response);
+        console.log(filteredData[0]);
+        console.log(AuctionCollectionData[filteredData[0]!.category]);
+
         setData(
           response.map((datum, index) => ({
-            ...AuctionData[index],
+            ...AuctionCollectionData[filteredData[index]!.category],
+            ...filteredData[index],
             ...datum,
           })),
         );
@@ -43,11 +68,11 @@ const ContentAuction = ({}: ContentAuctionProps) => {
     };
 
     getEnrichedData();
-  }, []);
+  }, [collection]);
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedType, setSelectedType] = useState<string | undefined>(
-    FILTER_OPTIONS_TYPES[0]?.value,
+    FILTER_OPTIONS_TYPES[FILTER_OPTIONS_TYPES.length - 1]?.value,
   );
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
     FILTER_OPTIONS_CATEGORIES[0]?.value,
@@ -107,7 +132,10 @@ const ContentAuction = ({}: ContentAuctionProps) => {
   }, [data, selectedType, selectedCategory, priceRange, selectedSort]);
 
   const handleChangeType = (v?: string) => setSelectedType(v);
-  const handleChangeCategory = (v?: string) => setSelectedCategory(v);
+  const handleChangeCategory = (v?: string) => {
+    push(`/auction/collection/${v}`);
+    setSelectedCategory(v);
+  };
   const handleChangeSort = (v?: string) => selSelectedSort(v);
   const toggleDrawer = () => setOpen((state) => !state);
   const closeDrawer = () => setOpen(false);
@@ -170,20 +198,22 @@ const ContentAuction = ({}: ContentAuctionProps) => {
                 className="w-[162px]"
               />
             </div>
-            <div className="px-20px">
-              <DropdownSelect
-                options={FILTER_OPTIONS_CATEGORIES}
-                selectedValue={selectedCategory}
-                onChange={handleChangeCategory}
-                className="w-[211px]"
-              />
-            </div>
+            {isCollection ? null : (
+              <div className="px-20px">
+                <DropdownSelect
+                  options={FILTER_OPTIONS_CATEGORIES}
+                  selectedValue={selectedCategory}
+                  onChange={handleChangeCategory}
+                  className="w-[211px]"
+                />
+              </div>
+            )}
           </div>
         ) : (
           <Button
             mode="primary"
             label={
-              <div className="flex align-center justify-between">
+              <div className="flex items-center justify-between">
                 <span className="mr-16px">
                   {isMobile ? 'Filters and Sorting' : 'Filters'}
                 </span>
@@ -193,7 +223,7 @@ const ContentAuction = ({}: ContentAuctionProps) => {
               </div>
             }
             onClick={openDrawer}
-            className={isMobile ? 'mobile: w-full ' : ''}
+            className={isMobile ? 'mobile:w-full h-48px' : ''}
           />
         )}
         {!isMobile && (
@@ -219,9 +249,11 @@ const ContentAuction = ({}: ContentAuctionProps) => {
               index={item.index}
               imageSrc={item.imageSrc}
               name={item.name}
+              startsAt={item.startsAt}
               endsIn={item.endsIn}
               contractAddress={item.contractAddress}
               tokenId={item.tokenId}
+              isSale={item.isSale}
             />
           </div>
         ))}

@@ -28,7 +28,7 @@ function Toggle({ active, onClick, option1, option2 }: ToggleProps) {
         <span className="text-14px leading-36px">{option1}</span>
       </button>
       <button
-        className={`w-50%
+        className={`w-50% 
         transition-colors duration-300 ease-in
         focus:outline-none
         rounded-full
@@ -40,7 +40,7 @@ function Toggle({ active, onClick, option1, option2 }: ToggleProps) {
         <span className="text-14px leading-36px">{option2}</span>
       </button>
     </div>
-  )
+  );
 }
 
 export default Toggle;

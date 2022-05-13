@@ -57,9 +57,9 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
             setOpenMintingModal(true);
           } else {
             if (isNFTDrop) {
-              openInNewTab(MINT_LINK)
+              openInNewTab(MINT_LINK);
             } else {
-              openInNewTab(OPENSEA_LINK)
+              openInNewTab(OPENSEA_LINK);
             }
           }
         }}
