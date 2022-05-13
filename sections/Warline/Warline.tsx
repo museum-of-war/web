@@ -79,12 +79,6 @@ const Warline = () => {
     return () => window.removeEventListener('scroll', onScrollHandler);
   }, []);
 
-  // const sortByDate = (warlineData: DayType[]) => {
-  //   if (selectedByNewest === BY_NEWEST_BY_OLDEST_OPTIONS[1]?.value) {
-  //     return warlineData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-  //   }
-  //   return warlineData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  // }
   const sortByDate = (warlineData: DayType[]) => {
     if (selectedByNewest === BY_NEWEST_BY_OLDEST_OPTIONS[1]?.value) {
       const sorted = warlineData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
