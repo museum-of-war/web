@@ -34,7 +34,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
 
   const CTA = !isNFTDrop
     ? 'Support Ukraine while waiting for the drop'
-    : 'Buy random NFT to support Ukraine';
+    : 'Mint random NFT to support Ukraine';
 
   const { isMobile, isTablet } = useViewPort();
   const [showBtn, setShowBtn] = useState<boolean>(false);
@@ -64,7 +64,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
           }
         }}
       >
-        Buy NFT Now
+        Mint NFT Now
       </button>
     </div>
   );
@@ -79,7 +79,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
       {isNFTDrop ?
         <Button
           mode="primary"
-          label="Buy Random NFT Now"
+          label="Mint Random NFT Now"
           className="text-14px leading-48px w-100% py-6 border-carbon mb-10px shadow-3xl"
           onClick={() => {
             setShowDonatePopup(true);
@@ -108,9 +108,6 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
       <p className="font-rblack text-30px leading-36px text-white">
         {CTA}
       </p>
-      {/* <p className="font-rlight pt-15px text-14px text-white">
-        Не дозволь цій хронології продовжитись
-      </p> */}
       <div>
         {stickyButton}
       </div>
