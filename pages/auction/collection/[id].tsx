@@ -201,7 +201,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
           {isCanMint && (
             <DropNft
               desc="Meanwhile, the current drop is still on sale. The NFTs are unique but any NFT will support Ukraine. Get yours."
-              buttonLabel="Buy NFT Now"
+              buttonLabel="Mint NFT Now"
               className="desktop:mb-120px tablet:mb-96px mobile:mb-[60px] tablet:my-72px mobile:my-40px"
               handleClick={handleBuyNft}
             />

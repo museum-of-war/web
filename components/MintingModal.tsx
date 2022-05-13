@@ -43,6 +43,8 @@ const MintingModal = ({ setOpenMintingModal }: MintingModalProps) => {
         <p className="tablet:text-16px tablet:leading-24px tablet:mt-24px mobile:mt-20px">
           Select how many tokens you want to mint.
           <br />
+          You will mint random NFTs from those that are currently on sale.
+          <br />
           Each NFT will cost 0.15 ETH.
         </p>
         <div className="flex tablet:flex-row tablet:items-center tablet:mt-48px mobile:mt-40px mobile:flex-col mobile:items-start">
@@ -83,7 +85,7 @@ const MintingModal = ({ setOpenMintingModal }: MintingModalProps) => {
           }`}
           round={false}
           disabled={isLoading}
-          label="Mint NFT Now"
+          label="Mint Now"
           onClick={() => {
             setIsLoading(true);
             mintSecondDrop(amount)
