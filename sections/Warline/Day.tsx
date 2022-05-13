@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DayType, EventType } from '@sections/types';
 import Event from './Event';
 import { useViewPort } from '@hooks/useViewport';
@@ -13,7 +13,13 @@ type PropsDay = {
   selectedByNewest: string | undefined;
 };
 
-const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: PropsDay) => {
+const Day = ({
+  dayData,
+  daysCount,
+  allEvents,
+  pageView,
+  selectedByNewest,
+}: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
   const [view, setView] = useState<string>(pageView);
 
@@ -62,11 +68,11 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
       <div
         {...(view === BY_DAY
           ? {
-            className: 'grid gap-24px',
-            style: {
-              gridTemplateColumns: 'repeat(auto-fit, minmax(124px, 1fr))',
-            },
-          }
+              className: 'grid gap-24px',
+              style: {
+                gridTemplateColumns: 'repeat(auto-fit, minmax(124px, 1fr))',
+              },
+            }
           : {})}
       >
         {dayData.events.map((eventData, idx) => (
@@ -112,18 +118,19 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
       {/* @ts-ignore*/}
       <div
         {...(view === BY_DAY
-          ? dayData.events.length > 1 ? {
-            className: 'grid gap-x-48px gap-y-24px',
-            style: {
-              gridTemplateColumns: 'repeat(auto-fit, minmax(176px, 1fr))',
-            },
-          }
-            : {
-              className: 'grid gap-x-48px gap-y-24px',
-              style: {
-                gridTemplateColumns: 'repeat(3, 1fr)'
+          ? dayData.events.length > 1
+            ? {
+                className: 'grid gap-x-48px gap-y-24px',
+                style: {
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(176px, 1fr))',
+                },
               }
-            }
+            : {
+                className: 'grid gap-x-48px gap-y-24px',
+                style: {
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                },
+              }
           : {})}
       >
         {dayData.events.map((eventData, idx) => (
@@ -172,20 +179,19 @@ const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: Prop
           {...(view === BY_DAY
             ? dayData.events.length > 1
               ? {
-                className: 'grid gap-x-48px gap-y-24px',
-                style: {
-                  gridTemplateColumns:
-                    'repeat(auto-fit, minmax(200px, 1fr))',
-                },
-              }
+                  className: 'grid gap-x-48px gap-y-24px',
+                  style: {
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  },
+                }
               : window && window.innerWidth <= 1155
-                ? {
+              ? {
                   className: 'grid gap-x-48px gap-y-24px',
                   style: {
                     gridTemplateColumns: 'repeat(2, 1fr)',
                   },
                 }
-                : {
+              : {
                   className: 'grid gap-x-48px gap-y-24px',
                   style: {
                     gridTemplateColumns: 'repeat(3, 1fr)',
