@@ -148,8 +148,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
       }
       if (index === 0) {
         result.marginRight = 48;
-      } else {
+      } else if (isCollection) {
         result.marginRight = (index - 1) % 2 ? 48 : 0;
+      } else {
+        result.marginRight = (index - 1) % 4 ? 48 : 0;
       }
 
       result.marginTop = 72;
@@ -250,7 +252,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               contractAddress={item.contractAddress}
               tokenId={item.tokenId}
               isSale={item.isSale}
-              isCollection
+              isCollection={isCollection}
             />
           </div>
         ))}
