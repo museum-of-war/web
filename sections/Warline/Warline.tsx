@@ -79,11 +79,25 @@ const Warline = () => {
     return () => window.removeEventListener('scroll', onScrollHandler);
   }, []);
 
+  // const sortByDate = (warlineData: DayType[]) => {
+  //   if (selectedByNewest === BY_NEWEST_BY_OLDEST_OPTIONS[1]?.value) {
+  //     return warlineData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  //   }
+  //   return warlineData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  // }
   const sortByDate = (warlineData: DayType[]) => {
     if (selectedByNewest === BY_NEWEST_BY_OLDEST_OPTIONS[1]?.value) {
-      return warlineData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      const sorted = warlineData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      sorted.forEach((day) => {
+        day.events.sort((a, b) => new Date(`${day.date} ${a.Time}`).getTime() - new Date(`${day.date} ${b.Time}`).getTime())
+      })
+      return sorted;
     }
-    return warlineData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    const sorted = warlineData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    sorted.forEach((day) => {
+      day.events.sort((a, b) => new Date(`${day.date} ${b.Time}`).getTime() - new Date(`${day.date} ${a.Time}`).getTime())
+    })
+    return sorted;
   }
 
   useEffect(() => {
