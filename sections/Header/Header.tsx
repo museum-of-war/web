@@ -79,7 +79,7 @@ const Header = ({
   ) : (
     <div className="h-100px flex flex-row items-center justify-between z-20">
       <img
-        className="w-10% min-w-75px laptop:mr-30% tablet:mr-25% cursor-pointer"
+        className="w-10% min-w-75px desktop:mr-30% tablet:mr-25% cursor-pointer"
         src={`${
           isDarkTheme
             ? '/img/pd-logoNoSymbol-black.svg'

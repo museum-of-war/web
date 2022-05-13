@@ -245,13 +245,13 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             )}
           </div>
         )}
-        <div className="flex mt-40px mobile:flex-col laptop:flex-row  justify-between">
-          <div className="laptop:w-[48%] mobile: w-full">
+        <div className="flex mt-40px mobile:flex-col desktop:flex-row justify-between">
+          <div className="desktop:w-[48%] mobile: w-full">
             <img alt={item.name} src={item.imageSrc} />
           </div>
-          <div className="laptop:w-[48%] mobile: w-full">
+          <div className="desktop:w-[48%] mobile: w-full">
             {isSold ? (
-              <p className="mobile:text-27px tablet:text-32px font-rblack  mobile:mt-20px laptop:mt-[0px]">
+              <p className="mobile:text-27px tablet:text-32px font-rblack  mobile:mt-20px desktop:mt-[0px]">
                 Sold
               </p>
             ) : isTablet ? (
@@ -273,7 +273,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px leading-[150%] mt-24px">
               {item.descriptionUkrainian}
             </p>
-            <div className="font-rlight flex mobile:flex-col laptop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
+            <div className="font-rlight flex mobile:flex-col desktop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
               <div className="flex mobile:flex-col tablet:flex-row text-16px">
                 <div className="flex">
                   {item.artist?.length > 0 && (
@@ -289,7 +289,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 </div>
               </div>
               {isSold && (
-                <div className="flex text-16px laptop:mt-24px tablet:ml-48px laptop:ml-[0px]">
+                <div className="flex text-16px desktop:mt-24px tablet:ml-48px desktop:ml-[0px]">
                   <p>Owner:</p>
                   <p className="ml-[8px]" title={tokenOwner}>
                     {truncateAddress(tokenOwner, 13)}
@@ -298,14 +298,14 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
               )}
             </div>
             {isSold && false /*TODO*/ && (
-              <div className="mobile:mt-60px tablet:mt-72px laptop:mt-96px">
+              <div className="mobile:mt-60px tablet:mt-72px desktop:mt-96px">
                 <p className="mobile:text-27px tablet:text-32px font-rblack mobile:mb-30px tablet:mb-36px">
                   Bids history
                 </p>
                 <BidsHistoryTable bids={currentBid.bidHistory} />
               </div>
             )}
-            <div className="laptop:mt-96px mobile:my-60px tablet:mt-72px">
+            <div className="desktop:mt-96px mobile:my-60px tablet:mt-72px">
               <div className="flex items-center mobile:mb-[20px] tablet:mb-24px">
                 <p className="mobile:text-27px tablet:text-32px font-rblack">
                   More auctions

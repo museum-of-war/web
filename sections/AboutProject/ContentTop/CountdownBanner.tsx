@@ -22,11 +22,15 @@ export const calculateTimeLeft = (endDate: string) => {
         isLeft: true,
       }
     : {
-      isLeft: false,
-    };
+        isLeft: false,
+      };
 };
 
-const CountdownBanner = ({ endDate, hideDate, className }: PropsCountdownBanner) => {
+const CountdownBanner = ({
+  endDate,
+  hideDate,
+  className,
+}: PropsCountdownBanner) => {
   const { push } = useAppRouter();
   const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
 
@@ -45,20 +49,21 @@ const CountdownBanner = ({ endDate, hideDate, className }: PropsCountdownBanner)
 
   const timerComponents: JSX.Element[] = [];
 
-  if (timeLeft.isLeft) (Object.keys(timeLeft) as (keyof typeof timeLeft)[]).forEach((interval) => {
-    if (interval === 'isLeft') return;
+  if (timeLeft.isLeft)
+    (Object.keys(timeLeft) as (keyof typeof timeLeft)[]).forEach((interval) => {
+      if (interval === 'isLeft') return;
 
-    timerComponents.push(
-      <div className="text-white">
-        <p className="font-rblack mobile:text-30px mobile:leading-30px laptop:text-50px laptop:leading-50px pt-20px tracking-wide">
-          {timeLeft[interval]}
-        </p>
-        <p className="font-rlight mobile:text-12px laptop:text-20px capitalize tracking-wide ">
-          {interval}{' '}
-        </p>
-      </div>,
-    );
-  });
+      timerComponents.push(
+        <div className="text-white">
+          <p className="font-rblack mobile:text-30px mobile:leading-30px desktop:text-50px desktop:leading-50px pt-20px tracking-wide">
+            {timeLeft[interval]}
+          </p>
+          <p className="font-rlight mobile:text-12px desktop:text-20px capitalize tracking-wide ">
+            {interval}{' '}
+          </p>
+        </div>,
+      );
+    });
 
   return (
     <>
@@ -66,11 +71,15 @@ const CountdownBanner = ({ endDate, hideDate, className }: PropsCountdownBanner)
         className={`bg-carbon w-100% px-10% py-5% mt-4% ${className}`}
         id="countdown-banner"
       >
-        <p className="font-rblack text-28px text-white">{timeLeft.isLeft ? 'Auction Closing Ceremony starts in:' : 'Join the Auction Closing Ceremony:'} </p>
-        {( timeLeft.isLeft &&
-          <div className='flex flex-row items-center flex-wrap laptop:w-100% tablet:w-50% mobile:w-100%'>
+        <p className="font-rblack text-28px text-white">
+          {timeLeft.isLeft
+            ? 'Auction Closing Ceremony starts in:'
+            : 'Join the Auction Closing Ceremony:'}{' '}
+        </p>
+        {timeLeft.isLeft && (
+          <div className="flex flex-row items-center flex-wrap desktop:w-100% tablet:w-50% mobile:w-100%">
             {timerComponents.map((timer, idx) => (
-              <div key={idx} className='mobile:mr-20px laptop:mr-50px'>
+              <div key={idx} className="mobile:mr-20px desktop:mr-50px">
                 {timer}
               </div>
             ))}
@@ -81,8 +90,9 @@ const CountdownBanner = ({ endDate, hideDate, className }: PropsCountdownBanner)
           <SupportButton
             label={timeLeft.isLeft ? 'Go to Auction' : 'Go to Ceremony'}
             onClick={() => {
-              timeLeft.isLeft ? push('/auction') :
-                openInNewTab('https://enter.party.space/metahistory');
+              timeLeft.isLeft
+                ? push('/auction')
+                : openInNewTab('https://enter.party.space/metahistory');
             }}
           />
         </div>

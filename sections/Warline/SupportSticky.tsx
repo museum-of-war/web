@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import SupportButton from "../../components/SupportButton";
-import { useViewPort } from "@hooks/useViewport";
-import { MINT_LINK, OPENSEA_LINK } from "@sections/Constants";
-import { openInNewTab } from "@sections/utils";
-import { useWeb3Modal } from "@hooks/useWeb3Modal";
+import React, { useEffect, useState } from 'react';
+import SupportButton from '../../components/SupportButton';
+import { useViewPort } from '@hooks/useViewport';
+import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
+import { openInNewTab } from '@sections/utils';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { SECOND_DROP_DATE } from '@sections/Constants';
-import { useCountdown } from "@hooks/useCountdown";
-import MintingModal from "@components/MintingModal";
-import Button from "@components/Button";
+import { useCountdown } from '@hooks/useCountdown';
+import MintingModal from '@components/MintingModal';
+import Button from '@components/Button';
 
 type PropsSupportSticky = {
   setShowDonatePopup: (arg: boolean) => void;
@@ -50,7 +50,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
   ) : (
     <div className={`mr-4% pb-5px`}>
       <button
-        className={`font-rblack text-white  rounded-full   border-2 px-25px py-12px whitespace-nowrap border-white mobile:text-12px tablet:text-14px laptop:text-14px desktop:text-16px
+        className={`font-rblack text-white rounded-full border-2 px-25px py-12px whitespace-nowrap border-white mobile:text-12px tablet:text-14px desktop:text-16px
         hover:border-2 hover:shadow-[0_0_0_1px_rgba(255,255,255,1)]`}
         onClick={() => {
           if (timerEnd) {

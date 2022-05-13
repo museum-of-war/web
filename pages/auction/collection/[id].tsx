@@ -13,23 +13,39 @@ import { AuctionCollections, AuctionCollectionType } from '@sections/types';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import PageHead from '@components/PageHead';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
+import { Parallax } from 'react-parallax';
 
-const NavBack = ({ classNames }: { classNames?: string }) => (
-  <div className={classNames}>
-    <Link href={'/auction'} passHref>
-      <div className="h-[48px] flex items-center cursor-pointer group desktop:mt-20px tablet:mt-20px mobile:mt-0">
-        <img
-          alt="arrow back"
-          src={'/img/down-white.svg'}
-          className="rotate-90 flex-grow-0 leading-[48px]"
-        />
-        <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
-          All collections
-        </span>
-      </div>
-    </Link>
-  </div>
+const NavBack = () => (
+  <Link href={'/auction'} passHref>
+    <div className="h-[48px] flex items-center cursor-pointer group">
+      <img
+        alt="arrow back"
+        src={'/img/down-white.svg'}
+        className="rotate-90 flex-grow-0 leading-[48px]"
+      />
+      <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] hover:border-b-4 hover:border-white">
+        All collections
+      </span>
+    </div>
+  </Link>
 );
+
+const CollectionLogo = ({ size, src }: { size: number; src?: string }) =>
+  src ? (
+    <img
+      src={src}
+      style={{
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        top: -size / 2,
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        position: 'absolute',
+      }}
+    />
+  ) : null;
 
 const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
   const { query } = useAppRouter();
@@ -40,12 +56,23 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [collectionData, setCollectionData] = useState<AuctionCollectionType>();
+  const [mintFetched, setMintFetched] = useState(false);
 
   useEffect(() => {
-    canMintSecondDrop().then((val) =>
-      val ? setCanMint(true) : canMint().then((i) => setCanMint(i)),
-    );
-  }, [canMint, canMintSecondDrop]);
+    if (collectionData && !mintFetched) {
+      canMintSecondDrop().then((val) => {
+        if (val) {
+          setCanMint(true);
+          setMintFetched(true);
+        } else {
+          canMint().then((i) => {
+            setCanMint(i);
+            setMintFetched(true);
+          });
+        }
+      });
+    }
+  }, [collectionData]);
 
   useEffect(() => {
     setCollectionData(AuctionCollectionData[query.id as AuctionCollections]);
@@ -90,32 +117,38 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
         ]}
       />
       <div>
-        <img
-          src={collectionData.headerImageSrc}
-          alt={collectionData.name + ' Cover Image'}
-          width="100%"
-          style={{ height: 456 }}
-          className="absolute left-0 top-100px z-0 object-cover"
-        />
+        <div className="absolute left-0 top-100px z-0 right-0">
+          <Parallax
+            strength={300}
+            style={{ height: 456, width: '100%' }}
+            bgImage={collectionData.headerImageSrc}
+            bgImageAlt={`${collectionData.name} Cover Image`}
+            bgImageStyle={{ height: 456, objectFit: 'cover' }}
+          />
+        </div>
         <div
           className="relative"
           style={{ marginTop: '-8%', paddingTop: menuOpen ? 452 : 456 }}
         >
           <div
-            className="absolute h-100px bg-carbon m-auto items-center
-          desktop:container mx-auto min-h-screen desktop:px-72px tablet:px-72px mobile:px-24px w-full mobile:hidden tablet:flex desktop:flex"
+            className="absolute h-120px bg-carbon m-auto items-center
+              mx-auto min-h-screen mobile:hidden tablet:flex desktop:flex left-[-72px] right-[-72px] px-72px"
             style={{
-              marginTop: -100,
+              marginTop: -60,
             }}
           >
+            <CollectionLogo size={120} src={collectionData.logoSrc} />
             <NavBack />
           </div>
-          <NavBack classNames="desktop:hidden tablet:hidden h-100px  flex items-center" />
-          <p className="font-rblack mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase">
+          <div className="h-100px flex items-center desktop:hidden tablet:hidden relative">
+            <CollectionLogo size={80} src={collectionData.logoSrc} />
+            <NavBack />
+          </div>
+          <p className="font-rblack mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase desktop:pt-60px tablet:pt-60px mobile:pt-0">
             {collectionData.name}
           </p>
           <div className="h-5px w-100% bg-carbon dark:bg-white" />
-          <div className="desktop:py-40px laptop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-row mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
+          <div className="desktop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-row mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
             <p className="whitespace-pre-line pt-10 desktop:w-65% tablet:w-65% mobile:w-100% mobile:mb-6% desktop:pr-48px tablet:pr-48px mobile:pr-0">
               {collectionData.description}
             </p>
@@ -156,7 +189,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
                   alt={collectionData.name + ' Poster'}
                   className={`${
                     !!collectionData.videoSrc ? 'cursor-pointer' : ''
-                  } object-contain laptop:max-h-300px`}
+                  } object-contain desktop:max-h-300px`}
                   onClick={() => setVideoOpen(!!collectionData.videoSrc)}
                 />
               ) : null}
@@ -172,7 +205,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
             <DropNft
               desc="Meanwhile, the current drop is still on sale. The NFTs are unique but any NFT will support Ukraine. Get yours."
               buttonLabel="Mint NFT Now"
-              className="laptop:mb-120px tablet:mb-96px mobile:mb-[60px] tablet:my-72px mobile:my-40px"
+              className="desktop:mb-120px tablet:mb-96px mobile:mb-[60px] tablet:my-72px mobile:my-40px"
               handleClick={handleBuyNft}
             />
           )}
@@ -203,5 +236,3 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
 };
 
 export default CollectionDetailsPage;
-// todo @current back link underline
-// todo @current breakpoints

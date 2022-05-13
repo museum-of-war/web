@@ -51,10 +51,6 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
           }),
         );
 
-        console.log(response);
-        console.log(filteredData[0]);
-        console.log(AuctionCollectionData[filteredData[0]!.category]);
-
         setData(
           response.map((datum, index) => ({
             ...AuctionCollectionData[filteredData[index]!.category],
@@ -145,13 +141,15 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
     const result: React.CSSProperties = {};
 
     if (isDesktop) {
-      if (index < 2) {
+      if (index < 2 || isCollection) {
         result.width = 'calc((100% - 48px) / 2)';
       } else {
         result.width = 'calc((100% - 144px) / 4)';
       }
       if (index === 0) {
         result.marginRight = 48;
+      } else if (isCollection) {
+        result.marginRight = (index - 1) % 2 ? 48 : 0;
       } else {
         result.marginRight = (index - 1) % 4 ? 48 : 0;
       }
@@ -184,10 +182,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
 
   return (
     <>
-      <div className="flex justify-between laptop:mt-[0px] tablet:mt-72px mobile:mt-[24px]">
+      <div className="flex justify-between desktop:mt-[0px] tablet:mt-72px mobile:mt-[24px]">
         {!isTablet && !isMobile ? (
-          <div className="flex -mx-10px tablet:mb-[57px] ">
-            <div className="px-20px">
+          <div className="flex tablet:mb-[57px] desktop:mb-0">
+            <div className="pr-20px">
               <PriceRange value={priceRange} setValue={setPriceRange} />
             </div>
             <div className="px-20px">
@@ -235,7 +233,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
           />
         )}
       </div>
-      <div className="flex flex-wrap -mx-16px">
+      <div className="flex flex-wrap">
         {filteredData.map((item, index) => (
           <div
             className={`mobile:px-24px tablet:px-0 desktop:px-0 ${
@@ -254,6 +252,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               contractAddress={item.contractAddress}
               tokenId={item.tokenId}
               isSale={item.isSale}
+              isCollection={isCollection}
             />
           </div>
         ))}
@@ -269,6 +268,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
           handleChangeCategory={handleChangeCategory}
           priceRange={priceRange}
           setPriceRange={setPriceRange}
+          isCollection={isCollection}
         />
       )}
     </>

@@ -25,7 +25,12 @@ const MintingModal = ({ setOpenMintingModal }: MintingModalProps) => {
   return (
     <>
       <div className="fixed z-10 w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70" />
-      <div className="font-rnarrow text-carbon flex flex-col tablet:justify-between mobile:justify-center fixed z-20 tablet:w-496px laptop:w-544px tablet:h-auto mobile:w-screen100% mobile:h-screen100% bg-white tablet:top-50% tablet:left-50% mobile:top-0 mobile:left-0 tablet:-translate-x-50% tablet:-translate-y-50% mobile:translate-x-0 mobile:translate-y-0 laptop:p-72px tablet:p-48px mobile:p-24px">
+      <div
+        className="font-rnarrow text-carbon flex flex-col tablet:justify-between mobile:justify-center fixed z-20
+          tablet:w-496px desktop:w-544px tablet:h-auto mobile:w-screen100% mobile:h-screen100% bg-white tablet:top-50%
+          tablet:left-50% mobile:top-0 mobile:left-0 tablet:-translate-x-50% tablet:-translate-y-50% mobile:translate-x-0
+          mobile:translate-y-0 desktop:p-72px tablet:p-48px mobile:p-24px"
+      >
         <button
           className="absolute right-48px top-48px"
           onClick={() => setOpenMintingModal(false)}

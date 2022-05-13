@@ -65,6 +65,7 @@ type TabletDrawerProps = {
   handleChangeType: (v?: string) => void;
   handleChangeCategory: (v?: string) => void;
   setPriceRange: Dispatch<SetStateAction<{ from: string; to: string }>>;
+  isCollection: boolean;
 };
 
 const TabletDrawer = ({
@@ -77,6 +78,7 @@ const TabletDrawer = ({
   setPriceRange,
   handleChangeType,
   handleChangeCategory,
+  isCollection,
 }: TabletDrawerProps) => {
   const [selectedTypeState, setSelectedTypeState] = useState<
     string | undefined
@@ -93,17 +95,22 @@ const TabletDrawer = ({
     setPriceRange({ from: '', to: '' });
     setPriceRangeState({ from: '', to: '' });
 
-    handleChangeCategory(FILTER_OPTIONS_CATEGORIES[0]?.value);
-    setSelectedCategoryState(FILTER_OPTIONS_CATEGORIES[0]?.value);
-
     handleChangeType(FILTER_OPTIONS_TYPES[0]?.value);
     setSelectedTypeState(FILTER_OPTIONS_TYPES[0]?.value);
+
+    if (!isCollection) {
+      handleChangeCategory(FILTER_OPTIONS_CATEGORIES[0]?.value);
+      setSelectedCategoryState(FILTER_OPTIONS_CATEGORIES[0]?.value);
+    }
   };
   const handleApply = () => {
     setPriceRange(priceRangeState);
-    handleChangeCategory(selectedCategoryState);
     handleChangeType(selectedTypeState);
     closeDrawer();
+
+    if (!isCollection) {
+      handleChangeCategory(selectedCategoryState);
+    }
   };
 
   return (
@@ -166,20 +173,22 @@ const TabletDrawer = ({
                 />
               ))}
             </div>
-            <div>
-              <p className="font-rlight text-16px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
-                Category
-              </p>
-              {FILTER_OPTIONS_CATEGORIES.map((i) => (
-                <SelectItem
-                  text={i.text}
-                  value={i.value}
-                  key={i.value}
-                  selected={selectedCategoryState}
-                  onChange={(value) => setSelectedCategoryState(value)}
-                />
-              ))}
-            </div>
+            {isCollection ? null : (
+              <div>
+                <p className="font-rlight text-16px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
+                  Category
+                </p>
+                {FILTER_OPTIONS_CATEGORIES.map((i) => (
+                  <SelectItem
+                    text={i.text}
+                    value={i.value}
+                    key={i.value}
+                    selected={selectedCategoryState}
+                    onChange={(value) => setSelectedCategoryState(value)}
+                  />
+                ))}
+              </div>
+            )}
             <div className="flex justify-between tablet:mt-100px mobile:mt-20px">
               <Button
                 mode="custom"

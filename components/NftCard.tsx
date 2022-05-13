@@ -7,6 +7,7 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 type NftCardProps = {
   type?: string;
   orderIndex: number;
+  isCollection?: boolean;
 };
 
 function NftCard({
@@ -20,6 +21,7 @@ function NftCard({
   tokenId,
   type,
   isSale,
+  isCollection,
 }: Pick<AuctionItemType, 'imageSrc' | 'name' | 'index' | 'tokenId' | 'isSale'> &
   Pick<AuctionCollectionType, 'contractAddress' | 'endsIn' | 'startsAt'> &
   NftCardProps) {
@@ -40,7 +42,6 @@ function NftCard({
   useEffect(() => {
     const interval = setInterval(() => {
       const isStarted = !calculateTimeLeft(`${startsAt ?? new Date()}`).isLeft;
-      //console.log(startsAt);
       setIsStarted(isStarted);
       setTimeLeft(calculateTimeLeft(`${isStarted ? endsIn : startsAt}`));
     }, 1000);
@@ -60,14 +61,19 @@ function NftCard({
   return (
     <div
       onClick={navlinkToNft}
-      className="mobile:my-15px tablet:my-0 desktop:my-0 mobile:border-0 tablet:border-4 desktop:border-4 border-carbon border-solid hover:border-4 hover:border-white hover:border-solid hover:cursor-pointer"
+      className="
+        mobile:my-15px tablet:my-0 desktop:my-0 mobile:border-0 tablet:border-4 desktop:border-4 border-carbon
+        border-solid hover:border-4 hover:border-white hover:border-solid hover:cursor-pointer
+       "
     >
-      <div className="flex justify-center">
+      <div className="flex justify-center relative">
         <img
           alt={name}
           src={imageSrc}
           className={`${
-            orderIndex! < 2 && !type ? 'laptop:h-[544px]' : 'laptop:h-[240px]'
+            (orderIndex! < 2 || isCollection) && !type
+              ? 'desktop:h-[544px]'
+              : 'desktop:h-[240px]'
           } ${!orderIndex && !type ? 'tablet:h-[624px]' : 'tablet:h-[288px]'}
           mobile:h-[270px] object-contain`}
         />

@@ -9,14 +9,14 @@ const ContentChapter = ({}: ContentChapterProps) => {
   const handleCardClick = (route: string) => () => push(route);
 
   return (
-    <div className="flex flex-wrap justify-center -mx-24px laptop:mb-120px tablet:mb-100px mobile:mb-60px">
+    <div className="flex flex-wrap justify-center -mx-24px desktop:mb-120px tablet:mb-100px mobile:mb-60px">
       <div className="tablet:w-1/2 mobile:w-full flex flex-col self-stretch px-24px">
         <div
           className="hover:cursor-pointer "
           onClick={handleCardClick('/warline')}
         >
           <div className="border-4 border-carbon border-solid flex-1 flex flex-col text-carbon">
-            <div className="laptop:p-48px tablet:py-48px tablet:px:36px mobile:py-20px mobile:px-24px flex-1 flex flex-col">
+            <div className="desktop:p-48px tablet:py-48px tablet:px-36px mobile:py-20px mobile:px-24px flex-1 flex flex-col">
               <h1 className="tablet:text-32px mobile:text-27px font-rblack">
                 Warline
               </h1>
@@ -41,7 +41,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
           onClick={handleCardClick('/auction/collection/avatars')}
         >
           <div className="border-4 border-carbon border-solid  flex-1 flex flex-col">
-            <div className="laptop:p-48px tablet:py-48px tablet:px:36px mobile:py-20px mobile:px-24px flex-1 flex flex-col text-white bg-carbon">
+            <div className="desktop:p-48px tablet:py-48px tablet:px-36px mobile:py-20px mobile:px-24px flex-1 flex flex-col text-white bg-carbon">
               <h1 className="tablet:text-32px mobile:text-27px font-rblack">
                 Avatars for Ukraine
               </h1>
