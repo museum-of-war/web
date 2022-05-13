@@ -23,7 +23,7 @@ const Warline = () => {
   const [warlineData, setWarlineData] = useState<DayType[]>([]);
   const [view, setView] = useState<string>(BY_HOUR);
   const [byType, setByType] = useState<string>(ALL_ARTS);
-  const [selectedByNewest, setSelectedByNewest] = useState<string | undefined>(BY_NEWEST_BY_OLDEST_OPTIONS[1]?.value);
+  const [selectedByNewest, setSelectedByNewest] = useState<string | undefined>(BY_NEWEST_BY_OLDEST_OPTIONS[0]?.value);
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
 
   const sordByNewestHandler = (v?: string) => setSelectedByNewest(v);

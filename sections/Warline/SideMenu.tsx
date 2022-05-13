@@ -54,13 +54,20 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, byType, setByType, selectedBy
     setShowSideMenu(false);
   }
 
+  const cancelAndCloseHandler = () => {
+    setSelectSortBy(selectedByNewest);
+    setSelectType(byType);
+    setViewInMenu(view);
+    setShowSideMenu(false);
+  }
+
   return (
-    <OutsideClickHandler onOutsideClick={() => setShowSideMenu(false)}>
+    <OutsideClickHandler onOutsideClick={cancelAndCloseHandler}>
       <div className={`fixed z-10 top-0 left-0 ease-in-out duration-300 ${showSideMenu ? 'translate-x-0' : '-translate-x-100%'} flex flex-col tablet:w-3/4 mobile:w-100% h-screen tablet:border-r-4 border-carbon bg-white tablet:p-48px mobile:p-24px`}>
 
         <div className="flex justify-between items-center">
           <p className="font-rblack text-32px leading-36px">Filters</p>
-          <button className="cursor-pointer" onClick={() => setShowSideMenu(false)}>
+          <button className="cursor-pointer" onClick={cancelAndCloseHandler}>
             <img src="img/close_icon.svg" alt="cliose" />
           </button>
         </div>
@@ -116,7 +123,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, byType, setByType, selectedBy
           <Button
             mode="secondary"
             label="Cancel"
-            onClick={() => setShowSideMenu(false)}
+            onClick={cancelAndCloseHandler}
             round={true}
             className="tablet:w-200px leading-24px tablet:text-16px mobile:text-14px mobile:w-124px"
           />

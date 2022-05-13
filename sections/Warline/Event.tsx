@@ -4,7 +4,6 @@ import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import Link from 'next/link';
-// import { ToggleOptionsType } from '@components/Toggle';
 import Button from '@components/Button';
 import { useAppRouter } from '@hooks/useAppRouter';
 import { BY_DAY } from './constants';
@@ -79,7 +78,7 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
               }}
             />
             {isOnSale && eventData.ImageType !== 'placeholder.png' && (
-              <div className="font-rblack absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
+              <div className="font-rblack cursor-pointer select-none absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
                 OnSale
               </div>
             )}
