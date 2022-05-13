@@ -6,7 +6,7 @@ type SupportButtonProps = {
   className?: string
 };
 
-const SupportButton = ({ label, onClick, className ="" }: SupportButtonProps) => {
+const SupportButton = ({ label, onClick, className = "" }: SupportButtonProps) => {
   return (
     <div className={`mr-4% pb-5px  `}>
       <button

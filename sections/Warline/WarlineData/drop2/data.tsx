@@ -4,6 +4,7 @@ export default [
   {
     dayNo: 7,
     date: '2 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '104',
@@ -97,6 +98,7 @@ export default [
   {
     dayNo: 8,
     date: '3 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '109',
@@ -407,6 +409,7 @@ export default [
   {
     dayNo: 9,
     date: '4 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '126',
@@ -574,6 +577,7 @@ export default [
   {
     dayNo: 10,
     date: '5 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '135',
@@ -829,6 +833,7 @@ export default [
   {
     dayNo: 11,
     date: '6 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '149',
@@ -1067,6 +1072,7 @@ export default [
   {
     dayNo: 12,
     date: '7 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '162',
@@ -1359,6 +1365,7 @@ export default [
   {
     dayNo: 13,
     date: '8 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '178',
@@ -1610,6 +1617,7 @@ export default [
   {
     dayNo: 14,
     date: '9 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '192',
@@ -1795,6 +1803,7 @@ export default [
   {
     dayNo: 15,
     date: '10 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '202',
@@ -2062,6 +2071,7 @@ export default [
   {
     dayNo: 16,
     date: '11 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '217',
@@ -2296,6 +2306,7 @@ export default [
   {
     dayNo: 17,
     date: '12 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '230',
@@ -2426,6 +2437,7 @@ export default [
   {
     dayNo: 18,
     date: '13 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '237',
@@ -2627,6 +2639,7 @@ export default [
   {
     dayNo: 19,
     date: '14 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '248',
@@ -2831,6 +2844,7 @@ export default [
   {
     dayNo: 20,
     date: '15 Mar 2022',
+    isOnSale: true,
     events: [
       {
         Tokenid: '259',

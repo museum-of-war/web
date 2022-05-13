@@ -1,26 +1,21 @@
-import React, { Dispatch, SetStateAction, useEffect  } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { DayType, EventType } from '@sections/types';
 import Event from './Event';
 import { useViewPort } from '@hooks/useViewport';
 import DaysNavigation from '@sections/Warline/DaysNavigation';
-import Toggle, { ToggleOptionsType } from '@components/Toggle';
+import { BY_DAY } from './constants';
 
 type PropsDay = {
   dayData: DayType;
   daysCount: number;
   allEvents: Array<EventType>;
-  pageView: ToggleOptionsType;
-  setView: Dispatch<SetStateAction<ToggleOptionsType>>;
+  pageView: string;
+  selectedByNewest: string | undefined;
 };
 
-const Day = ({
-  dayData,
-  daysCount,
-  allEvents,
-  pageView,
-  setView,
-}: PropsDay) => {
+const Day = ({ dayData, daysCount, allEvents, pageView, selectedByNewest }: PropsDay) => {
   const { isMobile, isTablet } = useViewPort();
+  const [view, setView] = useState<string>(pageView);
 
   useEffect(() => {
     setView(pageView);
@@ -58,19 +53,20 @@ const Day = ({
             onPrevDayClickHandler={() =>
               onScrollClick(`day-sticky-${dayData.dayNo - 1}`)
             }
+            selectedByNewest={selectedByNewest}
           />
         </div>
         <div className="mt-1px mb-20px h-5px w-100% bg-carbon" />
       </div>
       {/* @ts-ignore*/}
       <div
-        {...(pageView === 'days'
+        {...(view === BY_DAY
           ? {
-              className: 'grid gap-24px',
-              style: {
-                'grid-template-columns': 'repeat(auto-fit, minmax(124px, 1fr))',
-              },
-            }
+            className: 'grid gap-24px',
+            style: {
+              gridTemplateColumns: 'repeat(auto-fit, minmax(124px, 1fr))',
+            },
+          }
           : {})}
       >
         {dayData.events.map((eventData, idx) => (
@@ -82,7 +78,8 @@ const Day = ({
             idx={idx}
             eventsData={dayData.events}
             allEvents={allEvents}
-            view={pageView}
+            view={view}
+            isOnSale={dayData.isOnSale}
           />
         ))}
       </div>
@@ -107,18 +104,25 @@ const Day = ({
               onScrollClick(`day-sticky-${dayData.dayNo - 1}`)
             }
             direction="horizontal"
+            selectedByNewest={selectedByNewest}
           />
         </div>
         <div className="mt-1px mb-20px h-5px w-100% bg-carbon"></div>
       </div>
       {/* @ts-ignore*/}
       <div
-        {...(pageView === 'days'
-          ? {
+        {...(view === BY_DAY
+          ? dayData.events.length > 1 ? {
+            className: 'grid gap-x-48px gap-y-24px',
+            style: {
+              gridTemplateColumns: 'repeat(auto-fit, minmax(176px, 1fr))',
+            },
+          }
+            : {
               className: 'grid gap-x-48px gap-y-24px',
               style: {
-                'grid-template-columns': 'repeat(auto-fit, minmax(176px, 1fr))',
-              },
+                gridTemplateColumns: 'repeat(3, 1fr)'
+              }
             }
           : {})}
       >
@@ -131,7 +135,8 @@ const Day = ({
             idx={idx}
             eventsData={dayData.events}
             allEvents={allEvents}
-            view={pageView}
+            view={view}
+            isOnSale={dayData.isOnSale}
           />
         ))}
       </div>
@@ -139,7 +144,7 @@ const Day = ({
   ) : (
     <div className="mb-40px flex flex-row" id={`day-sticky-${dayData.dayNo}`}>
       <div className="w-248px">
-        <div className="sticky top-36px">
+        <div className="sticky top-100px">
           <div className="flex flex-col justify-start items-top">
             <p className="text-32px font-rblack">Day {dayData.dayNo}</p>
             <p className="mt-12px mb-24px text-14px font-rlight">
@@ -157,23 +162,35 @@ const Day = ({
               onScrollClick(`day-sticky-${dayData.dayNo - 1}`)
             }
             direction="horizontal"
+            selectedByNewest={selectedByNewest}
           />
-          <div className="mt-48px">
-            <Toggle active={pageView} onClick={setView} />
-          </div>
         </div>
       </div>
       <div className="ml-5% w-70%">
         {/* @ts-ignore*/}
         <div
-          {...(pageView === 'days'
-            ? {
+          {...(view === BY_DAY
+            ? dayData.events.length > 1
+              ? {
                 className: 'grid gap-x-48px gap-y-24px',
                 style: {
-                  'grid-template-columns':
+                  gridTemplateColumns:
                     'repeat(auto-fit, minmax(200px, 1fr))',
                 },
               }
+              : window && window.innerWidth <= 1155
+                ? {
+                  className: 'grid gap-x-48px gap-y-24px',
+                  style: {
+                    gridTemplateColumns: 'repeat(2, 1fr)',
+                  },
+                }
+                : {
+                  className: 'grid gap-x-48px gap-y-24px',
+                  style: {
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                  },
+                }
             : {})}
         >
           {dayData.events.map((eventData, idx) => (
@@ -185,7 +202,8 @@ const Day = ({
               idx={idx}
               eventsData={dayData.events}
               allEvents={allEvents}
-              view={pageView}
+              view={view}
+              isOnSale={dayData.isOnSale}
             />
           ))}
         </div>
