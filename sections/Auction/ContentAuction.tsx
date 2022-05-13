@@ -268,6 +268,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
           handleChangeCategory={handleChangeCategory}
           priceRange={priceRange}
           setPriceRange={setPriceRange}
+          isCollection={isCollection}
         />
       )}
     </>
