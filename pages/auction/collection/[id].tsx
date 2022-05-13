@@ -13,6 +13,7 @@ import { AuctionCollections, AuctionCollectionType } from '@sections/types';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import PageHead from '@components/PageHead';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
+import { Parallax } from 'react-parallax';
 
 const NavBack = () => (
   <Link href={'/auction'} passHref>
@@ -22,7 +23,7 @@ const NavBack = () => (
         src={'/img/down-white.svg'}
         className="rotate-90 flex-grow-0 leading-[48px]"
       />
-      <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] hover:border-b-4 hover:border-white transition-[border-width]">
+      <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] hover:border-b-4 hover:border-white">
         All collections
       </span>
     </div>
@@ -116,13 +117,15 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
         ]}
       />
       <div>
-        <img
-          src={collectionData.headerImageSrc}
-          alt={collectionData.name + ' Cover Image'}
-          width="100%"
-          style={{ height: 456 }}
-          className="absolute left-0 top-100px z-0 object-cover"
-        />
+        <div className="absolute left-0 top-100px z-0 right-0">
+          <Parallax
+            strength={300}
+            style={{ height: 456, width: '100%' }}
+            bgImage={collectionData.headerImageSrc}
+            bgImageAlt={`${collectionData.name} Cover Image`}
+            bgImageStyle={{ height: 456, objectFit: 'cover' }}
+          />
+        </div>
         <div
           className="relative"
           style={{ marginTop: '-8%', paddingTop: menuOpen ? 452 : 456 }}
