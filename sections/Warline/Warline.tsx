@@ -65,12 +65,20 @@ const Warline = () => {
     if (window && window.innerWidth >= 1500) {
       padding += (window.innerWidth - 1500) / 2;
     }
-    const desktopPaddingX = `px-[${padding}px]`
+    // const desktopPaddingX = `px-[${padding}px]`
     function onScrollHandler() {
       if (window && window.scrollY > (height ?? 0)) {
-        toggleComponentRef.current?.classList.add("mobile:sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "laptop:py-24px", "laptop:fixed", "laptop:left-60px", "laptop:px-72px", desktopPaddingX, "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
+        if (window && window.innerWidth >= 1500 && toggleComponentRef.current) {
+          toggleComponentRef.current.style.paddingLeft = `${padding}px`;
+          toggleComponentRef.current.style.paddingRight = `${padding}px`;
+        }
+        toggleComponentRef.current?.classList.add("mobile:sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "laptop:py-24px", "laptop:fixed", "laptop:left-60px", "laptop:px-72px", "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
       } else {
-        toggleComponentRef.current?.classList.remove("mobile:sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "laptop:py-24px", "laptop:fixed", "laptop:left-60", "laptop:px-72px", desktopPaddingX, "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
+        if (window && window.innerWidth >= 1500 && toggleComponentRef.current) {
+          toggleComponentRef.current.style.paddingLeft = `0`;
+          toggleComponentRef.current.style.paddingRight = `0`;
+        }
+        toggleComponentRef.current?.classList.remove("mobile:sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "laptop:py-24px", "laptop:fixed", "laptop:left-60", "laptop:px-72px", "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
       }
     }
 
