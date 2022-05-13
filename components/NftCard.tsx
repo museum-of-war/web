@@ -4,15 +4,18 @@ import { AuctionCollectionType, AuctionItemType } from '@sections/types';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
+import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 
 type NftCardProps = {
   type?: string;
   orderIndex: number;
   isCollection?: boolean;
+  breakpoints: BreakpointRatios;
 };
 
 function NftCard({
   imageSrc,
+  breakpoints,
   name,
   index,
   orderIndex,
@@ -73,7 +76,7 @@ function NftCard({
        `}
     >
       <div className="flex justify-center relative">
-        <img
+        <ScaledImage
           alt={name}
           src={imageSrc}
           className={`${
@@ -82,6 +85,7 @@ function NftCard({
               : 'desktop:h-[240px]'
           } ${!orderIndex && !type ? 'tablet:h-[624px]' : 'tablet:h-[288px]'}
           mobile:h-[270px] object-contain`}
+          breakpoints={breakpoints}
         />
       </div>
       <div className="p-10px">

@@ -342,6 +342,13 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                     key={item.index}
                   >
                     <NftCard
+                      breakpoints={[{
+                        lowerBound: 'tablet',
+                        ratio: 0.5,
+                      }, {
+                        lowerBound: 'laptop',
+                        ratio: 0.25,
+                      }]}
                       orderIndex={index}
                       index={item.index}
                       imageSrc={item.imageSrc}
