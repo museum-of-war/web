@@ -36,7 +36,6 @@ function NftCard({
     bid: string;
     nextMinBid: string;
   }>({ bid: '0', nextMinBid: '' });
-  const [showBlur, setShowBlur] = useState(false);
 
   const navlinkToNft = () => (isStarted ? push(`/auction/${index}`) : null);
 
@@ -59,14 +58,6 @@ function NftCard({
         .catch((error) => console.error(`NftCard ${error}`));
   }, [contractAddress, tokenId]);
 
-  useEffect(() => {
-    const res = localStorage.getItem('BLUR_EXPERIMENTAL');
-
-    if (res) {
-      setShowBlur(true);
-    }
-  }, []);
-
   return (
     <div
       onClick={navlinkToNft}
@@ -75,22 +66,11 @@ function NftCard({
         border-solid hover:border-4 hover:border-white hover:border-solid hover:cursor-pointer
        "
     >
-      <div
-        className={`flex justify-center relative ${showBlur ? 'relative' : ''}`}
-        style={showBlur ? { overflow: 'hidden' } : {}}
-      >
-        {showBlur ? (
-          <img
-            alt={name}
-            src={imageSrc}
-            style={{ filter: 'blur(25px)', opacity: 0.4, zoom: 2 }}
-            className={`z-0 absolute w-full h-full`}
-          />
-        ) : null}
+      <div className="flex justify-center relative">
         <img
           alt={name}
           src={imageSrc}
-          className={`${showBlur ? 'relative z-1' : ''} ${
+          className={`${
             (orderIndex! < 2 || isCollection) && !type
               ? 'desktop:h-[544px]'
               : 'desktop:h-[240px]'
