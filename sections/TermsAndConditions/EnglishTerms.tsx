@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const EnglishTerms = () => {
   return (
@@ -37,47 +37,47 @@ const EnglishTerms = () => {
         <ul>
           <li> · Website - https://metahistory.gallery;</li>
           <li>
-            {" "}
+            {' '}
             · Platform – Museum of War and marketplace located at the Website;
           </li>
           <li>
-            {" "}
+            {' '}
             · Museum of War – collection of NFTs revealing the real events of
             the putin’s war against Ukraine started 24/02/2022;
           </li>
           <li>
-            {" "}
+            {' '}
             · Ukrainian NFT Community – voluntary community of IT specialists
             who developed the Platform and ensure its further maintenance;
           </li>
           <li>
-            {" "}
+            {' '}
             · NFT – a unique digital asset in the form of a non-fungible token,
             that is the result of Work’s conversion by ‘minting’ into such a
             token;
           </li>
           <li>
-            {" "}
+            {' '}
             · Work - original visual artwork, animations, audio and photographs
-            or its digital reproduction created by an Author;{" "}
+            or its digital reproduction created by an Author;{' '}
           </li>
           <li>
-            {" "}
+            {' '}
             · Author – a person who has created a Work and convert it into NFT;
           </li>
           <li>
-            {" "}
+            {' '}
             · User – a person who sale and/or purchase NFTs at the Platform;
           </li>
           <li> · ETH – the cryptocurrency Ethereum;</li>
           <li>
-            {" "}
+            {' '}
             · MetaMask – the software cryptocurrency wallet used to interact
-            with the Ethereum blockchain, http:{" "}
+            with the Ethereum blockchain, http:{' '}
             <a href="https://metamask.io">https://metamask.io</a>;
           </li>
           <li>
-            {" "}
+            {' '}
             · Ministry of digital transformation (MDT) - is a central executive
             body responsible for the formation and implementation of state
             policy in the field of digitalization, open data, national
@@ -88,10 +88,10 @@ const EnglishTerms = () => {
             <a href="https://thedigital.gov.ua">https://thedigital.gov.ua</a>.
           </li>
           <li>
-            {" "}
+            {' '}
             · KUNA - a company, which acts as a technical service (including
             providing cryptocurrency wallet) provider under the relevant
-            Software license agreement.{" "}
+            Software license agreement.{' '}
           </li>
         </ul>
         <div></div>
@@ -156,31 +156,31 @@ const EnglishTerms = () => {
         <p>4.1.6. An Author understand and agree that: </p>
         <ul>
           <li>
-            {" "}
+            {' '}
             · an Author is solely responsible for the accuracy and content of
             his/her Work;
           </li>
           <li>
-            {" "}
+            {' '}
             · the Platform may refuse to allow to convert any Work into NFT for
-            any reason at its own discretion;{" "}
+            any reason at its own discretion;{' '}
           </li>
           <li>
-            {" "}
+            {' '}
             · the Platform may remove any NFT from the Platform without any
-            prior notice and for any reason at its own discretion;{" "}
+            prior notice and for any reason at its own discretion;{' '}
           </li>
           <li>
-            {" "}
+            {' '}
             · by providing a Work to or converting a Work with the Platform the
             Author bears responsibility and guarantees that by doing so the
             Author does not infringe intellectual property rights of others and
             will not infringe the copyright, trademark, patent, moral, database
             or other intellectual property rights that belong to other people
-            when creating any Work;{" "}
+            when creating any Work;{' '}
           </li>
           <li>
-            {" "}
+            {' '}
             · an Author gives unconditional and irrevocable consent to the
             Platform for use of Work/NFT for any advertising purposes and for
             any other purposes necessary for existence of the Platform and
@@ -260,7 +260,7 @@ const EnglishTerms = () => {
         <p>5.1. You accept these Terms in the following ways:</p>
         <ul>
           <li>
-            {" "}
+            {' '}
             · by clicking or tapping any button or box marked “accept” or
             “agree” (or a similar term) in connection with the Terms;
           </li>
@@ -295,18 +295,18 @@ const EnglishTerms = () => {
         <p>
           6.1. By converting the NFT with the Platform the Author transfers all
           of its tangible intellectual property rights on the Work/NFT to the
-          Platform including the following:{" "}
+          Platform including the following:{' '}
         </p>
         <ul>
           <li> · the right to use the Work/NFT;</li>
           <li> · the exclusive right to allow to use the Work/NFT;</li>
           <li>
-            {" "}
+            {' '}
             · the exclusive right to prevent the misuse of the Work/NFT,
             including the prohibition of such use;
           </li>
           <li>
-            {" "}
+            {' '}
             · any other intellectual property rights according to the applicable
             legislation with the exception of the right to personal
             non-commercial use and resale rights on the NFT, transferred to the
@@ -315,7 +315,7 @@ const EnglishTerms = () => {
             distribute, prepare derivative works, publicly perform, or publicly
             display the NFT or the music or the artwork therein. The User (in
             case of the further reselling) transfers all of its tangible
-            intellectual property rights on the NFT to a new owner of the NFT.{" "}
+            intellectual property rights on the NFT to a new owner of the NFT.{' '}
           </li>
         </ul>
         <p>
@@ -403,9 +403,13 @@ const EnglishTerms = () => {
         <p>
           You may choose to submit comments, complaints, ideas or other feedback
           about the Platform, including without limitation about how to improve
-          the Platform by using the following: Email:{" "}
+          the Platform by using the following:
+        </p>
+        <p>
+          Email:{' '}
           <a href="mailto:vk@metahistory.gallery">vk@metahistory.gallery</a>
         </p>
+        <p>Address: 01030, Ukraine, Kyiv, Taras Shevchenko blvd., 34</p>
       </div>
     </>
   );
