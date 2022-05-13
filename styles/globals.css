@@ -26,6 +26,14 @@ html.dark body {
   background: rgb(33, 33, 33);
 }
 
+#__next {
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
 .font-rblack {
   font-family: RockstarBlack;
 }

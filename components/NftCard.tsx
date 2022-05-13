@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { AuctionCollectionType, AuctionItemType } from '@sections/types';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useViewPort } from '@hooks/useViewport';
 
 type NftCardProps = {
   type?: string;
@@ -27,6 +28,7 @@ function NftCard({
   NftCardProps) {
   const { push } = useAppRouter();
   const { getAuctionInfo } = useWeb3Modal();
+  const { isTouch } = useViewPort();
   const [timeLeft, setTimeLeft] = useState(
     calculateTimeLeft(`${startsAt ?? endsIn}`),
   );
@@ -61,10 +63,14 @@ function NftCard({
   return (
     <div
       onClick={navlinkToNft}
-      className="
+      className={`
         mobile:my-15px tablet:my-0 desktop:my-0 mobile:border-0 tablet:border-4 desktop:border-4 border-carbon
-        border-solid hover:border-4 hover:border-white hover:border-solid hover:cursor-pointer
-       "
+        border-solid ${
+          isTouch
+            ? ''
+            : 'hover:border-4 hover:border-white hover:border-solid hover:cursor-pointer'
+        }
+       `}
     >
       <div className="flex justify-center relative">
         <img
