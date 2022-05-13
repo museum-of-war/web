@@ -72,9 +72,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
               <span className="font-rblack tablet:text-32px mobile:text-27px desktop:leading-48px tablet:leading-36px mobile:leading-30px mr-7px">
                 {days.length < 2 ? '0' + days : days}
               </span>
-              <p className="text-16px leading-24px desktop:mb-6 tablet:mb-0">
-                Days
-              </p>
+              <p className="text-16px leading-24px tablet:mb-0">Days</p>
             </div>
 
             <div className="flex desktop:flex-row mobile:flex-col desktop:items-center mobile:items-start ml-24px">
