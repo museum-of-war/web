@@ -11,7 +11,14 @@ import { DayType, EventType } from '@sections/types';
 import { PopupProvider } from '@providers/PopupProvider';
 import Blurb from '@sections/AboutProject/Blurb';
 import Toggle from '@components/Toggle';
-import { BY_HOUR, BY_DAY, ALL_ARTS, ON_SALE, BY_NEWEST_BY_OLDEST_OPTIONS } from './constants';
+import {
+  BY_HOUR,
+  BY_DAY,
+  ALL_ARTS,
+  ON_SALE,
+  BY_NEWEST_BY_OLDEST_OPTIONS,
+} from './constants';
+import DropdownSelect from '@components/DropdownSelect';
 
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
@@ -20,7 +27,9 @@ const Warline = () => {
   const [warlineData, setWarlineData] = useState<DayType[]>([]);
   const [view, setView] = useState<string>(BY_HOUR);
   const [byType, setByType] = useState<string>(ALL_ARTS);
-  const [selectedByNewest, setSelectedByNewest] = useState<string | undefined>(BY_NEWEST_BY_OLDEST_OPTIONS[0]?.value);
+  const [selectedByNewest, setSelectedByNewest] = useState<string | undefined>(
+    BY_NEWEST_BY_OLDEST_OPTIONS[0]?.value,
+  );
   const [showSideMenu, setShowSideMenu] = useState<boolean>(false);
 
   const sordByNewestHandler = (v?: string) => setSelectedByNewest(v);
@@ -41,7 +50,7 @@ const Warline = () => {
       let result = sortByDate(WarlineData);
       setWarlineData([...result]);
     }
-  }
+  };
 
   useEffect(() => {
     sortByTypeHandler();
@@ -49,10 +58,7 @@ const Warline = () => {
 
   const allEvents = useMemo(() => {
     return WarlineData.reduce((all: Array<EventType>, dayData: DayType) => {
-      return [
-        ...all,
-        ...dayData.events,
-      ]
+      return [...all, ...dayData.events];
     }, []);
   }, []);
 
@@ -69,13 +75,45 @@ const Warline = () => {
           toggleComponentRef.current.style.paddingLeft = `${padding}px`;
           toggleComponentRef.current.style.paddingRight = `${padding}px`;
         }
-        toggleComponentRef.current?.classList.add("mobile:sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "laptop:py-24px", "laptop:fixed", "laptop:left-60px", "laptop:px-72px", "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
+        toggleComponentRef.current?.classList.add(
+          'mobile:sticky',
+          'top-0',
+          'w-screen',
+          'bg-white',
+          'shadow-lg',
+          'desktop:py-24px',
+          'desktop:fixed',
+          'desktop:left-60px',
+          'desktop:px-72px',
+          'tablet:-mx-72px',
+          'tablet:py-32px',
+          'tablet:px-72px',
+          'mobile:-mx-24px',
+          'mobile:px-24px',
+          'mobile:py-16px',
+        );
       } else {
         if (window && window.innerWidth >= 1500 && toggleComponentRef.current) {
           toggleComponentRef.current.style.paddingLeft = `0`;
           toggleComponentRef.current.style.paddingRight = `0`;
         }
-        toggleComponentRef.current?.classList.remove("mobile:sticky", "top-0", "w-screen", "bg-white", "shadow-lg", "laptop:py-24px", "laptop:fixed", "laptop:left-60", "laptop:px-72px", "tablet:-mx-72px", "tablet:py-32px", "tablet:px-72px", "mobile:-mx-24px", "mobile:px-24px", "mobile:py-16px");
+        toggleComponentRef.current?.classList.remove(
+          'mobile:sticky',
+          'top-0',
+          'w-screen',
+          'bg-white',
+          'shadow-lg',
+          'desktop:py-24px',
+          'desktop:fixed',
+          'desktop:left-60',
+          'desktop:px-72px',
+          'tablet:-mx-72px',
+          'tablet:py-32px',
+          'tablet:px-72px',
+          'mobile:-mx-24px',
+          'mobile:px-24px',
+          'mobile:py-16px',
+        );
       }
     }
 
@@ -86,27 +124,39 @@ const Warline = () => {
 
   const sortByDate = (warlineData: DayType[]) => {
     if (selectedByNewest === BY_NEWEST_BY_OLDEST_OPTIONS[1]?.value) {
-      const sorted = warlineData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      const sorted = warlineData.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
       sorted.forEach((day) => {
-        day.events.sort((a, b) => new Date(`${day.date} ${a.Time}`).getTime() - new Date(`${day.date} ${b.Time}`).getTime())
-      })
+        day.events.sort(
+          (a, b) =>
+            new Date(`${day.date} ${a.Time}`).getTime() -
+            new Date(`${day.date} ${b.Time}`).getTime(),
+        );
+      });
       return sorted;
     }
-    const sorted = warlineData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const sorted = warlineData.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
     sorted.forEach((day) => {
-      day.events.sort((a, b) => new Date(`${day.date} ${b.Time}`).getTime() - new Date(`${day.date} ${a.Time}`).getTime())
-    })
+      day.events.sort(
+        (a, b) =>
+          new Date(`${day.date} ${b.Time}`).getTime() -
+          new Date(`${day.date} ${a.Time}`).getTime(),
+      );
+    });
     return sorted;
-  }
+  };
 
   useEffect(() => {
     if (byType === ALL_ARTS) {
       let result = sortByDate(WarlineData);
-      setWarlineData([...result])
+      setWarlineData([...result]);
     }
     if (byType === ON_SALE) {
       let result = sortByDate([...Drop2Data]);
-      setWarlineData([...result])
+      setWarlineData([...result]);
     }
   }, [selectedByNewest]);
 
@@ -121,29 +171,44 @@ const Warline = () => {
           />
         </div>
 
-        <div className={`w-full z-10 mb-48px tablet:flex mobile:block tablet:justify-between mobile:justify-center laptop:z-10`} ref={toggleComponentRef}>
+        <div
+          className={`w-full z-10 mb-48px tablet:flex mobile:block tablet:justify-between mobile:justify-center desktop:z-10`}
+          ref={toggleComponentRef}
+        >
           <div className="flex">
             {!isMobile && (
               <div className="mr-32px mobile:w-100%">
-                <Toggle active={view} onClick={setView} option1={BY_HOUR} option2={BY_DAY} />
+                <Toggle
+                  active={view}
+                  onClick={setView}
+                  option1={BY_HOUR}
+                  option2={BY_DAY}
+                />
               </div>
             )}
             {!isMobile && !isTablet && (
               <div>
-                <Toggle active={byType} onClick={setByType} option1={ALL_ARTS} option2={ON_SALE} />
+                <Toggle
+                  active={byType}
+                  onClick={setByType}
+                  option1={ALL_ARTS}
+                  option2={ON_SALE}
+                />
               </div>
             )}
           </div>
-          {!isMobile && !isTablet ?
+          {!isMobile && !isTablet ? (
             <div>
               <DropdownSelect
                 options={BY_NEWEST_BY_OLDEST_OPTIONS}
                 selectedValue={selectedByNewest}
                 isDark={false}
                 onChange={sordByNewestHandler}
-                className="ml-auto w-192px pl-32px" />
+                className="ml-auto w-192px pl-32px"
+              />
             </div>
-            : <div>
+          ) : (
+            <div>
               <button
                 className="font-rblack flex mobile:w-100% mobile:justify-center items-center tablet:text-16px tablet:leading-44px mobile:text-14px mobile:leading-36px border-carbon border-2 rounded-full pl-32px pr-24px"
                 onClick={() => setShowSideMenu(true)}
@@ -151,18 +216,28 @@ const Warline = () => {
                 <span className="mr-12px">Filters and Sorting</span>
                 <img src="img/filter_icon.svg" alt="filter" />
               </button>
-            </div>}
+            </div>
+          )}
         </div>
 
         {warlineData.map((dayData, idx, arr) => (
-          <Day key={idx} dayData={dayData} daysCount={arr.length} allEvents={allEvents} pageView={view} selectedByNewest={selectedByNewest} />
+          <Day
+            key={idx}
+            dayData={dayData}
+            daysCount={arr.length}
+            allEvents={allEvents}
+            pageView={view}
+            selectedByNewest={selectedByNewest}
+          />
         ))}
         <div className={`${isMobile || isTablet ? 'mb-20%' : 'ml-33%'}`}>
           <SupportBanner setShowDonatePopup={setShowDonatePopup} />
         </div>
       </div>
       <SupportSticky setShowDonatePopup={setShowDonatePopup} />
-      {showDonatePopup && (<DonatePopup setShowDonatePopup={setShowDonatePopup} />)}
+      {showDonatePopup && (
+        <DonatePopup setShowDonatePopup={setShowDonatePopup} />
+      )}
       <SideMenu
         showSideMenu={showSideMenu}
         setShowSideMenu={setShowSideMenu}
@@ -173,7 +248,6 @@ const Warline = () => {
         view={view}
         setView={setView}
       />
-
     </PopupProvider>
   );
 };
