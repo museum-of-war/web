@@ -652,7 +652,6 @@ module.exports = {
       mobile: '0px',
       xs: '400px',
       tablet: '680px',
-      laptop: '1024px',
       desktop: '1500px',
       new_md: '900px',
     },

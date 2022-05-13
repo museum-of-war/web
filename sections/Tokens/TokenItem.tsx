@@ -86,10 +86,10 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
   };
 
   return (
-    <div className="desktop:mt-50px laptop:mt-40px tablet:mt-30px mobile:mt-30px">
+    <div className="desktop:mt-50px tablet:mt-30px mobile:mt-30px">
       <div>
         {renderImage(
-          'laptop:h-[240px] tablet:h-[288px] mobile:h-[270px] laptop:max-w-[240px] tablet:max-w-[288px] mobile:max-w-[270px] m-auto cursor-pointer object-contain',
+          'desktop:h-[240px] tablet:h-[288px] mobile:h-[270px] desktop:max-w-[240px] tablet:max-w-[288px] mobile:max-w-[270px] m-auto cursor-pointer object-contain',
           tokenData.metadata.item_number,
         )}
       </div>

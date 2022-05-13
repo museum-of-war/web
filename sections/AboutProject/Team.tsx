@@ -22,8 +22,7 @@ const Team = () => {
       <div
         className="grid 
         desktop:grid-cols-4 desktop:gap-x-60px
-        laptop:grid-cols-3 laptop:gap-x-50px 
-        tablet:grid-cols-2 tablet:gap-x-40px 
+        tablet:grid-cols-2 tablet:gap-x-40px
         mobile:grid-cols-1 pb-50px"
       >
         {mockTeam.map((teamData, idx) => (

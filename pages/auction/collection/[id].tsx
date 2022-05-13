@@ -145,7 +145,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
             {collectionData.name}
           </p>
           <div className="h-5px w-100% bg-carbon dark:bg-white" />
-          <div className="desktop:py-40px laptop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-row mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
+          <div className="desktop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-row mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
             <p className="whitespace-pre-line pt-10 desktop:w-65% tablet:w-65% mobile:w-100% mobile:mb-6% desktop:pr-48px tablet:pr-48px mobile:pr-0">
               {collectionData.description}
             </p>
@@ -186,7 +186,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
                   alt={collectionData.name + ' Poster'}
                   className={`${
                     !!collectionData.videoSrc ? 'cursor-pointer' : ''
-                  } object-contain laptop:max-h-300px`}
+                  } object-contain desktop:max-h-300px`}
                   onClick={() => setVideoOpen(!!collectionData.videoSrc)}
                 />
               ) : null}
@@ -202,7 +202,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
             <DropNft
               desc="Meanwhile, the current drop is still on sale. The NFTs are unique but any NFT will support Ukraine. Get yours."
               buttonLabel="Buy NFT Now"
-              className="laptop:mb-120px tablet:mb-96px mobile:mb-[60px] tablet:my-72px mobile:my-40px"
+              className="desktop:mb-120px tablet:mb-96px mobile:mb-[60px] tablet:my-72px mobile:my-40px"
               handleClick={handleBuyNft}
             />
           )}

@@ -39,7 +39,7 @@ const ContentTopNotConnected = ({
         } flex flex-col justify-between`}
       >
         <div>
-          <p className="font-rblack uppercase laptop:mt-10px tablet:mt-0 tablet:text-84px tablet:leading-72px mobile:text-46px mobile:leading-40px">
+          <p className="font-rblack uppercase desktop:mt-10px tablet:mt-0 tablet:text-84px tablet:leading-72px mobile:text-46px mobile:leading-40px">
             The NFT-museum
           </p>
           <p className="font-rblack mobile:mt-10px mobile:text-27px mobile:leading-30px tablet:text-32px tablet:leading-36px tablet:mt-12px">

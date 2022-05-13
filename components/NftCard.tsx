@@ -7,6 +7,7 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 type NftCardProps = {
   type?: string;
   orderIndex: number;
+  isCollection?: boolean;
 };
 
 function NftCard({
@@ -20,6 +21,7 @@ function NftCard({
   tokenId,
   type,
   isSale,
+  isCollection,
 }: Pick<AuctionItemType, 'imageSrc' | 'name' | 'index' | 'tokenId' | 'isSale'> &
   Pick<AuctionCollectionType, 'contractAddress' | 'endsIn' | 'startsAt'> &
   NftCardProps) {
@@ -40,7 +42,6 @@ function NftCard({
   useEffect(() => {
     const interval = setInterval(() => {
       const isStarted = !calculateTimeLeft(`${startsAt ?? new Date()}`).isLeft;
-      //console.log(startsAt);
       setIsStarted(isStarted);
       setTimeLeft(calculateTimeLeft(`${isStarted ? endsIn : startsAt}`));
     }, 1000);
@@ -67,9 +68,9 @@ function NftCard({
           alt={name}
           src={imageSrc}
           className={`${
-            orderIndex! < 2 && !type
-              ? 'desktop:h-[544px] laptop:h-[544px]'
-              : 'desktop:h-[240px] laptop:h-[240px]'
+            (orderIndex! < 2 || isCollection) && !type
+              ? 'desktop:h-[544px]'
+              : 'desktop:h-[240px]'
           } ${!orderIndex && !type ? 'tablet:h-[624px]' : 'tablet:h-[288px]'}
           mobile:h-[270px] object-contain`}
         />

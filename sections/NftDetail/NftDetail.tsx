@@ -14,7 +14,7 @@ const NftDetail = ({}: NftDetailProps) => {
   if (!item) return <></>;
 
   return (
-    <div className="laptop:mb-120px tablet:mb-96px tablet:-mt-[80px] laptop:mt-[0px]">
+    <div className="desktop:mb-120px tablet:mb-96px tablet:-mt-[80px] desktop:mt-[0px]">
       <div
         className="flex content-center hover:cursor-pointer mb-24px"
         onClick={handleToAuction}

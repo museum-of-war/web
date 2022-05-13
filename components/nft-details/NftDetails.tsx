@@ -176,7 +176,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
             </span>
           </div>
         </Link>
-        <div className="flex items-center flex-1 laptop:hidden">
+        <div className="flex items-center flex-1 desktop:hidden">
           {counterJsx}
           {getNavButtonsJsx()}
         </div>
@@ -191,12 +191,12 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         >
           {title}
         </div>
-        <div className="items-center flex-1 hidden laptop:flex">
+        <div className="items-center flex-1 hidden desktop:flex">
           {counterJsx}
           {getNavButtonsJsx()}
         </div>
       </div>
-      <div className="flex flex-col laptop:flex-row laptop:gap-[48px] gap-[20px] pt-[40px]">
+      <div className="flex flex-col desktop:flex-row desktop:gap-[48px] gap-[20px] pt-[40px]">
         {renderImage({
           imageSources,
           title,
@@ -204,7 +204,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
           className:
             'flex-1 overflow-auto object-contain cursor-pointer transition-transform hover:scale-[101%] h-fit max-h-[800px] object-left-top',
         })}
-        <div className="laptop:w-[544px] mobile:w-full box-border flex flex-col gap-[48px] text-[14px] tablet:text-[16px]">
+        <div className="desktop:w-[544px] mobile:w-full box-border flex flex-col gap-[48px] text-[14px] tablet:text-[16px]">
           <div>
             <p>{descriptionEnglish}</p>
             <br />

@@ -53,9 +53,9 @@ const Footer = () => {
       <p className="m-0 text-center">© 2022 Copyright</p>
     </div>
   ) : (
-    <div className="flex laptop:flex-row tablet:flex-col-reverse font-rnarrow py-36px items-center laptop:justify-between w-full">
-      <p className="grow tablet:mt-24px laptop:mt-0">© 2022 Copyright</p>
-      <div className="flex flex-row items-center laptop:justify-end tablet:justify-center">
+    <div className="flex desktop:flex-row tablet:flex-col-reverse font-rnarrow py-36px items-center desktop:justify-between w-full">
+      <p className="grow tablet:mt-24px desktop:mt-0">© 2022 Copyright</p>
+      <div className="flex flex-row items-center desktop:justify-end tablet:justify-center">
         <HeaderAndFooterButton
           wrapperClassName="mr-24px"
           label="Audits"

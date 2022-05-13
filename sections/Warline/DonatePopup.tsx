@@ -90,7 +90,7 @@ const Popup = ({ setShowDonatePopup }: PropsDonatePopup) => {
     </div>
   ) : (
     <div>
-      <div className="fixed z-20 w-496px laptop:w-544px bg-white top-20% left-50% -translate-x-50% p-48px laptop:p-72px">
+      <div className="fixed z-20 w-496px desktop:w-544px bg-white top-20% left-50% -translate-x-50% p-48px desktop:p-72px">
         <button
           className="absolute right-20px top-20px"
           onClick={() => setShowDonatePopup(false)}

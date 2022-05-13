@@ -53,7 +53,7 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
         </button>
         <div className="flex flex-col">
           <p
-            className="font-rblack mobile:text-38px tablet:text-32px laptop:text-32px"
+            className="font-rblack mobile:text-38px tablet:text-32px"
             style={{ lineHeight: '48px' }}
           >
             Place bid

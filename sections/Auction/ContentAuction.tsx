@@ -23,7 +23,7 @@ type ContentAuctionProps = {
 };
 
 const ContentAuction = ({ collection }: ContentAuctionProps) => {
-  const { isTablet, isMobile, isDesktop, isLaptop } = useViewPort();
+  const { isTablet, isMobile, isDesktop } = useViewPort();
   const [data, setData] = useState<any[]>([]);
   const [isCollection, setIsCollection] = useState<boolean>(false);
   const { getAuctionInfo } = useWeb3Modal();
@@ -140,8 +140,8 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
   const getItemStyle = (index: number) => {
     const result: React.CSSProperties = {};
 
-    if (isDesktop || isLaptop) {
-      if (index < 2) {
+    if (isDesktop) {
+      if (index < 2 || isCollection) {
         result.width = 'calc((100% - 48px) / 2)';
       } else {
         result.width = 'calc((100% - 144px) / 4)';
@@ -149,7 +149,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
       if (index === 0) {
         result.marginRight = 48;
       } else {
-        result.marginRight = (index - 1) % 4 ? 48 : 0;
+        result.marginRight = (index - 1) % 2 ? 48 : 0;
       }
 
       result.marginTop = 72;
@@ -180,9 +180,9 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
 
   return (
     <>
-      <div className="flex justify-between laptop:mt-[0px] tablet:mt-72px mobile:mt-[24px]">
+      <div className="flex justify-between desktop:mt-[0px] tablet:mt-72px mobile:mt-[24px]">
         {!isTablet && !isMobile ? (
-          <div className="flex tablet:mb-[57px] laptop:mb-0">
+          <div className="flex tablet:mb-[57px] desktop:mb-0">
             <div className="pr-20px">
               <PriceRange value={priceRange} setValue={setPriceRange} />
             </div>
@@ -250,6 +250,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               contractAddress={item.contractAddress}
               tokenId={item.tokenId}
               isSale={item.isSale}
+              isCollection
             />
           </div>
         ))}

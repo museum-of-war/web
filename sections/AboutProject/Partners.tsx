@@ -112,7 +112,7 @@ const Partners = () => {
   ];
 
   return (
-    <div className="laptop:mt-120px tablet:mt-175px">
+    <div className="desktop:mt-120px tablet:mt-175px">
       <p className="font-rblack mobile:text-38px mobile:leading-40px tablet:text-70px tablet:leading-72px uppercase">
         PARTNERS
       </p>

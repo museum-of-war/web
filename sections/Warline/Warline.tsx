@@ -65,7 +65,7 @@ const Warline = () => {
   return (
     <PopupProvider>
       <div>
-        <div className="laptop:flex laptop:flex-row laptop:justify-between mt-20 mobile:mb-8% tablet:mb-0">
+        <div className="desktop:flex desktop:flex-row desktop:justify-between mt-20 mobile:mb-8% tablet:mb-0">
           <Blurb
             header="WARLINE"
             english="A chronology of events of the Ukrainian history of modern times, set in stone. The NFTs are facts accompanied by personal reflections. The formula of each NFT is clear and simple: each token is a real news piece from an official source and an illustration from artists, both Ukrainian and international."
