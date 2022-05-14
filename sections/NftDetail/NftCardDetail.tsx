@@ -15,7 +15,7 @@ import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
 import { usePopup } from 'providers/PopupProvider';
-import { truncateAddress } from '@sections/utils';
+import { isAnimated, truncateAddress } from '@sections/utils';
 import { usePreloader } from '@providers/PreloaderProvider';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 
@@ -263,6 +263,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                   ratio: 0.5,
                 },
               ]}
+              postLoadOriginal={isAnimated(item.imageSrc)}
             />
           </div>
           <div className="desktop:w-[48%] mobile: w-full">
@@ -342,13 +343,16 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                     key={item.index}
                   >
                     <NftCard
-                      breakpoints={[{
-                        lowerBound: 'tablet',
-                        ratio: 0.5,
-                      }, {
-                        lowerBound: 'laptop',
-                        ratio: 0.25,
-                      }]}
+                      breakpoints={[
+                        {
+                          lowerBound: 'tablet',
+                          ratio: 0.5,
+                        },
+                        {
+                          lowerBound: 'laptop',
+                          ratio: 0.25,
+                        },
+                      ]}
                       orderIndex={index}
                       index={item.index}
                       imageSrc={item.imageSrc}

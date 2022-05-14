@@ -1,7 +1,14 @@
+import { useMemo, useState } from 'react';
 import Imgix from 'react-imgix';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from 'tailwind.config';
-import { Breakpoint as MaterialBreakpoint, Theme, useTheme } from '@mui/material';
+import {
+  Breakpoint as MaterialBreakpoint,
+  Theme,
+  useTheme,
+} from '@mui/material';
+import { useDownloadProgress } from '@hooks/useDownloadProgress';
+import ProgressBar from '@components/ProgressBar';
 
 type TailwindBreakpoint = 'mobile' | 'tablet' | 'laptop' | 'desktop';
 
@@ -12,20 +19,30 @@ export type BreakpointRatios = {
   ratio: number;
 }[];
 
-function isMaterialBreakpoint(breakpoint: Breakpoint, theme: Theme): breakpoint is MaterialBreakpoint {
+function isMaterialBreakpoint(
+  breakpoint: Breakpoint,
+  theme: Theme,
+): breakpoint is MaterialBreakpoint {
   return breakpoint in theme.breakpoints.values;
 }
 
-function getBreakpointValue(breakpoint: Breakpoint, materialTheme: Theme): number {
+function getBreakpointValue(
+  breakpoint: Breakpoint,
+  materialTheme: Theme,
+): number {
   return isMaterialBreakpoint(breakpoint, materialTheme)
     ? materialTheme.breakpoints.values[breakpoint]
-    : parseInt((resolveConfig(tailwindConfig).theme.screens as any)[breakpoint]);
+    : parseInt(
+        (resolveConfig(tailwindConfig).theme.screens as any)[breakpoint],
+      );
 }
 
 function applyRatio(ratio: number, value: string): string {
   const match = value.match(/^(?<number>\d+)(?<unit>[a-z]+)$/);
   if (!match) {
-    throw new Error(`"${value}" is not in the format NUMBER + UNIT as expected`);
+    throw new Error(
+      `"${value}" is not in the format NUMBER + UNIT as expected`,
+    );
   }
   return Math.round(Number(match.groups!.number) * ratio) + match.groups!.unit!;
 }
@@ -47,6 +64,7 @@ type ScaledImageProps = {
   alt?: string;
   className?: string;
   breakpoints?: BreakpointRatios;
+  postLoadOriginal?: boolean;
 };
 
 function ScaledImage({
@@ -54,30 +72,82 @@ function ScaledImage({
   alt,
   className,
   breakpoints,
+  postLoadOriginal,
 }: ScaledImageProps) {
-  const defaultRatio = 1;
+  const DEFAULT_RATIO = 1;
+  const SAFE_MARGIN = '-10000px';
   const materialTheme = useTheme();
-  const pixelBreakpoints = (breakpoints || []).map(({lowerBound, ratio}) => ({
-    lowerBound: getBreakpointValue(lowerBound, materialTheme),
-    ratio,
-  })).sort(({lowerBound: a}, {lowerBound: b}) => b - a);
+  const [loaded, setLoaded] = useState(false);
+  const originalStatus = useDownloadProgress(
+    postLoadOriginal && loaded ? src : null,
+    'low',
+  );
+  const originalUrl = useMemo(
+    () =>
+      originalStatus?.loaded ? URL.createObjectURL(originalStatus?.blob) : null,
+    [originalStatus],
+  );
+  const [originalLoaded, setOriginalLoaded] = useState(false);
+  const pixelBreakpoints = (breakpoints || [])
+    .map(({ lowerBound, ratio }) => ({
+      lowerBound: getBreakpointValue(lowerBound, materialTheme),
+      ratio,
+    }))
+    .sort(({ lowerBound: a }, { lowerBound: b }) => b - a);
   const desktopWidth = getBreakpointValue('desktop', materialTheme);
   return (
-      <Imgix
+    <div className="relative">
+      {originalStatus?.loaded && (
+        <img
+          src={originalUrl!}
+          alt={alt}
+          className={className}
+          onLoad={() => setOriginalLoaded(true)}
+          style={
+            originalLoaded
+              ? {}
+              : {
+                  position: 'absolute',
+                  left: SAFE_MARGIN,
+                  top: SAFE_MARGIN,
+                  visibility: 'hidden',
+                  // Browser still needs some time to render the downloaded image
+                }
+          }
+        />
+      )}
+      {(!originalStatus?.loaded || !originalLoaded) && (
+        <Imgix
           src={src}
-          htmlAttributes={{alt}}
+          htmlAttributes={{
+            alt,
+            onLoad: () => setLoaded(true),
+          }}
           className={className}
           sizes={[
-            ...(pixelBreakpoints.length === 0 || pixelBreakpoints[0]!.lowerBound <= desktopWidth ? [
-              `${lowerBoundCondition(desktopWidth)} ${applyRatio(pixelBreakpoints.length > 0
-                ? pixelBreakpoints[0]!.ratio
-                : defaultRatio, `${pixels(desktopWidth)}`)}`
-            ] : []),
-            ...pixelBreakpoints.map(({lowerBound, ratio}) =>
-              `${lowerBoundCondition(lowerBound)} ${ratioToViewport(ratio)}`),
-            ratioToViewport(defaultRatio),
+            ...(pixelBreakpoints.length === 0 ||
+            pixelBreakpoints[0]!.lowerBound <= desktopWidth
+              ? [
+                  `${lowerBoundCondition(desktopWidth)} ${applyRatio(
+                    pixelBreakpoints.length > 0
+                      ? pixelBreakpoints[0]!.ratio
+                      : DEFAULT_RATIO,
+                    `${pixels(desktopWidth)}`,
+                  )}`,
+                ]
+              : []),
+            ...pixelBreakpoints.map(
+              ({ lowerBound, ratio }) =>
+                `${lowerBoundCondition(lowerBound)} ${ratioToViewport(ratio)}`,
+            ),
+            ratioToViewport(DEFAULT_RATIO),
           ].join(', ')}
-      />
+        />
+      )}
+      {originalStatus !== null && !originalStatus.loaded && (
+        <ProgressBar progress={originalStatus.progress} />
+      )}
+    </div>
   );
 }
 
