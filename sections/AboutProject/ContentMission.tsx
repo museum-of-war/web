@@ -24,11 +24,16 @@ const ContentMission = () => {
         </div>
       </div>
       {isMobile && (
-        <img
-          className="w-screen max-w-none"
-          alt="dots"
-          src="/img/pd-dotsHorizontalMobile.png"
-        />
+        <div className="relative h-100px">
+          <img
+            className="left-0 right-[-24px] absolute"
+            style={{
+              maxWidth: 'calc(100% + 24px)',
+            }}
+            alt="dots"
+            src="/img/pd-dotsHorizontalMobile.png"
+          />
+        </div>
       )}
     </>
   );
