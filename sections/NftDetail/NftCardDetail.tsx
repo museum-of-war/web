@@ -259,7 +259,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
               src={item.imageSrc}
               breakpoints={[
                 {
-                  lowerBound: 'laptop',
+                  lowerBound: 'desktop',
                   ratio: 0.5,
                 },
               ]}
@@ -349,7 +349,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                           ratio: 0.5,
                         },
                         {
-                          lowerBound: 'laptop',
+                          lowerBound: 'desktop',
                           ratio: 0.25,
                         },
                       ]}

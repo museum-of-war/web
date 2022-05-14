@@ -4,7 +4,7 @@ type ProgressBarProps = {
 
 const WIDTH = 100;
 const HEIGHT = 10;
-const ROUNDED = '2xl';
+const BORDER_RADIUS = 6;
 
 function ProgressBar({ progress }: ProgressBarProps) {
   return (
@@ -17,10 +17,11 @@ function ProgressBar({ progress }: ProgressBarProps) {
       }
     >
       <div
-        className={`relative border border-white border-opacity-75 rounded-${ROUNDED}`}
+        className={`relative border border-white border-opacity-75`}
         style={{
           width: WIDTH,
           height: HEIGHT,
+          borderRadius: BORDER_RADIUS,
         }}
       >
         <div
@@ -30,9 +31,10 @@ function ProgressBar({ progress }: ProgressBarProps) {
           }}
         >
           <div
-            className={`absolute top-0 bottom-0 bg-white opacity-75 rounded-${ROUNDED}`}
+            className={`absolute top-0 bottom-0 bg-white opacity-75`}
             style={{
               width: WIDTH,
+              borderRadius: BORDER_RADIUS,
             }}
           />
         </div>

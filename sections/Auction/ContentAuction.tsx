@@ -243,16 +243,16 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
             style={getItemStyle(index)}
           >
             <NftCard
-              breakpoints={[{
-                lowerBound: 'sm',
-                ratio: index > 0 ? 0.5 : 1,
-              }, {
-                lowerBound: 'md',
-                ratio: 1,
-              }, {
-                lowerBound: 'lg',
-                ratio: index > 1 ? 0.25 : 0.5,
-              }]}
+              breakpoints={[
+                {
+                  lowerBound: 'tablet',
+                  ratio: index >= 1 ? 0.5 : 1,
+                },
+                {
+                  lowerBound: 'desktop',
+                  ratio: index >= 2 ? 0.25 : 0.5,
+                },
+              ]}
               orderIndex={index}
               index={item.index}
               imageSrc={item.imageSrc}
