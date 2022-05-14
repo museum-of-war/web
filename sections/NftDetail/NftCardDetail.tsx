@@ -179,7 +179,13 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     buyNowPrice?: string;
   }>({ bid: '0', proposedBids: ['0'], fullInfo: '', bidHistory: [] });
 
-  useEffect(showPreloader, [showPreloader]);
+  useEffect(() => {
+    showPreloader();
+
+    return () => {
+      hidePreloader();
+    };
+  }, []);
 
   useEffect(() => {
     setCollectionData(AuctionCollectionData[item.category]);

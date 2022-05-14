@@ -62,7 +62,7 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
               signerAddress={signerAddress}
               handleConnect={handleConnect}
               handleDisconnect={handleDisconnect}
-            menuOpen={menuOpen}
+              menuOpen={menuOpen}
             />
             <Footer />
           </div>

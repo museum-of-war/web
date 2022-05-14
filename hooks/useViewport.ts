@@ -6,6 +6,11 @@ export const useViewPort = () => {
     noSsr: true,
   });
   const isDesktop = useMediaQuery('(min-width:1366px)', { noSsr: true });
+  const isTouch =
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0 ||
+    // @ts-ignore
+    navigator.msMaxTouchPoints > 0;
 
-  return { isMobile, isTablet, isDesktop };
+  return { isMobile, isTablet, isDesktop, isTouch };
 };

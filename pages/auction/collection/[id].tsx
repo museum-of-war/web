@@ -14,6 +14,7 @@ import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import PageHead from '@components/PageHead';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { Parallax } from 'react-parallax';
+import { useViewPort } from '@hooks/useViewport';
 
 const NavBack = () => (
   <Link href={'/auction'} passHref>
@@ -51,6 +52,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
   const { query } = useAppRouter();
   const url = useAbsoluteUrl();
   const { canMint, canMintSecondDrop } = useWeb3Modal();
+  const { isMobile } = useViewPort();
 
   const [isCanMint, setCanMint] = useState<boolean>(false);
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
@@ -119,7 +121,7 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
       <div>
         <div className="absolute left-0 top-100px z-0 right-0">
           <Parallax
-            strength={300}
+            strength={isMobile ? 0 : 300}
             style={{ height: 456, width: '100%' }}
             bgImage={collectionData.headerImageSrc}
             bgImageAlt={`${collectionData.name} Cover Image`}
