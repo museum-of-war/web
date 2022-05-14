@@ -27,7 +27,7 @@ html.dark body {
 }
 
 #__next {
-  overflow-x: hidden;
+  /*overflow-x: hidden; //TODO: fix scrollbar on The Hall page, this solution breaks sticky elements */
 }
 
 body {
