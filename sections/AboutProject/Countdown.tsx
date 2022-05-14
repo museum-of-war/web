@@ -72,34 +72,28 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
               <span className="font-rblack tablet:text-32px mobile:text-27px desktop:leading-48px tablet:leading-36px mobile:leading-30px mr-7px">
                 {days.length < 2 ? '0' + days : days}
               </span>
-              <p className="text-16px leading-24px tablet:mb-0">Days</p>
+              <p className="text-16px leading-24px">Days</p>
             </div>
 
             <div className="flex desktop:flex-row mobile:flex-col desktop:items-center mobile:items-start ml-24px">
               <span className="font-rblack tablet:text-32px mobile:text-27px desktop:leading-48px tablet:leading-36px mobile:leading-30px mr-7px">
                 {hours.length < 2 ? '0' + hours : hours}
               </span>
-              <p className="text-16px leading-24px desktop:mb-6 tablet:mb-0">
-                Hours
-              </p>
+              <p className="text-16px leading-24px">Hours</p>
             </div>
 
             <div className="flex desktop:flex-row mobile:flex-col desktop:items-center mobile:items-start ml-24px">
               <span className="font-rblack tablet:text-32px mobile:text-27px desktop:leading-48px tablet:leading-36px mobile:leading-30px mr-7px">
                 {minutes.length < 2 ? '0' + minutes : minutes}
               </span>
-              <p className="text-16px leading-24px desktop:mb-6 tablet:mb-0">
-                Minutes
-              </p>
+              <p className="text-16px leading-24px">Minutes</p>
             </div>
 
             <div className="flex desktop:flex-row mobile:flex-col desktop:items-center mobile:items-start ml-24px">
               <span className="font-rblack tablet:text-32px mobile:text-27px desktop:leading-48px desktop:w-50px tablet:w-auto tablet:leading-36px mobile:leading-30px mr-7px">
                 {seconds.length < 2 ? '0' + seconds : seconds}
               </span>
-              <p className="text-16px leading-24px desktop:mb-6 tablet:mb-0">
-                Seconds
-              </p>
+              <p className="text-16px leading-24px">Seconds</p>
             </div>
           </div>
         </div>

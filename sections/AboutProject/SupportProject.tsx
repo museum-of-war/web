@@ -14,7 +14,7 @@ const SupportProject = ({}: PropsSupportProject) => {
     <>
       {isMobile ? (
         <>
-          <div className="bg-carbon mt-56px p-40px flex flex-col items-center justify-center -mx-32px">
+          <div className="bg-carbon mt-56px p-40px flex flex-col items-center justify-center -mx-24px">
             <div className="flex align-center justify-center">
               <p className="font-rblack mobile:text-29px text-white leading-30px">
                 Support our project

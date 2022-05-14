@@ -26,10 +26,6 @@ html.dark body {
   background: rgb(33, 33, 33);
 }
 
-#__next {
-  /*overflow-x: hidden; //TODO: fix scrollbar on The Hall page, this solution breaks sticky elements */
-}
-
 body {
   -webkit-font-smoothing: antialiased;
 }
