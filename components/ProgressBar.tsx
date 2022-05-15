@@ -3,7 +3,7 @@ type ProgressBarProps = {
 };
 
 const WIDTH = 100;
-const HEIGHT = 10;
+const HEIGHT = 8;
 const BORDER_RADIUS = 6;
 
 function ProgressBar({ progress }: ProgressBarProps) {
@@ -17,7 +17,7 @@ function ProgressBar({ progress }: ProgressBarProps) {
       }
     >
       <div
-        className={`relative border border-white border-opacity-75`}
+        className={`relative border border-white box-content border-opacity-75`}
         style={{
           width: WIDTH,
           height: HEIGHT,
