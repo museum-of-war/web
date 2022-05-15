@@ -15,10 +15,21 @@ type TailwindBreakpoint = 'mobile' | 'tablet' | 'laptop' | 'desktop';
 
 export type Breakpoint = TailwindBreakpoint | MaterialBreakpoint;
 
-export type BreakpointRatios = {
-  lowerBound: Breakpoint;
-  ratio: number;
-}[];
+export type BreakpointRatios = (
+  | {
+      lowerBound: Breakpoint;
+      ratio: number;
+    }
+  | {
+      lowerBound: Breakpoint;
+      width: number;
+    }
+)[];
+
+type RatioOrWidth = {
+  type: 'ratio' | 'width';
+  value: number;
+};
 
 function isMaterialBreakpoint(
   breakpoint: Breakpoint,
@@ -37,22 +48,29 @@ function getBreakpointValue(
     : parseInt((tailwindTheme as any)[breakpoint]);
 }
 
-function applyRatio(ratio: number, value: string): string {
-  const match = value.match(/^(?<number>\d+)(?<unit>[a-z]+)$/);
-  if (!match) {
-    throw new Error(
-      `"${value}" is not in the format NUMBER + UNIT as expected`,
-    );
-  }
-  return Math.round(Number(match.groups!.number) * ratio) + match.groups!.unit!;
-}
-
-function ratioToViewport(ratio: number): string {
-  return applyRatio(ratio, '100vw');
-}
-
 function pixels(value: number): string {
   return `${value}px`;
+}
+
+function apply(ratioOrWidth: RatioOrWidth, value: string): string {
+  if (ratioOrWidth.type === 'width') {
+    return pixels(ratioOrWidth.value);
+  } else {
+    const match = value.match(/^(?<number>\d+)(?<unit>[a-z]+)$/);
+    if (!match) {
+      throw new Error(
+        `"${value}" is not in the format NUMBER + UNIT as expected`,
+      );
+    }
+    return (
+      Math.round(Number(match.groups!.number) * ratioOrWidth.value) +
+      match.groups!.unit!
+    );
+  }
+}
+
+function toViewport(ratioOrWidth: RatioOrWidth): string {
+  return apply(ratioOrWidth, '100vw');
 }
 
 function lowerBoundCondition(bound: number): string {
@@ -74,7 +92,10 @@ function ScaledImage({
   breakpoints,
   postLoad = false,
 }: ScaledImageProps) {
-  const DEFAULT_RATIO = 1;
+  const DEFAULT_RATIO: RatioOrWidth = {
+    type: 'ratio',
+    value: 1,
+  };
   const SAFE_MARGIN = '-10000px';
   const materialTheme = useTheme();
   const tailwindTheme = useMemo(
@@ -95,9 +116,21 @@ function ScaledImage({
   );
   const [postLoaded, setPostLoaded] = useState(false);
   const pixelBreakpoints = (breakpoints || [])
-    .map(({ lowerBound, ratio }) => ({
-      lowerBound: getBreakpointValue(lowerBound, tailwindTheme, materialTheme),
-      ratio,
+    .map((item) => ({
+      lowerBound: getBreakpointValue(
+        item.lowerBound,
+        tailwindTheme,
+        materialTheme,
+      ),
+      ratioOrWidth: ('ratio' in item
+        ? {
+            type: 'ratio',
+            value: item.ratio,
+          }
+        : {
+            type: 'width',
+            value: item.width,
+          }) as RatioOrWidth,
     }))
     .sort(({ lowerBound: a }, { lowerBound: b }) => b - a);
   const desktopWidth = getBreakpointValue(
@@ -138,19 +171,21 @@ function ScaledImage({
             ...(pixelBreakpoints.length === 0 ||
             pixelBreakpoints[0]!.lowerBound <= desktopWidth
               ? [
-                  `${lowerBoundCondition(desktopWidth)} ${applyRatio(
+                  `${lowerBoundCondition(desktopWidth)} ${apply(
                     pixelBreakpoints.length > 0
-                      ? pixelBreakpoints[0]!.ratio
+                      ? pixelBreakpoints[0]!.ratioOrWidth
                       : DEFAULT_RATIO,
                     `${pixels(desktopWidth)}`,
                   )}`,
                 ]
               : []),
             ...pixelBreakpoints.map(
-              ({ lowerBound, ratio }) =>
-                `${lowerBoundCondition(lowerBound)} ${ratioToViewport(ratio)}`,
+              ({ lowerBound, ratioOrWidth }) =>
+                `${lowerBoundCondition(lowerBound)} ${toViewport(
+                  ratioOrWidth,
+                )}`,
             ),
-            ratioToViewport(DEFAULT_RATIO),
+            toViewport(DEFAULT_RATIO),
           ].join(', ')}
         />
       )}
