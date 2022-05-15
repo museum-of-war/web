@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import Imgix from 'react-imgix';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from 'tailwind.config';
+import { TailwindThemeValue } from 'tailwindcss/tailwind-config';
 import {
   Breakpoint as MaterialBreakpoint,
   Theme,
@@ -9,7 +10,6 @@ import {
 } from '@mui/material';
 import { useDownloadProgress } from '@hooks/useDownloadProgress';
 import ProgressBar from '@components/ProgressBar';
-import { TailwindThemeValue } from 'tailwindcss/tailwind-config';
 
 type TailwindBreakpoint = 'mobile' | 'tablet' | 'laptop' | 'desktop';
 
