@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { useDownloadProgress } from '@hooks/useDownloadProgress';
 import ProgressBar from '@components/ProgressBar';
+import { TailwindThemeValue } from 'tailwindcss/tailwind-config';
 
 type TailwindBreakpoint = 'mobile' | 'tablet' | 'laptop' | 'desktop';
 
@@ -28,13 +29,12 @@ function isMaterialBreakpoint(
 
 function getBreakpointValue(
   breakpoint: Breakpoint,
+  tailwindTheme: TailwindThemeValue,
   materialTheme: Theme,
 ): number {
   return isMaterialBreakpoint(breakpoint, materialTheme)
     ? materialTheme.breakpoints.values[breakpoint]
-    : parseInt(
-        (resolveConfig(tailwindConfig).theme.screens as any)[breakpoint],
-      );
+    : parseInt((tailwindTheme as any)[breakpoint]);
 }
 
 function applyRatio(ratio: number, value: string): string {
@@ -83,6 +83,10 @@ function ScaledImage({
   const DEFAULT_RATIO = 1;
   const SAFE_MARGIN = '-10000px';
   const materialTheme = useTheme();
+  const tailwindTheme = useMemo(
+    () => resolveConfig(tailwindConfig).theme.screens!,
+    [],
+  );
   const [loaded, setLoaded] = useState(false);
   const shouldLoadOriginal =
     postLoadOriginal === PostLoadStrategy.load ||
@@ -99,11 +103,15 @@ function ScaledImage({
   const [originalLoaded, setOriginalLoaded] = useState(false);
   const pixelBreakpoints = (breakpoints || [])
     .map(({ lowerBound, ratio }) => ({
-      lowerBound: getBreakpointValue(lowerBound, materialTheme),
+      lowerBound: getBreakpointValue(lowerBound, tailwindTheme, materialTheme),
       ratio,
     }))
     .sort(({ lowerBound: a }, { lowerBound: b }) => b - a);
-  const desktopWidth = getBreakpointValue('desktop', materialTheme);
+  const desktopWidth = getBreakpointValue(
+    'desktop',
+    tailwindTheme,
+    materialTheme,
+  );
   return (
     <div className="relative">
       {originalStatus?.loaded && (
