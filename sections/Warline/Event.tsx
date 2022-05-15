@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useViewPort } from '@hooks/useViewport';
 import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import Link from 'next/link';
 import Button from '@components/Button';
+import ScaledImage from '@components/ScaledImage';
 import { useAppRouter } from '@hooks/useAppRouter';
 import { BY_DAY } from './constants';
 
@@ -33,7 +34,6 @@ const rand_imgs: string[] = [
 const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
   const { push } = useAppRouter();
   const { isMobile, isTablet } = useViewPort();
-  const [toggler, setToggler] = useState<boolean>(false);
 
   const alt = useMemo(() => {
     return `Day ${eventData.DayNo}, ${eventData.Time}`;
@@ -43,16 +43,16 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
     return parseInt(tokenId) < 10
       ? '#000' + tokenId
       : parseInt(tokenId) < 100
-        ? '#00' + tokenId
-        : parseInt(tokenId) < 1000
-          ? '#0' + tokenId
-          : '#' + tokenId;
+      ? '#00' + tokenId
+      : parseInt(tokenId) < 1000
+      ? '#0' + tokenId
+      : '#' + tokenId;
   };
   const shortView = useMemo(() => view === BY_DAY, [view]);
 
   const renderImage = (className: string) => {
     const randomSrc = rand_imgs[idx % 8] as string;
-    const { previewSrc, animationSrc, isAnimation } = getUrls(
+    const { originalSrc, previewSrc, animationSrc, isAnimation } = getUrls(
       eventData.Tokenid,
       eventData.ImageType,
       randomSrc as string,
@@ -62,20 +62,17 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
       <>
         <Link href={`/warline/${eventData.Tokenid}`} passHref>
           <div className="relative">
-            <img
+            <ScaledImage
               alt={alt}
-              onClick={() => setToggler(!toggler)}
-              src={previewSrc}
+              src={isAnimation ? previewSrc : originalSrc}
+              postLoad={isAnimation ? animationSrc : false}
               className={className}
-              onError={({ currentTarget }) => {
-                currentTarget.onerror = null; // prevents looping
-                currentTarget.src = randomSrc;
-              }}
-              onLoad={({ currentTarget }) => {
-                if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
-                  currentTarget.src = animationSrc;
-                }
-              }}
+              breakpoints={[
+                {
+                  lowerBound: 'tablet',
+                  width: 300,
+                },
+              ]}
             />
             {isOnSale && eventData.ImageType !== 'placeholder.png' && (
               <div className="font-rblack cursor-pointer select-none absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
@@ -108,16 +105,18 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
 
   return isMobile ? (
     <div
-      className={`flex flex-col items-top ${!shortView ? 'mb-60px' : 'min-w-124px w-full'
-        }`}
+      className={`flex flex-col items-top ${
+        !shortView ? 'mb-60px' : 'min-w-124px w-full'
+      }`}
     >
       {renderImage('w-100%')}
       <div className="mt-20px flex flex-col justify-between">
         <div>
           <div className="flex flex-row items-center justify-between ">
             <p
-              className={`font-rblack ${!shortView ? 'leading-32px text-32px' : 'text-14px'
-                } `}
+              className={`font-rblack ${
+                !shortView ? 'leading-32px text-32px' : 'text-14px'
+              } `}
             >
               {eventData.Time}
             </p>
@@ -157,11 +156,13 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
       }
     >
       {renderImage(
-        shortView
-          ? 'w-40vw w-full'
-          : 'w-40vw max-w-300px max-h-300px h-40vw',
+        shortView ? 'w-40vw w-full' : 'w-40vw max-w-300px max-h-300px h-40vw',
       )}
-      <div className={`flex flex-col justify-between ${shortView ? '' : 'ml-50px'}`}>
+      <div
+        className={`flex flex-col justify-between ${
+          shortView ? '' : 'ml-50px'
+        }`}
+      >
         <div>
           <div
             className={`flex flex-row items-center justify-between
@@ -213,7 +214,11 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
           ? 'w-full hover:cursor-pointer'
           : 'max-w-300px max-h-300px h-240px w-248px hover:cursor-pointer',
       )}
-      <div className={`w-100% flex flex-col justify-between ${shortView ? '' : 'ml-50px'}`}>
+      <div
+        className={`w-100% flex flex-col justify-between ${
+          shortView ? '' : 'ml-50px'
+        }`}
+      >
         <div>
           <div
             className={`flex flex-row items-center justify-between
