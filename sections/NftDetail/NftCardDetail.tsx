@@ -257,6 +257,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             <ScaledImage
               alt={item.name}
               src={item.imageSrc}
+              postLoad={item.imageSrc.endsWith('.gif')}
               breakpoints={[
                 {
                   lowerBound: 'desktop',

@@ -59,18 +59,12 @@ function lowerBoundCondition(bound: number): string {
   return `(min-width: ${pixels(bound)})`;
 }
 
-export enum PostLoadStrategy {
-  load = 'load',
-  doNotLoad = 'do not load',
-  loadIfGif = 'load if gif',
-}
-
 type ScaledImageProps = {
   src: string;
   alt?: string;
   className?: string;
   breakpoints?: BreakpointRatios;
-  postLoadOriginal?: PostLoadStrategy;
+  postLoad?: boolean | string;
 };
 
 function ScaledImage({
@@ -78,7 +72,7 @@ function ScaledImage({
   alt,
   className,
   breakpoints,
-  postLoadOriginal = PostLoadStrategy.loadIfGif,
+  postLoad = false,
 }: ScaledImageProps) {
   const DEFAULT_RATIO = 1;
   const SAFE_MARGIN = '-10000px';
@@ -88,19 +82,18 @@ function ScaledImage({
     [],
   );
   const [loaded, setLoaded] = useState(false);
-  const shouldLoadOriginal =
-    postLoadOriginal === PostLoadStrategy.load ||
-    (postLoadOriginal === PostLoadStrategy.loadIfGif && src.endsWith('.gif'));
-  const originalStatus = useDownloadProgress(
-    shouldLoadOriginal && loaded ? src : null,
+  const postLoadSrc =
+    typeof postLoad === 'string' ? postLoad : postLoad ? src : null;
+  const postLoadStatus = useDownloadProgress(
+    postLoadSrc !== null && loaded ? postLoadSrc : null,
     'low',
   );
-  const originalUrl = useMemo(
+  const postLoadObject = useMemo(
     () =>
-      originalStatus?.loaded ? URL.createObjectURL(originalStatus?.blob) : null,
-    [originalStatus],
+      postLoadStatus?.loaded ? URL.createObjectURL(postLoadStatus?.blob) : null,
+    [postLoadStatus],
   );
-  const [originalLoaded, setOriginalLoaded] = useState(false);
+  const [postLoaded, setPostLoaded] = useState(false);
   const pixelBreakpoints = (breakpoints || [])
     .map(({ lowerBound, ratio }) => ({
       lowerBound: getBreakpointValue(lowerBound, tailwindTheme, materialTheme),
@@ -114,14 +107,14 @@ function ScaledImage({
   );
   return (
     <div className="relative">
-      {originalStatus?.loaded && (
+      {postLoadStatus?.loaded && (
         <img
-          src={originalUrl!}
+          src={postLoadObject!}
           alt={alt}
           className={className}
-          onLoad={() => setOriginalLoaded(true)}
+          onLoad={() => setPostLoaded(true)}
           style={
-            originalLoaded
+            postLoaded
               ? {}
               : {
                   position: 'absolute',
@@ -133,7 +126,7 @@ function ScaledImage({
           }
         />
       )}
-      {(!originalStatus?.loaded || !originalLoaded) && (
+      {(!postLoadStatus?.loaded || !postLoaded) && (
         <Imgix
           src={src}
           htmlAttributes={{
@@ -161,8 +154,8 @@ function ScaledImage({
           ].join(', ')}
         />
       )}
-      {originalStatus !== null && !originalStatus.loaded && (
-        <ProgressBar progress={originalStatus.progress} />
+      {postLoadStatus !== null && !postLoadStatus.loaded && (
+        <ProgressBar progress={postLoadStatus.progress} />
       )}
     </div>
   );

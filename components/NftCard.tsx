@@ -79,6 +79,7 @@ function NftCard({
         <ScaledImage
           alt={name}
           src={imageSrc}
+          postLoad={imageSrc.endsWith('.gif')}
           className={`${
             (orderIndex! < 2 || isCollection) && !type
               ? 'desktop:h-[544px]'
