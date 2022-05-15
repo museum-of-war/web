@@ -5,7 +5,6 @@ import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBa
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
-import { isAnimated } from '@sections/utils';
 
 type NftCardProps = {
   type?: string;
@@ -87,7 +86,6 @@ function NftCard({
           } ${!orderIndex && !type ? 'tablet:h-[624px]' : 'tablet:h-[288px]'}
           mobile:h-[270px] object-contain`}
           breakpoints={breakpoints}
-          postLoadOriginal={isAnimated(imageSrc)}
         />
       </div>
       <div className="p-10px">

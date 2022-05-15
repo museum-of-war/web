@@ -10,7 +10,3 @@ export const truncateAddress = (address: string, start = 5) => {
     address.substring(address.length - 4, address.length)
   );
 };
-
-export const isAnimated = (url: string) => {
-  return url.endsWith('.gif');
-};

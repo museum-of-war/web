@@ -59,12 +59,18 @@ function lowerBoundCondition(bound: number): string {
   return `(min-width: ${pixels(bound)})`;
 }
 
+export enum PostLoadStrategy {
+  load = 'load',
+  doNotLoad = 'do not load',
+  loadIfGif = 'load if gif',
+}
+
 type ScaledImageProps = {
   src: string;
   alt?: string;
   className?: string;
   breakpoints?: BreakpointRatios;
-  postLoadOriginal?: boolean;
+  postLoadOriginal?: PostLoadStrategy;
 };
 
 function ScaledImage({
@@ -72,14 +78,17 @@ function ScaledImage({
   alt,
   className,
   breakpoints,
-  postLoadOriginal,
+  postLoadOriginal = PostLoadStrategy.loadIfGif,
 }: ScaledImageProps) {
   const DEFAULT_RATIO = 1;
   const SAFE_MARGIN = '-10000px';
   const materialTheme = useTheme();
   const [loaded, setLoaded] = useState(false);
+  const shouldLoadOriginal =
+    postLoadOriginal === PostLoadStrategy.load ||
+    (postLoadOriginal === PostLoadStrategy.loadIfGif && src.endsWith('.gif'));
   const originalStatus = useDownloadProgress(
-    postLoadOriginal && loaded ? src : null,
+    shouldLoadOriginal && loaded ? src : null,
     'low',
   );
   const originalUrl = useMemo(

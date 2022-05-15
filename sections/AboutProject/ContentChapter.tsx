@@ -31,7 +31,6 @@ const ContentChapter = ({}: ContentChapterProps) => {
               <ScaledImage
                 alt="Dots"
                 src={`${IMG_STORAGE}/img/warline-animation.gif`}
-                postLoadOriginal={true}
                 breakpoints={[
                   {
                     lowerBound: 'tablet',
@@ -64,7 +63,6 @@ const ContentChapter = ({}: ContentChapterProps) => {
                 src={`${IMG_STORAGE}/img/auction.gif`}
                 alt="Auction"
                 className="w-full"
-                postLoadOriginal={true}
                 breakpoints={[
                   {
                     lowerBound: 'tablet',

@@ -15,7 +15,7 @@ import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
 import { usePopup } from 'providers/PopupProvider';
-import { isAnimated, truncateAddress } from '@sections/utils';
+import { truncateAddress } from '@sections/utils';
 import { usePreloader } from '@providers/PreloaderProvider';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 
@@ -263,7 +263,6 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                   ratio: 0.5,
                 },
               ]}
-              postLoadOriginal={isAnimated(item.imageSrc)}
             />
           </div>
           <div className="desktop:w-[48%] mobile: w-full">
