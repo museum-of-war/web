@@ -69,7 +69,6 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     imageSources,
     className,
     containerClassName,
-    style,
     withLightbox = true,
     breakpoints,
   }: {
@@ -79,7 +78,6 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     containerClassName: string;
     withLightbox?: boolean;
     loadOriginal?: boolean;
-    style?: React.CSSProperties;
     breakpoints: BreakpointRatios;
   }) => {
     const img = (
@@ -95,7 +93,6 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         postLoad={imageSources.isAnimation ? imageSources.animationSrc : false}
         className={className}
         containerClassName={containerClassName}
-        style={style}
         breakpoints={breakpoints}
       />
     );
@@ -330,7 +327,6 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         </div>
       </div>
       <div ref={ref} />
-
       {!inView &&
         getNavButtonsJsx(
           'tablet:hidden mobile:fixed bottom-0 left-0 right-0 flex flex-row w-full justify-between px-60px py-10px bg-white',

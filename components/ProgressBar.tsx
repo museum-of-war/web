@@ -10,7 +10,7 @@ const BORDER_RADIUS = 6;
 function ProgressBar({ progress }: ProgressBarProps) {
   return (
     <div
-      className="absolute top-0 left-0 right-0 bottom-0"
+      className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none"
       style={
         {
           padding: PADDING,

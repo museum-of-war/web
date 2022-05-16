@@ -1,4 +1,4 @@
-import { CSSProperties, MouseEventHandler, useMemo, useState } from 'react';
+import { MouseEventHandler, useMemo, useState } from 'react';
 import Imgix from 'react-imgix';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from 'tailwind.config';
@@ -83,7 +83,6 @@ type ScaledImageProps = {
   title?: string;
   className?: string;
   containerClassName?: string;
-  style?: CSSProperties;
   onClick?: MouseEventHandler<HTMLImageElement>;
   breakpoints?: BreakpointRatios;
   postLoad?: boolean | string;
@@ -95,7 +94,6 @@ function ScaledImage({
   title,
   className,
   containerClassName,
-  style,
   onClick,
   breakpoints,
   postLoad = false,
@@ -156,9 +154,8 @@ function ScaledImage({
           className={className}
           onClick={onClick}
           onLoad={() => setPostLoaded(true)}
-          style={{
-            ...(style || {}),
-            ...(postLoaded
+          style={
+            postLoaded
               ? {}
               : {
                   position: 'absolute',
@@ -166,8 +163,8 @@ function ScaledImage({
                   top: SAFE_MARGIN,
                   visibility: 'hidden',
                   // Browser still needs some time to render the downloaded image
-                }),
-          }}
+                }
+          }
         />
       )}
       {(!postLoadStatus?.loaded || !postLoaded) && (
@@ -176,7 +173,6 @@ function ScaledImage({
           htmlAttributes={{
             alt,
             title,
-            style,
             onClick,
             onLoad: () => setLoaded(true),
           }}
