@@ -5,6 +5,7 @@ import { VscTwitter } from 'react-icons/vsc';
 import { useInView } from 'react-intersection-observer';
 import { openInNewTab } from '@sections/utils';
 import Button from '@components/Button';
+import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 
 type ImageSources = {
   previewSrc: string;
@@ -67,38 +68,35 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     title,
     imageSources,
     className,
+    containerClassName,
     style,
     withLightbox = true,
-    loadOriginal = false,
+    breakpoints,
   }: {
     title: string;
     imageSources: ImageSources;
     className: string;
+    containerClassName: string;
     withLightbox?: boolean;
     loadOriginal?: boolean;
     style?: React.CSSProperties;
+    breakpoints: BreakpointRatios;
   }) => {
-    loadOriginal = loadOriginal && !imageSources.originalSrc.endsWith('.mp4');
     const img = (
-      <img
+      <ScaledImage
         alt={title}
         title={title}
         onClick={withLightbox ? () => setToggler(!toggler) : undefined}
-        src={loadOriginal ? imageSources.originalSrc : imageSources.previewSrc}
+        src={
+          imageSources.isAnimation
+            ? imageSources.previewSrc
+            : imageSources.originalSrc
+        }
+        postLoad={imageSources.isAnimation ? imageSources.animationSrc : false}
         className={className}
+        containerClassName={containerClassName}
         style={style}
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null; // prevents looping
-          currentTarget.src = '/' + imageSources.randomSrc;
-        }}
-        onLoad={({ currentTarget }) => {
-          if (
-            imageSources.isAnimation &&
-            currentTarget.src.endsWith(imageSources.previewSrc)
-          ) {
-            currentTarget.src = imageSources.animationSrc;
-          }
-        }}
+        breakpoints={breakpoints}
       />
     );
     return withLightbox ? (
@@ -112,7 +110,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   };
 
   const nextPrevRecordClassname =
-    'cursor-pointer flex-1 object-contain aspect-square transition-transform hover:scale-[101%]';
+    'cursor-pointer object-contain aspect-square transition-transform hover:scale-[101%]';
+  const nextPrevRecordContainerClassname = 'flex-1';
 
   const counterJsx = (
     <div className="mobile:ml-auto desktop:ml-48px mobile:text-12px tablet:text-14px font-rlight">
@@ -161,6 +160,16 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
       </div>
     ) : undefined;
 
+  const prevNextBreakpoints = [
+    {
+      lowerBound: 'tablet',
+      ratio: 0.5,
+    },
+    {
+      lowerBound: 'desktop',
+      ratio: 0.25,
+    },
+  ] as BreakpointRatios;
   return (
     <div className="font-rnarrow">
       <div className="flex items-center mt-[-36px] mb-[24px]">
@@ -200,9 +209,15 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         {renderImage({
           imageSources,
           title,
-          loadOriginal: true,
           className:
-            'flex-1 overflow-auto object-contain cursor-pointer transition-transform hover:scale-[101%] h-fit max-h-[800px] object-left-top',
+            'overflow-auto object-contain cursor-pointer transition-transform hover:scale-[101%] h-fit max-h-[800px] object-left-top w-full',
+          containerClassName: 'flex-1',
+          breakpoints: [
+            {
+              lowerBound: 'desktop',
+              ratio: 0.5,
+            },
+          ],
         })}
         <div className="desktop:w-[544px] mobile:w-full box-border flex flex-col gap-[48px] text-[14px] tablet:text-[16px]">
           <div>
@@ -266,8 +281,10 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                     {renderImage({
                       title: prevRecord.title,
                       className: nextPrevRecordClassname,
+                      containerClassName: nextPrevRecordContainerClassname,
                       imageSources: prevRecord.imageSources,
                       withLightbox: false,
+                      breakpoints: prevNextBreakpoints,
                     })}
                     <div className="h-[44px] flex items-center">
                       <img
@@ -290,8 +307,10 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                     {renderImage({
                       title: nextRecord.title,
                       className: nextPrevRecordClassname,
+                      containerClassName: nextPrevRecordContainerClassname,
                       imageSources: nextRecord.imageSources,
                       withLightbox: false,
+                      breakpoints: prevNextBreakpoints,
                     })}
                     <div className="h-[48px] flex items-center">
                       <span className="ml-auto font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">

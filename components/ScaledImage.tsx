@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { CSSProperties, MouseEventHandler, useMemo, useState } from 'react';
 import Imgix from 'react-imgix';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from 'tailwind.config';
@@ -80,7 +80,11 @@ function lowerBoundCondition(bound: number): string {
 type ScaledImageProps = {
   src: string;
   alt?: string;
+  title?: string;
   className?: string;
+  containerClassName?: string;
+  style?: CSSProperties;
+  onClick?: MouseEventHandler<HTMLImageElement>;
   breakpoints?: BreakpointRatios;
   postLoad?: boolean | string;
 };
@@ -88,7 +92,11 @@ type ScaledImageProps = {
 function ScaledImage({
   src,
   alt,
+  title,
   className,
+  containerClassName,
+  style,
+  onClick,
   breakpoints,
   postLoad = false,
 }: ScaledImageProps) {
@@ -139,15 +147,18 @@ function ScaledImage({
     materialTheme,
   );
   return (
-    <div className="relative">
+    <div className={`relative ${containerClassName ?? ''}`}>
       {postLoadStatus?.loaded && (
         <img
           src={postLoadObject!}
           alt={alt}
+          title={title}
           className={className}
+          onClick={onClick}
           onLoad={() => setPostLoaded(true)}
-          style={
-            postLoaded
+          style={{
+            ...(style || {}),
+            ...(postLoaded
               ? {}
               : {
                   position: 'absolute',
@@ -155,8 +166,8 @@ function ScaledImage({
                   top: SAFE_MARGIN,
                   visibility: 'hidden',
                   // Browser still needs some time to render the downloaded image
-                }
-          }
+                }),
+          }}
         />
       )}
       {(!postLoadStatus?.loaded || !postLoaded) && (
@@ -164,6 +175,9 @@ function ScaledImage({
           src={src}
           htmlAttributes={{
             alt,
+            title,
+            style,
+            onClick,
             onLoad: () => setLoaded(true),
           }}
           className={className}
