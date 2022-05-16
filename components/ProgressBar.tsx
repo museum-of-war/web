@@ -10,13 +10,11 @@ const BORDER_RADIUS = 6;
 function ProgressBar({ progress }: ProgressBarProps) {
   return (
     <div
-      className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none"
-      style={
-        {
-          padding: PADDING,
-          mixBlendMode: 'plus-lighter', // This value is not yet supported by Tailwind or typing
-        } as any
-      }
+      className="absolute top-0 left-0 pointer-events-none bg-black bg-opacity-50"
+      style={{
+        padding: PADDING,
+        borderBottomRightRadius: BORDER_RADIUS,
+      }}
     >
       <div
         className="relative"
@@ -26,7 +24,7 @@ function ProgressBar({ progress }: ProgressBarProps) {
         }}
       >
         <div
-          className="absolute top-0 left-0 bottom-0 right-0 border border-white box-border border-opacity-75"
+          className="absolute top-0 left-0 bottom-0 right-0 border border-white box-border"
           style={{
             borderRadius: BORDER_RADIUS,
           }}
@@ -38,7 +36,7 @@ function ProgressBar({ progress }: ProgressBarProps) {
           }}
         >
           <div
-            className="absolute top-0 bottom-0 bg-white opacity-75 border border-transparent box-border bg-clip-padding"
+            className="absolute top-0 bottom-0 bg-white border border-transparent box-border bg-clip-padding"
             style={{
               width: WIDTH,
               borderRadius: BORDER_RADIUS,
