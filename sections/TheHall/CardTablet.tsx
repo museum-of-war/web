@@ -1,7 +1,10 @@
 import React from 'react';
 import Dotdotdot from 'react-dotdotdot';
 import SocialMediaButton from '@components/SocialMediaButton';
+import ScaledImage from '@components/ScaledImage';
 import { HallItemType } from '@sections/types';
+
+const MAX_WIDTH = 528;
 
 export const CardTablet: React.FC<HallItemType> = ({
   TwitterUrl,
@@ -16,13 +19,19 @@ export const CardTablet: React.FC<HallItemType> = ({
       margin: 20,
     }}
   >
-    <img
+    <ScaledImage
       src={ImageSrc}
       style={{
         minHeight: 528,
-        maxWidth: 528,
+        maxWidth: MAX_WIDTH,
       }}
       className="w-auto object-cover"
+      breakpoints={[
+        {
+          lowerBound: 'tablet',
+          width: MAX_WIDTH,
+        },
+      ]}
     />
     <div
       style={{
