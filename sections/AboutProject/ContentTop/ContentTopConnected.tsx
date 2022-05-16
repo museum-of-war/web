@@ -17,7 +17,7 @@ const ContentTopConnected = () => {
           </div>
         </div>
         <div className="desktop:w-45% tablet:w-100%">
-          <dotlottie-player src={'/lottie/main.lottie'} autoplay loop />
+          <video src="/vid/pd-header-optimized.mp4" autoPlay loop muted />
         </div>
       </div>
       <div className="w-100% flex justify-end">

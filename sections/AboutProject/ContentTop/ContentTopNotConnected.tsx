@@ -84,7 +84,7 @@ const ContentTopNotConnected = ({
               : 'min-h-[347px]'
           }`}
         >
-          <dotlottie-player src={'/lottie/main.lottie'} autoplay loop />
+          <video src="/vid/pd-header-optimized.mp4" autoPlay loop muted />
         </div>
         <PoweredByFrame />
       </div>
