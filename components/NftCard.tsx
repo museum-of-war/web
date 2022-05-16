@@ -67,7 +67,7 @@ function NftCard({
     <div
       onClick={navlinkToNft}
       className={`
-        mobile:my-15px tablet:my-0 desktop:my-0 mobile:border-0 tablet:border-4 desktop:border-4 border-carbon
+        mobile:my-15px tablet:my-0 desktop:my-0 mobile:border-0 tablet:border-4 desktop:border-4 border-carbon h-full
         border-solid ${
           isTouch
             ? ''
@@ -102,7 +102,7 @@ function NftCard({
               </p>
             </div>
           )}
-          {timeLeft.isLeft && (
+          {timeLeft.isLeft && !isSold && (
             <div className={`${timeLeft.days ? '' : 'w-[100px]'}`}>
               <p className="font-rlight text-12px leading-100% opacity-70 ">
                 {isStarted ? 'Ends in' : 'Starts in'}
@@ -113,6 +113,11 @@ function NftCard({
                   : `${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
               </p>
             </div>
+          )}
+          {isSold && isStarted && (
+            <p className="font-rlight text-12px leading-100% opacity-70 ">
+              Sold
+            </p>
           )}
         </div>
       </div>

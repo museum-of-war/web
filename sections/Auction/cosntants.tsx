@@ -4,6 +4,7 @@ import { AuctionCollections } from '@sections/types';
 export const FILTER_OPTIONS_TYPES: SelectOption[] = [
   { text: 'On Sale', value: 'On Sale' },
   { text: 'Sold', value: 'Sold' },
+  { text: 'Coming soon', value: 'Coming soon' },
   { text: 'All Types', value: 'All Types' },
 ];
 
