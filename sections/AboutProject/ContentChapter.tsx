@@ -1,5 +1,7 @@
 import React from 'react';
 import { useAppRouter } from '@hooks/useAppRouter';
+import ScaledImage from '@components/ScaledImage';
+import { IMG_STORAGE } from '@sections/Constants';
 
 type ContentChapterProps = {};
 
@@ -26,9 +28,16 @@ const ContentChapter = ({}: ContentChapterProps) => {
               </p>
             </div>
             <div className="flex flex-wrap border-t-4 border-carbon border-solid ">
-              <img
+              <ScaledImage
                 alt="Dots"
-                src="img/warline-animation.gif"
+                src={`${IMG_STORAGE}/img/warline-animation.gif`}
+                postLoad={true}
+                breakpoints={[
+                  {
+                    lowerBound: 'tablet',
+                    ratio: 0.5,
+                  },
+                ]}
                 className="object-cover"
               />
             </div>
@@ -51,7 +60,18 @@ const ContentChapter = ({}: ContentChapterProps) => {
               </p>
             </div>
             <div className="flex flex-wrap  border-t-4 border-carbon border-solid ">
-              <img src="/img/auction.gif" alt="Auction" className="w-full" />
+              <ScaledImage
+                src={`${IMG_STORAGE}/img/auction.gif`}
+                postLoad={true}
+                alt="Auction"
+                className="w-full"
+                breakpoints={[
+                  {
+                    lowerBound: 'tablet',
+                    ratio: 0.5,
+                  },
+                ]}
+              />
             </div>
           </div>
         </div>

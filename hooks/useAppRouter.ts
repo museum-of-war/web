@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
-import { ParsedUrlQuery } from 'querystring'
+import { useRouter } from 'next/router';
+import { ParsedUrlQuery } from 'querystring';
 
 type HookReturnType<QueryParams extends any> = ReturnType<typeof useRouter> &
   (

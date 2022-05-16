@@ -1,6 +1,7 @@
 import React from 'react';
 import Dotdotdot from 'react-dotdotdot';
 import SocialMediaButton from '@components/SocialMediaButton';
+import ScaledImage from '@components/ScaledImage';
 import { HallItemType } from '@sections/types';
 
 export const CardMobile: React.FC<HallItemType> = ({
@@ -18,12 +19,11 @@ export const CardMobile: React.FC<HallItemType> = ({
       minWidth: '80%',
     }}
   >
-    <img
-      className="w-auto object-cover"
+    <ScaledImage
+      className="w-auto h-full object-cover"
       src={ImageSrc}
-      style={{
+      containerStyle={{
         minHeight: 250,
-        maxWidth: '100%',
       }}
     />
     <div

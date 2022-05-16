@@ -4,6 +4,7 @@ import { getUrls } from '@sections/Warline/WarlineUrls';
 import WarlineData from '@sections/Warline/WarlineData';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
+import ScaledImage from '@components/ScaledImage';
 
 type TokenItemProps = {
   tokenData: TokenDataType;
@@ -53,10 +54,11 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
   const renderImage = (className: string, tokenId: string) => {
     const randomSrc = rand_imgs[1 % 8] as string;
     const { push } = useAppRouter();
-    const { previewSrc, animationSrc, isAnimation } =
+    const { originalSrc, previewSrc, animationSrc, isAnimation } =
       itemEvent && 'ImageType' in itemEvent
         ? getUrls(tokenId, itemEvent?.ImageType, randomSrc as string)
         : {
+            originalSrc: (itemEvent as AuctionItemType)?.imageSrc,
             previewSrc: (itemEvent as AuctionItemType)?.imageSrc,
             animationSrc: (itemEvent as AuctionItemType)?.animationSrc,
             isAnimation: !!(itemEvent as AuctionItemType)?.animationSrc,
@@ -64,20 +66,22 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
 
     return (
       <>
-        <img
+        <ScaledImage
           alt={alt}
           onClick={() => push(`/tokens/${index}`)}
-          src={previewSrc}
+          src={isAnimation ? previewSrc : originalSrc}
+          postLoad={isAnimation ? animationSrc : false}
           className={className}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null; // prevents looping
-            currentTarget.src = randomSrc;
-          }}
-          onLoad={({ currentTarget }) => {
-            if (isAnimation && currentTarget.src.endsWith(previewSrc)) {
-              currentTarget.src = animationSrc ?? '';
-            }
-          }}
+          breakpoints={[
+            {
+              lowerBound: 'tablet',
+              ratio: 0.5,
+            },
+            {
+              lowerBound: 'desktop',
+              ratio: 0.25,
+            },
+          ]}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         />

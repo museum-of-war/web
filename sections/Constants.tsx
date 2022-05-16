@@ -1,4 +1,4 @@
-export const IMG_STORAGE = 'https://metahistory.gallery/img';
+export const IMG_STORAGE = 'https://metahistory.imgix.net';
 export const TWITTER_LINK =
   'https://twitter.com/Meta_History_UA?t=gjhrJDPwV026--t4UsgkYA&s=09';
 export const TWITTER_LINK_MOBILE =

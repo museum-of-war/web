@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ScaledImage from '@components/ScaledImage';
 import BidsHistoryTable from '@components/BidsHistoryTable';
 import Button from '@components/Button';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
@@ -253,7 +254,17 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
         )}
         <div className="flex mt-40px mobile:flex-col desktop:flex-row justify-between">
           <div className="desktop:w-[48%] mobile: w-full">
-            <img alt={item.name} src={item.imageSrc} />
+            <ScaledImage
+              alt={item.name}
+              src={item.imageSrc}
+              postLoad={item.imageSrc.endsWith('.gif')}
+              breakpoints={[
+                {
+                  lowerBound: 'desktop',
+                  ratio: 0.5,
+                },
+              ]}
+            />
           </div>
           <div className="desktop:w-[48%] mobile: w-full">
             {isSold ? (
@@ -332,6 +343,16 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                     key={item.index}
                   >
                     <NftCard
+                      breakpoints={[
+                        {
+                          lowerBound: 'tablet',
+                          ratio: 0.5,
+                        },
+                        {
+                          lowerBound: 'desktop',
+                          ratio: 0.25,
+                        },
+                      ]}
                       orderIndex={index}
                       index={item.index}
                       imageSrc={item.imageSrc}
