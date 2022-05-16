@@ -327,6 +327,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         </div>
       </div>
       <div ref={ref} />
+
       {!inView &&
         getNavButtonsJsx(
           'tablet:hidden mobile:fixed bottom-0 left-0 right-0 flex flex-row w-full justify-between px-60px py-10px bg-white',
