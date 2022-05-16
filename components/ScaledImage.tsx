@@ -86,6 +86,8 @@ type ScaledImageProps = {
   style?: CSSProperties;
   containerStyle?: CSSProperties;
   onClick?: MouseEventHandler<HTMLImageElement>;
+  onMouseEnter?: MouseEventHandler<HTMLImageElement>;
+  onMouseLeave?: MouseEventHandler<HTMLImageElement>;
   breakpoints?: BreakpointRatios;
   postLoad?: boolean | string;
 };
@@ -99,6 +101,8 @@ function ScaledImage({
   style,
   containerStyle,
   onClick,
+  onMouseEnter,
+  onMouseLeave,
   breakpoints,
   postLoad = false,
 }: ScaledImageProps) {
@@ -160,6 +164,8 @@ function ScaledImage({
           title={title}
           className={className}
           onClick={onClick}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
           onLoad={() => setPostLoaded(true)}
           style={{
             ...(style || {}),
@@ -183,6 +189,8 @@ function ScaledImage({
             title,
             style,
             onClick,
+            onMouseEnter,
+            onMouseLeave,
             onLoad: () => setLoaded(true),
           }}
           className={className}
