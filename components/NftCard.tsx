@@ -102,7 +102,7 @@ function NftCard({
               </p>
             </div>
           )}
-          {timeLeft.isLeft && (
+          {timeLeft.isLeft && !isSold && (
             <div className={`${timeLeft.days ? '' : 'w-[100px]'}`}>
               <p className="font-rlight text-12px leading-100% opacity-70 ">
                 {isStarted ? 'Ends in' : 'Starts in'}
@@ -114,7 +114,7 @@ function NftCard({
               </p>
             </div>
           )}
-          {isSold && (
+          {isSold && isStarted && (
             <p className="font-rlight text-12px leading-100% opacity-70 ">
               Sold
             </p>
