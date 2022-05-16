@@ -67,7 +67,7 @@ function NftCard({
     <div
       onClick={navlinkToNft}
       className={`
-        mobile:my-15px tablet:my-0 desktop:my-0 mobile:border-0 tablet:border-4 desktop:border-4 border-carbon
+        mobile:my-15px tablet:my-0 desktop:my-0 mobile:border-0 tablet:border-4 desktop:border-4 border-carbon h-full
         border-solid ${
           isTouch
             ? ''
@@ -113,6 +113,11 @@ function NftCard({
                   : `${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
               </p>
             </div>
+          )}
+          {isSold && (
+            <p className="font-rlight text-12px leading-100% opacity-70 ">
+              Sold
+            </p>
           )}
         </div>
       </div>

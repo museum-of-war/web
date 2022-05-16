@@ -68,7 +68,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedType, setSelectedType] = useState<string | undefined>(
-    FILTER_OPTIONS_TYPES[FILTER_OPTIONS_TYPES.length - 1]?.value,
+    FILTER_OPTIONS_TYPES[3]?.value,
   );
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
     FILTER_OPTIONS_CATEGORIES[0]?.value,
@@ -89,12 +89,16 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
     if (selectedCategory !== FILTER_OPTIONS_CATEGORIES[0]?.value) {
       result = result.filter((datum) => datum.category === selectedCategory);
     }
-
-    if (selectedType !== FILTER_OPTIONS_TYPES[2]?.value) {
-      result = result.filter((datum) =>
-        selectedType === 'On Sale'
-          ? datum.fullInfo.nftSeller !== EMPTY_NFT_SELLER
-          : datum.fullInfo.nftSeller === EMPTY_NFT_SELLER,
+    console.log(result);
+    if (selectedType === FILTER_OPTIONS_TYPES[2]?.value) {
+      result = result.filter((datum) => !datum.fullInfo);
+    } else if (selectedType !== FILTER_OPTIONS_TYPES[3]?.value) {
+      result = result.filter(
+        (datum) =>
+          datum.fullInfo &&
+          (selectedType === 'On Sale'
+            ? datum.fullInfo.nftSeller !== EMPTY_NFT_SELLER
+            : datum.fullInfo.nftSeller === EMPTY_NFT_SELLER),
       );
     }
 
@@ -193,7 +197,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
                 options={FILTER_OPTIONS_TYPES}
                 selectedValue={selectedType}
                 onChange={handleChangeType}
-                className="w-[162px]"
+                className="min-w-[200px]"
               />
             </div>
             {isCollection ? null : (
