@@ -5,7 +5,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Evacuation from Bucha',
     tokenId: 1,
-    imageSrc: `${IMG_STORAGE}/original/avatars/AlexTwin-EvacuationFromBucha copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/AlexTwin-EvacuationFromBucha copy.jpg`,
     artist: 'Alex Twin',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -13,7 +13,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: '... --- ...',
     tokenId: 2,
-    imageSrc: `${IMG_STORAGE}/original/avatars/AndreyRoscha-Symbols.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/AndreyRoscha-Symbols.jpg`,
     artist: 'Andrey Roscha',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -21,7 +21,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Face of Glory',
     tokenId: 3,
-    imageSrc: `${IMG_STORAGE}/original/avatars/AndriiKharchenko-FaceOfGlory.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/AndriiKharchenko-FaceOfGlory.jpg`,
     artist: 'Andrii Kharchenko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -29,7 +29,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Unbroken',
     tokenId: 4,
-    imageSrc: `${IMG_STORAGE}/original/avatars/AnnaSova-Unbroken copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/AnnaSova-Unbroken copy.jpg`,
     artist: 'Anna Sova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -37,7 +37,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Glory',
     tokenId: 5,
-    imageSrc: `${IMG_STORAGE}/original/avatars/BorysKernytskyi-Glory copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/BorysKernytskyi-Glory copy.jpg`,
     artist: 'Borys Kernytskyi',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -45,7 +45,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Novel Oranta',
     tokenId: 6,
-    imageSrc: `${IMG_STORAGE}/original/avatars/DanaVitkovska-NovelOranta copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/DanaVitkovska-NovelOranta copy.jpg`,
     artist: 'Dana Vitkovska',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -53,7 +53,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Fight for Ukraine',
     tokenId: 7,
-    imageSrc: `${IMG_STORAGE}/original/avatars/DariaDemenkova-FightForUkraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/DariaDemenkova-FightForUkraine copy.jpg`,
     artist: 'Daria Demenkova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -61,7 +61,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Glory to Ukraine',
     tokenId: 8,
-    imageSrc: `${IMG_STORAGE}/original/avatars/DariaSkrypnyk-GloryToUkraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/DariaSkrypnyk-GloryToUkraine copy.jpg`,
     artist: 'Daria Skrypnyk',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -69,7 +69,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Motherland Unbroken',
     tokenId: 9,
-    imageSrc: `${IMG_STORAGE}/original/avatars/DariaTkalenko-MotherlandUnbroken copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/DariaTkalenko-MotherlandUnbroken copy.jpg`,
     artist: 'Daria Tkalenko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -77,7 +77,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'The Child',
     tokenId: 10,
-    imageSrc: `${IMG_STORAGE}/original/avatars/DenysYakovenko-TheChild copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/DenysYakovenko-TheChild copy.jpg`,
     artist: 'Denys Yakovenko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -85,7 +85,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Shadows of the Ancestors',
     tokenId: 11,
-    imageSrc: `${IMG_STORAGE}/original/avatars/EduardKolokolov-ShadowsOfTheAncestors copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/EduardKolokolov-ShadowsOfTheAncestors copy.jpg`,
     artist: 'Eduard Kolokolov',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -93,7 +93,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Symbols',
     tokenId: 12,
-    imageSrc: `${IMG_STORAGE}/original/avatars/IhorNesterenko-Symbols copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/IhorNesterenko-Symbols copy.jpg`,
     artist: 'Ihor Nesterenko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -101,7 +101,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Symbols 2',
     tokenId: 13,
-    imageSrc: `${IMG_STORAGE}/original/avatars/IhorNesterenko-Symbols2 copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/IhorNesterenko-Symbols2 copy.jpg`,
     artist: 'Ihor Nesterenko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -109,7 +109,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Genocide',
     tokenId: 14,
-    imageSrc: `${IMG_STORAGE}/original/avatars/KarinaKuts-Genocide copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/KarinaKuts-Genocide copy.jpg`,
     artist: 'Karina Kuts',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -117,7 +117,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Mariupol',
     tokenId: 15,
-    imageSrc: `${IMG_STORAGE}/original/avatars/KarinaKuts-Mariupol copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/KarinaKuts-Mariupol copy.jpg`,
     artist: 'Karina Kuts',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -125,7 +125,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Ukraine',
     tokenId: 16,
-    imageSrc: `${IMG_STORAGE}/original/avatars/KaterynaProdaivoda-Ukraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/KaterynaProdaivoda-Ukraine copy.jpg`,
     artist: 'Kateryna Prodaivoda',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -133,7 +133,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Fight',
     tokenId: 17,
-    imageSrc: `${IMG_STORAGE}/original/avatars/KaterynaProdayvoda-Fight copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/KaterynaProdayvoda-Fight copy.jpg`,
     artist: 'Kateryna Prodayvoda',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -141,7 +141,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Sorrow',
     tokenId: 18,
-    imageSrc: `${IMG_STORAGE}/original/avatars/KaterynaProdayvoda-Sorrow copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/KaterynaProdayvoda-Sorrow copy.jpg`,
     artist: 'Kateryna Prodayvoda',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -149,7 +149,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Lo-Fi Study Girl from Ukraine',
     tokenId: 19,
-    imageSrc: `${IMG_STORAGE}/original/avatars/LeruteBatsian-Lo-FiStudyGirlFromUkraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/LeruteBatsian-Lo-FiStudyGirlFromUkraine copy.jpg`,
     artist: 'Lerute Batsian',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -157,7 +157,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Ukrainian Women',
     tokenId: 20,
-    imageSrc: `${IMG_STORAGE}/original/avatars/NastyaHaidaienko-UkrainianWomen.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/NastyaHaidaienko-UkrainianWomen.jpg`,
     artist: 'Nastya Haidaienko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -165,7 +165,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Might, Beauty and Freedom',
     tokenId: 21,
-    imageSrc: `${IMG_STORAGE}/original/avatars/NonnaLitvinova-MightBeautyAndFreedom copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/NonnaLitvinova-MightBeautyAndFreedom copy.jpg`,
     artist: 'Nonna Litvinova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -173,7 +173,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Harvest',
     tokenId: 22,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OlegShevchenko-Harvest copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OlegShevchenko-Harvest copy.jpg`,
     artist: 'Oleg Shevchenko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -181,7 +181,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'My Savior',
     tokenId: 23,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OlegZolotarenko-MySavior copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OlegZolotarenko-MySavior copy.jpg`,
     artist: 'Oleg Zolotarenko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -189,7 +189,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Ukraine Will Resist',
     tokenId: 24,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OleksandrBorodin-UkraineWillResist! copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OleksandrBorodin-UkraineWillResist! copy.jpg`,
     artist: 'Oleksandr Borodin',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -197,7 +197,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Glory to Ukraine!',
     tokenId: 25,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OleksandrUtkin-GloryToUkraine! copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OleksandrUtkin-GloryToUkraine! copy.jpg`,
     artist: 'Oleksandr Utkin',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -205,7 +205,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Glory to Ukraine! Glory to the Heroes!',
     tokenId: 26,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OleksandrUtkin-GloryToUkraine!GloryToTheHeroes! copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OleksandrUtkin-GloryToUkraine!GloryToTheHeroes! copy.jpg`,
     artist: 'Oleksandr Utkin',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -213,7 +213,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Ukraine',
     tokenId: 27,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OleksiiGnievyshev-Ukraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OleksiiGnievyshev-Ukraine copy.jpg`,
     artist: 'Oleksii Gnievyshev',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -221,7 +221,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Burning Rage',
     tokenId: 28,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OleksiiHumeniuk-BurningRage copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OleksiiHumeniuk-BurningRage copy.jpg`,
     artist: 'Oleksii Humeniuk',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -229,7 +229,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Azov Steel',
     tokenId: 29,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OleksiiRysiuk-AzovSteel copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OleksiiRysiuk-AzovSteel copy.jpg`,
     artist: 'Oleksii Rysiuk',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -237,7 +237,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Better Future',
     tokenId: 30,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OleksiiRysiuk-BetterFuture copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OleksiiRysiuk-BetterFuture copy.jpg`,
     artist: 'Oleksii Rysiuk',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -245,7 +245,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Stand with Ukraine',
     tokenId: 31,
-    imageSrc: `${IMG_STORAGE}/original/avatars/OlexiiSmola-StandWithUkraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/OlexiiSmola-StandWithUkraine copy.jpg`,
     artist: 'Olexii Smola',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -253,7 +253,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Save Ukraine',
     tokenId: 32,
-    imageSrc: `${IMG_STORAGE}/original/avatars/Ozero__9-SaveUkraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/Ozero__9-SaveUkraine copy.jpg`,
     artist: 'Ozero 9',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -261,7 +261,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Ukraine',
     tokenId: 33,
-    imageSrc: `${IMG_STORAGE}/original/avatars/RomanChalyi-Ukraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/RomanChalyi-Ukraine copy.jpg`,
     artist: 'Roman Chalyi',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -269,7 +269,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Death',
     tokenId: 34,
-    imageSrc: `${IMG_STORAGE}/original/avatars/RostyslavZagornov-Death copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/RostyslavZagornov-Death copy.jpg`,
     artist: 'Rostyslav Zagornov',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -277,7 +277,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'BES',
     tokenId: 35,
-    imageSrc: `${IMG_STORAGE}/original/avatars/Rustam-BES copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/Rustam-BES copy.jpg`,
     artist: 'Rustam_MrSun',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -285,7 +285,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Fast Food',
     tokenId: 36,
-    imageSrc: `${IMG_STORAGE}/original/avatars/Rustam-FastFood copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/Rustam-FastFood copy.jpg`,
     artist: 'Rustam_MrSun',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -293,7 +293,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Mariupol',
     tokenId: 37,
-    imageSrc: `${IMG_STORAGE}/original/avatars/SadanVague-Mariupol copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/SadanVague-Mariupol copy.jpg`,
     artist: 'Sadan Vague',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -301,7 +301,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'St Christopher Cynocephalus',
     tokenId: 38,
-    imageSrc: `${IMG_STORAGE}/original/avatars/SadanVague-StChristopherCynocephalus copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/SadanVague-StChristopherCynocephalus copy.jpg`,
     artist: 'Sadan Vague',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -309,7 +309,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'St Javelina',
     tokenId: 39,
-    imageSrc: `${IMG_STORAGE}/original/avatars/SadanVague-StJavelina copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/SadanVague-StJavelina copy.jpg`,
     artist: 'Sadan Vague',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -317,7 +317,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Bloody Wreaths',
     tokenId: 40,
-    imageSrc: `${IMG_STORAGE}/original/avatars/Sandratski-BloodyWreaths copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/Sandratski-BloodyWreaths copy.jpg`,
     artist: 'Sandratski',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -325,7 +325,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Ukrainian Madonna',
     tokenId: 41,
-    imageSrc: `${IMG_STORAGE}/original/avatars/SelenisRhineNadiiaMakeienko-UkrainianMadonna copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/SelenisRhineNadiiaMakeienko-UkrainianMadonna copy.jpg`,
     artist: 'Selenis Rhine Nadiia Makeienko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -333,7 +333,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Warm Embrace of Ukraine',
     tokenId: 42,
-    imageSrc: `${IMG_STORAGE}/original/avatars/Sergey-WarmEmbraceOfUkraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/Sergey-WarmEmbraceOfUkraine copy.jpg`,
     artist: 'Sergey',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -341,7 +341,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'The Reaping',
     tokenId: 43,
-    imageSrc: `${IMG_STORAGE}/original/avatars/SerhiiHula-TheReaping copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/SerhiiHula-TheReaping copy.jpg`,
     artist: 'Serhii Hula',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -349,7 +349,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Saint Javelina',
     tokenId: 44,
-    imageSrc: `${IMG_STORAGE}/original/avatars/StanislavLunin-SaintJavelinaSavemariupol copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/StanislavLunin-SaintJavelinaSavemariupol copy.jpg`,
     artist: 'Stanislav Lunin',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -357,7 +357,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Welcome to Free Ukraine',
     tokenId: 45,
-    imageSrc: `${IMG_STORAGE}/original/avatars/StanislavLunin-WelcomeToFreeUkraine copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/StanislavLunin-WelcomeToFreeUkraine copy.jpg`,
     artist: 'Stanislav Lunin',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -365,7 +365,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Glory to Heroes!',
     tokenId: 46,
-    imageSrc: `${IMG_STORAGE}/original/avatars/ValeriiaKratenko-GloryToHeroes! copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/ValeriiaKratenko-GloryToHeroes! copy.jpg`,
     artist: 'Valeriia Kratenko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -373,7 +373,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Ukrainian Voluntier',
     tokenId: 47,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VitaliiIschenko-UkrainianVoluntier copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VitaliiIschenko-UkrainianVoluntier copy.jpg`,
     artist: 'Vitalii Ischenko',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -381,7 +381,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Azovstal',
     tokenId: 48,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Azovstal copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VladaHladkova-Azovstal copy.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -389,7 +389,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Bandura',
     tokenId: 49,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Bandura copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VladaHladkova-Bandura copy.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -397,7 +397,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Bucha Irpin',
     tokenId: 50,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-BuchaIrpin copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VladaHladkova-BuchaIrpin copy.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -405,7 +405,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Hostomel',
     tokenId: 51,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Hostomel copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VladaHladkova-Hostomel copy.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -413,7 +413,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Kherson',
     tokenId: 52,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Kherson copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VladaHladkova-Kherson copy.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -421,7 +421,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Mariupol',
     tokenId: 53,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Mariupol copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VladaHladkova-Mariupol copy.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -429,7 +429,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Protection',
     tokenId: 54,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Protection copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VladaHladkova-Protection copy.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -437,7 +437,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'We will not Surrender',
     tokenId: 55,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VolodymyrBondar-WeWillNotSurrender copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VolodymyrBondar-WeWillNotSurrender copy.jpg`,
     artist: 'Volodymyr Bondar',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -445,7 +445,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'I Want My Land to be Peaceful',
     tokenId: 56,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VolodymyrKryvonos-IWantMyLandToBePeaceful copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VolodymyrKryvonos-IWantMyLandToBePeaceful copy.jpg`,
     artist: 'Volodymyr Kryvonos',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -453,7 +453,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Victory',
     tokenId: 57,
-    imageSrc: `${IMG_STORAGE}/original/avatars/VolodymyrSkripai-Victory copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/VolodymyrSkripai-Victory copy.jpg`,
     artist: 'Volodymyr Skripai',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -461,7 +461,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Children of War',
     tokenId: 58,
-    imageSrc: `${IMG_STORAGE}/original/avatars/Yuliia-MariiaDatsyshyn-ChildrenOfWar copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/Yuliia-MariiaDatsyshyn-ChildrenOfWar copy.jpg`,
     artist: 'Yuliia-Mariia Datsyshyn',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -469,7 +469,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Mariupol',
     tokenId: 59,
-    imageSrc: `${IMG_STORAGE}/original/avatars/YuriiNahornyi-Mariupol.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/YuriiNahornyi-Mariupol.jpg`,
     artist: 'Yurii Nahornyi',
     descriptionEnglish: '',
     descriptionUkrainian: '',
@@ -477,7 +477,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
     name: 'Average Ukrainian Warrior',
     tokenId: 60,
-    imageSrc: `${IMG_STORAGE}/original/avatars/YuriiRepetskyi-AverageUkrainianWarrior copy.jpg`,
+    imageSrc: `${IMG_STORAGE}/original/avatars/coming-soon/YuriiRepetskyi-AverageUkrainianWarrior copy.jpg`,
     artist: 'Yurii Repetskyi',
     descriptionEnglish: '',
     descriptionUkrainian: '',
