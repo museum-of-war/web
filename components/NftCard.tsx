@@ -15,6 +15,7 @@ type NftCardProps = {
 
 function NftCard({
   imageSrc,
+  animationSrc,
   breakpoints,
   name,
   index,
@@ -26,7 +27,10 @@ function NftCard({
   type,
   isSale,
   isCollection,
-}: Pick<AuctionItemType, 'imageSrc' | 'name' | 'index' | 'tokenId' | 'isSale'> &
+}: Pick<
+  AuctionItemType,
+  'imageSrc' | 'animationSrc' | 'name' | 'index' | 'tokenId' | 'isSale'
+> &
   Pick<AuctionCollectionType, 'contractAddress' | 'endsIn' | 'startsAt'> &
   NftCardProps) {
   const { push } = useAppRouter();
@@ -42,7 +46,7 @@ function NftCard({
     nextMinBid: string;
   }>({ bid: '0', nextMinBid: '' });
 
-  const navlinkToNft = () => (isStarted ? push(`/auction/${index}`) : null);
+  const navlinkToNft = () => push(`/auction/${index}`);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -79,7 +83,7 @@ function NftCard({
         <ScaledImage
           alt={name}
           src={imageSrc}
-          postLoad={imageSrc.endsWith('.gif')}
+          postLoad={imageSrc.endsWith('.gif') || animationSrc}
           className={`${
             (orderIndex! < 2 || isCollection) && !type
               ? 'desktop:h-[544px]'
@@ -102,8 +106,12 @@ function NftCard({
               </p>
             </div>
           )}
-          {timeLeft.isLeft && !isSold && (
-            <div className={`${timeLeft.days ? '' : 'w-[100px]'}`}>
+          {timeLeft.isLeft && (!isStarted || !isSold) && (
+            <div
+              className={`${
+                timeLeft.days ? '' : 'w-[100px] whitespace-nowrap'
+              }`}
+            >
               <p className="font-rlight text-12px leading-100% opacity-70 ">
                 {isStarted ? 'Ends in' : 'Starts in'}
               </p>

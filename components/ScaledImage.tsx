@@ -85,9 +85,9 @@ type ScaledImageProps = {
   containerClassName?: string;
   style?: CSSProperties;
   containerStyle?: CSSProperties;
-  onClick?: MouseEventHandler<HTMLImageElement>;
-  onMouseEnter?: MouseEventHandler<HTMLImageElement>;
-  onMouseLeave?: MouseEventHandler<HTMLImageElement>;
+  onClick?: MouseEventHandler<HTMLElement>;
+  onMouseEnter?: MouseEventHandler<HTMLElement>;
+  onMouseLeave?: MouseEventHandler<HTMLElement>;
   breakpoints?: BreakpointRatios;
   postLoad?: boolean | string;
 };
@@ -157,30 +157,56 @@ function ScaledImage({
       className={`relative ${containerClassName ?? ''}`}
       style={containerStyle}
     >
-      {postLoadStatus?.loaded && (
-        <img
-          src={postLoadObject!}
-          alt={alt}
-          title={title}
-          className={className}
-          onClick={onClick}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          onLoad={() => setPostLoaded(true)}
-          style={{
-            ...(style || {}),
-            ...(postLoaded
-              ? {}
-              : {
-                  position: 'absolute',
-                  left: SAFE_MARGIN,
-                  top: SAFE_MARGIN,
-                  visibility: 'hidden',
-                  // Browser still needs some time to render the downloaded image
-                }),
-          }}
-        />
-      )}
+      {postLoadStatus?.loaded &&
+        (postLoadSrc?.endsWith('.mp4') ? (
+          <video
+            autoPlay
+            loop
+            muted
+            src={postLoadObject!}
+            title={title}
+            className={className}
+            onClick={onClick}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            onLoadedData={() => setPostLoaded(true)}
+            style={{
+              ...(style || {}),
+              ...(postLoaded
+                ? {}
+                : {
+                    position: 'absolute',
+                    left: SAFE_MARGIN,
+                    top: SAFE_MARGIN,
+                    visibility: 'hidden',
+                    // Browser still needs some time to render the downloaded image
+                  }),
+            }}
+          />
+        ) : (
+          <img
+            src={postLoadObject!}
+            alt={alt}
+            title={title}
+            className={className}
+            onClick={onClick}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            onLoad={() => setPostLoaded(true)}
+            style={{
+              ...(style || {}),
+              ...(postLoaded
+                ? {}
+                : {
+                    position: 'absolute',
+                    left: SAFE_MARGIN,
+                    top: SAFE_MARGIN,
+                    visibility: 'hidden',
+                    // Browser still needs some time to render the downloaded image
+                  }),
+            }}
+          />
+        ))}
       {(!postLoadStatus?.loaded || !postLoaded) && (
         <Imgix
           src={src}

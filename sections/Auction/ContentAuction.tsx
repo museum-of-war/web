@@ -89,7 +89,6 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
     if (selectedCategory !== FILTER_OPTIONS_CATEGORIES[0]?.value) {
       result = result.filter((datum) => datum.category === selectedCategory);
     }
-    console.log(result);
     if (selectedType === FILTER_OPTIONS_TYPES[2]?.value) {
       result = result.filter((datum) => !datum.fullInfo);
     } else if (selectedType !== FILTER_OPTIONS_TYPES[3]?.value) {
@@ -260,6 +259,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               orderIndex={index}
               index={item.index}
               imageSrc={item.imageSrc}
+              animationSrc={item.animationSrc}
               name={item.name}
               startsAt={item.startsAt}
               endsIn={item.endsIn}

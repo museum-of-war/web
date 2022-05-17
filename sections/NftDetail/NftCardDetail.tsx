@@ -1,16 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ScaledImage from '@components/ScaledImage';
 import BidsHistoryTable from '@components/BidsHistoryTable';
 import Button from '@components/Button';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
-import {
-  AuctionCollections,
-  AuctionCollectionType,
-  AuctionItemType,
-  BidInfo,
-} from '@sections/types';
+import { AuctionItemType, BidInfo } from '@sections/types';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
@@ -18,6 +13,7 @@ import { usePopup } from 'providers/PopupProvider';
 import { truncateAddress } from '@sections/utils';
 import { usePreloader } from '@providers/PreloaderProvider';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
+import FsLightbox from 'fslightbox-react';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -26,6 +22,7 @@ type NftCardDetailProps = {
 type BidCardProps = {
   isMobile?: boolean;
   endsIn: Date;
+  startsAt?: Date;
   currentBid: string;
   proposedBids: string[];
   contractAddress: string;
@@ -50,12 +47,16 @@ const BidCard = ({
   proposedBids,
   isMobile,
   endsIn,
+  startsAt,
   contractAddress,
   tokenId,
   isSale,
   buyNowPrice,
 }: BidCardProps) => {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
+  const [isStarted, setIsStarted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(
+    calculateTimeLeft(`${startsAt ?? endsIn}`),
+  );
   const [usdPrice, setUsdPrice] = useState<string | null>(null);
   const { showPopup } = usePopup();
   const { makeBid } = useWeb3Modal();
@@ -66,10 +67,12 @@ const BidCard = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(`${endsIn}`));
+      const isStarted = !calculateTimeLeft(`${startsAt ?? new Date()}`).isLeft;
+      setIsStarted(isStarted);
+      setTimeLeft(calculateTimeLeft(`${isStarted ? endsIn : startsAt}`));
     }, 1000);
     return () => clearInterval(interval);
-  }, [endsIn]);
+  }, [endsIn, startsAt]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -87,11 +90,11 @@ const BidCard = ({
             {isSale ? 'Current price' : 'Current bid'}
           </p>
           <p className="mobile:text-27px tablet:text-32px font-rblack">
-            {currentBid} ETH
+            {+currentBid ? currentBid : '—'} ETH
           </p>
           {!!usdPrice && (
             <p className="font-rlight mobile:text-14px tablet:text-16px">
-              ${usdPrice}
+              ${+usdPrice ? usdPrice : '—'}
             </p>
           )}
         </div>
@@ -100,7 +103,7 @@ const BidCard = ({
             <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
             <div>
               <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
-                Ends in
+                {isStarted ? 'Ends in' : 'Starts in'}
               </p>
               <div className="flex -mx-10px">
                 <div className="text-center px-10px">
@@ -138,7 +141,7 @@ const BidCard = ({
           </>
         )}
       </div>
-      {!isMobile && (
+      {!isMobile && isStarted && (
         <Button
           mode="custom"
           label={isSale ? 'Buy Now' : 'Place Bid'}
@@ -166,12 +169,11 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { push } = useAppRouter();
   const { makeBid, getAuctionInfo, getOwnerOfNFT } = useWeb3Modal();
   const { hidePreloader, showPreloader } = usePreloader();
+  const [isStarted, setIsStarted] = useState(false);
+  const [lightboxToggler, setLightboxToggler] = React.useState<boolean>(false);
 
   const [isSold, setSold] = useState<boolean>(false);
   const [tokenOwner, setTokenOwner] = useState<string>('');
-  const [collectionData, setCollectionData] = useState<AuctionCollectionType>(
-    AuctionCollectionData[AuctionCollections.firstDrop],
-  );
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     proposedBids: string[];
@@ -188,16 +190,49 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     };
   }, []);
 
+  const collectionData = useMemo(
+    () => AuctionCollectionData[item.category],
+    [item.category],
+  );
+
+  const neighbours = useMemo(() => {
+    const previous =
+      item.index > 0
+        ? AuctionData[item.index - 1]!
+        : AuctionData[AuctionData.length - 1]!;
+    const next =
+      item.index < AuctionData.length - 1
+        ? AuctionData[item.index + 1]!
+        : AuctionData[0]!;
+    return [
+      {
+        ...AuctionCollectionData[previous.category]!,
+        ...previous,
+      },
+      {
+        ...AuctionCollectionData[next.category]!,
+        ...next,
+      },
+    ];
+  }, [item.index]);
+
   useEffect(() => {
-    setCollectionData(AuctionCollectionData[item.category]);
-  }, [item.category]);
+    const interval = setInterval(() => {
+      const isStarted = collectionData.startsAt
+        ? +new Date() >= +collectionData.startsAt
+        : true;
+      setIsStarted(isStarted);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [collectionData.startsAt]);
 
   useEffect(() => {
     getAuctionInfo(collectionData.contractAddress, item.tokenId)
       .then(async (i) => {
         setCurrentBid({ ...i });
-        setSold(i.isSold);
-        if (i.isSold)
+        const isSold = i.isSold && isStarted;
+        setSold(isSold);
+        if (isSold)
           setTokenOwner(
             await getOwnerOfNFT(collectionData.contractAddress, item.tokenId),
           );
@@ -206,7 +241,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
       .finally(() => {
         hidePreloader();
       });
-  }, [collectionData.contractAddress, item.tokenId]);
+  }, [isStarted, collectionData.contractAddress, item.tokenId]);
 
   const handleToAuction = () => push('/auction');
 
@@ -217,6 +252,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
           <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
             {isTablet ? (
               <BidCard
+                startsAt={collectionData.startsAt}
                 endsIn={collectionData.endsIn}
                 proposedBids={currentBid.proposedBids}
                 currentBid={currentBid.bid}
@@ -224,7 +260,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 tokenId={item.tokenId}
                 isSale={item.isSale}
               />
-            ) : (
+            ) : isStarted ? (
               <Button
                 mode="custom"
                 label={item.isSale ? 'Buy Now' : 'Place Bid'}
@@ -249,21 +285,28 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 }}
                 className="bg-white text-carbon w-100%"
               />
-            )}
+            ) : null}
           </div>
         )}
         <div className="flex mt-40px mobile:flex-col desktop:flex-row justify-between">
           <div className="desktop:w-[48%] mobile: w-full">
             <ScaledImage
+              title={item.name}
               alt={item.name}
               src={item.imageSrc}
-              postLoad={item.imageSrc.endsWith('.gif')}
+              onClick={() => setLightboxToggler(!lightboxToggler)}
+              postLoad={item.imageSrc.endsWith('.gif') || item.animationSrc}
+              containerClassName="cursor-pointer"
               breakpoints={[
                 {
                   lowerBound: 'desktop',
                   ratio: 0.5,
                 },
               ]}
+            />
+            <FsLightbox
+              toggler={lightboxToggler}
+              sources={[item.animationSrc || item.imageSrc]}
             />
           </div>
           <div className="desktop:w-[48%] mobile: w-full">
@@ -276,6 +319,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             ) : (
               <BidCard
                 isMobile={isMobile}
+                startsAt={collectionData.startsAt}
                 endsIn={collectionData.endsIn}
                 proposedBids={currentBid.proposedBids}
                 currentBid={currentBid.bid}
@@ -337,7 +381,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 )}
               </div>
               <div className="flex flex-wrap -mx-24px">
-                {AuctionData.slice(0, 2).map((item, index) => (
+                {neighbours.map((item, index) => (
                   <div
                     className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
                     key={item.index}
@@ -356,10 +400,11 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                       orderIndex={index}
                       index={item.index}
                       imageSrc={item.imageSrc}
+                      animationSrc={item.animationSrc}
                       name={item.name}
-                      startsAt={collectionData.startsAt}
-                      endsIn={collectionData.endsIn}
-                      contractAddress={collectionData.contractAddress}
+                      startsAt={item.startsAt}
+                      endsIn={item.endsIn}
+                      contractAddress={item.contractAddress}
                       tokenId={item.tokenId}
                       isSale={item.isSale}
                       type="small"
