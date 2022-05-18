@@ -15,6 +15,7 @@ import { usePreloader } from '@providers/PreloaderProvider';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import FsLightbox from 'fslightbox-react';
 import { AuctionVersion } from '@museum-of-war/auction';
+import ArtistsData from '@sections/ArtistsData';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -212,6 +213,16 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     };
   }, []);
 
+  const artist = useMemo(
+    () => ({
+      name: item.artist,
+      bio: '',
+      avatarSrc: '/img/avatars/placeholder.png',
+      ...ArtistsData[item.artist],
+    }),
+    [item.artist],
+  );
+
   const collectionData = useMemo(
     () => AuctionCollectionData[item.category],
     [item.category],
@@ -384,29 +395,47 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px leading-[150%] mt-24px">
               {item.descriptionUkrainian}
             </p>
-            <div className="font-rlight flex mobile:flex-col desktop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
-              <div className="flex mobile:flex-col tablet:flex-row text-16px">
-                <div className="flex">
-                  {item.artist?.length > 0 && (
-                    <>
-                      <p>Artist:</p>
-                      <p className=" tablet:ml-[8px]">{item.artist}</p>
-                    </>
-                  )}
+            <div className="font-rlight flex flex-col mobile:mt-40px tablet:mt-48px">
+              {artist.name.length > 0 && (
+                <div className="mobile:mb-40px tablet:mb-48px">
+                  <div className="flex mobile:flex-col tablet:flex-row text-16px">
+                    <div className="flex flex-row">
+                      <img
+                        src={artist.avatarSrc}
+                        alt={artist.name + "'s Avatar"}
+                        className="rounded-full mobile:w-40px tablet:w-48px mobile:h-40px tablet:h-48px mr-24px"
+                      />
+                      <div className="flex flex-col">
+                        <p className="font-rlight mobile:text-14px tablet:text-16px mobile:leading-20px tablet:leading-24px">
+                          Artist:
+                        </p>
+                        <p className="font-rblack mobile:text-16px tablet:text-20px mobile:leading-20px tablet:leading-24px">
+                          {artist.name}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {artist.bio.length > 0 ? (
+                    <p className="font-rlight mobile:text-14px tablet:text-16px mobile:leading-20px tablet:leading-24px mt-12px">
+                      {artist.bio}
+                    </p>
+                  ) : null}
                 </div>
-                <div className="flex mobile:ml-[0px] tablet:ml-48px mobile:my-[20px] tablet:my-[0px]">
+              )}
+              <div className="font-rlight flex mobile:flex-col tablet:flex-row">
+                <div className="flex flex-row text-16px">
                   <p>Edition:</p>
                   <p className="ml-[8px]">1 of 1</p>
                 </div>
+                {isSold && (
+                  <div className="flex mobile:ml-[0px] tablet:ml-48px mobile:my-[20px] tablet:my-[0px]">
+                    <p>Owner:</p>
+                    <p className="ml-[8px]" title={tokenOwner}>
+                      {truncateAddress(tokenOwner, 13)}
+                    </p>
+                  </div>
+                )}
               </div>
-              {isSold && (
-                <div className="flex text-16px desktop:mt-24px tablet:ml-48px desktop:ml-[0px]">
-                  <p>Owner:</p>
-                  <p className="ml-[8px]" title={tokenOwner}>
-                    {truncateAddress(tokenOwner, 13)}
-                  </p>
-                </div>
-              )}
             </div>
             {isSold && false /*TODO*/ && (
               <div className="mobile:mt-60px tablet:mt-72px desktop:mt-96px">

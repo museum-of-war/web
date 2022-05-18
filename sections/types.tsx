@@ -79,3 +79,9 @@ export type BidInfo = {
   date: Date;
   bidder: string;
 };
+
+export type ArtistType = {
+  name: string;
+  bio: string;
+  avatarSrc?: string;
+};
