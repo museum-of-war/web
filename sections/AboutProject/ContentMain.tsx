@@ -7,7 +7,7 @@ const ContentMain = () => {
   return (
     <div className="bg-carbon mx-auto">
       {isMobile ? (
-        <div className="mb-8% mt-10 text-white px-24px">
+        <div className="mb-8% mt-60px text-white px-24px py-60px">
           <div>
             <p className="font-rblack text-29px uppercase mb-40px leading-30px">
               We will never let any single day of this period disappear from the
@@ -15,10 +15,10 @@ const ContentMain = () => {
             </p>
             <div className="flex relative flex-row justify-end mb-40px">
               <img
-                className="absolute h-100% -left-20px"
+                className="h-100% mr-auto"
                 alt="dots"
-                src="/img/pd-dotsHorizontalSmall.png"
-              />{' '}
+                src="/img/pd-dotsHorizontalSmall.svg"
+              />
               <div className="font-rnarrow text-14px leading-20px">
                 Ми не дамо викреслити
                 <br />
@@ -45,7 +45,7 @@ const ContentMain = () => {
                 зі сторінок світової історії.
               </p>
               <img
-                className="h-72px absolute -left-0 tablet:block desktop:hidden"
+                className="h-72px mr-auto tablet:block desktop:hidden"
                 alt="Dots"
                 src={'img/pd_horisontal_dots.svg'}
               />

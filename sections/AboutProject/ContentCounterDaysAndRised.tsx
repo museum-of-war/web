@@ -33,7 +33,6 @@ const ContentCounterDaysAndRised = () => {
             24 February 2022 – Until now
           </p>
         </div>
-
         <div className="desktop:w-[544px] mobile:mt-40px tablet:mt-72px desktop:mt-0">
           <p className="font-rblack mobile:text-27px mobile:leading-30px mobile:mb-12px tablet:text-32px tablet:leading-36px tablet:mb-16px">
             Total funds raised
