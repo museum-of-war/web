@@ -18,10 +18,7 @@ const Home: NextPage<SharedProps> = (props) => {
           logo: url('/img/logo-icon.svg'),
         }}
       />
-      <AboutProject
-        signerAddress={props.signerAddress}
-        handleConnect={props.handleConnect}
-      />
+      <AboutProject signerAddress={props.signerAddress} />
     </>
   );
 };
