@@ -39,7 +39,7 @@ const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
       posterSrc: '/img/auction/posters/avatars.gif',
       videoSrc: 'https://www.youtube-nocookie.com/embed/GM8jV5Tbzww',
       contractAddress: AVATARS_ADDRESS,
-      startsAt: new Date('2022-05-19T21:45:00.000+03:00'),
+      startsAt: new Date('2022-05-19T21:15:00.000+03:00'),
       endsIn: new Date('2022-05-22T22:00:00.000+03:00'),
     },
   };
