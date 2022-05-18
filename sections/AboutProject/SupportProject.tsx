@@ -54,7 +54,7 @@ const SupportProject = ({}: PropsSupportProject) => {
             </p>
             <SupportButton
               label="Donate"
-              className="text-14px ml-30px px-72px"
+              className="text-14px ml-30px px-[72px]"
               onClick={() => {
                 setShowDonatePopup(true);
               }}
