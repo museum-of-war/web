@@ -1,7 +1,6 @@
 import SupportProject from '@sections/AboutProject/SupportProject';
 import SupportSticky from '@sections/AboutProject/SupportSticky';
 import React from 'react';
-import ContentMission from './ContentMission';
 const ContentTop = dynamic(() => import('./ContentTop/ContentTop'), {
   ssr: false,
 });
@@ -14,6 +13,7 @@ import Partners from './Partners';
 import Countdown from './Countdown';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import { AuctionCollections } from '@sections/types';
+import AboutUs from '@sections/AboutProject/AboutUs';
 
 type AboutProjectProps = {
   signerAddress: string;
@@ -30,8 +30,8 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
           ].startsAt!.toISOString()}
         />
         <ContentChapter />
-        <ContentMission />
         <ContentCounterDaysAndRised />
+        <AboutUs />
       </div>
       <ContentMain />
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
