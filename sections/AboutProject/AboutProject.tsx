@@ -17,17 +17,13 @@ import { AuctionCollections } from '@sections/types';
 
 type AboutProjectProps = {
   signerAddress: string;
-  handleConnect: () => void;
 };
 
-const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
+const AboutProject = ({ signerAddress }: AboutProjectProps) => {
   return (
     <div>
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
-        <ContentTop
-          signerAddress={signerAddress}
-          handleConnect={handleConnect}
-        />
+        <ContentTop signerAddress={signerAddress} />
         <Countdown
           countDownDate={AuctionCollectionData[
             AuctionCollections.avatarsForUkraine
