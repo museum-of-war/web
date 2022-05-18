@@ -40,9 +40,9 @@ const ContentTopNotConnected = () => {
           </p>
         </div>
         <div
-          className={`w-100% flex content-center ${
+          className={`w-100% flex content-center items-center ${
             isTablet ? 'mt-36px mb-48px' : isMobile ? 'mt-30px mb-40px' : ''
-          }`}
+          } desktop:flex-row tablet:flex-row mobile:flex-col`}
         >
           <Button
             mode="primary"
@@ -61,7 +61,12 @@ const ContentTopNotConnected = () => {
               }
             }}
           />
-          <Links />
+          <div
+            className="desktop:mt-0 tablet:mt-0 mobile:mt-30px desktop:ml-auto tablet:ml-auto mobile:ml-0
+              desktop:px-0 tablet:px-0 mobile:px-20px desktop:w-auto tablet:w-auto mobile:w-full"
+          >
+            <Links />
+          </div>
         </div>
       </div>
       <div
