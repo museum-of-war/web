@@ -85,7 +85,7 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
   ) : (
     <>
       {isMobile ? (
-        <div className="fixed z-10 left-0 bottom-0 bg-carbon w-100% px-10% py-20px">
+        <div className="fixed z-10 left-0 bottom-0 bg-carbon w-100% px-10% py-20px mx-auto px-24px">
           {openMintingModal ? (
             <MintingModal setOpenMintingModal={setOpenMintingModal} />
           ) : (
@@ -107,7 +107,7 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
           {showBtn && <div className="pt-20px">{stickyButton}</div>}
         </div>
       ) : isTablet ? (
-        <div className="fixed z-10 left-0 bottom-24px bg-carbon w-100% px-10% py-30px">
+        <div className="fixed z-10 left-0 bottom-24px bg-carbon w-100% px-10% py-30px mx-auto px-72px">
           <p className="font-rblack text-32px text-white">{CTA}</p>
           <div className="pt-20px">{stickyButton}</div>
           {openMintingModal ? (
@@ -117,8 +117,8 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
           )}
         </div>
       ) : (
-        <div className="sticky mt-48px z-0 left-0 bottom-24px bg-carbon w-100% px-10% py-30px shadow-sticky">
-          <div className="flex flex-row items-center justify-center">
+        <div className="sticky mt-48px z-0 left-0 bottom-24px w-100% desktop:container mx-auto px-132px">
+          <div className="flex flex-row items-center justify-center bg-carbon shadow-sticky py-30px">
             <p className="font-rblack text-28px leading-28px text-white">
               {CTA}
             </p>

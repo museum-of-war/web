@@ -35,7 +35,7 @@ const Tokens = ({ signerAddress }: TokenProps) => {
   }, []);
 
   return (
-    <div>
+    <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
       <p
         className="border-carbon border-b-4
         mobile:text-38px mobile:leading-40px
