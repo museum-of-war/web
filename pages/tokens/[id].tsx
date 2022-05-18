@@ -146,7 +146,7 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
   }, [index, NFTs, allEvents]);
 
   return (
-    <>
+    <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
       <PageHead title="My NFTs - Meta History: Museum of War" />
       {event ? (
         <NftDetails
@@ -181,7 +181,7 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
       ) : (
         <div>Loading...</div>
       )}
-    </>
+    </div>
   );
 };
 

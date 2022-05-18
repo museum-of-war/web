@@ -23,22 +23,26 @@ type AboutProjectProps = {
 const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
   return (
     <div>
-      <ContentTop signerAddress={signerAddress} handleConnect={handleConnect} />
-      <Countdown
-        countDownDate={AuctionCollectionData[
-          AuctionCollections.avatarsForUkraine
-        ].startsAt!.toISOString()}
-      />
-      <ContentChapter />
-      <ContentMission />
-      <ContentCounterDaysAndRised />
-      <ContentMain
-        signerAddress={signerAddress}
-        handleConnect={handleConnect}
-      />
-      <SupportProject />
-      <Partners />
-      <ContentMedia />
+      <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
+        <ContentTop
+          signerAddress={signerAddress}
+          handleConnect={handleConnect}
+        />
+        <Countdown
+          countDownDate={AuctionCollectionData[
+            AuctionCollections.avatarsForUkraine
+          ].startsAt!.toISOString()}
+        />
+        <ContentChapter />
+        <ContentMission />
+        <ContentCounterDaysAndRised />
+      </div>
+      <ContentMain />
+      <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
+        <Partners />
+        <ContentMedia />
+        <SupportProject />
+      </div>
       <SupportSticky targetAnchorId="countdown-banner" />
     </div>
   );

@@ -33,11 +33,11 @@ const NavBack = () => (
 
 const CollectionLogo = ({ size, src }: { size: number; src?: string }) =>
   src ? (
-    <img
-      src={src}
+    <div
+      className="border-4 border-white bg-carbon"
       style={{
-        width: size,
-        height: size,
+        width: size + 8,
+        height: size + 8,
         borderRadius: '50%',
         top: -size / 2,
         left: 0,
@@ -45,7 +45,16 @@ const CollectionLogo = ({ size, src }: { size: number; src?: string }) =>
         margin: 'auto',
         position: 'absolute',
       }}
-    />
+    >
+      <img
+        src={src}
+        style={{
+          width: size,
+          height: size,
+          borderRadius: '50%',
+        }}
+      />
+    </div>
   ) : null;
 
 const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
@@ -118,10 +127,10 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
           },
         ]}
       />
-      <div>
+      <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <div className="absolute left-0 top-100px z-0 right-0">
           <Parallax
-            strength={isMobile ? 0 : 300}
+            strength={isMobile ? 0 : 200}
             style={{ height: 456, width: '100%' }}
             bgImage={collectionData.headerImageSrc}
             bgImageAlt={`${collectionData.name} Cover Image`}
