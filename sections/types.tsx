@@ -1,3 +1,5 @@
+import { AuctionVersion } from '@museum-of-war/auction';
+
 export type TokenDataType = {
   metadata: any;
   id: any;
@@ -47,6 +49,7 @@ export type AuctionCollectionType = {
   contractAddress: string;
   startsAt?: Date;
   endsIn: Date;
+  version: AuctionVersion;
 };
 
 export type AuctionItemType = {

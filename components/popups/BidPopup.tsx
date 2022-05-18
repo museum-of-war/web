@@ -3,23 +3,29 @@ import { VscChromeClose } from 'react-icons/vsc';
 import Button from '@components/Button';
 import { usePopup } from '@providers/PopupProvider';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { AuctionVersion } from '@museum-of-war/auction';
 
 type PropsPopup = {
   proposedBids: string[];
   contractAddress: string;
   tokenId: number;
+  auctionVersion: AuctionVersion;
+  updateCallback?: () => Promise<void>;
 };
 
 const BidButton = ({
   handleClick,
   amount,
+  disabled = false,
 }: {
   handleClick: () => void;
   amount: string;
+  disabled: boolean;
 }) => {
   return (
     <button
       className="font-rblack text-14px leading-40px tablet:leading-48px"
+      disabled={disabled}
       onClick={handleClick}
     >
       {amount} ETH
@@ -27,12 +33,19 @@ const BidButton = ({
   );
 };
 
-const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
+const BidPopup = ({
+  proposedBids,
+  contractAddress,
+  tokenId,
+  auctionVersion,
+  updateCallback,
+}: PropsPopup) => {
   const { makeBid, isUnlocked, openModal } = useWeb3Modal();
   const { hidePopup } = usePopup();
   const minBid = useMemo(() => proposedBids[0]!, [proposedBids]);
   const [ETHAmount, setETHAmount] = useState<string | number>(minBid);
   const [amountError, setAmountError] = useState<string | undefined>(undefined);
+  const [isBidding, setIsBidding] = useState<boolean>(false);
 
   return (
     <div
@@ -69,6 +82,7 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
             <input
               className="w-70% placeholder-mid_gray placeholder-opacity-70 transition-all duration-1500 outline-none bg-transparent"
               placeholder="Enter Amount"
+              disabled={isBidding}
               value={ETHAmount !== null ? ETHAmount : ''}
               onChange={(event) => {
                 const { value } = event.target;
@@ -90,6 +104,7 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
             {proposedBids.map((amount) => (
               <BidButton
                 key={amount}
+                disabled={isBidding}
                 handleClick={() => {
                   setETHAmount(amount);
                 }}
@@ -103,7 +118,7 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
           <Button
             mode="custom"
             label="Place Bid"
-            disabled={Boolean(amountError)}
+            disabled={Boolean(amountError) || isBidding}
             onClick={async () => {
               const unlocked: boolean = await isUnlocked();
 
@@ -115,10 +130,18 @@ const BidPopup = ({ proposedBids, contractAddress, tokenId }: PropsPopup) => {
               }
 
               try {
-                await makeBid(contractAddress, tokenId, ETHAmount);
+                setIsBidding(true);
+                await makeBid(
+                  contractAddress,
+                  tokenId,
+                  ETHAmount,
+                  auctionVersion,
+                );
               } catch (error: any) {
-                alert(error?.message ?? error);
+                alert(error?.error?.message ?? error?.message ?? error);
               } finally {
+                setIsBidding(false);
+                await updateCallback?.().catch((e) => console.error(e));
                 hidePopup();
               }
             }}

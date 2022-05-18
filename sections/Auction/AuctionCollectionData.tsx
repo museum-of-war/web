@@ -4,6 +4,7 @@ import {
   PROSPECT_100_ADDRESS,
   AVATARS_ADDRESS,
 } from '@sections/Constants';
+import { AuctionVersion } from '@museum-of-war/auction';
 
 const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
   {
@@ -16,6 +17,7 @@ const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
       contractAddress: FIRST_DROP_ADDRESS,
       startsAt: new Date('2022-04-17T23:00:00.000+03:00'),
       endsIn: new Date('2022-04-22T23:00:00.000+03:00'),
+      version: AuctionVersion.V1,
     },
     [AuctionCollections.prospect100]: {
       name: 'PROSPECT 100',
@@ -28,6 +30,7 @@ const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
       contractAddress: PROSPECT_100_ADDRESS,
       startsAt: new Date('2022-04-17T23:00:00.000+03:00'),
       endsIn: new Date('2022-04-22T23:00:00.000+03:00'),
+      version: AuctionVersion.V1,
     },
     [AuctionCollections.avatarsForUkraine]: {
       name: 'Avatars for Ukraine',
@@ -41,6 +44,7 @@ const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
       contractAddress: AVATARS_ADDRESS,
       startsAt: new Date('2022-05-19T21:15:00.000+03:00'),
       endsIn: new Date('2022-05-22T22:00:00.000+03:00'),
+      version: AuctionVersion.V2,
     },
   };
 

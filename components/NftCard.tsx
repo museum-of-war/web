@@ -27,11 +27,15 @@ function NftCard({
   type,
   isSale,
   isCollection,
+  version,
 }: Pick<
   AuctionItemType,
   'imageSrc' | 'animationSrc' | 'name' | 'index' | 'tokenId' | 'isSale'
 > &
-  Pick<AuctionCollectionType, 'contractAddress' | 'endsIn' | 'startsAt'> &
+  Pick<
+    AuctionCollectionType,
+    'contractAddress' | 'endsIn' | 'startsAt' | 'version'
+  > &
   NftCardProps) {
   const { push } = useAppRouter();
   const { getAuctionInfo } = useWeb3Modal();
@@ -39,8 +43,9 @@ function NftCard({
   const [timeLeft, setTimeLeft] = useState(
     calculateTimeLeft(`${startsAt ?? endsIn}`),
   );
+  const [endsAt, setEndsAt] = useState(endsIn);
   const [isStarted, setIsStarted] = useState(false);
-  const [isSold, setIsSold] = useState(true);
+  const [isSold, setIsSold] = useState(false);
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     nextMinBid: string;
@@ -52,15 +57,16 @@ function NftCard({
     const interval = setInterval(() => {
       const isStarted = !calculateTimeLeft(`${startsAt ?? new Date()}`).isLeft;
       setIsStarted(isStarted);
-      setTimeLeft(calculateTimeLeft(`${isStarted ? endsIn : startsAt}`));
+      setTimeLeft(calculateTimeLeft(`${isStarted ? endsAt : startsAt}`));
     }, 1000);
     return () => clearInterval(interval);
-  }, [endsIn, startsAt]);
+  }, [endsAt, startsAt]);
 
   useEffect(() => {
     if (contractAddress)
-      getAuctionInfo(contractAddress, tokenId)
-        .then(({ bid, nextMinBid, isSold }) => {
+      getAuctionInfo(contractAddress, tokenId, version)
+        .then(({ bid, nextMinBid, isSold, endsAt }) => {
+          if (endsAt && endsAt > endsIn) setEndsAt(endsAt);
           setCurrentBid({ bid, nextMinBid });
           setIsSold(isSold);
         })
@@ -96,7 +102,7 @@ function NftCard({
       <div className="p-10px">
         <h3 className="font-rblack text-20px leading-[240%]">{name}</h3>
         <div className="flex justify-between">
-          {!isSold && isStarted && (
+          {!isSold && isStarted && +currentBid.bid > 0 && (
             <div>
               <p className="font-rlight text-12px leading-100% opacity-70">
                 {isSale ? 'Current price' : 'Current bid'}
