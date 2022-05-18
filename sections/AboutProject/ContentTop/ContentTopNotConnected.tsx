@@ -8,16 +8,9 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useCountdown } from '@hooks/useCountdown';
 import { SECOND_DROP_DATE } from '@sections/Constants';
 import MintingModal from '../../../components/MintingModal';
+import { Links } from '@components/Links';
 
-type ContentTopNotConnectedProps = {
-  signerAddress: string;
-  handleConnect: () => void;
-};
-
-const ContentTopNotConnected = ({
-  signerAddress,
-  handleConnect,
-}: ContentTopNotConnectedProps) => {
+const ContentTopNotConnected = () => {
   const { isMobile, isTablet } = useViewPort();
   const { canMint, canMintSecondDrop } = useWeb3Modal();
   const { timerEnd } = useCountdown(SECOND_DROP_DATE);
@@ -35,7 +28,7 @@ const ContentTopNotConnected = ({
     >
       <div
         className={`${
-          isMobile || isTablet ? 'w-100%' : 'w-50%'
+          isMobile || isTablet ? 'w-100%' : 'w-[544px]'
         } flex flex-col justify-between`}
       >
         <div>
@@ -68,22 +61,15 @@ const ContentTopNotConnected = ({
               }
             }}
           />
+          <Links />
         </div>
       </div>
       <div
         className={`${
-          isMobile || isTablet ? 'w-100%' : 'w-50%'
+          isMobile || isTablet ? 'w-100%' : 'w-[544px]'
         } flex flex-col justify-between`}
       >
-        <div
-          className={`inline-block ${
-            isMobile
-              ? 'min-h-[67px]'
-              : isTablet
-              ? 'min-h-[164px]'
-              : 'min-h-[347px]'
-          }`}
-        >
+        <div className="inline-block">
           <video src="/vid/pd-header-optimized.mp4" autoPlay loop muted />
         </div>
         <PoweredByFrame />

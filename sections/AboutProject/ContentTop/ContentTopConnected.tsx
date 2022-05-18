@@ -6,7 +6,7 @@ const ContentTopConnected = () => {
   return (
     <div className="desktop:pb-100px tablet:pb-72px mobile:pb-60px">
       <div className="flex desktop:flex-row mobile:flex-col justify-between desktop:items-start tablet:items-center">
-        <div className="desktop:w-50% tablet:w-100%">
+        <div className="desktop:w-[544px] tablet:w-100%">
           <div>
             <p className="font-rblack uppercase desktop:mt-10px tablet:mt-0 tablet:text-84px tablet:leading-72px mobile:text-46px mobile:leading-40px">
               The NFT-museum
@@ -16,7 +16,7 @@ const ContentTopConnected = () => {
             </p>
           </div>
         </div>
-        <div className="desktop:w-45% tablet:w-100%">
+        <div className="desktop:w-[544px] tablet:w-100%">
           <video src="/vid/pd-header-optimized.mp4" autoPlay loop muted />
         </div>
       </div>
