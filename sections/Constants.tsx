@@ -7,6 +7,7 @@ export const INSTAGRAM_LINK =
   'https://instagram.com/meta_history_ua?utm_medium=copy_link';
 export const GITHUB_LINK = 'https://github.com/museum-of-war';
 export const TELEGRAM_LINK = 'https://t.me/metahistory_ua';
+export const DISCORD_LINK = 'https://discord.gg/A4R2rVqbXR';
 export const OPENSEA_LINK = 'https://opensea.io/collection/metahistorymuseum';
 export const FRAME_LINK = 'https://www.fair.xyz';
 export const MINISTRY_LINK = 'https://thedigital.gov.ua/';

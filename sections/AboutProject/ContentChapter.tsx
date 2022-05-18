@@ -11,8 +11,8 @@ const ContentChapter = ({}: ContentChapterProps) => {
   const handleCardClick = (route: string) => () => push(route);
 
   return (
-    <div className="flex flex-wrap justify-center -mx-24px desktop:mb-120px tablet:mb-100px mobile:mb-60px">
-      <div className="tablet:w-1/2 mobile:w-full flex flex-col self-stretch px-24px">
+    <div className="flex flex-wrap justify-between desktop:mb-120px tablet:mb-100px mobile:mb-60px">
+      <div className="desktop:w-[544px] tablet:w-1/2 mobile:w-full flex flex-col self-stretch">
         <div
           className="hover:cursor-pointer "
           onClick={handleCardClick('/warline')}
@@ -44,12 +44,12 @@ const ContentChapter = ({}: ContentChapterProps) => {
           </div>
         </div>
       </div>
-      <div className="tablet:w-1/2 mobile:w-full mt-30px tablet:mt-0 flex flex-col self-stretch px-24px">
+      <div className="desktop:w-[544px] tablet:w-1/2 mobile:w-full mt-30px tablet:mt-0 flex flex-col self-stretch">
         <div
           className="hover:cursor-pointer"
           onClick={handleCardClick('/auction/collection/avatars')}
         >
-          <div className="border-4 border-carbon border-solid  flex-1 flex flex-col">
+          <div className="border-4 border-carbon border-solid flex-1 flex flex-col">
             <div className="desktop:p-48px tablet:py-48px tablet:px-36px mobile:py-20px mobile:px-24px flex-1 flex flex-col text-white bg-carbon">
               <h1 className="tablet:text-32px mobile:text-27px font-rblack">
                 Avatars for Ukraine

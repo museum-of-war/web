@@ -21,7 +21,7 @@ const ContentCounterDaysAndRised = () => {
   return (
     <>
       <div className="desktop:flex desktop:flex-row desktop:justify-between mt-20 tablet:mb-75px mobile:mb-8%">
-        <div className="desktop:w-45% tablet:mt-0 mobile:mt-60px">
+        <div className="desktop:w-[544px] tablet:mt-0 mobile:mt-60px">
           <p className="font-rblack mobile:text-27px mobile:leading-30px mobile:mb-12px tablet:text-32px tablet:leading-36px tablet:mb-16px">
             The war’s been going on for
           </p>
@@ -34,7 +34,7 @@ const ContentCounterDaysAndRised = () => {
           </p>
         </div>
 
-        <div className="desktop:w-45% mobile:mt-40px tablet:mt-72px desktop:mt-0">
+        <div className="desktop:w-[544px] mobile:mt-40px tablet:mt-72px desktop:mt-0">
           <p className="font-rblack mobile:text-27px mobile:leading-30px mobile:mb-12px tablet:text-32px tablet:leading-36px tablet:mb-16px">
             Total funds raised
           </p>
