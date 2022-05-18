@@ -111,7 +111,7 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
 
   return (
     <>
-      <div style={{ paddingBottom: data.length ? 800 : 700 }} />
+      <div style={{ paddingBottom: data.length ? 750 : 650 }} />
       <div
         className="absolute"
         style={{
@@ -119,17 +119,12 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
           width: '100vw',
           overflow: 'hidden',
           left: 0,
-          top: data.length ? 500 : 350,
+          top: data.length ? 420 : 270,
           zIndex: 100,
         }}
       >
-        {data.length > 0 ? (
-          <div
-            className={`absolute right-0 z-10 top-0 ${
-              data.length > 1 ? '' : 'hidden'
-            }`}
-            ref={buttonsRef}
-          >
+        {data.length > 1 ? (
+          <div className="absolute right-0 z-10 top-0" ref={buttonsRef}>
             <PrevButton
               active={activeButton.prev}
               onClick={() => handleScroll(1)}

@@ -167,8 +167,9 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
       ratio: 0.25,
     },
   ] as BreakpointRatios;
+
   return (
-    <div className="font-rnarrow">
+    <div className="font-rnarrow desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
       <div className="flex items-center mt-[-36px] mb-[24px]">
         <Link href={linkBack} passHref>
           <div className="h-[48px] flex items-center cursor-pointer group">
@@ -327,7 +328,6 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         </div>
       </div>
       <div ref={ref} />
-
       {!inView &&
         getNavButtonsJsx(
           'tablet:hidden mobile:fixed bottom-0 left-0 right-0 flex flex-row w-full justify-between px-60px py-10px bg-white',
