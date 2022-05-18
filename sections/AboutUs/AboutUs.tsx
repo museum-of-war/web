@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Collapse } from '@mui/material';
 import Blurb from '@sections/AboutProject/Blurb';
 import Team from '@sections/AboutProject/Team';
 import SupportProject from '@sections/AboutProject/SupportProject';
@@ -6,9 +7,27 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { Links as AboutUsLinks } from './Links';
 import { Links } from '@components/Links';
 
+const CollapsedSection = () => (
+  <Blurb
+    header="ABOUT US"
+    rightContent={<AboutUsLinks />}
+    english={
+      'MetaHistory NFT museum is created to commemorate the history of the current events in Ukraine, preserve the truth, and collect donations for humanitarian aid. We have a new take on the role of art in society – it must be relevant, courageous, activist. And eternal.\n\n' +
+      "In Argentina, there's the Cave of the Hands - a nearly 10.000 years old site, where our ancestors left prints of their hands on the stone walls. By pure luck, this mind-altering art piece was preserved until our time. At MetaHistory, we don't want to leave it to luck. We aim to preserve the artworks of the war in Ukraine and beyond - immutable, on the blockchain, forever, for the future generations.\n\n" +
+      'To achieve that, a non-profit, decentralized, community-driven team of Ukrainian crypto experts & top-notch artists has come together.'
+    }
+    ukrainian={
+      'Музей MetaHistory NFT створений з метою увічнення історії поточних подій в Україні, збереження правди та збору пожертв на гуманітарну допомогу. Ми по-новому ставимося до ролі мистецтва в суспільстві – воно має бути актуальним, відважним, наполегливим. І вічним.\n\n' +
+      "В Аргентині є Печера рук - місце, якому майже 10 000 років, де наші предки залишили відбитки своїх рук на кам'яних стінах. На щастя, цей витвір мистецтва, що змінює свідомість, зберігся до нашого часу. У MetaHistory ми не хочемо залишати це на волю удачі. Ми прагнемо зберегти твори мистецтва війни в Україні та за її межами – незмінними, на блокчейні, назавжди, для майбутніх поколінь.\n\n" +
+      'Щоб досягти цього, об’єдналася неприбуткова, децентралізована, керована спільнотами команда українських експертів із криптовалют і першокласних художників.'
+    }
+  />
+);
+
 const AboutUs = () => {
   const { getTotalFundsRaised } = useWeb3Modal();
   const [fundsRaised, setFundsRaised] = useState({ eth: '', usd: '' });
+  const [collapsed, setCollapsed] = useState(true);
 
   useEffect(() => {
     getTotalFundsRaised().then(setFundsRaised);
@@ -17,20 +36,38 @@ const AboutUs = () => {
   return (
     <div>
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
-        <Blurb
-          header="ABOUT US"
-          rightContent={<AboutUsLinks />}
-          english={
-            'MetaHistory NFT museum is created to commemorate the history of the current events in Ukraine, preserve the truth, and collect donations for humanitarian aid. We have a new take on the role of art in society – it must be relevant, courageous, activist. And eternal.\n\n' +
-            "In Argentina, there's the Cave of the Hands - a nearly 10.000 years old site, where our ancestors left prints of their hands on the stone walls. By pure luck, this mind-altering art piece was preserved until our time. At MetaHistory, we don't want to leave it to luck. We aim to preserve the artworks of the war in Ukraine and beyond - immutable, on the blockchain, forever, for the future generations.\n\n" +
-            'To achieve that, a non-profit, decentralized, community-driven team of Ukrainian crypto experts & top-notch artists has come together.'
-          }
-          ukrainian={
-            'Музей MetaHistory NFT створений з метою увічнення історії поточних подій в Україні, збереження правди та збору пожертв на гуманітарну допомогу. Ми по-новому ставимося до ролі мистецтва в суспільстві – воно має бути актуальним, відважним, наполегливим. І вічним.\n\n' +
-            "В Аргентині є Печера рук - місце, якому майже 10 000 років, де наші предки залишили відбитки своїх рук на кам'яних стінах. На щастя, цей витвір мистецтва, що змінює свідомість, зберігся до нашого часу. У MetaHistory ми не хочемо залишати це на волю удачі. Ми прагнемо зберегти твори мистецтва війни в Україні та за її межами – незмінними, на блокчейні, назавжди, для майбутніх поколінь.\n\n" +
-            'Щоб досягти цього, об’єдналася неприбуткова, децентралізована, керована спільнотами команда українських експертів із криптовалют і першокласних художників.'
-          }
-        />
+        <div className="desktop:hidden tablet:hidden mobile:flex flex-col">
+          <Collapse collapsedSize={240} in={!collapsed}>
+            <CollapsedSection />
+          </Collapse>
+          <div className="flex items-center h-40px">
+            <button
+              className="font-rblack mr-auto h-0 flex flex-row"
+              onClick={() => setCollapsed(!collapsed)}
+            >
+              <span>{collapsed ? 'Show more' : 'Show less'}</span>
+              <span className={`ml-[5px] ${collapsed ? 'rotate-180' : ''}`}>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M12 7.41381L21.2929 16.7067C21.6834 17.0972 22.3166 17.0972 22.7071 16.7067C23.0976 16.3162 23.0976 15.683 22.7071 15.2925L12.7778 5.3632C12.3482 4.93362 11.6518 4.93362 11.2222 5.3632L1.29289 15.2925C0.902368 15.683 0.902368 16.3162 1.29289 16.7067C1.68342 17.0972 2.31658 17.0972 2.70711 16.7067L12 7.41381Z"
+                    fill="black"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div className="desktop:flex tablet:flex mobile:hidden">
+          <CollapsedSection />
+        </div>
         <div className="desktop:my-60px tablet:my-48px mobile:my-60px">
           <div className="desktop:hidden tablet:hidden mobile:flex">
             <Links />
