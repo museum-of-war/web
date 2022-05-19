@@ -15,6 +15,7 @@ type NftCardProps = {
 
 function NftCard({
   imageSrc,
+  animationSrc,
   breakpoints,
   name,
   index,
@@ -26,8 +27,15 @@ function NftCard({
   type,
   isSale,
   isCollection,
-}: Pick<AuctionItemType, 'imageSrc' | 'name' | 'index' | 'tokenId' | 'isSale'> &
-  Pick<AuctionCollectionType, 'contractAddress' | 'endsIn' | 'startsAt'> &
+  version,
+}: Pick<
+  AuctionItemType,
+  'imageSrc' | 'animationSrc' | 'name' | 'index' | 'tokenId' | 'isSale'
+> &
+  Pick<
+    AuctionCollectionType,
+    'contractAddress' | 'endsIn' | 'startsAt' | 'version'
+  > &
   NftCardProps) {
   const { push } = useAppRouter();
   const { getAuctionInfo } = useWeb3Modal();
@@ -35,28 +43,30 @@ function NftCard({
   const [timeLeft, setTimeLeft] = useState(
     calculateTimeLeft(`${startsAt ?? endsIn}`),
   );
+  const [endsAt, setEndsAt] = useState(endsIn);
   const [isStarted, setIsStarted] = useState(false);
-  const [isSold, setIsSold] = useState(true);
+  const [isSold, setIsSold] = useState(false);
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     nextMinBid: string;
   }>({ bid: '0', nextMinBid: '' });
 
-  const navlinkToNft = () => (isStarted ? push(`/auction/${index}`) : null);
+  const navlinkToNft = () => push(`/auction/${index}`);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const isStarted = !calculateTimeLeft(`${startsAt ?? new Date()}`).isLeft;
       setIsStarted(isStarted);
-      setTimeLeft(calculateTimeLeft(`${isStarted ? endsIn : startsAt}`));
+      setTimeLeft(calculateTimeLeft(`${isStarted ? endsAt : startsAt}`));
     }, 1000);
     return () => clearInterval(interval);
-  }, [endsIn, startsAt]);
+  }, [endsAt, startsAt]);
 
   useEffect(() => {
     if (contractAddress)
-      getAuctionInfo(contractAddress, tokenId)
-        .then(({ bid, nextMinBid, isSold }) => {
+      getAuctionInfo(contractAddress, tokenId, version)
+        .then(({ bid, nextMinBid, isSold, endsAt }) => {
+          if (endsAt && endsAt > endsIn) setEndsAt(endsAt);
           setCurrentBid({ bid, nextMinBid });
           setIsSold(isSold);
         })
@@ -79,7 +89,7 @@ function NftCard({
         <ScaledImage
           alt={name}
           src={imageSrc}
-          postLoad={imageSrc.endsWith('.gif')}
+          postLoad={imageSrc.endsWith('.gif') || animationSrc}
           className={`${
             (orderIndex! < 2 || isCollection) && !type
               ? 'desktop:h-[544px]'
@@ -92,7 +102,7 @@ function NftCard({
       <div className="p-10px">
         <h3 className="font-rblack text-20px leading-[240%]">{name}</h3>
         <div className="flex justify-between">
-          {!isSold && isStarted && (
+          {!isSold && isStarted && +currentBid.bid > 0 && (
             <div>
               <p className="font-rlight text-12px leading-100% opacity-70">
                 {isSale ? 'Current price' : 'Current bid'}
@@ -102,8 +112,12 @@ function NftCard({
               </p>
             </div>
           )}
-          {timeLeft.isLeft && !isSold && (
-            <div className={`${timeLeft.days ? '' : 'w-[100px]'}`}>
+          {timeLeft.isLeft && (!isStarted || !isSold) && (
+            <div
+              className={`${
+                timeLeft.days ? '' : 'w-[100px] whitespace-nowrap'
+              }`}
+            >
               <p className="font-rlight text-12px leading-100% opacity-70 ">
                 {isStarted ? 'Ends in' : 'Starts in'}
               </p>

@@ -24,7 +24,9 @@ type ContentAuctionProps = {
 
 const ContentAuction = ({ collection }: ContentAuctionProps) => {
   const { isTablet, isMobile, isDesktop } = useViewPort();
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>(
+    AuctionData.filter((d) => (collection ? d.category === collection : true)),
+  );
   const [isCollection, setIsCollection] = useState<boolean>(false);
   const { getAuctionInfo } = useWeb3Modal();
   const { push } = useAppRouter();
@@ -46,6 +48,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               ? getAuctionInfo(
                   AuctionCollectionData[datum.category].contractAddress,
                   datum.tokenId,
+                  AuctionCollectionData[datum.category].version,
                 )
               : {};
           }),
@@ -89,7 +92,6 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
     if (selectedCategory !== FILTER_OPTIONS_CATEGORIES[0]?.value) {
       result = result.filter((datum) => datum.category === selectedCategory);
     }
-    console.log(result);
     if (selectedType === FILTER_OPTIONS_TYPES[2]?.value) {
       result = result.filter((datum) => !datum.fullInfo);
     } else if (selectedType !== FILTER_OPTIONS_TYPES[3]?.value) {
@@ -260,6 +262,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               orderIndex={index}
               index={item.index}
               imageSrc={item.imageSrc}
+              animationSrc={item.animationSrc}
               name={item.name}
               startsAt={item.startsAt}
               endsIn={item.endsIn}
@@ -267,6 +270,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               tokenId={item.tokenId}
               isSale={item.isSale}
               isCollection={isCollection}
+              version={item.version}
             />
           </div>
         ))}

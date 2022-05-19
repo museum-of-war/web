@@ -10,12 +10,12 @@ import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
   FIRST_DROP_ADDRESS,
-  SECOND_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
-  UKRAINE_WALLET_ADDRESS,
   PROSPECT_100_ADDRESS,
+  SECOND_DROP_ADDRESS,
+  UKRAINE_WALLET_ADDRESS,
 } from '@sections/Constants';
-import { NFTAuctionConnect } from '@museum-of-war/auction';
+import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 import { Drop1Data, Drop2Data } from '@sections/Warline/WarlineData';
 
@@ -157,7 +157,6 @@ export function useWeb3Modal() {
       nft: typeof ownedNfts[number],
     ): typeof ownedNfts[number] {
       const tokenId = nft.id.tokenId;
-      console.log(tokenId);
       const event = Drop2Data.flatMap((day) => day.events).find((event) =>
         event.ImageType?.includes(`drop2/${tokenId}`),
       )!;
@@ -204,21 +203,28 @@ export function useWeb3Modal() {
       .call({ from: MetaHistoryAddress });
   }
 
-  async function getAuctionInfo(contractAddress: string, tokenId: number) {
+  async function getAuctionInfo(
+    contractAddress: string,
+    tokenId: number,
+    version: AuctionVersion,
+  ) {
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
     const ethersProvider = new ethers.providers.Web3Provider(
       web3.currentProvider as ExternalProvider,
     );
-    const auction = NFTAuctionConnect(ethersProvider, chain);
+    const auction = NFTAuctionConnect(ethersProvider, chain, version);
 
     const auctionInfo = await auction.nftContractAuctions(
       contractAddress,
       tokenId,
     );
 
-    const isSold = auctionInfo.nftSeller === ethers.constants.AddressZero;
+    const isSold =
+      version === AuctionVersion.V1
+        ? auctionInfo.nftSeller === ethers.constants.AddressZero
+        : auctionInfo.feeRecipient === ethers.constants.AddressZero;
 
     /*
     const bidInfos = isSold
@@ -274,14 +280,23 @@ export function useWeb3Modal() {
 
     return {
       isSold,
-      isSale: auctionInfo.minPrice.eq(0) && auctionInfo.buyNowPrice.gt(0),
+      isSale:
+        version === AuctionVersion.V1
+          ? auctionInfo.minPrice.eq(0) && auctionInfo.buyNowPrice.gt(0)
+          : false,
       //bidHistory: bidInfos,
       bidHistory: [],
       bid: web3.utils.fromWei(bid.toString()),
       nextMinBid: web3.utils.fromWei(nextMinBid.toString()),
       proposedBids: proposedBidsETH,
       fullInfo: auctionInfo,
-      buyNowPrice: web3.utils.fromWei(auctionInfo.buyNowPrice.toString()),
+      buyNowPrice:
+        version === AuctionVersion.V1
+          ? web3.utils.fromWei(auctionInfo.buyNowPrice.toString())
+          : undefined,
+      endsAt: auctionInfo.auctionEnd
+        ? new Date(auctionInfo.auctionEnd * 1000)
+        : undefined,
     };
   }
 
@@ -289,23 +304,49 @@ export function useWeb3Modal() {
     contractAddress: string,
     tokenId: number,
     value: BigNumberish,
+    version: AuctionVersion,
   ) {
     const ethersProvider = await connectWallet();
     if (!ethersProvider) return;
     const signer = ethersProvider.getSigner();
 
-    const auction = NFTAuctionConnect(signer, chain);
+    const auction = NFTAuctionConnect(signer, chain, version);
 
-    await auction.makeBid(
-      contractAddress,
-      tokenId,
-      ethers.constants.AddressZero,
-      0,
-      {
+    if (version === AuctionVersion.V1) {
+      const estimatedGas = await auction.estimateGas.makeBid(
+        contractAddress,
+        tokenId,
+        ethers.constants.AddressZero,
+        0,
+        {
+          value: ethers.utils.parseEther(value.toString()),
+        },
+      );
+      const tx = await auction.makeBid(
+        contractAddress,
+        tokenId,
+        ethers.constants.AddressZero,
+        0,
+        {
+          value: ethers.utils.parseEther(value.toString()),
+          gasLimit: estimatedGas.mul(11).div(10),
+        },
+      );
+      await tx.wait();
+    } else {
+      const estimatedGas = await auction.estimateGas.makeBid(
+        contractAddress,
+        tokenId,
+        {
+          value: ethers.utils.parseEther(value.toString()),
+        },
+      );
+      const tx = await auction.makeBid(contractAddress, tokenId, {
         value: ethers.utils.parseEther(value.toString()),
-        gasLimit: 250000, //TODO
-      },
-    );
+        gasLimit: estimatedGas.mul(11).div(10),
+      });
+      await tx.wait();
+    }
   }
 
   async function getFirstDropMintedCount() {
