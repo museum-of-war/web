@@ -256,7 +256,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
                 },
                 {
                   lowerBound: 'desktop',
-                  ratio: index >= 2 ? 0.25 : 0.5,
+                  ratio: index >= 2 && !isCollection ? 0.25 : 0.5,
                 },
               ]}
               orderIndex={index}
