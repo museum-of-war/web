@@ -423,7 +423,6 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
     name: 'Mariupol',
     tokenId: 48,
     imageSrc: `${IMG_STORAGE}/original/avatars/SadanVague-Mariupol.png`,
-    animationSrc: `${IMG_STORAGE}/original/avatars/SadanVague-Mariupol3D.mp4`,
     artist: 'Sadan Vague',
     descriptionEnglish:
       'Artist\'s note:\n"Pregnant woman injured during the Russian attack of the maternity house in Mariupol on March 9, died with her unborn child soon after the attack..."\n\nEditorial note:\n"This is part 2 of the trilogy of Saints, Martyrs and Miracle Workers by Sadan Vague".',
@@ -433,7 +432,6 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
     name: 'St Javelina',
     tokenId: 49,
     imageSrc: `${IMG_STORAGE}/original/avatars/SadanVague-StJavelina.png`,
-    animationSrc: `${IMG_STORAGE}/original/avatars/SadanVague-StJavelina360.mp4`,
     artist: 'Sadan Vague',
     descriptionEnglish:
       'Editorial note:\n"This is part 1 of the trilogy of Saints, Martyrs and Miracle Workers by Sadan Vague".',
@@ -443,6 +441,35 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
     name: 'St Christopher Cynocephalus',
     tokenId: 50,
     imageSrc: `${IMG_STORAGE}/original/avatars/SadanVague-StChristopherCynocephalus.png`,
+    artist: 'Sadan Vague',
+    descriptionEnglish:
+      'Editorial note:\n"This is part 3 of the trilogy of Saints, Martyrs and Miracle Workers by Sadan Vague".',
+    descriptionUkrainian: '',
+  },
+  {
+    name: 'Mariupol: 360',
+    tokenId: 51,
+    imageSrc: `${IMG_STORAGE}/original/avatars/SadanVague-Mariupol.png`,
+    animationSrc: `${IMG_STORAGE}/original/avatars/SadanVague-Mariupol3D.mp4`,
+    artist: 'Sadan Vague',
+    descriptionEnglish:
+      'Artist\'s note:\n"Pregnant woman injured during the Russian attack of the maternity house in Mariupol on March 9, died with her unborn child soon after the attack..."\n\nEditorial note:\n"This is part 2 of the trilogy of Saints, Martyrs and Miracle Workers by Sadan Vague".',
+    descriptionUkrainian: '',
+  },
+  {
+    name: 'St Javelina: 360',
+    tokenId: 52,
+    imageSrc: `${IMG_STORAGE}/original/avatars/SadanVague-StJavelina.png`,
+    animationSrc: `${IMG_STORAGE}/original/avatars/SadanVague-StJavelina360.mp4`,
+    artist: 'Sadan Vague',
+    descriptionEnglish:
+      'Editorial note:\n"This is part 1 of the trilogy of Saints, Martyrs and Miracle Workers by Sadan Vague".',
+    descriptionUkrainian: '',
+  },
+  {
+    name: 'St Christopher Cynocephalus: 360',
+    tokenId: 53,
+    imageSrc: `${IMG_STORAGE}/original/avatars/SadanVague-StChristopherCynocephalus.png`,
     animationSrc: `${IMG_STORAGE}/original/avatars/SadanVague-StChristopherCynocephalus3D.mp4`,
     artist: 'Sadan Vague',
     descriptionEnglish:
@@ -451,17 +478,16 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Bloody Wreaths',
-    tokenId: 51,
+    tokenId: 54,
     imageSrc: `${IMG_STORAGE}/original/avatars/Sandratski-BloodyWreaths.jpg`,
     artist: 'Sandratski',
     descriptionEnglish:
-      'Editorial note:\nGod saves those who save themselves, and Ukraine is protected by the saber. (Ukrainian proverb)',
-    descriptionUkrainian:
-      'Береженого і Бог береже, а Україну шабля стереже. (Українське прислів`я)',
+      'Editorial note:\n"God saves those who save themselves, and Ukraine is protected by the saber. (Ukrainian proverb)\nБереженого і Бог береже, а Україну шабля стереже. (Українське прислів`я)"',
+    descriptionUkrainian: '',
   },
   {
     name: 'Ukrainian Madonna',
-    tokenId: 52,
+    tokenId: 55,
     imageSrc: `${IMG_STORAGE}/original/avatars/SelenisRhineNadiiaMakeienko-UkrainianMadonna.jpg`,
     artist: 'Selenis Rhine (Nadiia Makeienko)',
     descriptionEnglish:
@@ -470,7 +496,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Warm Embrace of Ukraine',
-    tokenId: 53,
+    tokenId: 56,
     imageSrc: `${IMG_STORAGE}/original/avatars/Sergey-WarmEmbraceOfUkraine.jpg`,
     artist: 'Sergey',
     descriptionEnglish:
@@ -479,7 +505,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'The Reaping',
-    tokenId: 54,
+    tokenId: 57,
     imageSrc: `${IMG_STORAGE}/original/avatars/SerhiiHula-TheReaping.png`,
     artist: 'Serhii Hula',
     descriptionEnglish:
@@ -488,7 +514,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Welcome to Free Ukraine',
-    tokenId: 55,
+    tokenId: 58,
     imageSrc: `${IMG_STORAGE}/original/avatars/StanislavLunin-WelcomeToFreeUkraine.jpg`,
     artist: 'Stanislav Lunin',
     descriptionEnglish:
@@ -497,7 +523,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Saint Javelina #savemariupol',
-    tokenId: 56,
+    tokenId: 59,
     imageSrc: `${IMG_STORAGE}/original/avatars/StanislavLunin-SaintJavelina_savemariupol.jpg`,
     artist: 'Stanislav Lunin',
     descriptionEnglish:
@@ -506,7 +532,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Motherland Unbroken',
-    tokenId: 57,
+    tokenId: 60,
     imageSrc: `${IMG_STORAGE}/original/avatars/DariaTkalenko-MotherlandUnbroken.png`,
     artist: 'Tkalenko Daria',
     descriptionEnglish:
@@ -515,7 +541,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Glory to heroes!',
-    tokenId: 58,
+    tokenId: 61,
     imageSrc: `${IMG_STORAGE}/original/avatars/ValeriiaKratenko-GloryToHeroes!.png`,
     artist: 'Lera Krat',
     descriptionEnglish:
@@ -524,7 +550,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Ukrainian Volunteer',
-    tokenId: 59,
+    tokenId: 62,
     imageSrc: `${IMG_STORAGE}/original/avatars/VitaliiIschenko-UkrainianVoluntier.jpg`,
     artist: 'Vitalii Ishchenko',
     descriptionEnglish:
@@ -533,7 +559,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'MARIUPOL',
-    tokenId: 60,
+    tokenId: 63,
     imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Mariupol.JPG`,
     artist: 'Vlada Hladkova',
     descriptionEnglish:
@@ -542,7 +568,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'BUCHA IRPIN',
-    tokenId: 61,
+    tokenId: 64,
     imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-BuchaIrpin.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish:
@@ -551,7 +577,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'HOSTOMEL',
-    tokenId: 62,
+    tokenId: 65,
     imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Hostomel.JPG`,
     artist: 'Vlada Hladkova',
     descriptionEnglish:
@@ -560,7 +586,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'KHERSON',
-    tokenId: 63,
+    tokenId: 66,
     imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Kherson.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish:
@@ -569,7 +595,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Bandura',
-    tokenId: 64,
+    tokenId: 67,
     imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Bandura.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish:
@@ -578,7 +604,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'AZOVSTAL',
-    tokenId: 65,
+    tokenId: 68,
     imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Azovstal.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish:
@@ -587,7 +613,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Protection',
-    tokenId: 66,
+    tokenId: 69,
     imageSrc: `${IMG_STORAGE}/original/avatars/VladaHladkova-Protection.jpg`,
     artist: 'Vlada Hladkova',
     descriptionEnglish: '',
@@ -595,7 +621,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'We Will Not Surrender',
-    tokenId: 67,
+    tokenId: 70,
     imageSrc: `${IMG_STORAGE}/original/avatars/VolodymyrBondar-WeWillNotSurrender.jpg`,
     artist: 'Volodymyr Bondar',
     descriptionEnglish:
@@ -604,7 +630,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Victory',
-    tokenId: 68,
+    tokenId: 71,
     imageSrc: `${IMG_STORAGE}/original/avatars/VolodymyrSkripai-Victory.jpg`,
     artist: 'Volodymyr Skripai',
     descriptionEnglish:
@@ -613,7 +639,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Small but united',
-    tokenId: 69,
+    tokenId: 72,
     imageSrc: `${IMG_STORAGE}/original/avatars/VovchenkoKateryna(katruzzi)-SmallButUnited.png`,
     artist: 'Vovchenko Kateryna (katruzzi)',
     descriptionEnglish:
@@ -622,7 +648,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Children of War',
-    tokenId: 70,
+    tokenId: 73,
     imageSrc: `${IMG_STORAGE}/original/avatars/Yuliia-MariiaDatsyshyn-ChildrenOfWar.webp`,
     artist: 'Yuliia - Mariia Datsyshyn',
     descriptionEnglish:
@@ -631,7 +657,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Mariupol',
-    tokenId: 71,
+    tokenId: 74,
     imageSrc: `${IMG_STORAGE}/original/avatars/YuriiNahornyi-Mariupol.png`,
     artist: 'Yurii Nahornyi',
     descriptionEnglish:
@@ -640,7 +666,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
   {
     name: 'Average Ukrainian Warrior',
-    tokenId: 72,
+    tokenId: 75,
     imageSrc: `${IMG_STORAGE}/original/avatars/YuriiRepetskyi-AverageUkrainianWarrior.png`,
     artist: 'Yurii Repetskyi',
     descriptionEnglish:
