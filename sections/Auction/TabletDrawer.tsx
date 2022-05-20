@@ -1,7 +1,11 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import Button from '@components/Button';
 import { Drawer, TextField } from '@mui/material';
-import { OptionCategory, OptionType } from './cosntants';
+import {
+  OptionCategoriesValues,
+  OptionCategory,
+  OptionType,
+} from './cosntants';
 
 const CloseSvg = () => (
   <svg
@@ -181,7 +185,7 @@ const TabletDrawer = ({
                 {Object.values(OptionCategory).map((i) => (
                   <SelectItem
                     text={i}
-                    value={i}
+                    value={OptionCategoriesValues[i]}
                     key={i}
                     selected={selectedCategoryState}
                     onChange={(value) => setSelectedCategoryState(value)}
