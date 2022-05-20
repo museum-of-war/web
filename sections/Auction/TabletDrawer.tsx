@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import Button from '@components/Button';
 import { Drawer, TextField } from '@mui/material';
-import { FILTER_OPTIONS_CATEGORIES, FILTER_OPTIONS_TYPES } from './cosntants';
+import { OptionCategory, OptionType } from './cosntants';
 
 const CloseSvg = () => (
   <svg
@@ -95,12 +95,12 @@ const TabletDrawer = ({
     setPriceRange({ from: '', to: '' });
     setPriceRangeState({ from: '', to: '' });
 
-    handleChangeType(FILTER_OPTIONS_TYPES[0]?.value);
-    setSelectedTypeState(FILTER_OPTIONS_TYPES[0]?.value);
+    handleChangeType(OptionType.OnSale);
+    setSelectedTypeState(OptionType.OnSale);
 
     if (!isCollection) {
-      handleChangeCategory(FILTER_OPTIONS_CATEGORIES[0]?.value);
-      setSelectedCategoryState(FILTER_OPTIONS_CATEGORIES[0]?.value);
+      handleChangeCategory(OptionCategory.All);
+      setSelectedCategoryState(OptionCategory.All);
     }
   };
   const handleApply = () => {
@@ -163,11 +163,11 @@ const TabletDrawer = ({
               <p className="font-rlight tablet:text-16px mobile:text-14px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
                 Type
               </p>
-              {FILTER_OPTIONS_TYPES.map((i) => (
+              {Object.values(OptionType).map((i) => (
                 <SelectItem
-                  text={i.text}
-                  value={i.value}
-                  key={i.value}
+                  text={i}
+                  value={i}
+                  key={i}
                   selected={selectedTypeState}
                   onChange={(value) => setSelectedTypeState(value)}
                 />
@@ -178,11 +178,11 @@ const TabletDrawer = ({
                 <p className="font-rlight text-16px opacity-70 tablet:mt-[48px] mobile:mt-[30px] pb-10px">
                   Category
                 </p>
-                {FILTER_OPTIONS_CATEGORIES.map((i) => (
+                {Object.values(OptionCategory).map((i) => (
                   <SelectItem
-                    text={i.text}
-                    value={i.value}
-                    key={i.value}
+                    text={i}
+                    value={i}
+                    key={i}
                     selected={selectedCategoryState}
                     onChange={(value) => setSelectedCategoryState(value)}
                   />
