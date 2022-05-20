@@ -4,7 +4,7 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 const ContentCounterDaysAndRised = () => {
   const [daysFromWarStart, setDaysFromWarStart] = useState<number>();
-  const [fundsRaised, setFundsRaised] = useState({ eth: '', usd: '' });
+  const [fundsRaised, setFundsRaised] = useState({ eth: '—', usd: '—' });
   const { getTotalFundsRaised } = useWeb3Modal();
   const daysCounter = () => {
     const startDate = new Date(WAR_START_DATE);

@@ -521,12 +521,22 @@ export function useWeb3Modal() {
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
 
     const wethTotal = firstDropWeth.add(firstAuctionWeth);
+
+    if (wethTotal.lte(0))
+      return {
+        eth: '—',
+        usd: '—',
+      };
+
     const ethTotal = ethers.utils.formatEther(wethTotal);
-    const usdTotal = await getUsdPriceFromETH(ethTotal);
+    const usdTotal = await getUsdPriceFromETH(ethTotal).catch((e) => {
+      console.error(e);
+      return null;
+    });
 
     return {
       eth: (+ethTotal).toFixed(2),
-      usd: (+usdTotal).toLocaleString('en-US'),
+      usd: usdTotal ? (+usdTotal).toLocaleString('en-US') : '—',
     };
   }
 

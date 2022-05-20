@@ -28,8 +28,6 @@ export const OptionCategoriesValues = {
   [OptionCategory.AvatarsForUkraine]: AuctionCollections.avatarsForUkraine,
 };
 
-export const EMPTY_NFT_SELLER = '0x0000000000000000000000000000000000000000';
-
 export const FilterSvg = () => (
   <svg
     width="24"

@@ -35,17 +35,6 @@ type BidCardProps = {
   updateCallback: () => Promise<void>;
 };
 
-const getUsdPriceFromETH = async (
-  ethPrice: string | number,
-): Promise<string> => {
-  return await fetch(
-    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum',
-  )
-    .then((res) => res.json())
-    .then((json) => json[0].current_price as number)
-    .then((usdPrice) => (usdPrice * +ethPrice).toFixed(0));
-};
-
 const BidCard = ({
   currentBid,
   proposedBids,
@@ -65,7 +54,7 @@ const BidCard = ({
   );
   const [usdPrice, setUsdPrice] = useState<string | null>(null);
   const { showPopup } = usePopup();
-  const { makeBid } = useWeb3Modal();
+  const { makeBid, getUsdPriceFromETH } = useWeb3Modal();
 
   useEffect(() => {
     getUsdPriceFromETH(currentBid).then(setUsdPrice);
@@ -85,7 +74,10 @@ const BidCard = ({
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const price = await getUsdPriceFromETH(currentBid);
+      const price = await getUsdPriceFromETH(currentBid).catch((e) => {
+        console.error(e);
+        return null;
+      });
       if (price) setUsdPrice(price);
     }, 10000);
     return () => clearInterval(interval);
