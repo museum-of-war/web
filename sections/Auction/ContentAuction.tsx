@@ -134,7 +134,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
       );
     } else if (selectedSort === OptionSortType.HighToLow) {
       result = result.sort((datumA, datumB) =>
-        datumA.bid > datumB.bid ? -1 : 1,
+        +datumA.bid > +datumB.bid ? -1 : 1,
       );
     }
 
