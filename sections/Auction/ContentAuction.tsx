@@ -8,7 +8,6 @@ import TabletDrawer from './TabletDrawer';
 import AuctionData from '@sections/Auction/AuctionData';
 import {
   FilterSvg,
-  EMPTY_NFT_SELLER,
   OptionType,
   OptionSortType,
   OptionCategoriesValues,
@@ -26,7 +25,12 @@ type ContentAuctionProps = {
 const ContentAuction = ({ collection }: ContentAuctionProps) => {
   const { isTablet, isMobile, isDesktop } = useViewPort();
   const [data, setData] = useState<any[]>(
-    AuctionData.filter((d) => (collection ? d.category === collection : true)),
+    AuctionData.filter((d) =>
+      collection ? d.category === collection : true,
+    ).map((datum) => ({
+      ...AuctionCollectionData[datum.category],
+      ...datum,
+    })),
   );
   const [isCollection, setIsCollection] = useState<boolean>(false);
   const { getAuctionInfo } = useWeb3Modal();
@@ -99,13 +103,13 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
     if (selectedType === OptionType.ComingSoon) {
       result = result.filter((datum) => !datum.fullInfo);
     } else if (selectedType !== OptionType.All) {
-      result = result.filter(
-        (datum) =>
-          datum.fullInfo &&
-          (selectedType === OptionType.OnSale
-            ? datum.fullInfo.nftSeller !== EMPTY_NFT_SELLER
-            : datum.fullInfo.nftSeller === EMPTY_NFT_SELLER),
-      );
+      result = result.filter((datum) => {
+        const isOnSale = datum.fullInfo
+          ? !datum.isSold
+          : new Date() <= datum.endsIn;
+        if (selectedType === OptionType.OnSale) return isOnSale;
+        else return !isOnSale;
+      });
     }
 
     if (priceRange.from !== '') {
