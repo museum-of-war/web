@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AuctionCollectionType, AuctionItemType } from '@sections/types';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
@@ -50,6 +50,11 @@ function NftCard({
     nextMinBid: string;
   }>({ bid: '0', nextMinBid: '' });
 
+  const cardId = useMemo(
+    () => `${contractAddress}-${tokenId}`,
+    [contractAddress, tokenId],
+  );
+
   useEffect(() => {
     const interval = setInterval(() => {
       const isStarted = !calculateTimeLeft(`${startsAt ?? new Date()}`).isLeft;
@@ -72,7 +77,7 @@ function NftCard({
 
   return (
     <Link href={`/auction/${index}`} passHref>
-      <a>
+      <a id={cardId}>
         <div
           className={`
         mobile:my-15px tablet:my-0 desktop:my-0 mobile:border-0 tablet:border-4 desktop:border-4 border-carbon h-full
