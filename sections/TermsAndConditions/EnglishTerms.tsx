@@ -181,12 +181,23 @@ const EnglishTerms = () => {
           </li>
           <li>
             {' '}
+            · an Author guarantees not to sell NFTs featuring artworks used in
+            the NFTs available from Platform. All rights are reserved by the
+            artist;{' '}
+          </li>
+          <li>
+            {' '}
             · an Author gives unconditional and irrevocable consent to the
             Platform for use of Work/NFT for any advertising purposes and for
             any other purposes necessary for existence of the Platform and
             purposes indicated in item 3.1 of the present Terms.
           </li>
         </ul>
+        <p>
+          4.1.7. The Author guarantees not to sell NFTs featuring artworks used
+          in the NFTs available from the Platform. All rights are reserved by
+          the Author.
+        </p>
         <p>4.2. Are you a User?</p>
         <p>
           4.2.1. Each User may purchase and sell NFTs at the Platform. NFT will
