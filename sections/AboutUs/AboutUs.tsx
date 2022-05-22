@@ -74,7 +74,7 @@ const AboutUs = () => {
           </div>
         </div>
         <Blurb header="How we work" />
-        <div className="pt-20px relative tablet:flex tablet:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
+        <div className="pt-20px relative flex desktop:flex-row tablet:flex-col mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
           <div className="pt-10 desktop:w-[544px] tablet:w-full mobile:w-full mobile:mb-6%">
             <img src="img/warline-dots.png" alt="" />
           </div>

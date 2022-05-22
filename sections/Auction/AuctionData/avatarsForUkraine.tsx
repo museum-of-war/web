@@ -1,5 +1,5 @@
 import { IMG_STORAGE } from '@sections/Constants';
-import { AuctionCollections, AuctionItemType } from '@sections/types';
+import { AuctionCollection, AuctionItemType } from '@sections/types';
 
 const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   {
@@ -675,7 +675,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
   },
 ].map((item) => ({
   isSale: false,
-  category: AuctionCollections.avatarsForUkraine,
+  category: AuctionCollection.AvatarsForUkraine,
   ...item,
 }));
 
