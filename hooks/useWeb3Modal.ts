@@ -50,6 +50,62 @@ const getWeb3Modal = () => {
   return web3Modal;
 };
 
+type getAuctionInfoType = ReturnType<typeof useWeb3Modal>['_getAuctionInfo'];
+const auctionInfoMemo = {
+  cachingTime: 1000, // in ms
+  pending: new Set<ReturnType<getAuctionInfoType>>(),
+  maxPending: 5,
+  cached: {} as {
+    [contractAddress: string]: {
+      [tokenId: number]: {
+        [version: string]: [ReturnType<getAuctionInfoType>, Date];
+      };
+    };
+  },
+  async tryGetAuctionInfo(
+    getAuctionInfo: getAuctionInfoType,
+    contractAddress: string,
+    tokenId: number,
+    version: AuctionVersion,
+  ): Promise<Awaited<ReturnType<getAuctionInfoType>>> {
+    const prevVal = this?.cached?.[contractAddress]?.[tokenId]?.[version];
+    if (prevVal && +new Date() - +prevVal[1] < this.cachingTime) {
+      return prevVal[0];
+    } else {
+      const canBeStarted = this.pending.size < this.maxPending;
+      const promise = canBeStarted
+        ? getAuctionInfo(contractAddress, tokenId, version)
+        : new Promise<Awaited<ReturnType<getAuctionInfoType>>>(
+            async (resolve) => {
+              while (this.pending.size >= this.maxPending) {
+                await Promise.any(this.pending);
+              }
+              const startedPromise = getAuctionInfo(
+                contractAddress,
+                tokenId,
+                version,
+              );
+              this.pending.add(startedPromise);
+              startedPromise.finally(() => this.pending.delete(startedPromise));
+              resolve(startedPromise);
+            },
+          );
+      const byAddress =
+        this.cached[contractAddress] ?? (this.cached[contractAddress] = {});
+      const byTokenId = byAddress[tokenId] ?? (byAddress[tokenId] = {});
+      byTokenId[version] = [promise, new Date()];
+      if (canBeStarted) {
+        this.pending.add(promise);
+        promise.finally(() => this.pending.delete(promise));
+      }
+      promise.then(() => {
+        byTokenId[version] = [promise, new Date()];
+      });
+      return promise;
+    }
+  },
+};
+
 export function useWeb3Modal() {
   const [provider, setProvider] = useState<
     ethers.providers.Web3Provider | undefined
@@ -204,6 +260,19 @@ export function useWeb3Modal() {
   }
 
   async function getAuctionInfo(
+    contractAddress: string,
+    tokenId: number,
+    version: AuctionVersion,
+  ) {
+    return auctionInfoMemo.tryGetAuctionInfo(
+      _getAuctionInfo,
+      contractAddress,
+      tokenId,
+      version,
+    );
+  }
+
+  async function _getAuctionInfo(
     contractAddress: string,
     tokenId: number,
     version: AuctionVersion,
@@ -547,6 +616,7 @@ export function useWeb3Modal() {
     donate,
     viewNFTs,
     getOwnerOfNFT,
+    _getAuctionInfo,
     getAuctionInfo,
     makeBid,
     canMint,
