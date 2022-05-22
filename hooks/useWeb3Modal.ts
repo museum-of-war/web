@@ -589,8 +589,11 @@ export function useWeb3Modal() {
           (await getSecondDropMintedCount()),
       );
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
+    const secondAuctionWeth = BigNumber.from('12656000000000000000'); // second auction
 
-    const wethTotal = firstDropWeth.add(firstAuctionWeth);
+    const wethTotal = firstDropWeth
+      .add(firstAuctionWeth)
+      .add(secondAuctionWeth);
 
     if (wethTotal.lte(0))
       return {
