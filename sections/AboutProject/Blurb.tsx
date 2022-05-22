@@ -1,7 +1,7 @@
 import React from 'react';
 
 type PropsBlurb = {
-  header: string;
+  header?: string;
   english?: string;
   ukrainian?: string;
   isDark?: boolean;
