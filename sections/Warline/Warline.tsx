@@ -20,6 +20,8 @@ import {
 } from './constants';
 import DropdownSelect from '@components/DropdownSelect';
 
+const SCROLL_BUFFER_DAYS = 2;
+
 const Warline = () => {
   const { isMobile, isTablet } = useViewPort();
   const toggleComponentRef = useRef<HTMLDivElement>(null);
@@ -160,6 +162,8 @@ const Warline = () => {
     }
   }, [selectedByNewest]);
 
+  const [daysShown, setDaysShown] = useState(SCROLL_BUFFER_DAYS);
+
   return (
     <PopupProvider>
       <div className="relative desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
@@ -219,16 +223,28 @@ const Warline = () => {
           )}
         </div>
 
-        {warlineData.map((dayData, idx, arr) => (
-          <Day
-            key={idx}
-            dayData={dayData}
-            daysCount={arr.length}
-            allEvents={allEvents}
-            pageView={view}
-            selectedByNewest={selectedByNewest}
-          />
-        ))}
+        {warlineData.map(
+          (dayData, idx, arr) =>
+            idx < daysShown && (
+              <Day
+                key={idx}
+                dayData={dayData}
+                daysCount={arr.length}
+                allEvents={allEvents}
+                pageView={view}
+                selectedByNewest={selectedByNewest}
+                onInViewChanged={(inView) =>
+                  inView &&
+                  setDaysShown((daysShown) =>
+                    Math.max(daysShown, idx + SCROLL_BUFFER_DAYS + 1),
+                  )
+                }
+              />
+            ),
+        )}
+        {warlineData.length > daysShown && (
+          <p className="text-center text-24px font-bold">Loading...</p>
+        )}
         <div className={`${isMobile || isTablet ? 'mb-20%' : 'ml-33%'}`}>
           <SupportBanner setShowDonatePopup={setShowDonatePopup} />
         </div>
