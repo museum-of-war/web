@@ -1,16 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ScaledImage from '@components/ScaledImage';
 import BidsHistoryTable from '@components/BidsHistoryTable';
 import Button from '@components/Button';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
-import {
-  AuctionCollections,
-  AuctionCollectionType,
-  AuctionItemType,
-  BidInfo,
-} from '@sections/types';
+import { AuctionItemType, BidInfo } from '@sections/types';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
@@ -18,6 +13,9 @@ import { usePopup } from 'providers/PopupProvider';
 import { truncateAddress } from '@sections/utils';
 import { usePreloader } from '@providers/PreloaderProvider';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
+import FsLightbox from 'fslightbox-react';
+import { AuctionVersion } from '@museum-of-war/auction';
+import ArtistsData from '@sections/ArtistsData';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -26,23 +24,16 @@ type NftCardDetailProps = {
 type BidCardProps = {
   isMobile?: boolean;
   endsIn: Date;
+  startsAt?: Date;
   currentBid: string;
   proposedBids: string[];
   contractAddress: string;
   tokenId: number;
   isSale: boolean;
+  hasBid: boolean;
   buyNowPrice?: string;
-};
-
-const getUsdPriceFromETH = async (
-  ethPrice: string | number,
-): Promise<string> => {
-  return await fetch(
-    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum',
-  )
-    .then((res) => res.json())
-    .then((json) => json[0].current_price as number)
-    .then((usdPrice) => (usdPrice * +ethPrice).toFixed(0));
+  auctionVersion: AuctionVersion;
+  updateCallback: () => Promise<void>;
 };
 
 const BidCard = ({
@@ -50,15 +41,22 @@ const BidCard = ({
   proposedBids,
   isMobile,
   endsIn,
+  startsAt,
   contractAddress,
   tokenId,
   isSale,
+  hasBid,
   buyNowPrice,
+  auctionVersion,
+  updateCallback,
 }: BidCardProps) => {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(`${endsIn}`));
+  const [isStarted, setIsStarted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(
+    calculateTimeLeft(`${startsAt ?? endsIn}`),
+  );
   const [usdPrice, setUsdPrice] = useState<string | null>(null);
   const { showPopup } = usePopup();
-  const { makeBid } = useWeb3Modal();
+  const { makeBid, getUsdPriceFromETH } = useWeb3Modal();
 
   useEffect(() => {
     getUsdPriceFromETH(currentBid).then(setUsdPrice);
@@ -66,14 +64,22 @@ const BidCard = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(`${endsIn}`));
+      const isStarted = !calculateTimeLeft(`${startsAt ?? new Date()}`).isLeft;
+      setIsStarted(isStarted);
+      const newTimeLeft = calculateTimeLeft(`${isStarted ? endsIn : startsAt}`);
+      if (newTimeLeft.isLeft !== timeLeft.isLeft)
+        updateCallback?.().catch((e) => console.error(e));
+      setTimeLeft(newTimeLeft);
     }, 1000);
     return () => clearInterval(interval);
-  }, [endsIn]);
+  }, [timeLeft, endsIn, startsAt]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const price = await getUsdPriceFromETH(currentBid);
+      const price = await getUsdPriceFromETH(currentBid).catch((e) => {
+        console.error(e);
+        return null;
+      });
       if (price) setUsdPrice(price);
     }, 10000);
     return () => clearInterval(interval);
@@ -84,14 +90,14 @@ const BidCard = ({
       <div className="flex items-start justify-between mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
         <div>
           <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
-            {isSale ? 'Current price' : 'Current bid'}
+            {isSale ? 'Current price' : hasBid ? 'Current bid' : 'Minimum bid'}
           </p>
           <p className="mobile:text-27px tablet:text-32px font-rblack">
-            {currentBid} ETH
+            {+currentBid ? currentBid : '—'} ETH
           </p>
           {!!usdPrice && (
             <p className="font-rlight mobile:text-14px tablet:text-16px">
-              ${usdPrice}
+              ${+usdPrice ? usdPrice : '—'}
             </p>
           )}
         </div>
@@ -100,7 +106,7 @@ const BidCard = ({
             <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
             <div>
               <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
-                Ends in
+                {isStarted ? 'Ends in' : 'Starts in'}
               </p>
               <div className="flex -mx-10px">
                 <div className="text-center px-10px">
@@ -138,19 +144,32 @@ const BidCard = ({
           </>
         )}
       </div>
-      {!isMobile && (
+      {!isMobile && isStarted && (
         <Button
           mode="custom"
           label={isSale ? 'Buy Now' : 'Place Bid'}
-          onClick={() => {
+          onClick={async () => {
             if (isSale) {
               try {
-                makeBid(contractAddress, tokenId, buyNowPrice!);
+                await makeBid(
+                  contractAddress,
+                  tokenId,
+                  buyNowPrice!,
+                  auctionVersion,
+                );
               } catch (error: any) {
                 console.error(error?.message ?? error);
+              } finally {
+                await updateCallback?.().catch((e) => console.error(e));
               }
             } else {
-              showPopup('bid', { proposedBids, contractAddress, tokenId });
+              showPopup('bid', {
+                proposedBids,
+                contractAddress,
+                tokenId,
+                auctionVersion,
+                updateCallback,
+              });
             }
           }}
           className="bg-white text-carbon w-100% mt-24px"
@@ -166,18 +185,19 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const { push } = useAppRouter();
   const { makeBid, getAuctionInfo, getOwnerOfNFT } = useWeb3Modal();
   const { hidePreloader, showPreloader } = usePreloader();
+  const [isStarted, setIsStarted] = useState(false);
+  const [lightboxToggler, setLightboxToggler] = React.useState<boolean>(false);
 
   const [isSold, setSold] = useState<boolean>(false);
+  const [hasBid, setHasBid] = useState<boolean>(false);
   const [tokenOwner, setTokenOwner] = useState<string>('');
-  const [collectionData, setCollectionData] = useState<AuctionCollectionType>(
-    AuctionCollectionData[AuctionCollections.firstDrop],
-  );
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     proposedBids: string[];
     fullInfo: any;
     bidHistory: BidInfo[];
     buyNowPrice?: string;
+    endsAt?: Date;
   }>({ bid: '0', proposedBids: ['0'], fullInfo: '', bidHistory: [] });
 
   useEffect(() => {
@@ -188,25 +208,83 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
     };
   }, []);
 
-  useEffect(() => {
-    setCollectionData(AuctionCollectionData[item.category]);
-  }, [item.category]);
+  const artist = useMemo(
+    () => ({
+      name: item.artist,
+      bio: '',
+      avatarSrc: '/img/avatars/placeholder.png',
+      ...ArtistsData[item.artist],
+    }),
+    [item.artist],
+  );
+
+  const collectionData = useMemo(
+    () => AuctionCollectionData[item.category],
+    [item.category],
+  );
+
+  const endsAt = useMemo(
+    () =>
+      currentBid.endsAt && currentBid.endsAt > collectionData.endsIn
+        ? currentBid.endsAt
+        : collectionData.endsIn,
+    [collectionData.endsIn, currentBid.endsAt],
+  );
+
+  const neighbours = useMemo(() => {
+    const previous =
+      item.index > 0
+        ? AuctionData[item.index - 1]!
+        : AuctionData[AuctionData.length - 1]!;
+    const next =
+      item.index < AuctionData.length - 1
+        ? AuctionData[item.index + 1]!
+        : AuctionData[0]!;
+    return [
+      {
+        ...AuctionCollectionData[previous.category]!,
+        ...previous,
+      },
+      {
+        ...AuctionCollectionData[next.category]!,
+        ...next,
+      },
+    ];
+  }, [item.index]);
 
   useEffect(() => {
-    getAuctionInfo(collectionData.contractAddress, item.tokenId)
-      .then(async (i) => {
-        setCurrentBid({ ...i });
-        setSold(i.isSold);
-        if (i.isSold)
-          setTokenOwner(
-            await getOwnerOfNFT(collectionData.contractAddress, item.tokenId),
-          );
-      })
+    const interval = setInterval(() => {
+      const isStarted = collectionData.startsAt
+        ? +new Date() >= +collectionData.startsAt
+        : true;
+      setIsStarted(isStarted);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [collectionData.startsAt]);
+
+  const updateInfo = async () =>
+    getAuctionInfo(
+      collectionData.contractAddress,
+      item.tokenId,
+      collectionData.version,
+    ).then(async (i) => {
+      setCurrentBid({ ...i });
+      const isSold = i.isSold && isStarted;
+      setSold(isSold);
+      setHasBid(i.hasBid);
+      if (isSold)
+        setTokenOwner(
+          await getOwnerOfNFT(collectionData.contractAddress, item.tokenId),
+        );
+    });
+
+  useEffect(() => {
+    updateInfo()
       .catch((error) => console.log(`NftCardDetail ${error}`))
       .finally(() => {
         hidePreloader();
       });
-  }, [collectionData.contractAddress, item.tokenId]);
+  }, [isStarted, collectionData.contractAddress, item.tokenId]);
 
   const handleToAuction = () => push('/auction');
 
@@ -217,53 +295,74 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
           <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
             {isTablet ? (
               <BidCard
-                endsIn={collectionData.endsIn}
+                startsAt={collectionData.startsAt}
+                endsIn={endsAt}
                 proposedBids={currentBid.proposedBids}
                 currentBid={currentBid.bid}
                 contractAddress={collectionData.contractAddress}
                 tokenId={item.tokenId}
                 isSale={item.isSale}
+                hasBid={hasBid}
+                auctionVersion={collectionData.version}
+                updateCallback={updateInfo}
               />
-            ) : (
+            ) : isStarted ? (
               <Button
                 mode="custom"
                 label={item.isSale ? 'Buy Now' : 'Place Bid'}
-                onClick={() => {
+                onClick={async () => {
                   if (item.isSale) {
                     try {
-                      makeBid(
+                      await makeBid(
                         collectionData.contractAddress,
                         item.tokenId,
                         currentBid.buyNowPrice!,
+                        collectionData.version,
                       );
+                      await getAuctionInfo(
+                        collectionData.contractAddress,
+                        item.tokenId,
+                        collectionData.version,
+                      ).then(async (i) => setCurrentBid({ ...i }));
                     } catch (error: any) {
-                      console.error(error?.message ?? error);
+                      console.error(
+                        error?.error?.message ?? error?.message ?? error,
+                      );
                     }
                   } else {
                     showPopup('bid', {
                       proposedBids: currentBid.proposedBids,
                       contractAddress: collectionData.contractAddress,
                       tokenId: item.tokenId,
+                      auctionVersion: collectionData.version,
+                      updateCallback: updateInfo,
                     });
                   }
                 }}
                 className="bg-white text-carbon w-100%"
               />
-            )}
+            ) : null}
           </div>
         )}
         <div className="flex mt-40px mobile:flex-col desktop:flex-row justify-between">
           <div className="desktop:w-[48%] mobile: w-full">
             <ScaledImage
+              title={item.name}
               alt={item.name}
               src={item.imageSrc}
-              postLoad={item.imageSrc.endsWith('.gif')}
+              onClick={() => setLightboxToggler(!lightboxToggler)}
+              postLoad={item.imageSrc.endsWith('.gif') || item.animationSrc}
+              containerClassName="cursor-pointer"
               breakpoints={[
                 {
                   lowerBound: 'desktop',
                   ratio: 0.5,
                 },
               ]}
+            />
+            <FsLightbox
+              toggler={lightboxToggler}
+              sources={[item.animationSrc || item.imageSrc]}
             />
           </div>
           <div className="desktop:w-[48%] mobile: w-full">
@@ -276,12 +375,16 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             ) : (
               <BidCard
                 isMobile={isMobile}
-                endsIn={collectionData.endsIn}
+                startsAt={collectionData.startsAt}
+                endsIn={endsAt}
                 proposedBids={currentBid.proposedBids}
                 currentBid={currentBid.bid}
                 contractAddress={collectionData.contractAddress}
                 tokenId={item.tokenId}
                 isSale={item.isSale}
+                hasBid={hasBid}
+                auctionVersion={collectionData.version}
+                updateCallback={updateInfo}
               />
             )}
             <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px mobile:mt-40px leading-[150%] tablet:mt-48px">
@@ -290,29 +393,47 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
             <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px leading-[150%] mt-24px">
               {item.descriptionUkrainian}
             </p>
-            <div className="font-rlight flex mobile:flex-col desktop:flex-col tablet:flex-row mobile:mt-40px tablet:mt-48px">
-              <div className="flex mobile:flex-col tablet:flex-row text-16px">
-                <div className="flex">
-                  {item.artist?.length > 0 && (
-                    <>
-                      <p>Artist:</p>
-                      <p className=" tablet:ml-[8px]">{item.artist}</p>
-                    </>
-                  )}
+            <div className="font-rlight flex flex-col mobile:mt-40px tablet:mt-48px">
+              {artist.name.length > 0 && (
+                <div className="mobile:mb-40px tablet:mb-48px">
+                  <div className="flex mobile:flex-col tablet:flex-row text-16px">
+                    <div className="flex flex-row">
+                      <img
+                        src={artist.avatarSrc}
+                        alt={artist.name + "'s Avatar"}
+                        className="rounded-full mobile:w-40px tablet:w-48px mobile:h-40px tablet:h-48px mr-24px"
+                      />
+                      <div className="flex flex-col">
+                        <p className="font-rlight mobile:text-14px tablet:text-16px mobile:leading-20px tablet:leading-24px">
+                          Artist:
+                        </p>
+                        <p className="font-rblack mobile:text-16px tablet:text-20px mobile:leading-20px tablet:leading-24px">
+                          {artist.name}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {artist.bio.length > 0 ? (
+                    <p className="font-rlight mobile:text-14px tablet:text-16px mobile:leading-20px tablet:leading-24px mt-12px">
+                      {artist.bio}
+                    </p>
+                  ) : null}
                 </div>
-                <div className="flex mobile:ml-[0px] tablet:ml-48px mobile:my-[20px] tablet:my-[0px]">
+              )}
+              <div className="font-rlight flex mobile:flex-col tablet:flex-row">
+                <div className="flex flex-row text-16px">
                   <p>Edition:</p>
                   <p className="ml-[8px]">1 of 1</p>
                 </div>
+                {isSold && (
+                  <div className="flex mobile:ml-[0px] tablet:ml-48px mobile:my-[20px] tablet:my-[0px]">
+                    <p>Owner:</p>
+                    <p className="ml-[8px]" title={tokenOwner}>
+                      {truncateAddress(tokenOwner, 13)}
+                    </p>
+                  </div>
+                )}
               </div>
-              {isSold && (
-                <div className="flex text-16px desktop:mt-24px tablet:ml-48px desktop:ml-[0px]">
-                  <p>Owner:</p>
-                  <p className="ml-[8px]" title={tokenOwner}>
-                    {truncateAddress(tokenOwner, 13)}
-                  </p>
-                </div>
-              )}
             </div>
             {isSold && false /*TODO*/ && (
               <div className="mobile:mt-60px tablet:mt-72px desktop:mt-96px">
@@ -337,7 +458,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 )}
               </div>
               <div className="flex flex-wrap -mx-24px">
-                {AuctionData.slice(0, 2).map((item, index) => (
+                {neighbours.map((item, index) => (
                   <div
                     className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
                     key={item.index}
@@ -356,12 +477,14 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                       orderIndex={index}
                       index={item.index}
                       imageSrc={item.imageSrc}
+                      animationSrc={item.animationSrc}
                       name={item.name}
-                      startsAt={collectionData.startsAt}
-                      endsIn={collectionData.endsIn}
-                      contractAddress={collectionData.contractAddress}
+                      startsAt={item.startsAt}
+                      endsIn={item.endsIn}
+                      contractAddress={item.contractAddress}
                       tokenId={item.tokenId}
                       isSale={item.isSale}
+                      version={item.version}
                       type="small"
                     />
                   </div>

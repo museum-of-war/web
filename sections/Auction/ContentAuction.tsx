@@ -8,10 +8,10 @@ import TabletDrawer from './TabletDrawer';
 import AuctionData from '@sections/Auction/AuctionData';
 import {
   FilterSvg,
-  FILTER_OPTIONS_CATEGORIES,
-  FILTER_OPTIONS_SORT_TYPE,
-  FILTER_OPTIONS_TYPES,
-  EMPTY_NFT_SELLER,
+  OptionType,
+  OptionSortType,
+  OptionCategoriesValues,
+  OptionCategory,
 } from './cosntants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
@@ -24,14 +24,23 @@ type ContentAuctionProps = {
 
 const ContentAuction = ({ collection }: ContentAuctionProps) => {
   const { isTablet, isMobile, isDesktop } = useViewPort();
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>(
+    AuctionData.filter((d) =>
+      collection ? d.category === collection : true,
+    ).map((datum) => ({
+      ...AuctionCollectionData[datum.category],
+      ...datum,
+    })),
+  );
   const [isCollection, setIsCollection] = useState<boolean>(false);
   const { getAuctionInfo } = useWeb3Modal();
   const { push } = useAppRouter();
 
   useEffect(() => {
     setIsCollection(!!collection);
-    setSelectedCategory(collection ?? FILTER_OPTIONS_CATEGORIES[0]?.value);
+    setSelectedCategory(
+      collection ?? OptionCategoriesValues[OptionCategory.All],
+    );
   }, [collection]);
 
   useEffect(() => {
@@ -46,6 +55,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               ? getAuctionInfo(
                   AuctionCollectionData[datum.category].contractAddress,
                   datum.tokenId,
+                  AuctionCollectionData[datum.category].version,
                 )
               : {};
           }),
@@ -68,13 +78,13 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedType, setSelectedType] = useState<string | undefined>(
-    FILTER_OPTIONS_TYPES[3]?.value,
+    OptionType.All,
   );
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
-    FILTER_OPTIONS_CATEGORIES[0]?.value,
+    OptionCategoriesValues[OptionCategory.All],
   );
   const [selectedSort, selSelectedSort] = useState<string | undefined>(
-    FILTER_OPTIONS_SORT_TYPE[0]?.value,
+    OptionSortType.EndingSoon,
   );
   const [priceRange, setPriceRange] = useState<{ from: string; to: string }>({
     from: '',
@@ -86,19 +96,26 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
 
     if (data.length === 0) return [];
 
-    if (selectedCategory !== FILTER_OPTIONS_CATEGORIES[0]?.value) {
+    if (selectedCategory !== OptionCategoriesValues[OptionCategory.All]) {
       result = result.filter((datum) => datum.category === selectedCategory);
     }
-    console.log(result);
-    if (selectedType === FILTER_OPTIONS_TYPES[2]?.value) {
+
+    if (selectedType === OptionType.ComingSoon) {
       result = result.filter((datum) => !datum.fullInfo);
-    } else if (selectedType !== FILTER_OPTIONS_TYPES[3]?.value) {
-      result = result.filter(
-        (datum) =>
-          datum.fullInfo &&
-          (selectedType === 'On Sale'
-            ? datum.fullInfo.nftSeller !== EMPTY_NFT_SELLER
-            : datum.fullInfo.nftSeller === EMPTY_NFT_SELLER),
+    } else if (
+      selectedType === OptionType.OnSale ||
+      selectedType === OptionType.Sold
+    ) {
+      result = result.filter((datum) => {
+        const isOnSale = datum.fullInfo
+          ? !datum.isSold
+          : new Date() <= datum.endsIn;
+        if (selectedType === OptionType.OnSale) return isOnSale;
+        else return !isOnSale;
+      });
+    } else if (selectedType === OptionType.WithoutBids) {
+      result = result.filter((datum) =>
+        typeof datum?.hasBid !== 'undefined' ? !datum.hasBid : true,
       );
     }
 
@@ -110,21 +127,21 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
       result = result.filter((datum) => +datum.bid <= +priceRange.to);
     }
 
-    if (selectedSort === FILTER_OPTIONS_SORT_TYPE[0]?.value) {
+    if (selectedSort === OptionSortType.EndingSoon) {
       result = result.sort((datumA, datumB) =>
         new Date(datumA.endsIn) > new Date(datumB.endsIn) ? -1 : 1,
       );
-    } else if (selectedSort === FILTER_OPTIONS_SORT_TYPE[1]?.value) {
+    } else if (selectedSort === OptionSortType.RecentlyAdded) {
       result = result.sort((datumA, datumB) =>
         new Date(datumA.startsAt) > new Date(datumB.startsAt) ? -1 : 1,
       );
-    } else if (selectedSort === FILTER_OPTIONS_SORT_TYPE[2]?.value) {
+    } else if (selectedSort === OptionSortType.LowToHigh) {
       result = result.sort((datumA, datumB) =>
         +datumA.bid < +datumB.bid ? -1 : 1,
       );
-    } else if (selectedSort === FILTER_OPTIONS_SORT_TYPE[3]?.value) {
+    } else if (selectedSort === OptionSortType.HighToLow) {
       result = result.sort((datumA, datumB) =>
-        datumA.bid > datumB.bid ? -1 : 1,
+        +datumA.bid > +datumB.bid ? -1 : 1,
       );
     }
 
@@ -194,7 +211,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
             </div>
             <div className="px-20px">
               <DropdownSelect
-                options={FILTER_OPTIONS_TYPES}
+                options={Object.values(OptionType).map((value) => ({
+                  text: value,
+                  value,
+                }))}
                 selectedValue={selectedType}
                 onChange={handleChangeType}
                 className="min-w-[200px]"
@@ -203,7 +223,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
             {isCollection ? null : (
               <div className="px-20px">
                 <DropdownSelect
-                  options={FILTER_OPTIONS_CATEGORIES}
+                  options={Object.values(OptionCategory).map((value) => ({
+                    text: value,
+                    value: OptionCategoriesValues[value],
+                  }))}
                   selectedValue={selectedCategory}
                   onChange={handleChangeCategory}
                   className="w-[211px]"
@@ -230,7 +253,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
         )}
         {!isMobile && (
           <DropdownSelect
-            options={FILTER_OPTIONS_SORT_TYPE}
+            options={Object.values(OptionSortType).map((value) => ({
+              text: value,
+              value,
+            }))}
             selectedValue={selectedSort}
             onChange={handleChangeSort}
             className="w-[236px]"
@@ -254,12 +280,13 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
                 },
                 {
                   lowerBound: 'desktop',
-                  ratio: index >= 2 ? 0.25 : 0.5,
+                  ratio: index >= 2 && !isCollection ? 0.25 : 0.5,
                 },
               ]}
               orderIndex={index}
               index={item.index}
               imageSrc={item.imageSrc}
+              animationSrc={item.animationSrc}
               name={item.name}
               startsAt={item.startsAt}
               endsIn={item.endsIn}
@@ -267,6 +294,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               tokenId={item.tokenId}
               isSale={item.isSale}
               isCollection={isCollection}
+              version={item.version}
             />
           </div>
         ))}

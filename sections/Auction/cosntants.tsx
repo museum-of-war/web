@@ -1,34 +1,33 @@
-import { SelectOption } from '@components/DropdownSelect';
 import { AuctionCollections } from '@sections/types';
 
-export const FILTER_OPTIONS_TYPES: SelectOption[] = [
-  { text: 'On Sale', value: 'On Sale' },
-  { text: 'Sold', value: 'Sold' },
-  { text: 'Coming soon', value: 'Coming soon' },
-  { text: 'All Types', value: 'All Types' },
-];
+export enum OptionType {
+  OnSale = 'On Sale',
+  Sold = 'Sold',
+  ComingSoon = 'Coming soon',
+  WithoutBids = 'Without bids',
+  All = 'All Types',
+}
 
-export const FILTER_OPTIONS_CATEGORIES: SelectOption[] = [
-  { text: 'All Collections', value: '' },
-  { text: 'First Drop', value: AuctionCollections.firstDrop },
-  {
-    text: 'PROSPECT 100',
-    value: AuctionCollections.prospect100,
-  },
-  {
-    text: 'Avatars for Ukraine',
-    value: AuctionCollections.avatarsForUkraine,
-  },
-];
+export enum OptionCategory {
+  All = 'All Collections',
+  FirstDrop = 'First Drop',
+  Prospect100 = 'PROSPECT 100',
+  AvatarsForUkraine = 'Avatars for Ukraine',
+}
 
-export const FILTER_OPTIONS_SORT_TYPE: SelectOption[] = [
-  { text: 'Ending Soon', value: 'Ending Soon' },
-  { text: 'Recently Added', value: 'Recently Added' },
-  { text: 'Price: Low to High', value: 'Price: Low to High' },
-  { text: 'Price: High to Low', value: 'Price: High to Low' },
-];
+export enum OptionSortType {
+  EndingSoon = 'Ending Soon',
+  RecentlyAdded = 'Recently Added',
+  LowToHigh = 'Price: Low to High',
+  HighToLow = 'Price: High to Low',
+}
 
-export const EMPTY_NFT_SELLER = '0x0000000000000000000000000000000000000000';
+export const OptionCategoriesValues = {
+  [OptionCategory.All]: '',
+  [OptionCategory.FirstDrop]: AuctionCollections.firstDrop,
+  [OptionCategory.Prospect100]: AuctionCollections.prospect100,
+  [OptionCategory.AvatarsForUkraine]: AuctionCollections.avatarsForUkraine,
+};
 
 export const FilterSvg = () => (
   <svg

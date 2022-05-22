@@ -10,12 +10,12 @@ import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
   FIRST_DROP_ADDRESS,
-  SECOND_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
-  UKRAINE_WALLET_ADDRESS,
   PROSPECT_100_ADDRESS,
+  SECOND_DROP_ADDRESS,
+  UKRAINE_WALLET_ADDRESS,
 } from '@sections/Constants';
-import { NFTAuctionConnect } from '@museum-of-war/auction';
+import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 import { Drop1Data, Drop2Data } from '@sections/Warline/WarlineData';
 
@@ -48,6 +48,62 @@ const getWeb3Modal = () => {
       providerOptions,
     });
   return web3Modal;
+};
+
+type getAuctionInfoType = ReturnType<typeof useWeb3Modal>['_getAuctionInfo'];
+const auctionInfoMemo = {
+  cachingTime: 1000, // in ms
+  pending: new Set<ReturnType<getAuctionInfoType>>(),
+  maxPending: 5,
+  cached: {} as {
+    [contractAddress: string]: {
+      [tokenId: number]: {
+        [version: string]: [ReturnType<getAuctionInfoType>, Date];
+      };
+    };
+  },
+  async tryGetAuctionInfo(
+    getAuctionInfo: getAuctionInfoType,
+    contractAddress: string,
+    tokenId: number,
+    version: AuctionVersion,
+  ): Promise<Awaited<ReturnType<getAuctionInfoType>>> {
+    const prevVal = this?.cached?.[contractAddress]?.[tokenId]?.[version];
+    if (prevVal && +new Date() - +prevVal[1] < this.cachingTime) {
+      return prevVal[0];
+    } else {
+      const canBeStarted = this.pending.size < this.maxPending;
+      const promise = canBeStarted
+        ? getAuctionInfo(contractAddress, tokenId, version)
+        : new Promise<Awaited<ReturnType<getAuctionInfoType>>>(
+            async (resolve) => {
+              while (this.pending.size >= this.maxPending) {
+                await Promise.any(this.pending);
+              }
+              const startedPromise = getAuctionInfo(
+                contractAddress,
+                tokenId,
+                version,
+              );
+              this.pending.add(startedPromise);
+              startedPromise.finally(() => this.pending.delete(startedPromise));
+              resolve(startedPromise);
+            },
+          );
+      const byAddress =
+        this.cached[contractAddress] ?? (this.cached[contractAddress] = {});
+      const byTokenId = byAddress[tokenId] ?? (byAddress[tokenId] = {});
+      byTokenId[version] = [promise, new Date()];
+      if (canBeStarted) {
+        this.pending.add(promise);
+        promise.finally(() => this.pending.delete(promise));
+      }
+      promise.then(() => {
+        byTokenId[version] = [promise, new Date()];
+      });
+      return promise;
+    }
+  },
 };
 
 export function useWeb3Modal() {
@@ -157,7 +213,6 @@ export function useWeb3Modal() {
       nft: typeof ownedNfts[number],
     ): typeof ownedNfts[number] {
       const tokenId = nft.id.tokenId;
-      console.log(tokenId);
       const event = Drop2Data.flatMap((day) => day.events).find((event) =>
         event.ImageType?.includes(`drop2/${tokenId}`),
       )!;
@@ -204,21 +259,41 @@ export function useWeb3Modal() {
       .call({ from: MetaHistoryAddress });
   }
 
-  async function getAuctionInfo(contractAddress: string, tokenId: number) {
+  async function getAuctionInfo(
+    contractAddress: string,
+    tokenId: number,
+    version: AuctionVersion,
+  ) {
+    return auctionInfoMemo.tryGetAuctionInfo(
+      _getAuctionInfo,
+      contractAddress,
+      tokenId,
+      version,
+    );
+  }
+
+  async function _getAuctionInfo(
+    contractAddress: string,
+    tokenId: number,
+    version: AuctionVersion,
+  ) {
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
     const ethersProvider = new ethers.providers.Web3Provider(
       web3.currentProvider as ExternalProvider,
     );
-    const auction = NFTAuctionConnect(ethersProvider, chain);
+    const auction = NFTAuctionConnect(ethersProvider, chain, version);
 
     const auctionInfo = await auction.nftContractAuctions(
       contractAddress,
       tokenId,
     );
 
-    const isSold = auctionInfo.nftSeller === ethers.constants.AddressZero;
+    const isSold =
+      version === AuctionVersion.V1
+        ? auctionInfo.nftSeller === ethers.constants.AddressZero
+        : auctionInfo.feeRecipient === ethers.constants.AddressZero;
 
     /*
     const bidInfos = isSold
@@ -273,15 +348,25 @@ export function useWeb3Modal() {
       .map((wei) => web3.utils.fromWei(wei));
 
     return {
+      hasBid,
       isSold,
-      isSale: auctionInfo.minPrice.eq(0) && auctionInfo.buyNowPrice.gt(0),
+      isSale:
+        version === AuctionVersion.V1
+          ? auctionInfo.minPrice.eq(0) && auctionInfo.buyNowPrice.gt(0)
+          : false,
       //bidHistory: bidInfos,
       bidHistory: [],
       bid: web3.utils.fromWei(bid.toString()),
       nextMinBid: web3.utils.fromWei(nextMinBid.toString()),
       proposedBids: proposedBidsETH,
       fullInfo: auctionInfo,
-      buyNowPrice: web3.utils.fromWei(auctionInfo.buyNowPrice.toString()),
+      buyNowPrice:
+        version === AuctionVersion.V1
+          ? web3.utils.fromWei(auctionInfo.buyNowPrice.toString())
+          : undefined,
+      endsAt: auctionInfo.auctionEnd
+        ? new Date(auctionInfo.auctionEnd * 1000)
+        : undefined,
     };
   }
 
@@ -289,23 +374,49 @@ export function useWeb3Modal() {
     contractAddress: string,
     tokenId: number,
     value: BigNumberish,
+    version: AuctionVersion,
   ) {
     const ethersProvider = await connectWallet();
     if (!ethersProvider) return;
     const signer = ethersProvider.getSigner();
 
-    const auction = NFTAuctionConnect(signer, chain);
+    const auction = NFTAuctionConnect(signer, chain, version);
 
-    await auction.makeBid(
-      contractAddress,
-      tokenId,
-      ethers.constants.AddressZero,
-      0,
-      {
+    if (version === AuctionVersion.V1) {
+      const estimatedGas = await auction.estimateGas.makeBid(
+        contractAddress,
+        tokenId,
+        ethers.constants.AddressZero,
+        0,
+        {
+          value: ethers.utils.parseEther(value.toString()),
+        },
+      );
+      const tx = await auction.makeBid(
+        contractAddress,
+        tokenId,
+        ethers.constants.AddressZero,
+        0,
+        {
+          value: ethers.utils.parseEther(value.toString()),
+          gasLimit: estimatedGas.mul(11).div(10),
+        },
+      );
+      await tx.wait();
+    } else {
+      const estimatedGas = await auction.estimateGas.makeBid(
+        contractAddress,
+        tokenId,
+        {
+          value: ethers.utils.parseEther(value.toString()),
+        },
+      );
+      const tx = await auction.makeBid(contractAddress, tokenId, {
         value: ethers.utils.parseEther(value.toString()),
-        gasLimit: 250000, //TODO
-      },
-    );
+        gasLimit: estimatedGas.mul(11).div(10),
+      });
+      await tx.wait();
+    }
   }
 
   async function getFirstDropMintedCount() {
@@ -480,12 +591,22 @@ export function useWeb3Modal() {
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
 
     const wethTotal = firstDropWeth.add(firstAuctionWeth);
+
+    if (wethTotal.lte(0))
+      return {
+        eth: '—',
+        usd: '—',
+      };
+
     const ethTotal = ethers.utils.formatEther(wethTotal);
-    const usdTotal = await getUsdPriceFromETH(ethTotal);
+    const usdTotal = await getUsdPriceFromETH(ethTotal).catch((e) => {
+      console.error(e);
+      return null;
+    });
 
     return {
       eth: (+ethTotal).toFixed(2),
-      usd: (+usdTotal).toLocaleString('en-US'),
+      usd: usdTotal ? (+usdTotal).toLocaleString('en-US') : '—',
     };
   }
 
@@ -496,6 +617,7 @@ export function useWeb3Modal() {
     donate,
     viewNFTs,
     getOwnerOfNFT,
+    _getAuctionInfo,
     getAuctionInfo,
     makeBid,
     canMint,

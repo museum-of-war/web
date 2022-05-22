@@ -42,7 +42,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
     description:
       'Avatars for Ukraine Auction on [url]https://metahistory.gallery/auction/collection/avatars[/url]',
     startDate: '2022-05-19',
-    startTime: '21:45:00',
+    startTime: '21:15:00',
     endDate: '2022-05-22',
     endTime: '22:00:00',
     timeZone: 'Europe/Kiev',

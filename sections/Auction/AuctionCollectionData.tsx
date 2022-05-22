@@ -4,6 +4,7 @@ import {
   PROSPECT_100_ADDRESS,
   AVATARS_ADDRESS,
 } from '@sections/Constants';
+import { AuctionVersion } from '@museum-of-war/auction';
 
 const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
   {
@@ -16,6 +17,7 @@ const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
       contractAddress: FIRST_DROP_ADDRESS,
       startsAt: new Date('2022-04-17T23:00:00.000+03:00'),
       endsIn: new Date('2022-04-22T23:00:00.000+03:00'),
+      version: AuctionVersion.V1,
     },
     [AuctionCollections.prospect100]: {
       name: 'PROSPECT 100',
@@ -28,19 +30,21 @@ const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
       contractAddress: PROSPECT_100_ADDRESS,
       startsAt: new Date('2022-04-17T23:00:00.000+03:00'),
       endsIn: new Date('2022-04-22T23:00:00.000+03:00'),
+      version: AuctionVersion.V1,
     },
     [AuctionCollections.avatarsForUkraine]: {
       name: 'Avatars for Ukraine',
       description:
         'Avatar - अवतार - ‘incarnation’.\n' +
         'Avatars for Ukraine is a charity NFT collection of the iconic digital art created in response to the largest war since WWII. The incarnations of the spirit of Ukraine in its fight for existence. The avatars for the free nation. Created by the top digital Ukrainian artists and produced by the video game hit makers, this collection is a historic event for the NFT. 100% of the proceeds will support the humanitarian and defence efforts of Ukraine. The official collection approved by the Ministry of Digital Transformation of Ukraine.',
-      headerImageSrc: '/img/auction/covers/avatars.png',
+      headerImageSrc: '/img/original/avatars/BorysKernytskyi-Glory.png',
       logoSrc: '/img/auction/logos/avatars.svg',
       posterSrc: '/img/auction/posters/avatars.gif',
       videoSrc: 'https://www.youtube-nocookie.com/embed/GM8jV5Tbzww',
       contractAddress: AVATARS_ADDRESS,
-      startsAt: new Date('2022-05-19T21:45:00.000+03:00'),
+      startsAt: new Date('2022-05-19T21:15:15.000+03:00'),
       endsIn: new Date('2022-05-22T22:00:00.000+03:00'),
+      version: AuctionVersion.V2,
     },
   };
 

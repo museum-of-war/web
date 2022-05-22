@@ -3,16 +3,29 @@ import { useAppRouter } from '@hooks/useAppRouter';
 import Blurb from '@sections/AboutProject/Blurb';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCardDetail from './NftCardDetail';
+import { useMemo } from 'react';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 
 type NftDetailProps = {};
 
 const NftDetail = ({}: NftDetailProps) => {
   const { push, query } = useAppRouter();
-  const handleToAuction = () => push('/auction');
 
-  const item = AuctionData[Number(query.id)];
+  const item = useMemo(() => AuctionData[Number(query.id)], [query.id]);
+
+  const collectionData = useMemo(
+    () => (item?.category ? AuctionCollectionData[item.category] : null),
+    [item?.category],
+  );
+
+  const cardId = useMemo(
+    () => `${collectionData?.contractAddress}-${item?.tokenId}`,
+    [collectionData?.contractAddress, item?.tokenId],
+  );
 
   if (!item) return <></>;
+
+  const handleToAuction = () => push(`/auction#${cardId}`);
 
   return (
     <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:mb-120px tablet:mb-96px tablet:-mt-[80px] desktop:mt-[0px]">
