@@ -45,6 +45,7 @@ function NftCard({
   const [endsAt, setEndsAt] = useState(endsIn);
   const [isStarted, setIsStarted] = useState(false);
   const [isSold, setIsSold] = useState(false);
+  const [hasBid, setHasBid] = useState(false);
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
     nextMinBid: string;
@@ -67,10 +68,11 @@ function NftCard({
   useEffect(() => {
     if (contractAddress)
       getAuctionInfo(contractAddress, tokenId, version)
-        .then(({ bid, nextMinBid, isSold, endsAt }) => {
+        .then(({ bid, nextMinBid, isSold, endsAt, hasBid }) => {
           if (endsAt && endsAt > endsIn) setEndsAt(endsAt);
           setCurrentBid({ bid, nextMinBid });
           setIsSold(isSold);
+          setHasBid(hasBid);
         })
         .catch((error) => console.error(`NftCard ${error}`));
   }, [contractAddress, tokenId]);
@@ -110,7 +112,11 @@ function NftCard({
               {!isSold && isStarted && +currentBid.bid > 0 && (
                 <div>
                   <p className="font-rlight text-12px leading-100% opacity-70">
-                    {isSale ? 'Current price' : 'Current bid'}
+                    {isSale
+                      ? 'Current price'
+                      : hasBid
+                      ? 'Current bid'
+                      : 'Minimum bid'}
                   </p>
                   <p className="font-rlight tablet:text-16px mobile:text-14px leading-150%">
                     {currentBid.bid} ETH

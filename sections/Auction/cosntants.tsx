@@ -4,6 +4,7 @@ export enum OptionType {
   OnSale = 'On Sale',
   Sold = 'Sold',
   ComingSoon = 'Coming soon',
+  WithoutBids = 'Without bids',
   All = 'All Types',
 }
 

@@ -348,6 +348,7 @@ export function useWeb3Modal() {
       .map((wei) => web3.utils.fromWei(wei));
 
     return {
+      hasBid,
       isSold,
       isSale:
         version === AuctionVersion.V1

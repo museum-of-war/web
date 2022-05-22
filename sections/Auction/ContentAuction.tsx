@@ -102,7 +102,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
 
     if (selectedType === OptionType.ComingSoon) {
       result = result.filter((datum) => !datum.fullInfo);
-    } else if (selectedType !== OptionType.All) {
+    } else if (
+      selectedType === OptionType.OnSale ||
+      selectedType === OptionType.Sold
+    ) {
       result = result.filter((datum) => {
         const isOnSale = datum.fullInfo
           ? !datum.isSold
@@ -110,6 +113,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
         if (selectedType === OptionType.OnSale) return isOnSale;
         else return !isOnSale;
       });
+    } else if (selectedType === OptionType.WithoutBids) {
+      result = result.filter((datum) =>
+        typeof datum?.hasBid !== 'undefined' ? !datum.hasBid : true,
+      );
     }
 
     if (priceRange.from !== '') {

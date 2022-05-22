@@ -30,6 +30,7 @@ type BidCardProps = {
   contractAddress: string;
   tokenId: number;
   isSale: boolean;
+  hasBid: boolean;
   buyNowPrice?: string;
   auctionVersion: AuctionVersion;
   updateCallback: () => Promise<void>;
@@ -44,6 +45,7 @@ const BidCard = ({
   contractAddress,
   tokenId,
   isSale,
+  hasBid,
   buyNowPrice,
   auctionVersion,
   updateCallback,
@@ -88,7 +90,7 @@ const BidCard = ({
       <div className="flex items-start justify-between mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
         <div>
           <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
-            {isSale ? 'Current price' : 'Current bid'}
+            {isSale ? 'Current price' : hasBid ? 'Current bid' : 'Minimum bid'}
           </p>
           <p className="mobile:text-27px tablet:text-32px font-rblack">
             {+currentBid ? currentBid : '—'} ETH
@@ -187,6 +189,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   const [lightboxToggler, setLightboxToggler] = React.useState<boolean>(false);
 
   const [isSold, setSold] = useState<boolean>(false);
+  const [hasBid, setHasBid] = useState<boolean>(false);
   const [tokenOwner, setTokenOwner] = useState<string>('');
   const [currentBid, setCurrentBid] = useState<{
     bid: string;
@@ -268,6 +271,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
       setCurrentBid({ ...i });
       const isSold = i.isSold && isStarted;
       setSold(isSold);
+      setHasBid(i.hasBid);
       if (isSold)
         setTokenOwner(
           await getOwnerOfNFT(collectionData.contractAddress, item.tokenId),
@@ -298,6 +302,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 contractAddress={collectionData.contractAddress}
                 tokenId={item.tokenId}
                 isSale={item.isSale}
+                hasBid={hasBid}
                 auctionVersion={collectionData.version}
                 updateCallback={updateInfo}
               />
@@ -377,6 +382,7 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
                 contractAddress={collectionData.contractAddress}
                 tokenId={item.tokenId}
                 isSale={item.isSale}
+                hasBid={hasBid}
                 auctionVersion={collectionData.version}
                 updateCallback={updateInfo}
               />
