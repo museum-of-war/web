@@ -7,6 +7,7 @@ import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import PageHead from '@components/PageHead';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import CollectionDetails from '@sections/Auction/CollectionDetails/CollectionDetails';
+import { OneItemAuction } from '@sections/Auction/OneItemAuction/OneItemAuction';
 
 const CollectionPage: React.FC<SharedProps> = ({ menuOpen }) => {
   const { query } = useAppRouter();
@@ -65,11 +66,19 @@ const CollectionPage: React.FC<SharedProps> = ({ menuOpen }) => {
           },
         ]}
       />
-      <CollectionDetails
-        menuOpen={menuOpen}
-        canMint={canMint}
-        collectionData={collectionData}
-      />
+      {collectionData.oneItemAuction ? (
+        <OneItemAuction
+          menuOpen={menuOpen}
+          canMint={canMint}
+          collectionData={collectionData}
+        />
+      ) : (
+        <CollectionDetails
+          menuOpen={menuOpen}
+          canMint={canMint}
+          collectionData={collectionData}
+        />
+      )}
     </>
   );
 };
