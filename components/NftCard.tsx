@@ -102,7 +102,7 @@ function NftCard({
               } ${
                 !orderIndex && !type ? 'tablet:h-[624px]' : 'tablet:h-[288px]'
               }
-          mobile:h-[270px] object-contain`}
+                mobile:h-[270px] object-contain`}
               breakpoints={breakpoints}
             />
           </div>
