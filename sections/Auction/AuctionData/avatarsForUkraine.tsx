@@ -392,7 +392,7 @@ const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
     descriptionUkrainian: '',
   },
   {
-    name: 'Death',
+    name: "Invader's Death",
     tokenId: 45,
     imageSrc: `${IMG_STORAGE}/original/avatars/RostyslavZagornov-Death.jpg`,
     artist: 'Rostyslav Zagornov',

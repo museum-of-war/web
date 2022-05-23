@@ -20,7 +20,16 @@ const Tokens = ({ signerAddress }: TokenProps) => {
   useEffect(() => {
     const myNFTs = async () => {
       const newNFTs = signerAddress ? await viewNFTs(signerAddress) : [];
-      setNFTs(newNFTs);
+      const orderedNFTs = newNFTs
+        .sort((a, b) => parseInt(a.id.tokenId) - parseInt(b.id.tokenId))
+        .sort((a, b) =>
+          a.contract.address > b.contract.address
+            ? 1
+            : b.contract.address > a.contract.address
+            ? -1
+            : 0,
+        );
+      setNFTs(orderedNFTs);
     };
     myNFTs();
   }, [signerAddress]);
