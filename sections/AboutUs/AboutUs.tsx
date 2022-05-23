@@ -29,7 +29,7 @@ const CollapsedSection = () => {
         {({ width }) => (
           <VideoElement
             videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4"
-            classNames="w-full"
+            classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
             styles={{ height: (width / 16) * 9 }}
           />
         )}
@@ -62,7 +62,7 @@ const AboutUs = () => {
     <div>
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <div className="desktop:hidden tablet:hidden mobile:flex flex-col">
-          <Collapse collapsedSize={240} in={!collapsed}>
+          <Collapse collapsedSize={550} in={!collapsed}>
             <CollapsedSection />
           </Collapse>
           <div className="flex items-center h-40px">
@@ -101,7 +101,7 @@ const AboutUs = () => {
         <Blurb header="How we work" />
         <div className="pt-20px relative flex desktop:flex-row tablet:flex-col mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
           <div className="pt-10 desktop:w-[544px] tablet:w-full mobile:w-full mobile:mb-6%">
-            <img src="img/warline-dots.png" alt="" />
+            <video src="/vid/how_we_work_animation.mp4" autoPlay loop muted />
           </div>
           <div className="desktop:w-[544px] tablet:w-full mobile:w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col">
             <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px]">

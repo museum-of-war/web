@@ -46,6 +46,10 @@ const Partners = () => {
       src: 'img/partners/financevote.png',
       alt: 'financevote',
     },
+    {
+      src: 'img/partners/small/Logo_of_Ministry_of_Culture_of_Ukraine.png',
+      alt: 'Ministry of Culture of Ukraine',
+    },
     /*
     {
       src: 'img/partners/vector.png',
@@ -98,6 +102,10 @@ const Partners = () => {
     {
       src: 'img/partners/small/financevote_small.png',
       alt: 'financevote',
+    },
+    {
+      src: 'img/partners/small/Logo_of_Ministry_of_Culture_of_Ukraine.png',
+      alt: 'Ministry of Culture of Ukraine',
     },
     /*
     {
