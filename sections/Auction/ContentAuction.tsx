@@ -229,7 +229,6 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
                   }))}
                   selectedValue={selectedCategory}
                   onChange={handleChangeCategory}
-                  className="w-[211px]"
                 />
               </div>
             )}
