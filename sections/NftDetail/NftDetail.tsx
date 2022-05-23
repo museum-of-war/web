@@ -28,7 +28,7 @@ const NftDetail = ({}: NftDetailProps) => {
   const handleToAuction = () => push(`/auction#${cardId}`);
 
   return (
-    <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:mb-120px tablet:mb-96px tablet:-mt-[80px] desktop:mt-[0px]">
+    <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:mb-120px tablet:mb-96px tablet:mt-0 desktop:mt-[0px]">
       <div
         className="flex content-center hover:cursor-pointer mb-24px"
         onClick={handleToAuction}
