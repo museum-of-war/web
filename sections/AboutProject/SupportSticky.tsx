@@ -117,7 +117,7 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
           )}
         </div>
       ) : (
-        <div className="sticky mt-48px z-0 left-0 bottom-24px w-100% desktop:container mx-auto px-132px">
+        <div className="sticky mt-48px z-2 left-0 bottom-24px w-100% desktop:container mx-auto px-132px">
           <div className="flex flex-row items-center justify-center bg-carbon shadow-sticky py-30px">
             <p className="font-rblack text-28px leading-28px text-white">
               {CTA}
