@@ -32,7 +32,10 @@ export const PreloaderProvider: React.FC<{ children: React.ReactNode }> = ({
     >
       <div className="relative">
         {preloaderVisible ? (
-          <div className="fixed z-10 w-screen100% h-screen100% bg-carbon top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+          <div
+            className="fixed w-screen100% h-screen100% bg-carbon top-0 left-0 right-0 bottom-0 flex items-center justify-center"
+            style={{ zIndex: 1000 }}
+          >
             <img
               className="w-10% min-w-75px breathing"
               src="/img/pd-logoNoSymbol-black.svg"

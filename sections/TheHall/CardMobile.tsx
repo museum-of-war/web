@@ -26,12 +26,7 @@ export const CardMobile: React.FC<HallItemType> = ({
         minHeight: 250,
       }}
     />
-    <div
-      style={{
-        padding: 24,
-      }}
-      className="bg-carbon text-white h-auto"
-    >
+    <div className="bg-carbon text-white h-auto p-24px mt-[-1px]">
       <h3 style={{ fontSize: 27, lineHeight: '30px' }} className="font-rblack">
         {TwitterAccountName}
       </h3>

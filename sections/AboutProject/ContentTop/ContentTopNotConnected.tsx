@@ -20,7 +20,7 @@ const ContentTopNotConnected = () => {
     <div
       className={
         isMobile
-          ? 'pb-60px'
+          ? 'pb-40px'
           : isTablet
           ? 'pb-72px'
           : 'flex flex-row justify-between pb-100px mt-8vh'

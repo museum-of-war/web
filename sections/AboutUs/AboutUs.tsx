@@ -6,23 +6,48 @@ import SupportProject from '@sections/AboutProject/SupportProject';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { Links as AboutUsLinks } from './Links';
 import { Links } from '@components/Links';
+import { ACHIEVE_DATA } from '@sections/AboutUs/constants';
+import { useVideoModal } from '@providers/VideoProvider';
+import ContainerDimensions from 'react-container-dimensions';
 
-const CollapsedSection = () => (
-  <Blurb
-    header="ABOUT US"
-    rightContent={<AboutUsLinks />}
-    english={
-      'MetaHistory NFT museum is created to commemorate the history of the current events in Ukraine, preserve the truth, and collect donations for humanitarian aid. We have a new take on the role of art in society – it must be relevant, courageous, activist. And eternal.\n\n' +
-      "In Argentina, there's the Cave of the Hands - a nearly 10.000 years old site, where our ancestors left prints of their hands on the stone walls. By pure luck, this mind-altering art piece was preserved until our time. At MetaHistory, we don't want to leave it to luck. We aim to preserve the artworks of the war in Ukraine and beyond - immutable, on the blockchain, forever, for the future generations.\n\n" +
-      'To achieve that, a non-profit, decentralized, community-driven team of Ukrainian crypto experts & top-notch artists has come together.'
-    }
-    ukrainian={
-      'Музей MetaHistory NFT створений з метою увічнення історії поточних подій в Україні, збереження правди та збору пожертв на гуманітарну допомогу. Ми по-новому ставимося до ролі мистецтва в суспільстві – воно має бути актуальним, відважним, наполегливим. І вічним.\n\n' +
-      "В Аргентині є Печера рук - місце, якому майже 10 000 років, де наші предки залишили відбитки своїх рук на кам'яних стінах. На щастя, цей витвір мистецтва, що змінює свідомість, зберігся до нашого часу. У MetaHistory ми не хочемо залишати це на волю удачі. Ми прагнемо зберегти твори мистецтва війни в Україні та за її межами – незмінними, на блокчейні, назавжди, для майбутніх поколінь.\n\n" +
-      'Щоб досягти цього, об’єдналася неприбуткова, децентралізована, керована спільнотами команда українських експертів із криптовалют і першокласних художників.'
-    }
-  />
-);
+const CollapsedSection = () => {
+  const { VideoElement } = useVideoModal();
+
+  return (
+    <div className="flex flex-col">
+      <Blurb
+        header="ABOUT US"
+        rightContent={<AboutUsLinks />}
+        english={
+          'MetaHistory NFT museum is created to commemorate the history of the current events in Ukraine, preserve the truth, and collect donations for humanitarian aid. We have a new take on the role of art in society – it must be relevant, courageous, activist. And eternal.'
+        }
+        ukrainian={
+          'Музей MetaHistory NFT створений з метою увічнення історії поточних подій в Україні, збереження правди та збору пожертв на гуманітарну допомогу. Ми по-новому ставимося до ролі мистецтва в суспільстві – воно має бути актуальним, відважним, наполегливим. І вічним.'
+        }
+      />
+      <ContainerDimensions>
+        {({ width }) => (
+          <VideoElement
+            videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4"
+            classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
+            styles={{ height: (width / 16) * 9 }}
+          />
+        )}
+      </ContainerDimensions>
+      <Blurb
+        classNames="desktop:mt-48px tablet:mt-24px mobile:mt-24px"
+        english={
+          "In Argentina, there's the Cave of the Hands - a nearly 10.000 years old site, where our ancestors left prints of their hands on the stone walls. By pure luck, this mind-altering art piece was preserved until our time. At MetaHistory, we don't want to leave it to luck. We aim to preserve the artworks of the war in Ukraine and beyond - immutable, on the blockchain, forever, for the future generations.\n\n" +
+          'To achieve that, a non-profit, decentralized, community-driven team of Ukrainian crypto experts & top-notch artists has come together.'
+        }
+        ukrainian={
+          "В Аргентині є Печера рук - місце, якому майже 10 000 років, де наші предки залишили відбитки своїх рук на кам'яних стінах. На щастя, цей витвір мистецтва, що змінює свідомість, зберігся до нашого часу. У MetaHistory ми не хочемо залишати це на волю удачі. Ми прагнемо зберегти твори мистецтва війни в Україні та за її межами – незмінними, на блокчейні, назавжди, для майбутніх поколінь.\n\n" +
+          'Щоб досягти цього, об’єдналася неприбуткова, децентралізована, керована спільнотами команда українських експертів із криптовалют і першокласних художників.'
+        }
+      />
+    </div>
+  );
+};
 
 const AboutUs = () => {
   const { getTotalFundsRaised } = useWeb3Modal();
@@ -37,7 +62,7 @@ const AboutUs = () => {
     <div>
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <div className="desktop:hidden tablet:hidden mobile:flex flex-col">
-          <Collapse collapsedSize={240} in={!collapsed}>
+          <Collapse collapsedSize={550} in={!collapsed}>
             <CollapsedSection />
           </Collapse>
           <div className="flex items-center h-40px">
@@ -76,7 +101,7 @@ const AboutUs = () => {
         <Blurb header="How we work" />
         <div className="pt-20px relative flex desktop:flex-row tablet:flex-col mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
           <div className="pt-10 desktop:w-[544px] tablet:w-full mobile:w-full mobile:mb-6%">
-            <img src="img/warline-dots.png" alt="" />
+            <video src="/vid/how_we_work_animation.mp4" autoPlay loop muted />
           </div>
           <div className="desktop:w-[544px] tablet:w-full mobile:w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col">
             <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px]">
@@ -135,10 +160,32 @@ const AboutUs = () => {
               </p>
             </div>
             <div className="desktop:w-[544px] tablet:w-full mobile:w-full desktop:mt-0 tablet:mt-72px mobile:mt-40px">
-              <p className="font-rblack desktop:text-32px tablet:text-32px mobile:text-27px desktop:leading-24px tablet:leading-24px mobile:leading-30px">
-                Equivalent to
-              </p>
-              <div className="flex flex-wrap content-start mt-4">TBD</div>
+              <div className="font-rnarrow leading-24px desktop:w-[544px] tablet:w-full mobile:w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col">
+                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
+                  <div className="text-[24px]">{ACHIEVE_DATA.nfts}</div>
+                  <div className="text-[16px]">NFTs in circulation</div>
+                </div>
+                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px] ml-auto">
+                  <div className="text-[24px]">{ACHIEVE_DATA.auctions}</div>
+                  <div className="text-[16px]">auctions</div>
+                </div>
+                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
+                  <div className="text-[24px]">
+                    {ACHIEVE_DATA.metaverseEvents}
+                  </div>
+                  <div className="text-[16px]">events in Metaverse</div>
+                </div>
+                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px] ml-auto">
+                  <div className="text-[24px]">{ACHIEVE_DATA.totalHolders}</div>
+                  <div className="text-[16px]">total NFT holders</div>
+                </div>
+                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
+                  <div className="text-[24px]">{ACHIEVE_DATA.warlineDrops}</div>
+                  <div className="text-[16px]">
+                    official drops on the Warline
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

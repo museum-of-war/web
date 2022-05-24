@@ -192,3 +192,7 @@ body {
   box-shadow: 0 4px 32px 4px rgba(33, 33, 33, 0.3);
 }
 
+.play-button:hover {
+  fill: #000;
+}
+

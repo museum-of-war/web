@@ -33,14 +33,7 @@ export const CardTablet: React.FC<HallItemType> = ({
         },
       ]}
     />
-    <div
-      style={{
-        width: 456,
-        marginLeft: 130,
-        padding: 48,
-      }}
-      className="bg-carbon text-white h-auto"
-    >
+    <div className="bg-carbon text-white h-auto p-48px w-[456px] ml-[130px] mt-[-1px]">
       <h3 style={{ fontSize: 32, lineHeight: '24px' }} className="font-rblack">
         {TwitterAccountName}
       </h3>

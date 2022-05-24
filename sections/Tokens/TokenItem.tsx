@@ -5,6 +5,7 @@ import WarlineData from '@sections/Warline/WarlineData';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import ScaledImage from '@components/ScaledImage';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 
 type TokenItemProps = {
   tokenData: TokenDataType;
@@ -47,7 +48,13 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
     return (
       WarlineData.flatMap((data) => data.events).find(
         (event) => event.Tokenid === tokenData.metadata?.item_number,
-      ) ?? AuctionData.find((data) => data.name === tokenData.metadata.name)
+      ) ??
+      AuctionData.find(
+        (data) =>
+          AuctionCollectionData[data.category].contractAddress.toLowerCase() ===
+            (tokenData as any).contract.address &&
+          data.tokenId === parseInt(tokenData.id.tokenId),
+      )
     );
   }, [tokenData]);
 

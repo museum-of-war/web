@@ -1,9 +1,12 @@
 import React from 'react';
 import Blurb from '@sections/AboutProject/Blurb';
 import { useAppRouter } from '@hooks/useAppRouter';
+import { useVideoModal } from '@providers/VideoProvider';
+import ContainerDimensions from 'react-container-dimensions';
 
 const AboutUs = () => {
   const { push } = useAppRouter();
+  const { VideoElement } = useVideoModal();
 
   return (
     <>
@@ -20,35 +23,29 @@ const AboutUs = () => {
               якими вони є. Правдивими, вічними, незмінними.
             </p>
           </div>
-        </div>
-        <div className="desktop:w-[544px] tablet:w-full mobile:w-full mobile:mt-40px tablet:mt-72px desktop:mt-0">
-          <img
-            alt="partners"
-            src="img/pd-partners-mini-desktop.png"
-            className="tablet:hidden mobile:hidden desktop:flex "
-          />
-          <img
-            alt="partners"
-            src="img/pd-partners-mini-tablet.png"
-            className="desktop:hidden mobile:hidden tablet:flex"
-          />
-          <img
-            alt="partners"
-            src="img/pd-partners-mini-mobile.png"
-            className="desktop:hidden tablet:hidden mobile:flex"
-          />
-        </div>
-      </div>
-      <button
-        onClick={() => {
-          push('/about-us');
-        }}
-        className="font-rblack relative px-30px border-2 border-carbon rounded-full tablet:text-14px
+          <button
+            onClick={() => {
+              push('/about-us');
+            }}
+            className="font-rblack relative px-30px border-2 border-carbon rounded-full tablet:text-14px
             tablet:leading-44px tablet:mt-0 tablet:ml-auto mobile:text-14px mobile:leading-36px mobile:mt-20px
             mobile:ml-0 px-48px mb-0 tablet:h-48px mobile:h-60px mobile:w-100% tablet:w-auto"
-      >
-        More about project
-      </button>
+          >
+            More about project
+          </button>
+        </div>
+        <div className="desktop:w-[544px] tablet:w-full mobile:w-full mobile:mt-40px tablet:mt-72px desktop:mt-0">
+          <ContainerDimensions>
+            {({ width }) => (
+              <VideoElement
+                videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4"
+                classNames="w-full"
+                styles={{ height: (width / 16) * 9 }}
+              />
+            )}
+          </ContainerDimensions>
+        </div>
+      </div>
     </>
   );
 };

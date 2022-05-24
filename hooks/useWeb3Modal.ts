@@ -11,13 +11,13 @@ import { AbiItem } from 'web3-utils';
 import {
   FIRST_DROP_ADDRESS,
   PROJECT_WALLET_ADDRESS,
-  PROSPECT_100_ADDRESS,
   SECOND_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
 } from '@sections/Constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 import { Drop1Data, Drop2Data } from '@sections/Warline/WarlineData';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -176,9 +176,11 @@ export function useWeb3Modal() {
           owner: ownerAddr,
           contractAddresses: [
             MetaHistoryAddress,
-            PROSPECT_100_ADDRESS,
             SECOND_DROP_ADDRESS,
-          ],
+            ...Object.values(AuctionCollectionData).map(
+              (d) => d.contractAddress,
+            ),
+          ].filter((v, i, a) => a.indexOf(v) === i),
         })
       ).ownedNfts ?? [];
 
@@ -589,8 +591,11 @@ export function useWeb3Modal() {
           (await getSecondDropMintedCount()),
       );
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
+    const secondAuctionWeth = BigNumber.from('12656000000000000000'); // second auction
 
-    const wethTotal = firstDropWeth.add(firstAuctionWeth);
+    const wethTotal = firstDropWeth
+      .add(firstAuctionWeth)
+      .add(secondAuctionWeth);
 
     if (wethTotal.lte(0))
       return {
