@@ -1,7 +1,7 @@
 import { IMG_STORAGE } from '@sections/Constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
 
-const Prospect100AuctionData: Array<Omit<AuctionItemType, 'index'>> = [
+const Prospect100AuctionData: AuctionItemType[] = [
   {
     name: 'PROSPECT 100 #2',
     tokenId: 2,
