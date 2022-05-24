@@ -38,7 +38,7 @@ const AuctionCollectionData: Record<AuctionCollections, AuctionCollectionType> =
         'Avatar - अवतार - ‘incarnation’.\n' +
         'Avatars for Ukraine is a charity NFT collection of the iconic digital art created in response to the largest war since WWII. The incarnations of the spirit of Ukraine in its fight for existence. The avatars for the free nation. Created by the top digital Ukrainian artists and produced by the video game hit makers, this collection is a historic event for the NFT. 100% of the proceeds will support the humanitarian and defence efforts of Ukraine. The official collection approved by the Ministry of Digital Transformation of Ukraine.',
       headerImageSrc: '/img/auction/covers/avatars.png',
-      logoSrc: '/img/auction/logos/avatars.png',
+      logoSrc: '/img/auction/logos/avatars.svg',
       posterSrc: '/img/auction/posters/avatars.gif',
       videoSrc: 'https://www.youtube-nocookie.com/embed/GM8jV5Tbzww',
       contractAddress: AVATARS_ADDRESS,

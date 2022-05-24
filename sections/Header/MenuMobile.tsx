@@ -84,6 +84,15 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
           underlined={route === '/hall'}
           wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
         />
+        <HeaderAndFooterButton
+          label="About Us"
+          onClick={() => {
+            push('/about-us');
+            setMenuOpen(false);
+          }}
+          underlined={route === '/about-us'}
+          wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
+        />
         {signerAddress && (
           <HeaderAndFooterButton
             label="My NFTs"

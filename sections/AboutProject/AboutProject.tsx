@@ -1,7 +1,6 @@
 import SupportProject from '@sections/AboutProject/SupportProject';
 import SupportSticky from '@sections/AboutProject/SupportSticky';
 import React from 'react';
-import ContentMission from './ContentMission';
 const ContentTop = dynamic(() => import('./ContentTop/ContentTop'), {
   ssr: false,
 });
@@ -14,31 +13,32 @@ import Partners from './Partners';
 import Countdown from './Countdown';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import { AuctionCollections } from '@sections/types';
+import AboutUs from '@sections/AboutProject/AboutUs';
 
 type AboutProjectProps = {
   signerAddress: string;
-  handleConnect: () => void;
 };
 
-const AboutProject = ({ signerAddress, handleConnect }: AboutProjectProps) => {
+const AboutProject = ({ signerAddress }: AboutProjectProps) => {
   return (
     <div>
-      <ContentTop signerAddress={signerAddress} handleConnect={handleConnect} />
-      <Countdown
-        countDownDate={AuctionCollectionData[
-          AuctionCollections.avatarsForUkraine
-        ].startsAt!.toISOString()}
-      />
-      <ContentChapter />
-      <ContentMission />
-      <ContentCounterDaysAndRised />
-      <ContentMain
-        signerAddress={signerAddress}
-        handleConnect={handleConnect}
-      />
-      <SupportProject />
-      <Partners />
-      <ContentMedia />
+      <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
+        <ContentTop signerAddress={signerAddress} />
+        <Countdown
+          countDownDate={AuctionCollectionData[
+            AuctionCollections.avatarsForUkraine
+          ].startsAt!.toISOString()}
+        />
+        <ContentChapter />
+        <ContentCounterDaysAndRised />
+        <AboutUs />
+      </div>
+      <ContentMain />
+      <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
+        <Partners />
+        <ContentMedia />
+        <SupportProject />
+      </div>
       <SupportSticky targetAnchorId="countdown-banner" />
     </div>
   );

@@ -4,6 +4,8 @@ import Header from '@sections/Header/Header';
 import { useEffect, useState } from 'react';
 import { PopupProvider } from '@providers/PopupProvider';
 import { PreloaderProvider } from '@providers/PreloaderProvider';
+import { VideoProvider } from '@providers/VideoProvider';
+import { useAppRouter } from '@hooks/useAppRouter';
 
 export interface SharedProps {
   signerAddress: string;
@@ -20,6 +22,7 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
   const [signerAddress, setSignerAddress] = useState<string>('');
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const { provider, connectWallet, disconnectWallet } = useWeb3Modal();
+  const { route } = useAppRouter();
 
   const handleConnect = async () => {
     await connectWallet();
@@ -41,33 +44,39 @@ export const AppWrapper: React.FC<WrapperProps> = ({ Child }) => {
     getAddress();
   }, [provider]);
 
+  // todo Rustam Abduvaliiev weird fix, but currently have no time to fix layout for the hall
+  const isHall = route.split('/').includes('hall');
+
   return (
-    <PreloaderProvider>
-      <PopupProvider>
-        <div
-          className={`desktop:container mx-auto min-h-screen dark:bg-carbon
-                     text-carbon dark:text-white overflow-clip
-                     desktop:px-132px tablet:px-72px mobile:px-24px
-                     pb-36px mobile:pb-20px`}
-        >
-          <Header
-            signerAddress={signerAddress}
-            handleConnect={handleConnect}
-            handleDisconnect={handleDisconnect}
-            menuOpen={menuOpen}
-            setMenuOpen={setMenuOpen}
-          />
-          <div className="pt-8%">
-            <Child
+    <VideoProvider>
+      <PreloaderProvider>
+        <PopupProvider>
+          <div
+            className={`min-h-screen dark:bg-carbon text-carbon dark:text-white overflow-clip pb-36px mobile:pb-20px ${
+              isHall
+                ? 'desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px'
+                : ''
+            }`}
+          >
+            <Header
               signerAddress={signerAddress}
               handleConnect={handleConnect}
               handleDisconnect={handleDisconnect}
               menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
             />
-            <Footer />
+            <div className="desktop:pt-[48px] tablet:pt-[48px] mobile:pt-[40px]">
+              <Child
+                signerAddress={signerAddress}
+                handleConnect={handleConnect}
+                handleDisconnect={handleDisconnect}
+                menuOpen={menuOpen}
+              />
+              <Footer />
+            </div>
           </div>
-        </div>
-      </PopupProvider>
-    </PreloaderProvider>
+        </PopupProvider>
+      </PreloaderProvider>
+    </VideoProvider>
   );
 };

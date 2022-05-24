@@ -19,7 +19,7 @@ const Team = () => {
   ];
 
   return (
-    <div className="mb-3%">
+    <div className="mb-3% mt-48px">
       <div
         className="grid 
         desktop:grid-cols-4 desktop:gap-x-60px

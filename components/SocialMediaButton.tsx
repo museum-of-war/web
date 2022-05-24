@@ -137,6 +137,33 @@ const TelegramSvg = ({
   );
 };
 
+const DiscordSvg = ({
+  size = 48,
+  isDark,
+}: {
+  size?: number;
+  isDark: boolean;
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z"
+        fill={isDark ? 'white' : '#212121'}
+      />
+      <path
+        d="M30.9368 17.3286C29.6166 16.7023 28.2421 16.2467 26.8133 16C26.6325 16.3416 26.4335 16.7782 26.2888 17.1388C24.7696 16.8921 23.2324 16.8921 21.7132 17.1388C21.5504 16.7402 21.3695 16.3606 21.1706 16C19.7418 16.2467 18.3492 16.7023 17.0471 17.3476C14.4427 21.4282 13.7374 25.395 14.081 29.3238C15.6183 30.5196 17.3183 31.4306 19.145 32C19.561 31.4116 19.9227 30.8043 20.2301 30.159C19.6333 29.9312 19.0727 29.6465 18.5301 29.3049C18.6748 29.191 18.8014 29.0771 18.9461 28.9632C22.1472 30.5575 25.8729 30.5575 29.074 28.9632C29.2187 29.0771 29.3453 29.191 29.49 29.3049C28.9474 29.6465 28.3687 29.9312 27.7719 30.159C28.0793 30.8043 28.441 31.4116 28.857 32C30.6836 31.4116 32.4018 30.5196 33.921 29.3238C34.3189 24.7687 33.1975 20.8209 30.9368 17.3286ZM20.6642 26.8944C19.6695 26.8944 18.8737 25.9454 18.8737 24.7877C18.8737 23.6299 19.6695 22.6619 20.6642 22.6619C21.677 22.6619 22.4728 23.6109 22.4728 24.7877C22.4547 25.9454 21.677 26.8944 20.6642 26.8944ZM27.3197 26.8944C26.325 26.8944 25.5292 25.9454 25.5292 24.7877C25.5292 23.6299 26.325 22.6619 27.3197 22.6619C28.3325 22.6619 29.1283 23.6109 29.1102 24.7877C29.0921 25.9644 28.3144 26.8944 27.3197 26.8944Z"
+        fill={isDark ? '#212121' : 'white'}
+      />
+    </svg>
+  );
+};
+
 type SocialMediaButtonProps = {
   twitter?: boolean;
   instagram?: boolean;
@@ -144,8 +171,11 @@ type SocialMediaButtonProps = {
   opensea?: boolean;
   telegram?: boolean;
   href: string;
+  discord?: boolean;
   customClasses?: string;
   customStyle?: React.CSSProperties;
+  lightButton?: boolean;
+  bordered?: boolean;
 };
 
 const SocialMediaButton = ({
@@ -155,26 +185,53 @@ const SocialMediaButton = ({
   opensea,
   telegram,
   href,
+  discord,
   customClasses = '',
   customStyle,
+  lightButton,
+  bordered,
 }: SocialMediaButtonProps) => {
   const { isMobile } = useViewPort();
   const { route } = useAppRouter();
-  const isDarkTheme = route.split('/').includes('auction');
+  const isDarkTheme = lightButton || route.split('/').includes('auction');
 
   const size = isMobile ? 40 : 48;
 
   return (
     <div
-      style={customStyle}
-      className={`mobile:w-40px mobile:h-40px tablet:h-48px tablet:w-48px desktop:h-48px desktop:w-48px mobile:mr-6% tablet:mr-24px last:mr-0 ${customClasses}`}
+      style={{
+        ...customStyle,
+        ...(bordered ? { borderRadius: '50%' } : {}),
+      }}
+      className={`
+        mobile:w-40px mobile:h-40px tablet:h-48px tablet:w-48px desktop:h-48px desktop:w-48px mobile:mr-6%
+        tablet:mr-24px last:mr-0 ${customClasses} ${
+        bordered ? 'border-2 border-carbon' : ''
+      }
+      `}
     >
       <a href={href} target="_blank" rel="noreferrer">
-        {twitter && <TwitterSvg isDark={isDarkTheme} size={size} />}
-        {instagram && <InstagramSvg isDark={isDarkTheme} size={size} />}
-        {github && <GitHubSvg isDark={isDarkTheme} size={size} />}
-        {opensea && <OpenSeaSvg isDark={isDarkTheme} size={size} />}
-        {telegram && <TelegramSvg isDark={isDarkTheme} size={size} />}
+        {discord && (
+          <DiscordSvg isDark={isDarkTheme} size={bordered ? size - 4 : size} />
+        )}
+        {twitter && (
+          <TwitterSvg isDark={isDarkTheme} size={bordered ? size - 4 : size} />
+        )}
+        {instagram && (
+          <InstagramSvg
+            isDark={isDarkTheme}
+            size={bordered ? size - 4 : size}
+          />
+        )}
+        {github && (
+          <GitHubSvg isDark={isDarkTheme} size={bordered ? size - 4 : size} />
+        )}
+        {opensea && (
+          <OpenSeaSvg isDark={isDarkTheme} size={bordered ? size - 4 : size} />
+        )}
+        {telegram && (
+          <TelegramSvg isDark={isDarkTheme} size={bordered ? size - 4 : size} />
+        )}
       </a>
     </div>
   );

@@ -41,7 +41,7 @@ const Auction = ({ signerAddress, handleConnect }: AuctionProps) => {
   };
 
   return (
-    <>
+    <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
       <Blurb
         header="Auction"
         english="A limited set of rare, selected, and generative artworks by both Ukrainian and global artists. Floating price, based on bids and offers. For this time, the Museum invites art collectors to fully shape the charity fundraising. Please note that only Warline art collectors are allowed to bid in the auction."
@@ -66,7 +66,7 @@ const Auction = ({ signerAddress, handleConnect }: AuctionProps) => {
           handleClick={handleBuyNft}
         />
       )}
-    </>
+    </div>
   );
 };
 

@@ -5,10 +5,10 @@ import { useViewPort } from '@hooks/useViewport';
 const Media = (summary: string, outlet: string, url: string, key: number) => {
   return (
     <div key={key} className="flex flex-col justify-start items-start">
-      <p className="font-rnarrow mobile:text-18px desktop:text-18px">
+      <p className="font-rlight text-16px mt-20px">{outlet}</p>
+      <p className="font-rnarrow mobile:text-18px desktop:text-18px mt-10px">
         {summary}
       </p>
-      <p className="font-rlight text-16px mt-20px">{outlet}</p>
       <button
         className="mt-auto"
         onClick={() => {

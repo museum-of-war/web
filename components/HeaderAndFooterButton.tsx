@@ -27,7 +27,7 @@ const HeaderAndFooterButton = ({
             : 'border-b-4 border-transparent'
         } hover:border-solid ${
           isDarkTheme ? 'hover:border-white' : 'hover:border-carbon'
-        }`}
+        } whitespace-nowrap`}
         onClick={onClick}
       >
         {label}

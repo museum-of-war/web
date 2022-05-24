@@ -162,7 +162,7 @@ const Warline = () => {
 
   return (
     <PopupProvider>
-      <div className="relative">
+      <div className="relative desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <div className="desktop:flex desktop:flex-row desktop:justify-between mt-20 mobile:mb-8% tablet:mb-0">
           <Blurb
             header="WARLINE"
@@ -170,7 +170,6 @@ const Warline = () => {
             ukrainian="Відверта хронологія подій новітньої історії України. Експонати — це факти, супроводжені емоційними спогадами. Формула експонату проста і прозора, кожен токен — реальне новинне повідомлення з офіційних джерел та ілюстрація до нього від художників — як українських, так і світових."
           />
         </div>
-
         <div
           className={`w-full z-10 mb-48px tablet:flex mobile:block tablet:justify-between mobile:justify-center desktop:z-10`}
           ref={toggleComponentRef}

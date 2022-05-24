@@ -51,14 +51,16 @@ function DropdownSelect({
 
   return (
     <OutsideClickHandler onOutsideClick={handleClose}>
-      <div className="relative inline-block text-left">
-        <div>
+      <div className="relative text-left min-w-250px">
+        <div className="w-full">
           <button
             type="button"
-            className={`inline-flex justify-between items-center w-full bg-white dark:bg-carbon
+            className={`flex justify-between items-center w-full bg-white dark:bg-carbon
                     border-2 border-carbon dark:border-white
                     px-20px leading-44px whitespace-nowrap
-                    font-rblack text-14px ${isDark ? 'hover:bg-carbon-800' : 'bg-white'}
+                    font-rblack text-14px ${
+                      isDark ? 'hover:bg-carbon-800' : 'bg-white'
+                    }
                     rounded-full ${className}`}
             aria-expanded="true"
             aria-haspopup="true"
@@ -75,7 +77,9 @@ function DropdownSelect({
 
         {isOpen && (
           <div
-            className={`origin-top-right z-10 absolute ${isDark ? 'bg-dropdown' : 'bg-white'}  w-full top-60px rounded-[12px] shadow-3xl`}
+            className={`origin-top-right z-10 absolute ${
+              isDark ? 'bg-dropdown' : 'bg-white'
+            } w-full top-60px rounded-[12px] shadow-3xl`}
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
