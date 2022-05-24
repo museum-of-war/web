@@ -4,7 +4,7 @@ import '@dotlottie/player-component';
 
 const ContentTopConnected = () => {
   return (
-    <div className="desktop:pb-100px tablet:pb-72px mobile:pb-60px">
+    <div className="desktop:pb-100px tablet:pb-72px mobile:pb-40px">
       <div className="flex desktop:flex-row mobile:flex-col justify-between desktop:items-start tablet:items-center">
         <div className="desktop:w-[544px] tablet:w-100%">
           <div>

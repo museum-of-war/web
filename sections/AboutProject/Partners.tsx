@@ -47,7 +47,7 @@ const Partners = () => {
       alt: 'financevote',
     },
     {
-      src: 'img/partners/small/Logo_of_Ministry_of_Culture_of_Ukraine.png',
+      src: 'img/partners/Logo_of_Ministry_of_Culture_of_Ukraine.png',
       alt: 'Ministry of Culture of Ukraine',
     },
     /*
@@ -104,7 +104,7 @@ const Partners = () => {
       alt: 'financevote',
     },
     {
-      src: 'img/partners/small/Logo_of_Ministry_of_Culture_of_Ukraine.png',
+      src: 'img/partners/small/Logo_of_Ministry_of_Culture_of_Ukraine_small.png',
       alt: 'Ministry of Culture of Ukraine',
     },
     /*
