@@ -256,10 +256,13 @@ const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
           {item.bonuses ? (
             <div className="font-rnarrow w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col justify-between">
               <p className="font-rblack desktop:text-32px tablet:text-32px mobile:text-27px desktop:leading-36px tablet:leading-36px mobile:leading-30px desktop:mt-48px tablet:mt-48px mobile:mt-40px">
-                The owner of NFT will obtain:
+                By purchasing NFT by cryptocurrency, the new owner receives:
               </p>
               {item.bonuses.map((bonus, index) => (
-                <div className="desktop:w-45% tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[20px]">
+                <div
+                  key={index}
+                  className="desktop:w-45% tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[20px]"
+                >
                   <p className="font-rblack text-20px desktop:leading-48px table t:leading-48px tablet:leading-40px mb-24px">
                     {index + 1}
                   </p>

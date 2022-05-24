@@ -1,4 +1,6 @@
 import { AuctionVersion } from '@museum-of-war/auction';
+import { jsx } from '@emotion/react';
+import ElementJSX = jsx.JSX.Element;
 
 export type TokenDataType = {
   metadata: any;
@@ -63,7 +65,7 @@ export type AuctionItemType = {
   imageSrc: string;
   animationSrc?: string;
   artist: string;
-  descriptionEnglish?: string;
+  descriptionEnglish?: string | ElementJSX;
   descriptionUkrainian?: string;
   isSale: boolean;
   videoSrc?: string;

@@ -10,10 +10,10 @@ export enum OptionType {
 
 export enum OptionCategory {
   All = 'All Collections',
-  FirstDrop = 'First Drop',
-  Prospect100 = 'PROSPECT 100',
+  Kalush = 'Stefania For Ukraine',
   AvatarsForUkraine = 'Avatars for Ukraine',
-  Kalush = 'Kalush',
+  Prospect100 = 'PROSPECT 100',
+  FirstDrop = 'First Drop',
 }
 
 export enum OptionSortType {

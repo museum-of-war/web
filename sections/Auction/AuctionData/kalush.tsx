@@ -3,21 +3,52 @@ import { AuctionCollection, AuctionItemType } from '@sections/types';
 
 const KalushAuctionData: AuctionItemType = {
   tokenId: 1,
-  name: 'KALUSH EUROVISION 2022 NFT', // todo @current
-  imageSrc: `${IMG_STORAGE}/original/avatars/AlexTwin-EvacuationFromBucha.png`, // todo @current
+  name: 'Crystal Microphone 2022',
+  imageSrc: `${IMG_STORAGE}/original/special/Kalush_Eurovision.jpg`,
   artist: 'MetaHistory',
-  descriptionEnglish:
-    'Ukrainian band Kalush Orchestra won the Eurovision Song Contest, a clear show of popular support for the group’s war-ravaged nation that went beyond music. The band and its song “Stefania” beat 24 other performers on the 14th May  in the grand final of the competition. The 439 fan votes is the highest number of televote points ever received in a Eurovision contest, now in its 66th year.',
-  descriptionUkrainian:
-    'Український гурт Kalush Orchestra переміг на пісенному конкурсі «Євробачення», що є яскравим проявом народної підтримки зруйнованої війною нації групи, яка вийшла за рамки музики. Гурт і його пісня «Stefania» стали краще ніж 24 інших виконавців 14-го травня у гранд-фіналі конкурсу. 439 голосів шанувальників – це найбільша кількість балів телеголосування, коли-небудь отриманих на конкурсі Євробачення, яке триває вже 66-й рік.',
-  videoSrc: 'https://www.youtube-nocookie.com/embed/F1fl60ypdLs',
-  isSale: false, // todo @current
+  descriptionEnglish: (
+    <p>
+      The symbols of the Kalush Orchestra's victory at Eurovision will now help
+      make Ukraine's victory in the war with the Russian occupiers. The band
+      auctions the Eurovision Glass Mic Trophy awarded to the winner of
+      Eurovision 2022 to collect donations to help the Armed Forces of Ukraine.
+      <br />
+      <br />
+      The representatives of the ENKO label Kalush Orchestra with the song
+      Stefania won Eurovision 2022 with a total score of 631 points by a large
+      margin. This is the third victory of Ukraine at Eurovision and the first
+      song written entirely in the Ukrainian language. With such voting,
+      Europeans supported not only the Kalush Orchestra but Ukraine in general.
+      The country is currently fighting against russian occupiers for its
+      freedom, independence, democracy, and peace.
+      <br />
+      <br />
+      It’s noteworthy that the first attempt to mint the NFT trophy "Crystal
+      Microphone" belongs to Ukraine. It is also the world's first auction with
+      the Eurovision winner's cup.
+      <br />
+      <br />
+      The raffle initiative is supported by the Ministry of Culture and
+      Information Policy, the Ministry of Digital Transformation of Ukraine, and
+      the European Broadcasting Union (EBU), the association of broadcasters
+      that organizes the international Eurovision Song Contest.
+      <br />
+      <br />
+      All of the money raised will go to the{' '}
+      <a href="https://prytulafoundation.org/" className="underline">
+        CO Charitable Foundation of Serhiy Prytula
+      </a>
+      .
+    </p>
+  ),
+  videoSrc: 'https://www.youtube-nocookie.com/embed/F1fl60ypdLs?autoplay=1',
+  posterSrc: '/img/auction/posters/kalush.png',
+  isSale: false,
   category: AuctionCollection.Kalush,
   bonuses: [
-    'The real Eurovision 2022 trophy, won by KALUSH. It will carefully be shipped to the new owner.',
-    '4K video live shot of turning 3D sculpture and the main preview NFT image.',
-    'Unique version of the «Stefania» song recorded with other famous Ukraine representatives on earlier Eurovision contests.',
-    'The new owner acquires the rights to exhibit, sell, give to rent, or any other rights on these trophy and artwork respectively to KALUSH.',
+    'A 100% unique digital NFT file featuring a microphone and Kalush Orchestra.',
+    'An exclusive meeting and dinner with members of the Kalush Orchestra.',
+    'An opportunity to receive a physical object, the Crystal Microphone, as long as the bid is higher than the fiat (regular) currency bid.',
   ],
 };
 
