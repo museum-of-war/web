@@ -7,7 +7,7 @@ import {
 import { AuctionCollection, AuctionItemType } from '@sections/types';
 import WarlineData from '@sections/Warline/WarlineData';
 
-const FirstDropAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
+const FirstDropAuctionData: AuctionItemType[] = [
   ...WarlineData[0]!.events.slice(0, 4).map((event) => ({
     name: `Day ${event.DayNo}, ${event.Time}`,
     startsAt: new Date(AUCTION_START_DATE),
