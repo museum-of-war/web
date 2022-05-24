@@ -86,18 +86,19 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
     const handleResize = () => {
       const element = document.querySelector('.the-hall-wrapper');
 
-      if (
-        element &&
-        backgroundRef.current &&
-        buttonsRef.current &&
-        scrollRef.current
-      ) {
+      if (element && backgroundRef.current && scrollRef.current) {
         // @ts-ignore
         const { offsetLeft: offset } = element;
 
         backgroundRef.current.style.left = `${offset}px`;
-        buttonsRef.current.style.right = `${offset}px`;
         scrollRef.current.style.paddingLeft = `${offset + 40}px`;
+      }
+
+      if (buttonsRef.current && element) {
+        // @ts-ignore
+        const { offsetLeft: offset } = element;
+
+        buttonsRef.current.style.right = `${offset}px`;
       }
     };
 
