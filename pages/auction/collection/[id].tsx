@@ -159,15 +159,15 @@ const CollectionDetailsPage: React.FC<SharedProps> = ({ menuOpen }) => {
             {collectionData.name}
           </p>
           <div className="h-5px w-100% bg-carbon dark:bg-white" />
-          <div className="desktop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-row mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
-            <p className="whitespace-pre-line pt-10 desktop:w-65% tablet:w-65% mobile:w-100% mobile:mb-6% desktop:pr-48px tablet:pr-48px mobile:pr-0">
+          <div className="desktop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-col mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
+            <p className="whitespace-pre-line pt-10 desktop:w-65% tablet:w-100% mobile:w-100% mobile:mb-6% desktop:pr-48px tablet:pr-0 mobile:pr-0">
               {collectionData.description}
             </p>
             <VideoElement
               videoSrc={collectionData.videoSrc}
               posterSrc={collectionData.posterSrc}
               name={collectionData.name}
-              classNames="desktop:w-35% tablet:w-35% mobile-w100%"
+              classNames="desktop:w-35% tablet:w-100% mobile-w100%"
             />
           </div>
           <ContentAuction collection={query.id as AuctionCollections} />
