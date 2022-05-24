@@ -57,7 +57,7 @@ export type AuctionCollectionType = {
 
 export type AuctionItemType = {
   index?: number;
-  name?: string;
+  name: string;
   category: AuctionCollection;
   tokenId: number;
   imageSrc: string;

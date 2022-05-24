@@ -40,7 +40,7 @@ const CollectionDetailsPage: React.FC<CollectionDetailsPageProps> = ({
   };
 
   return (
-    <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
+    <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:mt-[-48px] tablet:mt-[-48px] mobile:mt-[-40px]">
       <div className="absolute left-0 top-100px z-0 right-0">
         <Parallax
           strength={isMobile ? 0 : 200}

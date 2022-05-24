@@ -3,6 +3,7 @@ import { AuctionCollection, AuctionItemType } from '@sections/types';
 
 const KalushAuctionData: AuctionItemType = {
   tokenId: 1,
+  name: 'KALUSH EUROVISION 2022 NFT', // todo @current
   imageSrc: `${IMG_STORAGE}/original/avatars/AlexTwin-EvacuationFromBucha.png`, // todo @current
   artist: 'MetaHistory',
   descriptionEnglish:
