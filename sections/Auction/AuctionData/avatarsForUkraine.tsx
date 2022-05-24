@@ -1,7 +1,7 @@
 import { IMG_STORAGE } from '@sections/Constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
 
-const AvatarsAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
+const AvatarsAuctionData: AuctionItemType[] = [
   {
     name: 'Evacuation from Bucha',
     tokenId: 1,
