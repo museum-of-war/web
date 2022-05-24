@@ -18,6 +18,7 @@ import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 import { Drop1Data, Drop2Data } from '@sections/Warline/WarlineData';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
+import AuctionData from '@sections/Auction/AuctionData';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -575,6 +576,14 @@ export function useWeb3Modal() {
       .then((usdPrice) => (usdPrice * +ethPrice).toFixed(0));
   }
 
+  async function getTotalNFTs() {
+    const firstDropMinted = +(await getFirstDropMintedCount());
+    const secondDropMinted = +(await getSecondDropMintedCount());
+    const auctions = AuctionData.length - 4; // 4 tokens are from the first drop
+
+    return firstDropMinted + secondDropMinted + auctions;
+  }
+
   async function getTotalFundsRaised() {
     const firstDropUnique = 4; // first four tokens were sold at auction
     const firstDropAirdrop =
@@ -632,5 +641,6 @@ export function useWeb3Modal() {
     openModal,
     getUsdPriceFromETH,
     getTotalFundsRaised,
+    getTotalNFTs,
   };
 }

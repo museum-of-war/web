@@ -9,6 +9,7 @@ import { Links } from '@components/Links';
 import { ACHIEVE_DATA } from '@sections/AboutUs/constants';
 import { useVideoModal } from '@providers/VideoProvider';
 import ContainerDimensions from 'react-container-dimensions';
+import AuctionData from '@sections/Auction/AuctionData';
 
 const CollapsedSection = () => {
   const { VideoElement } = useVideoModal();
@@ -50,12 +51,14 @@ const CollapsedSection = () => {
 };
 
 const AboutUs = () => {
-  const { getTotalFundsRaised } = useWeb3Modal();
+  const { getTotalFundsRaised, getTotalNFTs } = useWeb3Modal();
   const [fundsRaised, setFundsRaised] = useState({ eth: '', usd: '' });
   const [collapsed, setCollapsed] = useState(true);
+  const [totalNFTs, setTotalNFTs] = useState(0);
 
   useEffect(() => {
     getTotalFundsRaised().then(setFundsRaised);
+    getTotalNFTs().then(setTotalNFTs);
   }, []);
 
   return (
@@ -162,11 +165,11 @@ const AboutUs = () => {
             <div className="desktop:w-[544px] tablet:w-full mobile:w-full desktop:mt-0 tablet:mt-72px mobile:mt-40px">
               <div className="font-rnarrow leading-24px desktop:w-[544px] tablet:w-full mobile:w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col">
                 <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
-                  <div className="text-[24px]">{ACHIEVE_DATA.nfts}</div>
+                  <div className="text-[24px]">{totalNFTs}</div>
                   <div className="text-[16px]">NFTs in circulation</div>
                 </div>
-                <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px] ml-auto">
-                  <div className="text-[24px]">{ACHIEVE_DATA.auctions}</div>
+                <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
+                  <div className="text-[24px]">{AuctionData.length}</div>
                   <div className="text-[16px]">auctions</div>
                 </div>
                 <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
@@ -175,10 +178,12 @@ const AboutUs = () => {
                   </div>
                   <div className="text-[16px]">events in Metaverse</div>
                 </div>
-                <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px] ml-auto">
-                  <div className="text-[24px]">{ACHIEVE_DATA.totalHolders}</div>
-                  <div className="text-[16px]">total NFT holders</div>
-                </div>
+                {false /*TODO*/ && (
+                  <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
+                    <div className="text-[24px]">{'TODO'}</div>
+                    <div className="text-[16px]">total NFT holders</div>
+                  </div>
+                )}
                 <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
                   <div className="text-[24px]">{ACHIEVE_DATA.warlineDrops}</div>
                   <div className="text-[16px]">
