@@ -104,31 +104,31 @@ const AboutUs = () => {
             <video src="/vid/how_we_work_animation.mp4" autoPlay loop muted />
           </div>
           <div className="desktop:w-[544px] tablet:w-full mobile:w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col">
-            <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px]">
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px]">
               <p className="font-rblack text-32px mb-24px">1</p>
               We pick news pieces of important events of the war in Ukraine
             </div>
-            <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px] ml-auto">
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px] ml-auto">
               <p className="font-rblack text-32px mb-24px">2</p>
               Top-notch artists create artworks - their interpretations of the
               news content & meaning
             </div>
-            <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px]">
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px]">
               <p className="font-rblack text-32px mb-24px">3</p>
               We do some smart contract magic to place these artworks as NFTs on
               the Ethereum blockchain
             </div>
-            <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px] ml-auto ">
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px] ml-auto ">
               <p className="font-rblack text-32px mb-24px">4</p>
               We release NFTs to the world in parts, so-called drops. First one
               has happened on March 30
             </div>
-            <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px]">
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px]">
               <p className="font-rblack text-32px mb-24px">5</p>
               Art lovers, Ukraine's supporters, NFT communities come along and
               buy them, transferring cryptocurrency
             </div>
-            <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px] ml-auto">
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px] ml-auto">
               <p className="font-rblack text-32px mb-24px">6</p>
               100% of the proceeds are automatically transferred to the Ministry
               of Digital Transformation of Ukraine
@@ -161,25 +161,25 @@ const AboutUs = () => {
             </div>
             <div className="desktop:w-[544px] tablet:w-full mobile:w-full desktop:mt-0 tablet:mt-72px mobile:mt-40px">
               <div className="font-rnarrow leading-24px desktop:w-[544px] tablet:w-full mobile:w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col">
-                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
+                <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
                   <div className="text-[24px]">{ACHIEVE_DATA.nfts}</div>
                   <div className="text-[16px]">NFTs in circulation</div>
                 </div>
-                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px] ml-auto">
+                <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px] ml-auto">
                   <div className="text-[24px]">{ACHIEVE_DATA.auctions}</div>
                   <div className="text-[16px]">auctions</div>
                 </div>
-                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
+                <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
                   <div className="text-[24px]">
                     {ACHIEVE_DATA.metaverseEvents}
                   </div>
                   <div className="text-[16px]">events in Metaverse</div>
                 </div>
-                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px] ml-auto">
+                <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px] ml-auto">
                   <div className="text-[24px]">{ACHIEVE_DATA.totalHolders}</div>
                   <div className="text-[16px]">total NFT holders</div>
                 </div>
-                <div className="desktop:w-[248px] tablet:w-[248px] mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
+                <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[30px]">
                   <div className="text-[24px]">{ACHIEVE_DATA.warlineDrops}</div>
                   <div className="text-[16px]">
                     official drops on the Warline
