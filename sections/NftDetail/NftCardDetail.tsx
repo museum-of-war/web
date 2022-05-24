@@ -15,16 +15,21 @@ import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import FsLightbox from 'fslightbox-react';
 import ArtistsData from '@sections/ArtistsData';
 import { BidCard } from '@sections/NftDetail/BidCard';
+import { useVideoModal } from '@providers/VideoProvider';
+import ContainerDimensions from 'react-container-dimensions';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
+  oneItemAuction?: boolean;
 };
-const NftCardDetail = ({ item }: NftCardDetailProps) => {
+const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
   const { activePopupName, showPopup } = usePopup();
   const { push } = useAppRouter();
   const { makeBid, getAuctionInfo, getOwnerOfNFT } = useWeb3Modal();
   const { hidePreloader, showPreloader } = usePreloader();
+  const { VideoElement } = useVideoModal();
+
   const [isStarted, setIsStarted] = useState(false);
   const [lightboxToggler, setLightboxToggler] = React.useState<boolean>(false);
 
@@ -72,6 +77,8 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
   );
 
   const neighbours = useMemo(() => {
+    if (typeof item.index === 'undefined' || oneItemAuction) return [];
+
     const previous =
       item.index > 0
         ? AuctionData[item.index - 1]!
@@ -232,6 +239,35 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
           <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px leading-[150%] mt-24px">
             {item.descriptionUkrainian}
           </p>
+          {item.videoSrc ? (
+            <div>
+              <ContainerDimensions>
+                {({ width }) => (
+                  <VideoElement
+                    videoSrc={item.videoSrc}
+                    posterSrc={item.posterSrc}
+                    classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
+                    styles={{ height: (width / 16) * 9 }}
+                  />
+                )}
+              </ContainerDimensions>
+            </div>
+          ) : null}
+          {item.bonuses ? (
+            <div className="font-rnarrow w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col justify-between">
+              <p className="font-rblack desktop:text-32px tablet:text-32px mobile:text-27px desktop:leading-36px tablet:leading-36px mobile:leading-30px desktop:mt-48px tablet:mt-48px mobile:mt-40px">
+                The owner of NFT will obtain:
+              </p>
+              {item.bonuses.map((bonus, index) => (
+                <div className="desktop:w-45% tablet:w-45% mobile:w-full desktop:mt-24px tablet:mt-24px mobile:mt-[20px]">
+                  <p className="font-rblack text-20px desktop:leading-48px table t:leading-48px tablet:leading-40px mb-24px">
+                    {index + 1}
+                  </p>
+                  {bonus}
+                </div>
+              ))}
+            </div>
+          ) : null}
           <div className="font-rlight flex flex-col mobile:mt-40px tablet:mt-48px">
             {artist.name.length > 0 && (
               <div className="mobile:mb-40px tablet:mb-48px">
@@ -274,62 +310,66 @@ const NftCardDetail = ({ item }: NftCardDetailProps) => {
               )}
             </div>
           </div>
-          {isSold && false /*TODO*/ && (
-            <div className="mobile:mt-60px tablet:mt-72px desktop:mt-96px">
-              <p className="mobile:text-27px tablet:text-32px font-rblack mobile:mb-30px tablet:mb-36px">
-                Bids history
-              </p>
-              <BidsHistoryTable bids={currentBid.bidHistory} />
-            </div>
-          )}
-          <div className="desktop:mt-96px mobile:my-60px tablet:mt-72px">
-            <div className="flex items-center mobile:mb-[20px] tablet:mb-24px">
-              <p className="mobile:text-27px tablet:text-32px font-rblack">
-                More auctions
-              </p>
-              {!isMobile && (
-                <p
-                  onClick={handleToAuction}
-                  className="text-[14px] font-rblack ml-32px  hover:cursor-pointer"
-                >
-                  See all auctions
-                </p>
-              )}
-            </div>
-            <div className="flex flex-wrap -mx-24px">
-              {neighbours.map((item, index) => (
-                <div
-                  className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
-                  key={item.index}
-                >
-                  <NftCard
-                    breakpoints={[
-                      {
-                        lowerBound: 'tablet',
-                        ratio: 0.5,
-                      },
-                      {
-                        lowerBound: 'desktop',
-                        ratio: 0.25,
-                      },
-                    ]}
-                    orderIndex={index}
-                    index={item.index}
-                    imageSrc={item.imageSrc}
-                    animationSrc={item.animationSrc}
-                    name={item.name}
-                    startsAt={item.startsAt}
-                    endsIn={item.endsIn}
-                    contractAddress={item.contractAddress}
-                    tokenId={item.tokenId}
-                    isSale={item.isSale}
-                    version={item.version}
-                    type="small"
-                  />
+          {oneItemAuction ? null : (
+            <>
+              {isSold && false /*TODO*/ && (
+                <div className="mobile:mt-60px tablet:mt-72px desktop:mt-96px">
+                  <p className="mobile:text-27px tablet:text-32px font-rblack mobile:mb-30px tablet:mb-36px">
+                    Bids history
+                  </p>
+                  <BidsHistoryTable bids={currentBid.bidHistory} />
                 </div>
-              ))}
-            </div>
-          </div>
+              )}
+              <div className="desktop:mt-96px mobile:my-60px tablet:mt-72px">
+                <div className="flex items-center mobile:mb-[20px] tablet:mb-24px">
+                  <p className="mobile:text-27px tablet:text-32px font-rblack">
+                    More auctions
+                  </p>
+                  {!isMobile && (
+                    <p
+                      onClick={handleToAuction}
+                      className="text-[14px] font-rblack ml-32px  hover:cursor-pointer"
+                    >
+                      See all auctions
+                    </p>
+                  )}
+                </div>
+                <div className="flex flex-wrap -mx-24px">
+                  {neighbours.map((item, index) => (
+                    <div
+                      className={`tablet:w-1/2 mobile:w-full flex flex-col p-14px`}
+                      key={item.index}
+                    >
+                      <NftCard
+                        breakpoints={[
+                          {
+                            lowerBound: 'tablet',
+                            ratio: 0.5,
+                          },
+                          {
+                            lowerBound: 'desktop',
+                            ratio: 0.25,
+                          },
+                        ]}
+                        orderIndex={index}
+                        index={item.index}
+                        imageSrc={item.imageSrc}
+                        animationSrc={item.animationSrc}
+                        name={item.name}
+                        startsAt={item.startsAt}
+                        endsIn={item.endsIn}
+                        contractAddress={item.contractAddress}
+                        tokenId={item.tokenId}
+                        isSale={item.isSale}
+                        version={item.version}
+                        type="small"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

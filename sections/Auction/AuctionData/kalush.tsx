@@ -1,7 +1,7 @@
 import { IMG_STORAGE } from '@sections/Constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
 
-const KalushAuctionData: Omit<AuctionItemType, 'index'> = {
+const KalushAuctionData: AuctionItemType = {
   tokenId: 1,
   imageSrc: `${IMG_STORAGE}/original/avatars/AlexTwin-EvacuationFromBucha.png`, // todo @current
   artist: 'MetaHistory',
@@ -12,6 +12,12 @@ const KalushAuctionData: Omit<AuctionItemType, 'index'> = {
   videoSrc: 'https://www.youtube-nocookie.com/embed/F1fl60ypdLs',
   isSale: false, // todo @current
   category: AuctionCollection.Kalush,
+  bonuses: [
+    'The real Eurovision 2022 trophy, won by KALUSH. It will carefully be shipped to the new owner.',
+    '4K video live shot of turning 3D sculpture and the main preview NFT image.',
+    'Unique version of the «Stefania» song recorded with other famous Ukraine representatives on earlier Eurovision contests.',
+    'The new owner acquires the rights to exhibit, sell, give to rent, or any other rights on these trophy and artwork respectively to KALUSH.',
+  ],
 };
 
 export default KalushAuctionData;
