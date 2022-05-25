@@ -46,7 +46,7 @@ const ContentTopNotConnected = () => {
         >
           <Button
             mode="primary"
-            className="px-48px mb-0 tablet:h-48px mobile:h-60px mb-15 mobile:w-100% tablet:w-auto"
+            className="px-48px mb-0 tablet:h-48px mobile:h-60px desktop:mb-0 tablet:mb-15 mobile:mb-15 mobile:w-100% tablet:w-auto"
             round={false}
             label="Mint NFT Now"
             onClick={async () => {
