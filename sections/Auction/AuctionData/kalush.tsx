@@ -1,6 +1,49 @@
 import { IMG_STORAGE } from '@sections/Constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
+import Button from '@components/Button';
+import React from 'react';
+import { openInNewTab } from '@sections/utils';
 // import { ethers } from 'ethers';
+
+const monobankLink = 'https://send.monobank.ua/jar/1283iHXvsQ';
+
+const BigButton = () => {
+  return (
+    <div className="basis-6/12 ml-32px">
+      <Button
+        mode="primary"
+        label="Place Bid in USD"
+        onClick={() => openInNewTab(monobankLink)}
+        className="w-100% h-48px"
+      />
+      <p className="text-center text-14px leading-24px opacity-[70%]">
+        via <b>monobank</b>
+      </p>
+    </div>
+  );
+};
+
+const SmallButton = () => {
+  return (
+    <div className="basis-6/12 ml-16px">
+      <Button
+        mode="primary"
+        label="USD"
+        onClick={() => openInNewTab(monobankLink)}
+        className="w-100% h-60px"
+      />
+      <div className="flex">
+        <p className="bg-[#212121] m-auto px-[4px] text-center text-14px leading-24px opacity-[80%]">
+          <span className="opacity-[87.5%]">
+            via <b>monobank</b>
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+//const SmallButton
 
 const KalushAuctionData: AuctionItemType = {
   tokenId: 1,
@@ -52,6 +95,10 @@ const KalushAuctionData: AuctionItemType = {
     'An opportunity to receive a physical object, the Crystal Microphone, as long as the bid is higher than the fiat (regular) currency bid.',
   ],
   //externalBid: ethers.constants.WeiPerEther,
+  externalButton: {
+    Big: BigButton,
+    Small: SmallButton,
+  },
 };
 
 export default KalushAuctionData;

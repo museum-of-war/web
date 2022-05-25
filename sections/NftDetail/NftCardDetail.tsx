@@ -151,7 +151,7 @@ const NftCardDetail = ({
   return (
     <div className={className}>
       {(isTablet || isMobile) && !isSold && !activePopupName && (
-        <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
+        <div className="tablet:border-[5px] fixed tablet:bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
           {isTablet ? (
             <BidCard
               startsAt={collectionData.startsAt}
@@ -164,44 +164,56 @@ const NftCardDetail = ({
               hasBid={hasBid}
               auctionVersion={collectionData.version}
               isExternalBidGreater={currentBid.isExternalBidGreater}
+              secondButton={item.externalButton?.Big()}
               updateCallback={updateInfo}
             />
           ) : isStarted ? (
-            <Button
-              mode="custom"
-              label={item.isSale ? 'Buy Now' : 'Place Bid'}
-              onClick={async () => {
-                if (item.isSale) {
-                  try {
-                    await makeBid(
-                      collectionData.contractAddress,
-                      item.tokenId,
-                      currentBid.buyNowPrice!,
-                      collectionData.version,
-                    );
-                    await getAuctionInfo(
-                      collectionData.contractAddress,
-                      item.tokenId,
-                      collectionData.version,
-                      item.externalBid,
-                    ).then(async (i) => setCurrentBid({ ...i }));
-                  } catch (error: any) {
-                    console.error(
-                      error?.error?.message ?? error?.message ?? error,
-                    );
-                  }
-                } else {
-                  showPopup('bid', {
-                    proposedBids: currentBid.proposedBids,
-                    contractAddress: collectionData.contractAddress,
-                    tokenId: item.tokenId,
-                    auctionVersion: collectionData.version,
-                    updateCallback: updateInfo,
-                  });
+            <div className="flex justify-between mt-24px">
+              <Button
+                mode="custom"
+                label={
+                  item.isSale
+                    ? 'Buy Now'
+                    : item.externalButton
+                    ? 'ETH'
+                    : 'Place Bid'
                 }
-              }}
-              className="bg-white text-carbon w-100%"
-            />
+                onClick={async () => {
+                  if (item.isSale) {
+                    try {
+                      await makeBid(
+                        collectionData.contractAddress,
+                        item.tokenId,
+                        currentBid.buyNowPrice!,
+                        collectionData.version,
+                      );
+                      await getAuctionInfo(
+                        collectionData.contractAddress,
+                        item.tokenId,
+                        collectionData.version,
+                        item.externalBid,
+                      ).then(async (i) => setCurrentBid({ ...i }));
+                    } catch (error: any) {
+                      console.error(
+                        error?.error?.message ?? error?.message ?? error,
+                      );
+                    }
+                  } else {
+                    showPopup('bid', {
+                      proposedBids: currentBid.proposedBids,
+                      contractAddress: collectionData.contractAddress,
+                      tokenId: item.tokenId,
+                      auctionVersion: collectionData.version,
+                      updateCallback: updateInfo,
+                    });
+                  }
+                }}
+                className={`bg-white text-carbon ${
+                  !!item.externalButton ? 'basis-6/12' : 'w-100%'
+                } h-60px`}
+              />
+              {item.externalButton?.Small()}
+            </div>
           ) : null}
         </div>
       )}
@@ -246,6 +258,7 @@ const NftCardDetail = ({
               hasBid={hasBid}
               auctionVersion={collectionData.version}
               isExternalBidGreater={currentBid.isExternalBidGreater}
+              secondButton={item.externalButton?.Big()}
               updateCallback={updateInfo}
             />
           )}

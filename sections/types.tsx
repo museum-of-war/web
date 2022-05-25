@@ -1,6 +1,4 @@
 import { AuctionVersion } from '@museum-of-war/auction';
-import { jsx } from '@emotion/react';
-import ElementJSX = jsx.JSX.Element;
 import { BigNumberish } from 'ethers';
 
 export type TokenDataType = {
@@ -66,13 +64,17 @@ export type AuctionItemType = {
   imageSrc: string;
   animationSrc?: string;
   artist: string;
-  descriptionEnglish?: string | ElementJSX;
+  descriptionEnglish?: string | JSX.Element;
   descriptionUkrainian?: string;
   isSale: boolean;
   videoSrc?: string;
   posterSrc?: string;
   bonuses?: string[];
   externalBid?: BigNumberish;
+  externalButton?: {
+    Big(): JSX.Element;
+    Small(): JSX.Element;
+  };
 };
 
 export type HallItemType = {

@@ -18,6 +18,7 @@ type BidCardProps = {
   isExternalBidGreater?: boolean;
   buyNowPrice?: string;
   auctionVersion: AuctionVersion;
+  secondButton?: JSX.Element;
   updateCallback: () => Promise<void>;
 };
 
@@ -34,6 +35,7 @@ export const BidCard = ({
   isExternalBidGreater,
   buyNowPrice,
   auctionVersion,
+  secondButton,
   updateCallback,
 }: BidCardProps) => {
   const [isStarted, setIsStarted] = useState(false);
@@ -95,7 +97,9 @@ export const BidCard = ({
         </div>
         {timeLeft.isLeft && (
           <>
-            <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
+            {!secondButton && (
+              <div className="self-end tablet:h-60px mobile:h-4px tablet:w-[4px] mobile:w-full mobile:my-20px tablet:my-[0px] bg-carbon dark:bg-white" />
+            )}
             <div>
               <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
                 {isStarted ? 'Ends in' : 'Starts in'}
@@ -137,35 +141,46 @@ export const BidCard = ({
         )}
       </div>
       {!isMobile && isStarted && (
-        <Button
-          mode="custom"
-          label={isSale ? 'Buy Now' : 'Place Bid'}
-          onClick={async () => {
-            if (isSale) {
-              try {
-                await makeBid(
+        <div className="flex justify-between mt-24px">
+          <Button
+            mode="custom"
+            label={
+              isSale
+                ? 'Buy Now'
+                : secondButton
+                ? 'Place Bid in ETH'
+                : 'Place Bid'
+            }
+            onClick={async () => {
+              if (isSale) {
+                try {
+                  await makeBid(
+                    contractAddress,
+                    tokenId,
+                    buyNowPrice!,
+                    auctionVersion,
+                  );
+                } catch (error: any) {
+                  console.error(error?.message ?? error);
+                } finally {
+                  await updateCallback?.().catch((e) => console.error(e));
+                }
+              } else {
+                showPopup('bid', {
+                  proposedBids,
                   contractAddress,
                   tokenId,
-                  buyNowPrice!,
                   auctionVersion,
-                );
-              } catch (error: any) {
-                console.error(error?.message ?? error);
-              } finally {
-                await updateCallback?.().catch((e) => console.error(e));
+                  updateCallback,
+                });
               }
-            } else {
-              showPopup('bid', {
-                proposedBids,
-                contractAddress,
-                tokenId,
-                auctionVersion,
-                updateCallback,
-              });
-            }
-          }}
-          className="bg-white text-carbon w-100% mt-24px"
-        />
+            }}
+            className={`bg-white text-carbon ${
+              !!secondButton ? 'basis-6/12' : 'w-100%'
+            } h-48px`}
+          />
+          {secondButton}
+        </div>
       )}
     </>
   );
