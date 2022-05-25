@@ -29,8 +29,8 @@ const ContentChapter = ({}: ContentChapterProps) => {
             </div>
             <div className="flex flex-wrap border-t-4 border-carbon border-solid ">
               <ScaledImage
-                alt="Dots"
-                src={`${IMG_STORAGE}/img/warline-animation.gif`}
+                alt="Warline"
+                src={`${IMG_STORAGE}/banners/warline-animation.gif`}
                 postLoad={true}
                 breakpoints={[
                   {
@@ -61,8 +61,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
             </div>
             <div className="flex flex-wrap  border-t-4 border-carbon border-solid ">
               <ScaledImage
-                src={`${IMG_STORAGE}/stefania.png`}
-                postLoad={true}
+                src={`${IMG_STORAGE}/banners/stefania.png`}
                 alt="Auction"
                 className="w-full"
                 breakpoints={[
