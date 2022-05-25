@@ -61,7 +61,7 @@ const ContentChapter = ({}: ContentChapterProps) => {
             </div>
             <div className="flex flex-wrap  border-t-4 border-carbon border-solid ">
               <ScaledImage
-                src={`${IMG_STORAGE}/img/auction.png`}
+                src={`${IMG_STORAGE}/stefania.png`}
                 postLoad={true}
                 alt="Auction"
                 className="w-full"
