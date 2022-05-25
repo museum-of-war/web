@@ -17,7 +17,17 @@ const ContentTopConnected = () => {
           </div>
         </div>
         <div className="desktop:w-[544px] tablet:w-100%">
-          <video src="/vid/pd-header-optimized.mp4" autoPlay loop muted />
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `<video
+                src="/vid/pd-header-optimized.mp4"
+                autoPlay
+                loop
+                muted
+                playsinline
+              />`,
+            }}
+          />
         </div>
       </div>
       <div className="w-100% flex justify-end">
