@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { InView } from 'react-intersection-observer';
 import Button from '@components/Button';
 import DropdownSelect from '@components/DropdownSelect';
 import NftCard from '@components/NftCard';
@@ -17,6 +18,8 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import { AuctionCollection } from '@sections/types';
+
+const SCROLL_BUFFER_ITEMS = 10;
 
 type ContentAuctionProps = {
   collection?: AuctionCollection;
@@ -149,6 +152,8 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
     return result;
   }, [data, selectedType, selectedCategory, priceRange, selectedSort]);
 
+  const [itemsShown, setItemsShown] = useState(SCROLL_BUFFER_ITEMS);
+
   const handleChangeType = (v?: string) => setSelectedType(v);
   const handleChangeCategory = (v?: string) => {
     push(`/auction/collection/${v}`);
@@ -264,42 +269,55 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
         )}
       </div>
       <div className="flex flex-wrap">
-        {filteredData.map((item, index) => (
-          <div
-            className={`mobile:px-24px tablet:px-0 desktop:px-0 ${
-              isDesktop ? 'zoom-hover' : ''
-            }`}
-            key={item.index}
-            style={getItemStyle(index)}
-          >
-            <NftCard
-              breakpoints={[
-                {
-                  lowerBound: 'tablet',
-                  ratio: index >= 1 ? 0.5 : 1,
-                },
-                {
-                  lowerBound: 'desktop',
-                  ratio: index >= 2 && !isCollection ? 0.25 : 0.5,
-                },
-              ]}
-              orderIndex={index}
-              index={item.index}
-              imageSrc={item.imageSrc}
-              animationSrc={item.animationSrc}
-              name={item.name}
-              startsAt={item.startsAt}
-              endsIn={item.endsIn}
-              contractAddress={item.contractAddress}
-              tokenId={item.tokenId}
-              isSale={item.isSale}
-              isCollection={isCollection}
-              version={item.version}
-              externalBid={item.externalBid}
-            />
-          </div>
-        ))}
+        {filteredData.map(
+          (item, index) =>
+            index < itemsShown && (
+              <InView
+                as="div"
+                onChange={(inView) =>
+                  inView &&
+                  setItemsShown((itemsShown) =>
+                    Math.max(itemsShown, index + SCROLL_BUFFER_ITEMS + 1),
+                  )
+                }
+                className={`mobile:px-24px tablet:px-0 desktop:px-0 ${
+                  isDesktop ? 'zoom-hover' : ''
+                }`}
+                key={item.index}
+                style={getItemStyle(index)}
+              >
+                <NftCard
+                  breakpoints={[
+                    {
+                      lowerBound: 'tablet',
+                      ratio: index >= 1 ? 0.5 : 1,
+                    },
+                    {
+                      lowerBound: 'desktop',
+                      ratio: index >= 2 && !isCollection ? 0.25 : 0.5,
+                    },
+                  ]}
+                  orderIndex={index}
+                  index={item.index}
+                  imageSrc={item.imageSrc}
+                  animationSrc={item.animationSrc}
+                  name={item.name}
+                  startsAt={item.startsAt}
+                  endsIn={item.endsIn}
+                  contractAddress={item.contractAddress}
+                  tokenId={item.tokenId}
+                  isSale={item.isSale}
+                  isCollection={isCollection}
+                  version={item.version}
+                  externalBid={item.externalBid}
+                />
+              </InView>
+            ),
+        )}
       </div>
+      {filteredData.length > itemsShown && (
+        <p className="text-center text-24px font-bold">Loading...</p>
+      )}
       {(isTablet || isMobile) && (
         <TabletDrawer
           toggleDrawer={toggleDrawer}
