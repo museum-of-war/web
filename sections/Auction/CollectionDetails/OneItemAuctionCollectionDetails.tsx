@@ -53,7 +53,13 @@ export const OneItemAuctionCollectionDetails: React.FC<OneItemAuctionProps> = ({
         </p>
         <div className="h-5px w-100% bg-carbon dark:bg-white" />
         {collectionData.item && (
-          <NftCardDetail item={collectionData.item} oneItemAuction />
+          <>
+            <NftCardDetail
+              item={collectionData.item}
+              oneItemAuction
+              className="mobile:mb-120px tablet:mb-168px desktop:mb-192px"
+            />
+          </>
         )}
         {openMintingModal ? (
           <MintingModal setOpenMintingModal={setOpenMintingModal} />

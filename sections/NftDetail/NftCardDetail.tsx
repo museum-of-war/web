@@ -21,8 +21,13 @@ import ContainerDimensions from 'react-container-dimensions';
 type NftCardDetailProps = {
   item: AuctionItemType;
   oneItemAuction?: boolean;
+  className?: string;
 };
-const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
+const NftCardDetail = ({
+  item,
+  oneItemAuction,
+  className,
+}: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
   const { activePopupName, showPopup } = usePopup();
   const { push } = useAppRouter();
@@ -144,7 +149,7 @@ const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
   const handleToAuction = () => push('/auction');
 
   return (
-    <div>
+    <div className={className}>
       {(isTablet || isMobile) && !isSold && !activePopupName && (
         <div className="tablet:border-[5px] fixed bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
           {isTablet ? (
