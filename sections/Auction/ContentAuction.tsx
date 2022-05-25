@@ -16,10 +16,10 @@ import {
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
-import { AuctionCollections } from '@sections/types';
+import { AuctionCollection } from '@sections/types';
 
 type ContentAuctionProps = {
-  collection?: AuctionCollections;
+  collection?: AuctionCollection;
 };
 
 const ContentAuction = ({ collection }: ContentAuctionProps) => {

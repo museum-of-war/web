@@ -12,7 +12,7 @@ import ContentCounterDaysAndRised from './ContentCounterDaysAndRised';
 import Partners from './Partners';
 import Countdown from './Countdown';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
-import { AuctionCollections } from '@sections/types';
+import { AuctionCollection } from '@sections/types';
 import AboutUs from '@sections/AboutProject/AboutUs';
 
 type AboutProjectProps = {
@@ -26,7 +26,7 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
         <ContentTop signerAddress={signerAddress} />
         <Countdown
           countDownDate={AuctionCollectionData[
-            AuctionCollections.avatarsForUkraine
+            AuctionCollection.AvatarsForUkraine
           ].startsAt!.toISOString()}
         />
         <ContentChapter />

@@ -1,4 +1,6 @@
 import { AuctionVersion } from '@museum-of-war/auction';
+import { jsx } from '@emotion/react';
+import ElementJSX = jsx.JSX.Element;
 
 export type TokenDataType = {
   metadata: any;
@@ -33,15 +35,16 @@ export type EventType = {
   ImageType?: string;
 };
 
-export enum AuctionCollections {
-  firstDrop = 'drop1',
-  prospect100 = 'prospect100',
-  avatarsForUkraine = 'avatars',
+export enum AuctionCollection {
+  FirstDrop = 'drop1',
+  Prospect100 = 'Prospect100',
+  AvatarsForUkraine = 'avatars',
+  Kalush = 'kalush',
 }
 
 export type AuctionCollectionType = {
-  name: string;
-  description: string;
+  name?: string;
+  description?: string;
   logoSrc?: string;
   headerImageSrc: string;
   posterSrc?: string;
@@ -50,19 +53,24 @@ export type AuctionCollectionType = {
   startsAt?: Date;
   endsIn: Date;
   version: AuctionVersion;
+  oneItemAuction?: boolean;
+  item?: AuctionItemType;
 };
 
 export type AuctionItemType = {
-  index: number;
+  index?: number;
   name: string;
-  category: AuctionCollections;
+  category: AuctionCollection;
   tokenId: number;
   imageSrc: string;
   animationSrc?: string;
   artist: string;
-  descriptionEnglish?: string;
+  descriptionEnglish?: string | ElementJSX;
   descriptionUkrainian?: string;
   isSale: boolean;
+  videoSrc?: string;
+  posterSrc?: string;
+  bonuses?: string[];
 };
 
 export type HallItemType = {

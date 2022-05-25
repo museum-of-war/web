@@ -4,15 +4,15 @@ import {
   FIRST_DROP_ADDRESS,
   IMG_STORAGE,
 } from '@sections/Constants';
-import { AuctionCollections, AuctionItemType } from '@sections/types';
+import { AuctionCollection, AuctionItemType } from '@sections/types';
 import WarlineData from '@sections/Warline/WarlineData';
 
-const FirstDropAuctionData: Array<Omit<AuctionItemType, 'index'>> = [
+const FirstDropAuctionData: AuctionItemType[] = [
   ...WarlineData[0]!.events.slice(0, 4).map((event) => ({
     name: `Day ${event.DayNo}, ${event.Time}`,
     startsAt: new Date(AUCTION_START_DATE),
     endsIn: new Date(AUCTION_END_DATE),
-    category: AuctionCollections.firstDrop,
+    category: AuctionCollection.FirstDrop,
     contractAddress: FIRST_DROP_ADDRESS,
     tokenId: +event.Tokenid,
     imageSrc: `${IMG_STORAGE}/original/${event.ImageType}`,

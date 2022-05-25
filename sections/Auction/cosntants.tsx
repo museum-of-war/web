@@ -1,4 +1,4 @@
-import { AuctionCollections } from '@sections/types';
+import { AuctionCollection } from '@sections/types';
 
 export enum OptionType {
   OnSale = 'On Sale',
@@ -10,9 +10,10 @@ export enum OptionType {
 
 export enum OptionCategory {
   All = 'All Collections',
-  FirstDrop = 'First Drop',
-  Prospect100 = 'PROSPECT 100',
+  Kalush = 'Stefania For Ukraine',
   AvatarsForUkraine = 'Avatars for Ukraine',
+  Prospect100 = 'PROSPECT 100',
+  FirstDrop = 'First Drop',
 }
 
 export enum OptionSortType {
@@ -24,9 +25,10 @@ export enum OptionSortType {
 
 export const OptionCategoriesValues = {
   [OptionCategory.All]: '',
-  [OptionCategory.FirstDrop]: AuctionCollections.firstDrop,
-  [OptionCategory.Prospect100]: AuctionCollections.prospect100,
-  [OptionCategory.AvatarsForUkraine]: AuctionCollections.avatarsForUkraine,
+  [OptionCategory.FirstDrop]: AuctionCollection.FirstDrop,
+  [OptionCategory.Prospect100]: AuctionCollection.Prospect100,
+  [OptionCategory.AvatarsForUkraine]: AuctionCollection.AvatarsForUkraine,
+  [OptionCategory.Kalush]: AuctionCollection.Kalush,
 };
 
 export const FilterSvg = () => (

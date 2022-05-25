@@ -331,7 +331,7 @@ export function useWeb3Modal() {
     const increasePercentage =
       auctionInfo.bidIncreasePercentage > 0
         ? auctionInfo.bidIncreasePercentage
-        : await auction.defaultBidIncreasePercentage();
+        : (await auction.defaultBidIncreasePercentage?.()) ?? 0;
 
     const nextMinBid = hasBid
       ? bid.mul(10000 + increasePercentage).div(10000)
@@ -565,15 +565,22 @@ export function useWeb3Modal() {
     }
   }
 
-  async function getUsdPriceFromETH(
+  async function getPriceFromETH(
     ethPrice: string | number,
+    currency: 'usd' | 'eur',
   ): Promise<string> {
     return await fetch(
-      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum',
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=ethereum`,
     )
       .then((res) => res.json())
       .then((json) => json[0].current_price as number)
-      .then((usdPrice) => (usdPrice * +ethPrice).toFixed(0));
+      .then((price) => (price * +ethPrice).toFixed(0));
+  }
+
+  async function getUsdPriceFromETH(
+    ethPrice: string | number,
+  ): Promise<string> {
+    return await getPriceFromETH(ethPrice, 'usd');
   }
 
   async function getTotalNFTs() {
@@ -639,6 +646,7 @@ export function useWeb3Modal() {
     mintSecondDrop,
     isUnlocked,
     openModal,
+    getPriceFromETH,
     getUsdPriceFromETH,
     getTotalFundsRaised,
     getTotalNFTs,
