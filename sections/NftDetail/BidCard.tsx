@@ -15,6 +15,7 @@ type BidCardProps = {
   tokenId: number;
   isSale: boolean;
   hasBid: boolean;
+  isExternalBidGreater?: boolean;
   buyNowPrice?: string;
   auctionVersion: AuctionVersion;
   updateCallback: () => Promise<void>;
@@ -30,6 +31,7 @@ export const BidCard = ({
   tokenId,
   isSale,
   hasBid,
+  isExternalBidGreater,
   buyNowPrice,
   auctionVersion,
   updateCallback,
@@ -74,14 +76,20 @@ export const BidCard = ({
       <div className="flex items-start justify-between mobile:flex-col tablet:flex-row mobile:mt-20px tablet:mt-[0px]">
         <div>
           <p className="font-rlight text-14px opacity-70 tablet:mb-12px">
-            {isSale ? 'Current price' : hasBid ? 'Current bid' : 'Minimum bid'}
+            {isSale
+              ? 'Current price'
+              : hasBid
+              ? isExternalBidGreater
+                ? 'External bid'
+                : 'Current bid'
+              : 'Minimum bid'}
           </p>
           <p className="mobile:text-27px tablet:text-32px font-rblack">
             {+currentBid ? currentBid : '—'} ETH
           </p>
           {!!usdPrice && (
             <p className="font-rlight mobile:text-14px tablet:text-16px">
-              ${+usdPrice ? usdPrice : '—'}
+              ${+usdPrice ? (+usdPrice).toLocaleString('en-US') : '—'}
             </p>
           )}
         </div>

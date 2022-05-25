@@ -68,6 +68,7 @@ const auctionInfoMemo = {
     contractAddress: string,
     tokenId: number,
     version: AuctionVersion,
+    externalBid?: BigNumberish,
   ): Promise<Awaited<ReturnType<getAuctionInfoType>>> {
     const prevVal = this?.cached?.[contractAddress]?.[tokenId]?.[version];
     if (prevVal && +new Date() - +prevVal[1] < this.cachingTime) {
@@ -75,7 +76,7 @@ const auctionInfoMemo = {
     } else {
       const canBeStarted = this.pending.size < this.maxPending;
       const promise = canBeStarted
-        ? getAuctionInfo(contractAddress, tokenId, version)
+        ? getAuctionInfo(contractAddress, tokenId, version, externalBid)
         : new Promise<Awaited<ReturnType<getAuctionInfoType>>>(
             async (resolve) => {
               while (this.pending.size >= this.maxPending) {
@@ -85,6 +86,7 @@ const auctionInfoMemo = {
                 contractAddress,
                 tokenId,
                 version,
+                externalBid,
               );
               this.pending.add(startedPromise);
               startedPromise.finally(() => this.pending.delete(startedPromise));
@@ -266,12 +268,14 @@ export function useWeb3Modal() {
     contractAddress: string,
     tokenId: number,
     version: AuctionVersion,
+    externalBid?: BigNumberish,
   ) {
     return auctionInfoMemo.tryGetAuctionInfo(
       _getAuctionInfo,
       contractAddress,
       tokenId,
       version,
+      externalBid,
     );
   }
 
@@ -279,6 +283,7 @@ export function useWeb3Modal() {
     contractAddress: string,
     tokenId: number,
     version: AuctionVersion,
+    externalBid?: BigNumberish,
   ) {
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
@@ -323,10 +328,17 @@ export function useWeb3Modal() {
       : [];
       */
 
-    const hasBid = auctionInfo.nftHighestBid.gte(auctionInfo.minPrice);
-    const bid = (
+    const hasBid =
+      auctionInfo.nftHighestBid.gte(auctionInfo.minPrice) || !!externalBid;
+    const internalBid = (
       hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice
     ) as BigNumber;
+
+    const isExternalBidGreater = !!externalBid && internalBid.lt(externalBid);
+
+    const bid = isExternalBidGreater
+      ? BigNumber.from(externalBid)
+      : internalBid;
 
     const increasePercentage =
       auctionInfo.bidIncreasePercentage > 0
@@ -351,6 +363,7 @@ export function useWeb3Modal() {
       .map((wei) => web3.utils.fromWei(wei));
 
     return {
+      isExternalBidGreater,
       hasBid,
       isSold,
       isSale:

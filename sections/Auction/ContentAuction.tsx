@@ -56,6 +56,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
                   AuctionCollectionData[datum.category].contractAddress,
                   datum.tokenId,
                   AuctionCollectionData[datum.category].version,
+                  datum.externalBid,
                 )
               : {};
           }),
@@ -294,6 +295,7 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               isSale={item.isSale}
               isCollection={isCollection}
               version={item.version}
+              externalBid={item.externalBid}
             />
           </div>
         ))}

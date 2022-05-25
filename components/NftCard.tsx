@@ -28,9 +28,16 @@ function NftCard({
   isSale,
   isCollection,
   version,
+  externalBid,
 }: Pick<
   AuctionItemType,
-  'imageSrc' | 'animationSrc' | 'name' | 'index' | 'tokenId' | 'isSale'
+  | 'imageSrc'
+  | 'animationSrc'
+  | 'name'
+  | 'index'
+  | 'tokenId'
+  | 'isSale'
+  | 'externalBid'
 > &
   Pick<
     AuctionCollectionType,
@@ -67,7 +74,7 @@ function NftCard({
 
   useEffect(() => {
     if (contractAddress)
-      getAuctionInfo(contractAddress, tokenId, version)
+      getAuctionInfo(contractAddress, tokenId, version, externalBid)
         .then(({ bid, nextMinBid, isSold, endsAt, hasBid }) => {
           if (endsAt && endsAt > endsIn) setEndsAt(endsAt);
           setCurrentBid({ bid, nextMinBid });

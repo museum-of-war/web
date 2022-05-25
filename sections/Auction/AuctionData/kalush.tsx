@@ -1,5 +1,6 @@
 import { IMG_STORAGE } from '@sections/Constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
+import { ethers } from 'ethers';
 
 const KalushAuctionData: AuctionItemType = {
   tokenId: 1,
@@ -50,6 +51,7 @@ const KalushAuctionData: AuctionItemType = {
     'An exclusive meeting and dinner with members of the Kalush Orchestra.',
     'An opportunity to receive a physical object, the Crystal Microphone, as long as the bid is higher than the fiat (regular) currency bid.',
   ],
+  //externalBid: ethers.constants.WeiPerEther,
 };
 
 export default KalushAuctionData;

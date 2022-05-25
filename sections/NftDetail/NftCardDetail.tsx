@@ -43,7 +43,14 @@ const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
     bidHistory: BidInfo[];
     buyNowPrice?: string;
     endsAt?: Date;
-  }>({ bid: '0', proposedBids: ['0'], fullInfo: '', bidHistory: [] });
+    isExternalBidGreater?: boolean;
+  }>({
+    bid: '0',
+    proposedBids: ['0'],
+    fullInfo: '',
+    bidHistory: [],
+    isExternalBidGreater: false,
+  });
 
   useEffect(() => {
     showPreloader();
@@ -114,6 +121,7 @@ const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
       collectionData.contractAddress,
       item.tokenId,
       collectionData.version,
+      item.externalBid,
     ).then(async (i) => {
       setCurrentBid({ ...i });
       const isSold = i.isSold && isStarted;
@@ -150,6 +158,7 @@ const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
               isSale={item.isSale}
               hasBid={hasBid}
               auctionVersion={collectionData.version}
+              isExternalBidGreater={currentBid.isExternalBidGreater}
               updateCallback={updateInfo}
             />
           ) : isStarted ? (
@@ -169,6 +178,7 @@ const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
                       collectionData.contractAddress,
                       item.tokenId,
                       collectionData.version,
+                      item.externalBid,
                     ).then(async (i) => setCurrentBid({ ...i }));
                   } catch (error: any) {
                     console.error(
@@ -230,6 +240,7 @@ const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
               isSale={item.isSale}
               hasBid={hasBid}
               auctionVersion={collectionData.version}
+              isExternalBidGreater={currentBid.isExternalBidGreater}
               updateCallback={updateInfo}
             />
           )}
@@ -365,6 +376,7 @@ const NftCardDetail = ({ item, oneItemAuction }: NftCardDetailProps) => {
                         tokenId={item.tokenId}
                         isSale={item.isSale}
                         version={item.version}
+                        externalBid={item.externalBid}
                         type="small"
                       />
                     </div>
