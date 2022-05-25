@@ -1,6 +1,6 @@
 import { IMG_STORAGE } from '@sections/Constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
-import { ethers } from 'ethers';
+// import { ethers } from 'ethers';
 
 const KalushAuctionData: AuctionItemType = {
   tokenId: 1,
