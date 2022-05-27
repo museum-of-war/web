@@ -56,7 +56,7 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
       videoSrc: 'https://www.youtube-nocookie.com/embed/F1fl60ypdLs?autoplay=1',
       contractAddress: KALUSH_ADDRESS,
       startsAt: new Date('2022-05-25T11:00:00.000+03:00'),
-      endsIn: new Date('2022-05-28T20:00:00.000+03:00'),
+      endsIn: new Date('2022-05-29T20:00:00.000+03:00'),
       version: AuctionVersion.V3,
       oneItemAuction: true,
       // Item for collection in case if this is collection with 1 item
