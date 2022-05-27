@@ -132,18 +132,22 @@ const NftCardDetail = ({
       const isSold = i.isSold && isStarted;
       setSold(isSold);
       setHasBid(i.hasBid);
-      if (isSold)
+      if (isSold) {
         setTokenOwner(
           await getOwnerOfNFT(collectionData.contractAddress, item.tokenId),
         );
+      }
     });
 
   useEffect(() => {
-    updateInfo()
-      .catch((error) => console.log(`NftCardDetail ${error}`))
-      .finally(() => {
-        hidePreloader();
-      });
+    const interval = setInterval(() => {
+      updateInfo()
+        .catch((error) => console.log(`NftCardDetail ${error}`))
+        .finally(() => {
+          hidePreloader();
+        });
+    }, 5000);
+    return () => clearInterval(interval);
   }, [isStarted, collectionData.contractAddress, item.tokenId]);
 
   const handleToAuction = () => push('/auction');

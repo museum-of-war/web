@@ -77,7 +77,8 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
       }
     };
 
-    getEnrichedData();
+    const interval = setInterval(() => getEnrichedData(), 10000);
+    return () => clearInterval(interval);
   }, [collection]);
 
   const [open, setOpen] = useState<boolean>(false);

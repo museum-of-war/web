@@ -73,15 +73,19 @@ function NftCard({
   }, [endsAt, startsAt]);
 
   useEffect(() => {
-    if (contractAddress)
-      getAuctionInfo(contractAddress, tokenId, version, externalBid)
-        .then(({ bid, nextMinBid, isSold, endsAt, hasBid }) => {
-          if (endsAt && endsAt > endsIn) setEndsAt(endsAt);
-          setCurrentBid({ bid, nextMinBid });
-          setIsSold(isSold);
-          setHasBid(hasBid);
-        })
-        .catch((error) => console.error(`NftCard ${error}`));
+    const interval = setInterval(() => {
+      if (contractAddress) {
+        getAuctionInfo(contractAddress, tokenId, version, externalBid)
+          .then(({ bid, nextMinBid, isSold, endsAt, hasBid }) => {
+            if (endsAt && endsAt > endsIn) setEndsAt(endsAt);
+            setCurrentBid({ bid, nextMinBid });
+            setIsSold(isSold);
+            setHasBid(hasBid);
+          })
+          .catch((error) => console.error(`NftCard ${error}`));
+      }
+    }, 5000);
+    return () => clearInterval(interval);
   }, [contractAddress, tokenId]);
 
   return (
