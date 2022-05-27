@@ -126,7 +126,9 @@ function NftCard({
                     {isSale
                       ? 'Current price'
                       : hasBid
-                      ? 'Current bid'
+                      ? timeLeft.isLeft
+                        ? 'Current bid'
+                        : 'Last bid'
                       : 'Minimum bid'}
                   </p>
                   <p className="font-rlight tablet:text-16px mobile:text-14px leading-150%">

@@ -83,7 +83,9 @@ export const BidCard = ({
               : hasBid
               ? isExternalBidGreater
                 ? 'External bid'
-                : 'Current bid'
+                : timeLeft.isLeft
+                ? 'Current bid'
+                : 'Last bid'
               : 'Minimum bid'}
           </p>
           <p className="mobile:text-27px tablet:text-32px font-rblack">
