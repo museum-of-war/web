@@ -167,7 +167,7 @@ export default [
         DescriptionUkrainian:
           'Тисячі людей по всій Україні вийшли на вулиці, щоб показати, що хочуть захистити рідну землю.',
         ArtistName: 'Casekimba',
-        ArtistLink: 'https://hicetnunc.art/casekimba',
+        ArtistLink: 'https://twitter.com/casekimba',
         ImageType: 'drop2/9.png',
       },
       {
@@ -992,7 +992,7 @@ export default [
         DescriptionUkrainian:
           'Російські війська вивели з ладу 34 лікарні на території України, що є жахливим порушенням Женевської конвенції.',
         ArtistName: 'Casekimba',
-        ArtistLink: 'https://hicetnunc.art/casekimba',
+        ArtistLink: 'https://twitter.com/casekimba',
         ImageType: 'drop2/38.png',
       },
       {
@@ -2339,7 +2339,7 @@ export default [
           'Another one example of russian shellings in the Kharkiv.',
         DescriptionUkrainian: 'Ще один приклад російських обстрілів у Харкові.',
         ArtistName: 'Casekimba',
-        ArtistLink: 'https://hicetnunc.art/casekimba',
+        ArtistLink: 'https://twitter.com/casekimba',
         ImageType: 'drop2/72.mp4',
       },
       {
