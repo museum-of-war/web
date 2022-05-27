@@ -69,7 +69,7 @@ const BidPopup = ({
             className="font-rblack mobile:text-38px tablet:text-32px"
             style={{ lineHeight: '48px' }}
           >
-            Place bid
+            {isBidding ? 'Placing bid...' : 'Place bid'}
           </p>
           <p
             className="font-rlight mt-24px"

@@ -38,7 +38,7 @@ const MintingModal = ({ setOpenMintingModal }: MintingModalProps) => {
           <VscChromeClose size={25} />
         </button>
         <p className="font-rblack tablet:text-32px tablet:leading-48px mobile:text-29px mobile:leading-30px">
-          Mint NFTs
+          {isLoading ? 'Minting NFTs...' : 'Mint NFTs'}
         </p>
         <p className="tablet:text-16px tablet:leading-24px tablet:mt-24px mobile:mt-20px">
           Select how many tokens you want to mint.
