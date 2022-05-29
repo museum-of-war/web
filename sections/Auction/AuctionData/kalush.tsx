@@ -113,12 +113,14 @@ const KalushAuctionData: AuctionItemType = {
       <br />
       <br />
       <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px leading-[150%]">
-        The winner must contact the Organizers at this mail address:{' '}
+        The winner must directly contact the Organizers at this mail address to
+        approve his data as winner and maybe take part in live broadcast of the
+        ceremony:{' '}
         <a
-          href="mailto:press.kalush@gmail.com?subject=Stefania For Ukraine"
+          href="mailto:serhiy.prytula.kyiv@gmail.com?subject=Stefania For Ukraine"
           className="underline"
         >
-          press.kalush@gmail.com
+          serhiy.prytula.kyiv@gmail.com
         </a>
       </p>
     </p>
