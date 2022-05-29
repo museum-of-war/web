@@ -1,4 +1,4 @@
-import { IMG_STORAGE, KALUSH_BID } from '@sections/Constants';
+import { IMG_STORAGE } from '@sections/Constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
 import Button from '@components/Button';
 import React from 'react';
