@@ -289,7 +289,8 @@ const NftCardDetail = ({
           {item.bonuses ? (
             <div className="font-rnarrow w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col justify-between">
               <p className="font-rblack desktop:text-32px tablet:text-32px mobile:text-27px desktop:leading-36px tablet:leading-36px mobile:leading-30px desktop:mt-48px tablet:mt-48px mobile:mt-40px">
-                By purchasing NFT by cryptocurrency, the new owner receives:
+                By winning NFT auction by cryptocurrency, the new owner
+                receives:
               </p>
               {item.bonuses.map((bonus, index) => (
                 <div

@@ -130,7 +130,7 @@ const KalushAuctionData: AuctionItemType = {
   isSale: false,
   category: AuctionCollection.Kalush,
   bonuses: [
-    'A 100% unique digital NFT file featuring a microphone and Kalush Orchestra.',
+    'A 100% unique 1 of 1 NFT of the Crystal Microphone.',
     'An exclusive meeting and dinner with members of the Kalush Orchestra.',
     'An opportunity to receive a physical object, the Crystal Microphone, as long as the bid is higher than the fiat (regular) currency bid.',
   ],
