@@ -65,11 +65,12 @@ export type AuctionItemType = {
   animationSrc?: string;
   artist: string;
   descriptionEnglish?: string | JSX.Element;
-  descriptionUkrainian?: string;
+  descriptionUkrainian?: string | JSX.Element;
   isSale: boolean;
   videoSrc?: string;
   posterSrc?: string;
   bonuses?: string[];
+  additionalInfo?: string | JSX.Element;
   externalBid?: BigNumberish;
   externalButton?: {
     Big(): JSX.Element;

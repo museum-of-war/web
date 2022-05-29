@@ -304,6 +304,14 @@ const NftCardDetail = ({
               ))}
             </div>
           ) : null}
+          {item.additionalInfo ? (
+            <div className="font-rnarrow w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col justify-between">
+              <p className="font-rblack desktop:text-32px tablet:text-32px mobile:text-27px desktop:leading-36px tablet:leading-36px mobile:leading-30px desktop:mt-48px tablet:mt-48px mobile:mt-40px desktop:mb-24px tablet:mb-24px mobile:mb-[20px]">
+                For everyone's information:
+              </p>
+              {item.additionalInfo}
+            </div>
+          ) : null}
           <div className="font-rlight flex flex-col mobile:mt-40px tablet:mt-48px">
             {artist.name.length > 0 && (
               <div className="mobile:mb-40px tablet:mb-48px">
