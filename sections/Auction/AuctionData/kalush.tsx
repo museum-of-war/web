@@ -83,6 +83,47 @@ const KalushAuctionData: AuctionItemType = {
         CO Charitable Foundation of Serhiy Prytula
       </a>
       .
+      <br />
+      <br />
+      <span>
+        <b>For everyone's information: </b> Meta History helds the auction off
+        the real "Eurovision 2022” statuette. You bid in "ETH", and only the
+        biggest bid of all will be saved. Therefore the bids that do not win the
+        auction will be returned to the participants in ETH. In addition to the
+        trophy, the winner will also get an all-expenses-paid trip to dinner
+        with the Kalush Orchestra band at their favorite restaurant in Kyiv
+        <br />
+        <br />
+        The fiat money are transferred to the general fund with no possibility
+        of return. However, when you send fiat money, you are also participating
+        in a lottery where you can also win vocalist Oleh Psiuk's famous pink
+        Panama.
+        <br />
+        <br />
+        We use "soft close", so the auction will be extended by 10 minutes after
+        the last bid.
+        <br />
+        <br />
+        <b>Example:</b>
+        <br />
+        <i>
+          If somebody will bid at 20:00, then auction will be prolonged to
+          20:10. If it is prolonged and somebody will bid at 20:05, then it will
+          be prolonged to 20:15 and so on. If there are no bids for 10 minutes
+          after the prolongation, then the auction will be closed.
+        </i>
+        <br />
+        <br />
+        <b>
+          The winner must contact the Organizers at this mail address:{' '}
+          <a
+            href="mailto:press.kalush@gmail.com?subject=Stefania For Ukraine"
+            className="underline"
+          >
+            press.kalush@gmail.com
+          </a>
+        </b>
+      </span>
     </p>
   ),
   videoSrc: 'https://www.youtube-nocookie.com/embed/F1fl60ypdLs?autoplay=1',
