@@ -81,10 +81,10 @@ export const BidCard = ({
             {isSale
               ? 'Current price'
               : hasBid
-              ? isExternalBidGreater
-                ? 'External bid'
-                : timeLeft.isLeft
-                ? 'Current bid'
+              ? timeLeft.isLeft
+                ? isExternalBidGreater
+                  ? 'External bid'
+                  : 'Current bid'
                 : 'Last bid'
               : 'Minimum bid'}
           </p>
