@@ -75,7 +75,11 @@ const ContentTopNotConnected = () => {
         } flex flex-col justify-between`}
       >
         <div className="inline-block">
-          <video src="/vid/pd-header-optimized.mp4" autoPlay loop muted />
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `<video src="/vid/pd-header-optimized.mp4" autoPlay loop muted playsInline/>`,
+            }}
+          />
         </div>
         <PoweredByFrame />
       </div>
