@@ -1,3 +1,5 @@
+import { BigNumber } from 'ethers';
+
 export const IMG_STORAGE = 'https://metahistory.imgix.net';
 export const TWITTER_LINK =
   'https://twitter.com/Meta_History_UA?t=gjhrJDPwV026--t4UsgkYA&s=09';
@@ -29,3 +31,4 @@ export const KALUSH_ADDRESS = '0xA99b2742A0073f933fcf004cfD9d30Ce2A485F89';
 export const AUCTION_END_DATE = '2022-04-22T23:00:00.000+03:00';
 export const AUCTION_CLOSING_DATE = '2022-04-22T20:00:00.000+03:00';
 export const AUCTION_START_DATE = '2022-04-17T23:00:00.000+03:00';
+export const KALUSH_BID = BigNumber.from('498590000000000000000');

@@ -1,8 +1,9 @@
-import { IMG_STORAGE } from '@sections/Constants';
+import { IMG_STORAGE, KALUSH_BID } from '@sections/Constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
 import Button from '@components/Button';
 import React from 'react';
 import { openInNewTab } from '@sections/utils';
+import { BigNumber } from 'ethers';
 // import { ethers } from 'ethers';
 
 const monobankLink = 'https://send.monobank.ua/jar/1283iHXvsQ';
@@ -134,7 +135,7 @@ const KalushAuctionData: AuctionItemType = {
     'An exclusive meeting and dinner with members of the Kalush Orchestra.',
     'An opportunity to receive a physical object, the Crystal Microphone, as long as the bid is higher than the fiat (regular) currency bid.',
   ],
-  //externalBid: ethers.constants.WeiPerEther,
+  externalBid: KALUSH_BID,
   externalButton: {
     Big: BigButton,
     Small: SmallButton,

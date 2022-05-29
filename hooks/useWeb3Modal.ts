@@ -10,6 +10,7 @@ import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
   FIRST_DROP_ADDRESS,
+  KALUSH_BID,
   PROJECT_WALLET_ADDRESS,
   SECOND_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
@@ -624,7 +625,8 @@ export function useWeb3Modal() {
 
     const wethTotal = firstDropWeth
       .add(firstAuctionWeth)
-      .add(secondAuctionWeth);
+      .add(secondAuctionWeth)
+      .add(KALUSH_BID);
 
     if (wethTotal.lte(0))
       return {
