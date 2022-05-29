@@ -3,7 +3,6 @@ import { AuctionCollection, AuctionItemType } from '@sections/types';
 import Button from '@components/Button';
 import React from 'react';
 import { openInNewTab } from '@sections/utils';
-import { BigNumber } from 'ethers';
 // import { ethers } from 'ethers';
 
 const monobankLink = 'https://send.monobank.ua/jar/1283iHXvsQ';
