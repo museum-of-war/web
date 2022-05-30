@@ -2,7 +2,6 @@ import React from 'react';
 import Blurb from '@sections/AboutProject/Blurb';
 import { useAppRouter } from '@hooks/useAppRouter';
 import { useVideoModal } from '@providers/VideoProvider';
-import ContainerDimensions from 'react-container-dimensions';
 
 const AboutUs = () => {
   const { push } = useAppRouter();
@@ -35,15 +34,11 @@ const AboutUs = () => {
           </button>
         </div>
         <div className="desktop:w-[544px] tablet:w-full mobile:w-full mobile:mt-40px tablet:mt-72px desktop:mt-0">
-          <ContainerDimensions>
-            {({ width }) => (
-              <VideoElement
-                videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4"
-                classNames="w-full"
-                styles={{ height: (width / 16) * 9 }}
-              />
-            )}
-          </ContainerDimensions>
+          <VideoElement
+            videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4"
+            classNames="w-full"
+            styles={{ aspectRatio: '16 / 9' }}
+          />
         </div>
       </div>
     </>

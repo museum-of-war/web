@@ -16,7 +16,6 @@ import FsLightbox from 'fslightbox-react';
 import ArtistsData from '@sections/ArtistsData';
 import { BidCard } from '@sections/NftDetail/BidCard';
 import { useVideoModal } from '@providers/VideoProvider';
-import ContainerDimensions from 'react-container-dimensions';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -285,16 +284,12 @@ const NftCardDetail = ({
           </p>
           {item.videoSrc ? (
             <div>
-              <ContainerDimensions>
-                {({ width }) => (
-                  <VideoElement
-                    videoSrc={item.videoSrc}
-                    posterSrc={item.posterSrc}
-                    classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
-                    styles={{ height: (width / 16) * 9 }}
-                  />
-                )}
-              </ContainerDimensions>
+              <VideoElement
+                videoSrc={item.videoSrc}
+                posterSrc={item.posterSrc}
+                classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
+                styles={{ aspectRatio: '16 / 9' }}
+              />
             </div>
           ) : null}
           {item.bonuses ? (

@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
 import { Dialog } from '@mui/material';
-import ContainerDimensions from 'react-container-dimensions';
 
 export const VideoContext = createContext<{
   VideoElement: React.FC<{
@@ -103,27 +102,23 @@ export const VideoProvider: React.FC<{ children: React.ReactNode }> = ({
         maxWidth="lg"
         onClose={() => setModalOpen(false)}
       >
-        <ContainerDimensions>
-          {({ width }) =>
-            videoData.videoSrc?.includes('youtube') ? (
-              <iframe
-                src={videoData.videoSrc}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="m-auto h-100% w-100%"
-                style={{ minHeight: (width / 16) * 9 }}
-              />
-            ) : (
-              <video
-                src={videoData.videoSrc}
-                autoPlay
-                style={{ minHeight: (width / 16) * 9 }}
-              />
-            )
-          }
-        </ContainerDimensions>
+        {videoData.videoSrc?.includes('youtube') ? (
+          <iframe
+            src={videoData.videoSrc}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="m-auto h-100% w-100%"
+            style={{ aspectRatio: '16 / 9' }}
+          />
+        ) : (
+          <video
+            src={videoData.videoSrc}
+            autoPlay
+            style={{ aspectRatio: '16 / 9' }}
+          />
+        )}
       </Dialog>
     </VideoContext.Provider>
   );
