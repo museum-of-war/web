@@ -47,6 +47,7 @@ const NftCardDetail = ({
     fullInfo: any;
     bidHistory: BidInfo[];
     buyNowPrice?: string;
+    startsAt?: Date;
     endsAt?: Date;
     isExternalBidGreater?: boolean;
   }>({
@@ -78,6 +79,16 @@ const NftCardDetail = ({
   const collectionData = useMemo(
     () => AuctionCollectionData[item.category],
     [item.category],
+  );
+
+  const startsAt = useMemo(
+    () =>
+      currentBid.startsAt &&
+      (!collectionData.startsAt ||
+        currentBid.startsAt > collectionData.startsAt)
+        ? currentBid.startsAt
+        : collectionData.startsAt,
+    [collectionData.startsAt, currentBid.startsAt],
   );
 
   const endsAt = useMemo(
@@ -158,7 +169,7 @@ const NftCardDetail = ({
         <div className="tablet:border-[5px] fixed tablet:bg-[#212121] text-white bottom-20px left-[2%] right-[2%] tablet:p-48px w-[96%] z-50 ">
           {isTablet ? (
             <BidCard
-              startsAt={collectionData.startsAt}
+              startsAt={startsAt}
               endsIn={endsAt}
               proposedBids={currentBid.proposedBids}
               currentBid={currentBid.bid}
@@ -166,6 +177,7 @@ const NftCardDetail = ({
               tokenId={item.tokenId}
               isSale={item.isSale}
               hasBid={hasBid}
+              buyNowPrice={currentBid.buyNowPrice}
               auctionVersion={collectionData.version}
               isExternalBidGreater={currentBid.isExternalBidGreater}
               secondButton={item.externalButton?.Big()}
@@ -198,9 +210,7 @@ const NftCardDetail = ({
                         item.externalBid,
                       ).then(async (i) => setCurrentBid({ ...i }));
                     } catch (error: any) {
-                      console.error(
-                        error?.error?.message ?? error?.message ?? error,
-                      );
+                      alert(error?.error?.message ?? error?.message ?? error);
                     }
                   } else {
                     showPopup('bid', {
@@ -252,7 +262,7 @@ const NftCardDetail = ({
           ) : (
             <BidCard
               isMobile={isMobile}
-              startsAt={collectionData.startsAt}
+              startsAt={startsAt}
               endsIn={endsAt}
               proposedBids={currentBid.proposedBids}
               currentBid={currentBid.bid}
@@ -260,6 +270,7 @@ const NftCardDetail = ({
               tokenId={item.tokenId}
               isSale={item.isSale}
               hasBid={hasBid}
+              buyNowPrice={currentBid.buyNowPrice}
               auctionVersion={collectionData.version}
               isExternalBidGreater={currentBid.isExternalBidGreater}
               secondButton={item.externalButton?.Big()}

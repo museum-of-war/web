@@ -163,7 +163,7 @@ export const BidCard = ({
                     auctionVersion,
                   );
                 } catch (error: any) {
-                  console.error(error?.message ?? error);
+                  alert(error?.error?.message ?? error?.message ?? error);
                 } finally {
                   await updateCallback?.().catch((e) => console.error(e));
                 }

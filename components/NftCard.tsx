@@ -47,8 +47,9 @@ function NftCard({
   const { getAuctionInfo } = useWeb3Modal();
   const { isTouch } = useViewPort();
   const [timeLeft, setTimeLeft] = useState(
-    calculateTimeLeft(`${startsAt ?? endsIn}`),
+    calculateTimeLeft(`${startsAt ?? endsIn ?? ''}`),
   );
+  const [localStartsAt, setLocalStartsAt] = useState(startsAt);
   const [endsAt, setEndsAt] = useState(endsIn);
   const [isStarted, setIsStarted] = useState(false);
   const [isSold, setIsSold] = useState(false);
@@ -65,19 +66,22 @@ function NftCard({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const isStarted = !calculateTimeLeft(`${startsAt ?? new Date()}`).isLeft;
+      const isStarted = !calculateTimeLeft(`${localStartsAt ?? new Date()}`)
+        .isLeft;
       setIsStarted(isStarted);
-      setTimeLeft(calculateTimeLeft(`${isStarted ? endsAt : startsAt}`));
+      setTimeLeft(calculateTimeLeft(`${isStarted ? endsAt : localStartsAt}`));
     }, 1000);
     return () => clearInterval(interval);
-  }, [endsAt, startsAt]);
+  }, [endsAt, localStartsAt]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (contractAddress) {
         getAuctionInfo(contractAddress, tokenId, version, externalBid)
-          .then(({ bid, nextMinBid, isSold, endsAt, hasBid }) => {
-            if (endsAt && endsAt > endsIn) setEndsAt(endsAt);
+          .then(({ bid, nextMinBid, isSold, startsAt, endsAt, hasBid }) => {
+            if (startsAt && (!localStartsAt || startsAt > localStartsAt))
+              setLocalStartsAt(startsAt);
+            if (endsAt && (!endsIn || endsAt > endsIn)) setEndsAt(endsAt);
             setCurrentBid({ bid, nextMinBid });
             setIsSold(isSold);
             setHasBid(hasBid);

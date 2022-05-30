@@ -25,7 +25,8 @@ const AvatarsAuctionData: AuctionItemType[] = [
     tokenId: 3,
     imageSrc: `${IMG_STORAGE}/original/avatars/AndriiKharchenko-FaceOfGlory.jpg`,
     artist: 'Andrii Kharchenko ',
-    descriptionEnglish: '',
+    descriptionEnglish:
+      'Editorial note:\n"A keen eye will spot many traditional Hutsul attributes and weaponry (short sword and axe), as well as the modern equipment that helps to effectively run a guerilla war."',
     descriptionUkrainian: '',
   },
   {
@@ -61,7 +62,7 @@ const AvatarsAuctionData: AuctionItemType[] = [
     imageSrc: `${IMG_STORAGE}/original/avatars/DanaVitkovska-Azovstal.jpg`,
     artist: 'Dana Vitkovska',
     descriptionEnglish:
-      'Artist\'s note:\n"Dedicated to the brave and honorable defenders of Mariupol"',
+      'Artist\'s note:\n"Dedicated to the brave and honorable defenders of Mariupol"\n\nEditorial note:\n"We believe that the this character is inspired by the real heroine-defendress of Mariupol, known as Пташка (Ptashka: Ukrainian for "songbird"). The world was touched by her ethereal singing heard from the dark depths of Azovstal plant. She was inspiriting the defenders of Mariupol and the whole nation with her evocative voice."',
     descriptionUkrainian: '',
   },
   {
@@ -77,7 +78,8 @@ const AvatarsAuctionData: AuctionItemType[] = [
     tokenId: 9,
     imageSrc: `${IMG_STORAGE}/original/avatars/DariaDemenkova-FightForUkraine.jpg`,
     artist: 'Daria Demenkova',
-    descriptionEnglish: '',
+    descriptionEnglish:
+      'Editorial note:\n"It\'s a rare bird that can fly to the middle of the Dnieper. Gogol"',
     descriptionUkrainian: '',
   },
   {
@@ -140,7 +142,7 @@ const AvatarsAuctionData: AuctionItemType[] = [
     imageSrc: `${IMG_STORAGE}/original/avatars/NastyaHaidaienko-UkrainianWomen.png`,
     artist: 'Haidaienko Nastya',
     descriptionEnglish:
-      'Artist\'s note:\n"Ukrainian women are incredible!"\n\nEditorial note:\n"100%"',
+      '"Artist\'s note:\n"Ukrainian women are incredible!"\n\nEditorial note:\n"Ukrainian women fight shoulder to shoulder with Ukrainian men. Many of them serve as military medics. The battle angels of flesh and blood that risk their lives — to save the lives of many."',
     descriptionUkrainian: '',
   },
   {
@@ -263,7 +265,8 @@ const AvatarsAuctionData: AuctionItemType[] = [
     tokenId: 30,
     imageSrc: `${IMG_STORAGE}/original/avatars/OksanaDobrovolska-Home.jpeg`,
     artist: 'Oksana Dobrovolska',
-    descriptionEnglish: '',
+    descriptionEnglish:
+      "Editorial note:\n'1977 Geneva Convention restrict the deployment of white phosphorus bombs if they endanger civilians. In Ukraine white phosphours and cluster munitions were reported to be used against the Ukrainian cities.'",
     descriptionUkrainian: '',
   },
   {
@@ -271,7 +274,8 @@ const AvatarsAuctionData: AuctionItemType[] = [
     tokenId: 31,
     imageSrc: `${IMG_STORAGE}/original/avatars/OksanaDobrovolska-Soul.jpeg`,
     artist: 'Oksana Dobrovolska',
-    descriptionEnglish: '',
+    descriptionEnglish:
+      'Editorial note:\n"The lives must be saved before they turn into spirits."',
     descriptionUkrainian: '',
   },
   {
@@ -279,7 +283,8 @@ const AvatarsAuctionData: AuctionItemType[] = [
     tokenId: 32,
     imageSrc: `${IMG_STORAGE}/original/avatars/OlegShevchenko-Harvest.png`,
     artist: 'Oleg Shevchenko',
-    descriptionEnglish: '',
+    descriptionEnglish:
+      'Editorial note:\n"Mara is a Sanskrit word meaning "death" or any personification thereof. Mara in Ukrainian is a pagan Slavic goddess associated with seasonal rites based on the idea of death and rebirth of nature."',
     descriptionUkrainian: '',
   },
   {
@@ -643,7 +648,7 @@ const AvatarsAuctionData: AuctionItemType[] = [
     imageSrc: `${IMG_STORAGE}/original/avatars/VovchenkoKateryna(katruzzi)-SmallButUnited.png`,
     artist: 'Vovchenko Kateryna (katruzzi)',
     descriptionEnglish:
-      'Artist\'s note:\n"It is our land, the truth is with us, the unity is with us!"',
+      'Artist\'s note:\n"It is our land, the truth is with us, the unity is with us!"\n\nEditorial note:\n"Great tits, species of birds native to Ukraine, have natural colors resembling those of the Ukrainian flag."',
     descriptionUkrainian: '',
   },
   {
@@ -674,7 +679,7 @@ const AvatarsAuctionData: AuctionItemType[] = [
     descriptionUkrainian: '',
   },
 ].map((item) => ({
-  isSale: false,
+  isSale: true,
   category: AuctionCollection.AvatarsForUkraine,
   ...item,
 }));

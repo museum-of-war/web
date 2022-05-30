@@ -47,21 +47,22 @@ const ContentChapter = ({}: ContentChapterProps) => {
       <div className="desktop:w-[544px] tablet:w-45% mobile:w-full mt-30px tablet:mt-0 flex flex-col">
         <div
           className="hover:cursor-pointer"
-          onClick={handleCardClick('/auction/collection/kalush')}
+          onClick={handleCardClick('/auction/collection/avatars')}
         >
           <div className="border-4 border-carbon border-solid flex-1 flex flex-col h-full">
             <div className="desktop:p-48px tablet:py-48px tablet:px-36px mobile:py-20px mobile:px-24px flex-1 flex flex-col text-white bg-carbon">
               <h2 className="tablet:text-32px mobile:text-27px font-rblack">
-                Stefania For Ukraine
+                Avatars for Ukraine
               </h2>
               <p className="tablet:text-16px mobile:text-14px font-normal leading-150% font-rnarrow tablet:mt-24px mobile:mt-10px tracking-wider">
-                Kalush Orchestra and Serhiy Prytula to auction the Eurovision
-                Glass Mic Trophy
+                A charity collection of the iconic digital art created in
+                response to the largest war since WWII
               </p>
             </div>
             <div className="flex flex-wrap  border-t-4 border-carbon border-solid ">
               <ScaledImage
-                src={`${IMG_STORAGE}/posters/stefania.png`}
+                src={`${IMG_STORAGE}/img/auction.gif`}
+                postLoad={true}
                 alt="Auction"
                 className="w-full"
                 breakpoints={[

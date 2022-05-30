@@ -46,7 +46,7 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
       contractAddress: AVATARS_ADDRESS,
       startsAt: new Date('2022-05-19T21:15:15.000+03:00'),
       endsIn: new Date('2022-05-22T22:00:00.000+03:00'),
-      version: AuctionVersion.V2,
+      version: AuctionVersion.Seller, //V2
     },
     [AuctionCollection.Kalush]: {
       name: 'Stefania For Ukraine',

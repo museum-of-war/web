@@ -54,7 +54,7 @@ const getWeb3Modal = () => {
 
 type getAuctionInfoType = ReturnType<typeof useWeb3Modal>['_getAuctionInfo'];
 const auctionInfoMemo = {
-  cachingTime: 1000, // in ms
+  cachingTime: 5000, // in ms
   pending: new Set<ReturnType<getAuctionInfoType>>(),
   maxPending: 5,
   cached: {} as {
@@ -330,9 +330,11 @@ export function useWeb3Modal() {
       */
 
     const hasBid =
-      auctionInfo.nftHighestBid.gte(auctionInfo.minPrice) || !!externalBid;
+      auctionInfo.nftHighestBid?.gte(auctionInfo.minPrice) || !!externalBid;
     const internalBid = (
-      hasBid ? auctionInfo.nftHighestBid : auctionInfo.minPrice
+      hasBid
+        ? auctionInfo.nftHighestBid
+        : auctionInfo.minPrice ?? auctionInfo.buyNowPrice ?? BigNumber.from(0)
     ) as BigNumber;
 
     const isExternalBidGreater = !!externalBid && internalBid.lt(externalBid);
@@ -348,7 +350,7 @@ export function useWeb3Modal() {
 
     const nextMinBid = hasBid
       ? bid.mul(10000 + increasePercentage).div(10000)
-      : auctionInfo.minPrice;
+      : auctionInfo.minPrice ?? auctionInfo.buyNowPrice ?? BigNumber.from(0);
 
     const bidStep = ethers.constants.WeiPerEther.div(4);
     const nearestPrettyBid = nextMinBid.div(bidStep).mul(bidStep);
@@ -370,7 +372,7 @@ export function useWeb3Modal() {
       isSale:
         version === AuctionVersion.V1
           ? auctionInfo.minPrice.eq(0) && auctionInfo.buyNowPrice.gt(0)
-          : false,
+          : version === AuctionVersion.Seller,
       //bidHistory: bidInfos,
       bidHistory: [],
       bid: web3.utils.fromWei(bid.toString()),
@@ -378,9 +380,12 @@ export function useWeb3Modal() {
       proposedBids: proposedBidsETH,
       fullInfo: auctionInfo,
       buyNowPrice:
-        version === AuctionVersion.V1
+        version === AuctionVersion.V1 || version === AuctionVersion.Seller
           ? web3.utils.fromWei(auctionInfo.buyNowPrice.toString())
           : undefined,
+      startsAt: auctionInfo.auctionStart
+        ? new Date(auctionInfo.auctionStart * 1000)
+        : undefined,
       endsAt: auctionInfo.auctionEnd
         ? new Date(auctionInfo.auctionEnd * 1000)
         : undefined,
