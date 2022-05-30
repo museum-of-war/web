@@ -4,6 +4,7 @@ import { AuctionCollectionType, AuctionItemType } from '@sections/types';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
+import { useIsMounted } from '@hooks/useIsMounted';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 
 type NftCardProps = {
@@ -63,6 +64,7 @@ function NftCard({
     () => `${contractAddress}-${tokenId}`,
     [contractAddress, tokenId],
   );
+  const isMounted = useIsMounted();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -79,6 +81,9 @@ function NftCard({
       if (contractAddress) {
         getAuctionInfo(contractAddress, tokenId, version, externalBid)
           .then(({ bid, nextMinBid, isSold, startsAt, endsAt, hasBid }) => {
+            if (!isMounted.current) {
+              return;
+            }
             if (startsAt && (!localStartsAt || startsAt > localStartsAt))
               setLocalStartsAt(startsAt);
             if (endsAt && (!endsIn || endsAt > endsIn)) setEndsAt(endsAt);

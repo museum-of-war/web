@@ -6,6 +6,7 @@ import { AuctionCollection, AuctionCollectionType } from '@sections/types';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import PageHead from '@components/PageHead';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
+import { useIsMounted } from '@hooks/useIsMounted';
 import CollectionDetails from '@sections/Auction/CollectionDetails/CollectionDetails';
 import { OneItemAuctionCollectionDetails } from '@sections/Auction/CollectionDetails/OneItemAuctionCollectionDetails';
 
@@ -18,14 +19,22 @@ const CollectionPage: React.FC<SharedProps> = ({ menuOpen }) => {
   const [collectionData, setCollectionData] = useState<AuctionCollectionType>();
   const [mintFetched, setMintFetched] = useState(false);
 
+  const isMounted = useIsMounted();
+
   useEffect(() => {
     if (collectionData && !mintFetched) {
       canMintSecondDrop().then((val) => {
+        if (!isMounted.current) {
+          return;
+        }
         if (val) {
           setCanMint(true);
           setMintFetched(true);
         } else {
           getCanMint().then((i) => {
+            if (!isMounted.current) {
+              return;
+            }
             setCanMint(i);
             setMintFetched(true);
           });
