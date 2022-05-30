@@ -9,6 +9,7 @@ import MetaHistoryDropContractAbi from '../abi/DropMH.json';
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
+  AVATARS_ADDRESS,
   FIRST_DROP_ADDRESS,
   KALUSH_BID,
   PROJECT_WALLET_ADDRESS,
@@ -628,10 +629,24 @@ export function useWeb3Modal() {
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
     const secondAuctionWeth = BigNumber.from('12656000000000000000'); // second auction
 
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+    const avatarsOnSale = await new web3.eth.Contract(
+      IERC721InterfaceAbi as AbiItem[],
+      AVATARS_ADDRESS,
+    ).methods
+      .balanceOf('0x325F1Cd4ea0f9ee484ea59480ABBa1966c2E1ddf') // seller smart-contract
+      .call({ from: AVATARS_ADDRESS });
+    const avatarsSaleWeth = ethers.constants.WeiPerEther.div(2).mul(
+      52 - avatarsOnSale,
+    ); // 52 on sale, 0.5 ETH fixed price
+
     const wethTotal = firstDropWeth
       .add(firstAuctionWeth)
       .add(secondAuctionWeth)
-      .add(KALUSH_BID);
+      .add(KALUSH_BID)
+      .add(avatarsSaleWeth);
 
     if (wethTotal.lte(0))
       return {
