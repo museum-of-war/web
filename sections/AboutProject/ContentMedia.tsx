@@ -26,6 +26,12 @@ const Media = (summary: string, outlet: string, url: string, key: number) => {
 const media = [
   {
     summary:
+      'Kalush Orchestra, the winners of the Eurovision Song Contest 2022, are auctioning off an NFT for charity. The auction started May 25 on MetaHistory — the official Ukrainian charitable NFT museum – and will last only until the 28th.',
+    outlet: 'Bitcoin.com',
+    url: 'https://news.bitcoin.com/eurovision-song-contest-2022-winners-release-nft-for-ukraine-charity-auction/',
+  },
+  {
+    summary:
       "Ukraine's government has said it will issue non-fungible tokens (NFTs) to fund its military as they defend the country against the Russian invasion.",
     outlet: 'BBC',
     url: 'https://www.bbc.co.uk/news/business-60613613',
