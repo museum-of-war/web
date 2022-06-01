@@ -198,7 +198,7 @@ const SocialMediaButton = ({
   const size = isMobile ? 40 : 48;
 
   return (
-    <div
+    <span
       style={{
         ...customStyle,
         ...(bordered ? { borderRadius: '50%' } : {}),
@@ -233,7 +233,7 @@ const SocialMediaButton = ({
           <TelegramSvg isDark={isDarkTheme} size={bordered ? size - 4 : size} />
         )}
       </a>
-    </div>
+    </span>
   );
 };
 
