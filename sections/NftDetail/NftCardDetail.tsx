@@ -6,6 +6,7 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { AuctionItemType, BidInfo } from '@sections/types';
 import { useAppRouter } from '@hooks/useAppRouter';
+import { useIsMounted } from '@hooks/useIsMounted';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
 import { usePopup } from 'providers/PopupProvider';
@@ -16,7 +17,6 @@ import FsLightbox from 'fslightbox-react';
 import ArtistsData from '@sections/ArtistsData';
 import { BidCard } from '@sections/NftDetail/BidCard';
 import { useVideoModal } from '@providers/VideoProvider';
-import ContainerDimensions from 'react-container-dimensions';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -122,6 +122,8 @@ const NftCardDetail = ({
     ];
   }, [item.index]);
 
+  const isMounted = useIsMounted();
+
   useEffect(() => {
     const interval = setInterval(() => {
       const isStarted = collectionData.startsAt
@@ -139,6 +141,9 @@ const NftCardDetail = ({
       collectionData.version,
       item.externalBid,
     ).then(async (i) => {
+      if (!isMounted.current) {
+        return;
+      }
       setCurrentBid({ ...i });
       const isSold = i.isSold && isStarted;
       setSold(isSold);
@@ -208,7 +213,10 @@ const NftCardDetail = ({
                         item.tokenId,
                         collectionData.version,
                         item.externalBid,
-                      ).then(async (i) => setCurrentBid({ ...i }));
+                      ).then(
+                        async (i) =>
+                          isMounted.current && setCurrentBid({ ...i }),
+                      );
                     } catch (error: any) {
                       alert(error?.error?.message ?? error?.message ?? error);
                     }
@@ -285,16 +293,12 @@ const NftCardDetail = ({
           </p>
           {item.videoSrc ? (
             <div>
-              <ContainerDimensions>
-                {({ width }) => (
-                  <VideoElement
-                    videoSrc={item.videoSrc}
-                    posterSrc={item.posterSrc}
-                    classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
-                    styles={{ height: (width / 16) * 9 }}
-                  />
-                )}
-              </ContainerDimensions>
+              <VideoElement
+                videoSrc={item.videoSrc}
+                posterSrc={item.posterSrc}
+                classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
+                styles={{ aspectRatio: '16 / 9' }}
+              />
             </div>
           ) : null}
           {item.bonuses ? (

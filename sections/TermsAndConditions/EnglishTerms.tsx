@@ -5,11 +5,9 @@ const EnglishTerms = () => {
     <>
       <p>
         <b>TERMS OF USE</b>
-        <div></div>
       </p>
       <div className="text-left">
         <p>1. Introduction</p>
-        <div></div>
         <p>
           1.1 These Terms of Use along with all policies and announcements
           posted on our Website (the “Terms”) set out the terms on which you are
@@ -30,7 +28,6 @@ const EnglishTerms = () => {
           1.4. For information regarding the processing of personal data, please
           see our Privacy Policy.
         </p>
-        <div></div>
 
         <p>2. Terminology</p>
         <p>2.1. The following terminology is used in these Terms:</p>
@@ -94,7 +91,6 @@ const EnglishTerms = () => {
             Software license agreement.{' '}
           </li>
         </ul>
-        <div></div>
         <p>3. Who are we?</p>
         <p>
           3.1. We are the Platform, developed by Ukrainian NFT Community, aiming
@@ -116,7 +112,6 @@ const EnglishTerms = () => {
           ensuring settlements and fund’s transfers between the Authors, Users,
           and MDT.
         </p>
-        <div></div>
         <p>4. How do we work?</p>
         <p>4.1. Are you an Author?</p>
         <p>
@@ -301,7 +296,6 @@ const EnglishTerms = () => {
           5.5. If you do not agree to these Terms, you must not access or use
           the Services.
         </p>
-        <div></div>
         <p>6. Intellectual property</p>
         <p>
           6.1. By converting the NFT with the Platform the Author transfers all
@@ -333,7 +327,6 @@ const EnglishTerms = () => {
           6.2. The Author/User transfers all of its tangible intellectual
           property rights on the Work/NFT on a perpetual basis.
         </p>
-        <div></div>
         <p>7. Changes to these Terms</p>
         <p>
           These Terms may be amended at any time. The most current version of
@@ -347,7 +340,6 @@ const EnglishTerms = () => {
           Terms as modified. If you do not agree to the Terms in effect when you
           access or use the Platform, you must not use the Platform.
         </p>
-        <div></div>
         <p>8. Indemnity </p>
         <p>
           You agree to indemnify, defend and hold harmless the Platform and its
@@ -371,7 +363,6 @@ const EnglishTerms = () => {
           goodwill, reputation or business interruption or for any other losses
           which are not reasonably foreseeable.
         </p>
-        <div></div>
         <p>10. Compensation</p>
         <p>
           You will compensate Platform, its agents, operators, advertisers,
@@ -381,7 +372,6 @@ const EnglishTerms = () => {
           improper use of the Services or your breach of any law or the rights
           of a third party.
         </p>
-        <div></div>
         <p>11. Legal Disputes</p>
         <p>
           Any claim, dispute or matter arising under or in connection with these
@@ -389,7 +379,6 @@ const EnglishTerms = () => {
           Estonia. All the parties involved in the Services agree to submit to
           the jurisdiction of the Estonian courts.
         </p>
-        <div></div>
         <p>12. General</p>
         <p>
           12.1. If any provision of these Terms is held to be invalid, void or
@@ -409,7 +398,6 @@ const EnglishTerms = () => {
           such modification is not possible, the relevant provision or
           part-provision shall be deemed deleted.
         </p>
-        <div></div>
         <p>13. Feedback and contact details</p>
         <p>
           You may choose to submit comments, complaints, ideas or other feedback

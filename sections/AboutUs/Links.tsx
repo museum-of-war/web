@@ -20,7 +20,7 @@ const ShowMoreButton = ({
     className="border-2 border-carbon box-content"
     style={{ borderRadius: '50%', width: 44, height: 44 }}
   >
-    <div
+    <span
       className={`m-[2px] ${menuOpen ? 'border-2 border-carbon' : 'border-2'}`}
       style={{
         borderRadius: '50%',
@@ -44,7 +44,7 @@ const ShowMoreButton = ({
         <circle cx="24" cy="24" r="2" fill="#212121" />
         <circle cx="31" cy="24" r="2" fill="#212121" />
       </svg>
-    </div>
+    </span>
   </button>
 );
 export const Links = () => {
@@ -52,13 +52,13 @@ export const Links = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return isTablet ? (
-    <div className="flex flex-row ml-auto relative">
+    <span className="flex flex-row ml-auto relative">
       <SocialMediaButton discord href={DISCORD_LINK} lightButton bordered />
       <ShowMoreButton
         onClick={() => setMenuOpen(!menuOpen)}
         menuOpen={menuOpen}
       />
-      <div
+      <span
         className="flex flex-col absolute top-48px right-0 z-10"
         style={{
           maxHeight: menuOpen ? 'auto' : 0,
@@ -89,14 +89,14 @@ export const Links = () => {
           customClasses="mt-12px button-shadow"
           customStyle={{ marginRight: 0 }}
         />
-      </div>
-    </div>
+      </span>
+    </span>
   ) : isDesktop ? (
-    <div className="flex flex-row ml-auto">
+    <span className="flex flex-row ml-auto">
       <SocialMediaButton discord href={DISCORD_LINK} lightButton bordered />
       <SocialMediaButton telegram href={TELEGRAM_LINK} lightButton bordered />
       <SocialMediaButton twitter href={TWITTER_LINK} lightButton bordered />
       <SocialMediaButton instagram href={INSTAGRAM_LINK} lightButton bordered />
-    </div>
+    </span>
   ) : null;
 };

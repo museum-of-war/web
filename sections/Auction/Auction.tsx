@@ -2,6 +2,7 @@ import Blurb from '@sections/AboutProject/Blurb';
 import ContentAuction from './ContentAuction';
 import DropNft from './DropNft';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useIsMounted } from '@hooks/useIsMounted';
 import React, { useEffect, useState } from 'react';
 import { openInNewTab } from '@sections/utils';
 import {
@@ -23,10 +24,14 @@ const Auction = ({ signerAddress, handleConnect }: AuctionProps) => {
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
 
   const { canMint, canMintSecondDrop } = useWeb3Modal();
+  const isMounted = useIsMounted();
 
   useEffect(() => {
     canMintSecondDrop().then((val) =>
-      val ? setCanMint(true) : canMint().then((i) => setCanMint(i)),
+      val
+        ? isMounted.current && setCanMint(true)
+        : isMounted.current &&
+          canMint().then((i) => isMounted.current && setCanMint(i)),
     );
   }, []);
 

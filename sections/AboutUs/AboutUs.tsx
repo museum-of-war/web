@@ -8,7 +8,6 @@ import { Links as AboutUsLinks } from './Links';
 import { Links } from '@components/Links';
 import { ACHIEVE_DATA } from '@sections/AboutUs/constants';
 import { useVideoModal } from '@providers/VideoProvider';
-import ContainerDimensions from 'react-container-dimensions';
 import AuctionData from '@sections/Auction/AuctionData';
 
 const CollapsedSection = () => {
@@ -26,15 +25,11 @@ const CollapsedSection = () => {
           'Музей MetaHistory NFT створений з метою увічнення історії поточних подій в Україні, збереження правди та збору пожертв на гуманітарну допомогу. Ми по-новому ставимося до ролі мистецтва в суспільстві – воно має бути актуальним, відважним, наполегливим. І вічним.'
         }
       />
-      <ContainerDimensions>
-        {({ width }) => (
-          <VideoElement
-            videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4"
-            classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
-            styles={{ height: (width / 16) * 9 }}
-          />
-        )}
-      </ContainerDimensions>
+      <VideoElement
+        videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4"
+        classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
+        styles={{ aspectRatio: '16 / 9' }}
+      />
       <Blurb
         classNames="desktop:mt-48px tablet:mt-24px mobile:mt-24px"
         english={

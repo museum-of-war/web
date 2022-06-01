@@ -4,6 +4,7 @@ import DonatePopup from './DonatePopup';
 import SupportBanner from './SupportBanner';
 import { useViewPort } from '@hooks/useViewport';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useIsMounted } from '@hooks/useIsMounted';
 import SupportSticky from './SupportSticky';
 import WarlineData, { Drop2Data } from './WarlineData';
 import SideMenu from './SideMenu';
@@ -38,8 +39,13 @@ const Warline = () => {
 
   const { canMint } = useWeb3Modal();
 
+  const isMounted = useIsMounted();
+
   const sortByTypeHandler = async () => {
     const isMinting = await canMint();
+    if (!isMounted.current) {
+      return;
+    }
     if (isMinting && byType === ON_SALE) {
       const drop2 = [...Drop2Data];
       const toSetData = sortByDate(drop2);

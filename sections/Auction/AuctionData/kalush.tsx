@@ -51,7 +51,7 @@ const KalushAuctionData: AuctionItemType = {
   imageSrc: `${IMG_STORAGE}/original/special/Kalush_Eurovision.jpg`,
   artist: 'MetaHistory',
   descriptionEnglish: (
-    <p>
+    <span>
       The symbols of the Kalush Orchestra's victory at Eurovision will now help
       make Ukraine's victory in the war with the Russian occupiers. The band
       auctions the Eurovision Glass Mic Trophy awarded to the winner of
@@ -83,7 +83,7 @@ const KalushAuctionData: AuctionItemType = {
         CO Charitable Foundation of Serhiy Prytula
       </a>
       .
-    </p>
+    </span>
   ),
   additionalInfo: (
     <p>
@@ -112,7 +112,7 @@ const KalushAuctionData: AuctionItemType = {
       prolongation, then the auction will be closed.
       <br />
       <br />
-      <p className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px leading-[150%]">
+      <span className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px leading-[150%]">
         The winner must directly contact the Organizers at this mail address to
         approve his data as winner and maybe take part in live broadcast of the
         ceremony:{' '}
@@ -122,7 +122,7 @@ const KalushAuctionData: AuctionItemType = {
         >
           serhiy.prytula.kyiv@gmail.com
         </a>
-      </p>
+      </span>
     </p>
   ),
   videoSrc: 'https://www.youtube-nocookie.com/embed/F1fl60ypdLs?autoplay=1',

@@ -5,6 +5,7 @@ import DropdownSelect from '@components/DropdownSelect';
 import NftCard from '@components/NftCard';
 import PriceRange from '@components/PriceRange';
 import { useViewPort } from '@hooks/useViewport';
+import { useIsMounted } from '@hooks/useIsMounted';
 import TabletDrawer from './TabletDrawer';
 import AuctionData from '@sections/Auction/AuctionData';
 import {
@@ -46,6 +47,8 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
     );
   }, [collection]);
 
+  const isMounted = useIsMounted();
+
   useEffect(() => {
     const getEnrichedData = async () => {
       const filteredData = AuctionData.filter((d) =>
@@ -64,6 +67,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               : {};
           }),
         );
+
+        if (!isMounted.current) {
+          return;
+        }
 
         setData(
           response.map((datum, index) => ({

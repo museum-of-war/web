@@ -4,6 +4,7 @@ import DonatePopup from '@sections/Warline/DonatePopup';
 import { useViewPort } from '@hooks/useViewport';
 import { MINT_LINK, RELEASE_DATE, OPENSEA_LINK } from '@sections/Constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useIsMounted } from '@hooks/useIsMounted';
 import { openInNewTab } from '@sections/utils';
 import MintingModal from '@components/MintingModal';
 
@@ -51,6 +52,8 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
     return () => document.removeEventListener('scroll', onScroll);
   }, []);
 
+  const isMounted = useIsMounted();
+
   const stickyButton =
     difference > 0 ? (
       <SupportButton
@@ -67,11 +70,11 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
             hover:border-2 hover:shadow-[0_0_0_1px_rgba(255,255,255,1)]"
           onClick={async () => {
             if (await canMintSecondDrop()) {
-              setOpenMintingModal(true);
+              isMounted.current && setOpenMintingModal(true);
             } else if (await canMint()) {
-              openInNewTab(MINT_LINK);
+              isMounted.current && openInNewTab(MINT_LINK);
             } else {
-              openInNewTab(OPENSEA_LINK);
+              isMounted.current && openInNewTab(OPENSEA_LINK);
             }
           }}
         >
