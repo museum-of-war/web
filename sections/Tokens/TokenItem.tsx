@@ -1,4 +1,4 @@
-import { AuctionItemType, TokenDataType } from '@sections/types';
+import { AuctionItemType } from '@sections/types';
 import React, { useMemo, useState } from 'react';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import WarlineData from '@sections/Warline/WarlineData';
@@ -7,11 +7,10 @@ import AuctionData from '@sections/Auction/AuctionData';
 import ScaledImage from '@components/ScaledImage';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import Button from '../../components/Button';
+import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
 
 type TokenItemProps = {
-  tokenData: TokenDataType;
-  grouped: boolean;
-  groupLength: number;
+  tokenData: Nft | Nft[];
   index: number;
 };
 
@@ -26,7 +25,7 @@ const rand_imgs: string[] = [
   'img/dots-8.png',
 ];
 
-const TokenItem = ({ tokenData, grouped, groupLength, index }: TokenItemProps) => {
+const TokenItem = ({ tokenData, index }: TokenItemProps) => {
   const [hovered, setHovered] = useState(false);
 
   const { push } = useAppRouter();
@@ -38,29 +37,37 @@ const TokenItem = ({ tokenData, grouped, groupLength, index }: TokenItemProps) =
     value: any;
   };
 
+  const grouped = useMemo(() => Array.isArray(tokenData), [tokenData]);
+
+  const nft = useMemo(
+    () => (Array.isArray(tokenData) ? tokenData[0]! : tokenData),
+    [tokenData],
+  );
+
   const alt = useMemo(() => {
-    return tokenData.metadata.name ?? 'Unknown';
-  }, [tokenData]);
+    return nft.metadata?.name ?? 'Unknown';
+  }, [nft]);
   const editionInfo = useMemo(() => {
-    const edition = (tokenData.metadata?.attributes as Attribute[])?.find((attr) => attr.trait_type === 'Edition',
+    const edition = (nft.metadata?.attributes as Attribute[])?.find(
+      (attr) => attr.trait_type === 'Edition',
     );
     return edition
       ? `${edition.value} of ${edition.max_value ?? edition.value}`
       : '1 of 1';
-  }, [tokenData]);
+  }, [nft]);
   const itemEvent = useMemo(() => {
     return (
       WarlineData.flatMap((data) => data.events).find(
-        (event) => event.Tokenid === tokenData.metadata?.item_number,
+        (event) => event.Tokenid === nft.metadata?.item_number,
       ) ??
       AuctionData.find(
         (data) =>
           AuctionCollectionData[data.category].contractAddress.toLowerCase() ===
-            (tokenData as any).contract.address &&
-          data.tokenId === parseInt(tokenData.id.tokenId),
+            (nft as any).contract.address &&
+          data.tokenId === parseInt(nft.id.tokenId),
       )
     );
-  }, [tokenData]);
+  }, [nft]);
 
   const renderImage = (className: string, tokenId: string) => {
     const randomSrc = rand_imgs[1 % 8] as string;
@@ -88,7 +95,7 @@ const TokenItem = ({ tokenData, grouped, groupLength, index }: TokenItemProps) =
               lowerBound: 'tablet',
               ratio: 0.5,
             },
-             {
+            {
               lowerBound: 'desktop',
               ratio: 0.25,
             },
@@ -102,20 +109,29 @@ const TokenItem = ({ tokenData, grouped, groupLength, index }: TokenItemProps) =
 
   return (
     <div className="desktop:mt-50px tablet:mt-30px mobile:mt-30px">
-      <div>
+      <div className="relative">
         {renderImage(
           'desktop:h-[240px] tablet:h-[288px] mobile:h-[270px] desktop:max-w-[240px] tablet:max-w-[288px] mobile:max-w-[270px] m-auto cursor-pointer object-contain',
-          tokenData.metadata.item_number
+          nft.metadata?.item_number,
         )}
-        {grouped && <>
-          <Button
-            mode="secondary"
-            label="Upgrade Now"
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-24px py-32px"
-            onClick={() => push(`/upgrade-your-nft/${tokenData.metadata.name ?? "Unknown"}`)}
-            round={true} />
-          <div className="before:absolute before:content-[''] before:border-solid before:border-carbon before:border-b-8 before:border-r-8 before:w-8px before:h-80% before:-bottom-7 before:-right-7 after:absolute after:content-[''] after:border-solid after:border-carbon after:border-b-8 after:border-r-8 after:w-90% after:h-8px after:-bottom-7 after:-right-7"></div>
-        </>}
+        {grouped && (
+          <>
+            <Button
+              mode="secondary"
+              label="Upgrade Now"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-24px py-32px"
+              onClick={() =>
+                push(
+                  `/upgrade-your-nft/${nft?.metadata?.item_number}/${
+                    nft?.metadata?.level ?? 0
+                  }`,
+                )
+              }
+              round={true}
+            />
+            <div className="before:absolute before:content-[''] before:border-solid before:border-carbon before:border-b-8 before:border-r-8 before:w-8px before:h-90% before:-bottom-7 before:-right-7 after:absolute after:content-[''] after:border-solid after:border-carbon after:border-b-8 after:border-r-8 after:w-90% after:h-8px after:-bottom-7 after:-right-7" />
+          </>
+        )}
       </div>
       <div
         style={{ lineHeight: '48px' }}
@@ -126,10 +142,10 @@ const TokenItem = ({ tokenData, grouped, groupLength, index }: TokenItemProps) =
             hovered ? 'border-carbon' : 'border-transparent'
           }`}
         >
-          {tokenData.metadata.name ?? 'Unknown'}
+          {nft.metadata?.name ?? 'Unknown'}
         </p>
         <p className="font-rlight mobile:text-12px tablet:text-14px pb-5px">
-          {grouped ? `x${groupLength}` : editionInfo}
+          {grouped ? `x${(tokenData as []).length}` : editionInfo}
         </p>
       </div>
     </div>

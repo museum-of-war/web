@@ -1,8 +1,9 @@
-// import { TokenDataType } from "@sections/types";
 import React, { useEffect, useState } from 'react';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import dynamic from 'next/dynamic';
 import TokenItem from './TokenItem';
+import { useIsMounted } from '@hooks/useIsMounted';
+import { IndexedNFT } from '@sections/types';
 
 const BuyMoreNFTs = dynamic(() => import('./BuyMoreNFTs'), {
   ssr: false,
@@ -12,7 +13,10 @@ type TokenProps = {
   signerAddress: string;
 };
 
-const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
+export const groupBy = <T, K extends keyof any>(
+  list: T[],
+  getKey: (item: T) => K,
+) =>
   list.reduce((previous, currentItem) => {
     const group = getKey(currentItem);
     if (!previous[group]) previous[group] = [];
@@ -23,26 +27,26 @@ const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
 const Tokens = ({ signerAddress }: TokenProps) => {
   const { viewNFTs, canMint } = useWeb3Modal();
   const [mintable, setMintable] = useState(false);
-  const [grupped, setGrupped] = useState<Array<any>>([]);
+  const [grouped, setGrouped] = useState<IndexedNFT[][]>([]);
+
+  const isMounted = useIsMounted();
 
   useEffect(() => {
     const myNFTs = async () => {
       const newNFTs = signerAddress ? await viewNFTs(signerAddress) : [];
-      const orderedNFTs = newNFTs
-        .sort((a, b) => parseInt(a.id.tokenId) - parseInt(b.id.tokenId))
-        .sort((a, b) =>
-          a.contract.address > b.contract.address
-            ? 1
-            : b.contract.address > a.contract.address
-              ? -1
-              : 0,
-        );
-      const res = groupBy(orderedNFTs, i => `${i.contract.address}-${i.id.tokenId}`);
-      const gruppedArr = [];
+      const withIndex = newNFTs.map((nft, index) => ({ nft, index }));
+      if (!isMounted.current) return;
+      const res = groupBy(
+        withIndex,
+        (i) =>
+          i.nft.metadata?.item_number ??
+          (`${i.nft.contract.address}-${i.nft.id.tokenId}` as string),
+      );
+      const groupedArr = [] as IndexedNFT[][];
       for (const key in res) {
-        gruppedArr.push(res[key]);
+        groupedArr.push(res[key]!);
       }
-      setGrupped(gruppedArr);
+      setGrouped(groupedArr);
     };
     myNFTs();
   }, [signerAddress]);
@@ -50,7 +54,7 @@ const Tokens = ({ signerAddress }: TokenProps) => {
   useEffect(() => {
     const getCanMint = async () => {
       const result = await canMint();
-
+      if (!isMounted.current) return;
       setMintable(result);
     };
     getCanMint();
@@ -74,8 +78,14 @@ const Tokens = ({ signerAddress }: TokenProps) => {
         mobile:grid-cols-1"
       >
         {signerAddress ? (
-          grupped.map((group, idx) => (
-            <TokenItem tokenData={group[0]} key={idx} grouped={group.length > 1} groupLength={group.length} index={idx} />
+          grouped.map((group, idx) => (
+            <TokenItem
+              tokenData={
+                group.length > 1 ? group.map((g) => g.nft) : group[0]!.nft
+              }
+              key={idx}
+              index={group[0]!.index}
+            />
           ))
         ) : (
           <div>Cannot get tokens, please sign in</div>

@@ -6,7 +6,7 @@ import Web3 from 'web3';
 import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
 import IERC721InterfaceAbi from '../abi/IERC721.json';
 import MetaHistoryDropContractAbi from '../abi/DropMH.json';
-import { createAlchemyWeb3 } from '@alch/alchemy-web3';
+import { createAlchemyWeb3, GetNftsResponse } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
   AVATARS_ADDRESS,
@@ -21,6 +21,7 @@ import { ExternalProvider } from '@ethersproject/providers';
 import { Drop1Data, Drop2Data } from '@sections/Warline/WarlineData';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import AuctionData from '@sections/Auction/AuctionData';
+import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -175,9 +176,14 @@ export function useWeb3Modal() {
 
     const ownerAddr = owner;
 
-    const ownedNfts =
-      (
-        await web3.alchemy.getNfts({
+    const ownedNfts = [] as Nft[];
+
+    let pageKey = undefined as string | undefined;
+
+    do {
+      const res = await web3.alchemy
+        .getNfts({
+          pageKey,
           owner: ownerAddr,
           contractAddresses: [
             MetaHistoryAddress,
@@ -187,7 +193,17 @@ export function useWeb3Modal() {
             ),
           ].filter((v, i, a) => a.indexOf(v) === i),
         })
-      ).ownedNfts ?? [];
+        .catch((e) => {
+          console.error(e);
+          return {
+            ownedNfts: [],
+            totalCount: 0,
+          } as GetNftsResponse;
+        });
+
+      ownedNfts.push(...res.ownedNfts);
+      pageKey = res.pageKey;
+    } while (pageKey);
 
     function fixNftForDrop1(
       nft: typeof ownedNfts[number],
@@ -241,15 +257,24 @@ export function useWeb3Modal() {
       };
     }
 
-    return ownedNfts.map((nft) =>
-      nft.contract.address === FIRST_DROP_ADDRESS.toLowerCase()
-        ? nft.metadata?.image === undefined
-          ? fixNftForDrop1(nft)
-          : nft
-        : nft.contract.address === SECOND_DROP_ADDRESS.toLowerCase()
-        ? recreateNftForDrop2(nft)
-        : nft,
-    );
+    return ownedNfts
+      .map((nft) =>
+        nft.contract.address === FIRST_DROP_ADDRESS.toLowerCase()
+          ? nft.metadata?.image === undefined
+            ? fixNftForDrop1(nft)
+            : nft
+          : nft.contract.address === SECOND_DROP_ADDRESS.toLowerCase()
+          ? recreateNftForDrop2(nft)
+          : nft,
+      )
+      .sort((a, b) => parseInt(a.id.tokenId) - parseInt(b.id.tokenId))
+      .sort((a, b) =>
+        a.contract.address > b.contract.address
+          ? 1
+          : b.contract.address > a.contract.address
+          ? -1
+          : 0,
+      );
   }
 
   async function getOwnerOfNFT(contractAddress: string, tokenId: number) {

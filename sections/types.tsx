@@ -1,9 +1,10 @@
 import { AuctionVersion } from '@museum-of-war/auction';
 import { BigNumberish } from 'ethers';
+import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
 
-export type TokenDataType = {
-  metadata: any;
-  id: any;
+export type IndexedNFT = {
+  nft: Nft;
+  index: number;
 };
 
 export type TeamDataType = {
