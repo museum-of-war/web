@@ -115,7 +115,7 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
         (`${i.nft.contract.address}-${i.nft.id.tokenId}` as string),
     );
 
-    return res[nftNumber] ?? [];
+    return res[nftNumber] ?? undefined;
   }, [NFTs, nftNumber]);
 
   const event = useMemo(() => {
@@ -217,14 +217,10 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
             (event as EventType).ArtistName ?? (event as AuctionItemType).artist
           }
           editionInfo={editionInfo}
-          editionsList={
-            grouped
-              ? grouped.map((g) => ({
-                  edition: getEditionInfo(g.nft),
-                  openSeaLink: getOpenSeaLink(g.nft),
-                }))
-              : undefined
-          }
+          editionsList={grouped?.map((g) => ({
+            edition: getEditionInfo(g.nft),
+            openSeaLink: getOpenSeaLink(g.nft),
+          }))}
           owner={truncateAddress(props.signerAddress, 13)}
           openSeaLink={openSeaLink}
           imageSources={imageSources}

@@ -145,7 +145,11 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
           {nft.metadata?.name ?? 'Unknown'}
         </p>
         <p className="font-rlight mobile:text-12px tablet:text-14px pb-5px">
-          {grouped ? `x${(tokenData as []).length}` : editionInfo}
+          {grouped
+            ? `x${(tokenData as []).length}`
+            : +nft.balance > 1
+            ? `x${nft.balance}`
+            : editionInfo}
         </p>
       </div>
     </div>

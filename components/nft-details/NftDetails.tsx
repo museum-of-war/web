@@ -233,7 +233,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
           </div>
         </div>
         <div className="desktop:w-[544px] mobile:w-full box-border flex flex-col gap-[48px] text-[14px] tablet:text-[16px]">
-          {!!editionsList?.length && (
+          {!!editionsList?.length && editionInfo !== '1 of 1' && (
             <div className="bg-carbon font-rblack text-white p-24px mobile:leading-20px tablet:leading-24px flex mobile:flex-col tablet:flex-row tablet:items-center justify-between">
               <p className="mobile:text-[17px] tablet:text-20px">
                 {isDesktop
@@ -284,10 +284,10 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                   artistName
                 )}
               </div>
-              {!editionsList?.length && (
+              {(!editionsList?.length || editionInfo === '1 of 1') && (
                 <div>
-                  {editionInfo
-                    ? `Edition: ${editionInfo}`
+                  {editionInfo || editionInfo === ''
+                    ? `Edition: ${editionInfo || '1 of 1'}`
                     : editions
                     ? `Editions: ${editions}`
                     : null}
@@ -296,15 +296,16 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
             </div>
           )}
           {owner && <div>Owner: {owner}</div>}
-          {openSeaLink && !editionsList?.length && (
-            <Button
-              mode="secondary"
-              label="Open on OpenSea"
-              onClick={() => openInNewTab(openSeaLink)}
-              className="self-start"
-            />
-          )}
-          {editionsList && (
+          {openSeaLink &&
+            (!editionsList?.length || editionInfo === '1 of 1') && (
+              <Button
+                mode="secondary"
+                label="Open on OpenSea"
+                onClick={() => openInNewTab(openSeaLink)}
+                className="self-start"
+              />
+            )}
+          {editionsList && editionInfo !== '1 of 1' && (
             <div className="flex flex-col gap-[8px] mobile:leading-40px tablet:leading-48px">
               <p className="font-rblack mobile:text-[17px] tablet:text-20px">
                 Editions:

@@ -235,7 +235,7 @@ export function useWeb3Modal() {
     function recreateNftForDrop2(
       nft: typeof ownedNfts[number],
     ): typeof ownedNfts[number] {
-      const tokenId = nft.id.tokenId;
+      const tokenId = parseInt(nft.id.tokenId);
       const event = Drop2Data.flatMap((day) => day.events).find((event) =>
         event.ImageType?.includes(`drop2/${tokenId}`),
       )!;
