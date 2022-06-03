@@ -65,7 +65,12 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
           AuctionCollectionData[data.category].contractAddress.toLowerCase() ===
             (nft as any).contract.address &&
           data.tokenId === parseInt(nft.id.tokenId),
-      )
+      ) ??
+      ({
+        name: nft.title,
+        descriptionEnglish: nft.description,
+        imageSrc: nft.metadata?.image,
+      } as AuctionItemType)
     );
   }, [nft]);
 

@@ -39,8 +39,9 @@ const Tokens = ({ signerAddress }: TokenProps) => {
       const res = groupBy(
         withIndex,
         (i) =>
-          i.nft.metadata?.item_number ??
-          (`${i.nft.contract.address}-${i.nft.id.tokenId}` as string),
+          `${i.nft.contract.address}-${
+            i.nft.metadata?.item_number ?? i.nft.id.tokenId
+          }-${i.nft.metadata?.level ?? 0}` as string,
       );
       const groupedArr = [] as IndexedNFT[][];
       for (const key in res) {

@@ -26,6 +26,15 @@ const rand_imgs: string[] = [
   'img/dots-8.png',
 ];
 
+const getLevel = (nft: Nft) => {
+  const levelAttr = nft.metadata?.attributes?.find(
+    (attr) => attr.trait_type === 'Level',
+  );
+  return (levelAttr ? levelAttr.value : nft.metadata?.level) as
+    | number
+    | undefined;
+};
+
 const getEditionInfo = (nft: Nft) => {
   const edition = nft.metadata?.attributes?.find(
     (attr) => attr.trait_type === 'Edition',
@@ -111,12 +120,19 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
     const res = groupBy(
       withIndex,
       (i) =>
-        i.nft.metadata?.item_number ??
-        (`${i.nft.contract.address}-${i.nft.id.tokenId}` as string),
+        `${i.nft.contract.address}-${
+          i.nft.metadata?.item_number ?? i.nft.id.tokenId
+        }-${i.nft.metadata?.level ?? 0}` as string,
     );
 
-    return res[nftNumber] ?? undefined;
-  }, [NFTs, nftNumber]);
+    return (
+      res[
+        `${NFTs[index]?.contract.address}-${nftNumber}-${
+          NFTs[index]?.metadata?.level ?? 0
+        }`
+      ] ?? undefined
+    );
+  }, [NFTs, nftNumber, index]);
 
   const event = useMemo(() => {
     return (
@@ -126,9 +142,25 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
           AuctionCollectionData[data.category].contractAddress.toLowerCase() ===
             NFTs[index]?.contract?.address &&
           data.tokenId === parseInt(NFTs[index]?.id?.tokenId ?? '0'),
-      )
+      ) ??
+      (NFTs[index]
+        ? ({
+            tokenId: parseInt(NFTs[index]?.id?.tokenId ?? '0'),
+            name: NFTs[index]?.title,
+            descriptionEnglish: NFTs[index]?.description,
+            imageSrc: NFTs[index]?.metadata?.image,
+          } as AuctionItemType)
+        : undefined)
     );
   }, [nftNumber, index, NFTs, allEvents]);
+
+  const level = useMemo(() => {
+    return NFTs[index] ? getLevel(NFTs[index]!) : undefined;
+  }, [NFTs, index]);
+
+  const isERC721 = useMemo(() => {
+    return NFTs[index]?.id.tokenMetadata?.tokenType?.toLowerCase() === 'erc721';
+  }, [NFTs, index]);
 
   const editionInfo = useMemo(() => {
     return NFTs[index] ? getEditionInfo(NFTs[index]!) : '';
@@ -155,7 +187,12 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
             ].contractAddress.toLowerCase() ===
               NFTs[eventIndex]?.contract?.address &&
             data.tokenId === parseInt(NFTs[eventIndex]?.id?.tokenId ?? '0'),
-        );
+        ) ??
+        ({
+          name: NFTs[eventIndex]?.title,
+          descriptionEnglish: NFTs[eventIndex]?.description,
+          imageSrc: NFTs[eventIndex]?.metadata?.image,
+        } as AuctionItemType);
       if (event) {
         return {
           imageSources: getImageSources(event),
@@ -180,7 +217,12 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
             ].contractAddress.toLowerCase() ===
               NFTs[eventIndex]?.contract?.address &&
             data.tokenId === parseInt(NFTs[eventIndex]?.id?.tokenId ?? '0'),
-        );
+        ) ??
+        ({
+          name: NFTs[eventIndex]?.title,
+          descriptionEnglish: NFTs[eventIndex]?.description,
+          imageSrc: NFTs[eventIndex]?.metadata?.image,
+        } as AuctionItemType);
       if (event) {
         return {
           imageSources: getImageSources(event),
@@ -200,6 +242,7 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
           id={
             (event as EventType).Tokenid ?? (event as AuctionItemType).tokenId
           }
+          level={level}
           title={getTitle(event)}
           descriptionEnglish={
             (event as EventType).DescriptionEnglish ??
@@ -217,10 +260,14 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
             (event as EventType).ArtistName ?? (event as AuctionItemType).artist
           }
           editionInfo={editionInfo}
-          editionsList={grouped?.map((g) => ({
-            edition: getEditionInfo(g.nft),
-            openSeaLink: getOpenSeaLink(g.nft),
-          }))}
+          editionsList={
+            isERC721
+              ? grouped?.map((g) => ({
+                  edition: getEditionInfo(g.nft),
+                  openSeaLink: getOpenSeaLink(g.nft),
+                }))
+              : undefined
+          }
           owner={truncateAddress(props.signerAddress, 13)}
           openSeaLink={openSeaLink}
           imageSources={imageSources}

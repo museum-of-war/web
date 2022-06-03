@@ -5,6 +5,7 @@ import UpgradeOption from './UpgradeOption';
 import { openInNewTab } from '@sections/utils';
 import { OPENSEA_LINK } from '@sections/Constants';
 import { useIsMounted } from '@hooks/useIsMounted';
+import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
 
 type UpgradeYourNFTProps = {
   tokenId: string;
@@ -17,11 +18,14 @@ const UpgradeYourNFT = ({
   level,
   signerAddress,
 }: UpgradeYourNFTProps) => {
-  const [groupNFT, setGroupNFT] = useState<Array<any>>([]);
+  const [groupNFT, setGroupNFT] = useState<Nft[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const [isApproving, setIsApproving] = useState(false);
+  const [isMerging, setIsMerging] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState(0);
   const { push } = useAppRouter();
-  const { viewNFTs } = useWeb3Modal();
+  const { viewNFTs, mergeBaseFirstDrop, mergeAdvancedFirstDrop } =
+    useWeb3Modal();
 
   const isMounted = useIsMounted();
 
@@ -30,12 +34,16 @@ const UpgradeYourNFT = ({
       const newNFTs = await viewNFTs(signerAddress);
       if (!isMounted.current) return;
       setGroupNFT(
-        newNFTs.filter((nft) => nft?.metadata?.item_number === tokenId),
+        newNFTs.filter(
+          (nft) =>
+            nft?.metadata?.item_number === tokenId &&
+            (nft?.metadata?.level ?? 0) === level,
+        ),
       );
       setLoaded(true);
     };
     myNFTs();
-  }, [tokenId, signerAddress, viewNFTs]);
+  }, [tokenId, level, signerAddress, viewNFTs]);
 
   const nextLevels = useMemo(
     () =>
@@ -43,6 +51,11 @@ const UpgradeYourNFT = ({
         ? [...new Array(5).keys()].filter((l) => l > level && l > 1)
         : [level + 1], //batch merging is disabled for high levels
     [level],
+  );
+
+  const isLoading = useMemo(
+    () => isApproving || isMerging,
+    [isApproving, isMerging],
   );
 
   return (
@@ -103,7 +116,7 @@ const UpgradeYourNFT = ({
             options={
               currentLevel > 1
                 ? [
-                    `${Math.pow(2, currentLevel - level - 1) - 1} unique NFT${
+                    `${Math.pow(2, currentLevel - 1) - 1} unique NFT${
                       currentLevel - level > 2 ? 's' : ''
                     } from Prospect100 artists`,
                   ]
@@ -115,9 +128,10 @@ const UpgradeYourNFT = ({
       <div className="desktop:m-auto desktop:w-45% tablet:w-100% mobile:w-100%">
         <p className="tablet:text-16px mobile:text-14px mb-23px">
           After you start the Upgrade process, you’ll no longer have your
-          current X-level NFT but get the new upgraded one
+          current {level || 'X'}-level NFTs but get the new upgraded one
         </p>
-        {selectedLevel && 2 ** selectedLevel <= groupNFT.length ? (
+        {selectedLevel &&
+        Math.pow(2, selectedLevel - level) <= groupNFT.length ? (
           <button
             className="text-center px-32px bg-carbon font-rblack 
               text-white border-2 border-carbon rounded-full
@@ -126,18 +140,47 @@ const UpgradeYourNFT = ({
               mobile:h-60px mobile:w-250px mobile:text-12px mobile:bottom-10px
               mobile:fixed mobile:left-50% mobile:transform mobile:-translate-x-50%
               mobile:shadow-[0_4px_32px_4px_rgba(33,33,33,0.3)]"
+            disabled={isLoading}
+            onClick={async () => {
+              try {
+                const ids = groupNFT.map((nft) => nft.id.tokenId);
+                setIsMerging(true);
+                if (level) {
+                  await mergeAdvancedFirstDrop(
+                    ids[ids.length - 2]!,
+                    ids[ids.length - 1]!,
+                  );
+                } else {
+                  setIsApproving(true);
+                  await mergeBaseFirstDrop(
+                    ids.slice(-1 * Math.pow(2, selectedLevel - level)),
+                    () => setIsApproving(false),
+                  );
+                }
+                await push('/tokens');
+              } catch (error: any) {
+                alert(error?.error?.message ?? error?.message ?? error);
+              } finally {
+                setIsApproving(false);
+                setIsMerging(false);
+              }
+            }}
           >
-            {`Upgrade it to the ${selectedLevel} level!`}
+            {isApproving
+              ? 'Approving NFTs transfer...'
+              : isMerging
+              ? 'Merging NFTs...'
+              : `Upgrade to the ${selectedLevel} level!`}
           </button>
         ) : (
           <button
-            onClick={() => openInNewTab(OPENSEA_LINK)}
             className="font-rblack bg-white border-2 border-carbon rounded-full
               tablet:w-100% tablet:h-48px tablet:text-14px tablet:static tablet:shadow-none
               tablet:left-0 tablet:translate-x-0
               mobile:h-60px mobile:w-250px mobile:text-12px mobile:bottom-10px
               mobile:fixed mobile:left-50% mobile:transform mobile:-translate-x-50%
               mobile:shadow-[0_4px_32px_4px_rgba(33,33,33,0.3)]"
+            onClick={() => openInNewTab(OPENSEA_LINK)}
           >
             Find More on OpenSea
           </button>
