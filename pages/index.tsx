@@ -9,7 +9,7 @@ const Home: NextPage<SharedProps> = (props) => {
   return (
     <>
       <PageHead
-        title="About"
+        title="Home"
         description="Ukraine's NFT museum, supported by the Ministry of Digital Transformation. We created an NFT collection to preserve the memory of the events of the war & collect donations."
         data={{
           '@context': 'https://schema.org',
