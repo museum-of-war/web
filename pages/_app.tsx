@@ -5,14 +5,6 @@ import type { AppProps } from 'next/app';
 import { useAppRouter } from '@hooks/useAppRouter';
 import '../styles/globals.css';
 
-function SafeHydrate({ children }: { children: React.ReactNode }) {
-  return (
-    <div suppressHydrationWarning>
-      {typeof window === 'undefined' ? null : children}
-    </div>
-  );
-}
-
 function MyApp({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState('light');
   const { route } = useAppRouter();
@@ -27,13 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [route]);
 
   return (
-    <SafeHydrate>
-      <ThemeProvider enableSystem={true} attribute="class" forcedTheme={theme}>
-        <AppWrapper
-          Child={(props) => <Component {...pageProps} {...props} />}
-        />
-      </ThemeProvider>
-    </SafeHydrate>
+    <ThemeProvider enableSystem={true} attribute="class" forcedTheme={theme}>
+      <AppWrapper Child={(props) => <Component {...pageProps} {...props} />} />
+    </ThemeProvider>
   );
 }
 

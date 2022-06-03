@@ -1,16 +1,23 @@
 import { useMediaQuery } from '@mui/material';
+import { useIsClientRendered } from '@hooks/useIsClientRendered';
+
+function isTouch() {
+  return (
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0 ||
+    // @ts-ignore
+    navigator.msMaxTouchPoints > 0
+  );
+}
 
 export const useViewPort = () => {
+  const isClientRendered = useIsClientRendered();
   const isMobile = useMediaQuery('(max-width:680px)', { noSsr: true });
   const isTablet = useMediaQuery('(min-width:680px) and (max-width:1439px)', {
     noSsr: true,
   });
   const isDesktop = useMediaQuery('(min-width:1440px)', { noSsr: true });
-  const isTouch =
-    'ontouchstart' in window ||
-    navigator.maxTouchPoints > 0 ||
-    // @ts-ignore
-    navigator.msMaxTouchPoints > 0;
-
-  return { isMobile, isTablet, isDesktop, isTouch };
+  return isClientRendered
+    ? { isMobile, isTablet, isDesktop, isTouch: isTouch() }
+    : { isMobile: true, isTablet: false, isDesktop: false, isTouch: true };
 };

@@ -22,7 +22,7 @@
     "fslightbox-react": "^1.6.2-2",
     "lottie-react": "^2.2.1",
     "next": "12.1.0",
-    "next-themes": "^0.1.1",
+    "next-themes": "^0.2.0",
     "react": "17.0.2",
     "react-device-detect": "^2.1.2",
     "react-dom": "17.0.2",
