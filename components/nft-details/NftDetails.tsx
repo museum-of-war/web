@@ -6,6 +6,8 @@ import { useInView } from 'react-intersection-observer';
 import { openInNewTab } from '@sections/utils';
 import Button from '@components/Button';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
+import { useViewPort } from '@hooks/useViewport';
+import { useAppRouter } from '@hooks/useAppRouter';
 
 type ImageSources = {
   previewSrc: string;
@@ -23,6 +25,7 @@ export type PrevNextRecord = {
 
 type NftDetailsProps = {
   id: string;
+  level?: number;
   title: string;
   descriptionEnglish: string;
   descriptionUkrainian: string;
@@ -35,6 +38,7 @@ type NftDetailsProps = {
   editionInfo?: string;
   owner?: string;
   openSeaLink?: string;
+  editionsList?: { edition: string; openSeaLink: string }[];
   imageSources: ImageSources;
   prevRecord?: PrevNextRecord;
   nextRecord?: PrevNextRecord;
@@ -43,6 +47,7 @@ type NftDetailsProps = {
 };
 export const NftDetails: React.FC<NftDetailsProps> = ({
   id,
+  level,
   title,
   descriptionEnglish,
   descriptionUkrainian,
@@ -55,6 +60,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   editionInfo,
   owner,
   openSeaLink,
+  editionsList,
   prevRecord,
   nextRecord,
   imageSources,
@@ -63,6 +69,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
 }) => {
   const [toggler, setToggler] = React.useState<boolean>(false);
   const { ref, inView } = useInView();
+  const { isDesktop } = useViewPort();
+  const { push } = useAppRouter();
 
   const renderImage = ({
     title,
@@ -203,21 +211,44 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
           {getNavButtonsJsx()}
         </div>
       </div>
-      <div className="flex flex-col desktop:flex-row desktop:gap-[48px] gap-[20px] pt-[40px]">
-        {renderImage({
-          imageSources,
-          title,
-          className:
-            'overflow-auto object-contain cursor-pointer transition-transform hover:scale-[101%] h-fit max-h-[800px] object-left-top w-full',
-          containerClassName: 'flex-1',
-          breakpoints: [
-            {
-              lowerBound: 'desktop',
-              ratio: 0.5,
-            },
-          ],
-        })}
+      <div className="relative flex flex-col desktop:flex-row desktop:gap-[48px] gap-[20px] pt-[40px]">
+        <div className="flex-1">
+          <div className="relative">
+            {renderImage({
+              imageSources,
+              title,
+              className:
+                'overflow-auto object-contain cursor-pointer transition-transform hover:scale-[101%] h-fit max-h-[800px] max-w-[800px] ml-auto object-left-top w-full',
+              containerClassName: 'flex-1 z-1',
+              breakpoints: [
+                {
+                  lowerBound: 'desktop',
+                  ratio: 0.5,
+                },
+              ],
+            })}
+            {editionsList && editionsList.length > 1 && (
+              <div className="before:absolute before:content-[''] before:border-solid before:border-carbon before:border-b-8 before:border-r-8 before:w-8px before:h-90% before:-bottom-7 before:-right-7 after:absolute after:content-[''] after:border-solid after:border-carbon after:border-b-8 after:border-r-8 after:w-90% after:h-8px after:-bottom-7 after:-right-7" />
+            )}
+          </div>
+        </div>
         <div className="desktop:w-[544px] mobile:w-full box-border flex flex-col gap-[48px] text-[14px] tablet:text-[16px]">
+          {!!editionsList?.length && editionInfo !== '1 of 1' && (
+            <div className="bg-carbon font-rblack text-white p-24px mobile:leading-20px tablet:leading-24px flex mobile:flex-col tablet:flex-row tablet:items-center justify-between">
+              <p className="mobile:text-[17px] tablet:text-20px">
+                {isDesktop
+                  ? `${editionsList.length} editions left`
+                  : `You have ${editionsList.length} editions`}
+              </p>
+              <Button
+                mode="primary"
+                className={`tablet:h-48px mobile:h-60px mobile:w-100% tablet:w-auto mobile:mt-20px tablet:mt-0`}
+                round={false}
+                label="Upgrade Now"
+                onClick={() => push(`/upgrade-your-nft/${id}/${level ?? 0}`)}
+              />
+            </div>
+          )}
           <div>
             <p>{descriptionEnglish}</p>
             <br />
@@ -253,25 +284,48 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                   artistName
                 )}
               </div>
-              <div>
-                {editionInfo
-                  ? `Edition: ${editionInfo}`
-                  : editions
-                  ? `Editions: ${editions}`
-                  : null}
-              </div>
+              {(!editionsList?.length || editionInfo === '1 of 1') && (
+                <div>
+                  {editionInfo || editionInfo === ''
+                    ? `Edition: ${editionInfo || '1 of 1'}`
+                    : editions
+                    ? `Editions: ${editions}`
+                    : null}
+                </div>
+              )}
             </div>
           )}
           {owner && <div>Owner: {owner}</div>}
-          {openSeaLink && (
-            <Button
-              mode="secondary"
-              label="Open on OpenSea"
-              onClick={() => openInNewTab(openSeaLink)}
-              className="self-start"
-            />
+          {openSeaLink &&
+            (!editionsList?.length || editionInfo === '1 of 1') && (
+              <Button
+                mode="secondary"
+                label="Open on OpenSea"
+                onClick={() => openInNewTab(openSeaLink)}
+                className="self-start"
+              />
+            )}
+          {editionsList && editionInfo !== '1 of 1' && (
+            <div className="flex flex-col gap-[8px] mobile:leading-40px tablet:leading-48px">
+              <p className="font-rblack mobile:text-[17px] tablet:text-20px">
+                Editions:
+              </p>
+              {editionsList.map(({ edition, openSeaLink }, index) => (
+                <p key={index} className="flex flex-row gap-[24px]">
+                  <span className="text-16px">{edition}</span>
+                  <a
+                    className="font-rblack text-14px"
+                    href={openSeaLink}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open on OpenSea
+                  </a>
+                </p>
+              ))}
+            </div>
           )}
-          <div className="flex flex-col-reverse tablet:flex-row gap-[36px] tablet:gap-[48px] mt-[24px] items-start  mb-60px">
+          <div className="flex flex-col-reverse tablet:flex-row gap-[36px] tablet:gap-[48px] mt-[24px] items-start mb-60px">
             <div className="flex-1 flex">
               {prevRecord ? (
                 <Link href={prevRecord.path} passHref>
