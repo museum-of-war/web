@@ -5,6 +5,7 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import Web3 from 'web3';
 import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
 import MergerContractAbi from '../abi/MergerMH.json';
+import Prospect100ContractAbi from '../abi/Prospect100MH.json';
 import IERC721InterfaceAbi from '../abi/IERC721.json';
 import MetaHistoryDropContractAbi from '../abi/DropMH.json';
 import { createAlchemyWeb3, GetNftsResponse } from '@alch/alchemy-web3';
@@ -12,13 +13,13 @@ import { AbiItem } from 'web3-utils';
 import {
   AVATARS_ADDRESS,
   FIRST_DROP_ADDRESS,
-  MERGER_ADDRESS,
+  IMG_STORAGE,
   KALUSH_BID,
+  MERGER_ADDRESS,
   PROJECT_WALLET_ADDRESS,
+  PROSPECT_100_ADDRESS,
   SECOND_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
-  IMG_STORAGE,
-  PROSPECT_100_ADDRESS,
 } from '@sections/Constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
@@ -688,6 +689,28 @@ export function useWeb3Modal() {
     }
   }
 
+  async function getProspect100TokensCount() {
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+
+    try {
+      const nftContract = new web3.eth.Contract(
+        Prospect100ContractAbi as AbiItem[],
+        PROSPECT_100_ADDRESS,
+      );
+
+      return (
+        +(await nftContract.methods
+          .nextTokenId()
+          .call({ from: SecondDropAddress })) - 1
+      );
+    } catch (e) {
+      console.warn(e);
+      return 0;
+    }
+  }
+
   async function canMint() {
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
@@ -812,9 +835,16 @@ export function useWeb3Modal() {
   async function getTotalNFTs() {
     const firstDropMinted = +(await getFirstDropMintedCount());
     const secondDropMinted = +(await getSecondDropMintedCount());
-    const auctions = AuctionData.length - 4; // 4 tokens are from the first drop
+    const prospect100Tokens = +(await getProspect100TokensCount());
+    const auctions =
+      AuctionData.length -
+      AuctionData.filter(
+        (d) =>
+          d.category === AuctionCollection.FirstDrop ||
+          d.category === AuctionCollection.Prospect100,
+      ).length;
 
-    return firstDropMinted + secondDropMinted + auctions;
+    return firstDropMinted + secondDropMinted + prospect100Tokens + auctions;
   }
 
   async function getTotalFundsRaised() {
