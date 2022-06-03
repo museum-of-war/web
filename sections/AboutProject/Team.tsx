@@ -10,7 +10,6 @@ const Team = () => {
     { name: 'Neonila Vodolska', role: 'Order' },
     { name: 'Alexander Yavorskyy', role: 'Voice' },
     { name: 'Kateryna Dranova', role: 'Voice' },
-    { name: 'Anna Feuerbach', role: 'Fatum' },
     { name: 'Nick Zinchenko', role: 'Art Support' },
     { name: 'Kevin Lista Navarro', role: 'Assistant Director' },
     { name: 'Valeria Panina', role: 'Government Communications' },
