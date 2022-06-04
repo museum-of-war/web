@@ -33,6 +33,7 @@ export type EventType = {
   isAuction?: boolean;
   ArtistLink?: string | undefined;
   ImageType?: string;
+  Editions?: number;
 };
 
 export enum AuctionCollection {

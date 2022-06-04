@@ -22,6 +22,7 @@ export default [
         ArtistName: 'Anna Ivanenko',
         ArtistLink: 'https://www.instagram.com/anaivan/',
         ImageType: 'drop2/1.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '105',
@@ -40,6 +41,7 @@ export default [
         ArtistName: 'Erlikh Dima',
         ArtistLink: 'https://erlikh-com.webflow.io/',
         ImageType: 'drop2/2.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '106',
@@ -57,6 +59,7 @@ export default [
         ArtistName: 'Erlikh Dima',
         ArtistLink: 'https://erlikh-com.webflow.io/',
         ImageType: 'drop2/3.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '107',
@@ -74,6 +77,7 @@ export default [
         ArtistLink:
           'https://instagram.com/shcherbak.alekseyy?utm_medium=copy_link',
         ImageType: 'drop2/4.png',
+        Editions: 16,
       },
       {
         Tokenid: '108',
@@ -92,6 +96,7 @@ export default [
         ArtistName: 'Danya Shulipa',
         ArtistLink: 'https://www.instagram.com/shu.name/',
         ImageType: 'drop2/5.mp4',
+        Editions: 16,
       },
     ],
   },
@@ -116,6 +121,7 @@ export default [
         ArtistName: 'Leo Libsneash',
         ArtistLink: 'https://www.instagram.com/libsneash/',
         ImageType: 'drop2/6.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '110',
@@ -134,6 +140,7 @@ export default [
         ArtistName: 'Dmytro Kryvonos',
         ArtistLink: 'https://www.facebook.com/kryvonos.dmitriy',
         ImageType: 'drop2/7.jpeg',
+        Editions: 16,
       },
       {
         Tokenid: '111',
@@ -151,6 +158,7 @@ export default [
         ArtistName: 'Ivan Ponomarchuk',
         ArtistLink: 'https://www.behance.net/cordduro',
         ImageType: 'drop2/8.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '112',
@@ -169,6 +177,7 @@ export default [
         ArtistName: 'Casekimba',
         ArtistLink: 'https://twitter.com/casekimba',
         ImageType: 'drop2/9.png',
+        Editions: 16,
       },
       {
         Tokenid: '113',
@@ -187,6 +196,7 @@ export default [
         ArtistName: 'Waone Manzhos',
         ArtistLink: 'https://www.waone.net',
         ImageType: 'drop2/10.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '114',
@@ -205,6 +215,7 @@ export default [
         ArtistName: 'Natasha Steshenko',
         ArtistLink: 'https://www.instagram.com/natashasteshenko/\n',
         ImageType: 'drop2/11.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '115',
@@ -223,6 +234,7 @@ export default [
         ArtistName: 'Kos Reed',
         ArtistLink: 'https://www.artstation.com/kos_reed ',
         ImageType: 'drop2/12.mp4',
+        Editions: 16,
       },
       {
         Tokenid: '116',
@@ -241,6 +253,7 @@ export default [
         ArtistName: 'Anna Voda',
         ArtistLink: 'https://www.instagram.com/anna.voda/',
         ImageType: 'drop2/13.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '117',
@@ -277,6 +290,7 @@ export default [
         ArtistName: 'Sheverev Dmytro',
         ArtistLink: 'https://instagram.com/shesvit?utm_medium=copy_link',
         ImageType: 'drop2/14.gif',
+        Editions: 16,
       },
       {
         Tokenid: '119',
@@ -296,6 +310,7 @@ export default [
         ArtistLink:
           'https://www.behance.net/gallery/139754141/Illustrations-folio',
         ImageType: 'drop2/15.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '120',
@@ -314,6 +329,7 @@ export default [
         ArtistName: 'Kos Reed',
         ArtistLink: 'https://www.artstation.com/kos_reed ',
         ImageType: 'drop2/16.mp4',
+        Editions: 16,
       },
       {
         Tokenid: '121',
@@ -350,6 +366,7 @@ export default [
         ArtistName: 'Oksana Kryzhanivska',
         ArtistLink: ' https://linktr.ee/touchsoundart',
         ImageType: 'drop2/17.png',
+        Editions: 16,
       },
       {
         Tokenid: '123',
@@ -385,6 +402,7 @@ export default [
         ArtistLink:
           'https://instagram.com/cherrychickenart?utm_medium=copy_link ',
         ImageType: 'drop2/18.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '125',
@@ -403,6 +421,7 @@ export default [
         ArtistName: 'Ju1viy',
         ArtistLink: 'https://opensea.io/Ju1viy',
         ImageType: 'drop2/19.jpg',
+        Editions: 16,
       },
     ],
   },
@@ -427,6 +446,7 @@ export default [
         ArtistName: 'Darya Yehorova',
         ArtistLink: 'https://www.behance.net/daryelazy',
         ImageType: 'drop2/20.gif',
+        Editions: 16,
       },
       {
         Tokenid: '127',
@@ -463,6 +483,7 @@ export default [
         ArtistName: 'Zhannet Podobed',
         ArtistLink: 'https://zhannetpodobed.com/',
         ImageType: 'drop2/21.png',
+        Editions: 16,
       },
       {
         Tokenid: '129',
@@ -499,6 +520,7 @@ export default [
         ArtistName: 'Viktor Grudakov',
         ArtistLink: 'https://www.instagram.com/viktor.grudakov',
         ImageType: 'drop2/22.png',
+        Editions: 16,
       },
       {
         Tokenid: '131',
@@ -535,6 +557,7 @@ export default [
         ArtistName: 'Ivan Ponomarchuk',
         ArtistLink: 'https://www.behance.net/cordduro',
         ImageType: 'drop2/23.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '133',
@@ -553,6 +576,7 @@ export default [
         ArtistName: 'Julie Grechukh',
         ArtistLink: 'https://www.behance.net/juliegrechb30e',
         ImageType: 'drop2/24.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '134',
@@ -594,6 +618,7 @@ export default [
         ArtistName: 'Tasha Katsuba',
         ArtistLink: 'https://www.instagram.com/tashakatsuba/',
         ImageType: 'drop2/25.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '136',
@@ -612,6 +637,7 @@ export default [
         ArtistName: 'Sestry Feldman',
         ArtistLink: 'https://instagram.com/sestry_feldman',
         ImageType: 'drop2/26.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '137',
@@ -630,6 +656,7 @@ export default [
         ArtistName: 'AlgorithmAB',
         ArtistLink: 'https://twitter.com/BogdanAgafono10',
         ImageType: 'drop2/27.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '138',
@@ -647,6 +674,7 @@ export default [
         ArtistName: 'Alisa Gots ',
         ArtistLink: 'https://instagram.com/alisa.gots?utm_medium=copy_link ',
         ImageType: 'drop2/28.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '139',
@@ -665,6 +693,7 @@ export default [
         ArtistName: 'Yu Andriichuk',
         ArtistLink: 'https://yuseless.me',
         ImageType: 'drop2/29.gif',
+        Editions: 16,
       },
       {
         Tokenid: '140',
@@ -683,6 +712,7 @@ export default [
         ArtistName: 'PASKA',
         ArtistLink: 'https://www.behance.net/gallery/139993537/PASKA-CV ',
         ImageType: 'drop2/30.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '141',
@@ -701,6 +731,7 @@ export default [
         ArtistName: 'WantToLive  ',
         ArtistLink: 'https://opensea.io/collection/i-want-to-live-ua',
         ImageType: 'drop2/31.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '142',
@@ -737,6 +768,7 @@ export default [
         ArtistName: 'Dima Gavriliv',
         ArtistLink: 'https://www.behance.net/dimahavryliv',
         ImageType: 'drop2/32.mp4',
+        Editions: 16,
       },
       {
         Tokenid: '144',
@@ -755,6 +787,7 @@ export default [
         ArtistName: 'Diana Tkachenko',
         ArtistLink: 'https://dianatkachenko.pb.online/ ',
         ImageType: 'drop2/33.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '145',
@@ -827,6 +860,7 @@ export default [
         ArtistName: 'Ju1viy',
         ArtistLink: 'https://opensea.io/Ju1viy',
         ImageType: 'drop2/34.jpg',
+        Editions: 16,
       },
     ],
   },
@@ -852,6 +886,7 @@ export default [
         ArtistName: 'Ju1viy',
         ArtistLink: 'https://opensea.io/Ju1viy',
         ImageType: 'drop2/35.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '150',
@@ -906,6 +941,7 @@ export default [
         ArtistName: 'kurokatsa',
         ArtistLink: 'https://instagram.com/kurokatsa?utm_medium=copy_link ',
         ImageType: 'drop2/36.gif',
+        Editions: 16,
       },
       {
         Tokenid: '153',
@@ -940,6 +976,7 @@ export default [
         ArtistName: 'Iryna Vodolazhchenko',
         ArtistLink: 'https://www.instagram.com/vodolaz_art/ ',
         ImageType: 'drop2/37.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '155',
@@ -994,6 +1031,7 @@ export default [
         ArtistName: 'Casekimba',
         ArtistLink: 'https://twitter.com/casekimba',
         ImageType: 'drop2/38.png',
+        Editions: 16,
       },
       {
         Tokenid: '158',
@@ -1012,6 +1050,7 @@ export default [
         ArtistName: 'tridle',
         ArtistLink: 'https://linktr.ee/tridle',
         ImageType: 'drop2/39.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '159',
@@ -1066,6 +1105,7 @@ export default [
         ArtistName: 'Barbalat Kateryna',
         ArtistLink: 'https://www.rocketmushroom.com',
         ImageType: 'drop2/40.jpg',
+        Editions: 16,
       },
     ],
   },
@@ -1127,6 +1167,7 @@ export default [
         ArtistName: 'Katalina Maievska',
         ArtistLink: 'https://www.behance.net/katalinka32133 ',
         ImageType: 'drop2/41.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '165',
@@ -1144,6 +1185,7 @@ export default [
         ArtistName: 'Alina Shevchuk ',
         ArtistLink: 'https://www.behance.net/linashevchuk',
         ImageType: 'drop2/42.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '166',
@@ -1162,6 +1204,7 @@ export default [
         ArtistName: 'Anna Voda',
         ArtistLink: 'https://www.instagram.com/anna.voda/',
         ImageType: 'drop2/43.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '167',
@@ -1252,6 +1295,7 @@ export default [
         ArtistName: 'Dan Perjovschi',
         ArtistLink: '',
         ImageType: 'drop2/44.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '172',
@@ -1269,6 +1313,7 @@ export default [
         ArtistName: 'Anton Abo',
         ArtistLink: 'https://www.instagram.com/anton_abo/',
         ImageType: 'drop2/45.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '173',
@@ -1323,6 +1368,7 @@ export default [
         ArtistName: 'WantToLive  ',
         ArtistLink: 'https://opensea.io/collection/i-want-to-live-ua',
         ImageType: 'drop2/46.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '176',
@@ -1341,6 +1387,7 @@ export default [
         ArtistName: 'Olga Smirnova',
         ArtistLink: 'https://www.instagram.com/mlle.carotte/',
         ImageType: 'drop2/47.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '177',
@@ -1418,6 +1465,7 @@ export default [
         ArtistName: 'Dmitriy Shepil',
         ArtistLink: 'https://www.instagram.com/shepil_dm/',
         ImageType: 'drop2/48.mp4',
+        Editions: 16,
       },
       {
         Tokenid: '181',
@@ -1451,6 +1499,7 @@ export default [
         ArtistName: 'Serhii Mirchuk',
         ArtistLink: 'https://www.instagram.com/mirchuk_serhii/ ',
         ImageType: 'drop2/49.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '183',
@@ -1467,6 +1516,7 @@ export default [
         ArtistName: 'Ivan Ponomarchuk',
         ArtistLink: 'https://www.behance.net/cordduro',
         ImageType: 'drop2/50.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '184',
@@ -1503,6 +1553,7 @@ export default [
         ArtistName: 'Leo Libsneash',
         ArtistLink: 'https://www.instagram.com/libsneash/',
         ImageType: 'drop2/51.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '186',
@@ -1539,6 +1590,7 @@ export default [
         ArtistName: 'Irene Neyman',
         ArtistLink: 'https://www.instagram.com/irene_neyman/',
         ImageType: 'drop2/52.png',
+        Editions: 16,
       },
       {
         Tokenid: '188',
@@ -1557,6 +1609,7 @@ export default [
         ArtistName: 'Yanka.Ki ',
         ArtistLink: 'https://www.instagram.com/yanka.ki/',
         ImageType: 'drop2/53.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '189',
@@ -1611,6 +1664,7 @@ export default [
         ArtistName: 'Mara Kava',
         ArtistLink: 'https://www.behance.net/MaraKava',
         ImageType: 'drop2/54.png',
+        Editions: 16,
       },
     ],
   },
@@ -1636,6 +1690,7 @@ export default [
         ArtistName: 'murreyleaf',
         ArtistLink: 'https://www.instagram.com/murreyleaf/ ',
         ImageType: 'drop2/55.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '193',
@@ -1672,6 +1727,7 @@ export default [
         ArtistName: 'Oleg Savin',
         ArtistLink: 'https://www.instagram.com/oleg_saviin/',
         ImageType: 'drop2/56.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '195',
@@ -1689,6 +1745,7 @@ export default [
         ArtistName: 'Milak Karina',
         ArtistLink: 'https://www.behance.net/milakkarina15f',
         ImageType: 'drop2/57.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '196',
@@ -1707,6 +1764,7 @@ export default [
         ArtistName: 'Viktoria Fartushna aka ilamuna',
         ArtistLink: 'https://www.behance.net/odyvancic3adb9',
         ImageType: 'drop2/58.mp4',
+        Editions: 16,
       },
       {
         Tokenid: '197',
@@ -1743,6 +1801,7 @@ export default [
         ArtistName: 'Anastasiya Samarkina',
         ArtistLink: 'https://www.behance.net/stassamar ',
         ImageType: 'drop2/59.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '199',
@@ -1874,6 +1933,7 @@ export default [
         ArtistName: 'Mark Bushuiev',
         ArtistLink: 'https://instagram.com/mark_scalpit?utm_medium=copy_link',
         ImageType: 'drop2/60.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '206',
@@ -1961,6 +2021,7 @@ export default [
         ArtistLink:
           'https://drive.google.com/file/d/1kTHbvh-cR-eKDBb6JnsoMQZbjFaiA0x9/view https://www.instagram.com/anzhelaciti/ https://www.facebook.com/anzhela.ponedilok.9/',
         ImageType: 'drop2/61.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '211',
@@ -1996,6 +2057,7 @@ export default [
         ArtistLink:
           'https://www.instagram.com/ichtodalshe_/ https://www.behance.net/oleksiibylym',
         ImageType: 'drop2/62.png',
+        Editions: 16,
       },
       {
         Tokenid: '213',
@@ -2106,6 +2168,7 @@ export default [
         ArtistName: 'Shulikin Serhii',
         ArtistLink: 'https://www.behance.net/shulikin',
         ImageType: 'drop2/63.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '219',
@@ -2124,6 +2187,7 @@ export default [
         ArtistName: 'Alexey Zlodey',
         ArtistLink: 'https://instagram.com/zlodeyone?utm_medium=copy_link',
         ImageType: 'drop2/64.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '220',
@@ -2177,6 +2241,7 @@ export default [
         ArtistName: 'Anton Filyk',
         ArtistLink: 'https://antiqdraws.myportfolio.com',
         ImageType: 'drop2/65.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '223',
@@ -2211,6 +2276,7 @@ export default [
         ArtistName: 'Machneva Kateryna',
         ArtistLink: 'https://www.behance.net/katerynamachneva',
         ImageType: 'drop2/66.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '225',
@@ -2229,6 +2295,7 @@ export default [
         ArtistName: 'Tina Tykhonenko',
         ArtistLink: 'https://instagram.com/tihotak?utm_medium=copy_link',
         ImageType: 'drop2/67.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '226',
@@ -2245,6 +2312,7 @@ export default [
         ArtistName: 'Yulya Nikolaieva',
         ArtistLink: 'https://www.behance.net/yulyavladson',
         ImageType: 'drop2/68.gif',
+        Editions: 16,
       },
       {
         Tokenid: '227',
@@ -2263,6 +2331,7 @@ export default [
         ArtistName: 'Mark Bushuiev',
         ArtistLink: 'https://instagram.com/mark_scalpit?utm_medium=copy_link',
         ImageType: 'drop2/69.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '228',
@@ -2300,6 +2369,7 @@ export default [
         ArtistLink:
           'https://www.instagram.com/tv/CakA6rCKMKM/?utm_medium=copy_link',
         ImageType: 'drop2/70.mp4',
+        Editions: 16,
       },
     ],
   },
@@ -2324,6 +2394,7 @@ export default [
         ArtistName: 'we bad',
         ArtistLink: 'https://we-bad.com/',
         ImageType: 'drop2/71.mp4',
+        Editions: 16,
       },
       {
         Tokenid: '231',
@@ -2341,6 +2412,7 @@ export default [
         ArtistName: 'Casekimba',
         ArtistLink: 'https://twitter.com/casekimba',
         ImageType: 'drop2/72.mp4',
+        Editions: 16,
       },
       {
         Tokenid: '232',
@@ -2359,6 +2431,7 @@ export default [
         ArtistName: 'Klimenkova Yelyzaveta',
         ArtistLink: 'https://www.instagram.com/ben_bam_bom/',
         ImageType: 'drop2/73.jpeg',
+        Editions: 16,
       },
       {
         Tokenid: '233',
@@ -2377,6 +2450,7 @@ export default [
         ArtistLink:
           ' https://instagram.com/darucia_digital?utm_medium=copy_link',
         ImageType: 'drop2/74.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '234',
@@ -2395,6 +2469,7 @@ export default [
         ArtistLink:
           'https://www.artstation.com/kislaya?fbclid=IwAR0yuSUMQH99W5Z23cWTgeg1pKl1LmlsZP3EGWUpAEUzJXiAw74tkMUjFeo',
         ImageType: 'drop2/75.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '235',
@@ -2413,6 +2488,7 @@ export default [
         ArtistName: 'Tasha Katsuba',
         ArtistLink: 'https://www.instagram.com/tashakatsuba/',
         ImageType: 'drop2/76.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '236',
@@ -2431,6 +2507,7 @@ export default [
         ArtistName: 'Mazin Alexander ',
         ArtistLink: 'https://www.instagram.com/mazin8872/',
         ImageType: 'drop2/77.jpg',
+        Editions: 16,
       },
     ],
   },
@@ -2456,6 +2533,7 @@ export default [
         ArtistName: 'Olena Dziura',
         ArtistLink: 'https://www.instagram.com/olenadzen/',
         ImageType: 'drop2/78.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '238',
@@ -2473,6 +2551,7 @@ export default [
         ArtistName: 'voloschka',
         ArtistLink: 'https://instagram.com/voloschka_?utm_medium=copy_link',
         ImageType: 'drop2/79.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '239',
@@ -2491,6 +2570,7 @@ export default [
         ArtistName: 'Vanya Dudka',
         ArtistLink: 'https://www.behance.net/vanyadudka',
         ImageType: 'drop2/80.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '240',
@@ -2508,6 +2588,7 @@ export default [
         ArtistName: 'Olena Kalinina',
         ArtistLink: 'https://www.behance.net/creblur',
         ImageType: 'drop2/81.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '241',
@@ -2526,6 +2607,7 @@ export default [
         ArtistName: 'Harkavets Iryna\nmarginai_',
         ArtistLink: 'https://www.behance.net/marginai11a52b/projects',
         ImageType: 'drop2/82.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '242',
@@ -2543,6 +2625,7 @@ export default [
         ArtistName: 'Mariyka Golubeva',
         ArtistLink: 'https://www.behance.net/mary_lee',
         ImageType: 'drop2/83.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '243',
@@ -2561,6 +2644,7 @@ export default [
         ArtistName: 'Klimenkova Yelyzaveta',
         ArtistLink: 'https://www.instagram.com/ben_bam_bom/',
         ImageType: 'drop2/84.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '244',
@@ -2579,6 +2663,7 @@ export default [
         ArtistName: 'Margarita Marushevska',
         ArtistLink: 'https://behance.net/margarita_m',
         ImageType: 'drop2/85.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '245',
@@ -2598,6 +2683,7 @@ export default [
         ArtistLink:
           'https://instagram.com/nohugsforstrangers?igshid=YmMyMTA2M2Y=',
         ImageType: 'drop2/86.png',
+        Editions: 16,
       },
       {
         Tokenid: '246',
@@ -2615,6 +2701,7 @@ export default [
         ArtistName: 'Svitlana Horokhovatska',
         ArtistLink: 'https://www.instagram.com/horo_sh_a',
         ImageType: 'drop2/87.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '247',
@@ -2633,6 +2720,7 @@ export default [
         ArtistName: 'Valerii Kolor / ZDESROY urban artist',
         ArtistLink: ' https://instagram.com/zdesroy?igshid=YmMyMTA2M2Y=.',
         ImageType: 'drop2/88.mp4',
+        Editions: 16,
       },
     ],
   },
@@ -2659,6 +2747,7 @@ export default [
         ArtistLink:
           'https://instagram.com/nohugsforstrangers?igshid=YmMyMTA2M2Y=',
         ImageType: 'drop2/89.png',
+        Editions: 16,
       },
       {
         Tokenid: '249',
@@ -2677,6 +2766,7 @@ export default [
         ArtistName: 'Sveta Gavrilenko',
         ArtistLink: '',
         ImageType: 'drop2/90.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '250',
@@ -2695,6 +2785,7 @@ export default [
         ArtistName: 'mitya lapko',
         ArtistLink: '',
         ImageType: 'drop2/91.mp4',
+        Editions: 16,
       },
       {
         Tokenid: '251',
@@ -2713,6 +2804,7 @@ export default [
         ArtistName: 'Mara Kava',
         ArtistLink: 'https://www.behance.net/MaraKava',
         ImageType: 'drop2/92.png',
+        Editions: 16,
       },
       {
         Tokenid: '252',
@@ -2729,6 +2821,7 @@ export default [
         ArtistName: 'Olya Leuta',
         ArtistLink: 'https://www.behance.net/OlyaLeuta',
         ImageType: 'drop2/93.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '253',
@@ -2747,6 +2840,7 @@ export default [
         ArtistName: 'Anastasiia Falileieva',
         ArtistLink: 'https://www.behance.net/Falileieva',
         ImageType: 'drop2/94.jpg',
+        Editions: 16,
       },
       {
         Tokenid: '254',
@@ -2764,6 +2858,7 @@ export default [
         ArtistName: 'ohwdidtaht',
         ArtistLink: 'https://instagram.com/ohwdidtaht?utm_medium=copy_link',
         ImageType: 'drop2/95.mp4',
+        Editions: 16,
       },
       {
         Tokenid: '255',
@@ -2783,6 +2878,7 @@ export default [
         ArtistLink:
           'https://www.instagram.com/tv/CakA6rCKMKM/?utm_medium=copy_link',
         ImageType: 'drop2/96.gif',
+        Editions: 16,
       },
       {
         Tokenid: '256',
@@ -2801,6 +2897,7 @@ export default [
         ArtistName: 'Maryna Skrypai',
         ArtistLink: 'https://www.behance.net/marishaskrypai',
         ImageType: 'drop2/97.jpeg',
+        Editions: 16,
       },
       {
         Tokenid: '257',
@@ -2820,6 +2917,7 @@ export default [
         ArtistLink:
           'https://www.instagram.com/taraskevych.space/ https://dribbble.com/taraskevych',
         ImageType: 'drop2/98.png',
+        Editions: 16,
       },
       {
         Tokenid: '258',
@@ -2838,6 +2936,7 @@ export default [
         ArtistName: 'Mitya Fenechkin',
         ArtistLink: 'https://instagram.com/mityafenechkin',
         ImageType: 'drop2/99.jpg',
+        Editions: 16,
       },
     ],
   },
@@ -2863,6 +2962,7 @@ export default [
         ArtistName: 'Serhii Holtvianskyi',
         ArtistLink: 'https://www.instagram.com/ser.golt/',
         ImageType: 'drop2/100.png',
+        Editions: 16,
       },
     ],
   },

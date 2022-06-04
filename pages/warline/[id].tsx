@@ -121,6 +121,7 @@ const WarlineItem: React.FC<{
         headline={event.Headline}
         artistUrl={event.ArtistLink}
         artistName={event.ArtistName}
+        editions={event.Editions}
         imageSources={imageSources}
         nextRecord={nextEventData}
         prevRecord={prevEventData}
