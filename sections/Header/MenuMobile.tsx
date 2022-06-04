@@ -21,7 +21,7 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
   handleDisconnect,
   setMenuOpen,
 }) => {
-  const { push, route } = useAppRouter();
+  const { route } = useAppRouter();
   const { isMobile, isTablet } = useViewPort();
 
   const isCollectionPage = route === '/auction/collection/[id]';
@@ -51,45 +51,45 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
         <HeaderAndFooterButton
           label="Home"
           onClick={() => {
-            push('/');
             setMenuOpen(false);
           }}
+          location="/"
           underlined={route === '/'}
           wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
         />
         <HeaderAndFooterButton
           label="Warline"
           onClick={() => {
-            push('/warline');
             setMenuOpen(false);
           }}
+          location="/warline"
           underlined={route === '/warline'}
           wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
         />
         <HeaderAndFooterButton
           label="Auction"
           onClick={() => {
-            push('/auction');
             setMenuOpen(false);
           }}
+          location="/auction"
           underlined={route.split('/').includes('auction')}
           wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
         />
         <HeaderAndFooterButton
           label="The Hall"
           onClick={() => {
-            push('/hall');
             setMenuOpen(false);
           }}
+          location="hall"
           underlined={route === '/hall'}
           wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
         />
         <HeaderAndFooterButton
           label="About Us"
           onClick={() => {
-            push('/about-us');
             setMenuOpen(false);
           }}
+          location="/about-us"
           underlined={route === '/about-us'}
           wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
         />
@@ -97,9 +97,9 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
           <HeaderAndFooterButton
             label="My NFTs"
             onClick={() => {
-              push('/tokens');
               setMenuOpen(false);
             }}
+            location="/tokens"
             underlined={route === '/tokens'}
             wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
           />
