@@ -7,7 +7,6 @@ import { openInNewTab } from '@sections/utils';
 import Button from '@components/Button';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 import { useViewPort } from '@hooks/useViewport';
-import { useAppRouter } from '@hooks/useAppRouter';
 
 type ImageSources = {
   previewSrc: string;
@@ -70,7 +69,6 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   const [toggler, setToggler] = React.useState<boolean>(false);
   const { ref, inView } = useInView();
   const { isDesktop } = useViewPort();
-  const { push } = useAppRouter();
 
   const renderImage = ({
     title,
@@ -125,22 +123,26 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   );
 
   const getPrevButtonJsx = (active: boolean) => (
-    <img
-      alt="Previous"
-      src={'/img/down.svg'}
-      className={`rotate-90 flex-grow-0 rounded-full p-7px tablet:p-[11px] border-carbon border ${
-        active ? 'cursor-pointer active:translate-y-1' : 'opacity-20'
-      } `}
-    />
+    <a>
+      <img
+        alt="Previous"
+        src={'/img/down.svg'}
+        className={`rotate-90 flex-grow-0 rounded-full p-7px tablet:p-[11px] border-carbon border ${
+          active ? 'cursor-pointer active:translate-y-1' : 'opacity-20'
+        } `}
+      />
+    </a>
   );
   const getNextButtonJsx = (active: boolean) => (
-    <img
-      alt="Next"
-      src={'/img/down.svg'}
-      className={`-rotate-90 flex-grow-0 rounded-full p-7px tablet:p-[11px] border-carbon border ${
-        active ? 'cursor-pointer active:translate-y-1' : 'opacity-20'
-      } `}
-    />
+    <a>
+      <img
+        alt="Next"
+        src={'/img/down.svg'}
+        className={`-rotate-90 flex-grow-0 rounded-full p-7px tablet:p-[11px] border-carbon border ${
+          active ? 'cursor-pointer active:translate-y-1' : 'opacity-20'
+        } `}
+      />
+    </a>
   );
 
   const getNavButtonsJsx = (
@@ -153,12 +155,16 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         style={{ boxShadow: hasShadow ? '0px 0 10px rgba(0, 0, 0, 0.8)' : '' }}
       >
         {prevRecord ? (
-          <Link href={prevRecord.path}>{getPrevButtonJsx(true)}</Link>
+          <Link href={prevRecord.path} passHref>
+            {getPrevButtonJsx(true)}
+          </Link>
         ) : (
           getPrevButtonJsx(false)
         )}
         {nextRecord ? (
-          <Link href={nextRecord.path}>{getNextButtonJsx(true)}</Link>
+          <Link href={nextRecord.path} passHref>
+            {getNextButtonJsx(true)}
+          </Link>
         ) : (
           getNextButtonJsx(false)
         )}
@@ -180,16 +186,18 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     <div className="font-rnarrow desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
       <div className="flex items-center mt-[-36px] mb-[24px]">
         <Link href={linkBack} passHref>
-          <div className="h-[48px] flex items-center cursor-pointer group">
-            <img
-              alt="Previous"
-              src={'/img/down.svg'}
-              className="rotate-90 flex-grow-0"
-            />
-            <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
-              {linkBackText}
-            </span>
-          </div>
+          <a>
+            <div className="h-[48px] flex items-center cursor-pointer group">
+              <img
+                alt="Previous"
+                src={'/img/down.svg'}
+                className="rotate-90 flex-grow-0"
+              />
+              <span className="font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
+                {linkBackText}
+              </span>
+            </div>
+          </a>
         </Link>
         <div className="flex items-center flex-1 desktop:hidden">
           {counterJsx}
@@ -240,13 +248,16 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                   ? `${editionsList.length} editions left`
                   : `You have ${editionsList.length} editions`}
               </p>
-              <Button
-                mode="primary"
-                className={`tablet:h-48px mobile:h-60px mobile:w-100% tablet:w-auto mobile:mt-20px tablet:mt-0`}
-                round={false}
-                label="Upgrade Now"
-                onClick={() => push(`/upgrade-your-nft/${id}/${level ?? 0}`)}
-              />
+              <Link href={`/upgrade-your-nft/${id}/${level ?? 0}`} passHref>
+                <a>
+                  <Button
+                    mode="primary"
+                    className={`tablet:h-48px mobile:h-60px mobile:w-100% tablet:w-auto mobile:mt-20px tablet:mt-0`}
+                    round={false}
+                    label="Upgrade Now"
+                  />
+                </a>
+              </Link>
             </div>
           )}
           <div>
@@ -329,52 +340,56 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
             <div className="flex-1 flex">
               {prevRecord ? (
                 <Link href={prevRecord.path} passHref>
-                  <div role="button" className="flex-1 flex-col group">
-                    {renderImage({
-                      title: prevRecord.title,
-                      className: nextPrevRecordClassname,
-                      containerClassName: nextPrevRecordContainerClassname,
-                      imageSources: prevRecord.imageSources,
-                      withLightbox: false,
-                      breakpoints: prevNextBreakpoints,
-                    })}
-                    <div className="h-[44px] flex items-center">
-                      <img
-                        alt="Previous"
-                        src={'/img/down.svg'}
-                        className="rotate-90 flex-grow-0"
-                      />
-                      <span className="font-rblack text-[14px] ml-[8px] h-full leading-[44px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
-                        {prevRecord.title}
-                      </span>
+                  <a>
+                    <div role="button" className="flex-1 flex-col group">
+                      {renderImage({
+                        title: prevRecord.title,
+                        className: nextPrevRecordClassname,
+                        containerClassName: nextPrevRecordContainerClassname,
+                        imageSources: prevRecord.imageSources,
+                        withLightbox: false,
+                        breakpoints: prevNextBreakpoints,
+                      })}
+                      <div className="h-[44px] flex items-center">
+                        <img
+                          alt="Previous"
+                          src={'/img/down.svg'}
+                          className="rotate-90 flex-grow-0"
+                        />
+                        <span className="font-rblack text-[14px] ml-[8px] h-full leading-[44px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
+                          {prevRecord.title}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </Link>
               ) : null}
             </div>
             <div className="flex-1 flex">
               {nextRecord ? (
                 <Link href={nextRecord.path} passHref>
-                  <div role="button" className="flex-1 flex-col group">
-                    {renderImage({
-                      title: nextRecord.title,
-                      className: nextPrevRecordClassname,
-                      containerClassName: nextPrevRecordContainerClassname,
-                      imageSources: nextRecord.imageSources,
-                      withLightbox: false,
-                      breakpoints: prevNextBreakpoints,
-                    })}
-                    <div className="h-[48px] flex items-center">
-                      <span className="ml-auto font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
-                        {nextRecord.title}
-                      </span>
-                      <img
-                        alt="Next"
-                        src={'/img/down.svg'}
-                        className="-rotate-90 flex-grow-0"
-                      />
+                  <a>
+                    <div role="button" className="flex-1 flex-col group">
+                      {renderImage({
+                        title: nextRecord.title,
+                        className: nextPrevRecordClassname,
+                        containerClassName: nextPrevRecordContainerClassname,
+                        imageSources: nextRecord.imageSources,
+                        withLightbox: false,
+                        breakpoints: prevNextBreakpoints,
+                      })}
+                      <div className="h-[48px] flex items-center">
+                        <span className="ml-auto font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
+                          {nextRecord.title}
+                        </span>
+                        <img
+                          alt="Next"
+                          src={'/img/down.svg'}
+                          className="-rotate-90 flex-grow-0"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </Link>
               ) : null}
             </div>
