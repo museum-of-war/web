@@ -16,10 +16,8 @@ import {
 
 const Footer = () => {
   const { isMobile, isTablet } = useViewPort();
-  const { push, route } = useAppRouter();
+  const { route } = useAppRouter();
 
-  const onClickTermsAndConditions = () => push('/terms-and-conditions');
-  const onClickPrivacyPolicy = () => push('/privacy-policy');
   const onClickAuditReport = () =>
     openInNewTab('https://github.com/museum-of-war/nft/tree/master/audits');
   const onClickContactUs = () =>
@@ -56,12 +54,12 @@ const Footer = () => {
             />
             <HeaderAndFooterButton
               label="Privacy Policy"
-              onClick={onClickPrivacyPolicy}
+              location="/privacy-policy"
               wrapperClassName="mr-20px"
             />
             <HeaderAndFooterButton
               label="Terms"
-              onClick={onClickTermsAndConditions}
+              location="/terms-and-conditions"
               wrapperClassName="mr-20px"
             />
             <HeaderAndFooterButton
@@ -104,12 +102,12 @@ const Footer = () => {
               />
               <HeaderAndFooterButton
                 label="Privacy Policy"
-                onClick={onClickPrivacyPolicy}
+                location="/privacy-policy"
                 wrapperClassName="mr-24px"
               />
               <HeaderAndFooterButton
                 label="Terms"
-                onClick={onClickTermsAndConditions}
+                location="/terms-and-conditions"
                 wrapperClassName="mr-24px"
               />
               <HeaderAndFooterButton
