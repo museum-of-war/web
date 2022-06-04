@@ -6,7 +6,6 @@ import { getUrls } from '@sections/Warline/WarlineUrls';
 import Link from 'next/link';
 import Button from '@components/Button';
 import ScaledImage from '@components/ScaledImage';
-import { useAppRouter } from '@hooks/useAppRouter';
 import { BY_DAY } from './constants';
 
 type PropsEvent = {
@@ -32,7 +31,6 @@ const rand_imgs: string[] = [
 ];
 
 const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
-  const { push } = useAppRouter();
   const { isMobile, isTablet } = useViewPort();
 
   const alt = useMemo(() => {
@@ -59,8 +57,8 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
     );
 
     return (
-      <>
-        <Link href={`/warline/${eventData.Tokenid}`} passHref>
+      <Link href={`/warline/${eventData.Tokenid}`} passHref>
+        <a>
           <div className="relative">
             <ScaledImage
               alt={alt}
@@ -80,28 +78,23 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
               </div>
             )}
           </div>
-        </Link>
-      </>
+        </a>
+      </Link>
     );
   };
 
   const renderLinkButton = (
     auctionBtnCn: string = '',
     linkBtnCn: string = '',
-  ): React.ReactElement => {
-    return (
-      <div>
-        <Button
-          onClick={async () => {
-            await push(`/warline/${eventData.Tokenid}`);
-          }}
-          mode="secondary"
-          label="See Details"
-          className={linkBtnCn}
-        />
-      </div>
-    );
-  };
+  ): React.ReactElement => (
+    <div>
+      <Link href={`/warline/${eventData.Tokenid}`} passHref>
+        <a>
+          <Button mode="secondary" label="See Details" className={linkBtnCn} />
+        </a>
+      </Link>
+    </div>
+  );
 
   return isMobile ? (
     <div
