@@ -1,16 +1,16 @@
 //import { AUCTION_START_DATE, AUCTION_END_DATE } from '@sections/Constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
-import { useAppRouter } from '@hooks/useAppRouter';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftDetail from '@sections/NftDetail/NftDetail';
 import type { NextPage } from 'next';
 
-const NftDetailPage: NextPage<SharedProps> = () => {
+type AuctionItemProps = { id: string };
+
+const NftDetailPage: NextPage<SharedProps & AuctionItemProps> = ({ id }) => {
   const url = useAbsoluteUrl();
-  const { query } = useAppRouter();
-  const item = AuctionData[Number(query.id)];
+  const item = AuctionData[Number(id)];
   const image = url(`/${item?.imageSrc || ''}`);
   return (
     <>
@@ -66,3 +66,16 @@ const NftDetailPage: NextPage<SharedProps> = () => {
 };
 
 export default NftDetailPage;
+
+export function getStaticProps({ params }: { params: AuctionItemProps }) {
+  return { props: params };
+}
+
+export function getStaticPaths() {
+  return {
+    paths: AuctionData.map((_, index) => ({
+      params: { id: index.toString() },
+    })),
+    fallback: false,
+  };
+}

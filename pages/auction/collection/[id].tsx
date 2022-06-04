@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
-import { useAppRouter } from '@hooks/useAppRouter';
 import { SharedProps } from '@components/wrapper';
-import { AuctionCollection, AuctionCollectionType } from '@sections/types';
+import { AuctionCollection } from '@sections/types';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import PageHead from '@components/PageHead';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
@@ -10,13 +9,17 @@ import { useIsMounted } from '@hooks/useIsMounted';
 import CollectionDetails from '@sections/Auction/CollectionDetails/CollectionDetails';
 import { OneItemAuctionCollectionDetails } from '@sections/Auction/CollectionDetails/OneItemAuctionCollectionDetails';
 
-const CollectionPage: React.FC<SharedProps> = ({ menuOpen }) => {
-  const { query } = useAppRouter();
+type CollectionProps = { id: string };
+
+const CollectionPage: React.FC<SharedProps & CollectionProps> = ({
+  menuOpen,
+  id,
+}) => {
   const url = useAbsoluteUrl();
   const { canMint: getCanMint, canMintSecondDrop } = useWeb3Modal();
 
   const [canMint, setCanMint] = useState<boolean>(false);
-  const [collectionData, setCollectionData] = useState<AuctionCollectionType>();
+  const collectionData = AuctionCollectionData[id as AuctionCollection];
   const [mintFetched, setMintFetched] = useState(false);
 
   const isMounted = useIsMounted();
@@ -42,10 +45,6 @@ const CollectionPage: React.FC<SharedProps> = ({ menuOpen }) => {
       });
     }
   }, [collectionData]);
-
-  useEffect(() => {
-    setCollectionData(AuctionCollectionData[query.id as AuctionCollection]);
-  }, [query.id]);
 
   if (!collectionData) return null;
 
@@ -93,3 +92,16 @@ const CollectionPage: React.FC<SharedProps> = ({ menuOpen }) => {
 };
 
 export default CollectionPage;
+
+export function getStaticProps({ params }: { params: CollectionProps }) {
+  return { props: params };
+}
+
+export function getStaticPaths() {
+  return {
+    paths: Object.keys(AuctionCollectionData).map((id) => ({
+      params: { id },
+    })),
+    fallback: false,
+  };
+}

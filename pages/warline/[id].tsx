@@ -4,7 +4,6 @@ import PageHead from '@components/PageHead';
 import { EventType } from '@sections/types';
 import WarlineData from '@sections/Warline/WarlineData';
 import { getUrls } from '@sections/Warline/WarlineUrls';
-import { useRouter } from 'next/router';
 import React from 'react';
 
 const rand_imgs: string[] = [
@@ -18,10 +17,9 @@ const rand_imgs: string[] = [
   'img/dots-8.png',
 ];
 
-const WarlineItemPage: React.FC = () => {
-  const router = useRouter();
-  const id: string = router.query.id as string;
+type WarlineItemProps = { id: string };
 
+const WarlineItemPage: React.FC<WarlineItemProps> = ({ id }) => {
   const allEvents = React.useMemo(
     () => WarlineData.flatMap((data) => data.events),
     [],
@@ -134,3 +132,16 @@ const WarlineItem: React.FC<{
 };
 
 export default WarlineItemPage;
+
+export function getStaticProps({ params }: { params: WarlineItemProps }) {
+  return { props: params };
+}
+
+export function getStaticPaths() {
+  return {
+    paths: WarlineData.flatMap((data) => data.events).map((event) => ({
+      params: { id: event.Tokenid },
+    })),
+    fallback: false,
+  };
+}

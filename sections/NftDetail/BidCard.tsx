@@ -3,6 +3,7 @@ import { AuctionVersion } from '@museum-of-war/auction';
 import { calculateTimeLeft } from '@sections/AboutProject/ContentTop/CountdownBanner';
 import { usePopup } from '@providers/PopupProvider';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useIsMounted } from '@hooks/useIsMounted';
 import Button from '@components/Button';
 
 type BidCardProps = {
@@ -46,8 +47,12 @@ export const BidCard = ({
   const { showPopup } = usePopup();
   const { makeBid, getUsdPriceFromETH } = useWeb3Modal();
 
+  const isMounted = useIsMounted();
+
   useEffect(() => {
-    getUsdPriceFromETH(currentBid).then(setUsdPrice);
+    getUsdPriceFromETH(currentBid).then(
+      (value) => isMounted.current && setUsdPrice(value),
+    );
   }, [currentBid]);
 
   useEffect(() => {
@@ -68,7 +73,7 @@ export const BidCard = ({
         console.error(e);
         return null;
       });
-      if (price) setUsdPrice(price);
+      if (price && isMounted.current) setUsdPrice(price);
     }, 10000);
     return () => clearInterval(interval);
   }, [currentBid]);
