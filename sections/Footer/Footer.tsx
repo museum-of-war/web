@@ -36,14 +36,19 @@ const Footer = () => {
     >
       {isMobile || isTablet ? (
         <div className="font-rnarrow pt-10% flex flex-col">
-          <div className="flex flex-row align-center justify-center mb-24px">
-            <SocialMediaButton discord href={DISCORD_LINK} />
-            <SocialMediaButton opensea href={OPENSEA_LINK} />
-            <SocialMediaButton twitter href={TWITTER_LINK} />
-            <SocialMediaButton instagram href={INSTAGRAM_LINK} />
-            <SocialMediaButton github href={GITHUB_LINK} />
+          <div className="flex tablet:flex-row mobile:flex-col align-center justify-center tablet:mb-24px mobile:mb-24px">
+            <div className="flex flex-row tablet:mr-24px mobile:mr-0 mobile:justify-center">
+              <SocialMediaButton discord href={DISCORD_LINK} />
+              <SocialMediaButton opensea href={OPENSEA_LINK} />
+              <SocialMediaButton twitter href={TWITTER_LINK} />
+            </div>
+            <div className="flex flex-row mobile:mt-20px tablet:mt-0 mobile:justify-center">
+              <SocialMediaButton instagram href={INSTAGRAM_LINK} />
+              <SocialMediaButton github href={GITHUB_LINK} />
+              <SocialMediaButton telegram href={TELEGRAM_LINK} />
+            </div>
           </div>
-          <div className="flex flex-row justify-center mb-32px flex-wrap">
+          <div className="flex flex-row justify-center tablet:mb-24px mobile:mb-24px flex-wrap">
             <HeaderAndFooterButton
               label="Audits"
               onClick={onClickAuditReport}
@@ -64,40 +69,54 @@ const Footer = () => {
               onClick={onClickContactUs}
             />
           </div>
-          <p className="m-0 text-center">© 2022 Copyright</p>
+          <div className="m-0 text-center tablet:mb-24px mobile:mb-24px">
+            34 Taras Shevchenko blvd., Kyiv, Ukraine, 01030
+          </div>
+          <div className="m-0 text-center">© 2022 All rights reserved</div>
         </div>
       ) : (
-        <div className="flex desktop:flex-row tablet:flex-col-reverse font-rnarrow py-36px items-center desktop:justify-between w-full">
-          <p className="grow tablet:mt-24px desktop:mt-0">© 2022 Copyright</p>
+        <div className="flex flex-col font-rnarrow py-36px justify-between w-full">
           <div className="flex flex-row items-center desktop:justify-end tablet:justify-center">
-            <HeaderAndFooterButton
-              wrapperClassName="mr-24px"
-              label="Audits"
-              onClick={onClickAuditReport}
-            />
-            <HeaderAndFooterButton
-              label="Privacy Policy"
-              onClick={onClickPrivacyPolicy}
-              wrapperClassName="mr-24px"
-            />
-            <HeaderAndFooterButton
-              label="Terms"
-              onClick={onClickTermsAndConditions}
-              wrapperClassName="mr-24px"
-            />
-            <HeaderAndFooterButton
-              label="Contact Us"
-              onClick={onClickContactUs}
-              wrapperClassName="mr-24px"
-            />
-            <SocialMediaButton telegram href={TELEGRAM_LINK} />
-            <SocialMediaButton opensea href={OPENSEA_LINK} />
-            <SocialMediaButton
-              twitter
-              href={isMobile ? TWITTER_LINK_MOBILE : TWITTER_LINK}
-            />
-            <SocialMediaButton instagram href={INSTAGRAM_LINK} />
-            <SocialMediaButton github href={GITHUB_LINK} />
+            <div className="grow tablet:mt-24px desktop:mt-0">
+              34 Taras Shevchenko blvd., Kyiv, Ukraine, 01030{' '}
+            </div>
+            <div className="flex flex-row">
+              <SocialMediaButton telegram href={TELEGRAM_LINK} />
+              <SocialMediaButton opensea href={OPENSEA_LINK} />
+              <SocialMediaButton
+                twitter
+                href={isMobile ? TWITTER_LINK_MOBILE : TWITTER_LINK}
+              />
+              <SocialMediaButton instagram href={INSTAGRAM_LINK} />
+              <SocialMediaButton github href={GITHUB_LINK} />
+              <SocialMediaButton telegram href={TELEGRAM_LINK} />
+            </div>
+          </div>
+          <div className="flex flex-row items-center justify-end justify-center">
+            <div className="grow tablet:mt-24px desktop:mt-0">
+              © 2022 All rights reserved
+            </div>
+            <div className="flex flex-row mt-24px">
+              <HeaderAndFooterButton
+                wrapperClassName="mr-24px"
+                label="Audits"
+                onClick={onClickAuditReport}
+              />
+              <HeaderAndFooterButton
+                label="Privacy Policy"
+                onClick={onClickPrivacyPolicy}
+                wrapperClassName="mr-24px"
+              />
+              <HeaderAndFooterButton
+                label="Terms"
+                onClick={onClickTermsAndConditions}
+                wrapperClassName="mr-24px"
+              />
+              <HeaderAndFooterButton
+                label="Contact Us"
+                onClick={onClickContactUs}
+              />
+            </div>
           </div>
         </div>
       )}
