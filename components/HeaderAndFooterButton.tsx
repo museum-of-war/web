@@ -1,9 +1,11 @@
 import React from 'react';
 import { VscChromeClose } from 'react-icons/vsc';
+import Link from 'next/link';
 
 type HeaderAndFooterButtonProps = {
   label: string;
-  onClick: () => void;
+  location?: string;
+  onClick?: () => void;
   underlined?: boolean;
   menu?: boolean;
   wrapperClassName?: string;
@@ -17,8 +19,9 @@ const HeaderAndFooterButton = ({
   menu,
   wrapperClassName = '',
   isDarkTheme = false,
+  location,
 }: HeaderAndFooterButtonProps) => {
-  return (
+  const content = (
     <div className={`${wrapperClassName}`}>
       <button
         className={`mt-[4px] font-rblack mobile:text-16px tablet:text-16px desktop:text-16px ${
@@ -34,6 +37,14 @@ const HeaderAndFooterButton = ({
         {menu && !label && <VscChromeClose size={40} />}
       </button>
     </div>
+  );
+
+  return location ? (
+    <Link href={location} passHref>
+      <a>{content}</a>
+    </Link>
+  ) : (
+    content
   );
 };
 
