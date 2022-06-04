@@ -2,7 +2,7 @@ import React from 'react';
 
 type SupportButtonProps = {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
 };
 
