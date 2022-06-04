@@ -6,6 +6,7 @@ import { openInNewTab } from '@sections/utils';
 import { OPENSEA_LINK } from '@sections/Constants';
 import { useIsMounted } from '@hooks/useIsMounted';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
+import Link from 'next/link';
 
 type UpgradeYourNFTProps = {
   tokenId: string;
@@ -60,16 +61,22 @@ const UpgradeYourNFT = ({
 
   return (
     <div className="font-rnarrow items-center desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:mb-120px tablet:mb-96px mobile:mb-[60px]">
-      <div
-        onClick={() => push('/tokens')}
-        className="w-fit font-rblack hover:cursor-pointer pb-30px"
-      >
-        <img alt="Left" src={'/img/back-arrow.svg'} className="inline-block" />
-        <button className="font-rblack ml-15 hover:underline hover:decoration-4">
-          {' '}
-          Back{' '}
-        </button>
-      </div>
+      <Link href="/tokens" passHref>
+        <a>
+          <div className="w-fit font-rblack hover:cursor-pointer pb-30px">
+            <img
+              alt="Left"
+              src={'/img/back-arrow.svg'}
+              className="inline-block"
+            />
+            <button className="font-rblack ml-15 hover:underline hover:decoration-4">
+              {' '}
+              Back{' '}
+            </button>
+          </div>
+        </a>
+      </Link>
+
       <p
         className="border-carbon border-b-4
         mobile:text-38px mobile:leading-40px
