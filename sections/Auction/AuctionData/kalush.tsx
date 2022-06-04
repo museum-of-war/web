@@ -76,13 +76,6 @@ const KalushAuctionData: AuctionItemType = {
       Information Policy, the Ministry of Digital Transformation of Ukraine, and
       the European Broadcasting Union (EBU), the association of broadcasters
       that organizes the international Eurovision Song Contest.
-      <br />
-      <br />
-      All of the money raised will go to the{' '}
-      <a href="https://prytulafoundation.org/" className="underline">
-        CO Charitable Foundation of Serhiy Prytula
-      </a>
-      .
     </span>
   ),
   additionalInfo: (
@@ -110,19 +103,6 @@ const KalushAuctionData: AuctionItemType = {
       it is prolonged and somebody will bid at 20:05, then it will be prolonged
       to 20:15 and so on. If there are no bids for 10 minutes after the
       prolongation, then the auction will be closed.
-      <br />
-      <br />
-      <span className="font-rlight whitespace-pre-wrap mobile:text-14px tablet:text-16px leading-[150%]">
-        The winner must directly contact the Organizers at this mail address to
-        approve his data as winner and maybe take part in live broadcast of the
-        ceremony:{' '}
-        <a
-          href="mailto:serhiy.prytula.kyiv@gmail.com?subject=Stefania For Ukraine"
-          className="underline"
-        >
-          serhiy.prytula.kyiv@gmail.com
-        </a>
-      </span>
     </p>
   ),
   videoSrc: 'https://www.youtube-nocookie.com/embed/F1fl60ypdLs?autoplay=1',
