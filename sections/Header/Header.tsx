@@ -125,7 +125,7 @@ const Header = ({
               <HeaderAndFooterButton
                 isDarkTheme={isDarkTheme}
                 label="The Hall"
-                location="hall"
+                location="/hall"
                 underlined={route === '/hall'}
                 wrapperClassName="mr-32px"
               />
