@@ -1744,8 +1744,8 @@ export default [
           'The prohibition on all russian registred and russian controled aircraft to land, take off and overfly the territory of the EU was made by Ursula von der Leyen',
         DescriptionUkrainian:
           'Європа анонсувала закриття повітрянного простору для усіх російських літаків',
-        ArtistName: '',
-        ArtistLink: '',
+        ArtistName: 'Iryna Vale',
+        ArtistLink: 'https://www.instagram.com/vale.illustration',
         ImageType: 'drop1/92.jpg',
         Editions: 22,
       },
