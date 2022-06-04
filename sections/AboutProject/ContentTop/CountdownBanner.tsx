@@ -1,8 +1,8 @@
 import SupportButton from '@components/SupportButton';
 import DonatePopup from '@sections/Warline/DonatePopup';
 import React, { useEffect, useState } from 'react';
-import { useAppRouter } from '@hooks/useAppRouter';
 import { openInNewTab } from '@sections/utils';
+import Link from 'next/link';
 
 type PropsCountdownBanner = {
   endDate: string;
@@ -31,7 +31,6 @@ const CountdownBanner = ({
   hideDate,
   className,
 }: PropsCountdownBanner) => {
-  const { push } = useAppRouter();
   const [showDonatePopup, setShowDonatePopup] = useState<boolean>(false);
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(endDate));
@@ -87,14 +86,20 @@ const CountdownBanner = ({
         )}
 
         <div className="pt-40px">
-          <SupportButton
-            label={timeLeft.isLeft ? 'Go to Auction' : 'Go to Ceremony'}
-            onClick={() => {
-              timeLeft.isLeft
-                ? push('/auction')
-                : openInNewTab('https://enter.party.space/metahistory');
-            }}
-          />
+          {timeLeft.isLeft ? (
+            <Link href="/auction" passHref>
+              <a>
+                <SupportButton label="Go to Auction" />
+              </a>
+            </Link>
+          ) : (
+            <SupportButton
+              label="Go to Ceremony"
+              onClick={() => {
+                openInNewTab('https://enter.party.space/metahistory');
+              }}
+            />
+          )}
         </div>
       </div>
       {showDonatePopup ? (

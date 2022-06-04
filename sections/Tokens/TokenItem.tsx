@@ -2,12 +2,12 @@ import { AuctionItemType } from '@sections/types';
 import React, { useMemo, useState } from 'react';
 import { getUrls } from '@sections/Warline/WarlineUrls';
 import WarlineData from '@sections/Warline/WarlineData';
-import { useAppRouter } from '@hooks/useAppRouter';
 import AuctionData from '@sections/Auction/AuctionData';
 import ScaledImage from '@components/ScaledImage';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import Button from '../../components/Button';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
+import Link from 'next/link';
 
 type TokenItemProps = {
   tokenData: Nft | Nft[];
@@ -27,8 +27,6 @@ const rand_imgs: string[] = [
 
 const TokenItem = ({ tokenData, index }: TokenItemProps) => {
   const [hovered, setHovered] = useState(false);
-
-  const { push } = useAppRouter();
 
   type Attribute = {
     display_type: string;
@@ -76,7 +74,6 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
 
   const renderImage = (className: string, tokenId: string) => {
     const randomSrc = rand_imgs[1 % 8] as string;
-    const { push } = useAppRouter();
     const { originalSrc, previewSrc, animationSrc, isAnimation } =
       itemEvent && 'ImageType' in itemEvent
         ? getUrls(tokenId, itemEvent?.ImageType, randomSrc as string)
@@ -88,27 +85,28 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
           };
 
     return (
-      <>
-        <ScaledImage
-          alt={alt}
-          onClick={() => push(`/tokens/${index}`)}
-          src={isAnimation ? previewSrc : originalSrc}
-          postLoad={isAnimation ? animationSrc : false}
-          className={className}
-          breakpoints={[
-            {
-              lowerBound: 'tablet',
-              ratio: 0.5,
-            },
-            {
-              lowerBound: 'desktop',
-              ratio: 0.25,
-            },
-          ]}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-        />
-      </>
+      <Link href={`/tokens/${index}`} passHref>
+        <a>
+          <ScaledImage
+            alt={alt}
+            src={isAnimation ? previewSrc : originalSrc}
+            postLoad={isAnimation ? animationSrc : false}
+            className={className}
+            breakpoints={[
+              {
+                lowerBound: 'tablet',
+                ratio: 0.5,
+              },
+              {
+                lowerBound: 'desktop',
+                ratio: 0.25,
+              },
+            ]}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+          />
+        </a>
+      </Link>
     );
   };
 
@@ -125,13 +123,9 @@ const TokenItem = ({ tokenData, index }: TokenItemProps) => {
               mode="secondary"
               label="Upgrade Now"
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-24px py-32px"
-              onClick={() =>
-                push(
-                  `/upgrade-your-nft/${nft?.metadata?.item_number}/${
-                    nft?.metadata?.level ?? 0
-                  }`,
-                )
-              }
+              location={`/upgrade-your-nft/${nft?.metadata?.item_number}/${
+                nft?.metadata?.level ?? 0
+              }`}
               round={true}
             />
             <div className="before:absolute before:content-[''] before:border-solid before:border-carbon before:border-b-8 before:border-r-8 before:w-8px before:h-90% before:-bottom-7 before:-right-7 after:absolute after:content-[''] after:border-solid after:border-carbon after:border-b-8 after:border-r-8 after:w-90% after:h-8px after:-bottom-7 after:-right-7" />

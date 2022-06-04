@@ -1,10 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 import Blurb from '@sections/AboutProject/Blurb';
-import { useAppRouter } from '@hooks/useAppRouter';
 import { useVideoModal } from '@providers/VideoProvider';
 
 const AboutUs = () => {
-  const { push } = useAppRouter();
   const { VideoElement } = useVideoModal();
 
   return (
@@ -22,16 +21,17 @@ const AboutUs = () => {
               якими вони є. Правдивими, вічними, незмінними.
             </p>
           </div>
-          <button
-            onClick={() => {
-              push('/about-us');
-            }}
-            className="font-rblack relative px-30px border-2 border-carbon rounded-full tablet:text-14px
-            tablet:leading-44px tablet:mt-0 tablet:ml-auto mobile:text-14px mobile:leading-36px mobile:mt-20px
-            mobile:ml-0 px-48px mb-0 tablet:h-48px mobile:h-60px mobile:w-100% tablet:w-auto"
-          >
-            More about project
-          </button>
+          <Link href="/about-us" passHref>
+            <a>
+              <button
+                className="font-rblack relative px-30px border-2 border-carbon rounded-full tablet:text-14px
+                  tablet:leading-44px tablet:mt-0 tablet:ml-auto mobile:text-14px mobile:leading-36px mobile:mt-20px
+                  mobile:ml-0 px-48px mb-0 tablet:h-48px mobile:h-60px mobile:w-100% tablet:w-auto"
+              >
+                More about project
+              </button>
+            </a>
+          </Link>
         </div>
         <div className="desktop:w-[544px] tablet:w-full mobile:w-full mobile:mt-40px tablet:mt-72px desktop:mt-0">
           <VideoElement

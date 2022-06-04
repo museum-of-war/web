@@ -1,8 +1,10 @@
+import Link from 'next/link';
 import React, { useMemo } from 'react';
 
 type ButtonProps = {
   mode: 'secondary' | 'primary' | 'custom';
-  onClick: () => void;
+  onClick?: () => void;
+  location?: string;
   label?: string | React.ReactElement;
   className?: string;
   round?: boolean;
@@ -19,6 +21,7 @@ function Button({
   disabled = false,
   round = false,
   extraStyles,
+  location,
 }: ButtonProps) {
   const cn = useMemo(() => {
     if (mode === 'primary') {
@@ -56,7 +59,7 @@ function Button({
     }
   }, [className, mode, round]);
 
-  return (
+  const component = (
     <button
       style={extraStyles}
       disabled={disabled}
@@ -66,6 +69,14 @@ function Button({
     >
       {label}
     </button>
+  );
+
+  return location ? (
+    <Link href={location} passHref>
+      <a>{component}</a>
+    </Link>
+  ) : (
+    component
   );
 }
 

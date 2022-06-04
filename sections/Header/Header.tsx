@@ -5,6 +5,7 @@ import { useAppRouter } from '@hooks/useAppRouter';
 import Button from '@components/Button';
 import { truncateAddress } from '@sections/utils';
 import MenuMobile from '@sections/Header/MenuMobile';
+import Link from 'next/link';
 
 type HeaderProps = {
   signerAddress: string;
@@ -22,7 +23,7 @@ const Header = ({
   setMenuOpen,
 }: HeaderProps) => {
   const { isMobile, isTablet } = useViewPort();
-  const { push, route } = useAppRouter();
+  const { route } = useAppRouter();
 
   const handleConnectWallet = useCallback(() => {
     handleConnect();
@@ -52,18 +53,19 @@ const Header = ({
             }`}
           >
             <div className="flex flex-row justify-between items-center w-full h-100px">
-              <img
-                className="w-15% min-w-100px mr-15% py-10px"
-                src={`${
-                  isDarkTheme
-                    ? '/img/pd-logoNoSymbol-black.svg'
-                    : '/img/pd-logoNoSymbol.svg'
-                }`}
-                alt="Meta History: Museum of War"
-                onClick={() => {
-                  push('/');
-                }}
-              />
+              <Link href="/" passHref>
+                <a>
+                  <img
+                    className="w-15% min-w-100px mr-15% py-10px"
+                    src={`${
+                      isDarkTheme
+                        ? '/img/pd-logoNoSymbol-black.svg'
+                        : '/img/pd-logoNoSymbol.svg'
+                    }`}
+                    alt="Meta History: Museum of War"
+                  />
+                </a>
+              </Link>
               <HeaderAndFooterButton
                 label={menuOpen ? '' : 'Menu'}
                 menu
@@ -84,54 +86,46 @@ const Header = ({
         </div>
       ) : (
         <div className="h-100px flex flex-row items-center justify-between z-20">
-          <img
-            className="w-10% min-w-75px desktop:mr-30% tablet:mr-25% cursor-pointer"
-            src={`${
-              isDarkTheme
-                ? '/img/pd-logoNoSymbol-black.svg'
-                : '/img/pd-logoNoSymbol.svg'
-            }`}
-            alt="Meta History: Museum of War"
-            onClick={() => {
-              push('/');
-            }}
-          />
+          <Link href="/" passHref>
+            <a>
+              <img
+                className="w-10% min-w-75px desktop:mr-30% tablet:mr-25% cursor-pointer"
+                src={`${
+                  isDarkTheme
+                    ? '/img/pd-logoNoSymbol-black.svg'
+                    : '/img/pd-logoNoSymbol.svg'
+                }`}
+                alt="Meta History: Museum of War"
+              />
+            </a>
+          </Link>
           <div className="flex flex-row items-center justify-end">
             <div className="flex flex-row items-center justify-end mr-48px">
               <HeaderAndFooterButton
                 isDarkTheme={isDarkTheme}
                 label="Home"
-                onClick={() => {
-                  push('/');
-                }}
+                location="/"
                 underlined={route === '/'}
                 wrapperClassName="mr-32px"
               />
               <HeaderAndFooterButton
                 isDarkTheme={isDarkTheme}
                 label="Warline"
-                onClick={() => {
-                  push('/warline');
-                }}
+                location="/warline"
                 underlined={route === '/warline'}
                 wrapperClassName="mr-32px"
               />
               <HeaderAndFooterButton
                 isDarkTheme={isDarkTheme}
                 label="Auction"
-                onClick={() => {
-                  push('/auction');
-                }}
+                location="/auction"
                 underlined={route.split('/').includes('auction')}
                 wrapperClassName="mr-32px"
               />
               <HeaderAndFooterButton
                 isDarkTheme={isDarkTheme}
                 label="The Hall"
-                onClick={() => {
-                  push('/hall');
-                  setMenuOpen(false);
-                }}
+                location="/hall"
                 underlined={route === '/hall'}
                 wrapperClassName="mr-32px"
               />
@@ -139,9 +133,9 @@ const Header = ({
                 isDarkTheme={isDarkTheme}
                 label="About Us"
                 onClick={() => {
-                  push('/about-us');
                   setMenuOpen(false);
                 }}
+                location="/about-us"
                 underlined={route === '/about-us'}
                 wrapperClassName={signerAddress ? 'mr-32px' : ''}
               />
@@ -149,9 +143,7 @@ const Header = ({
                 <HeaderAndFooterButton
                   isDarkTheme={isDarkTheme}
                   label="My NFTs"
-                  onClick={() => {
-                    push('/tokens');
-                  }}
+                  location="/tokens"
                   underlined={route === '/tokens'}
                 />
               )}

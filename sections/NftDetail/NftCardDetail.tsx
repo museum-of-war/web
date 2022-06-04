@@ -5,7 +5,6 @@ import Button from '@components/Button';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { AuctionItemType, BidInfo } from '@sections/types';
-import { useAppRouter } from '@hooks/useAppRouter';
 import { useIsMounted } from '@hooks/useIsMounted';
 import AuctionData from '@sections/Auction/AuctionData';
 import NftCard from '@components/NftCard';
@@ -17,6 +16,7 @@ import FsLightbox from 'fslightbox-react';
 import ArtistsData from '@sections/ArtistsData';
 import { BidCard } from '@sections/NftDetail/BidCard';
 import { useVideoModal } from '@providers/VideoProvider';
+import Link from 'next/link';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -30,7 +30,6 @@ const NftCardDetail = ({
 }: NftCardDetailProps) => {
   const { isTablet, isMobile } = useViewPort();
   const { activePopupName, showPopup } = usePopup();
-  const { push } = useAppRouter();
   const { makeBid, getAuctionInfo, getOwnerOfNFT } = useWeb3Modal();
   const { hidePreloader, showPreloader } = usePreloader();
   const { VideoElement } = useVideoModal();
@@ -165,8 +164,6 @@ const NftCardDetail = ({
     }, 5000);
     return () => clearInterval(interval);
   }, [isStarted, collectionData.contractAddress, item.tokenId]);
-
-  const handleToAuction = () => push('/auction');
 
   return (
     <div className={className}>
@@ -386,12 +383,13 @@ const NftCardDetail = ({
                     More auctions
                   </p>
                   {!isMobile && (
-                    <p
-                      onClick={handleToAuction}
-                      className="text-[14px] font-rblack ml-32px  hover:cursor-pointer"
-                    >
-                      See all auctions
-                    </p>
+                    <Link href="/auction" passHref>
+                      <a>
+                        <p className="text-[14px] font-rblack ml-32px  hover:cursor-pointer">
+                          See all auctions
+                        </p>
+                      </a>
+                    </Link>
                   )}
                 </div>
                 <div className="flex flex-wrap -mx-24px">
