@@ -46,4 +46,6 @@ letsencrypt
 /public/img/original
 /public/img/preview
 
+/public/sitemap*
+
 .idea/
