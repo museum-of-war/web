@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -22,6 +23,7 @@
     "fslightbox-react": "^1.6.2-2",
     "lottie-react": "^2.2.1",
     "next": "12.1.0",
+    "next-sitemap": "^3.0.5",
     "next-themes": "^0.2.0",
     "react": "17.0.2",
     "react-device-detect": "^2.1.2",
