@@ -46,9 +46,11 @@ function PageHead({ title, description, image, data }: PageHeadProps) {
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
       {items(data).map((item, index) => (
-        <script type="application/ld+json" key={index}>
-          {JSON.stringify(item)}
-        </script>
+        <script
+          type="application/ld+json"
+          key={index}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+        ></script>
       ))}
     </Head>
   );
