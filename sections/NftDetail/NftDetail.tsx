@@ -30,16 +30,16 @@ const NftDetail = ({}: NftDetailProps) => {
     <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:mb-120px tablet:mb-96px tablet:mt-0 desktop:mt-[0px]">
       <Link href={`/auction#${cardId}`} passHref>
         <a>
-          <div className="flex content-center hover:cursor-pointer mb-24px">
+          <span className="inline-flex content-center hover:cursor-pointer mb-24px">
             <span className="rotate-[270deg] mr-15px">
               <ArrowSvg />
             </span>
-            <p className="text-14px font-rblack">Auction</p>
-          </div>
-          <Blurb header={item.name} />
-          <NftCardDetail item={item} />
+            <span className="text-14px font-rblack">Auction</span>
+          </span>
         </a>
       </Link>
+      <Blurb header={item.name} />
+      <NftCardDetail item={item} />
     </div>
   );
 };
