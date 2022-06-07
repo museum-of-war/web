@@ -226,7 +226,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
               imageSources,
               title,
               className:
-                'overflow-auto object-contain cursor-pointer transition-transform hover:scale-[101%] h-fit max-h-[800px] max-w-[800px] ml-auto object-left-top w-full',
+                'overflow-auto object-contain cursor-pointer transition-transform hover:scale-[101%] max-h-[800px] max-w-[800px] ml-auto object-left-top w-full',
               containerClassName: 'flex-1 z-1',
               breakpoints: [
                 {
