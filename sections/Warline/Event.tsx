@@ -90,7 +90,7 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
     <div>
       <Link href={`/warline/${eventData.Tokenid}`} passHref>
         <a>
-          <Button mode="secondary" label="See Details" className={linkBtnCn} />
+          <Button mode="secondary" label="Buy NFT" className={linkBtnCn} />
         </a>
       </Link>
     </div>
@@ -187,11 +187,30 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
             </>
           )}
         </div>
-        {!shortView &&
-          renderLinkButton(
-            'font-rnarrow  border-black border-y-4 py-5px w-100%',
-            'font-rblack',
-          )}
+        {!shortView && (
+          <div className="flex flex-row mt-24px items-center">
+            {eventData.WarlineDrop === 'v3' && isOnSale
+              ? renderLinkButton(
+                  'font-rnarrow border-black border-y-4 py-5px w-100%',
+                  'font-rblack',
+                )
+              : null}
+            <Link href={`/warline/${eventData.Tokenid}`} passHref>
+              <a>
+                <button
+                  className="mt-auto"
+                  onClick={() => {
+                    // openInNewTab(url);
+                  }}
+                >
+                  <p className="font-rblack ml-32px py-5px border-b-4 hover:border-carbon hover:border-b-4  hover:border-solid border-transparent">
+                    See details
+                  </p>
+                </button>
+              </a>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   ) : (
@@ -239,12 +258,28 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
           )}
         </div>
         {!shortView && (
-          <>
-            {renderLinkButton(
-              'font-rnarrow  border-black border-y-4 py-5px w-100%',
-              'font-rblack',
-            )}
-          </>
+          <div className="flex flex-row mt-24px items-center">
+            {eventData.WarlineDrop === 'v3' && isOnSale
+              ? renderLinkButton(
+                  'font-rnarrow border-black border-y-4 py-5px w-100%',
+                  'font-rblack',
+                )
+              : null}
+            <Link href={`/warline/${eventData.Tokenid}`} passHref>
+              <a>
+                <button
+                  className="mt-auto"
+                  onClick={() => {
+                    // openInNewTab(url);
+                  }}
+                >
+                  <p className="font-rblack ml-32px py-5px border-b-4 hover:border-carbon hover:border-b-4 hover:border-solid border-transparent">
+                    See details
+                  </p>
+                </button>
+              </a>
+            </Link>
+          </div>
         )}
       </div>
     </div>

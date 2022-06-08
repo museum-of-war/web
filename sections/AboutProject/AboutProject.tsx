@@ -1,5 +1,4 @@
 import SupportProject from '@sections/AboutProject/SupportProject';
-import SupportSticky from '@sections/AboutProject/SupportSticky';
 import GovernmentApproval from '@sections/AboutProject/GovernmentApproval';
 import Ambassadors from '@sections/AboutProject/Ambassadors';
 import React from 'react';
@@ -40,7 +39,6 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
         <Partners />
         <SupportProject />
       </div>
-      <SupportSticky targetAnchorId="countdown-banner" />
     </div>
   );
 };

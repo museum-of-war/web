@@ -5,7 +5,6 @@ import SupportBanner from './SupportBanner';
 import { useViewPort } from '@hooks/useViewport';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useIsMounted } from '@hooks/useIsMounted';
-import SupportSticky from './SupportSticky';
 import WarlineData, { Drop2Data } from './WarlineData';
 import SideMenu from './SideMenu';
 import { DayType, EventType } from '@sections/types';
@@ -255,7 +254,6 @@ const Warline = () => {
           <SupportBanner setShowDonatePopup={setShowDonatePopup} />
         </div>
       </div>
-      <SupportSticky setShowDonatePopup={setShowDonatePopup} />
       {showDonatePopup && (
         <DonatePopup setShowDonatePopup={setShowDonatePopup} />
       )}

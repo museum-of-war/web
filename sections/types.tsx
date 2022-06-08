@@ -34,6 +34,7 @@ export type EventType = {
   ArtistLink?: string | undefined;
   ImageType?: string;
   Editions?: number;
+  WarlineDrop: WarlineDrop;
 };
 
 export enum AuctionCollection {
@@ -100,3 +101,5 @@ export type ArtistType = {
   bio: string;
   avatarSrc?: string;
 };
+
+export type WarlineDrop = 'v3';
