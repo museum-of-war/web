@@ -14,6 +14,7 @@ const Team = () => {
     { name: 'Kevin Lista Navarro', role: 'Assistant Director' },
     { name: 'Valeria Panina', role: 'Government Communications' },
     { name: 'Rustam Abduvaliiev', role: 'Frontend' },
+    { name: 'Anna Feuerbach', role: 'Fortuna' },
   ];
 
   return (
