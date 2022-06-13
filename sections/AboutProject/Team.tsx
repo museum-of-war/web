@@ -7,14 +7,14 @@ const Team = () => {
     { name: 'Glib Kaporikov', role: 'Identity' },
     { name: 'Serhii Revva', role: 'Experience' },
     { name: 'Oleksandr Pokhylenko', role: 'Technology' },
-    { name: 'Neonila Vodolska', role: 'Order' },
+    { name: 'Anna Feuerbach', role: 'Fortuna' },
     { name: 'Alexander Yavorskyy', role: 'Voice' },
     { name: 'Kateryna Dranova', role: 'Voice' },
     { name: 'Nick Zinchenko', role: 'Art Support' },
+    { name: 'Neonila Vodolska', role: 'Order' },
     { name: 'Kevin Lista Navarro', role: 'Assistant Director' },
     { name: 'Valeria Panina', role: 'Government Communications' },
     { name: 'Rustam Abduvaliiev', role: 'Frontend' },
-    { name: 'Anna Feuerbach', role: 'Fortuna' },
   ];
 
   return (
