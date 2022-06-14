@@ -5,16 +5,18 @@ const Team = () => {
   const mockTeam: Array<TeamDataType> = [
     { name: 'V K', role: 'Chaos' },
     { name: 'Glib Kaporikov', role: 'Identity' },
-    { name: 'Serhii Revva', role: 'Experience' },
+    { name: 'Kevin Lista Navarro', role: 'Assistant Director' },
     { name: 'Oleksandr Pokhylenko', role: 'Technology' },
     { name: 'Anna Feuerbach', role: 'Fortuna' },
+    { name: 'Anastasiya Shyshenok', role: 'Identity' },
     { name: 'Alexander Yavorskyy', role: 'Voice' },
-    { name: 'Kateryna Dranova', role: 'Voice' },
-    { name: 'Nick Zinchenko', role: 'Art Support' },
+    { name: 'Serhii Revva', role: 'Experience' },
     { name: 'Neonila Vodolska', role: 'Order' },
-    { name: 'Kevin Lista Navarro', role: 'Assistant Director' },
-    { name: 'Valeria Panina', role: 'Government Communications' },
+    { name: 'Dima Muzychenko', role: 'Identity' },
+    { name: 'Kateryna Dranova', role: 'Voice' },
     { name: 'Rustam Abduvaliiev', role: 'Frontend' },
+    { name: 'Valeria Panina', role: 'Government Communications' },
+    { name: 'Nick Zinchenko', role: 'Art Support' },
   ];
 
   return (
