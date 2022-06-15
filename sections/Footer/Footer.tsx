@@ -79,7 +79,7 @@ const Footer = () => {
               34 Taras Shevchenko blvd., Kyiv, Ukraine, 01030{' '}
             </div>
             <div className="flex flex-row">
-              <SocialMediaButton telegram href={TELEGRAM_LINK} />
+              <SocialMediaButton discord href={DISCORD_LINK} />
               <SocialMediaButton opensea href={OPENSEA_LINK} />
               <SocialMediaButton
                 twitter
