@@ -57,7 +57,6 @@ const providerOptions = {
   },
 };
 
-let triedToConnect = false;
 let web3Modal: Web3Modal | null = null;
 const getWeb3Modal = () => {
   if (typeof window === 'undefined') return null;
@@ -133,9 +132,8 @@ export function useWeb3Modal() {
     ethers.providers.Web3Provider | undefined
   >(undefined);
   // Automatically connect if the provider is cached but has not yet been set (e.g. page refresh)
-  if (!triedToConnect && getWeb3Modal()?.cachedProvider && !provider) {
+  if (getWeb3Modal()?.cachedProvider && !provider) {
     connectWallet();
-    triedToConnect = true;
   }
 
   async function connectWallet(): Promise<ethers.providers.Web3Provider | null> {
@@ -160,6 +158,9 @@ export function useWeb3Modal() {
       return ethersProvider;
     } catch (e) {
       console.error(e);
+      // If, e.g., an authenticated MetaMask user closes the login window upon browser restart,
+      // cancel authentication and prevent recurrent popping up of the window:
+      getWeb3Modal()?.clearCachedProvider();
       return null;
     }
   }
