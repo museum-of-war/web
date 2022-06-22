@@ -3,6 +3,9 @@ import { AppWrapper } from '@components/wrapper';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { useAppRouter } from '@hooks/useAppRouter';
+import { PopupProvider } from '@providers/PopupProvider';
+import { PreloaderProvider } from '@providers/PreloaderProvider';
+import { VideoProvider } from '@providers/VideoProvider';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -19,9 +22,21 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [route]);
 
   return (
-    <ThemeProvider enableSystem={true} attribute="class" forcedTheme={theme}>
-      <AppWrapper Child={(props) => <Component {...pageProps} {...props} />} />
-    </ThemeProvider>
+    <VideoProvider>
+      <PreloaderProvider>
+        <PopupProvider>
+          <ThemeProvider
+            enableSystem={true}
+            attribute="class"
+            forcedTheme={theme}
+          >
+            <AppWrapper
+              Child={(props) => <Component {...pageProps} {...props} />}
+            />
+          </ThemeProvider>
+        </PopupProvider>
+      </PreloaderProvider>
+    </VideoProvider>
   );
 }
 

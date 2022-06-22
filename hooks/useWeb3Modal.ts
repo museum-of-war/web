@@ -28,6 +28,9 @@ import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import AuctionData from '@sections/Auction/AuctionData';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
 import { AuctionCollection } from '@sections/types';
+import { useEffectOnce } from '@hooks/useEffectOnce';
+import { useIsMounted } from '@hooks/useIsMounted';
+import { usePopup } from '@providers/PopupProvider';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -132,13 +135,34 @@ export function useWeb3Modal() {
     ethers.providers.Web3Provider | undefined
   >(undefined);
   // Automatically connect if the provider is cached but has not yet been set (e.g. page refresh)
-  if (getWeb3Modal()?.cachedProvider && !provider) {
-    connectWallet();
+  useEffectOnce(() => {
+    if (getWeb3Modal()?.cachedProvider && !provider) {
+      connectWallet();
+    }
+  });
+
+  const { showPopup } = usePopup();
+
+  async function connect(): Promise<any> {
+    const web3Modal = getWeb3Modal();
+    if (web3Modal === null) {
+      return null;
+    }
+    return web3Modal.cachedProvider
+      ? web3Modal.connectTo(web3Modal.cachedProvider)
+      : new Promise((resolve) =>
+          showPopup('signIn', {
+            web3Modal,
+            onConnectionEstablished: resolve,
+          }),
+        );
   }
+
+  const isMounted = useIsMounted();
 
   async function connectWallet(): Promise<ethers.providers.Web3Provider | null> {
     try {
-      const externalProvider = await getWeb3Modal()?.connect();
+      const externalProvider = await connect();
       const ethersProvider = new ethers.providers.Web3Provider(
         externalProvider,
       );
@@ -153,7 +177,9 @@ export function useWeb3Modal() {
         return null;
       }
 
-      setProvider(ethersProvider);
+      if (isMounted.current) {
+        setProvider(ethersProvider);
+      }
 
       return ethersProvider;
     } catch (e) {
@@ -171,7 +197,7 @@ export function useWeb3Modal() {
   }
 
   async function donate(amount: string, target: 'country' | 'project') {
-    const externalProvider = await getWeb3Modal()?.connect();
+    const externalProvider = await connect();
     const ethersProvider = new ethers.providers.Web3Provider(externalProvider);
     setProvider(ethersProvider);
     const signer = ethersProvider.getSigner();
@@ -809,7 +835,7 @@ export function useWeb3Modal() {
 
   async function openModal() {
     try {
-      await getWeb3Modal()?.connect();
+      await connect();
     } catch (error) {
       console.error(error);
     }
