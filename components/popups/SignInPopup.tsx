@@ -18,7 +18,11 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
   const connect = useCallback(
     async (provider: string) => {
       hidePopup();
-      onConnectionEstablished(await web3Modal.connectTo(provider));
+      try {
+        onConnectionEstablished(await web3Modal.connectTo(provider));
+      } catch (e) {
+        console.error(e);
+      }
     },
     [hidePopup, onConnectionEstablished, web3Modal],
   );
@@ -60,7 +64,7 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
               <div className="flex flex-row items-center">
                 <img
                   alt="Logo"
-                  src={'img/metamask-fox.svg'}
+                  src={'/img/metamask-fox.svg'}
                   className="mr-10px"
                   height={24}
                   width={24}
@@ -77,7 +81,7 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
               <div className="flex flex-row items-center">
                 <img
                   alt="Logo"
-                  src={'img/walletconnect.svg'}
+                  src={'/img/walletconnect.svg'}
                   className="mr-10px"
                   height={24}
                   width={24}
@@ -116,7 +120,7 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
               <div className="flex flex-row items-center">
                 <img
                   alt="Logo"
-                  src={'img/metamask-fox.svg'}
+                  src={'/img/metamask-fox.svg'}
                   className="mr-10px"
                   height={24}
                   width={24}
@@ -133,7 +137,7 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
               <div className="flex flex-row items-center">
                 <img
                   alt="Logo"
-                  src={'img/walletconnect.svg'}
+                  src={'/img/walletconnect.svg'}
                   className="mr-10px"
                   height={24}
                   width={24}
