@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import HeaderAndFooterButton from '@components/HeaderAndFooterButton';
 import { useViewPort } from '@hooks/useViewport';
 import { useAppRouter } from '@hooks/useAppRouter';
+import { useIsClientRendered } from '@hooks/useIsClientRendered';
 import Button from '@components/Button';
 import { truncateAddress } from '@sections/utils';
 import MenuMobile from '@sections/Header/MenuMobile';
@@ -37,12 +38,15 @@ const Header = ({
   const isDarkTheme = route.split('/').includes('auction');
   const isHall = route.split('/').includes('hall');
 
+  const isClientRendered = useIsClientRendered();
+
   return (
     <div
       className={
-        isHall
+        (isClientRendered ? '' : 'invisible ') +
+        (isHall
           ? ''
-          : 'desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px'
+          : 'desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px')
       }
     >
       {isMobile || isTablet ? (
