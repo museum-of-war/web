@@ -8,16 +8,17 @@ import { PreloaderProvider } from '@providers/PreloaderProvider';
 import { VideoProvider } from '@providers/VideoProvider';
 import '../styles/globals.css';
 
+function getTheme(route: string): 'light' | 'dark' {
+  return route.split('/').includes('auction') ? 'dark' : 'light';
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
-  const [theme, setTheme] = useState('light');
   const { route } = useAppRouter();
 
+  const [theme, setTheme] = useState(() => getTheme(route));
+
   useEffect(() => {
-    if (!route.split('/').includes('auction')) {
-      setTheme('light');
-    } else {
-      setTheme('dark');
-    }
+    setTheme(getTheme(route));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route]);
 
