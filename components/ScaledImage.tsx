@@ -1,4 +1,11 @@
-import { CSSProperties, MouseEventHandler, useMemo, useState } from 'react';
+import {
+  CSSProperties,
+  MouseEventHandler,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import Imgix from 'react-imgix';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from 'tailwind.config';
@@ -9,6 +16,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { useDownloadProgress } from '@hooks/useDownloadProgress';
+import { useUpdate } from '@hooks/useUpdate';
 import ProgressBar from '@components/ProgressBar';
 
 type TailwindBreakpoint = 'mobile' | 'tablet' | 'laptop' | 'desktop';
@@ -152,6 +160,23 @@ function ScaledImage({
     tailwindTheme,
     materialTheme,
   );
+  const update = useUpdate();
+  const imgRef = useRef<HTMLImageElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    if (
+      imgRef.current?.complete ||
+      (videoRef.current?.readyState ?? 0 >= HTMLMediaElement.HAVE_CURRENT_DATA)
+    ) {
+      setPostLoaded(true);
+    }
+  }, [imgRef.current?.complete, videoRef.current?.readyState]);
+  const imgixRef = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    if (imgixRef.current?.complete) {
+      setLoaded(true);
+    }
+  }, [imgixRef.current?.complete]);
   return (
     <div
       className={`relative ${containerClassName ?? ''}`}
@@ -160,6 +185,7 @@ function ScaledImage({
       {postLoadStatus?.loaded &&
         (postLoadSrc?.endsWith('.mp4') ? (
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted
@@ -169,7 +195,7 @@ function ScaledImage({
             onClick={onClick}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            onLoadedData={() => setPostLoaded(true)}
+            onLoadedData={() => update()}
             style={{
               ...(style || {}),
               ...(postLoaded
@@ -185,6 +211,7 @@ function ScaledImage({
           />
         ) : (
           <img
+            ref={imgRef}
             src={postLoadObject!}
             alt={alt}
             title={title}
@@ -192,7 +219,7 @@ function ScaledImage({
             onClick={onClick}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            onLoad={() => setPostLoaded(true)}
+            onLoad={() => update()}
             style={{
               ...(style || {}),
               ...(postLoaded
@@ -210,15 +237,18 @@ function ScaledImage({
       {(!postLoadStatus?.loaded || !postLoaded) && (
         <Imgix
           src={src}
-          htmlAttributes={{
-            alt,
-            title,
-            style,
-            onClick,
-            onMouseEnter,
-            onMouseLeave,
-            onLoad: () => setLoaded(true),
-          }}
+          htmlAttributes={
+            {
+              ref: imgixRef,
+              alt,
+              title,
+              style,
+              onClick,
+              onMouseEnter,
+              onMouseLeave,
+              onLoad: () => update(),
+            } as any
+          }
           className={className}
           sizes={[
             ...(pixelBreakpoints.length === 0 ||
