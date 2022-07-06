@@ -1,5 +1,7 @@
 import SupportProject from '@sections/AboutProject/SupportProject';
 import SupportSticky from '@sections/AboutProject/SupportSticky';
+import GovernmentApproval from '@sections/AboutProject/GovernmentApproval';
+import Ambassadors from '@sections/AboutProject/Ambassadors';
 import React from 'react';
 const ContentTop = dynamic(() => import('./ContentTop/ContentTop'), {
   ssr: false,
@@ -31,12 +33,16 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
         />
         <ContentChapter />
         <ContentCounterDaysAndRised />
+      </div>
+      <GovernmentApproval />
+      <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <AboutUs />
       </div>
       <ContentMain />
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
-        <Partners />
+        <Ambassadors />
         <ContentMedia />
+        <Partners />
         <SupportProject />
       </div>
       <SupportSticky targetAnchorId="countdown-banner" />

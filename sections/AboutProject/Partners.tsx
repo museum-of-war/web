@@ -1,6 +1,7 @@
 import InfiniteLoop from '@components/InfiniteLoop';
 import React from 'react';
 import { useViewPort } from '@hooks/useViewport';
+import Blurb from "@sections/AboutProject/Blurb";
 
 const Partners = () => {
   const { isMobile } = useViewPort();
@@ -120,11 +121,8 @@ const Partners = () => {
   ];
 
   return (
-    <div className="desktop:mt-120px tablet:mt-175px">
-      <p className="font-rblack mobile:text-38px mobile:leading-40px tablet:text-70px tablet:leading-72px uppercase">
-        PARTNERS
-      </p>
-      <div className="h-5px w-100% tablet:mb-16px mobile:mb-12px bg-carbon dark:bg-white" />
+    <div className="desktop:py-120px tablet:py-[96px] mobile:py-60px">
+      <Blurb header="Partners" />
       {isMobile ? (
         <InfiniteLoop speed={partnersSmall.length * 2.5} className={'h-80px'}>
           {partnersSmall.map((partner, idx) => (

@@ -7,13 +7,13 @@ const ContentMain = () => {
   return (
     <div className="bg-carbon mx-auto">
       {isMobile ? (
-        <div className="mb-8% mt-60px text-white px-24px py-60px">
+        <div className="text-white px-24px py-60px">
           <div>
             <p className="font-rblack text-29px uppercase mb-40px leading-30px">
               We will never let any single day of this period disappear from the
               ledger of world history.
             </p>
-            <div className="flex relative flex-row justify-end mb-40px">
+            <div className="flex relative flex-row justify-end">
               <img
                 className="h-100% mr-auto"
                 alt="dots"
@@ -30,7 +30,7 @@ const ContentMain = () => {
           </div>
         </div>
       ) : (
-        <div className="desktop:container desktop:px-132px tablet:px-72px mx-auto bg-carbon mt-120px bg-carbon text-white py-120px">
+        <div className="desktop:container desktop:px-132px tablet:px-72px mx-auto bg-carbon bg-carbon text-white py-120px">
           <div className="flex desktop:flex-row desktop:justify-between tablet:flex-col">
             <p className="font-rblack uppercase tablet:text-70px tablet:leading-72px tablet:w-100% desktop:w-70%">
               We will never let any single day of this period disappear from the
