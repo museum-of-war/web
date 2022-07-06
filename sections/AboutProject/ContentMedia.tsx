@@ -96,7 +96,7 @@ const ContentMedia = () => {
   }, [isMobile, isDesktop, startIdx, itemsOnPage]);
 
   return (
-    <div className="mobile:py-60px tablet:py-100px desktop:py-0">
+    <div className="mobile:py-60px tablet:py-0 desktop:py-0">
       <div className="flex flex-row items-end justify-between">
         <Blurb header="In press" classNames="w-full" rightContent={isMobile ? (
             <></>
