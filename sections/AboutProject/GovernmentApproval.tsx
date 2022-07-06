@@ -74,7 +74,7 @@ const GovernmentApproval = () => {
                 disabledLeft ? 'opacity-20' : 'opacity-100'
               } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full mr-25px`}
             >
-              <img src="left_arrow.svg" alt="left_arrow" />
+              <img src="img/left_arrow.svg" alt="img/left_arrow" />
             </button>
             <button
               onClick={() => setStartIdx(startIdx + itemsOnPage)}
@@ -83,7 +83,7 @@ const GovernmentApproval = () => {
                 disabledRight ? 'opacity-20' : 'opacity-100'
               } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full`}
             >
-              <img src="right_arrow.svg" alt="right_arrow" />
+              <img src="img/right_arrow.svg" alt="img/right_arrow" />
             </button>
           </div>
         )}
@@ -108,7 +108,7 @@ const GovernmentApproval = () => {
                 disabledLeft ? 'opacity-20' : 'opacity-100'
               } mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-white rounded-full mr-40px`}
             >
-              <img src="left_arrow_white.svg" alt="left_arrow" />
+              <img src="img/left_arrow_white.svg" alt="img/left_arrow" />
             </button>
             <button
               onClick={() => setStartIdx(startIdx + itemsOnPage)}
@@ -117,7 +117,7 @@ const GovernmentApproval = () => {
                 disabledRight ? 'opacity-20' : 'opacity-100'
               } mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-white rounded-full`}
             >
-              <img src="right_arrow_white.svg" alt="right_arrow" />
+              <img src="img/right_arrow_white.svg" alt="img/right_arrow" />
             </button>
           </div>
         ) : (
