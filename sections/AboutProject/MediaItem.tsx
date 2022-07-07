@@ -1,8 +1,14 @@
 import React from 'react';
 import { openInNewTab } from '@sections/utils';
 
-type ItemProps = { summary: string; outlet: string; url: string };
-export const MediaItem: React.FC<ItemProps> = ({ summary, outlet, url }) => {
+type ItemProps = {
+  summary: string;
+  outlet: string;
+  url: string;
+  linkText: string;
+  isBlackBg?: boolean;
+};
+export const MediaItem: React.FC<ItemProps> = ({ summary, outlet, url, linkText, isBlackBg }) => {
   return (
     <div className="flex flex-col justify-start items-start">
       <p className="font-rlight text-16px mt-20px">{outlet}</p>
@@ -15,8 +21,9 @@ export const MediaItem: React.FC<ItemProps> = ({ summary, outlet, url }) => {
           openInNewTab(url);
         }}
       >
-        <p className="font-rblack tablet:mt-30px mobile:mt-10px py-5px border-b-4 hover:border-carbon hover:border-b-4  hover:border-solid border-transparent">
-          Read Article
+        <p className={`font-rblack tablet:mt-30px mobile:mt-10px py-5px border-b-4 hover:border-b-4 hover:border-solid border-transparent 
+          ${isBlackBg ? 'hover:border-white': 'hover:border-carbon'}`}>
+          {linkText}
         </p>
       </button>
     </div>

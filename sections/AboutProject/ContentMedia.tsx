@@ -132,6 +132,7 @@ const ContentMedia = () => {
               outlet={m.outlet}
               url={m.url}
               key={m.url}
+              linkText="Read article"
             />
           ))}
         </div>

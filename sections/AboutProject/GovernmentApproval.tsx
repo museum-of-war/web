@@ -9,23 +9,27 @@ const media = [
       'Ministry of Digital Transformation: The Metahistory Museum has raised more than $600,000 to support Ukraine',
     outlet: 'kmu.gov.ua',
     url: 'https://www.kmu.gov.ua/en/news/mincifri-muzej-metaistoriyi-zibrav-ponad-600-tisyach-dolariv-na-pidtrimku-ukrayini',
+    linkText: 'Read Article'
   },
   {
     summary: 'Help Ukraine with NFTs, don’t leave us alone with the enemy',
     outlet: 'donate.thedigital.gov.ua',
     url: 'https://donate.thedigital.gov.ua/nft',
+    linkText: 'Go to the platform'
   },
   {
     summary:
       'Мінцифра та блокчейн-спільнота запустили NFT-музей війни путінської Росії проти України',
     outlet: 'thedigital.gov.ua',
     url: 'https://thedigital.gov.ua/news/mintsifra-ta-blokcheyn-spilnota-zapustili-nft-muzey-viyni-putinskoi-rosii-proti-ukraini',
+    linkText: 'Read Article'
   },
   {
     summary:
       'Official twitter of th Ministry of Culture and Information Policy',
     outlet: '@MKIPUkraine',
     url: 'https://twitter.com/MKIPUkraine/status/1531248215823196161',
+    linkText: 'View Tweet'
   },
 ];
 const GovernmentApproval = () => {
@@ -95,6 +99,8 @@ const GovernmentApproval = () => {
                 outlet={m.outlet}
                 url={m.url}
                 key={m.url}
+                linkText={m.linkText}
+                isBlackBg
               />
             ))}
           </div>
