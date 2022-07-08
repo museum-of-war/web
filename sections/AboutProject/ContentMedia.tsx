@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useViewPort } from '@hooks/useViewport';
 import { MediaItem } from '@sections/AboutProject/MediaItem';
-import Blurb from "@sections/AboutProject/Blurb";
+import Blurb from '@sections/AboutProject/Blurb';
 
 const media = [
   {
@@ -9,6 +9,12 @@ const media = [
       'Kalush Orchestra, the winners of the Eurovision Song Contest 2022, have successfully auctioned off an NFT for charity. The auction was held on MetaHistory — the official Ukrainian charitable NFT museum – and raised $900,000 in cryptocurrency for Ukraine.',
     outlet: 'Bitcoin.com',
     url: 'https://news.bitcoin.com/eurovision-winners-nft-auction-raises-900k-for-charity/',
+  },
+  {
+    summary:
+      'Mykhailo Fedorov, Vice Prime Minister of Ukraine and Minister of Digital Transformation of Ukraine, on Thursday tweeted out support for Avatars for Ukraine, a non-fungible token (NFT) project directly benefiting humanitarian and defense tactics in Ukraine.',
+    outlet: 'The Block',
+    url: 'https://www.theblock.co/linked/146645/ukraines-digital-transformation-ministry-approves-charity-nft-project-benefiting-war-efforts',
   },
   {
     summary:
@@ -63,6 +69,12 @@ const media = [
     outlet: 'Fortune',
     url: 'https://fortune.com/2022/03/29/ukraine-selling-nfts-war-bonds-meta-history-museum/',
   },
+  {
+    summary:
+      'The Ukraine sale will feature 5,000 to 7,000 NFTs priced at around $450 each and sold over the Ethereum blockchain. Their accompanying digital artwork comes from dozens of Ukrainian artists selected by the Ukrainian government, representing moments and scenes from the war, a collection titled “Meta History.”',
+    outlet: 'Forbes',
+    url: 'https://www.forbes.com/sites/abrambrown/2022/03/26/exclusive-inside-the-ukrainian-governments-nft-sale-and-the-3-young-entrepreneurs-who-helped-create-it/?sh=7ff0a0b22ea6',
+  },
 ];
 
 const ContentMedia = () => {
@@ -96,32 +108,37 @@ const ContentMedia = () => {
   }, [isMobile, isDesktop, startIdx, itemsOnPage]);
 
   return (
-    <div className="mobile:py-60px tablet:py-0 desktop:py-0">
+    <div>
       <div className="flex flex-row items-end justify-between">
-        <Blurb header="In press" classNames="w-full" rightContent={isMobile ? (
-            <></>
-          ) : (
-            <div className="flex flex-row ml-auto">
-              <button
-                disabled={disabledLeft}
-                onClick={() => setStartIdx(startIdx - itemsOnPage)}
-                className={`${
-                  disabledLeft ? 'opacity-20' : 'opacity-100'
-                } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full mr-25px`}
-              >
-                <img src="img/left_arrow.svg" alt="img/left_arrow" />
-              </button>
-              <button
-                onClick={() => setStartIdx(startIdx + itemsOnPage)}
-                disabled={disabledRight}
-                className={`${
-                  disabledRight ? 'opacity-20' : 'opacity-100'
-                } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full`}
-              >
-                <img src="img/right_arrow.svg" alt="img/right_arrow" />
-              </button>
-            </div>
-          )}
+        <Blurb
+          header="In press"
+          classNames="w-full"
+          rightContent={
+            isMobile ? (
+              <></>
+            ) : (
+              <div className="flex flex-row ml-auto">
+                <button
+                  disabled={disabledLeft}
+                  onClick={() => setStartIdx(startIdx - itemsOnPage)}
+                  className={`${
+                    disabledLeft ? 'opacity-20' : 'opacity-100'
+                  } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full mr-25px`}
+                >
+                  <img src="img/left_arrow.svg" alt="img/left_arrow" />
+                </button>
+                <button
+                  onClick={() => setStartIdx(startIdx + itemsOnPage)}
+                  disabled={disabledRight}
+                  className={`${
+                    disabledRight ? 'opacity-20' : 'opacity-100'
+                  } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full`}
+                >
+                  <img src="img/right_arrow.svg" alt="img/right_arrow" />
+                </button>
+              </div>
+            )
+          }
         />
       </div>
       <div className="mt-20px flex flex-row">
