@@ -18,8 +18,8 @@ const Ambassadors = () => {
       <Blurb header={blurbText} />
       <div className="flex desktop:flex-row tablet:flex-row mobile:flex-col justify-between flex-wrap">
         {data.map(datum => (
-          <div className="desktop:basis-1/4 tablet:basis-1/2 mobile:basis-1">
-            <div className="flex flex-col desktop:mt-40px tablet:mt-40px mobile:mt-32px" key={datum.name}>
+          <div className="desktop:basis-1/4 tablet:basis-1/2 mobile:basis-1" key={datum.name}>
+            <div className="flex flex-col desktop:mt-40px tablet:mt-40px mobile:mt-32px">
               <img className="w-96px" alt="wreath" src="wreath.svg" />
               <div className="mobile:leading-48px tablet:leading-48px desktop:leading-40px text-20px">
                 {datum.name}
