@@ -1,27 +1,7 @@
-import { openInNewTab } from '@sections/utils';
 import React, { useEffect, useState } from 'react';
 import { useViewPort } from '@hooks/useViewport';
-
-const Media = (summary: string, outlet: string, url: string, key: number) => {
-  return (
-    <div key={key} className="flex flex-col justify-start items-start">
-      <p className="font-rlight text-16px mt-20px">{outlet}</p>
-      <p className="font-rnarrow mobile:text-18px desktop:text-18px mt-10px">
-        {summary}
-      </p>
-      <button
-        className="mt-auto"
-        onClick={() => {
-          openInNewTab(url);
-        }}
-      >
-        <p className="font-rblack tablet:mt-30px mobile:mt-10px py-5px border-b-4 hover:border-carbon hover:border-b-4  hover:border-solid border-transparent">
-          Read Article
-        </p>
-      </button>
-    </div>
-  );
-};
+import { MediaItem } from '@sections/AboutProject/MediaItem';
+import Blurb from '@sections/AboutProject/Blurb';
 
 const media = [
   {
@@ -29,6 +9,12 @@ const media = [
       'Kalush Orchestra, the winners of the Eurovision Song Contest 2022, have successfully auctioned off an NFT for charity. The auction was held on MetaHistory — the official Ukrainian charitable NFT museum – and raised $900,000 in cryptocurrency for Ukraine.',
     outlet: 'Bitcoin.com',
     url: 'https://news.bitcoin.com/eurovision-winners-nft-auction-raises-900k-for-charity/',
+  },
+  {
+    summary:
+      'Mykhailo Fedorov, Vice Prime Minister of Ukraine and Minister of Digital Transformation of Ukraine, on Thursday tweeted out support for Avatars for Ukraine, a non-fungible token (NFT) project directly benefiting humanitarian and defense tactics in Ukraine.',
+    outlet: 'The Block',
+    url: 'https://www.theblock.co/linked/146645/ukraines-digital-transformation-ministry-approves-charity-nft-project-benefiting-war-efforts',
   },
   {
     summary:
@@ -83,6 +69,12 @@ const media = [
     outlet: 'Fortune',
     url: 'https://fortune.com/2022/03/29/ukraine-selling-nfts-war-bonds-meta-history-museum/',
   },
+  {
+    summary:
+      'The Ukraine sale will feature 5,000 to 7,000 NFTs priced at around $450 each and sold over the Ethereum blockchain. Their accompanying digital artwork comes from dozens of Ukrainian artists selected by the Ukrainian government, representing moments and scenes from the war, a collection titled “Meta History.”',
+    outlet: 'Forbes',
+    url: 'https://www.forbes.com/sites/abrambrown/2022/03/26/exclusive-inside-the-ukrainian-governments-nft-sale-and-the-3-young-entrepreneurs-who-helped-create-it/?sh=7ff0a0b22ea6',
+  },
 ];
 
 const ContentMedia = () => {
@@ -116,41 +108,50 @@ const ContentMedia = () => {
   }, [isMobile, isDesktop, startIdx, itemsOnPage]);
 
   return (
-    <div className="mobile:my-60px tablet:my-100px desktop:my-120px">
+    <div>
       <div className="flex flex-row items-end justify-between">
-        <p className="font-rblack tablet:text-70px mobile:text-12vw mobile:leading-12vw tablet:leading-72px uppercase">
-          IN PRESS
-        </p>
-        {isMobile ? (
-          <></>
-        ) : (
-          <div className="flex flex-row mb-15">
-            <button
-              disabled={disabledLeft}
-              onClick={() => setStartIdx(startIdx - itemsOnPage)}
-              className={`${
-                disabledLeft ? 'opacity-20' : 'opacity-100'
-              } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full mr-25px`}
-            >
-              <img src="left_arrow.svg" alt="left_arrow" />
-            </button>
-            <button
-              onClick={() => setStartIdx(startIdx + itemsOnPage)}
-              disabled={disabledRight}
-              className={`${
-                disabledRight ? 'opacity-20' : 'opacity-100'
-              } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full`}
-            >
-              <img src="right_arrow.svg" alt="right_arrow" />
-            </button>
-          </div>
-        )}
+        <Blurb
+          header="In press"
+          classNames="w-full"
+          rightContent={
+            isMobile ? (
+              <></>
+            ) : (
+              <div className="flex flex-row ml-auto">
+                <button
+                  disabled={disabledLeft}
+                  onClick={() => setStartIdx(startIdx - itemsOnPage)}
+                  className={`${
+                    disabledLeft ? 'opacity-20' : 'opacity-100'
+                  } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full mr-25px`}
+                >
+                  <img src="img/left_arrow.svg" alt="img/left_arrow" />
+                </button>
+                <button
+                  onClick={() => setStartIdx(startIdx + itemsOnPage)}
+                  disabled={disabledRight}
+                  className={`${
+                    disabledRight ? 'opacity-20' : 'opacity-100'
+                  } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full`}
+                >
+                  <img src="img/right_arrow.svg" alt="img/right_arrow" />
+                </button>
+              </div>
+            )
+          }
+        />
       </div>
-
-      <div className="h-5px w-100% bg-carbon" />
       <div className="mt-20px flex flex-row">
         <div className="grid tablet:grid-cols-2 desktop:grid-cols-4 mobile:grid-cols-1 auto-rows-max gap-48px">
-          {toShow.map((m, idx) => Media(m.summary, m.outlet, m.url, idx))}
+          {toShow.map((m) => (
+            <MediaItem
+              summary={m.summary}
+              outlet={m.outlet}
+              url={m.url}
+              key={m.url}
+              linkText="Read article"
+            />
+          ))}
         </div>
       </div>
       {isMobile ? (
@@ -162,7 +163,7 @@ const ContentMedia = () => {
               disabledLeft ? 'opacity-20' : 'opacity-100'
             } mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full mr-40px`}
           >
-            <img src="left_arrow.svg" alt="left_arrow" />
+            <img src="img/left_arrow.svg" alt="img/left_arrow" />
           </button>
           <button
             onClick={() => setStartIdx(startIdx + itemsOnPage)}
@@ -171,7 +172,7 @@ const ContentMedia = () => {
               disabledRight ? 'opacity-20' : 'opacity-100'
             } mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full`}
           >
-            <img src="right_arrow.svg" alt="right_arrow" />
+            <img src="img/right_arrow.svg" alt="img/right_arrow" />
           </button>
         </div>
       ) : (

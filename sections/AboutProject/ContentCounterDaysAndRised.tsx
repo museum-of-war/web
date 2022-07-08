@@ -20,7 +20,7 @@ const ContentCounterDaysAndRised = () => {
 
   return (
     <>
-      <div className="desktop:flex desktop:flex-row desktop:justify-between mt-20 tablet:mb-75px mobile:mb-8%">
+      <div className="desktop:flex desktop:flex-row desktop:justify-between mt-20 desktop:mb-120px tablet:mb-96px mobile:mb-60px">
         <div className="desktop:w-[544px] tablet:mt-0 mobile:mt-60px">
           <p className="font-rblack mobile:text-27px mobile:leading-30px mobile:mb-12px tablet:text-32px tablet:leading-36px tablet:mb-16px">
             The war’s been going on for
