@@ -27,7 +27,7 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
     [hidePopup, onConnectionEstablished, web3Modal],
   );
 
-  const handleMetamask = useCallback(() => {
+  const handleMetaMask = useCallback(() => {
     if (window.ethereum?.isMetaMask) {
       connect('injected').then();
     } else {
@@ -37,6 +37,10 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
 
   const handleWalletConnect = useCallback(() => {
     connect('walletconnect').then();
+  }, [connect]);
+
+  const handleCoinbaseWallet = useCallback(() => {
+    connect('coinbasewallet').then();
   }, [connect]);
 
   return isMobile ? (
@@ -63,7 +67,7 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
             label={
               <div className="flex flex-row items-center">
                 <img
-                  alt="Logo"
+                  alt="MetaMask Logo"
                   src={'/img/metamask-fox.svg'}
                   className="mr-10px"
                   height={24}
@@ -73,14 +77,14 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
               </div>
             }
             className="w-100% mt-30px h-48px mobile:py-12px"
-            onClick={handleMetamask}
+            onClick={handleMetaMask}
           />
           <Button
             mode="secondary"
             label={
               <div className="flex flex-row items-center">
                 <img
-                  alt="Logo"
+                  alt="WalletConnect Logo"
                   src={'/img/walletconnect.svg'}
                   className="mr-10px"
                   height={24}
@@ -91,6 +95,23 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
             }
             className="w-100% mt-10px h-48px mobile:py-12px"
             onClick={handleWalletConnect}
+          />
+          <Button
+            mode="secondary"
+            label={
+              <div className="flex flex-row items-center">
+                <img
+                  alt="Coinbase Wallet Logo"
+                  src={'/img/coinbasewallet.svg'}
+                  className="mr-10px"
+                  height={24}
+                  width={24}
+                />
+                Coinbase Wallet
+              </div>
+            }
+            className="w-100% mt-10px h-48px mobile:py-12px"
+            onClick={handleCoinbaseWallet}
           />
         </div>
       </div>
@@ -119,7 +140,7 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
             label={
               <div className="flex flex-row items-center">
                 <img
-                  alt="Logo"
+                  alt="MetaMask Logo"
                   src={'/img/metamask-fox.svg'}
                   className="mr-10px"
                   height={24}
@@ -129,14 +150,14 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
               </div>
             }
             className="w-100% mt-30px h-48px tablet:py-12px"
-            onClick={handleMetamask}
+            onClick={handleMetaMask}
           />
           <Button
             mode="secondary"
             label={
               <div className="flex flex-row items-center">
                 <img
-                  alt="Logo"
+                  alt="WalletConnect Logo"
                   src={'/img/walletconnect.svg'}
                   className="mr-10px"
                   height={24}
@@ -147,6 +168,23 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
             }
             className="w-100% mt-10px h-48px tablet:py-12px"
             onClick={handleWalletConnect}
+          />
+          <Button
+            mode="secondary"
+            label={
+              <div className="flex flex-row items-center">
+                <img
+                  alt="Coinbase Wallet Logo"
+                  src={'/img/coinbasewallet.svg'}
+                  className="mr-10px"
+                  height={24}
+                  width={24}
+                />
+                Coinbase Wallet
+              </div>
+            }
+            className="w-100% mt-10px h-48px tablet:py-12px"
+            onClick={handleCoinbaseWallet}
           />
         </div>
       </div>

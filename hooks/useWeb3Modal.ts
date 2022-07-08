@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BigNumber, BigNumberish, ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 import Web3 from 'web3';
 import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
 import MergerContractAbi from '../abi/MergerMH.json';
@@ -55,6 +56,13 @@ const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
     options: {
+      infuraId: process.env.NEXT_PUBLIC_INFURA_API,
+    },
+  },
+  coinbasewallet: {
+    package: CoinbaseWalletSDK,
+    options: {
+      appName: 'Meta History',
       infuraId: process.env.NEXT_PUBLIC_INFURA_API,
     },
   },
