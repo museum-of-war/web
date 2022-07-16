@@ -39,3 +39,4 @@ export const AUCTION_CLOSING_DATE = '2022-04-22T20:00:00.000+03:00';
 export const AUCTION_START_DATE = '2022-04-17T23:00:00.000+03:00';
 export const KALUSH_BID = BigNumber.from('500000000000000000000');
 export const JOINLIST_LINK = 'https://www.joinlist.me/metahistory';
+export const TICKET_EXPIRATION_PERIOD = 5 * 60 * 1000; // 5 minutes

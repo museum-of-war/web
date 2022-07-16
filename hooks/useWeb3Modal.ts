@@ -8,6 +8,7 @@ import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
 import MergerContractAbi from '../abi/MergerMH.json';
 import Prospect100ContractAbi from '../abi/Prospect100MH.json';
 import IERC721InterfaceAbi from '../abi/IERC721.json';
+import IERC1155InterfaceAbi from '../abi/IERC1155.json';
 import MetaHistoryDropContractAbi from '../abi/DropMH.json';
 import MetaHistorySelectiveDropContractAbi from '../abi/SelectiveDropMH.json';
 import MetaHistoryBatchSellerContractAbi from '../abi/AirdropBatchSeller.json';
@@ -24,6 +25,7 @@ import {
   PROSPECT_100_ADDRESS,
   SECOND_DROP_ADDRESS,
   THIRD_DROP_ADDRESS,
+  TICKET_EXPIRATION_PERIOD,
   UKRAINE_WALLET_ADDRESS,
 } from '@sections/Constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
@@ -32,10 +34,17 @@ import { Drop1Data, Drop2Data, Drop3Data } from '@sections/Warline/WarlineData';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import AuctionData from '@sections/Auction/AuctionData';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
-import { AuctionCollection, TransferInfoType } from '@sections/types';
+import {
+  AuctionCollection,
+  TransferInfoType,
+  TicketDataType,
+  TicketInfoType,
+  TicketType,
+} from '@sections/types';
 import { useEffectOnce } from '@hooks/useEffectOnce';
 import { useIsMounted } from '@hooks/useIsMounted';
 import { usePopup } from '@providers/PopupProvider';
+import collectionContractsInfo from '@sections/CollectionContractsInfo';
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -143,6 +152,182 @@ const auctionInfoMemo = {
   },
 };
 
+const ticketsMemo = {} as {
+  [collectionAddress: string]: {
+    [tokenId: number]: TicketType;
+  };
+};
+
+function fixNftForDrop1(nft: Nft): Nft {
+  const tokenId = parseInt(nft.id.tokenId, 16);
+  const tokenNumber = ((tokenId - 5) % 99) + 5;
+  const editionNumber = (tokenId - tokenNumber) / 99 + 1;
+  const event = Drop1Data.flatMap((day) => day.events).find(
+    (event) => '' + tokenNumber == event.Tokenid,
+  )!;
+  return {
+    ...nft,
+    metadata: {
+      name: `Day ${event.DayNo}, ${event.Time}`,
+      description: event.Headline,
+      image: event.ImageType,
+      item_number: event.Tokenid,
+      attributes: [
+        {
+          trait_type: 'Edition',
+          max_value: 22,
+          value: editionNumber,
+        },
+      ],
+    },
+  };
+}
+
+function recreateNftForDrop2(nft: Nft): Nft {
+  const tokenId = parseInt(nft.id.tokenId);
+  const event = Drop2Data.flatMap((day) => day.events).find((event) =>
+    event.ImageType?.includes(`drop2/${tokenId}`),
+  )!;
+  return {
+    ...nft,
+    metadata: {
+      name: `Day ${event.DayNo}, ${event.Time}`,
+      description: event.Headline,
+      image: event.ImageType,
+      item_number: event.Tokenid,
+      attributes: [
+        {
+          trait_type: 'Edition',
+          max_value: 16,
+          value: 'x' + nft.balance,
+        },
+      ],
+    },
+  };
+}
+
+function recreateNftForDrop3(nft: Nft): Nft {
+      const tokenId = parseInt(nft.id.tokenId);
+      const event = Drop3Data.flatMap((day) => day.events).find((event) =>
+        event.ImageType?.includes(`drop3/${tokenId}`),
+      )!;
+      return {
+        ...nft,
+        metadata: {
+          name: `Day ${event.DayNo}, ${event.Time}`,
+          description: event.Headline,
+          image: event.ImageType,
+          item_number: event.Tokenid,
+          attributes: [
+            {
+              trait_type: 'Edition',
+              max_value: 12,
+              value: 'x' + nft.balance,
+            },
+          ],
+        },
+      };
+    }
+
+function recreateNftForProspect100(nft: Nft): Nft {
+  const tokenId = parseInt(nft.id.tokenId);
+  return {
+    ...nft,
+    metadata: {
+      name: nft.title,
+      description: nft.description,
+      image: `${IMG_STORAGE}/original/prospect100/${tokenId}.${
+        [29, 81].includes(tokenId)
+          ? 'gif'
+          : [36, 100].includes(tokenId)
+          ? 'png'
+          : 'jpg'
+      }`,
+    },
+  };
+}
+
+function tryRecreateNftForAuctions(nft: Nft): Nft {
+  const tokenId = parseInt(nft.id.tokenId);
+  const contractAddress = nft.contract.address;
+  const collection = AddressesToAuctions[contractAddress];
+  if (!collection) return nft;
+  const item = AuctionData.find(
+    (item) => item.category === collection && item.tokenId === tokenId,
+  )!;
+  return {
+    ...nft,
+    metadata: {
+      name: item.name,
+      description: (item.descriptionEnglish ?? item.descriptionUkrainian) as
+        | string
+        | undefined,
+      image: item.imageSrc,
+    },
+  };
+}
+
+function fixNftForMerged1(nft: Nft): Nft {
+  const tokenId = parseInt(nft.id.tokenId, 16);
+  const elementIndex = Math.floor((tokenId - 1) / 21); // totalMergesCount = editionsCount - 1
+  const tokenNumber = elementIndex + 4 + 1; // offset = 4, start from 1
+  let level = 1;
+  let edition = 1;
+  let maxEditions = 1;
+  const elementOffset = elementIndex * 21;
+  const startTokenIds = [1, 12, 17, 19];
+  for (; level < startTokenIds.length; level++) {
+    // level starts from 1
+    const nextLevelId = elementOffset + startTokenIds[level]!;
+    if (tokenId < nextLevelId) {
+      edition = tokenId - elementOffset - startTokenIds[level - 1]! + 1;
+      maxEditions = Math.floor(22 / Math.pow(2, level));
+      break;
+    }
+  }
+  const event = Drop1Data.flatMap((day) => day.events).find(
+    (event) => '' + tokenNumber == event.Tokenid,
+  )!;
+  return {
+    ...nft,
+    metadata: {
+      name: `Day ${event.DayNo}, ${event.Time}`,
+      description: event.Headline,
+      image: event.ImageType,
+      item_number: event.Tokenid,
+      level: level,
+      attributes: [
+        {
+          trait_type: 'Edition',
+          max_value: maxEditions,
+          value: edition,
+        },
+        {
+          trait_type: 'Level',
+          max_value: startTokenIds.length,
+          value: level,
+        },
+      ],
+    },
+  };
+}
+
+function tryRecreateNft(nft: Nft): Nft {
+  return nft.contract.address === FIRST_DROP_ADDRESS.toLowerCase()
+    ? nft.metadata?.image === undefined
+      ? fixNftForDrop1(nft)
+      : nft
+    : nft.contract.address === SECOND_DROP_ADDRESS.toLowerCase()
+    ? recreateNftForDrop2(nft)
+    : nft.contract.address === THIRD_DROP_ADDRESS.toLowerCase()
+          ? recreateNftForDrop3(nft)
+          : nft.contract.address === MERGER_ADDRESS.toLowerCase()
+    ? fixNftForMerged1(nft)
+    : nft.contract.address === PROSPECT_100_ADDRESS.toLowerCase()
+    ? recreateNftForProspect100(nft)
+    : tryRecreateNftForAuctions(nft);
+}
+
 export function useWeb3Modal() {
   const [provider, setProvider] = useState<
     ethers.providers.Web3Provider | undefined
@@ -163,11 +348,10 @@ export function useWeb3Modal() {
     }
     return web3Modal.cachedProvider
       ? web3Modal.connectTo(web3Modal.cachedProvider)
-      : new Promise((resolve, reject) =>
+      : new Promise((resolve) =>
           showPopup('signIn', {
             web3Modal,
             onConnectionEstablished: resolve,
-            onConnectionFailed: reject,
           }),
         );
   }
@@ -245,7 +429,6 @@ export function useWeb3Modal() {
           contractAddresses: [
             MetaHistoryAddress,
             SECOND_DROP_ADDRESS,
-            THIRD_DROP_ADDRESS,
             MERGER_ADDRESS,
             ...AuctionsAddresses,
           ].filter((v, i, a) => a.indexOf(v) === i),
@@ -262,187 +445,8 @@ export function useWeb3Modal() {
       pageKey = res.pageKey;
     } while (pageKey);
 
-    function fixNftForDrop1(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId, 16);
-      const tokenNumber = ((tokenId - 5) % 99) + 5;
-      const editionNumber = (tokenId - tokenNumber) / 99 + 1;
-      const event = Drop1Data.flatMap((day) => day.events).find(
-        (event) => '' + tokenNumber == event.Tokenid,
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 22,
-              value: editionNumber,
-            },
-          ],
-        },
-      };
-    }
-
-    function recreateNftForDrop2(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop2Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop2/${tokenId}`),
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 16,
-              value: 'x' + nft.balance,
-            },
-          ],
-        },
-      };
-    }
-
-    function recreateNftForDrop3(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop3Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop3/${tokenId}`),
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 12,
-              value: 'x' + nft.balance,
-            },
-          ],
-        },
-      };
-    }
-
-    function recreateNftForProspect100(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      return {
-        ...nft,
-        metadata: {
-          name: nft.title,
-          description: nft.description,
-          image: `${IMG_STORAGE}/original/prospect100/${tokenId}.${
-            [29, 81].includes(tokenId)
-              ? 'gif'
-              : [36, 100].includes(tokenId)
-              ? 'png'
-              : 'jpg'
-          }`,
-        },
-      };
-    }
-
-    function tryRecreateNftForAuctions(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      const contractAddress = nft.contract.address;
-      const collection = AddressesToAuctions[contractAddress];
-      if (!collection) return nft;
-      const item = AuctionData.find(
-        (item) => item.category === collection && item.tokenId === tokenId,
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: item.name,
-          description: (item.descriptionEnglish ??
-            item.descriptionUkrainian) as string | undefined,
-          image: item.imageSrc,
-        },
-      };
-    }
-
-    function fixNftForMerged1(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId, 16);
-      const elementIndex = Math.floor((tokenId - 1) / 21); // totalMergesCount = editionsCount - 1
-      const tokenNumber = elementIndex + 4 + 1; // offset = 4, start from 1
-      let level = 1;
-      let edition = 1;
-      let maxEditions = 1;
-      const elementOffset = elementIndex * 21;
-      const startTokenIds = [1, 12, 17, 19];
-      for (; level < startTokenIds.length; level++) {
-        // level starts from 1
-        const nextLevelId = elementOffset + startTokenIds[level]!;
-        if (tokenId < nextLevelId) {
-          edition = tokenId - elementOffset - startTokenIds[level - 1]! + 1;
-          maxEditions = Math.floor(22 / Math.pow(2, level));
-          break;
-        }
-      }
-      const event = Drop1Data.flatMap((day) => day.events).find(
-        (event) => '' + tokenNumber == event.Tokenid,
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          level: level,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: maxEditions,
-              value: edition,
-            },
-            {
-              trait_type: 'Level',
-              max_value: startTokenIds.length,
-              value: level,
-            },
-          ],
-        },
-      };
-    }
-
     return ownedNfts
-      .map((nft) =>
-        nft.contract.address === FIRST_DROP_ADDRESS.toLowerCase()
-          ? nft.metadata?.image === undefined
-            ? fixNftForDrop1(nft)
-            : nft
-          : nft.contract.address === SECOND_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop2(nft)
-          : nft.contract.address === THIRD_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop3(nft)
-          : nft.contract.address === MERGER_ADDRESS.toLowerCase()
-          ? fixNftForMerged1(nft)
-          : nft.contract.address === PROSPECT_100_ADDRESS.toLowerCase()
-          ? recreateNftForProspect100(nft)
-          : tryRecreateNftForAuctions(nft),
-      )
+      .map(tryRecreateNft)
       .sort((a, b) => parseInt(a.id.tokenId) - parseInt(b.id.tokenId))
       .sort((a, b) =>
         a.contract.address > b.contract.address
@@ -1184,6 +1188,149 @@ export function useWeb3Modal() {
     };
   }
 
+  function _getTicketDataMessageHash(data: TicketDataType): string {
+    return ethers.utils.solidityKeccak256(
+      ['string', 'address', 'address', 'uint256', 'uint256', 'uint256'],
+      [
+        data.blockHash,
+        data.ownerAddress,
+        data.collectionAddress,
+        data.tokenId,
+        data.creationTime,
+        data.expirationTime,
+      ],
+    );
+  }
+
+  async function getOrCreateTicket(
+    collectionAddress: string,
+    tokenId: number,
+  ): Promise<TicketType> {
+    const prevTicket = ticketsMemo[collectionAddress]?.[tokenId];
+    if (prevTicket && prevTicket.data.expirationTime < new Date())
+      return prevTicket;
+
+    const ethersProvider = await connectWallet();
+    if (!ethersProvider) throw new Error('No ethers provider found');
+    const signer = ethersProvider.getSigner();
+
+    const block = await ethersProvider.getBlock('latest');
+
+    const data = {
+      blockHash: block.hash,
+      ownerAddress: await signer.getAddress(),
+      collectionAddress: collectionAddress,
+      tokenId: tokenId,
+      creationTime: new Date(block.timestamp * 1000),
+      expirationTime: new Date(
+        block.timestamp * 1000 + TICKET_EXPIRATION_PERIOD,
+      ),
+    } as TicketDataType;
+
+    const messageHash = _getTicketDataMessageHash(data);
+
+    const signatureHash = await signer.signMessage(
+      ethers.utils.arrayify(messageHash),
+    );
+
+    return {
+      data,
+      signatureHash,
+    } as TicketType;
+  }
+
+  async function verifyTicket(
+    ticket: TicketType,
+    maxPeriod = TICKET_EXPIRATION_PERIOD,
+  ): Promise<TicketInfoType> {
+    if (ticket.data.expirationTime < new Date())
+      throw new Error('Ticket has expired');
+    if (+ticket.data.expirationTime - +ticket.data.creationTime > maxPeriod)
+      throw new Error('Wrong ticket expiration period');
+
+    const messageHash = _getTicketDataMessageHash(ticket.data);
+    const signatureHash = ticket.signatureHash;
+
+    const address = ethers.utils.verifyMessage(messageHash, signatureHash);
+
+    if (address !== ticket.data.ownerAddress)
+      throw new Error('Signer and owner do not match');
+
+    const collectionAddress = ticket.data.collectionAddress;
+
+    if (!(collectionAddress in collectionContractsInfo))
+      throw new Error('Unsupported collection');
+
+    // Initialize an alchemy-web3 instance:
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+
+    const block = await web3.eth.getBlock(ticket.data.blockHash);
+
+    if (+block.timestamp * 1000 !== +ticket.data.creationTime)
+      throw new Error('Invalid block timestamp');
+
+    if (collectionContractsInfo[collectionAddress]?.type === 'erc721') {
+      const nftContract = new web3.eth.Contract(
+        IERC721InterfaceAbi as AbiItem[],
+        collectionAddress,
+      );
+      const owner = await nftContract.methods
+        .ownerOf(ticket.data.tokenId)
+        .call({ from: collectionAddress });
+      if (('' + owner).toLowerCase() !== ticket.data.ownerAddress.toLowerCase())
+        throw new Error('Address is not an owner');
+    } else {
+      const nftContract = new web3.eth.Contract(
+        IERC1155InterfaceAbi as AbiItem[],
+        collectionAddress,
+      );
+      const balance = await nftContract.methods
+        .balanceOf(ticket.data.ownerAddress, ticket.data.tokenId)
+        .call({ from: collectionAddress });
+      if (+balance <= 0) throw new Error('Address is not an owner');
+    }
+
+    const nft = await web3.alchemy
+      .getNftMetadata({
+        contractAddress: ticket.data.ownerAddress,
+        tokenId: '' + ticket.data.tokenId,
+        tokenType: collectionContractsInfo[collectionAddress]?.type,
+      })
+      .catch((e) => {
+        console.error(e);
+        return {
+          contract: { address: collectionAddress },
+          id: { tokenId: '0x' + ticket.data.tokenId.toString(16) },
+          balance: '1',
+        } as Nft;
+      });
+
+    const recreatedNft = tryRecreateNft(nft);
+
+    const attributes = Object.fromEntries(
+      (recreatedNft.metadata?.attributes ?? [])
+        .filter((attr) => !!attr.trait_type)
+        .map((attr) => [
+          attr.trait_type,
+          attr.display_type === 'date'
+            ? new Date(attr.value * 1000)
+            : attr.value,
+        ]),
+    );
+
+    return {
+      'Token owner': ticket.data.ownerAddress,
+      'Collection name': collectionContractsInfo[collectionAddress]?.name,
+      'Token name': recreatedNft.metadata?.name,
+      'QR code creation time': ticket.data.creationTime,
+      'QR code verification time': new Date(),
+      'QR code expiration time': ticket.data.expirationTime,
+      ...attributes,
+    } as TicketInfoType;
+  }
+
   return {
     connectWallet,
     disconnectWallet,
@@ -1210,5 +1357,7 @@ export function useWeb3Modal() {
     getTotalNFTs,
     mergeBaseFirstDrop,
     mergeAdvancedFirstDrop,
+    getOrCreateTicket,
+    verifyTicket,
   };
 }
