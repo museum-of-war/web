@@ -15,6 +15,7 @@ import MetaHistoryBatchSellerContractAbi from '../abi/AirdropBatchSeller.json';
 import { createAlchemyWeb3, GetNftsResponse } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
+  CHAIN,
   AVATARS_ADDRESS,
   BATCH_SELLER_ADDRESS,
   FIRST_DROP_ADDRESS,
@@ -64,7 +65,7 @@ for (let key in AuctionCollectionData) {
   AddressesToAuctions[address] = key as AuctionCollection;
 }
 
-const chain = 'mainnet';
+const chain = CHAIN;
 
 const providerOptions = {
   walletconnect: {
@@ -199,7 +200,7 @@ function recreateNftForDrop2(nft: Nft): Nft {
         {
           trait_type: 'Edition',
           max_value: 16,
-          value: 'x' + nft.balance,
+          value: 'x' + (nft.balance ?? '?'),
         },
       ],
     },
@@ -313,17 +314,18 @@ function fixNftForMerged1(nft: Nft): Nft {
 }
 
 function tryRecreateNft(nft: Nft): Nft {
-  return nft.contract.address === FIRST_DROP_ADDRESS.toLowerCase()
+  const address = nft.contract.address.toLowerCase();
+  return address === FIRST_DROP_ADDRESS.toLowerCase()
     ? nft.metadata?.image === undefined
       ? fixNftForDrop1(nft)
       : nft
-    : nft.contract.address === SECOND_DROP_ADDRESS.toLowerCase()
+    : address === SECOND_DROP_ADDRESS.toLowerCase()
     ? recreateNftForDrop2(nft)
     : nft.contract.address === THIRD_DROP_ADDRESS.toLowerCase()
           ? recreateNftForDrop3(nft)
           : nft.contract.address === MERGER_ADDRESS.toLowerCase()
     ? fixNftForMerged1(nft)
-    : nft.contract.address === PROSPECT_100_ADDRESS.toLowerCase()
+    : address === PROSPECT_100_ADDRESS.toLowerCase()
     ? recreateNftForProspect100(nft)
     : tryRecreateNftForAuctions(nft);
 }
@@ -1195,9 +1197,9 @@ export function useWeb3Modal() {
         data.blockHash,
         data.ownerAddress,
         data.collectionAddress,
-        data.tokenId,
-        data.creationTime,
-        data.expirationTime,
+        BigNumber.from(data.tokenId),
+        BigNumber.from(data.creationTime),
+        BigNumber.from(data.expirationTime),
       ],
     );
   }
@@ -1205,9 +1207,14 @@ export function useWeb3Modal() {
   async function getOrCreateTicket(
     collectionAddress: string,
     tokenId: number,
+    forceCreate: boolean = false,
   ): Promise<TicketType> {
     const prevTicket = ticketsMemo[collectionAddress]?.[tokenId];
-    if (prevTicket && prevTicket.data.expirationTime < new Date())
+    if (
+      !forceCreate &&
+      prevTicket &&
+      +prevTicket.data.expirationTime > +new Date() / 1000
+    )
       return prevTicket;
 
     const ethersProvider = await connectWallet();
@@ -1221,10 +1228,8 @@ export function useWeb3Modal() {
       ownerAddress: await signer.getAddress(),
       collectionAddress: collectionAddress,
       tokenId: tokenId,
-      creationTime: new Date(block.timestamp * 1000),
-      expirationTime: new Date(
-        block.timestamp * 1000 + TICKET_EXPIRATION_PERIOD,
-      ),
+      creationTime: block.timestamp,
+      expirationTime: block.timestamp + TICKET_EXPIRATION_PERIOD,
     } as TicketDataType;
 
     const messageHash = _getTicketDataMessageHash(data);
@@ -1233,17 +1238,23 @@ export function useWeb3Modal() {
       ethers.utils.arrayify(messageHash),
     );
 
-    return {
+    const ticket = {
       data,
       signatureHash,
     } as TicketType;
+
+    const byAddress = ticketsMemo[collectionAddress] ?? {};
+    byAddress[tokenId] = ticket;
+    ticketsMemo[collectionAddress] = byAddress;
+
+    return ticket;
   }
 
   async function verifyTicket(
     ticket: TicketType,
     maxPeriod = TICKET_EXPIRATION_PERIOD,
   ): Promise<TicketInfoType> {
-    if (ticket.data.expirationTime < new Date())
+    if (+ticket.data.expirationTime < +new Date() / 1000)
       throw new Error('Ticket has expired');
     if (+ticket.data.expirationTime - +ticket.data.creationTime > maxPeriod)
       throw new Error('Wrong ticket expiration period');
@@ -1251,15 +1262,20 @@ export function useWeb3Modal() {
     const messageHash = _getTicketDataMessageHash(ticket.data);
     const signatureHash = ticket.signatureHash;
 
-    const address = ethers.utils.verifyMessage(messageHash, signatureHash);
+    const address = ethers.utils.verifyMessage(
+      ethers.utils.arrayify(messageHash),
+      signatureHash,
+    );
 
     if (address !== ticket.data.ownerAddress)
       throw new Error('Signer and owner do not match');
 
     const collectionAddress = ticket.data.collectionAddress;
+    const collectionContractInfo = Object.entries(collectionContractsInfo).find(
+      ([address]) => address.toLowerCase() === collectionAddress.toLowerCase(),
+    )?.[1];
 
-    if (!(collectionAddress in collectionContractsInfo))
-      throw new Error('Unsupported collection');
+    if (!collectionContractInfo) throw new Error('Unsupported collection');
 
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
@@ -1268,10 +1284,10 @@ export function useWeb3Modal() {
 
     const block = await web3.eth.getBlock(ticket.data.blockHash);
 
-    if (+block.timestamp * 1000 !== +ticket.data.creationTime)
+    if (+block.timestamp !== +ticket.data.creationTime)
       throw new Error('Invalid block timestamp');
 
-    if (collectionContractsInfo[collectionAddress]?.type === 'erc721') {
+    if (collectionContractInfo.type === 'erc721') {
       const nftContract = new web3.eth.Contract(
         IERC721InterfaceAbi as AbiItem[],
         collectionAddress,
@@ -1294,9 +1310,9 @@ export function useWeb3Modal() {
 
     const nft = await web3.alchemy
       .getNftMetadata({
-        contractAddress: ticket.data.ownerAddress,
+        contractAddress: collectionAddress,
         tokenId: '' + ticket.data.tokenId,
-        tokenType: collectionContractsInfo[collectionAddress]?.type,
+        tokenType: collectionContractInfo.type,
       })
       .catch((e) => {
         console.error(e);
@@ -1322,11 +1338,11 @@ export function useWeb3Modal() {
 
     return {
       'Token owner': ticket.data.ownerAddress,
-      'Collection name': collectionContractsInfo[collectionAddress]?.name,
+      'Collection name': collectionContractInfo.name,
       'Token name': recreatedNft.metadata?.name,
-      'QR code creation time': ticket.data.creationTime,
+      'QR code creation time': new Date(ticket.data.creationTime * 1000),
       'QR code verification time': new Date(),
-      'QR code expiration time': ticket.data.expirationTime,
+      'QR code expiration time': new Date(ticket.data.expirationTime * 1000),
       ...attributes,
     } as TicketInfoType;
   }

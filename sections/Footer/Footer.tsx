@@ -63,6 +63,11 @@ const Footer = () => {
               wrapperClassName="mr-20px"
             />
             <HeaderAndFooterButton
+              label="Verify QR Code"
+              location="/qr-verifier"
+              wrapperClassName="mr-20px"
+            />
+            <HeaderAndFooterButton
               label="Contact Us"
               onClick={onClickContactUs}
             />
@@ -108,6 +113,11 @@ const Footer = () => {
               <HeaderAndFooterButton
                 label="Terms"
                 location="/terms-and-conditions"
+                wrapperClassName="mr-24px"
+              />
+              <HeaderAndFooterButton
+                label="Verify QR Code"
+                location="/qr-verifier"
                 wrapperClassName="mr-24px"
               />
               <HeaderAndFooterButton

@@ -124,8 +124,8 @@ export type TicketDataType = {
   ownerAddress: string;
   collectionAddress: string;
   tokenId: number;
-  creationTime: Date;
-  expirationTime: Date;
+  creationTime: number; // in seconds
+  expirationTime: number; // in seconds
 };
 
 export type TicketType = {

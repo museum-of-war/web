@@ -7,6 +7,7 @@ import { openInNewTab } from '@sections/utils';
 import Button from '@components/Button';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 import { useViewPort } from '@hooks/useViewport';
+import { usePopup } from '@providers/PopupProvider';
 import MintingModal from '@components/MintingModal';
 import { WarlineDrop } from '@sections/Warline/constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
@@ -30,6 +31,8 @@ export type PrevNextRecord = {
 
 type NftDetailsProps = {
   id: string;
+  tokenId?: string | number;
+  contractAddress?: string;
   level?: number;
   title: string;
   descriptionEnglish: string;
@@ -52,9 +55,12 @@ type NftDetailsProps = {
   withBuyNowButton?: boolean;
   withGetNowButton?: boolean;
   warlineDrop?: WarlineDrop;
+  showTicket?: boolean;
 };
 export const NftDetails: React.FC<NftDetailsProps> = ({
   id,
+  tokenId,
+  contractAddress,
   level,
   title,
   descriptionEnglish,
@@ -77,12 +83,14 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   withBuyNowButton,
   withGetNowButton,
   warlineDrop,
+  showTicket,
 }) => {
   const [toggler, setToggler] = React.useState<boolean>(false);
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
   const [editionsLeft, setEditionsLeft] = useState<number | null>(null);
   const { ref, inView } = useInView();
   const { isDesktop, isTablet, isMobile } = useViewPort();
+  const { showPopup } = usePopup();
   const { canMintThirdDrop, canMintFourthDrop } = useWeb3Modal();
   const isMounted = useIsMounted();
 
@@ -448,6 +456,38 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                   </a>
                 </p>
               ))}
+            </div>
+          )}
+          {showTicket && (
+            <div className="tablet:p-48px mobile:py-30px mobile:px-24px tablet:my-48px mobile:my-[12px] flex flex-col text-white bg-carbon">
+              <div className="tablet:text-32px mobile:text-27px font-rblack">
+                Your entry ticket
+              </div>
+              <div className="tablet:text-16px mobile:text-14px font-normal leading-150% font-rnarrow tablet:mt-24px mobile:mt-10px tracking-wider">
+                Use this NFT as a ticket to museums in Ukraine. Just generate a
+                QR code and show it at the entrance.
+              </div>
+              <div className="flex tablet:flex-row mobile:flex-col items-center tablet:gap-32px mobile:gap-[8px] tablet:mt-48px mobile:mt-20px">
+                <Button
+                  mode="primary"
+                  label="Generate QR Code"
+                  onClick={() =>
+                    showPopup('qrCode', {
+                      contractAddress,
+                      tokenId,
+                    })
+                  }
+                  className="tablet:w-auto mobile:w-100% tablet:h-48px mobile:h-60px"
+                />
+                <Link href="#" passHref>
+                  <a
+                    className="font-rblack cursor-pointer text-14px tablet:leading-48px mobile:leading-40px border-b-4 hover:border-b-4 hover:border-solid border-transparent hover:border-white"
+                    title="Coming soon!"
+                  >
+                    List of Museums
+                  </a>
+                </Link>
+              </div>
             </div>
           )}
           <div className="flex flex-col-reverse tablet:flex-row gap-[36px] tablet:gap-[48px] mt-[24px] items-start mb-60px">
