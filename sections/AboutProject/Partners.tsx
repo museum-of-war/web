@@ -1,7 +1,7 @@
 import InfiniteLoop from '@components/InfiniteLoop';
 import React from 'react';
 import { useViewPort } from '@hooks/useViewport';
-import Blurb from "@sections/AboutProject/Blurb";
+import Blurb from '@sections/AboutProject/Blurb';
 
 const Partners = () => {
   const { isMobile } = useViewPort();
@@ -9,7 +9,7 @@ const Partners = () => {
   const partners = [
     {
       src: 'img/partners/Logo_Ministry_Digital.png',
-      alt: 'Ministry_of_Digital_Transformation',
+      alt: 'Ministry of Digital Transformation',
     },
     {
       src: 'img/partners/fair.png',
@@ -17,35 +17,35 @@ const Partners = () => {
     },
     {
       src: 'img/partners/market_across.png',
-      alt: 'market_across',
+      alt: 'MarketAcross',
     },
     {
       src: 'img/partners/party_space.png',
-      alt: 'party_space',
+      alt: 'Party.Space',
     },
     {
       src: 'img/partners/hacken.png',
-      alt: 'hacken',
+      alt: 'Hacken',
     },
     {
       src: 'img/partners/kuna.png',
-      alt: 'kuna',
+      alt: 'Kuna',
     },
     {
       src: 'img/partners/blockchain_association.png',
-      alt: 'blockchain_association',
+      alt: 'Blockchain Association',
     },
     {
       src: 'img/partners/projector.png',
-      alt: 'projector',
+      alt: 'Projector',
     },
     {
       src: 'img/partners/disbalancer.png',
-      alt: 'disbalancer',
+      alt: 'Disbalancer',
     },
     {
       src: 'img/partners/financevote.png',
-      alt: 'financevote',
+      alt: 'Finance.Vote',
     },
     {
       src: 'img/partners/Logo_of_Ministry_of_Culture_of_Ukraine.png',
@@ -54,19 +54,23 @@ const Partners = () => {
     /*
     {
       src: 'img/partners/vector.png',
-      alt: 'vector',
+      alt: 'Vector',
     },
     */
     {
       src: 'img/partners/lliwell.png',
-      alt: 'lliwell',
+      alt: 'LLIWELL',
+    },
+    {
+      src: 'img/partners/NFT_News_Today.png',
+      alt: 'NFT News Today',
     },
   ];
 
   const partnersSmall = [
     {
       src: 'img/partners/small/Ministry_of_Digital_small.png',
-      alt: 'Ministry_of_Digital_Transformation',
+      alt: 'Ministry of Digital Transformation',
     },
     {
       src: 'img/partners/small/fair_small.png',
@@ -74,35 +78,35 @@ const Partners = () => {
     },
     {
       src: 'img/partners/small/market_across_small.png',
-      alt: 'market_across',
+      alt: 'MarketAcross',
     },
     {
       src: 'img/partners/small/party_space_small.png',
-      alt: 'party_space',
+      alt: 'Party.Space',
     },
     {
       src: 'img/partners/small/hacken_small.png',
-      alt: 'hacken',
+      alt: 'Hacken',
     },
     {
       src: 'img/partners/small/kuna_small.png',
-      alt: 'kuna',
+      alt: 'Kuna',
     },
     {
       src: 'img/partners/small/blockchain_association_small.png',
-      alt: 'blockchain_association',
+      alt: 'Blockchain Association',
     },
     {
       src: 'img/partners/small/projector_small.png',
-      alt: 'projector',
+      alt: 'Projector',
     },
     {
       src: 'img/partners/small/disbalancer_small.png',
-      alt: 'disbalancer',
+      alt: 'Disbalancer',
     },
     {
       src: 'img/partners/small/financevote_small.png',
-      alt: 'financevote',
+      alt: 'Finance.Vote',
     },
     {
       src: 'img/partners/small/Logo_of_Ministry_of_Culture_of_Ukraine_small.png',
@@ -111,12 +115,16 @@ const Partners = () => {
     /*
     {
       src: 'img/partners/small/vector_small.png',
-      alt: 'vector',
+      alt: 'Vector',
     },
     */
     {
       src: 'img/partners/small/lliwell_small.png',
-      alt: 'lliwell',
+      alt: 'LLIWELL',
+    },
+    {
+      src: 'img/partners/small/NFT_News_Today_small.png',
+      alt: 'NFT News Today',
     },
   ];
 
