@@ -42,16 +42,6 @@ NFT versions of the rooster, recreated in the style of famous paintings, will ap
 NFT-версії півня, відтворені в стилі відомих картин, з’являться на сайтах музеїв по всьому світу, щоб привернути увагу поціновувачів мистецтва до культурного символу нашої боротьби.`}
         />
       </div>
-      {isDesktop ? (
-        <div className="relative desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
-          <div
-            className="fixed z-1 bg-no-repeat w-[652px] h-[501px] bg-contain"
-            style={{
-              backgroundImage: 'url(/img/theHall/bg-desktop.svg)',
-            }}
-          />
-        </div>
-      ) : null}
       {isTablet ? (
         <div
           className="absolute z-1 bg-no-repeat w-[694px] h-[552px]"
@@ -69,37 +59,49 @@ NFT-версії півня, відтворені в стилі відомих �
         />
       ) : null}
       <div className="relative desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px relative z-1 desktop:mb-[120px] tablet:mb-[120px] mobile:mb-[20px]">
-        {ITEMS.map((item) => (
-          <div
-            key={item.id}
-            className="desktop:mt-[70px] tablet:mt-[48px] mobile:mt-[40px] desktop:ml-[130px] tablet:ml-0 mobile:ml-0"
-            style={{ background: 'white' }}
-          >
-            <div className="flex desktop:flex-row tablet:flex-col mobile:flex-col">
-              <div
-                style={{
-                  width: playerParams.width,
-                  height: playerParams.height,
-                  minWidth: isDesktop ? 0 : '100%',
-                  minHeight: isDesktop ? 0 : '100%',
-                }}
-                className="player-container "
-                id={`player-container-${item.id}`}
-              />
-              <div className="desktop:w-[344px] tablet:w-full mobile:w-full desktop:pl-[48px] desktop:pt-[48px] tablet:pl-[48px] tablet:pt-[24px] mobile:pl-[24px] mobile:pt-[20px]">
-                <div className="font-rblack desktop:text-[20px] desktop:leading-[24px] tablet:text-[20px] tablet:leading-[24px] mobile:text-[27px] mobile:leading-[30px]">
-                  {item.museum}
-                </div>
-                <div className="font-rnarrow desktop:text-[16px] desktop:leading-[24px] tablet:text-[16px] tablet:leading-[24px] mobile:text-[14px] mobile:leading-[20px] desktop:mt-[24px] tablet:mt-[24px] mobile:mt-[20px]">
-                  {item.name}
-                </div>
-                <div className="font-rlight desktop:text-[14px] desktop:leading-[48px] tablet:text-[14px] tablet:leading-[48px] mobile:text-[14px] mobile:leading-[40px]">
-                  {item.author}
+        {isDesktop ? (
+          <div className="sticky pt-[100px] top-[100px]">
+            <div
+              className="z-1 bg-no-repeat w-[652px] h-[501px] bg-contain top-[100px]"
+              style={{
+                backgroundImage: 'url(/img/theHall/bg-desktop.svg)',
+              }}
+            />
+          </div>
+        ) : null}
+        <div className={`${isDesktop ? 'mt-[-520px]' : ''}`}>
+          {ITEMS.map((item) => (
+            <div
+              key={item.id}
+              className="desktop:mt-[70px] tablet:mt-[48px] mobile:mt-[40px] desktop:ml-[130px] tablet:ml-0 mobile:ml-0"
+              style={{ background: 'white' }}
+            >
+              <div className="flex desktop:flex-row tablet:flex-col mobile:flex-col">
+                <div
+                  style={{
+                    width: playerParams.width,
+                    height: playerParams.height,
+                    minWidth: isDesktop ? 0 : '100%',
+                    minHeight: isDesktop ? 0 : '100%',
+                  }}
+                  className="player-container "
+                  id={`player-container-${item.id}`}
+                />
+                <div className="desktop:w-[344px] tablet:w-full mobile:w-full desktop:pl-[48px] desktop:pt-[48px] tablet:pl-[48px] tablet:pt-[24px] mobile:pl-[24px] mobile:pt-[20px]">
+                  <div className="font-rblack desktop:text-[20px] desktop:leading-[24px] tablet:text-[20px] tablet:leading-[24px] mobile:text-[27px] mobile:leading-[30px]">
+                    {item.museum}
+                  </div>
+                  <div className="font-rnarrow desktop:text-[16px] desktop:leading-[24px] tablet:text-[16px] tablet:leading-[24px] mobile:text-[14px] mobile:leading-[20px] desktop:mt-[24px] tablet:mt-[24px] mobile:mt-[20px]">
+                    {item.name}
+                  </div>
+                  <div className="font-rlight desktop:text-[14px] desktop:leading-[48px] tablet:text-[14px] tablet:leading-[48px] mobile:text-[14px] mobile:leading-[40px]">
+                    {item.author}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

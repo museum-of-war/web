@@ -27,7 +27,7 @@ function DropdownButton({
 }: DropdownButtonProps) {
   const [isOpen, setOpen] = useState<boolean>(false);
   const { route } = useAppRouter();
-  const { isMobile, isDesktop } = useViewPort();
+  const { isMobile, isDesktop, isTablet } = useViewPort();
 
   const underlined = route
     ? options.some(({ url }) => route.match(url))
@@ -88,7 +88,7 @@ function DropdownButton({
                 <Link href={i.url}>
                   <div
                     className={`font-rblack text-14px py-12px ${
-                      isDesktop ? 'px-24px' : ''
+                      isDesktop || isTablet ? 'px-24px' : ''
                     } ${isMobile ? 'px-32px' : ''}`}
                   >
                     <div className="text-16px desktop:leading-36px tablet:leading-36px mobile:leading-32px">
