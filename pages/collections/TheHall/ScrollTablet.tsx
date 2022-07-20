@@ -1,7 +1,7 @@
 import React from 'react';
 import { HallItemType } from '@sections/types';
-import { CardTablet } from '@sections/TheHall/CardTablet';
-import { ComingSoon } from '@sections/TheHall/ComingSoon';
+import { CardTablet } from './CardTablet';
+import { ComingSoon } from './ComingSoon';
 
 type ScrollTabletProps = {
   data: HallItemType[];

@@ -38,13 +38,13 @@ const Ambassadors = () => {
                 openInNewTab(datum.url);
               }}
             >
-              About <img src="img/link.svg" alt="link" className="ml-12px" />
+              About <img src="/img/link.svg" alt="link" className="ml-12px" />
             </div>
           </div>
         ))}
         <div className="mobile:hidden tablet:flex desktop:flex desktop:basis-1/4 tablet:basis-1/2">
           <img
-            src="img/dots-ambassadors.svg"
+            src="/img/dots-ambassadors.svg"
             className="w-[248px] h-96px mt-auto"
             alt="dots"
           />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SupportButton from '../../components/SupportButton';
+import SupportButton from '@components/SupportButton';
 import { useViewPort } from '@hooks/useViewport';
 import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
 import { openInNewTab } from '@sections/utils';
@@ -98,7 +98,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
             {CTA}
           </p>
           <img
-            src={'img/down-white.svg'}
+            src={'/img/down-white.svg'}
             alt="down"
             style={showBtn ? {} : { transform: 'rotate(-90deg)' }}
           />

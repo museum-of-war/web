@@ -2,7 +2,13 @@ import Button from '@components/Button';
 import { useViewPort } from '@hooks/useViewport';
 import React, { SetStateAction, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
-import { ALL_ARTS, BY_DAY, BY_HOUR, BY_NEWEST_BY_OLDEST_OPTIONS, ON_SALE } from './constants';
+import {
+  ALL_ARTS,
+  BY_DAY,
+  BY_HOUR,
+  BY_NEWEST_BY_OLDEST_OPTIONS,
+  ON_SALE,
+} from './constants';
 
 type SideMenuProps = {
   showSideMenu: boolean;
@@ -13,7 +19,7 @@ type SideMenuProps = {
   setSelectedByNewest: React.Dispatch<React.SetStateAction<string | undefined>>;
   view: string;
   setView: React.Dispatch<React.SetStateAction<string>>;
-}
+};
 
 const SelectedMark = () => (
   <span>
@@ -32,14 +38,23 @@ const SelectedMark = () => (
       />
     </svg>
   </span>
-)
+);
 
-const SideMenu = ({ showSideMenu, setShowSideMenu, byType, setByType, selectedByNewest, setSelectedByNewest, view, setView }: SideMenuProps) => {
+const SideMenu = ({
+  showSideMenu,
+  setShowSideMenu,
+  byType,
+  setByType,
+  selectedByNewest,
+  setSelectedByNewest,
+  view,
+  setView,
+}: SideMenuProps) => {
   const [selectSortBy, setSelectSortBy] = useState(selectedByNewest);
   const [selectType, setSelectType] = useState(byType);
   const [viewInMenu, setViewInMenu] = useState(view);
 
-  const { isMobile } = useViewPort()
+  const { isMobile } = useViewPort();
 
   const applyFilersHandler = () => {
     if (selectSortBy !== selectedByNewest) {
@@ -52,30 +67,38 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, byType, setByType, selectedBy
       setView(viewInMenu);
     }
     setShowSideMenu(false);
-  }
+  };
 
   const cancelAndCloseHandler = () => {
     setSelectSortBy(selectedByNewest);
     setSelectType(byType);
     setViewInMenu(view);
     setShowSideMenu(false);
-  }
+  };
 
   return (
     <OutsideClickHandler onOutsideClick={cancelAndCloseHandler}>
-      <div className={`fixed z-10 top-0 left-0 ease-in-out duration-300 ${showSideMenu ? 'translate-x-0' : '-translate-x-100%'} flex flex-col tablet:w-3/4 mobile:w-100% h-screen tablet:border-r-4 border-carbon bg-white tablet:p-48px mobile:p-24px`}>
-
+      <div
+        className={`fixed z-10 top-0 left-0 ease-in-out duration-300 ${
+          showSideMenu ? 'translate-x-0' : '-translate-x-100%'
+        } flex flex-col tablet:w-3/4 mobile:w-100% h-screen tablet:border-r-4 border-carbon bg-white tablet:p-48px mobile:p-24px`}
+      >
         <div className="flex justify-between items-center">
           <p className="font-rblack text-32px leading-36px">Filters</p>
           <button className="cursor-pointer" onClick={cancelAndCloseHandler}>
-            <img src="img/close_icon.svg" alt="cliose" />
+            <img src="/img/close_icon.svg" alt="cliose" />
           </button>
         </div>
 
         <div className="tablet:mt-55px mobile:mt-35px">
-          <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">Sort by</p>
+          <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">
+            Sort by
+          </p>
           {BY_NEWEST_BY_OLDEST_OPTIONS.map((option) => (
-            <div key={option.value} className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between">
+            <div
+              key={option.value}
+              className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between"
+            >
               <p
                 onClick={() => setSelectSortBy(option.value)}
                 className="cursor-pointer"
@@ -88,9 +111,14 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, byType, setByType, selectedBy
         </div>
 
         <div className="tablet:mt-48px mobile:mt-30px">
-          <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">Type</p>
+          <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">
+            Type
+          </p>
           {[ALL_ARTS, ON_SALE].map((option) => (
-            <div key={option} className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between">
+            <div
+              key={option}
+              className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between"
+            >
               <p
                 onClick={() => setSelectType(option)}
                 className="cursor-pointer"
@@ -104,9 +132,14 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, byType, setByType, selectedBy
 
         {isMobile && (
           <div className="tablet:mt-48px mobile:mt-30px">
-            <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">View</p>
+            <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">
+              View
+            </p>
             {[BY_DAY, BY_HOUR].map((option) => (
-              <div key={option} className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between">
+              <div
+                key={option}
+                className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between"
+              >
                 <p
                   onClick={() => setViewInMenu(option)}
                   className="cursor-pointer"
@@ -137,7 +170,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, byType, setByType, selectedBy
         </div>
       </div>
     </OutsideClickHandler>
-  )
-}
+  );
+};
 
 export default SideMenu;

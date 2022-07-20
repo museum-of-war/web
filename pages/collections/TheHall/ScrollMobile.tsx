@@ -1,7 +1,7 @@
 import React from 'react';
 import { HallItemType } from '@sections/types';
-import { CardMobile } from '@sections/TheHall/CardMobile';
-import { ComingSoon } from '@sections/TheHall/ComingSoon';
+import { CardMobile } from './CardMobile';
+import { ComingSoon } from './ComingSoon';
 
 type ScrollMobileProps = {
   data: HallItemType[];

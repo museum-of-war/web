@@ -5,9 +5,9 @@ import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
-import WarlineData from '@sections/Warline/WarlineData';
+import WarlineData from '@pages/collections/Warline/WarlineData';
 import { AuctionItemType, EventType } from '@sections/types';
-import { getUrls } from '@sections/Warline/WarlineUrls';
+import { getUrls } from '@pages/collections/Warline/WarlineUrls';
 import { truncateAddress } from '@sections/utils';
 import AuctionData from '@sections/Auction/AuctionData';
 import { useIsMounted } from '@hooks/useIsMounted';
@@ -16,14 +16,14 @@ import { groupBy } from '@sections/Tokens/Tokens';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
 
 const rand_imgs: string[] = [
-  'img/dots-1.png',
-  'img/dots-2.png',
-  'img/dots-3.png',
-  'img/dots-4.png',
-  'img/dots-5.png',
-  'img/dots-6.png',
-  'img/dots-7.png',
-  'img/dots-8.png',
+  '/img/dots-1.png',
+  '/img/dots-2.png',
+  '/img/dots-3.png',
+  '/img/dots-4.png',
+  '/img/dots-5.png',
+  '/img/dots-6.png',
+  '/img/dots-7.png',
+  '/img/dots-8.png',
 ];
 
 const getLevel = (nft: Nft) => {

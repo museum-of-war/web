@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SupportButton from '@components/SupportButton';
-import DonatePopup from '@sections/Warline/DonatePopup';
+import DonatePopup from '@pages/collections/Warline/DonatePopup';
 import { useViewPort } from '@hooks/useViewport';
 import { MINT_LINK, RELEASE_DATE, OPENSEA_LINK } from '@sections/Constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
@@ -103,7 +103,7 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
             </p>
             <img
               alt="down-white"
-              src={'img/down-white.svg'}
+              src={'/img/down-white.svg'}
               style={showBtn ? {} : { transform: 'rotate(-90deg)' }}
             />
           </div>

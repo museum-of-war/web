@@ -9,27 +9,27 @@ const media = [
       'Ministry of Digital Transformation: The Metahistory Museum has raised more than $600,000 to support Ukraine',
     outlet: 'kmu.gov.ua',
     url: 'https://www.kmu.gov.ua/en/news/mincifri-muzej-metaistoriyi-zibrav-ponad-600-tisyach-dolariv-na-pidtrimku-ukrayini',
-    linkText: 'Read Article'
+    linkText: 'Read Article',
   },
   {
     summary: 'Help Ukraine with NFTs, don’t leave us alone with the enemy',
     outlet: 'donate.thedigital.gov.ua',
     url: 'https://donate.thedigital.gov.ua/nft',
-    linkText: 'Go to the platform'
+    linkText: 'Go to the platform',
   },
   {
     summary:
       'Мінцифра та блокчейн-спільнота запустили NFT-музей війни путінської Росії проти України',
     outlet: 'thedigital.gov.ua',
     url: 'https://thedigital.gov.ua/news/mintsifra-ta-blokcheyn-spilnota-zapustili-nft-muzey-viyni-putinskoi-rosii-proti-ukraini',
-    linkText: 'Read Article'
+    linkText: 'Read Article',
   },
   {
     summary:
       'Official twitter of th Ministry of Culture and Information Policy',
     outlet: '@MKIPUkraine',
     url: 'https://twitter.com/MKIPUkraine/status/1531248215823196161',
-    linkText: 'View Tweet'
+    linkText: 'View Tweet',
   },
 ];
 const GovernmentApproval = () => {
@@ -78,7 +78,7 @@ const GovernmentApproval = () => {
                 disabledLeft ? 'opacity-20' : 'opacity-100'
               } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-white rounded-full mr-25px`}
             >
-              <img src="img/left_arrow_white.svg" alt="img/left_arrow" />
+              <img src="/img/left_arrow_white.svg" alt="/img/left_arrow" />
             </button>
             <button
               onClick={() => setStartIdx(startIdx + itemsOnPage)}
@@ -87,7 +87,7 @@ const GovernmentApproval = () => {
                 disabledRight ? 'opacity-20' : 'opacity-100'
               } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-white rounded-full`}
             >
-              <img src="img/right_arrow_white.svg" alt="img/right_arrow" />
+              <img src="/img/right_arrow_white.svg" alt="/img/right_arrow" />
             </button>
           </div>
         )}
@@ -114,7 +114,7 @@ const GovernmentApproval = () => {
                 disabledLeft ? 'opacity-20' : 'opacity-100'
               } mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-white rounded-full mr-40px`}
             >
-              <img src="img/left_arrow_white.svg" alt="img/left_arrow" />
+              <img src="/img/left_arrow_white.svg" alt="/img/left_arrow" />
             </button>
             <button
               onClick={() => setStartIdx(startIdx + itemsOnPage)}
@@ -123,7 +123,7 @@ const GovernmentApproval = () => {
                 disabledRight ? 'opacity-20' : 'opacity-100'
               } mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-white rounded-full`}
             >
-              <img src="img/right_arrow_white.svg" alt="img/right_arrow" />
+              <img src="/img/right_arrow_white.svg" alt="/img/right_arrow" />
             </button>
           </div>
         ) : (

@@ -202,7 +202,7 @@ const AboutUs = () => {
       </div>
       <div className="mt-60px desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <Blurb header="Who's behind this" />
-        <img alt="partners" src="img/pd-partners.png" />
+        <img alt="partners" src="/img/pd-partners.png" />
         <Team />
         <SupportProject />
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { HallItemType } from '@sections/types';
-import { CardDesktop } from '@sections/TheHall/CardDesktop';
-import { ComingSoon } from '@sections/TheHall/ComingSoon';
+import { CardDesktop } from './CardDesktop';
+import { ComingSoon } from './ComingSoon';
 
 const CARD_WIDTH = 990;
 

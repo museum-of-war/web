@@ -41,7 +41,9 @@ function DaysNavigation(props: DaysNavigationProps) {
             className="ml-10px"
             alt={selectedByNewest === OLDEST ? 'Up' : 'Down'}
             src={
-              props.selectedByNewest === OLDEST ? 'img/up.svg' : 'img/down.svg'
+              props.selectedByNewest === OLDEST
+                ? '/img/up.svg'
+                : '/img/down.svg'
             }
           />
         </span>
@@ -56,7 +58,9 @@ function DaysNavigation(props: DaysNavigationProps) {
             className="ml-10px"
             alt={selectedByNewest === OLDEST ? 'Down' : 'Up'}
             src={
-              props.selectedByNewest === OLDEST ? 'img/down.svg' : 'img/up.svg'
+              props.selectedByNewest === OLDEST
+                ? '/img/down.svg'
+                : '/img/up.svg'
             }
           />
         </span>

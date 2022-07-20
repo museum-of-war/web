@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useViewPort } from '@hooks/useViewport';
 import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
-import { getUrls } from '@sections/Warline/WarlineUrls';
+import { getUrls } from './WarlineUrls';
 import Link from 'next/link';
 import Button from '@components/Button';
 import ScaledImage from '@components/ScaledImage';
@@ -20,14 +20,14 @@ type PropsEvent = {
 };
 
 const rand_imgs: string[] = [
-  'img/dots-1.png',
-  'img/dots-2.png',
-  'img/dots-3.png',
-  'img/dots-4.png',
-  'img/dots-5.png',
-  'img/dots-6.png',
-  'img/dots-7.png',
-  'img/dots-8.png',
+  '/img/dots-1.png',
+  '/img/dots-2.png',
+  '/img/dots-3.png',
+  '/img/dots-4.png',
+  '/img/dots-5.png',
+  '/img/dots-6.png',
+  '/img/dots-7.png',
+  '/img/dots-8.png',
 ];
 
 const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {

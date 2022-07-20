@@ -3,7 +3,7 @@ import { InView } from 'react-intersection-observer';
 import { DayType, EventType } from '@sections/types';
 import Event from './Event';
 import { useViewPort } from '@hooks/useViewport';
-import DaysNavigation from '@sections/Warline/DaysNavigation';
+import DaysNavigation from './DaysNavigation';
 import { BY_DAY } from './constants';
 
 type PropsDay = {

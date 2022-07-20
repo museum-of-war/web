@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SupportButton from '../../components/SupportButton';
+import SupportButton from '@components/SupportButton';
 import { RELEASE_DATE } from '@sections/Constants';
 
 type PropsSupportBanner = {
