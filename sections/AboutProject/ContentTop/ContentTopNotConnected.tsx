@@ -2,18 +2,12 @@ import React, { useState } from 'react';
 import PoweredByFrame from '@components/PoweredByFrame';
 import { useViewPort } from '@hooks/useViewport';
 import Button from '@components/Button';
-import { openInNewTab } from '@sections/utils';
-import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
-import { useWeb3Modal } from '@hooks/useWeb3Modal';
-import { useCountdown } from '@hooks/useCountdown';
-import { SECOND_DROP_DATE } from '@sections/Constants';
 import MintingModal from '../../../components/MintingModal';
 import { Links } from '@components/Links';
+import Link from 'next/link';
 
 const ContentTopNotConnected = () => {
   const { isMobile, isTablet } = useViewPort();
-  const { canMint, canMintSecondDrop } = useWeb3Modal();
-  const { timerEnd } = useCountdown(SECOND_DROP_DATE);
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
 
   return (
@@ -44,23 +38,17 @@ const ContentTopNotConnected = () => {
             isTablet ? 'mt-36px mb-48px' : isMobile ? 'mt-30px mb-40px' : ''
           } desktop:flex-row tablet:flex-row mobile:flex-col`}
         >
-          <Button
-            mode="primary"
-            className="px-48px mb-0 tablet:h-48px mobile:h-60px desktop:mb-0 tablet:mb-15 mobile:mb-15 mobile:w-100% tablet:w-auto"
-            round={false}
-            label="Mint NFT Now"
-            onClick={async () => {
-              if (timerEnd && (await canMintSecondDrop())) {
-                setOpenMintingModal(true);
-              } else {
-                if (await canMint()) {
-                  openInNewTab(MINT_LINK);
-                } else {
-                  openInNewTab(OPENSEA_LINK);
-                }
-              }
-            }}
-          />
+          <Link href="/warline">
+            <a>
+              <Button
+                mode="primary"
+                className="px-48px mb-0 tablet:h-48px mobile:h-60px desktop:mb-0 tablet:mb-15 mobile:mb-15 mobile:w-100% tablet:w-auto"
+                round={false}
+                label="Buy NFT Now"
+              />
+            </a>
+          </Link>
+
           <div
             className="desktop:mt-0 tablet:mt-0 mobile:mt-30px desktop:ml-auto tablet:ml-auto mobile:ml-0
               desktop:px-0 tablet:px-0 mobile:px-20px desktop:w-auto tablet:w-auto mobile:w-full"

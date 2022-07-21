@@ -93,7 +93,7 @@ const Day = ({
                 eventsData={dayData.events}
                 allEvents={allEvents}
                 view={view}
-                isOnSale={dayData.isOnSale}
+                isOnSale={eventData.IsOnSale}
               />
             ))}
           </div>
@@ -129,20 +129,12 @@ const Day = ({
           {/* @ts-ignore*/}
           <div
             {...(view === BY_DAY
-              ? dayData.events.length > 1
-                ? {
-                    className: 'grid gap-x-48px gap-y-24px',
-                    style: {
-                      gridTemplateColumns:
-                        'repeat(auto-fit, minmax(176px, 1fr))',
-                    },
-                  }
-                : {
-                    className: 'grid gap-x-48px gap-y-24px',
-                    style: {
-                      gridTemplateColumns: 'repeat(3, 1fr)',
-                    },
-                  }
+              ? {
+                  className: 'grid gap-x-48px gap-y-24px',
+                  style: {
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                  },
+                }
               : {})}
           >
             {dayData.events.map((eventData, idx) => (
@@ -155,7 +147,7 @@ const Day = ({
                 eventsData={dayData.events}
                 allEvents={allEvents}
                 view={view}
-                isOnSale={dayData.isOnSale}
+                isOnSale={eventData.IsOnSale}
               />
             ))}
           </div>
@@ -192,15 +184,7 @@ const Day = ({
             {/* @ts-ignore*/}
             <div
               {...(view === BY_DAY
-                ? dayData.events.length > 1
-                  ? {
-                      className: 'grid gap-x-48px gap-y-24px',
-                      style: {
-                        gridTemplateColumns:
-                          'repeat(auto-fit, minmax(200px, 1fr))',
-                      },
-                    }
-                  : window && window.innerWidth <= 1155
+                ? window && window.innerWidth <= 1155
                   ? {
                       className: 'grid gap-x-48px gap-y-24px',
                       style: {
@@ -225,7 +209,7 @@ const Day = ({
                   eventsData={dayData.events}
                   allEvents={allEvents}
                   view={view}
-                  isOnSale={dayData.isOnSale}
+                  isOnSale={eventData.IsOnSale}
                 />
               ))}
             </div>

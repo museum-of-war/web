@@ -1,10 +1,10 @@
 import { DayType } from '@sections/types';
+import { WarlineDrop } from '@sections/Warline/constants';
 
 export default [
   {
     dayNo: 1,
     date: '24 Feb 2022',
-    isOnSale: false,
     events: [
       {
         Tokenid: '1',
@@ -433,7 +433,6 @@ export default [
   {
     dayNo: 2,
     date: '25 Feb 2022',
-    isOnSale: false,
     events: [
       {
         Tokenid: '24',
@@ -752,7 +751,6 @@ export default [
   {
     dayNo: 3,
     date: '26 Feb 2022',
-    isOnSale: false,
     events: [
       {
         Tokenid: '41',
@@ -1155,7 +1153,6 @@ export default [
   {
     dayNo: 4,
     date: '27 Feb 2022',
-    isOnSale: false,
     events: [
       {
         Tokenid: '62',
@@ -1595,7 +1592,6 @@ export default [
   {
     dayNo: 5,
     date: '28 Feb 2022',
-    isOnSale: false,
     events: [
       {
         Tokenid: '85',
@@ -1868,7 +1864,6 @@ export default [
   {
     dayNo: 6,
     date: '1 Mar 2022',
-    isOnSale: false,
     events: [
       {
         Tokenid: '99',
@@ -1967,4 +1962,10 @@ export default [
       },
     ],
   },
-] as ReadonlyArray<DayType>;
+].map((day) => ({
+  ...day,
+  events: day.events.map((event) => ({
+    ...event,
+    WarlineDrop: WarlineDrop.Drop1,
+  })),
+})) as ReadonlyArray<DayType>;
