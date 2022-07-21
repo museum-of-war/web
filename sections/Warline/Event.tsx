@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useViewPort } from '@hooks/useViewport';
 import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Button from '@components/Button';
 import ScaledImage from '@components/ScaledImage';
 import { BY_DAY } from './constants';
+import MintingModal from '@components/MintingModal';
 
 type PropsEvent = {
   eventData: EventType;
@@ -32,6 +33,7 @@ const rand_imgs: string[] = [
 
 const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
+  const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
 
   const alt = useMemo(() => {
     return `Day ${eventData.DayNo}, ${eventData.Time}`;
@@ -83,16 +85,25 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
     );
   };
 
-  const renderLinkButton = (
-    auctionBtnCn: string = '',
-    linkBtnCn: string = '',
-  ): React.ReactElement => (
+  const renderBuyButton = (linkBtnCn: string = ''): React.ReactElement => (
     <div>
-      <Link href={`/warline/${eventData.Tokenid}`} passHref>
-        <a>
-          <Button mode="secondary" label="Buy NFT" className={linkBtnCn} />
-        </a>
-      </Link>
+      <Button
+        mode="secondary"
+        label="Buy NFT"
+        className={linkBtnCn}
+        onClick={() => setOpenMintingModal(true)}
+      />
+      {openMintingModal ? (
+        <MintingModal
+          setOpenMintingModal={setOpenMintingModal}
+          drop={eventData.WarlineDrop}
+          tokenId={
+            +eventData.Tokenid - 259 /*TODO: remove this hardcode for drop 3*/
+          }
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 
@@ -189,12 +200,7 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
         </div>
         {!shortView && (
           <div className="flex flex-row mt-24px items-center">
-            {eventData.WarlineDrop === 'v3' && isOnSale
-              ? renderLinkButton(
-                  'font-rnarrow border-black border-y-4 py-5px w-100%',
-                  'font-rblack',
-                )
-              : null}
+            {isOnSale ? renderBuyButton('font-rblack') : null}
             <Link href={`/warline/${eventData.Tokenid}`} passHref>
               <a>
                 <button
@@ -259,12 +265,7 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
         </div>
         {!shortView && (
           <div className="flex flex-row mt-24px items-center">
-            {eventData.WarlineDrop === 'v3' && isOnSale
-              ? renderLinkButton(
-                  'font-rnarrow border-black border-y-4 py-5px w-100%',
-                  'font-rblack',
-                )
-              : null}
+            {isOnSale ? renderBuyButton('font-rblack') : null}
             <Link href={`/warline/${eventData.Tokenid}`} passHref>
               <a>
                 <button

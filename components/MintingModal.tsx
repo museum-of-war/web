@@ -3,13 +3,21 @@ import Button from '@components/Button';
 import { VscChromeClose } from 'react-icons/vsc';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
+import { WarlineDrop } from '@sections/Warline/constants';
 
 type MintingModalProps = {
   setOpenMintingModal: (arg: boolean) => void;
+  drop?: WarlineDrop;
+  tokenId?: number;
 };
 
-const MintingModal = ({ setOpenMintingModal }: MintingModalProps) => {
-  const { mintSecondDrop } = useWeb3Modal();
+const MintingModal = ({
+  //TODO: refactor to PopupProvider?
+  setOpenMintingModal,
+  drop,
+  tokenId,
+}: MintingModalProps) => {
+  const { mintSecondDrop, mintThirdDrop } = useWeb3Modal();
   const { push } = useAppRouter();
   const [amount, setAmount] = useState<number>(1);
   const [disabled, setDisabled] = useState<boolean>(true);
@@ -43,7 +51,7 @@ const MintingModal = ({ setOpenMintingModal }: MintingModalProps) => {
         <p className="tablet:text-16px tablet:leading-24px tablet:mt-24px mobile:mt-20px">
           Select how many tokens you want to mint.
           <br />
-          You will mint random NFTs from those that are currently on sale.
+          You will mint NFTs from those that are currently on sale.
           <br />
           Each NFT will cost 0.15 ETH.
         </p>
@@ -88,7 +96,13 @@ const MintingModal = ({ setOpenMintingModal }: MintingModalProps) => {
           label="Mint Now"
           onClick={() => {
             setIsLoading(true);
-            mintSecondDrop(amount)
+
+            const mintPromise =
+              drop === WarlineDrop.Drop3
+                ? mintThirdDrop(tokenId ?? 1, amount)
+                : mintSecondDrop(amount);
+
+            mintPromise
               .then(() => push('/tokens'))
               .catch((e) => alert(e?.message ?? e))
               .finally(() => setIsLoading(false));

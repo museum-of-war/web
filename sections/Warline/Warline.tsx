@@ -5,7 +5,7 @@ import SupportBanner from './SupportBanner';
 import { useViewPort } from '@hooks/useViewport';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useIsMounted } from '@hooks/useIsMounted';
-import WarlineData, { Drop2Data } from './WarlineData';
+import WarlineData from './WarlineData';
 import SideMenu from './SideMenu';
 import { DayType, EventType } from '@sections/types';
 import { PopupProvider } from '@providers/PopupProvider';
@@ -46,8 +46,13 @@ const Warline = () => {
       return;
     }
     if (isMinting && byType === ON_SALE) {
-      const drop2 = [...Drop2Data];
-      const toSetData = sortByDate(drop2);
+      const onSale = WarlineData.filter(
+        (day) => !!day.events.find((e) => e.IsOnSale),
+      ).map((day) => ({
+        ...day,
+        events: day.events.filter((e) => e.IsOnSale),
+      }));
+      const toSetData = sortByDate(onSale);
       setWarlineData(toSetData);
     }
     if (!isMinting && byType === ON_SALE) {
@@ -162,7 +167,13 @@ const Warline = () => {
       setWarlineData([...result]);
     }
     if (byType === ON_SALE) {
-      let result = sortByDate([...Drop2Data]);
+      const onSale = WarlineData.filter(
+        (day) => !!day.events.find((e) => e.IsOnSale),
+      ).map((day) => ({
+        ...day,
+        events: day.events.filter((e) => e.IsOnSale),
+      }));
+      let result = sortByDate(onSale);
       setWarlineData([...result]);
     }
   }, [selectedByNewest]);

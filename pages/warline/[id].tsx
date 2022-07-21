@@ -127,6 +127,8 @@ const WarlineItem: React.FC<{
         prevRecord={prevEventData}
         linkBack="/warline"
         linkBackText="Warline"
+        withBuyNowButton={event.IsOnSale}
+        warlineDrop={event.WarlineDrop}
       />
     </>
   );

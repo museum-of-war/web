@@ -1,12 +1,16 @@
 import FsLightbox from 'fslightbox-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { VscTwitter } from 'react-icons/vsc';
 import { useInView } from 'react-intersection-observer';
 import { openInNewTab } from '@sections/utils';
 import Button from '@components/Button';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 import { useViewPort } from '@hooks/useViewport';
+import MintingModal from '@components/MintingModal';
+import { WarlineDrop } from '@sections/Warline/constants';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useIsMounted } from '@hooks/useIsMounted';
 
 type ImageSources = {
   previewSrc: string;
@@ -43,6 +47,8 @@ type NftDetailsProps = {
   nextRecord?: PrevNextRecord;
   linkBack: string;
   linkBackText: string;
+  withBuyNowButton?: boolean;
+  warlineDrop?: WarlineDrop;
 };
 export const NftDetails: React.FC<NftDetailsProps> = ({
   id,
@@ -65,10 +71,25 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   imageSources,
   linkBack,
   linkBackText,
+  withBuyNowButton,
+  warlineDrop,
 }) => {
   const [toggler, setToggler] = React.useState<boolean>(false);
+  const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
+  const [editionsLeft, setEditionsLeft] = useState<number>(0);
   const { ref, inView } = useInView();
-  const { isDesktop } = useViewPort();
+  const { isDesktop, isTablet, isMobile } = useViewPort();
+  const { canMintThirdDrop } = useWeb3Modal();
+  const isMounted = useIsMounted();
+
+  useEffect(() => {
+    canMintThirdDrop(+id - 259 /*TODO: remove this hardcode for drop 3*/).then(
+      (left) => {
+        if (!isMounted.current) return;
+        setEditionsLeft(left);
+      },
+    );
+  }, [id, editions]);
 
   const renderImage = ({
     title,
@@ -171,6 +192,31 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
       </div>
     ) : undefined;
 
+  const renderBuyButton = (
+    containerCn: string = '',
+    linkBtnCn: string = '',
+    disabled: boolean = false,
+  ): React.ReactElement => (
+    <div className={containerCn}>
+      <Button
+        mode="primary"
+        label="Buy Now"
+        className={linkBtnCn}
+        disabled={disabled}
+        onClick={() => setOpenMintingModal(true)}
+      />
+      {openMintingModal ? (
+        <MintingModal
+          setOpenMintingModal={setOpenMintingModal}
+          drop={warlineDrop}
+          tokenId={+id - 259 /*TODO: remove this hardcode for drop 3*/}
+        />
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+
   const prevNextBreakpoints = [
     {
       lowerBound: 'tablet',
@@ -241,6 +287,42 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
           </div>
         </div>
         <div className="desktop:w-[544px] mobile:w-full box-border flex flex-col gap-[48px] text-[14px] tablet:text-[16px]">
+          {withBuyNowButton && (
+            <div
+              className={`flex flex-col gap-24px ${
+                isTablet
+                  ? 'bg-white border-[5px] border-carbon fixed bottom-20px left-[2%] right-[2%] p-48px w-[96%] z-50'
+                  : ''
+              }`}
+            >
+              <div className="flex tablet:flex-row mobile:flex-col justify-between tablet:items-end mobile:items-start gap-20px">
+                <div className="flex flex-col">
+                  <p className="font-rnarrow tablet:text-16px tablet:leading-24px mobile:text-14px mobile:leading-30px opacity-70">
+                    Price
+                  </p>
+                  <p className="font-rblack tablet:text-32px tablet:leading-36px mobile:text-27px mobile:leading-30px">
+                    0.15 ETH
+                  </p>
+                </div>
+                <div className="flex flex-row gap-[8px] font-rnarrow tablet:text-16px tablet:leading-36px mobile:text-14px mobile:leading-20px">
+                  <p>Editions:</p>
+                  <p>
+                    {editionsLeft ?? 0} of {editions ?? '?'} left
+                  </p>
+                </div>
+              </div>
+              {editionsLeft
+                ? renderBuyButton(
+                    `w-100% ${
+                      isMobile
+                        ? 'fixed bottom-[68px] left-[2%] right-[2%] w-[96%] z-50'
+                        : ''
+                    }`,
+                    'w-100% font-rblack tablet:h-48px mobile:h-60px',
+                  )
+                : null}
+            </div>
+          )}
           {!!editionsList?.length && editionInfo !== '1 of 1' && (
             <div className="bg-carbon font-rblack text-white p-24px mobile:leading-20px tablet:leading-24px flex mobile:flex-col tablet:flex-row tablet:items-center justify-between">
               <p className="mobile:text-[17px] tablet:text-20px">

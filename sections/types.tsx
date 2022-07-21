@@ -1,6 +1,7 @@
 import { AuctionVersion } from '@museum-of-war/auction';
 import { BigNumberish } from 'ethers';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
+import { WarlineDrop } from '@sections/Warline/constants';
 
 export type IndexedNFT = {
   nft: Nft;
@@ -16,7 +17,6 @@ export type DayType = {
   dayNo: number;
   date: string;
   events: Array<EventType>;
-  isOnSale?: boolean;
 };
 
 export type EventType = {
@@ -35,6 +35,7 @@ export type EventType = {
   ImageType?: string;
   Editions?: number;
   WarlineDrop: WarlineDrop;
+  IsOnSale?: boolean;
 };
 
 export enum AuctionCollection {
@@ -101,5 +102,3 @@ export type ArtistType = {
   bio: string;
   avatarSrc?: string;
 };
-
-export type WarlineDrop = 'v3';
