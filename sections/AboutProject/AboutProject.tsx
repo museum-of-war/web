@@ -13,9 +13,8 @@ import ContentChapter from './ContentChapter';
 import ContentCounterDaysAndRised from './ContentCounterDaysAndRised';
 import Partners from './Partners';
 import Countdown from './Countdown';
-import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
-import { AuctionCollection } from '@sections/types';
 import AboutUs from '@sections/AboutProject/AboutUs';
+import { THIRD_DROP_DATE } from '@sections/Constants';
 
 type AboutProjectProps = {
   signerAddress: string;
@@ -26,11 +25,7 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
     <div>
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <ContentTop signerAddress={signerAddress} />
-        <Countdown
-          countDownDate={AuctionCollectionData[
-            AuctionCollection.AvatarsForUkraine
-          ].startsAt!.toISOString()}
-        />
+        <Countdown countDownDate={THIRD_DROP_DATE} />
         <ContentChapter />
         <ContentCounterDaysAndRised />
       </div>
