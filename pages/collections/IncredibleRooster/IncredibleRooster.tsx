@@ -15,11 +15,12 @@ const IncredibleRooster = () => {
   }, [isDesktop, isMobile, isTablet]);
 
   useEffect(() => {
+    // @ts-ignore
+    window.marmoset.noUserInterface = true;
+
     ITEMS.forEach((item) => {
       // @ts-ignore
       const instance = new window.marmoset.WebViewer(0, 0, item.url);
-      // @ts-ignore
-      window.marmoset.noUserInterface = true;
 
       const node = document.getElementById(`player-container-${item.id}`);
 
