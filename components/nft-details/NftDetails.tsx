@@ -83,12 +83,17 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   const isMounted = useIsMounted();
 
   useEffect(() => {
-    canMintThirdDrop(+id - 259 /*TODO: remove this hardcode for drop 3*/).then(
-      (left) => {
-        if (!isMounted.current) return;
-        setEditionsLeft(left);
-      },
+    const interval = setInterval(
+      () =>
+        canMintThirdDrop(
+          +id - 259 /*TODO: remove this hardcode for drop 3*/,
+        ).then((left) => {
+          if (!isMounted.current) return;
+          setEditionsLeft(left);
+        }),
+      5000,
     );
+    return () => clearInterval(interval);
   }, [id, editions]);
 
   const renderImage = ({

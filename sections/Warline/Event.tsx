@@ -188,7 +188,7 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
               <div className="flex flex-row items-center justify-between pt-15px">
                 {eventData.TwitterUsername?.length > 0 && (
                   <p
-                    className="font-rligh"
+                    className="font-rlight"
                     onClick={() => openInNewTab(eventData.TwitterUrl)}
                   >
                     @{eventData.TwitterUsername}
