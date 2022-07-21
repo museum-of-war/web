@@ -23,6 +23,7 @@
       "@components/*": ["components/*"],
       "@parameters/*": ["parameters/*"],
       "@parameters": ["parameters"],
+      "@pages/*": ["pages/*"],
       "@api": ["api"],
       "@api/*": ["api/*"],
       "@hooks/*": ["hooks/*"],

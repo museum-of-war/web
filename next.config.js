@@ -4,6 +4,20 @@ const nextConfig = {
   experimental: {
     outputStandalone: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/hall',
+        destination: '/collection/hall',
+        permanent: true,
+      },
+      {
+        source: '/warline',
+        destination: '/collection/warline',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 function assertEnvVar(name) {
@@ -12,7 +26,7 @@ function assertEnvVar(name) {
   }
 }
 
-assertEnvVar("NEXT_PUBLIC_INFURA_API");
-assertEnvVar("NEXT_PUBLIC_ALCHEMY_API");
+assertEnvVar('NEXT_PUBLIC_INFURA_API');
+assertEnvVar('NEXT_PUBLIC_ALCHEMY_API');
 
 module.exports = nextConfig;

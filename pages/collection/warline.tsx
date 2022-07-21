@@ -1,7 +1,7 @@
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import type { NextPage } from 'next';
-import Warline from '@sections/Warline/Warline';
+import Warline from '@pages/collections/Warline/Warline';
 
 const WarlinePage: NextPage<SharedProps> = () => (
   <>

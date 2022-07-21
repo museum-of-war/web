@@ -195,4 +195,22 @@ body {
 .play-button:hover {
   fill: #000;
 }
+.player-container > div {
+  width: 100%!important;
+  height: 100%!important;
+  position: relative!important;
+}
 
+.player-container #marmosetUI {
+  width: 100%!important;
+  height: 100%!important;
+}
+
+#marmosetUI > img {
+  width: 100%!important;
+  height: 100%!important;
+  position: unset!important;
+  top: 0!important;
+  left: 0!important;
+  transform: none!important;
+}

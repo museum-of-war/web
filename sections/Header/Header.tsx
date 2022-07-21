@@ -7,6 +7,8 @@ import Button from '@components/Button';
 import { truncateAddress } from '@sections/utils';
 import MenuMobile from '@sections/Header/MenuMobile';
 import Link from 'next/link';
+import DropdownButton from '@components/DropdownButton';
+import { COLLECTIONS_OPTIONS } from '@sections/Header/constants';
 
 type HeaderProps = {
   signerAddress: string;
@@ -112,25 +114,17 @@ const Header = ({
                 underlined={route === '/'}
                 wrapperClassName="mr-32px"
               />
-              <HeaderAndFooterButton
-                isDarkTheme={isDarkTheme}
-                label="Warline"
-                location="/warline"
-                underlined={route === '/warline'}
+              <DropdownButton
+                isDark={isDarkTheme}
+                label="Collections"
                 wrapperClassName="mr-32px"
+                options={COLLECTIONS_OPTIONS}
               />
               <HeaderAndFooterButton
                 isDarkTheme={isDarkTheme}
                 label="Auction"
                 location="/auction"
                 underlined={route.split('/').includes('auction')}
-                wrapperClassName="mr-32px"
-              />
-              <HeaderAndFooterButton
-                isDarkTheme={isDarkTheme}
-                label="The Hall"
-                location="/hall"
-                underlined={route === '/hall'}
                 wrapperClassName="mr-32px"
               />
               <HeaderAndFooterButton

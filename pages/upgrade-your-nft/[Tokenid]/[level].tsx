@@ -5,7 +5,7 @@ import PageHead from '@components/PageHead';
 import React from 'react';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { EventType } from '@sections/types';
-import WarlineData from '@sections/Warline/WarlineData';
+import WarlineData from '@pages/collections/Warline/WarlineData';
 import dynamic from 'next/dynamic';
 const UpgradeYourNFT = dynamic(
   () => import('@sections/UpgradeYourNFT/UpgradeYourNFT'),

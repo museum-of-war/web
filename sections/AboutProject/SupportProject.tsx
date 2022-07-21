@@ -66,7 +66,7 @@ const SupportProject = ({}: PropsSupportProject) => {
         <DonateProjectPopup setShowDonatePopup={setShowDonatePopup} />
       )}
       <div className="desktop:w-30% tablet:w-65% block m-auto mt-2% mb-120px mobile:mb-48px">
-        <img alt="Dots" src="img/pd-dots1.png" />
+        <img alt="Dots" src="/img/pd-dots1.png" />
       </div>
     </div>
   );

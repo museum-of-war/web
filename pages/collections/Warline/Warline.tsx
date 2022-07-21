@@ -223,7 +223,7 @@ const Warline = () => {
                 onClick={() => setShowSideMenu(true)}
               >
                 <span className="mr-12px">Filters and Sorting</span>
-                <img src="img/filter_icon.svg" alt="filter" />
+                <img src="/img/filter_icon.svg" alt="filter" />
               </button>
             </div>
           )}
