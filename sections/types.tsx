@@ -100,3 +100,32 @@ export type ArtistType = {
   bio: string;
   avatarSrc?: string;
 };
+
+export type CollectionInfoType = {
+  name: string;
+  type: 'erc721' | 'erc1155';
+};
+
+export type TicketDataType = {
+  blockHash: string;
+  ownerAddress: string;
+  collectionAddress: string;
+  tokenId: number;
+  creationTime: number; // in seconds
+  expirationTime: number; // in seconds
+};
+
+export type TicketType = {
+  data: TicketDataType;
+  signatureHash: string;
+};
+
+export type TicketInfoType = {
+  'Token owner': string;
+  'Collection name': string;
+  'Token name': string;
+  'QR code creation time': Date;
+  'QR code verification time': Date;
+  'QR code expiration time': Date;
+  [metadata: string]: string | number | Date;
+};
