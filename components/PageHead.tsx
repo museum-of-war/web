@@ -25,6 +25,7 @@ function PageHead({ title, description, image, data }: PageHeadProps) {
   const url = useAbsoluteUrl();
   const extendedTitle = `${title} - Meta History: Museum of War`;
   description = description ?? extendedTitle;
+  image = url(image || '/img/logo-icon.svg');
   return (
     <Head>
       <title>{extendedTitle}</title>

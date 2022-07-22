@@ -11,7 +11,6 @@ type AuctionItemProps = { id: string };
 const NftDetailPage: NextPage<SharedProps & AuctionItemProps> = ({ id }) => {
   const url = useAbsoluteUrl();
   const item = AuctionData[Number(id)];
-  const image = url(`/${item?.imageSrc || ''}`);
   return (
     <>
       <PageHead
@@ -21,7 +20,7 @@ const NftDetailPage: NextPage<SharedProps & AuctionItemProps> = ({ id }) => {
             ? `NFT of ${item.name} created by ${item.artist}.\n${item.descriptionEnglish}`
             : ''
         }
-        image={image}
+        image={item?.imageSrc}
         data={[
           {
             '@context': 'https://schema.org',

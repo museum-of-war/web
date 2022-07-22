@@ -92,7 +92,7 @@ const WarlineItem: React.FC<{
         description={`NFT of ${getTitle(event)} created by ${
           event.ArtistName
         }.\n${event.DescriptionEnglish}`}
-        image={url(imageSources.originalSrc)}
+        image={imageSources.originalSrc}
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
