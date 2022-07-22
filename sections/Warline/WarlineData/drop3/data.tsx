@@ -251,7 +251,7 @@ export default [
           'The occupiers shot an unarmed civilian near Kyiv. The video evidence of this brutal crime, taken from a drone, was handed over to German journalists by the Ukrainian military. The footage shows that an unarmed resident of the capital ran out of the car and stood in front of the occupiers with his hands raised. However, they opened fire on him. After that, the criminals calmly approached and searched the car, and then simply dragged the body of the murdered man to the side of the road.',
         DescriptionUkrainian:
           'Під Києвом окупанти розстріляли беззбройного цивільного чоловіка. Відеодоказ цього жорстокого злочину, зроблений з дрона, українські військові передали німецьким журналістам. На кадрах видно, що неозброєний житель столиці вибіг з машини і став перед окупантами з піднятими руками. Однак вони відкрили по ньому вогонь. Після цього злочинці спокійно підійшли та обнишпорили машину, а потім просто відтягнули тіло вбитого чоловіка до узбіччя.',
-        ArtistName: '665',
+        ArtistName: '665.0',
         ArtistLink: 'http://sixsixfive.com.ua',
         ImageType: 'drop3/14.png',
       },
@@ -365,7 +365,7 @@ export default [
           'Ukraine has praised the courage of three European leaders who made a long, hazardous journey by rail from Poland to Kyiv in a show of support as the city came under further Russian attack.',
         DescriptionUkrainian:
           'Україна високо оцінила мужність трьох європейських лідерів, які здійснили довгу, небезпечну подорож по залізній дорозі з Польщі до Києва в знак підтримки, оскільки Київ зазнає подальших атак Росії.',
-        ArtistName: '665',
+        ArtistName: '665.0',
         ArtistLink: 'http://sixsixfive.com.ua',
         ImageType: 'drop3/20.png',
       },
@@ -399,7 +399,8 @@ export default [
           'Mayor of Skadovsk Oleksandr Yakovlyev and his deputy Yurii Palyukh abducted today. States & international organizations must demand Russia to immediately release all abducted Ukrainian officials!',
         DescriptionEnglish:
           'Ukraine’s foreign minister says a third mayor and his deputy have been abducted by Russian troops. Foreign Minister Dmytro Kuleba tweets that the mayor of the port city of Skadovsk, Oleksandr Yakovlyev, and his deputy Yurii Palyukh were abducted earlier in the day.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Міністр закордонних справ України заявив, що російські війська викрали третього мера та його заступника.  Міністр закордонних справ Дмитро Кулеба написав у Twitter, що мера портового міста Скадовськ Олександра Яковлєва та його заступника Юрія Палюха викрали напередодні.',
         ArtistName: 'Viktoria Fartushna aka ilamuna',
         ArtistLink: 'https://www.behance.net/odyvancic3adb9',
         ImageType: 'drop3/22.png',
@@ -504,7 +505,8 @@ export default [
           'Biden said Ukraine will receive an additional 800 Stinger anti-aircraft systems, 9,000 anti-tank weapons, 7,000 light weapons, and 20 million rounds of ammunition.',
         DescriptionEnglish:
           "U.S. Announces 'Unprecedented' New Weapons Aid To Ukraine",
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'США оголосили про надання Україні «безпрецедентної» нової зброї',
         ArtistName: 'Anna Tsyhanenko',
         ArtistLink: '',
         ImageType: 'drop3/28.mp4',
@@ -521,7 +523,8 @@ export default [
           'The U.S. administration had avoided using the phrase "war criminal" until now, even when asked directly.',
         DescriptionEnglish:
           '"I think he is a war criminal," Biden told reporters on March 16. The U.S. administration had avoided using the phrase until now, even when asked directly. White House Press Secretary Jen Psaki said Biden was "speaking from his heart" after seeing images on television of "barbaric actions by a brutal dictator through his invasion of a foreign country." In reaction to Biden\'s comment, Kremlin spokesman Dmitry Peskov said the statement was "unacceptable and unforgivable rhetoric," the TASS news agency said.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          '«Я думаю, що він військовий злочинець», — сказав Байден журналістам 16 березня. Адміністрація США досі уникала використання цієї фрази, навіть коли її запитували прямо. Прес-секретар Білого дому Джен Псакі сказала, що Байден «говорив від серця» після того, як побачив по телебаченню зображення «варварських дій жорстокого диктатора через його вторгнення в чужу країну». У відповідь на коментар Байдена речник Кремля Дмитро Пєсков назвав цю заяву "неприйнятною та непробачною риторикою", повідомляє ТАСС.',
         ArtistName: 'Nataliya Sydor',
         ArtistLink: '',
         ImageType: 'drop3/29.mp4',
@@ -537,8 +540,9 @@ export default [
         Headline:
           '❗ WARNING ❗ Russian armed forces fired on a swimming pool complex in #Mariupol. Children and pregnant women are under the rubble. The shelling continues, so it is now impossible to dismantle the blockage. The number of victims is unknown. #StopPutin #StopRussia',
         DescriptionEnglish:
-          'On March,16 the Russian military launched an airstrike not only on Mariupol’s Drama Theatre, but also the Neptune pool facility where pregnant women and young children had gathered.',
-        DescriptionUkrainian: '',
+          'On March,16 the Russian military launched an airstrike not only on Mariupol’s Drama Theatre but also on the Neptune pool facility where pregnant women and young children had gathered.',
+        DescriptionUkrainian:
+          '16 березня російські військові завдали авіаудару не лише по Маріупольському драмтеатру, а й по басейну «Нептун», де зібралися вагітні жінки та маленькі діти.',
         ArtistName: 'Maria Oz',
         ArtistLink: '',
         ImageType: 'drop3/30.jpg',
@@ -559,8 +563,9 @@ export default [
         TwitterUsername: 'ua_parliament',
         Headline:
           '❗ IMPORTANT ❗On the square near the destroyed #Mariupol Drama Theater, there was a huge word "CHILDREN" written in russian. Striking satellite imagery shows the inscription in front of and behind the theatre was clearly seen from above. 1,200 civilians were sheltering in it.',
-        DescriptionEnglish: 'Children costs nothing for russian “liberators”.',
-        DescriptionUkrainian: '',
+        DescriptionEnglish: 'Children cost nothing to russian “liberators”.',
+        DescriptionUkrainian:
+          'Діти для російських «визволителів» нічого не варті.',
         ArtistName: 'Trykozenko Anastasiia',
         ArtistLink: 'https://instagram.com/onototosea?utm_medium=copy_link',
         ImageType: 'drop3/31.jpg',
@@ -577,7 +582,8 @@ export default [
           '48-year-old Olga Semidyanova died in battle with Russian Armed Forces. She had been a Military Medic since 2014 in the Donetsk region. Olga Semidyanova was awarded the Mother-Heroine status as a mother of six children and six more adopted. #StandWithUkraine #closeUAskyNOW',
         DescriptionEnglish:
           'Olga Semidyanova, 48, was killed by Russian troops on the border between Donetsk and Zaporizhzhia in the south of Ukraine on March 3, the Kyiv Independent report, after being shot in the stomach her family said. The Ukrainian Ministry for Foreign Affairs said that Semidyanova had been a medic in the Donetsk region since 2014, where Ukraine has been fighting Russian separatist forces. She had 12 children, six were adopted, and she has been awarded the "mother heroine" title, which goes to women with more than five children.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          "48-річна Ольга Семідянова була вбита російськими військами на кордоні між Донецьком і Запоріжжям на півдні України 3 березня, повідомляє Kyiv Independent, після поранення в живіт, повідомила її родина. У МЗС України повідомили, що Семідьянова з 2014 року була медиком у Донецькій області, де Україна воювала з російськими сепаратистськими силами. У неї було 12 дітей, шістьох усиновили, їй присвоєно звання «Мати-героїня», яке дають жінкам, які мають більше п'яти дітей.",
         ArtistName: 'Oksana Kryzhanivska',
         ArtistLink: 'https://linktr.ee/touchsoundart',
         ImageType: 'drop3/32.png',
@@ -594,7 +600,8 @@ export default [
           'The war against Ukraine was the most failed war for Russia. Since 1991, Russia has lost 17,000 troops in various wars And in 20 days of the war against Ukraine +13800🇷🇺military died. Ukraine will continue to fight to #stoprussia.',
         DescriptionEnglish:
           'Nearly 17,000 Russian soldiers have been killed in Ukraine so far, the Ukrainian General Staff said on March,17.  Ukrainian forces have destroyed 123 Russian aircraft, 127 helicopters, 586 tanks,1,694 armored vehicles, 1,150 vehicles, 66 UAVs, 73 fuel tankers and seven boats, according to the latest update from the Ukrainian General Staff. At least 302 Russian artillery systems, 95 multiple rocket launcher systems, and 54 air defense systems have also been destroyed, it added.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'В Україні на сьогодні загинули майже 17 тисяч російських військових, повідомив 17 березня український Генштаб. Українські сили знищили 123 російські літаки, 127 гелікоптерів, 586 танків, 1694 бронетехніки, 1150 автомобілів, 66 БПЛА, 73 паливозаправники та сім катерів, згідно з останніми даними Генштабу України. Також було знищено щонайменше 302 російські артилерійські системи, 95 реактивних систем залпового вогню та 54 системи протиповітряної оборони.',
         ArtistName: 'EVM ART',
         ArtistLink: 'https://www.instagram.com/strongertogetherdao/',
         ImageType: 'drop3/33.mp4',
@@ -611,7 +618,8 @@ export default [
           'End Russian Tourism! The Kremlin Russian regime drowns Ukraine in blood while Russians prepare ignorantly for their usual vacation season abroad. Such hypocrisy must not be allowed – restrict your tourist services for Russians immediately! #SanctionRussiaNow',
         DescriptionEnglish:
           'With Russia facing international sanctions over its invasion of Ukraine, countries nearby worry about how severe the effects could be on their own economies. Ukrainian diplomats call to limit the visits of Russian tourists.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Оскільки Росія зіткнулася з міжнародними санкціями через вторгнення в Україну, сусідні країни стурбовані тим, наскільки серйозними можуть бути наслідки для їхніх власних економік. Українські дипломати закликають обмежити візити російських туристів.',
         ArtistName: 'Masha Foya',
         ArtistLink: 'https://www.instagram.com/foya_illustrations/',
         ImageType: 'drop3/34.png',
@@ -627,8 +635,9 @@ export default [
         Headline:
           'Внаслідок артилерійського обстрілу Чернігова російською армією є загиблі. Сьогодні окупанти вкотре здійснили атаку з важкої артилерії по беззбройних цивільних мешканцях міста. Є загиблі і поранені люди. Серед загиблих - громадянин США.',
         DescriptionEnglish:
-          'The head of the Chernihiv regional state administration Vyacheslav Chaus reported on situation in the city. Russia is continuing systemic artillery and air strikes on the regional centre, destroying civilian infrastructure. At least 53 people were killed on March 16 due to shelling of Chernihiv by Russian occupation forces. At least 10 civilians were killed as they waited in a line for bread.  Among the killed - a US citizen.',
-        DescriptionUkrainian: '',
+          'The head of the Chernihiv regional state administration Vyacheslav Chaus reported on the situation in the city. Russia is continuing systemic artillery and air strikes on the regional centre, destroying civilian infrastructure. At least 53 people were killed on March 16 due to the shelling of Chernihiv by Russian occupation forces. At least 10 civilians were killed as they waited in a line for bread.  Among the killed - was a US citizen.',
+        DescriptionUkrainian:
+          "Про ситуацію в місті доповів голова Чернігівської облдержадміністрації В'ячеслав Чаус. Росія продовжує системні артилерійські та авіаудари по обласному центру, руйнуючи цивільну інфраструктуру. Щонайменше 53 людини загинули 16 березня внаслідок обстрілу російсько-окупаційними військами Чернігова. Щонайменше 10 мирних жителів загинули, коли стояли в черзі за хлібом. Серед убитих - громадянин США.",
         ArtistName: 'Alena Kuznetsova',
         ArtistLink: 'http://www.alenakuznetsova.com',
         ImageType: 'drop3/35.jpg',
@@ -644,8 +653,9 @@ export default [
         Headline:
           'Місто-герой Чернігів↘️ Під час проведення робіт по розбору конструкцій,  рятувальники дістали родину загиблих з 5 осіб, серед них 3 дітей (хлопчик та дівчинка двійнятка по 3 рочки) старша сестричка 12 років та їх батьки. Всі вони загинули внаслідок авіаудару по гуртожитку.',
         DescriptionEnglish:
-          'The hero city of Chernihiv. During the dismantling of structures, rescuers retrieved the family of the dead of 5 people. Among them are 3 children – a boy and a girl twins of 3 years, their older sister 12 years and their parents. All of them died as a result of an enemy air strike on the dormitory.',
-        DescriptionUkrainian: '',
+          'The hero city of Chernihiv. During the dismantling of structures, rescuers retrieved the family of 5 dead people. Among them are 3 children – a boy and a girl twins of 3 years, their older sister 12 years and their parents. All of them died as a result of an enemy air strike on the dormitory.',
+        DescriptionUkrainian:
+          'Місто-герой Чернігів. Під час розбирання конструкцій рятувальники дістали родину загиблого з 5 осіб. Серед них 3 дітей – хлопчик і дівчинка-близнюки 3 років, їхня старша сестра 12 років та їхні батьки. Усі вони загинули внаслідок удару ворожої авіації по гуртожитку.',
         ArtistName: 'Masha Vyshedska',
         ArtistLink: 'http://www.alenakuznetsova.com',
         ImageType: 'drop3/36.png',
@@ -662,7 +672,8 @@ export default [
           'Italy is ready to rebuild the Theatre of #Mariupol. The cabinet of Ministers has approved my proposal to offer #Ukraine the resources and means to  rebuild it as soon as possible. Theaters of all countries belong to the whole humanity #worldheritage',
         DescriptionEnglish:
           'The Italian government is ready to rebuild a theatre in the besieged Ukrainian city Mariupol which was devastated by a bomb attack, Culture Minister Dario Franceschini said on Thursday after a cabinet meeting. The theatre was hit by a Russian air strike while people sheltered there from bombardments.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Уряд Італії готовий відновити театр в обложеному українському місті Маріуполь, яке було зруйноване вибухом, заявив міністр культури Даріо Франческіні в четвер після засідання уряду. Театр зазнав удару російської авіації, поки люди ховалися там від бомбардувань.',
         ArtistName: 'Antony Reznik',
         ArtistLink: 'https://instagram.com/antonyreznik?utm_medium=copy_link',
         ImageType: 'drop3/37.jpg',
@@ -678,8 +689,9 @@ export default [
         Headline:
           'Ukraine has said the theatre was hit by a Russian air strike on Wednesday while people sheltered there from bombardments. Russia denied striking the theatre. But its forces have blasted cities and killed many civilians in its assault on Ukraine, now entering its fourth week',
         DescriptionEnglish:
-          "Russia committed a war crime by bombing a theater where hundreds of civilians were sheltering during the March siege of Mariupol, the southern Ukrainian port city that Russian troops destroyed and now occupy. The strike killed at least a dozen people. Russia blocked Amnesty's Crisis Response Team from entering Mariupol so researchers interviewed survivors in other parts of Ukraine, examined satellite data and hired a physicist to model the detonation.",
-        DescriptionUkrainian: '',
+          "Russia committed a war crime by bombing a theater where hundreds of civilians were sheltering during the March siege of Mariupol, the southern Ukrainian port city that Russian troops destroyed and now occupy. The strike killed at least a dozen people. Russia blocked Amnesty's Crisis Response Team from entering Mariupol so researchers interviewed survivors in other parts of Ukraine, examined satellite data, and hired a physicist to model the detonation.",
+        DescriptionUkrainian:
+          "Росія вчинила військовий злочин, розбомбивши театр, де сотні мирних жителів ховалися під час березневої облоги Маріуполя, південноукраїнського портового міста, яке російські війська знищили і зараз окупували. В результаті удару загинуло щонайменше десяток людей. Росія заблокувала Групі реагування на кризи Amnesty в'їзд до Маріуполя, тому дослідники опитали тих, хто вижив в інших частинах України, вивчили супутникові дані та найняли фізика для моделювання детонації.",
         ArtistName: 'Bogdana Davydiuk',
         ArtistLink: 'https://www.instagram.com/bogdana.davydiuk',
         ImageType: 'drop3/38.jpg',
@@ -696,7 +708,8 @@ export default [
           'The State Ecological Inspectorate of Ukraine reports the theft of water by the enemy. Occupiers have already stolen Ukrainian water of 620 million hryvnias worth👇',
         DescriptionEnglish:
           'Since the beginning of the Russian invasion of Ukraine, the aggressor has illegally received water in the amount worth UAH 620 million by occupying hydraulic structures belonging to the North Crimean Canal (Kherson region) and by directing water to the Crimean peninsula.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'З початку російського вторгнення в Україну агресор незаконно отримав воду на суму 620 млн грн, окупувавши гідротехнічні споруди Північно-Кримського каналу (Херсонська область) та направивши воду на Кримський півострів.',
         ArtistName: 'Sasha Kitaeva',
         ArtistLink: 'https://instagram.com/dorobok?igshid=YmMyMTA2M2Y=',
         ImageType: 'drop3/39.jpg',
@@ -713,7 +726,8 @@ export default [
           'President @ZelenskyyUa and the people of #Ukraine are nominated for the @NobelPrize Peace Prize 🏆🇺🇦',
         DescriptionEnglish:
           'Some members of the European Parliament, and the government of various European countries, asked the Nobel Committee to consider the nomination of the President of Ukraine, Volodimir Zelensky, and the people of his country, for the Nobel Peace Prize. "Brave Ukrainian men and women are fighting to preserve democracy and self-government. From the defiance of democratically elected Ukrainian President Volodimir Zelensky to the tearful man saying goodbye to his family to fight for his country, people across Ukraine are rising up to resist the forces of authoritarianism," they write up.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Деякі депутати Європарламенту та уряди різних європейських країн звернулися до Нобелівського комітету з проханням розглянути кандидатуру президента України Володимира Зеленського та народу його країни на здобуття Нобелівської премії миру. «Відважні українці борються за збереження демократії та самоврядування. Від непокори демократично обраному президенту України Володимиру Зеленському до заплаканого чоловіка, який прощається зі своєю родиною, щоб боротися за свою країну, люди по всій Україні повстають, щоб протистояти сил авторитаризму", - пишуть вони.',
         ArtistName: 'Sveta Bilyk',
         ArtistLink: 'https://svetabilyk.com/',
         ImageType: 'drop3/40.png',
@@ -730,7 +744,8 @@ export default [
           'Росіяни обстрілами не дають діставати людей з-під завалів театру в Маріуполі - Азов. Під завалами театру можуть бути до тисячі людей.',
         DescriptionEnglish:
           'People sheltering in a theater in the Ukrainian city of Mariupol are emerging from the building after it was bombed, the former head of the Donetsk region said Thursday. Hundreds of people were thought to have taken shelter in the theater amid the ongoing Russian siege of Mariupol. The rescue efforts were being hindered by the complete breakdown of social services in the city and the dangers of further Russian attacks.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Люди, які ховаються в театрі в українському місті Маріуполь, виходять з будівлі після бомбардування, заявив у четвер екс-глава Донецької області. Вважалося, що сотні людей знайшли притулок у театрі під час триваючої російської облоги Маріуполя. Рятувальні роботи заважали повним збоєм соціальних служб у місті та небезпекою подальших атак Росії.',
         ArtistName: 'Troian Alona',
         ArtistLink: 'https://troianalona.wordpress.com/',
         ImageType: 'drop3/41.jpg',
@@ -747,7 +762,8 @@ export default [
           'Amateur videos circulating on social media show Ukrainians using tractors to tow away Russian tanks that have been abandoned. The tanks are often handed over to Ukrainian armed forces.',
         DescriptionEnglish:
           "Ukraine's farmers now have the fifth-largest army in Europe — or so goes a dark joke on the internet, a reference to all the captured Russian military equipment they've towed off the battlefield.",
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Українські фермери тепер мають п’яту за чисельністю армію в Європі — так звучить чорний жарт в Інтернеті, де йдеться про всю захоплену російську військову техніку, яку вони відбуксирували з поля бою.',
         ArtistName: 'ichtodalshe_',
         ArtistLink: 'https://www.behance.net/oleksiibylym',
         ImageType: 'drop3/42.png',
@@ -764,7 +780,8 @@ export default [
           "Kharkiv kindergarten shelled by Russians. Another 'legitimate military target' accoding to Russia's MoD #StopRussia #StandWithUkraine",
         DescriptionEnglish:
           'One of the military targets for Russia in Kharkiv turned out to be a kindergarten.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Однією з військових цілей для Росії в Харкові виявився дитячий садок.',
         ArtistName: 'Odarka Lutsyshyna',
         ArtistLink: 'https://www.behance.net/odarkaluhihi',
         ImageType: 'drop3/43.jpg',
@@ -781,7 +798,8 @@ export default [
           "China and Russia have intensified their bilateral relations in recent years, and China has failed to explicitly condemn Russia's invasion of Ukraine, raising concerns in Washington.",
         DescriptionEnglish:
           "The whole world is watching the development of relations between China and Russia. And they are waiting for China to eventually gather courage and decide on its position in Russia's war against the people of Ukraine.",
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Весь світ спостерігає за розвитком відносин між Китаєм і Росією. І чекають, що врешті-решт Китай набереться сміливості і визначиться зі своєю позицією у війні Росії проти народу України.',
         ArtistName: 'Kseniia Nel',
         ArtistLink: 'https://www.behance.net/kseniianel',
         ImageType: 'drop3/44.jpg',
@@ -797,8 +815,9 @@ export default [
         Headline:
           "Russian President Putin's demands to end Ukraine war revealed.",
         DescriptionEnglish:
-          "On Thursday afternoon, President Vladimir Putin rang the Turkish President, Recep Tayyip Erdogan, and told him what Russia's precise demands were for a peace deal with Ukraine. The Russian demands fall into two categories.The first four demands are, according to Mr Kalin, not too difficult for Ukraine to meet.Chief among them is an acceptance by Ukraine that it should be neutral and should not apply to join Nato. Ukraine's President Volodymyr Zelensky has already conceded this.",
-        DescriptionUkrainian: '',
+          "On Thursday afternoon, President Vladimir Putin rang the Turkish President, Recep Tayyip Erdogan, and told him what Russia's precise demands were for a peace deal with Ukraine. The Russian demands fall into two categories. The first four demands are, according to Mr. Kalin, not too difficult for Ukraine to meet. Chief among them is an acceptance by Ukraine that it should be neutral and should not apply to join Nato. Ukraine's President Volodymyr Zelensky has already conceded this.",
+        DescriptionUkrainian:
+          'У четвер вдень президент Володимир Путін зателефонував президенту Туреччини Реджепу Таїпу Ердогану і розповів йому, які точні вимоги Росії щодо мирної угоди з Україною. Російські вимоги діляться на дві категорії. Перші чотири вимоги, за словами пана Каліна, не надто складні для України. Головним з них є визнання України того, що вона повинна бути нейтральною і не повинна подавати заявку на вступ до НАТО. Про це вже заявив президент України Володимир Зеленський.',
         ArtistName: 'Nastia Zafiyovska',
         ArtistLink: 'https://www.behance.net/nastiazafid116',
         ImageType: 'drop3/45.jpg',
@@ -820,8 +839,9 @@ export default [
         Headline:
           'Firefighting continues in one of the worldʼs largest markets.📍Kharkiv #StopRussianAggression #closeUAskyNOW',
         DescriptionEnglish:
-          'As of 07:00 on 18 March, operation continues to extinguish the fire caused by the shelling of Barabashovo market, one the biggest trading hubs in Kharkiv, on 17 March. As the firefighters worked on the scene, the Russian troops fired again, inflicting numerous shrapnel wounds on two emergency service workers. One of these emergency service workers died in hospital.',
-        DescriptionUkrainian: '',
+          'As of 07:00 on 18 March, the operation continues to extinguish the fire caused by the shelling of Barabashovo market, one of the biggest trading hubs in Kharkiv, on 17 March. As the firefighters worked on the scene, the Russian troops fired again, inflicting numerous shrapnel wounds on two emergency service workers. One of these emergency service workers died in the hospital.',
+        DescriptionUkrainian:
+          'Станом на 07:00 18 березня триває ліквідація пожежі, що виникла внаслідок обстрілу одного з найбільших торговельних центрів Харкова 17 березня – ринку «Барабашово». Під час роботи пожежників на місці події російські війська знову відкрили вогонь, заподіявши чисельні осколкові поранення двом працівникам ДСНС. Один із них помер у лікарні.',
         ArtistName: 'Кудлай Валентин',
         ArtistLink: 'https://instagram.com/el_valento?igshid=NWRhNmQxMjQ=',
         ImageType: 'drop3/46.png',
@@ -837,8 +857,9 @@ export default [
         Headline:
           'Друзі! Дорогі кияни! Ворог продовжує атакувати столицю. Зранку житловий квартал в Подільському районі обстріляний орками. Одна людина загинула, 19 постраждали, із них четверо дітей.Пошкоджені 6 житлових будинків, дитсадок та школа.На місці працюють рятувальники та медики.',
         DescriptionEnglish:
-          'Despite the increase in casualties, the punishment for international sanctions and the unexpectedly strong resistance of Ukraine, Russia continues to bomb civilian targets. Despite the increase in casualties, the punishment for international sanctions and the unexpectedly strong resistance of Ukraine, Russia continues to bomb civilian targets.',
-        DescriptionUkrainian: '',
+          'Despite the increase in casualties, the punishment for international sanctions, and the unexpectedly strong resistance of Ukraine, Russia continues to bomb civilian targets.',
+        DescriptionUkrainian:
+          'Попри збільшення втрат, покарання за міжнародні санкції та несподівано сильний опір України, Росія продовжує бомбити цивільні об’єкти.',
         ArtistName: 'Galbraith Luiza',
         ArtistLink: 'https://instagram.com/galbraith.art',
         ImageType: 'drop3/47.png',
@@ -854,7 +875,8 @@ export default [
           "Russian armed forces and economy are being destroyed in strict accordance with kremlin's plan. #UAarmy",
         DescriptionEnglish:
           'On the Internet, memes are gaining popularity that everything is according to plan in Russia. And it is according to this plan that they will strategically destroy the economy of their country and the future of their citizens.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'В інтернеті набирають популярності меми про те, що в Росії все за планом. І саме за цим планом вони стратегічно знищать економіку своєї країни та майбутнє своїх громадян.',
         ArtistName: 'Klimenkova Yelyzaveta',
         ArtistLink: 'https://www.instagram.com/ben_bam_bom/',
         ImageType: 'drop3/48.jpg',
@@ -870,8 +892,9 @@ export default [
         Headline:
           'Russian missiles struck an aircraft repair facility in Lviv just before dawn. Lviv has been thought of as a safe haven but this first attack in the city and one last week at the int’l training center in nearby Yavoriv has ppl feeling that nowhere is safe.',
         DescriptionEnglish:
-          'Russian missiles have struck an aircraft repair plant in Ukraine’s western city of Lviv, 50 miles from the border with Poland and a safe haven for hundreds of thousands of internally displaced Ukrainians. Blasts were heard at about 6am on Friday, preceded by the sound of air raid sirens, as a mushroom-shaped plume of smoke could be seen rising in the sky.',
-        DescriptionUkrainian: '',
+          'Russian missiles have struck an aircraft repair plant in Ukraine’s western city of Lviv, 50 miles from the border with Poland and a safe haven for hundreds of thousands of internally displaced Ukrainians. Blasts were heard at about 6 am on Friday, preceded by the sound of air raid sirens, as a mushroom-shaped plume of smoke could be seen rising in the sky.',
+        DescriptionUkrainian:
+          "Російські ракети вразили авіаремонтний завод у місті Львів на заході України, за 50 миль від кордону з Польщею та безпечного притулку для сотень тисяч внутрішньо переміщених українців. Вибухи пролунали приблизно о 6 годині ранку в п'ятницю, а перед ними були звуки сирен повітряної тривоги, коли було видно, як у небо піднімався грибоподібний клубок диму.",
         ArtistName: 'palyanytsya_nft',
         ArtistLink: 'https://www.instagram.com/palyanytsya_nft/',
         ImageType: 'drop3/49.mp4',
@@ -887,8 +910,9 @@ export default [
         Headline:
           '#Kyiv, the capital of #Ukraine. Morning in the Podil district. #StopRussia #StopPutin #ClosetheSkyoverUkraine',
         DescriptionEnglish:
-          'Despite the increase in casualties, the punishment for international sanctions and the unexpectedly strong resistance of Ukraine, Russia continues to bomb civilian targets.',
-        DescriptionUkrainian: '',
+          'This is how the morning in Podil, Kyiv district, started.',
+        DescriptionUkrainian:
+          'Ось так почався ранок на Подолі, у Київському районі.',
         ArtistName: 'Digital Noiseee',
         ArtistLink: 'https://www.instagram.com/digitalnoiseee/',
         ImageType: 'drop3/50.png',
@@ -904,8 +928,9 @@ export default [
         Headline:
           "Meanwhile, in Kyiv, Russia attacked the capital's historic Podil district, creeping dangerously close to the city's center. Mayor @Vitaliy_Klychko said 1 civilian died, 19 people were injured, including 4 children; 6 buildings including a kindergarten and a school were damaged.",
         DescriptionEnglish:
-          "Russia continues to bomb civilian targets of Ukrainian capital. There have been more than 100 deaths in Kyiv since Russia's invasion.",
-        DescriptionUkrainian: '',
+          "Russia continues to bomb civilian targets in the Ukrainian capital. There have been more than 100 deaths in Kyiv since Russia's invasion.",
+        DescriptionUkrainian:
+          "Росія продовжує бомбити цивільні об'єкти в українській столиці. У Києві з моменту вторгнення Росії загинуло понад 100 осіб.",
         ArtistName: 'Leo Libsneash',
         ArtistLink: 'https://www.instagram.com/libsneash/',
         ImageType: 'drop3/51.jpg',
@@ -922,7 +947,8 @@ export default [
           'Sumy (north-eastern Ukraine). Fire in a warehouse with paints and varnishes',
         DescriptionEnglish:
           'Amid artillery shelling on Friday in Sumy, a fire broke out in a warehouse building with paint and varnish products, the fire covered more than 6,000 square meters of territory, according to the State Emergency Service of Ukraine.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          "Внаслідок артилерійського обстрілу в п'ятницю в Сумах сталася пожежа в складі лакофарбової продукції, вогонь охопив понад 6 тисяч квадратних метрів території, повідомляє ДСНС.",
         ArtistName: 'Anastasiia Sam',
         ArtistLink: '',
         ImageType: 'drop3/52.mp4',
@@ -938,7 +964,8 @@ export default [
           'Ukrainian President Zelensky says 130 people have been rescued from the bombed theater in the city of Mariupol so far',
         DescriptionEnglish:
           'Hundreds of people were taking shelter at the theater when it was bombed on Wednesday. Speaking on Ukrainian TV, Zelensky said that rescue operations are continuing at the site despite the difficulties. Ukraine’s human rights commissioner Liudmyla Denisova said there was no update on figures released, which reported 130 people rescued from a total of 1,300 people believed to have been sheltering in the building.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Сотні людей ховалися біля театру, коли його розбомбили в середу. Виступаючи в ефірі Українського телебачення, Зеленський зазначив, що рятувальні роботи на місці тривають, незважаючи на труднощі. Уповноважена з прав людини України Людмила Денісова заявила, що немає оновлених даних про 130 врятованих із 1300 людей, які, як вважають, перебували в будівлі.',
         ArtistName: 'Yaroslav DRZK',
         ArtistLink: 'https://instagram.com/drzk_artist?utm_medium=copy_link',
         ImageType: 'drop3/53.mp4',
@@ -953,7 +980,7 @@ export default [
         TwitterUsername: 'UkrArmyBlog',
         Headline: 'В єдності наша сила!!!🇺🇦',
         DescriptionEnglish: 'Civil women provide food for soldiers.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian: 'Харчуванням бійців забезпечують цивільні жінки.',
         ArtistName: 'Vira Yenikeieva',
         ArtistLink: 'https://www.instagram.com/ivoryblackarts/ ',
         ImageType: 'drop3/54.png',
@@ -969,8 +996,9 @@ export default [
         Headline:
           'New satellite images of Mariupol show more of the destruction wrought by indiscriminate Russian bombing. Massive chunks of civilian homes blown apart are clearly visible. Cloud cover prevented images of destroyed drama theater. 3rd image shows line of cars evacuating. 📸: @Maxar',
         DescriptionEnglish:
-          'New evidence of Russian war crimes against the Ukrainian people that cannot be denied.',
-        DescriptionUkrainian: '',
+          'New evidence of Russian war crimes against the Ukrainian people cannot be denied.',
+        DescriptionUkrainian:
+          'Нові докази військових злочинів Росії проти українського народу неможливо заперечувати.',
         ArtistName: 'Huzenko Kyrylo',
         ArtistLink: 'https://instagram.com/huzenko.kyrylo.sculpture?r=nametag',
         ImageType: 'drop3/55.jpg',
@@ -993,7 +1021,8 @@ export default [
           'It is the Peace Bell in #Mariupol. It does not ring anymore until the last enemy leaves Ukraine. #StandWithUkraine #StopRussianAggression',
         DescriptionEnglish:
           'In the heart of Mariupol is Freedom Square, built as an idyllic community gathering place. Before the invasion, Freedom Square embodied Mariupol’s path from confrontation to peace and development. At one end of the square, a single bronze bell hangs between two stone plinths. Called the Peace Bell, it rings to remind of the past and inspire the future. As the horrors of the Russian invasion of Ukraine continue to unfold, one bell stands in mute testimony to the resilience of the Ukrainian people: Mariupol’s Peace Bell.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'У самому серці Маріуполя знаходиться площа Свободи, побудована як ідилічне місце збору громади. До вторгнення площа Свободи втілювала шлях Маріуполя від протистояння до миру та розвитку. В одному кінці площі між двома кам’яними постаментами висить єдиний бронзовий дзвін. Його називають «Дзвін миру», він дзвонить, щоб нагадати про минуле та надихнути на майбутнє. Поки жахи російського вторгнення в Україну продовжують розкриватися, один дзвін стоїть німим свідченням стійкості українського народу: Маріупольський дзвін миру.',
         ArtistName: 'Катерина Коротич',
         ArtistLink: 'https://instagram.com/lady_cloudberry?igshid=NWRhNmQxMjQ=',
         ImageType: 'drop3/56.png',
@@ -1009,8 +1038,8 @@ export default [
         Headline:
           '❗ WARNING ❗Russian occupiers captured a secretary to the city council of Nova Kakhovka, #Kherson region, Dmytro Vasyliev. He is now tortured in a local detention facility. #StopRussia #StopPutin',
         DescriptionEnglish:
-          'New barbaric accident with Ukranian public official.',
-        DescriptionUkrainian: '',
+          'New barbaric accident with Ukrainian public official.',
+        DescriptionUkrainian: 'Нові варварські дії з українським чиновником.',
         ArtistName: 'Mayevsky Dmytro',
         ArtistLink: '',
         ImageType: 'drop3/57.jpg',
@@ -1027,7 +1056,8 @@ export default [
           '❗Russia has fired 1,080 missiles at #Ukraine According to the U.S. Department of Defense, as of March 18th, the Russian occupiers launched more than 1,080 missiles across Ukraine.The bulk of which was aimed at civilians. #ClosetheSkyoverUkraine #StopRussia #StopPutin',
         DescriptionEnglish:
           'Maxar satellites have recorded the destruction in Mariupol, which indicates the deliberate destruction of the city by Russian occupiers.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Супутники Maxar зафіксували руйнування в Маріуполі, що свідчить про свідоме знищення міста російськими окупантами.',
         ArtistName: 'Darya Yehorova',
         ArtistLink: 'https://www.behance.net/daryelazy',
         ImageType: 'drop3/58.gif',
@@ -1042,8 +1072,10 @@ export default [
         TwitterUsername: 'MFA_Ukraine',
         Headline:
           'Make Russians Feel the Cost of War! Russians are still trying to escape abroad instead of standing up against the Kremlin regime. The democratic world should stop issuing visas and hosting Russians. #SanctionRussiaNow',
-        DescriptionEnglish: '',
-        DescriptionUkrainian: '',
+        DescriptionEnglish:
+          'Russians continue ro run away from the regime, not standing up against it.',
+        DescriptionUkrainian:
+          'Росіяни продовжують тікати від режиму, не протистояти йому.',
         ArtistName: 'Oleksii Pryshchepa',
         ArtistLink: 'https://instagram.com/o.pryshchepa_',
         ImageType: 'drop3/59.gif',
@@ -1060,7 +1092,8 @@ export default [
           "🐶Dog Patron that works for Ukraine's State Emergency Service in #Chernihiv, has helped neutralize almost 90 #Russian explosive devices since the beginning of #Russia's war against #Ukraine #StandWithUkraine #StopRussianAgression #StopPutin",
         DescriptionEnglish:
           'Patron, a 2-year-old military dog, is credited with clearing almost 90 explosive devices on Ukrainian soil since Russia invaded, saving countless lives and preventing further bloodshed.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Патрону, 2-річному військовому псу, приписують знешкодження майже 90 вибухових пристроїв на українській землі з моменту вторгнення Росії, врятувавши незліченну кількість життів і запобігши подальшому кровопролиттю.',
         ArtistName: 'Maya Nguyen',
         ArtistLink: 'http://www.mayangn.com/',
         ImageType: 'drop3/60.png',
@@ -1076,8 +1109,9 @@ export default [
         Headline:
           '🔴 The occupiers thwart 14 trucks with humanitarian aid for the #Kherson region,#Ukraine. Fourteen trucks with humanitarian aid left the city of Apostolove in the Dnipropetrovsk region for the Kherson region. Still, the occupiers forced them to return halfway.👇',
         DescriptionEnglish:
-          'The humanitarian cargo carried necessary items for the residents: hygiene products for children and adults, canning, meat, semi-processed products, baby food, etc., as well as critical medicine, including insulin, which is now the many residents of the region are in dire need of. The occupiers thwart those trucks.',
-        DescriptionUkrainian: '',
+          'The humanitarian cargo carried necessary items for the residents: hygiene products for children and adults, canning, meat, semi-processed products, baby food, etc., as well as critical medicine, including insulin, which is now the many residents of the region, are in dire need of. The occupiers thwart those trucks.',
+        DescriptionUkrainian:
+          'Гуманітарний вантаж перевозив необхідні для мешканців речі: засоби гігієни для дітей та дорослих, консервацію, м’ясо, напівфабрикати, дитяче харчування тощо, а також життєво важливі ліки, зокрема інсулін, яким зараз є багато жителів області. , гостро потребують. Окупанти зривають ті вантажівки.',
         ArtistName: 'Yana Holimbovska',
         ArtistLink: 'https://www.behance.net/gallery/140534277/Portfolio',
         ImageType: 'drop3/61.jpg',
@@ -1093,8 +1127,9 @@ export default [
         Headline:
           'Street fighting in Mariupol and hypersonic missiles: Ukraine war daily round-up.',
         DescriptionEnglish:
-          "Russia's invasion of Ukraine is in is fourth week, but the city of Mariupol remains under Ukrainian control, despite near-constant bombardment from the Russian forces which surround the city. The city's mayor, Vadym Boychenko, told the BBC that street fighting in the city centre is hampering efforts to rescue hundreds of people trapped in the basement of a bombed theatre.",
-        DescriptionUkrainian: '',
+          "Russia's invasion of Ukraine is in its fourth week, but the city of Mariupol remains under Ukrainian control, despite near-constant bombardment from the Russian forces which surround the city. The city's mayor, Vadym Boychenko, told the BBC that street fighting in the city centre is hampering efforts to rescue hundreds of people trapped in the basement of a bombed theatre.",
+        DescriptionUkrainian:
+          'Вторгнення Росії в Україну триває четвертий тиждень, але місто Маріуполь залишається під контролем України, незважаючи на майже постійні бомбардування з боку російських військ, які оточують місто. Мер міста Вадим Бойченко розповів ВВС, що вуличні бої в центрі міста заважають зусиллям з порятунку сотень людей, які опинились у підвалі розбомбленого театру.',
         ArtistName: 'Yurii Trofimenko',
         ArtistLink: 'https://instagram.com/yuri_trofimenko?igshid=YmMyMTA2M2Y=',
         ImageType: 'drop3/62.mp4',
@@ -1188,8 +1223,9 @@ export default [
         Headline:
           '❗❗❗ WARNING Security Service of #Ukraine intercepted calls of Russian occupants commanded to capture #Kharkiv: "We were told to kill everyone. Civilians, children, everyone". Just listen! #StopRussia #StopPutin',
         DescriptionEnglish:
-          'In the intercepted call of russian military commanders they ordered to their soldiers killing anybody who would try to do any movement towards them especially civil people.',
-        DescriptionUkrainian: '',
+          'In the intercepted call of russian military commanders, they ordered to their soldiers kill anybody who would try to do any movement towards them, especially civil people.',
+        DescriptionUkrainian:
+          'У перехопленому дзвінку російських воєначальників вони наказали своїм солдатам вбивати всіх, хто намагався б зробити будь-який рух до них, особливо цивільних.',
         ArtistName: 'Christina Turik',
         ArtistLink:
           'https://instagram.com/aquarium_of_tears?igshid=YmMyMTA2M2Y=',
@@ -1320,7 +1356,8 @@ export default [
           'Borys Romanchenko, 96, survived four Nazi concentration camps: Buchenwald, Peenemünde, Mittelbau-Dora, Bergen-Belsen. He lived his quiet life in Kharkiv until recently. Last Friday a Russian bomb hit his house and killed him. Unspeakable crime. Survived Hitler, murdered by Putin.',
         DescriptionEnglish:
           'Boris Romanchenko, who was recently killed in a Russian bombing raid in Kharkiv, survived four Nazi concentration camps in his younger years. The 96-year-old’s death underscores the absurdity of Vladimir Putin’s claim that his war is «denazifying» Ukraine. The death of Romanchenko is causing outrage among Jewish organizations around the world. Through various channels, activists are desperately trying to get Ukrainian Holocaust survivors out of the country.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Борис Романченко, який нещодавно загинув під час російського бомбардування Харкова, у молоді роки пережив чотири нацистські концтабори. Смерть 96-річного чоловіка підкреслює абсурдність заяви Володимира Путіна про те, що його війна «денацифікує» Україну. Смерть Романченка викликає обурення серед єврейських організацій у всьому світі. Через різні канали активісти відчайдушно намагаються вивезти з країни українців, які пережили Голокост.',
         ArtistName: 'Oleksandra Matvieieva aka flaneur',
         ArtistLink: 'https://www.instagram.com/p/CdG4qHKMMst/',
         ImageType: 'drop3/74.png',
@@ -1564,7 +1601,8 @@ export default [
           'russians bombed the bridge over Desna river and completely blocked Chernihiv, home to 300,000 people. putin wants to turn the 1,100-year-old city with its unique historic sites into a new Mariupol. @UNESCO #RussianWarCrimesinUA #stoprussia',
         DescriptionEnglish:
           'Evacuation and humanitarian aid route to Kyiv cut as bridge across the Desna River bombed.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Маршрут евакуації та гуманітарної допомоги до Києва було перервано через розбомблений міст через річку Десна.',
         ArtistName: 'Bezkorovainyi Oleksii aka eviltorn',
         ArtistLink: 'https://instagram.com/eviltornsberg',
         ImageType: 'drop3/87.png',
@@ -1587,7 +1625,8 @@ export default [
           'If any EU country bows to Putin’s humiliating demands to pay for oil and gas in rubles, it will be like helping Ukraine with one hand and helping Russians kill Ukrainians with the other. I urge relevant countries to make a wise and responsible choice.',
         DescriptionEnglish:
           'Ukraine’s foreign minister on Thursday called on EU countries to refrain from accepting Russian President Vladimir Putin’s demand to pay for Russian oil and gas in rubles.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'У четвер міністр закордонних справ України закликав країни ЄС утриматися від прийняття вимоги президента Росії Володимира Путіна платити за російські нафту і газ рублями.',
         ArtistName: 'Захар Беркут',
         ArtistLink: '',
         ImageType: 'drop3/88.png',
@@ -1609,8 +1648,9 @@ export default [
         Headline:
           'In #Ukraine, the number of journalists killed since Russia launched its assault on the country has reached five, with the death of Russian journalist Oksana Baulina, who was tragically killed during a March 23 Russian attack on Kyiv.',
         DescriptionEnglish:
-          "Fifth journalist killed covering Russia-Ukraine war. Oksana Baulina had been reporting from Kyiv and the western city of Lviv for investigative website The Insider, the outlet said in a statement. She died while filming damage in the city's Podil district.",
-        DescriptionUkrainian: '',
+          "Fifth journalist was killed covering Russia-Ukraine war. Oksana Baulina had been reporting from Kyiv and the western city of Lviv for investigative website The Insider, the outlet said in a statement. She died while filming damage in the city's Podil district.",
+        DescriptionUkrainian:
+          "П'ятий журналіст загинув під час висвітлення російсько-української війни. Оксана Бауліна писала з Києва та Львова для сайту розслідувань The Insider, йдеться у повідомленні видання. Вона загинула під час зйомок пошкоджень на Подолі в місті.",
         ArtistName: 'Oksana Tsukanova aka carrot4all',
         ArtistLink: 'https://www.instagram.com/carrot4all/',
         ImageType: 'drop3/89.png',
@@ -1627,7 +1667,8 @@ export default [
           'As of March 25, our team has documented at least 66 cases of attacks on healthcare infrastructure in Ukraine. As a result, at least 66 healthcare facilities have already been damaged. Six hospitals were destroyed.',
         DescriptionEnglish:
           'Since the Russian invasion of Ukraine began on 24 February, Insecurity Insight has documented 83 incidents of violence against health care, including 51 against health facilities and the deaths of 12 health workers.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'З моменту початку російського вторгнення в Україну 24 лютого Insecurity Insight задокументувала 83 випадки насильства проти медичних закладів, у тому числі 51 проти медичних закладів і смерть 12 медичних працівників.',
         ArtistName: 'Софія Рунова',
         ArtistLink: 'https://www.instagram.com/runo_illustration/',
         ImageType: 'drop3/90.png',
@@ -1650,7 +1691,8 @@ export default [
           'Hundreds of protesters supporting Ukraine lay on the ground in Warsaw on March 25, to represent the civilians killed by Russian forces. "While you\'re talking, we are dying," protesters say as U.S. President Joe Biden visits Poland to discuss Russia\'s war in Ukraine.',
         DescriptionEnglish:
           "While you're talking, we are dying,\" protesters say as U.S. President Joe Biden visits Poland to discuss Russia's war in Ukraine.'",
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          '"Поки ви говорите, ми помираємо", - демонструють протестувальники, у той час, як президент США Джо Байден відвідує Польщу, щоб обговорити війну Росії в Україні".',
         ArtistName: 'Новиков Даниил ',
         ArtistLink: 'https://opensea.io/Trip_wibes',
         ImageType: 'drop3/91.png',
@@ -1673,7 +1715,8 @@ export default [
           'Kharkiv Music Fest - one of the best international classical music festivals in Ukraine was scheduled to start on March 26. No one could have imagined that instead there would be a concert in the subway. But here we are on the day 31 of the war.',
         DescriptionEnglish:
           'Russian bombs fall daily on Kharkiv since the invasion of Ukraine, but time stood still briefly on Saturday as a group of Ukrainian musicians moved listeners with a classical concert. Three violinists, a cellist, and a bass player delighted an audience of a few dozen people for half an hour in one of the largest subway stations in Ukraine’s second city, close to the Russian border.  Underground and protected from rockets and missiles, the musicians, aged 20-35, played the national anthem and several tunes from popular Ukrainian folklore.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Російські бомби щодня падають на Харків після вторгнення в Україну, але в суботу час ненадовго зупинився, коли група українських музикантів розчулила слухачів класичним концертом. Троє скрипалів, віолончеліст і бас-гітарист півгодини радували глядачів із кількох десятків людей на одній із найбільших станцій метро другого за рахунком міста України, неподалік від російського кордону. Під землею, захищені від ракет і снарядів, музиканти віком 20-35 років зіграли державний гімн і кілька мелодій з популярного українського фольклору.',
         ArtistName: 'Кудлай Валентин',
         ArtistLink: 'https://instagram.com/el_valento?igshid=NWRhNmQxMjQ=',
         ImageType: 'drop3/92.png',
@@ -1689,8 +1732,9 @@ export default [
         Headline:
           'These are not scenes from another fantasy movie about the Apocalypse. This is Ukraine. Rubizhne. March 26, 2022. #stoprussia',
         DescriptionEnglish:
-          'According to the report of the Anti-Disinformation Center of the National Security and Defense Council of Ukraine , it is feared that the Russians will use nerve agents against the army in Ukraine. The center claims that there is more and more evidence every day that the Russians are preparing to use cyclosarin , which is banned by the UN. According to a report prepared by the center, the nerve agent is being used in cities where they are unable to break through the defenses.',
-        DescriptionUkrainian: '',
+          'According to the report of the Anti-Disinformation Center of the National Security and Defense Council of Ukraine, it is feared that the Russians will use nerve agents against the army in Ukraine. The center claims that there is more and more evidence every day that the Russians are preparing to use cyclosarin, which is banned by the UN. According to a report prepared by the center, the nerve agent is being used in cities where they are unable to break through the defenses.',
+        DescriptionUkrainian:
+          'Згідно з повідомленням Центру протидії дезінформації Ради національної безпеки і оборони України, є побоювання, що росіяни використають нервово-паралітичні речовини проти Української армії. У центрі стверджують, що з кожним днем стає все більше доказів того, що росіяни готуються використовувати заборонений ООН циклозарин. Згідно зі звітом, підготовленим центром, нервово-паралітична речовина використовується в містах, де вони не можуть прорвати оборону.',
         ArtistName: 'Biletska Alisa',
         ArtistLink: 'https://www.instagram.com/alisa.biletska/?hl=ru',
         ImageType: 'drop3/93.png',
@@ -1707,7 +1751,8 @@ export default [
           '"The darkness that drives autocracy is ultimately no match for the flame of liberty that lights the souls of free people everywhere… Ukraine will never be a victory for Russia.” President Joe Biden, Warsaw, March 26, 2022',
         DescriptionEnglish:
           'U.S. President Joe Biden delivered a major address in Poland on Saturday, rallying support for Ukraine and calling for unity in the face of Russian aggression.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Президент США Джо Байден виступив у суботу з великою промовою в Польщі, висловивши підтримку Україні та закликавши до єдності перед лицем російської агресії.',
         ArtistName: 'Oksana Kryzhanivska',
         ArtistLink: 'https://linktr.ee/touchsoundart',
         ImageType: 'drop3/94.png',
@@ -1730,7 +1775,8 @@ export default [
           'LVIV, Ukraine, March 28 (Reuters) - Nearly 5,000 people have been killed in the southern Ukrainian city of Mariupol since Russian forces laid siege to it, a spokesperson for the city mayor said on Monday.',
         DescriptionEnglish:
           "Nearly 5,000 people, including about 210 children, have been killed in the southern Ukrainian city of Mariupol since Russian forces laid siege to it. 90% of Mariupol's buildings had been damaged and 40% destroyed, including hospitals, schools, kindergartens and factories.",
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Майже 5000 людей, у тому числі близько 210 дітей, були вбиті в південноукраїнському місті Маріуполь після того, як російські війська взяли його в облогу. 90% будівель Маріуполя було пошкоджено і 40% зруйновано, включаючи лікарні, школи, дитячі садки та заводи.',
         ArtistName: 'Дарія Луцишина',
         ArtistLink: 'https://www.behance.net/odarkaluhihi',
         ImageType: 'drop3/95.png',
@@ -1747,7 +1793,8 @@ export default [
           'Another day, another russian war crime. Yesterday it was Krasnohorivka near Donetsk. Today the russians used banned cluster munitions against civilians near Kryvyi Rih. An investigation is underway. Those responsible will face the tribunal. #RussianWarCrimesinUA #stoprussia',
         DescriptionEnglish:
           "The aggressor attacked a residential area of the city of Krasnohorivka, Donetsk region, with banned cluster munitions, the press service of the Ministry of Internal Affairs of Ukraine reports. The enemy attacked Krasnohorivka's residential sector with Tornado-S multiple launch rocket systems. Russian troops used prohibited cluster munitions. Ammunition fell in the middle of the streets of the private sector. Police and the State Emergency Service bomb techs detect and neutralize combat cumulative elements.",
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Житловий район міста Красногорівка Донецької області агресор обстріляв із заборонених касетних боєприпасів, повідомляє прес-служба МВС України. Житловий квартал Красногорівки ворог обстріляв із реактивних систем залпового вогню «Торнадо-С». Російські війська застосували заборонені касетні боєприпаси. Боєприпаси впали посеред вулиць приватного сектору. Міліція та вибухотехніки ДСНС виявляють та знешкоджують бойові кумулятивні елементи.',
         ArtistName: 'Kateryna Goncharova',
         ArtistLink: 'https://www.instagram.com/kate_go_illustration/',
         ImageType: 'drop3/96.png',
@@ -1769,8 +1816,9 @@ export default [
         Headline:
           'Russia-Ukraine war: 29 March updates ⤵️ Ukrainian forces have retaken Irpin, a key town outside the capital, Kyiv, says President Volodymyr Zelenskyy.',
         DescriptionEnglish:
-          'After weeks of battles, Kyiv suburb is scene of ruin. After March 29, the whole world was shocked by the first shots from Irpen.',
-        DescriptionUkrainian: '',
+          'After weeks of battles, the Kyiv suburb is the scene of ruin. After March 29, the whole world was shocked by the first shots from Irpen.',
+        DescriptionUkrainian:
+          'Після тижнів боїв київське передмістя стає ареною руїни. Після 29 березня весь світ шокували перші постріли з Ірпеня.',
         ArtistName: 'Digital Noiseee',
         ArtistLink: 'https://www.instagram.com/digitalnoiseee/',
         ImageType: 'drop3/97.png',
@@ -1793,7 +1841,8 @@ export default [
           'Refugees from Ukraine are now 4 million, five weeks after the start of the Russian attack. I have just arrived in Ukraine. In Lviv I will discuss with the authorities, the UN and other partners ways to increase our support to people affected and displaced by this senseless war.',
         DescriptionEnglish:
           "UNHCR, the UN refugee agency, said 4,019,287 Ukrainians had fled across the country's borders since the February 24 invasion, with more than 2.3 million having headed west into Poland.",
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'УВКБ ООН, агентство ООН у справах біженців, заявило, що 4 019 287 українців втекли через кордони країни після вторгнення 24 лютого, причому понад 2,3 мільйона вирушили на захід до Польщі.',
         ArtistName: 'Bozhena Kushnyr',
         ArtistLink: 'https://www.instagram.com/artbozhena/',
         ImageType: 'drop3/98.png',
@@ -1815,8 +1864,9 @@ export default [
         Headline:
           'Locals walk in the demolished town center of Trostyanets after Ukrainian forces expelled Russian troops from the town which Russia had occupied at the beginning of its war with Ukraine, March 30, 2022. REUTERS/Thomas Peter',
         DescriptionEnglish:
-          "Russia's 4th Guards Tank Division, considered an elite armoured unit, rolled into Trostyanets, which is just 30 kilometres from the border on the second day of the war. The Russians quit the city in the end, putting up little to no resistance. For people there was nothing left to eat in the town, no water and no electricity.",
-        DescriptionUkrainian: '',
+          "Russia's 4th Guards Tank Division considered an elite armoured unit, rolled into Trostyanets, which is just 30 kilometres from the border on the second day of the war. The Russians quit the city in the end, putting up little to no resistance. For people, there was nothing left to eat in the town, no water, and no electricity.",
+        DescriptionUkrainian:
+          '4-та гвардійська танкова дивізія Росії, яка вважалася елітним бронетанковим підрозділом, на другий день війни вкинулася в Тростянець, що всього за 30 кілометрів від кордону. Зрештою росіяни залишили місто, не чинячи майже ніякого опору. Людям у місті не було нічого їсти, не було ні води, ні світла.',
         ArtistName: 'Ali',
         ArtistLink: '',
         ImageType: 'drop3/99.png',
@@ -1833,7 +1883,8 @@ export default [
           'Putin’s approval rating grows to 83 per cent. President Putin’s approval rating grew to 83 per cent after Russia’s all-out invasion of Ukraine, a survey by Russia’s Levada Center conducted between March 24 and 30 found.',
         DescriptionEnglish:
           'Support for President Vladimir Putin has surged among Russians following his invasion of Ukraine, according to the country’s leading independent pollster, even as a Kremlin crackdown on protest raises questions about public willingness to express opposition to the war. Some 83% approved of Putin’s actions as president in a March 24-30 survey of 1,632 respondents, an increase of 12 percentage points on the previous month and the highest since 2017, the Moscow-based Levada Center reported.',
-        DescriptionUkrainian: '',
+        DescriptionUkrainian:
+          'Підтримка президента Володимира Путіна зросла серед росіян після його вторгнення в Україну, згідно з провідним незалежним соціологом країни, незважаючи на те, що придушення протестів Кремлем викликає сумніви щодо готовності громадськості висловлювати опозицію до війни. Близько 83% схвалювали дії Путіна на посаді президента в опитуванні 24-30 березня за участю 1632 респондентів, що на 12 процентних пунктів більше, ніж у попередньому місяці, і є найвищим показником з 2017 року, повідомляє московський Левада-Центр.',
         ArtistName: 'Yana Svyatkina',
         ArtistLink: 'https://www.instagram.con/yanka.ki',
         ImageType: 'drop3/100.png',
