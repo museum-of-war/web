@@ -9,11 +9,21 @@ import { openInNewTab } from '@sections/utils';
 type PropsPopup = {
   web3Modal: Web3Modal;
   onConnectionEstablished: (provider: any) => void;
+  onConnectionFailed: (reason: any) => void;
 };
 
-const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
+const SignInPopup = ({
+  web3Modal,
+  onConnectionEstablished,
+  onConnectionFailed,
+}: PropsPopup) => {
   const { hidePopup } = usePopup();
   const { isMobile } = useViewPort();
+
+  const rejectConnection = useCallback(() => {
+    hidePopup();
+    onConnectionFailed('User rejected connection');
+  }, [hidePopup, onConnectionFailed]);
 
   const connect = useCallback(
     async (provider: string) => {
@@ -21,10 +31,10 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
       try {
         onConnectionEstablished(await web3Modal.connectTo(provider));
       } catch (e) {
-        console.error(e);
+        onConnectionFailed(e);
       }
     },
-    [hidePopup, onConnectionEstablished, web3Modal],
+    [hidePopup, onConnectionEstablished, onConnectionFailed, web3Modal],
   );
 
   const handleMetaMask = useCallback(() => {
@@ -49,7 +59,7 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
         <div className="w-100% text-right">
           <button
             className="right-20px top-20px dark:text-carbon"
-            onClick={hidePopup}
+            onClick={rejectConnection}
           >
             <VscChromeClose size={25} />
           </button>
@@ -122,7 +132,7 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
         <div>
           <button
             className="absolute right-20px top-20px dark:text-carbon"
-            onClick={hidePopup}
+            onClick={rejectConnection}
           >
             <VscChromeClose size={25} />
           </button>

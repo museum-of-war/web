@@ -161,10 +161,11 @@ export function useWeb3Modal() {
     }
     return web3Modal.cachedProvider
       ? web3Modal.connectTo(web3Modal.cachedProvider)
-      : new Promise((resolve) =>
+      : new Promise((resolve, reject) =>
           showPopup('signIn', {
             web3Modal,
             onConnectionEstablished: resolve,
+            onConnectionFailed: reject,
           }),
         );
   }
@@ -598,7 +599,7 @@ export function useWeb3Modal() {
     version: AuctionVersion,
   ) {
     const ethersProvider = await connectWallet();
-    if (!ethersProvider) return;
+    if (!ethersProvider) throw new Error('Cannot get ethers provider');
     const signer = ethersProvider.getSigner();
 
     const auction = NFTAuctionConnect(signer, chain, version);
@@ -645,7 +646,7 @@ export function useWeb3Modal() {
     approvedCallback?: () => void,
   ) {
     const ethersProvider = await connectWallet();
-    if (!ethersProvider) return;
+    if (!ethersProvider) throw new Error('Cannot get ethers provider');
     const signer = ethersProvider.getSigner();
 
     const drop1Contract = new ethers.Contract(
@@ -694,7 +695,7 @@ export function useWeb3Modal() {
     tokenId2: BigNumberish,
   ) {
     const ethersProvider = await connectWallet();
-    if (!ethersProvider) return;
+    if (!ethersProvider) throw new Error('Cannot get ethers provider');
     const signer = ethersProvider.getSigner();
 
     const mergerContract = new ethers.Contract(
@@ -890,7 +891,7 @@ export function useWeb3Modal() {
 
   async function mintSecondDrop(tokensCount: number) {
     const ethersProvider = await connectWallet();
-    if (!ethersProvider) return;
+    if (!ethersProvider) throw new Error('Cannot get ethers provider');
     const signer = ethersProvider.getSigner();
 
     let nftContract = new ethers.Contract(
@@ -915,7 +916,7 @@ export function useWeb3Modal() {
 
   async function mintThirdDrop(tokenId: number, tokensCount: number) {
     const ethersProvider = await connectWallet();
-    if (!ethersProvider) return;
+    if (!ethersProvider) throw new Error('Cannot get ethers provider');
     const signer = ethersProvider.getSigner();
 
     let nftContract = new ethers.Contract(
