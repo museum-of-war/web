@@ -11,7 +11,9 @@ import dynamic from 'next/dynamic';
 import ContentChapter from './ContentChapter';
 import ContentCounterDaysAndRised from './ContentCounterDaysAndRised';
 import Partners from './Partners';
-import Countdown from './Countdown';
+const Countdown = dynamic(() => import('./Countdown'), {
+  ssr: false,
+});
 import AboutUs from '@sections/AboutProject/AboutUs';
 import { THIRD_DROP_DATE } from '@sections/Constants';
 
