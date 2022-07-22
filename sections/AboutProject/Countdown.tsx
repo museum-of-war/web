@@ -1,36 +1,12 @@
 import React from 'react';
 import { useCountdown } from '@hooks/useCountdown';
-import {
-  atcb_action,
-  atcb_init,
-  ISO8601Date,
-  ISO8601Time,
-} from 'add-to-calendar-button';
+import { atcb_action, atcb_init } from 'add-to-calendar-button';
 
 type CountdownProp = {
   countDownDate: string;
 };
 
-type AddToCallendarEvent = {
-  name: string;
-  description: string;
-  startDate: ISO8601Date | 'today';
-  startTime: ISO8601Time;
-  endDate: string;
-  endTime: ISO8601Time;
-  timeZone: string;
-  options: (
-    | 'Apple'
-    | 'iCal'
-    | 'Microsoft365'
-    | 'Outlook.com'
-    | 'MicrosoftTeams'
-    | 'Yahoo'
-    | 'Google'
-  )[];
-  trigger: 'click';
-  iCalFileName: string;
-};
+type AddToCallendarEvent = Parameters<typeof atcb_action>[0];
 
 const Countdown = ({ countDownDate }: CountdownProp) => {
   let { days, hours, minutes, seconds, timerEnd } = useCountdown(countDownDate);
