@@ -296,7 +296,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
             <div
               className={`flex flex-col gap-24px ${
                 isTablet
-                  ? 'bg-white border-[5px] border-carbon fixed bottom-20px left-[2%] right-[2%] p-48px w-[96%] z-50'
+                  ? 'bg-white border-[5px] border-carbon fixed bottom-20px left-[2%] right-[2%] p-48px w-[96%] z-10'
                   : ''
               }`}
             >
@@ -320,7 +320,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                 ? renderBuyButton(
                     `w-100% ${
                       isMobile
-                        ? 'fixed bottom-[68px] left-[2%] right-[2%] w-[96%] z-50'
+                        ? 'fixed bottom-[68px] left-[2%] right-[2%] w-[96%] z-10'
                         : ''
                     }`,
                     'w-100% font-rblack tablet:h-48px mobile:h-60px',
