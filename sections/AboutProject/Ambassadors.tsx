@@ -1,25 +1,18 @@
 import React from 'react';
 import Blurb from '@sections/AboutProject/Blurb';
 import { openInNewTab } from '@sections/utils';
-import { useViewPort } from '@hooks/useViewport';
 
 const data = [
-  { name: 'Vesa', url: 'https://www.artforcrypto.com/pagecv' },
+  { name: 'Vesa', url: 'https://www.artforcrypto.com/' },
   { name: 'Brittany Kaiser', url: 'https://ownyourdata.foundation/' },
   { name: 'Alona DAO', url: 'https://linktr.ee/ukrainedao' },
+  { name: 'Ian Scarffe', url: 'https://ianscarffe.com/' },
 ];
 
 const Ambassadors = () => {
-  const { isDesktop, isTablet } = useViewPort();
-  const blurbText = isDesktop
-    ? 'Ambassadors'
-    : isTablet
-    ? 'Ambassad\nors'
-    : 'Ambassa\ndors';
-
   return (
     <div className="font-rlight desktop:py-120px tablet:py-[96px] mobile:py-60px">
-      <Blurb header={blurbText} />
+      <Blurb header="Ambassadors" classNames="break-all" />
       <div className="flex desktop:flex-row tablet:flex-row mobile:flex-col justify-between flex-wrap">
         {data.map((datum) => (
           <div
@@ -42,13 +35,6 @@ const Ambassadors = () => {
             </div>
           </div>
         ))}
-        <div className="mobile:hidden tablet:flex desktop:flex desktop:basis-1/4 tablet:basis-1/2">
-          <img
-            src="img/dots-ambassadors.svg"
-            className="w-[248px] h-96px mt-auto"
-            alt="dots"
-          />
-        </div>
       </div>
     </div>
   );
