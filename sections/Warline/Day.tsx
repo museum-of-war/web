@@ -93,7 +93,6 @@ const Day = ({
                 eventsData={dayData.events}
                 allEvents={allEvents}
                 view={view}
-                isOnSale={eventData.IsOnSale}
               />
             ))}
           </div>
@@ -147,7 +146,6 @@ const Day = ({
                 eventsData={dayData.events}
                 allEvents={allEvents}
                 view={view}
-                isOnSale={eventData.IsOnSale}
               />
             ))}
           </div>
@@ -209,7 +207,6 @@ const Day = ({
                   eventsData={dayData.events}
                   allEvents={allEvents}
                   view={view}
-                  isOnSale={eventData.IsOnSale}
                 />
               ))}
             </div>

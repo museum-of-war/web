@@ -128,6 +128,7 @@ const WarlineItem: React.FC<{
         linkBack="/warline"
         linkBackText="Warline"
         withBuyNowButton={event.IsOnSale}
+        withGetNowButton={event.IsWhitelisted}
         warlineDrop={event.WarlineDrop}
       />
     </>

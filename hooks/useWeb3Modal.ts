@@ -938,6 +938,11 @@ export function useWeb3Modal() {
     }
   }
 
+  async function canMintFourthDrop(tokenId: string | number) {
+    //TODO: add minting logic after smart-contract deploy
+    return +tokenId > 0 && +tokenId <= 100 ? 8 : 0;
+  }
+
   async function mintFirstDrop(tokensCount?: number) {
     const ethersProvider = await connectWallet();
     if (!ethersProvider) throw new Error('Cannot get ethers provider');
@@ -1161,6 +1166,7 @@ export function useWeb3Modal() {
     canMint,
     canMintSecondDrop,
     canMintThirdDrop,
+    canMintFourthDrop,
     mintFirstDrop,
     mintSecondDrop,
     mintThirdDrop,
