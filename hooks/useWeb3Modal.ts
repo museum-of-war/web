@@ -10,6 +10,7 @@ import Prospect100ContractAbi from '../abi/Prospect100MH.json';
 import IERC721InterfaceAbi from '../abi/IERC721.json';
 import MetaHistoryDropContractAbi from '../abi/DropMH.json';
 import MetaHistorySelectiveDropContractAbi from '../abi/SelectiveDropMH.json';
+import MetaHistoryBatchSellerContractAbi from '../abi/AirdropBatchSeller.json';
 import { createAlchemyWeb3, GetNftsResponse } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
@@ -23,6 +24,7 @@ import {
   SECOND_DROP_ADDRESS,
   THIRD_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
+  BATCH_SELLER_ADDRESS,
 } from '@sections/Constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
@@ -468,9 +470,49 @@ export function useWeb3Modal() {
   async function getAuctionInfo(
     contractAddress: string,
     tokenId: number,
-    version: AuctionVersion,
+    version: AuctionVersion | 'BatchSeller',
     externalBid?: BigNumberish,
   ) {
+    if (version === 'BatchSeller') {
+      const web3 = createAlchemyWeb3(
+        `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+      );
+      if (contractAddress.toLowerCase() !== FIRST_DROP_ADDRESS.toLowerCase())
+        throw new Error('Only first drop is supported now');
+      const firstDropNftContract = new web3.eth.Contract(
+        MetaHistoryContractAbi as AbiItem[],
+        FIRST_DROP_ADDRESS,
+      );
+
+      const maxTokens = await firstDropNftContract.methods
+        .maxTokens()
+        .call({ from: FIRST_DROP_ADDRESS });
+
+      const mintedTokens = await firstDropNftContract.methods
+        .viewMinted()
+        .call({ from: FIRST_DROP_ADDRESS });
+
+      const tokensCount = +maxTokens - +mintedTokens;
+      const totalValue = ethers.constants.WeiPerEther.mul(15)
+        .div(100)
+        .mul(tokensCount);
+      const totalFromWei = web3.utils.fromWei(totalValue.toString());
+
+      return Promise.resolve({
+        isExternalBidGreater: false,
+        hasBid: false,
+        isSold: tokensCount === 0,
+        isSale: true,
+        bidHistory: [],
+        bid: totalFromWei,
+        nextMinBid: totalFromWei,
+        proposedBids: [],
+        fullInfo: {},
+        buyNowPrice: totalFromWei,
+        startsAt: undefined,
+        endsAt: undefined,
+      }) as ReturnType<typeof auctionInfoMemo['tryGetAuctionInfo']>;
+    }
     return auctionInfoMemo.tryGetAuctionInfo(
       _getAuctionInfo,
       contractAddress,
@@ -596,8 +638,15 @@ export function useWeb3Modal() {
     contractAddress: string,
     tokenId: number,
     value: BigNumberish,
-    version: AuctionVersion,
+    version: AuctionVersion | 'BatchSeller',
   ) {
+    if (version === 'BatchSeller') {
+      if (contractAddress.toLowerCase() !== FIRST_DROP_ADDRESS.toLowerCase())
+        throw new Error('Only first drop is supported now');
+
+      return mintFirstDrop();
+    }
+
     const ethersProvider = await connectWallet();
     if (!ethersProvider) throw new Error('Cannot get ethers provider');
     const signer = ethersProvider.getSigner();
@@ -889,6 +938,45 @@ export function useWeb3Modal() {
     }
   }
 
+  async function mintFirstDrop(tokensCount?: number) {
+    const ethersProvider = await connectWallet();
+    if (!ethersProvider) throw new Error('Cannot get ethers provider');
+    const signer = ethersProvider.getSigner();
+
+    let nftContract = new ethers.Contract(
+      BATCH_SELLER_ADDRESS,
+      MetaHistoryBatchSellerContractAbi,
+      signer,
+    );
+
+    const price: BigNumber = await nftContract.tokenPrice();
+
+    if (!tokensCount) {
+      const firstDropContract = new ethers.Contract(
+        FIRST_DROP_ADDRESS,
+        MetaHistoryContractAbi,
+        signer,
+      );
+      tokensCount =
+        +(await firstDropContract.maxTokens()) -
+        +(await firstDropContract.viewMinted());
+    }
+
+    const estimatedGas = await nftContract.estimateGas.buyFirstDropTokens!(
+      tokensCount,
+      {
+        value: price.mul(tokensCount),
+      },
+    );
+
+    const tx = await nftContract.buyFirstDropTokens(tokensCount, {
+      value: price.mul(tokensCount),
+      gasLimit: estimatedGas.mul(11).div(10),
+    });
+
+    await tx.wait();
+  }
+
   async function mintSecondDrop(tokensCount: number) {
     const ethersProvider = await connectWallet();
     if (!ethersProvider) throw new Error('Cannot get ethers provider');
@@ -1073,6 +1161,7 @@ export function useWeb3Modal() {
     canMint,
     canMintSecondDrop,
     canMintThirdDrop,
+    mintFirstDrop,
     mintSecondDrop,
     mintThirdDrop,
     isUnlocked,

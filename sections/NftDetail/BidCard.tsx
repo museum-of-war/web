@@ -18,7 +18,7 @@ type BidCardProps = {
   hasBid: boolean;
   isExternalBidGreater?: boolean;
   buyNowPrice?: string;
-  auctionVersion: AuctionVersion;
+  auctionVersion: AuctionVersion | 'BatchSeller';
   secondButton?: JSX.Element;
   updateCallback: () => Promise<void>;
 };

@@ -7,6 +7,7 @@ import {
 } from '@sections/Constants';
 import { AuctionVersion } from '@museum-of-war/auction';
 import KalushAuctionData from '@sections/Auction/AuctionData/kalush';
+import FirstDropRemainingData from '@sections/Auction/AuctionData/drop1rest';
 
 const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
   {
@@ -61,6 +62,19 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
       oneItemAuction: true,
       // Item for collection in case if this is collection with 1 item
       item: KalushAuctionData,
+    },
+    [AuctionCollection.RestOf1stDrop]: {
+      name: 'First Drop: Remaining Tokens',
+      description:
+        'Buy all remaining tokens of the first drop at a fixed price.',
+      headerImageSrc: '/img/auction/covers/drop1.png',
+      logoSrc: '/img/auction/logos/drop1.png',
+      contractAddress: FIRST_DROP_ADDRESS,
+      startsAt: new Date('2022-07-17T00:00:00.000+03:00'),
+      endsIn: new Date('2022-07-31T00:00:00.000+03:00'),
+      version: 'BatchSeller',
+      oneItemAuction: true,
+      item: FirstDropRemainingData,
     },
   };
 

@@ -43,6 +43,7 @@ export enum AuctionCollection {
   Prospect100 = 'Prospect100',
   AvatarsForUkraine = 'avatars',
   Kalush = 'kalush',
+  RestOf1stDrop = 'drop1rest',
 }
 
 export type AuctionCollectionType = {
@@ -55,7 +56,7 @@ export type AuctionCollectionType = {
   contractAddress: string;
   startsAt?: Date;
   endsIn: Date;
-  version: AuctionVersion;
+  version: AuctionVersion | 'BatchSeller';
   oneItemAuction?: boolean;
   item?: AuctionItemType;
 };
