@@ -5,7 +5,7 @@ import { openInNewTab } from '@sections/utils';
 const data = [
   { name: 'Vesa', url: 'https://www.artforcrypto.com/' },
   { name: 'Brittany Kaiser', url: 'https://ownyourdata.foundation/' },
-  { name: 'Alona DAO', url: 'https://linktr.ee/ukrainedao' },
+  { name: 'Alona Shevchenko', url: 'https://linktr.ee/ukrainedao' },
   { name: 'Ian Scarffe', url: 'https://ianscarffe.com/' },
 ];
 
