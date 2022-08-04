@@ -36,6 +36,7 @@ export type EventType = {
   Editions?: number;
   WarlineDrop: WarlineDrop;
   IsOnSale?: boolean;
+  IsWhitelisted?: boolean;
 };
 
 export enum AuctionCollection {

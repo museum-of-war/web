@@ -8,6 +8,8 @@ import Button from '@components/Button';
 import ScaledImage from '@components/ScaledImage';
 import { BY_DAY } from './constants';
 import MintingModal from '@components/MintingModal';
+import { DropTokenIdOffsets } from '@sections/Warline/WarlineData';
+import { JOINLIST_LINK } from '@sections/Constants';
 
 type PropsEvent = {
   eventData: EventType;
@@ -17,7 +19,6 @@ type PropsEvent = {
   eventsData: EventType[];
   allEvents: Array<EventType>;
   view: string;
-  isOnSale: boolean | undefined;
 };
 
 const rand_imgs: string[] = [
@@ -31,7 +32,7 @@ const rand_imgs: string[] = [
   'img/dots-8.png',
 ];
 
-const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
+const Event = ({ eventData, idx, view }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
 
@@ -49,6 +50,8 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
       : '#' + tokenId;
   };
   const shortView = useMemo(() => view === BY_DAY, [view]);
+  const isOnSale = useMemo(() => !!eventData.IsOnSale, [eventData]);
+  const isWhitelisted = useMemo(() => !!eventData.IsWhitelisted, [eventData]);
 
   const renderImage = (className: string) => {
     const randomSrc = rand_imgs[idx % 8] as string;
@@ -74,11 +77,12 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
                 },
               ]}
             />
-            {isOnSale && eventData.ImageType !== 'placeholder.png' && (
-              <div className="font-rblack cursor-pointer select-none absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
-                On Sale
-              </div>
-            )}
+            {(isOnSale || isWhitelisted) &&
+              eventData.ImageType !== 'placeholder.png' && (
+                <div className="font-rblack cursor-pointer select-none absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
+                  {isWhitelisted ? 'Whitelisted' : 'On Sale'}
+                </div>
+              )}
           </div>
         </a>
       </Link>
@@ -98,12 +102,26 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
           setOpenMintingModal={setOpenMintingModal}
           drop={eventData.WarlineDrop}
           tokenId={
-            +eventData.Tokenid - 259 /*TODO: remove this hardcode for drop 3*/
+            +eventData.Tokenid -
+            (eventData.WarlineDrop
+              ? DropTokenIdOffsets[eventData.WarlineDrop]
+              : 0)
           }
         />
       ) : (
         <></>
       )}
+    </div>
+  );
+
+  const renderGetButton = (linkBtnCn: string = ''): React.ReactElement => (
+    <div>
+      <Button
+        mode="secondary"
+        label="Get NFT"
+        className={linkBtnCn}
+        onClick={() => openInNewTab(JOINLIST_LINK)}
+      />
     </div>
   );
 
@@ -200,7 +218,11 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
         </div>
         {!shortView && (
           <div className="flex flex-row mt-24px items-center">
-            {isOnSale ? renderBuyButton('font-rblack') : null}
+            {isWhitelisted
+              ? renderGetButton('font-rblack')
+              : isOnSale
+              ? renderBuyButton('font-rblack')
+              : null}
             <Link href={`/warline/${eventData.Tokenid}`} passHref>
               <a>
                 <button
@@ -265,7 +287,11 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
         </div>
         {!shortView && (
           <div className="flex flex-row mt-24px items-center">
-            {isOnSale ? renderBuyButton('font-rblack') : null}
+            {isWhitelisted
+              ? renderGetButton('font-rblack')
+              : isOnSale
+              ? renderBuyButton('font-rblack')
+              : null}
             <Link href={`/warline/${eventData.Tokenid}`} passHref>
               <a>
                 <button
