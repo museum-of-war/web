@@ -1693,7 +1693,7 @@ export default [
           "While you're talking, we are dying,\" protesters say as U.S. President Joe Biden visits Poland to discuss Russia's war in Ukraine.'",
         DescriptionUkrainian:
           '"Поки ви говорите, ми помираємо", - демонструють протестувальники, у той час, як президент США Джо Байден відвідує Польщу, щоб обговорити війну Росії в Україні".',
-        ArtistName: 'Новиков Даниил ',
+        ArtistName: 'Trip_Wibes',
         ArtistLink: 'https://opensea.io/Trip_wibes',
         ImageType: 'drop3/91.png',
       },
