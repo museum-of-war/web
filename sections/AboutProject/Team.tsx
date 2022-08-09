@@ -11,7 +11,7 @@ const Team = () => {
     { name: 'Anastasiya Shyshenok', role: 'Identity' },
     { name: 'Alexander Yavorskyy', role: 'Voice' },
     { name: 'Serhii Revva', role: 'Experience' },
-    { name: 'Neonila Vodolska', role: 'Order' },
+    { name: 'Neonila Vodolska', role: 'Voice' },
     { name: 'Dima Muzychenko', role: 'Identity' },
     { name: 'Kateryna Dranova', role: 'Voice' },
     { name: 'Rustam Abduvaliiev', role: 'Frontend' },
