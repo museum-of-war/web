@@ -17,6 +17,7 @@ const Team = () => {
     { name: 'Rustam Abduvaliiev', role: 'Frontend' },
     { name: 'Valeria Panina', role: 'Government Communications' },
     { name: 'Nick Zinchenko', role: 'Art Support' },
+    { name: 'Elina Norden', role: 'Voice' },
     { name: 'Alisa Fursa', role: 'Strategy' },
     { name: 'Liliana Kolodka', role: 'Project manager' },
     { name: 'Oleksandra Shamonova', role: 'Project manager' },
