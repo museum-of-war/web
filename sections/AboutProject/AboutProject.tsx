@@ -16,6 +16,7 @@ const Countdown = dynamic(() => import('./Countdown'), {
 });
 import AboutUs from '@sections/AboutProject/AboutUs';
 import { THIRD_DROP_DATE } from '@sections/Constants';
+import CryptoCirculation from '@sections/CryptoCirculation';
 
 type AboutProjectProps = {
   signerAddress: string;
@@ -31,6 +32,7 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
         <ContentCounterDaysAndRised />
       </div>
       <GovernmentApproval />
+      <CryptoCirculation initialSize={5} />
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <AboutUs />
       </div>

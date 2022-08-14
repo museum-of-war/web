@@ -9,6 +9,7 @@ import { Links } from '@components/Links';
 import { ACHIEVE_DATA } from '@sections/AboutUs/constants';
 import { useVideoModal } from '@providers/VideoProvider';
 import AuctionData from '@sections/Auction/AuctionData';
+import CryptoCirculation from '@sections/CryptoCirculation';
 
 const CollapsedSection = () => {
   const { VideoElement } = useVideoModal();
@@ -213,6 +214,7 @@ const AboutUs = () => {
           <Team />
         </div>
       </div>
+      <CryptoCirculation initialSize={10} />
       <div className="desktop:mt-120px tablet:mt-96px mobile:mt-60px desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <SupportProject />
       </div>

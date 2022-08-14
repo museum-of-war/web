@@ -5,6 +5,7 @@ type ButtonProps = {
   mode: 'secondary' | 'primary' | 'custom';
   onClick?: () => void;
   location?: string;
+  openInNewWindow?: boolean;
   label?: string | React.ReactElement;
   className?: string;
   round?: boolean;
@@ -22,6 +23,7 @@ function Button({
   round = false,
   extraStyles,
   location,
+  openInNewWindow,
 }: ButtonProps) {
   const cn = useMemo(() => {
     if (mode === 'primary') {
@@ -73,7 +75,9 @@ function Button({
 
   return location ? (
     <Link href={location} passHref>
-      <a>{component}</a>
+      <a target={openInNewWindow ? '_blank' : '_self'} rel="noreferrer">
+        {component}
+      </a>
     </Link>
   ) : (
     component
