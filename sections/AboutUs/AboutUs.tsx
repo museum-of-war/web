@@ -9,6 +9,7 @@ import { Links } from '@components/Links';
 import { ACHIEVE_DATA } from '@sections/AboutUs/constants';
 import { useVideoModal } from '@providers/VideoProvider';
 import AuctionData from '@sections/Auction/AuctionData';
+import CryptoCirculation from '@sections/CryptoCirculation';
 
 const CollapsedSection = () => {
   const { VideoElement } = useVideoModal();
@@ -96,55 +97,8 @@ const AboutUs = () => {
             <Links />
           </div>
         </div>
-        <Blurb header="How we work" />
-        <div className="pt-20px relative flex desktop:flex-row tablet:flex-col mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
-          <div className="pt-10 desktop:w-[544px] tablet:w-full mobile:w-full mobile:mb-6%">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: `<video
-                    src="/vid/how_we_work_animation.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />`,
-              }}
-            />
-          </div>
-          <div className="desktop:w-[544px] tablet:w-full mobile:w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col">
-            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px]">
-              <p className="font-rblack text-32px mb-24px">1</p>
-              We pick news pieces of important events of the war in Ukraine
-            </div>
-            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px] ml-auto">
-              <p className="font-rblack text-32px mb-24px">2</p>
-              Top-notch artists create artworks - their interpretations of the
-              news content & meaning
-            </div>
-            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px]">
-              <p className="font-rblack text-32px mb-24px">3</p>
-              We do some smart contract magic to place these artworks as NFTs on
-              the Ethereum blockchain
-            </div>
-            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px] ml-auto ">
-              <p className="font-rblack text-32px mb-24px">4</p>
-              We release NFTs to the world in parts, so-called drops. First one
-              has happened on March 30
-            </div>
-            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px]">
-              <p className="font-rblack text-32px mb-24px">5</p>
-              Art lovers, Ukraine's supporters, NFT communities come along and
-              buy them, transferring cryptocurrency
-            </div>
-            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px] ml-auto">
-              <p className="font-rblack text-32px mb-24px">6</p>
-              100% of the proceeds from the Warline NFTs minting are transferred
-              to the Ministry of Digital Transformation of Ukraine
-            </div>
-          </div>
-        </div>
       </div>
-      <div className="bg-carbon desktop:mt-0 tablet:mt-120px mobile:mt-60px">
+      <div className="bg-carbon desktop:mt-120px tablet:mt-96px mobile:mt-60px">
         <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:py-120px tablet:py-96px mobile:py-40px text-white">
           <Blurb
             header="What we achieved"
@@ -200,10 +154,68 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <div className="mt-60px desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
-        <Blurb header="Who's behind this" />
-        <img alt="partners" src="img/pd-partners.png" />
-        <Team />
+      <div className="desktop:mt-120px tablet:mt-96px mobile:mt-60px desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
+        <Blurb header="How we work" />
+        <div className="pt-20px relative flex desktop:flex-row tablet:flex-col mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
+          <div className="pt-10 desktop:w-[544px] tablet:w-full mobile:w-full desktop:mb-0 mobile:mb-6%">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `<video
+                    src="/vid/how_we_work_animation.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />`,
+              }}
+            />
+          </div>
+          <div className="desktop:w-[544px] tablet:w-full mobile:w-full flex desktop:flex-wrap tablet:flex-wrap mobile:flex-nowrap content-start desktop:flex-row tablet:flex-row mobile:flex-col">
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px]">
+              <p className="font-rblack text-32px mb-24px">1</p>
+              We pick news pieces of important events of the war in Ukraine
+            </div>
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-0 tablet:mt-0 mobile:mt-[30px] ml-auto">
+              <p className="font-rblack text-32px mb-24px">2</p>
+              Top-notch artists create artworks - their interpretations of the
+              news content & meaning
+            </div>
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px]">
+              <p className="font-rblack text-32px mb-24px">3</p>
+              We do some smart contract magic to place these artworks as NFTs on
+              the Ethereum blockchain
+            </div>
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px] ml-auto ">
+              <p className="font-rblack text-32px mb-24px">4</p>
+              We release NFTs to the world in parts, so-called drops. First one
+              has happened on March 30
+            </div>
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px]">
+              <p className="font-rblack text-32px mb-24px">5</p>
+              Art lovers, Ukraine's supporters, NFT communities come along and
+              buy them, transferring cryptocurrency
+            </div>
+            <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px] ml-auto">
+              <p className="font-rblack text-32px mb-24px">6</p>
+              100% of the proceeds from the Warline NFTs minting are transferred
+              to the Ministry of Digital Transformation of Ukraine
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-carbon desktop:mt-120px tablet:mt-96px mobile:mt-60px">
+        <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:py-120px tablet:py-96px mobile:py-40px text-white">
+          <Blurb
+            isDark
+            header="Who's behind this"
+            classNames="desktop:mb-64px tablet:mb-64px mobile:mb-32px"
+          />
+          <img alt="team" src="/img/team.png" />
+          <Team />
+        </div>
+      </div>
+      <CryptoCirculation initialSize={10} />
+      <div className="desktop:mt-120px tablet:mt-96px mobile:mt-60px desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <SupportProject />
       </div>
     </div>

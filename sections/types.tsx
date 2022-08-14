@@ -104,3 +104,12 @@ export type ArtistType = {
   bio: string;
   avatarSrc?: string;
 };
+
+export type TransferInfoType = {
+  date: Date;
+  eth: string | number;
+  usd?: string | number;
+  from: string;
+  to: string;
+  hash: string;
+};

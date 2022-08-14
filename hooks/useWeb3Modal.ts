@@ -15,6 +15,7 @@ import { createAlchemyWeb3, GetNftsResponse } from '@alch/alchemy-web3';
 import { AbiItem } from 'web3-utils';
 import {
   AVATARS_ADDRESS,
+  BATCH_SELLER_ADDRESS,
   FIRST_DROP_ADDRESS,
   IMG_STORAGE,
   KALUSH_BID,
@@ -24,7 +25,6 @@ import {
   SECOND_DROP_ADDRESS,
   THIRD_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
-  BATCH_SELLER_ADDRESS,
 } from '@sections/Constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
@@ -32,7 +32,7 @@ import { Drop1Data, Drop2Data, Drop3Data } from '@sections/Warline/WarlineData';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import AuctionData from '@sections/Auction/AuctionData';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
-import { AuctionCollection } from '@sections/types';
+import { AuctionCollection, TransferInfoType } from '@sections/types';
 import { useEffectOnce } from '@hooks/useEffectOnce';
 import { useIsMounted } from '@hooks/useIsMounted';
 import { usePopup } from '@providers/PopupProvider';
@@ -1057,6 +1057,37 @@ export function useWeb3Modal() {
     }
   }
 
+  async function getSellerTransfers(): Promise<TransferInfoType[]> {
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+    const ethersProvider = new ethers.providers.Web3Provider(
+      web3.currentProvider as ExternalProvider,
+    );
+    const seller = NFTAuctionConnect(
+      ethersProvider,
+      chain,
+      AuctionVersion.Seller,
+    );
+    const filter = seller.filters.NFTTransferredAndSellerPaid();
+    const events = await seller.queryFilter(filter);
+
+    return await Promise.all(
+      events.map(async (e: any) => {
+        const block = await e.getBlock();
+        const eth = ethers.utils.formatEther(e.args[2].toString());
+        return {
+          date: new Date(block.timestamp * 1000),
+          eth: eth,
+          usd: await getUsdPriceFromETH(eth),
+          from: seller.address,
+          to: UKRAINE_WALLET_ADDRESS,
+          hash: e.transactionHash,
+        };
+      }),
+    );
+  }
+
   async function getPriceFromETH(
     ethPrice: string | number,
     currency: 'usd' | 'eur',
@@ -1172,6 +1203,7 @@ export function useWeb3Modal() {
     mintThirdDrop,
     isUnlocked,
     openModal,
+    getSellerTransfers,
     getPriceFromETH,
     getUsdPriceFromETH,
     getTotalFundsRaised,
