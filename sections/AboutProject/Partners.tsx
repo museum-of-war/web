@@ -65,6 +65,10 @@ const Partners = () => {
       src: 'img/partners/NFT_News_Today.png',
       alt: 'NFT News Today',
     },
+    {
+      src: 'img/partners/nevgamovni.png',
+      alt: 'Невгамовні',
+    },
   ];
 
   const partnersSmall = [
@@ -125,6 +129,10 @@ const Partners = () => {
     {
       src: 'img/partners/small/NFT_News_Today_small.png',
       alt: 'NFT News Today',
+    },
+    {
+      src: 'img/partners/small/nevgamovni_small.png',
+      alt: 'Невгамовні',
     },
   ];
 
