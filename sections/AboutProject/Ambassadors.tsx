@@ -8,6 +8,7 @@ const data = [
   { name: 'Alona Shevchenko', url: 'https://linktr.ee/ukrainedao' },
   { name: 'Ian Scarffe', url: 'https://ianscarffe.com/' },
   { name: 'Rev Miller', url: 'https://me.linkedin.com/in/revmiller' },
+  { name: 'Michael Chobanian', url: 'https://kuna.family/' },
 ];
 
 const Ambassadors = () => {
