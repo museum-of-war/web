@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Blurb from '@sections/AboutProject/Blurb';
 import { useVideoModal } from '@providers/VideoProvider';
+import { IMG_STORAGE } from '@sections/Constants';
 
 const AboutUs = () => {
   const { VideoElement } = useVideoModal();
@@ -12,8 +13,8 @@ const AboutUs = () => {
         <Blurb header="About us" />
         <div className="pt-20px relative tablet:flex tablet:flex-row font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
           <p className="whitespace-pre-wrap pt-10 tablet:w-45% mobile:mb-6%">
-            At MetaHistory, we want to preserve the important events of
-            history as they are. Truthful, eternal, immutable.
+            At MetaHistory, we want to preserve the important events of history
+            as they are. Truthful, eternal, immutable.
           </p>
           <p className="whitespace-pre-wrap tablet:w-45%">
             У MetaHistory ми хочемо зберегти важливі події в історії такими,
@@ -34,7 +35,8 @@ const AboutUs = () => {
       </div>
       <div className="desktop:w-[544px] tablet:w-full mobile:w-full mobile:mt-40px tablet:mt-72px desktop:mt-0">
         <VideoElement
-          videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4"
+          posterSrc={`${IMG_STORAGE}/NFT_museum.jpg`}
+          videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4?autoplay=1"
           classNames="w-full"
           styles={{ aspectRatio: '16 / 9' }}
         />

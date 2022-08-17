@@ -293,7 +293,7 @@ const NftCardDetail = ({
               <VideoElement
                 videoSrc={item.videoSrc}
                 posterSrc={item.posterSrc}
-                classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
+                classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px desktop:max-h-300px"
                 styles={{ aspectRatio: '16 / 9' }}
               />
             </div>

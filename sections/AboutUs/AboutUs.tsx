@@ -10,6 +10,7 @@ import { ACHIEVE_DATA } from '@sections/AboutUs/constants';
 import { useVideoModal } from '@providers/VideoProvider';
 import AuctionData from '@sections/Auction/AuctionData';
 import CryptoCirculation from '@sections/CryptoCirculation';
+import { IMG_STORAGE } from '@sections/Constants';
 
 const CollapsedSection = () => {
   const { VideoElement } = useVideoModal();
@@ -27,7 +28,8 @@ const CollapsedSection = () => {
         }
       />
       <VideoElement
-        videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4"
+        posterSrc={`${IMG_STORAGE}/NFT_museum.jpg`}
+        videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4?autoplay=1"
         classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
         styles={{ aspectRatio: '16 / 9' }}
       />
