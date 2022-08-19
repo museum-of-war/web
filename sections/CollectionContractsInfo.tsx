@@ -6,6 +6,7 @@ import {
   MERGER_ADDRESS,
   PROSPECT_100_ADDRESS,
   SECOND_DROP_ADDRESS,
+  THIRD_DROP_ADDRESS,
 } from '@sections/Constants';
 
 const collectionContractsInfo = {
@@ -15,6 +16,10 @@ const collectionContractsInfo = {
   },
   [SECOND_DROP_ADDRESS]: {
     name: 'Meta History: Museum of War - Chapter 2',
+    type: 'erc1155',
+  },
+  [THIRD_DROP_ADDRESS]: {
+    name: 'Meta History: Museum of War - Chapter 3',
     type: 'erc1155',
   },
   [PROSPECT_100_ADDRESS]: {

@@ -208,27 +208,27 @@ function recreateNftForDrop2(nft: Nft): Nft {
 }
 
 function recreateNftForDrop3(nft: Nft): Nft {
-      const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop3Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop3/${tokenId}`),
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 12,
-              value: 'x' + nft.balance,
-            },
-          ],
+  const tokenId = parseInt(nft.id.tokenId);
+  const event = Drop3Data.flatMap((day) => day.events).find((event) =>
+    event.ImageType?.includes(`drop3/${tokenId}`),
+  )!;
+  return {
+    ...nft,
+    metadata: {
+      name: `Day ${event.DayNo}, ${event.Time}`,
+      description: event.Headline,
+      image: event.ImageType,
+      item_number: event.Tokenid,
+      attributes: [
+        {
+          trait_type: 'Edition',
+          max_value: 12,
+          value: 'x' + (nft.balance ?? '?'),
         },
-      };
-    }
+      ],
+    },
+  };
+}
 
 function recreateNftForProspect100(nft: Nft): Nft {
   const tokenId = parseInt(nft.id.tokenId);
@@ -322,8 +322,8 @@ function tryRecreateNft(nft: Nft): Nft {
     : address === SECOND_DROP_ADDRESS.toLowerCase()
     ? recreateNftForDrop2(nft)
     : nft.contract.address === THIRD_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop3(nft)
-          : nft.contract.address === MERGER_ADDRESS.toLowerCase()
+    ? recreateNftForDrop3(nft)
+    : nft.contract.address === MERGER_ADDRESS.toLowerCase()
     ? fixNftForMerged1(nft)
     : address === PROSPECT_100_ADDRESS.toLowerCase()
     ? recreateNftForProspect100(nft)
@@ -431,6 +431,7 @@ export function useWeb3Modal() {
           contractAddresses: [
             MetaHistoryAddress,
             SECOND_DROP_ADDRESS,
+            THIRD_DROP_ADDRESS,
             MERGER_ADDRESS,
             ...AuctionsAddresses,
           ].filter((v, i, a) => a.indexOf(v) === i),
@@ -1327,7 +1328,7 @@ export function useWeb3Modal() {
 
     const attributes = Object.fromEntries(
       (recreatedNft.metadata?.attributes ?? [])
-        .filter((attr) => !!attr.trait_type)
+        .filter((attr) => !!attr.trait_type && attr.value !== 'x?')
         .map((attr) => [
           attr.trait_type,
           attr.display_type === 'date'
