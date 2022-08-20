@@ -48,9 +48,7 @@ const getEditionInfo = (nft: Nft) => {
 const getOpenSeaLink = (nft: Nft) => {
   const address = nft.contract.address;
   const strTokenId = nft.id?.tokenId ?? '0';
-  const tokenId = strTokenId.startsWith('0x')
-    ? parseInt(strTokenId, 16)
-    : parseInt(strTokenId, 10);
+  const tokenId = parseInt(strTokenId);
   return `https://opensea.io/assets/${address}/${tokenId}`;
 };
 
@@ -172,6 +170,14 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
     return getImageSources(event);
   }, [event]);
 
+  const contractAddress = React.useMemo(() => {
+    return NFTs[index] ? NFTs[index]!.contract.address : '';
+  }, [NFTs, index]);
+
+  const tokenId = React.useMemo(() => {
+    return NFTs[index] ? parseInt(NFTs[index]!.id?.tokenId) : 0;
+  }, [NFTs, index]);
+
   const openSeaLink = React.useMemo(() => {
     return NFTs[index] ? getOpenSeaLink(NFTs[index]!) : '';
   }, [NFTs, index]);
@@ -275,6 +281,8 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
           id={
             (event as EventType).Tokenid ?? (event as AuctionItemType).tokenId
           }
+          tokenId={tokenId}
+          contractAddress={contractAddress}
           level={level}
           title={getTitle(event)}
           descriptionEnglish={
@@ -308,6 +316,7 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
           prevRecord={prevEventData}
           linkBack="/tokens"
           linkBackText="My NFTs"
+          showTicket={true}
         />
       ) : (
         <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
