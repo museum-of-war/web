@@ -68,7 +68,7 @@ const CollectionDetailsPage: React.FC<CollectionDetailsPageProps> = ({
           <CollectionLogo size={80} src={collectionData.logoSrc} />
           <NavBack />
         </div>
-        <p className="font-rblack mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase desktop:pt-60px tablet:pt-60px mobile:pt-0">
+        <p className="font-rblack break-words mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase desktop:pt-60px tablet:pt-60px mobile:pt-0">
           {collectionData.name}
         </p>
         <div className="h-5px w-100% bg-carbon dark:bg-white" />

@@ -126,9 +126,9 @@ function NftCard({
               breakpoints={breakpoints}
             />
           </div>
-          <div className="p-10px">
+          <div className="py-12px">
             <h3
-              className="font-rblack text-20px leading-[240%] line-clamp-3"
+              className="font-rblack text-20px leading-24px line-clamp-3 mb-12px"
               title={name}
             >
               {name}
