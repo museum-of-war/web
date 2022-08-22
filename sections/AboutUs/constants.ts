@@ -13,6 +13,8 @@ export const KNOWN_WALLETS = {
     'Meta History Donation',
   ['0x165CD37b4C644C2921454429E7F9358d18A45e14'.toLowerCase()]:
     'Ukraine Crypto Donation',
+  ['0xc47f5F962b6816d204cb6DbFfbC78d146b42d66c'.toLowerCase()]:
+    'Ministry of Culture and Information Policy of Ukraine',
   ['0xEDd9Fa9ec9247699dB95De38A06f2DcbEed8423a'.toLowerCase()]:
     'Cultural Restoration Wallet',
   ['0x0c9ff692daD2553Bad91d2D73Ebb6194600B2bEf'.toLowerCase()]:

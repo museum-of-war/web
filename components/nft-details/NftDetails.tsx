@@ -470,7 +470,10 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                           src={'/img/down.svg'}
                           className="rotate-90 flex-grow-0"
                         />
-                        <span className="font-rblack text-[14px] ml-[8px] h-full leading-[44px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
+                        <span
+                          className="font-rblack text-[14px] ml-[8px] h-full leading-[44px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width] line-clamp-1"
+                          title={prevRecord.title}
+                        >
                           {prevRecord.title}
                         </span>
                       </div>
@@ -493,7 +496,10 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                         breakpoints: prevNextBreakpoints,
                       })}
                       <div className="h-[48px] flex items-center">
-                        <span className="ml-auto font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
+                        <span
+                          className="ml-auto font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width] line-clamp-1"
+                          title={nextRecord.title}
+                        >
                           {nextRecord.title}
                         </span>
                         <img

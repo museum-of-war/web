@@ -5,11 +5,14 @@ import { usePopup } from '@providers/PopupProvider';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useIsMounted } from '@hooks/useIsMounted';
 import Button from '@components/Button';
+import BuyingModal from '@components/BuyingModal';
+import { AuctionCollection } from '@sections/types';
 
 type BidCardProps = {
   isMobile?: boolean;
   endsIn: Date;
   startsAt?: Date;
+  collection: AuctionCollection;
   currentBid: string;
   proposedBids: string[];
   contractAddress: string;
@@ -18,6 +21,8 @@ type BidCardProps = {
   hasBid: boolean;
   isExternalBidGreater?: boolean;
   buyNowPrice?: string;
+  editionsLeft?: number;
+  editionsTotal?: number;
   auctionVersion: AuctionVersion | 'BatchSeller';
   secondButton?: JSX.Element;
   updateCallback: () => Promise<void>;
@@ -29,12 +34,15 @@ export const BidCard = ({
   isMobile,
   endsIn,
   startsAt,
+  collection,
   contractAddress,
   tokenId,
   isSale,
   hasBid,
   isExternalBidGreater,
   buyNowPrice,
+  editionsLeft,
+  editionsTotal,
   auctionVersion,
   secondButton,
   updateCallback,
@@ -44,6 +52,7 @@ export const BidCard = ({
     calculateTimeLeft(`${startsAt ?? endsIn}`),
   );
   const [usdPrice, setUsdPrice] = useState<string | null>(null);
+  const [openBuyingModal, setOpenBuyingModal] = useState<boolean>(false);
   const { showPopup } = usePopup();
   const { makeBid, getUsdPriceFromETH } = useWeb3Modal();
 
@@ -140,13 +149,23 @@ export const BidCard = ({
                   <p className="font-rblack mobile:text-27px tablet:text-32px font-rblack">
                     {timeLeft.seconds}
                   </p>
-                  <p className="mobile:text-14px tablet:text-16px">seconds</p>
+                  <p className="font-rlight mobile:text-14px tablet:text-16px">
+                    seconds
+                  </p>
                 </div>
               </div>
             </div>
           </>
         )}
       </div>
+      {!!editionsTotal && editionsLeft !== 0 && (
+        <div className="flex flex-row tablet:text-16px mobile:text-14px tablet:leading-24px mobile:leading-20px tablet:my-24px mobile:my-40px font-rnarrow">
+          <p>Editions on sale:</p>
+          <p className="ml-[8px]">
+            {editionsLeft ?? '?'} of {editionsTotal}
+          </p>
+        </div>
+      )}
       {!isMobile && isStarted && (
         <div className="flex justify-between mt-24px">
           <Button
@@ -160,17 +179,21 @@ export const BidCard = ({
             }
             onClick={async () => {
               if (isSale) {
-                try {
-                  await makeBid(
-                    contractAddress,
-                    tokenId,
-                    buyNowPrice!,
-                    auctionVersion,
-                  );
-                } catch (error: any) {
-                  alert(error?.error?.message ?? error?.message ?? error);
-                } finally {
-                  await updateCallback?.().catch((e) => console.error(e));
+                if (editionsTotal) {
+                  setOpenBuyingModal(true);
+                } else {
+                  try {
+                    await makeBid(
+                      contractAddress,
+                      tokenId,
+                      buyNowPrice!,
+                      auctionVersion,
+                    );
+                  } catch (error: any) {
+                    alert(error?.error?.message ?? error?.message ?? error);
+                  } finally {
+                    await updateCallback?.().catch((e) => console.error(e));
+                  }
                 }
               } else {
                 showPopup('bid', {
@@ -188,6 +211,16 @@ export const BidCard = ({
           />
           {secondButton}
         </div>
+      )}
+      {openBuyingModal ? (
+        <BuyingModal
+          setOpenBuyingModal={setOpenBuyingModal}
+          collection={collection}
+          price={+buyNowPrice!}
+          tokenId={tokenId}
+        />
+      ) : (
+        <></>
       )}
     </>
   );
