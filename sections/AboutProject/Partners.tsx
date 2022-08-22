@@ -69,6 +69,18 @@ const Partners = () => {
       src: 'img/partners/nevgamovni.png',
       alt: 'Невгамовні',
     },
+    {
+      src: 'img/partners/army_inform.png',
+      alt: 'АрміяInform',
+    },
+    {
+      src: 'img/partners/molfar.png',
+      alt: 'Molfar',
+    },
+    {
+      src: 'img/partners/lobby_x.png',
+      alt: 'Lobby X',
+    },
   ];
 
   const partnersSmall = [
@@ -133,6 +145,18 @@ const Partners = () => {
     {
       src: 'img/partners/small/nevgamovni_small.png',
       alt: 'Невгамовні',
+    },
+    {
+      src: 'img/partners/small/army_inform_small.png',
+      alt: 'АрміяInform',
+    },
+    {
+      src: 'img/partners/small/molfar_small.png',
+      alt: 'Molfar',
+    },
+    {
+      src: 'img/partners/small/lobby_x_small.png',
+      alt: 'Lobby X',
     },
   ];
 
