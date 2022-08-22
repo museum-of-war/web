@@ -45,6 +45,7 @@ export enum AuctionCollection {
   AvatarsForUkraine = 'avatars',
   Kalush = 'kalush',
   RestOf1stDrop = 'drop1rest',
+  TheRevivalProject = 'revival',
 }
 
 export type AuctionCollectionType = {
@@ -73,6 +74,9 @@ export type AuctionItemType = {
   descriptionEnglish?: string | JSX.Element;
   descriptionUkrainian?: string | JSX.Element;
   isSale: boolean;
+  editions?: number;
+  startsAt?: Date;
+  endsIn?: Date;
   videoSrc?: string;
   posterSrc?: string;
   bonuses?: string[];

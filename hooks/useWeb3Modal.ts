@@ -8,6 +8,7 @@ import MetaHistoryContractAbi from '../abi/FairXYZMH.json';
 import MergerContractAbi from '../abi/MergerMH.json';
 import Prospect100ContractAbi from '../abi/Prospect100MH.json';
 import IERC721InterfaceAbi from '../abi/IERC721.json';
+import IERC1155InterfaceAbi from '../abi/IERC1155.json';
 import MetaHistoryDropContractAbi from '../abi/DropMH.json';
 import MetaHistorySelectiveDropContractAbi from '../abi/SelectiveDropMH.json';
 import MetaHistoryBatchSellerContractAbi from '../abi/AirdropBatchSeller.json';
@@ -16,6 +17,7 @@ import { AbiItem } from 'web3-utils';
 import {
   AVATARS_ADDRESS,
   BATCH_SELLER_ADDRESS,
+  CULTURE_MINISTRY_WALLET_ADDRESS,
   FIRST_DROP_ADDRESS,
   IMG_STORAGE,
   KALUSH_BID,
@@ -52,7 +54,7 @@ const AddressesToAuctions = {} as Record<string, AuctionCollection>;
 for (let key in AuctionCollectionData) {
   const address =
     AuctionCollectionData[key as AuctionCollection].contractAddress;
-  AddressesToAuctions[address] = key as AuctionCollection;
+  AddressesToAuctions[address.toLowerCase()] = key as AuctionCollection;
 }
 
 const chain = 'mainnet';
@@ -364,7 +366,7 @@ export function useWeb3Modal() {
     ): typeof ownedNfts[number] {
       const tokenId = parseInt(nft.id.tokenId);
       const contractAddress = nft.contract.address;
-      const collection = AddressesToAuctions[contractAddress];
+      const collection = AddressesToAuctions[contractAddress?.toLowerCase()];
       if (!collection) return nft;
       const item = AuctionData.find(
         (item) => item.category === collection && item.tokenId === tokenId,
@@ -376,6 +378,17 @@ export function useWeb3Modal() {
           description: (item.descriptionEnglish ??
             item.descriptionUkrainian) as string | undefined,
           image: item.imageSrc,
+          ...(item.editions
+            ? {
+                attributes: [
+                  {
+                    trait_type: 'Edition',
+                    max_value: item.editions,
+                    value: 'x' + nft.balance,
+                  },
+                ],
+              }
+            : {}),
         },
       };
     }
@@ -501,7 +514,7 @@ export function useWeb3Modal() {
       return Promise.resolve({
         isExternalBidGreater: false,
         hasBid: false,
-        isSold: tokensCount === 0,
+        tokensLeft: tokensCount,
         isSale: true,
         bidHistory: [],
         bid: totalFromWei,
@@ -522,6 +535,49 @@ export function useWeb3Modal() {
     );
   }
 
+  async function getBalanceOf(
+    ownerAddress: string,
+    collectionAddress: string,
+    tokenId: number,
+    type?: 'erc721' | 'erc1155',
+  ): Promise<number> {
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+
+    if (!type || type === 'erc1155') {
+      try {
+        const nftContract = new web3.eth.Contract(
+          IERC1155InterfaceAbi as AbiItem[],
+          collectionAddress,
+        );
+        const balance = await nftContract.methods
+          .balanceOf(ownerAddress, tokenId)
+          .call({ from: collectionAddress });
+        if (+balance > 0) return +balance;
+      } catch (e) {
+        if (type) console.error(e);
+      }
+    }
+
+    if (!type || type === 'erc721') {
+      try {
+        const nftContract = new web3.eth.Contract(
+          IERC721InterfaceAbi as AbiItem[],
+          collectionAddress,
+        );
+        const owner = await nftContract.methods
+          .ownerOf(tokenId)
+          .call({ from: collectionAddress });
+        if (('' + owner).toLowerCase() === ownerAddress.toLowerCase()) return 1;
+      } catch (e) {
+        if (type) console.error(e);
+      }
+    }
+
+    return 0;
+  }
+
   async function _getAuctionInfo(
     contractAddress: string,
     tokenId: number,
@@ -536,15 +592,31 @@ export function useWeb3Modal() {
     );
     const auction = NFTAuctionConnect(ethersProvider, chain, version);
 
-    const auctionInfo = await auction.nftContractAuctions(
-      contractAddress,
-      tokenId,
-    );
+    const getInfoForSellerV2 = async () => {
+      const info = await auction.nftContractSales(contractAddress);
+      return {
+        ...info,
+        auctionStart: info.saleStart,
+        auctionEnd: info.saleEnd,
+        buyNowPrice: info.price,
+      };
+    };
 
-    const isSold =
-      version === AuctionVersion.V1
-        ? auctionInfo.nftSeller === ethers.constants.AddressZero
-        : auctionInfo.feeRecipient === ethers.constants.AddressZero;
+    const auctionInfo =
+      version === AuctionVersion.SellerV2
+        ? await getInfoForSellerV2() // for compatibility
+        : await auction.nftContractAuctions(contractAddress, tokenId);
+
+    const tokensLeft =
+      version === AuctionVersion.SellerV2
+        ? await getBalanceOf(auction.address, contractAddress, tokenId)
+        : (
+            version === AuctionVersion.V1
+              ? auctionInfo.nftSeller === ethers.constants.AddressZero
+              : auctionInfo.feeRecipient === ethers.constants.AddressZero
+          )
+        ? 0
+        : 1;
 
     /*
     const bidInfos = isSold
@@ -610,11 +682,12 @@ export function useWeb3Modal() {
     return {
       isExternalBidGreater,
       hasBid,
-      isSold,
+      tokensLeft,
       isSale:
         version === AuctionVersion.V1
           ? auctionInfo.minPrice.eq(0) && auctionInfo.buyNowPrice.gt(0)
-          : version === AuctionVersion.Seller,
+          : version === AuctionVersion.Seller ||
+            version === AuctionVersion.SellerV2,
       //bidHistory: bidInfos,
       bidHistory: [],
       bid: web3.utils.fromWei(bid.toString()),
@@ -622,7 +695,9 @@ export function useWeb3Modal() {
       proposedBids: proposedBidsETH,
       fullInfo: auctionInfo,
       buyNowPrice:
-        version === AuctionVersion.V1 || version === AuctionVersion.Seller
+        version === AuctionVersion.V1 ||
+        version === AuctionVersion.Seller ||
+        version === AuctionVersion.SellerV2
           ? web3.utils.fromWei(auctionInfo.buyNowPrice.toString())
           : undefined,
       startsAt: auctionInfo.auctionStart
@@ -639,6 +714,7 @@ export function useWeb3Modal() {
     tokenId: number,
     value: BigNumberish,
     version: AuctionVersion | 'BatchSeller',
+    amount: number = 1, // ERC1155 tokens amount
   ) {
     if (version === 'BatchSeller') {
       if (contractAddress.toLowerCase() !== FIRST_DROP_ADDRESS.toLowerCase())
@@ -673,6 +749,20 @@ export function useWeb3Modal() {
           gasLimit: estimatedGas.mul(11).div(10),
         },
       );
+      await tx.wait();
+    } else if (version === AuctionVersion.SellerV2) {
+      const estimatedGas = await auction.estimateGas.buyTokens(
+        contractAddress,
+        [tokenId],
+        [amount],
+        {
+          value: ethers.utils.parseEther(value.toString()),
+        },
+      );
+      const tx = await auction.buyTokens(contractAddress, [tokenId], [amount], {
+        value: ethers.utils.parseEther(value.toString()),
+        gasLimit: estimatedGas.mul(11).div(10),
+      });
       await tx.wait();
     } else {
       const estimatedGas = await auction.estimateGas.makeBid(
@@ -1072,7 +1162,15 @@ export function useWeb3Modal() {
     const filter = seller.filters.NFTTransferredAndSellerPaid();
     const events = await seller.queryFilter(filter);
 
-    return await Promise.all(
+    const sellerV2 = NFTAuctionConnect(
+      ethersProvider,
+      chain,
+      AuctionVersion.SellerV2,
+    );
+    const filterV2 = sellerV2.filters.TokenTransferredAndSellerPaid();
+    const eventsV2 = await sellerV2.queryFilter(filterV2);
+
+    const transfers = await Promise.all(
       events.map(async (e: any) => {
         const block = await e.getBlock();
         const eth = ethers.utils.formatEther(e.args[2].toString());
@@ -1086,6 +1184,23 @@ export function useWeb3Modal() {
         };
       }),
     );
+
+    const transfersV2 = await Promise.all(
+      eventsV2.map(async (e: any) => {
+        const block = await e.getBlock();
+        const eth = ethers.utils.formatEther(e.args[3].toString());
+        return {
+          date: new Date(block.timestamp * 1000),
+          eth: eth,
+          usd: await getUsdPriceFromETH(eth),
+          from: sellerV2.address,
+          to: CULTURE_MINISTRY_WALLET_ADDRESS,
+          hash: e.transactionHash,
+        };
+      }),
+    );
+
+    return [...transfers, ...transfersV2];
   }
 
   async function getPriceFromETH(

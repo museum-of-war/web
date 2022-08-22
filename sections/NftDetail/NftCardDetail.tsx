@@ -15,6 +15,7 @@ import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import FsLightbox from 'fslightbox-react';
 import ArtistsData from '@sections/ArtistsData';
 import { BidCard } from '@sections/NftDetail/BidCard';
+import BuyingModal from '@components/BuyingModal';
 import { useVideoModal } from '@providers/VideoProvider';
 import Link from 'next/link';
 
@@ -36,6 +37,7 @@ const NftCardDetail = ({
 
   const [isStarted, setIsStarted] = useState(false);
   const [lightboxToggler, setLightboxToggler] = React.useState<boolean>(false);
+  const [openBuyingModal, setOpenBuyingModal] = useState<boolean>(false);
 
   const [isSold, setSold] = useState<boolean>(false);
   const [hasBid, setHasBid] = useState<boolean>(false);
@@ -45,6 +47,7 @@ const NftCardDetail = ({
     proposedBids: string[];
     fullInfo: any;
     bidHistory: BidInfo[];
+    tokensLeft?: number;
     buyNowPrice?: string;
     startsAt?: Date;
     endsAt?: Date;
@@ -83,19 +86,20 @@ const NftCardDetail = ({
   const startsAt = useMemo(
     () =>
       currentBid.startsAt &&
-      (!collectionData.startsAt ||
-        currentBid.startsAt > collectionData.startsAt)
+      (!(item.startsAt ?? collectionData.startsAt) ||
+        currentBid.startsAt > (item.startsAt ?? collectionData.startsAt)!)
         ? currentBid.startsAt
-        : collectionData.startsAt,
-    [collectionData.startsAt, currentBid.startsAt],
+        : (item.startsAt ?? collectionData.startsAt)!,
+    [collectionData.startsAt, currentBid.startsAt, item.startsAt],
   );
 
   const endsAt = useMemo(
     () =>
-      currentBid.endsAt && currentBid.endsAt > collectionData.endsIn
+      currentBid.endsAt &&
+      currentBid.endsAt > (item.endsIn ?? collectionData.endsIn)
         ? currentBid.endsAt
-        : collectionData.endsIn,
-    [collectionData.endsIn, currentBid.endsAt],
+        : item.endsIn ?? collectionData.endsIn,
+    [collectionData.endsIn, currentBid.endsAt, item.endsIn],
   );
 
   const neighbours = useMemo(() => {
@@ -125,13 +129,11 @@ const NftCardDetail = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const isStarted = collectionData.startsAt
-        ? +new Date() >= +collectionData.startsAt
-        : true;
+      const isStarted = startsAt ? +new Date() >= +startsAt : true;
       setIsStarted(isStarted);
     }, 1000);
     return () => clearInterval(interval);
-  }, [collectionData.startsAt]);
+  }, [startsAt]);
 
   const updateInfo = async () =>
     getAuctionInfo(
@@ -144,7 +146,7 @@ const NftCardDetail = ({
         return;
       }
       setCurrentBid({ ...i });
-      const isSold = i.isSold && isStarted;
+      const isSold = !i.tokensLeft && isStarted;
       setSold(isSold);
       setHasBid(i.hasBid);
       if (isSold) {
@@ -175,6 +177,7 @@ const NftCardDetail = ({
               endsIn={endsAt}
               proposedBids={currentBid.proposedBids}
               currentBid={currentBid.bid}
+              collection={item.category}
               contractAddress={collectionData.contractAddress}
               tokenId={item.tokenId}
               isSale={item.isSale}
@@ -182,6 +185,8 @@ const NftCardDetail = ({
               buyNowPrice={currentBid.buyNowPrice}
               auctionVersion={collectionData.version}
               isExternalBidGreater={currentBid.isExternalBidGreater}
+              editionsLeft={currentBid.tokensLeft}
+              editionsTotal={item.editions}
               secondButton={item.externalButton?.Big()}
               updateCallback={updateInfo}
             />
@@ -198,24 +203,28 @@ const NftCardDetail = ({
                 }
                 onClick={async () => {
                   if (item.isSale) {
-                    try {
-                      await makeBid(
-                        collectionData.contractAddress,
-                        item.tokenId,
-                        currentBid.buyNowPrice!,
-                        collectionData.version,
-                      );
-                      await getAuctionInfo(
-                        collectionData.contractAddress,
-                        item.tokenId,
-                        collectionData.version,
-                        item.externalBid,
-                      ).then(
-                        async (i) =>
-                          isMounted.current && setCurrentBid({ ...i }),
-                      );
-                    } catch (error: any) {
-                      alert(error?.error?.message ?? error?.message ?? error);
+                    if (item.editions) {
+                      setOpenBuyingModal(true);
+                    } else {
+                      try {
+                        await makeBid(
+                          collectionData.contractAddress,
+                          item.tokenId,
+                          currentBid.buyNowPrice!,
+                          collectionData.version,
+                        );
+                        await getAuctionInfo(
+                          collectionData.contractAddress,
+                          item.tokenId,
+                          collectionData.version,
+                          item.externalBid,
+                        ).then(
+                          async (i) =>
+                            isMounted.current && setCurrentBid({ ...i }),
+                        );
+                      } catch (error: any) {
+                        alert(error?.error?.message ?? error?.message ?? error);
+                      }
                     }
                   } else {
                     showPopup('bid', {
@@ -271,6 +280,7 @@ const NftCardDetail = ({
               endsIn={endsAt}
               proposedBids={currentBid.proposedBids}
               currentBid={currentBid.bid}
+              collection={item.category}
               contractAddress={collectionData.contractAddress}
               tokenId={item.tokenId}
               isSale={item.isSale}
@@ -278,6 +288,8 @@ const NftCardDetail = ({
               buyNowPrice={currentBid.buyNowPrice}
               auctionVersion={collectionData.version}
               isExternalBidGreater={currentBid.isExternalBidGreater}
+              editionsLeft={currentBid.tokensLeft}
+              editionsTotal={item.editions}
               secondButton={item.externalButton?.Big()}
               updateCallback={updateInfo}
             />
@@ -353,10 +365,6 @@ const NftCardDetail = ({
               </div>
             )}
             <div className="font-rlight flex mobile:flex-col tablet:flex-row">
-              <div className="flex flex-row text-16px">
-                <p>Edition:</p>
-                <p className="ml-[8px]">1 of 1</p>
-              </div>
               {isSold && (
                 <div className="flex mobile:ml-[0px] tablet:ml-48px mobile:my-[20px] tablet:my-[0px]">
                   <p>Owner:</p>
@@ -431,6 +439,16 @@ const NftCardDetail = ({
           )}
         </div>
       </div>
+      {openBuyingModal ? (
+        <BuyingModal
+          setOpenBuyingModal={setOpenBuyingModal}
+          collection={item.category}
+          price={+currentBid.buyNowPrice!}
+          tokenId={item.tokenId}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

@@ -80,7 +80,7 @@ function NftCard({
     const interval = setInterval(() => {
       if (contractAddress) {
         getAuctionInfo(contractAddress, tokenId, version, externalBid)
-          .then(({ bid, nextMinBid, isSold, startsAt, endsAt, hasBid }) => {
+          .then(({ bid, nextMinBid, tokensLeft, startsAt, endsAt, hasBid }) => {
             if (!isMounted.current) {
               return;
             }
@@ -88,7 +88,7 @@ function NftCard({
               setLocalStartsAt(startsAt);
             if (endsAt && (!endsIn || endsAt > endsIn)) setEndsAt(endsAt);
             setCurrentBid({ bid, nextMinBid });
-            setIsSold(isSold);
+            setIsSold(!tokensLeft);
             setHasBid(hasBid);
           })
           .catch((error) => console.error(`NftCard ${error}`));
@@ -127,7 +127,12 @@ function NftCard({
             />
           </div>
           <div className="p-10px">
-            <h3 className="font-rblack text-20px leading-[240%]">{name}</h3>
+            <h3
+              className="font-rblack text-20px leading-[240%] line-clamp-3"
+              title={name}
+            >
+              {name}
+            </h3>
             <div className="flex justify-between">
               {!isSold && isStarted && +currentBid.bid > 0 && (
                 <div>
