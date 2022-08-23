@@ -54,7 +54,7 @@ const SignInPopup = ({
   }, [connect]);
 
   return isMobile ? (
-    <div className="fixed z-20 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
+    <div className="fixed z-150 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
       <div className="z-20 bg-white absolute w-100% h-100% flex flex-col p-24px overflow-auto top-0">
         <div className="w-100% text-right">
           <button
@@ -127,7 +127,7 @@ const SignInPopup = ({
       </div>
     </div>
   ) : (
-    <div className="fixed z-20 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
+    <div className="fixed z-150 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
       <div className="z-20 h-auto bg-white relative w-600px flex flex-row p-72px overflow-auto">
         <div>
           <button

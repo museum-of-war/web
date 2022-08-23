@@ -333,6 +333,7 @@ module.exports = {
         18: '18',
         19: '19',
         100: '100',
+        150: '150',
       },
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
