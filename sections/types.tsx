@@ -50,6 +50,7 @@ export enum AuctionCollection {
 
 export type AuctionCollectionType = {
   name?: string;
+  title?: string;
   description?: string;
   logoSrc?: string;
   headerImageSrc: string;

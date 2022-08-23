@@ -38,6 +38,7 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
     },
     [AuctionCollection.AvatarsForUkraine]: {
       name: 'Avatars for Ukraine',
+      title: 'Avatars for Ukraine: charity NFT collection to help Ukraine',
       description:
         'Avatar - अवतार - ‘incarnation’.\n\n' +
         'Avatars for Ukraine is a charity NFT collection of the iconic digital art created in response to the largest war since WWII. The incarnations of the spirit of Ukraine in its fight for existence. The avatars for the free nation. Created by the top digital Ukrainian artists and produced by the video game hit makers, this collection is a historic event for the NFT. 100% of the proceeds will support the humanitarian and defence efforts of Ukraine. The official collection approved by the Ministry of Digital Transformation of Ukraine.',
@@ -52,6 +53,7 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
     },
     [AuctionCollection.Kalush]: {
       name: 'Stefania For Ukraine',
+      title: 'Kalush Orchestra auction: NFT Eurovision Glass Mic Trophy',
       headerImageSrc: '/img/auction/covers/kalush.png',
       logoSrc: '/img/auction/logos/kalush.png',
       posterSrc: '/img/auction/posters/kalush.png',
