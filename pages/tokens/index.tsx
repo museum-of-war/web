@@ -1,3 +1,4 @@
+import { TITLES } from '@sections/Constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import Tokens from '@sections/Tokens/Tokens';
@@ -16,7 +17,7 @@ const TokensPage: NextPage<SharedProps> = ({
   return (
     <>
       <PageHead
-        title="Tokens"
+        title={TITLES.TOKENS}
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',

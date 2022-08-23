@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { TITLES } from '@sections/Constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { SharedProps } from '@components/wrapper';
 import { AuctionCollection } from '@sections/types';
@@ -51,7 +52,8 @@ const CollectionPage: React.FC<SharedProps & CollectionProps> = ({
   return (
     <>
       <PageHead
-        title={`${collectionData.name} - Auction`}
+        title={collectionData.title ?? collectionData.name ?? 'Collection'}
+        subtitle={TITLES.AUCTION}
         description={collectionData.description}
         image={collectionData.logoSrc}
         data={[

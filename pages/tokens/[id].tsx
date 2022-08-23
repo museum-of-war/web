@@ -1,3 +1,4 @@
+import { TITLES } from '@sections/Constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import type { NextPage } from 'next';
@@ -239,7 +240,8 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
   return (
     <div>
       <PageHead
-        title={`${event ? getTitle(event) : 'Loading'} - My NFTs`}
+        title={event ? getTitle(event) : 'Loading'}
+        subtitle={TITLES.TOKENS}
         description={
           event
             ? `"${getTitle(event)}" created by ${

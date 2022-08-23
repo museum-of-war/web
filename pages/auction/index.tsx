@@ -1,3 +1,4 @@
+import { TITLES } from '@sections/Constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import Auction from '@sections/Auction/Auction';
@@ -7,7 +8,7 @@ const AuctionPage: NextPage<SharedProps> = (props) => {
   return (
     <>
       <PageHead
-        title="Auction"
+        title={TITLES.AUCTION}
         description="Unique NFTs of special collections are auctioned by MetaHistory together with partners from Avatars for Ukraine & Prospect100 design competition."
         data={{
           '@context': 'https://schema.org',

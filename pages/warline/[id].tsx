@@ -1,3 +1,4 @@
+import { TITLES } from '@sections/Constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
 import PageHead from '@components/PageHead';
@@ -88,7 +89,8 @@ const WarlineItem: React.FC<{
   return (
     <>
       <PageHead
-        title={`${title} - Warline`}
+        title={title}
+        subtitle={TITLES.WARLINE}
         description={`NFT of ${getTitle(event)} created by ${
           event.ArtistName
         }.\n${event.DescriptionEnglish}`}

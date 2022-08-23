@@ -4,6 +4,7 @@ import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 
 type PageHeadProps = {
   title: string;
+  subtitle?: string;
   description?: string;
   image?: string;
   data?: WithContext<Thing> | WithContext<Thing>[];
@@ -21,9 +22,16 @@ function items(
   }
 }
 
-function PageHead({ title, description, image, data }: PageHeadProps) {
+function PageHead({
+  title,
+  subtitle,
+  description,
+  image,
+  data,
+}: PageHeadProps) {
   const url = useAbsoluteUrl();
-  const extendedTitle = `${title} - Meta History: Museum of War`;
+  const extendedTitle = subtitle ? `${title} - ${subtitle}` : title;
+
   description = description ?? extendedTitle;
   image = url(image || '/img/logo-icon.svg');
   return (

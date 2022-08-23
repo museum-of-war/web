@@ -1,4 +1,5 @@
 //import { AUCTION_START_DATE, AUCTION_END_DATE } from '@sections/Constants';
+import { TITLES } from '@sections/Constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
@@ -14,7 +15,8 @@ const NftDetailPage: NextPage<SharedProps & AuctionItemProps> = ({ id }) => {
   return (
     <>
       <PageHead
-        title={`${item ? `${item.name} - ` : ''}Auction`}
+        title={item?.name ?? 'Auction item'}
+        subtitle={TITLES.AUCTION}
         description={
           item
             ? `NFT of ${item.name} created by ${item.artist}.\n${item.descriptionEnglish}`

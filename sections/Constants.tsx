@@ -42,3 +42,15 @@ export const AUCTION_CLOSING_DATE = '2022-04-22T20:00:00.000+03:00';
 export const AUCTION_START_DATE = '2022-04-17T23:00:00.000+03:00';
 export const KALUSH_BID = BigNumber.from('500000000000000000000');
 export const JOINLIST_LINK = 'https://www.joinlist.me/metahistory';
+
+export const TITLES = {
+  MAIN: 'NFT Museum of the War of russia against Ukraine',
+  WARLINE: 'Warline: A chronology of events of the Ukrainian history',
+  AUCTION: 'Auction to buy unique NFTs of special collections',
+  TOKENS: 'My NFTs',
+  UPGRADE_YOUR_NFT: 'Upgrade Your NFT',
+  HALL: 'The Hall of Fame: NFTs of public figures that stand for Ukraine',
+  ABOUT: 'About us | Meta History Gallery',
+  PRIVACY_POLICY: 'Privacy Policy',
+  TERMS_AND_CONDITIONS: 'Terms and Conditions',
+};
