@@ -21,6 +21,7 @@ const TheHallPage: NextPage<SharedProps> = () => {
             },
           ],
         }}
+        canonical={'/hall'}
       />
       <TheHall />
     </>

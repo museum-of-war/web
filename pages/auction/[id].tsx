@@ -60,6 +60,7 @@ const NftDetailPage: NextPage<SharedProps & AuctionItemProps> = ({ id }) => {
               },
           }*/, //TODO: uncomment for auctions
         ]}
+        canonical={`/auction/${id}`}
       />
       <NftDetail />
     </>

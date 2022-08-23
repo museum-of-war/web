@@ -20,6 +20,7 @@ const WarlinePage: NextPage<SharedProps> = () => (
           },
         ],
       }}
+      canonical={'/warline'}
     />
     <Warline />
   </>

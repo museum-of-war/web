@@ -18,6 +18,7 @@ const Home: NextPage<SharedProps> = (props) => {
           url: url(),
           logo: url('/img/logo-icon.svg'),
         }}
+        canonical={'/'}
       />
       <AboutProject signerAddress={props.signerAddress} />
     </>

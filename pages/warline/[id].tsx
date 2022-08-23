@@ -31,7 +31,7 @@ const WarlineItemPage: React.FC<WarlineItemProps> = ({ id }) => {
   );
 
   return event ? (
-    <WarlineItem event={event} allEvents={allEvents} />
+    <WarlineItem event={event} allEvents={allEvents} id={id} />
   ) : (
     <div>Event not found</div>
   );
@@ -47,7 +47,8 @@ const getTitle = (event: EventType) => `Day ${event.DayNo}, ${event.Time}`;
 const WarlineItem: React.FC<{
   event: EventType;
   allEvents: EventType[];
-}> = ({ event, allEvents }) => {
+  id: string;
+}> = ({ event, allEvents, id }) => {
   const url = useAbsoluteUrl();
 
   const imageSources = React.useMemo(() => {
@@ -112,6 +113,7 @@ const WarlineItem: React.FC<{
             },
           ],
         }}
+        canonical={`/warline/${id}`}
       />
       <NftDetails
         id={event.Tokenid}

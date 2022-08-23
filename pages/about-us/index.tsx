@@ -20,6 +20,7 @@ const AboutUs = () => {
             },
           ],
         }}
+        canonical={'/about-us'}
       />
       <AboutUsContent />
     </>

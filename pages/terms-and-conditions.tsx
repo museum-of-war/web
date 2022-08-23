@@ -20,6 +20,7 @@ const WarlinePage: NextPage<SharedProps> = (props) => {
             },
           ],
         }}
+        canonical={'/terms-and-conditions'}
       />
       <TermsAndConditions />
     </>

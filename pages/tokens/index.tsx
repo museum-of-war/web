@@ -29,6 +29,7 @@ const TokensPage: NextPage<SharedProps> = ({
             },
           ],
         }}
+        canonical={'/tokens'}
       />
       <Tokens signerAddress={signerAddress} />
     </>

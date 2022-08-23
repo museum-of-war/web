@@ -75,6 +75,7 @@ const CollectionPage: React.FC<SharedProps & CollectionProps> = ({
             ],
           },
         ]}
+        canonical={`/auction/collection/${id}`}
       />
       {collectionData.oneItemAuction ? (
         <OneItemAuctionCollectionDetails

@@ -21,6 +21,7 @@ const AuctionPage: NextPage<SharedProps> = (props) => {
             },
           ],
         }}
+        canonical={'/auction'}
       />
       <Auction
         signerAddress={props.signerAddress}

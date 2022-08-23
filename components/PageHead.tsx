@@ -8,6 +8,7 @@ type PageHeadProps = {
   description?: string;
   image?: string;
   data?: WithContext<Thing> | WithContext<Thing>[];
+  canonical?: string;
 };
 
 function items(
@@ -28,10 +29,10 @@ function PageHead({
   description,
   image,
   data,
+  canonical,
 }: PageHeadProps) {
   const url = useAbsoluteUrl();
   const extendedTitle = subtitle ? `${title} - ${subtitle}` : title;
-
   description = description ?? extendedTitle;
   image = url(image || '/img/logo-icon.svg');
   return (
@@ -61,6 +62,7 @@ function PageHead({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
         ></script>
       ))}
+      {canonical && <link rel="canonical" href={url(canonical)} />}
     </Head>
   );
 }
