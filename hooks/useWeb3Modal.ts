@@ -24,6 +24,7 @@ import {
   MERGER_ADDRESS,
   PROJECT_WALLET_ADDRESS,
   PROSPECT_100_ADDRESS,
+  REVIVAL_ADDRESS,
   SECOND_DROP_ADDRESS,
   THIRD_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
@@ -937,6 +938,42 @@ export function useWeb3Modal() {
     }
   }
 
+  async function getRevivalTokensCount() {
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+
+    try {
+      const nftContract = new web3.eth.Contract(
+        MetaHistorySelectiveDropContractAbi as AbiItem[],
+        REVIVAL_ADDRESS,
+      );
+
+      const ethersProvider = new ethers.providers.Web3Provider(
+        web3.currentProvider as ExternalProvider,
+      );
+
+      const sellerV2 = NFTAuctionConnect(
+        ethersProvider,
+        chain,
+        AuctionVersion.SellerV2,
+      );
+
+      const total = +(await nftContract.methods
+        .totalSupply()
+        .call({ from: REVIVAL_ADDRESS }));
+
+      const onSale = +(await nftContract.methods
+        .balanceOf(sellerV2.address)
+        .call({ from: REVIVAL_ADDRESS }));
+
+      return total - onSale;
+    } catch (e) {
+      console.warn(e);
+      return 0;
+    }
+  }
+
   async function canMint() {
     // Initialize an alchemy-web3 instance:
     const web3 = createAlchemyWeb3(
@@ -1226,12 +1263,14 @@ export function useWeb3Modal() {
     const secondDropMinted = +(await getSecondDropMintedCount());
     const thirdDropMinted = +(await getThirdDropMintedCount());
     const prospect100Tokens = +(await getProspect100TokensCount());
+    const revivalTokens = +(await getRevivalTokensCount());
     const auctions =
       AuctionData.length -
       AuctionData.filter(
         (d) =>
           d.category === AuctionCollection.FirstDrop ||
-          d.category === AuctionCollection.Prospect100,
+          d.category === AuctionCollection.Prospect100 ||
+          d.category === AuctionCollection.TheRevivalProject,
       ).length;
 
     return (
@@ -1239,6 +1278,7 @@ export function useWeb3Modal() {
       secondDropMinted +
       thirdDropMinted +
       prospect100Tokens +
+      revivalTokens +
       auctions
     );
   }
@@ -1275,11 +1315,16 @@ export function useWeb3Modal() {
       52 - avatarsOnSale,
     ); // 52 on sale, 0.5 ETH fixed price
 
+    const soldRevivalTokens = +(await getRevivalTokensCount());
+    const revivalSaleWeth =
+      ethers.constants.WeiPerEther.div(40).mul(soldRevivalTokens); // 0.025 ETH fixed price
+
     const wethTotal = firstDropWeth
       .add(firstAuctionWeth)
       .add(secondAuctionWeth)
       .add(KALUSH_BID)
-      .add(avatarsSaleWeth);
+      .add(avatarsSaleWeth)
+      .add(revivalSaleWeth);
 
     if (wethTotal.lte(0))
       return {
