@@ -66,7 +66,7 @@ function Button({
       style={extraStyles}
       disabled={disabled}
       type="button"
-      className={cn}
+      className={location ? '' : cn}
       onClick={onClick}
     >
       {label}
@@ -75,7 +75,11 @@ function Button({
 
   return location ? (
     <Link href={location} passHref>
-      <a target={openInNewWindow ? '_blank' : '_self'} rel="noreferrer">
+      <a
+        target={openInNewWindow ? '_blank' : '_self'}
+        rel="noreferrer"
+        className={'text-center ' + cn}
+      >
         {component}
       </a>
     </Link>

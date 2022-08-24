@@ -35,3 +35,7 @@ export enum WarlineDrop {
   Drop3 = 'drop3',
   Drop4 = 'drop4',
 }
+
+export const UtorgCurrencies = {
+  [WarlineDrop.Drop3]: 'MH3ETH',
+} as Record<WarlineDrop, string>;
