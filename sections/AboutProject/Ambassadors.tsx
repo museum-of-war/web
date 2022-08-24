@@ -9,9 +9,12 @@ const data = [
   { name: 'Ian Scarffe', url: 'https://ianscarffe.com/' },
   { name: 'Rev Miller', url: 'https://me.linkedin.com/in/revmiller' },
   { name: 'Michael Chobanian', url: 'https://kuna.family/' },
+  { name: 'Sergii Vasylchuk', url: 'https://everstake.one/' },
 ];
 
 const Ambassadors = () => {
+  const hasManyColumns = data.length % 4 === 1 ? false : data.length % 3 === 1;
+  const basis = hasManyColumns ? 'basis-1/4' : 'basis-1/3';
   return (
     <div className="font-rlight desktop:py-120px tablet:py-[96px] mobile:py-60px">
       <Blurb header="Ambassadors" classNames="break-all" />
@@ -19,7 +22,7 @@ const Ambassadors = () => {
         <div className="flex desktop:flex-row tablet:flex-row mobile:flex-col flex-wrap">
           {data.map((datum) => (
             <div
-              className="desktop:basis-1/3 tablet:basis-1/2 mobile:basis-1"
+              className={`desktop:${basis} tablet:basis-1/2 mobile:basis-1`}
               key={datum.name}
             >
               <div className="flex flex-col desktop:mt-40px tablet:mt-40px mobile:mt-32px">
@@ -38,7 +41,11 @@ const Ambassadors = () => {
               </div>
             </div>
           ))}
-          <div className="mobile:hidden tablet:flex desktop:hidden self-end tablet:basis-1/2 justify-end">
+          <div
+            className={`mobile:hidden tablet:flex ${
+              hasManyColumns ? '' : 'desktop:hidden'
+            } self-end tablet:basis-1/2 desktop:${basis} justify-end`}
+          >
             <img
               src="/img/dots-ambassadors.svg"
               className="w-[248px] h-96px mt-auto"
@@ -46,13 +53,15 @@ const Ambassadors = () => {
             />
           </div>
         </div>
-        <div className="mobile:hidden desktop:flex self-center">
-          <img
-            src="/img/dots-ambassadors.svg"
-            className="w-[248px] h-96px mt-auto"
-            alt="dots"
-          />
-        </div>
+        {!hasManyColumns && (
+          <div className="mobile:hidden desktop:flex self-center">
+            <img
+              src="/img/dots-ambassadors.svg"
+              className="w-[248px] h-96px mt-auto"
+              alt="dots"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
