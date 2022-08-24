@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
+  safelist: ['basis-1/3', 'basis-1/4'], // for dynamic classes in Ambassadors
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -343,14 +344,6 @@ module.exports = {
         'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
         'auto-fill': 'repeat(auto-fill, minmax(0, 1fr))',
       },
-      gridTemplateColumns: {
-        'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
-        'auto-fill': 'repeat(auto-fill, minmax(0, 1fr))',
-      },
-      gridTemplateRows: {
-        'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
-        'auto-fill': 'repeat(auto-fill, minmax(0, 1fr))',
-      },
     },
     spacing: {
       0: '0px',
@@ -583,9 +576,6 @@ module.exports = {
       'screen71%': '71vh',
       'screen80%': '80vh',
       'screen90%': '90vh',
-      'screen100%': '100vh',
-      '10vw': '10vw',
-      '200px': '200px',
       'screen100%': '100vh',
       '10vw': '10vw',
       '200px': '200px',
