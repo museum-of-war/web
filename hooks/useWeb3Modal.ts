@@ -58,7 +58,7 @@ for (let key in AuctionCollectionData) {
   AddressesToAuctions[address.toLowerCase()] = key as AuctionCollection;
 }
 
-const chain = 'mainnet';
+const chain = 'rinkeby';
 
 const providerOptions = {
   walletconnect: {
