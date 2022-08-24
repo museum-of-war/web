@@ -14,7 +14,9 @@ const data = [
 
 const Ambassadors = () => {
   const hasManyColumns = data.length % 4 === 1 ? false : data.length % 3 === 1;
-  const basis = hasManyColumns ? 'basis-1/4' : 'basis-1/3';
+  const desktopBasis = hasManyColumns
+    ? 'desktop:basis-1/4'
+    : 'desktop:basis-1/3';
   return (
     <div className="font-rlight desktop:py-120px tablet:py-[96px] mobile:py-60px">
       <Blurb header="Ambassadors" classNames="break-all" />
@@ -22,7 +24,7 @@ const Ambassadors = () => {
         <div className="flex desktop:flex-row tablet:flex-row mobile:flex-col flex-wrap">
           {data.map((datum) => (
             <div
-              className={`desktop:${basis} tablet:basis-1/2 mobile:basis-1`}
+              className={`${desktopBasis} tablet:basis-1/2 mobile:basis-1`}
               key={datum.name}
             >
               <div className="flex flex-col desktop:mt-40px tablet:mt-40px mobile:mt-32px">
@@ -44,7 +46,7 @@ const Ambassadors = () => {
           <div
             className={`mobile:hidden tablet:flex ${
               hasManyColumns ? '' : 'desktop:hidden'
-            } self-end tablet:basis-1/2 desktop:${basis} justify-end`}
+            } self-end tablet:basis-1/2 ${desktopBasis} justify-end`}
           >
             <img
               src="/img/dots-ambassadors.svg"

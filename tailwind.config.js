@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
-  safelist: ['basis-1/3', 'basis-1/4'], // for dynamic classes in Ambassadors
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
