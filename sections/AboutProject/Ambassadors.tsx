@@ -10,10 +10,13 @@ const data = [
   { name: 'Rev Miller', url: 'https://me.linkedin.com/in/revmiller' },
   { name: 'Michael Chobanian', url: 'https://kuna.family/' },
   { name: 'Sergii Vasylchuk', url: 'https://everstake.one/' },
+  { name: 'Oleksandr Tkachenko', url: 'https://mkip.gov.ua/' },
 ];
 
 const Ambassadors = () => {
-  const hasManyColumns = data.length % 4 === 1 ? false : data.length % 3 === 1;
+  const hideOnDesktop = data.length % 4 === 0;
+  const hasManyColumns =
+    data.length % 4 === 1 ? false : hideOnDesktop || data.length % 3 === 1;
   const desktopBasis = hasManyColumns
     ? 'desktop:basis-1/4'
     : 'desktop:basis-1/3';
@@ -45,7 +48,7 @@ const Ambassadors = () => {
           ))}
           <div
             className={`mobile:hidden tablet:flex ${
-              hasManyColumns ? '' : 'desktop:hidden'
+              hasManyColumns && !hideOnDesktop ? '' : 'desktop:hidden'
             } self-end tablet:basis-1/2 ${desktopBasis} justify-end`}
           >
             <img
