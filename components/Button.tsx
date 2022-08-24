@@ -66,7 +66,7 @@ function Button({
       style={extraStyles}
       disabled={disabled}
       type="button"
-      className={location ? '' : cn}
+      className={location ? 'h-100% w-100%' : cn}
       onClick={onClick}
     >
       {label}
