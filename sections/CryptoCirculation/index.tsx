@@ -68,7 +68,7 @@ const CryptoCirculation = ({ initialSize = 10 }: CryptoCirculationProps) => {
           label="View Wallets Details"
           location="https://github.com/museum-of-war/nft/blob/master/docs/Addresses.md#wallets"
           openInNewWindow
-          className="tablet:px-72px mobile:px-48px"
+          className="tablet:px-72px mobile:px-48px self-center"
         />
       </div>
       <p className="tablet:mt-96px mobile:mt-48px font-rblack tablet:text-32px mobile:text-27px tablet:leading-48px mobile:leading-30px">

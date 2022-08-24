@@ -222,6 +222,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         <MintingModal
           setOpenMintingModal={setOpenMintingModal}
           drop={warlineDrop}
+          maxMints={editionsLeft ?? undefined}
           tokenId={+id - (warlineDrop ? DropTokenIdOffsets[warlineDrop] : 0)}
         />
       ) : (
