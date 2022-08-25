@@ -35,8 +35,8 @@ const AboutUs = () => {
       </div>
       <div className="desktop:w-[544px] tablet:w-full mobile:w-full mobile:mt-40px tablet:mt-72px desktop:mt-0">
         <VideoElement
-          posterSrc={`${IMG_STORAGE}/NFT_museum.jpg`}
-          videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4?autoplay=1"
+          posterSrc={`${IMG_STORAGE}/history.png`}
+          videoSrc={`${IMG_STORAGE}/history.mp4`}
           classNames="w-full"
           styles={{ aspectRatio: '16 / 9' }}
         />

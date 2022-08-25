@@ -28,8 +28,8 @@ const CollapsedSection = () => {
         }
       />
       <VideoElement
-        posterSrc={`${IMG_STORAGE}/NFT_museum.jpg`}
-        videoSrc="https://www.youtube-nocookie.com/embed/gUHU4UX8Rs4?autoplay=1"
+        posterSrc={`${IMG_STORAGE}/history.png`}
+        videoSrc={`${IMG_STORAGE}/history.mp4`}
         classNames="w-full desktop:mt-48px tablet:mt-48px mobile:mt-20px"
         styles={{ aspectRatio: '16 / 9' }}
       />

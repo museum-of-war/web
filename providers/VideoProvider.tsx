@@ -113,6 +113,7 @@ export const VideoProvider: React.FC<{ children: React.ReactNode }> = ({
         ) : (
           <video
             src={videoData.videoSrc}
+            controls
             autoPlay
             style={{ aspectRatio: '16 / 9' }}
           />
