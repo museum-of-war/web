@@ -48,8 +48,7 @@ const MintingModal = ({
     params.append('currency', utorgCurrency);
     params.append('nftId', '' + tokenId);
     params.append('amount', '' + amount);
-    //TODO: replace to Production
-    return `https://app-stage.utorg.pro/direct/nftdemo/${signerAddress}?${params}`;
+    return `https://app.utorg.pro/direct/Np3qdvMIRU/${signerAddress}?${params}`;
   }, [signerAddress, drop, tokenId, amount]);
 
   const decreaseAmount = () => {
@@ -150,7 +149,7 @@ const MintingModal = ({
               <Button
                 mode="secondary"
                 className={`tablet:h-48px mobile:h-60px w-100% ${
-                  isLoading ? 'bg-carbon-800' : ''
+                  isLoading ? 'opacity-70' : ''
                 }`}
                 round={false}
                 disabled={isLoading}
