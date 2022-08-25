@@ -6,6 +6,7 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { useIsMounted } from '@hooks/useIsMounted';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
+import { useEffectPeriodic } from '@hooks/useEffectPeriodic';
 
 type NftCardProps = {
   type?: string;
@@ -76,8 +77,8 @@ function NftCard({
     return () => clearInterval(interval);
   }, [endsAt, localStartsAt]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  useEffectPeriodic(
+    () => {
       if (contractAddress) {
         getAuctionInfo(contractAddress, tokenId, version, externalBid)
           .then(({ bid, nextMinBid, tokensLeft, startsAt, endsAt, hasBid }) => {
@@ -93,9 +94,10 @@ function NftCard({
           })
           .catch((error) => console.error(`NftCard ${error}`));
       }
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [contractAddress, tokenId]);
+    },
+    5000,
+    [contractAddress, tokenId],
+  );
 
   return (
     <Link href={`/auction/${index}`} passHref>

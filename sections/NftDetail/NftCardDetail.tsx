@@ -18,6 +18,7 @@ import { BidCard } from '@sections/NftDetail/BidCard';
 import BuyingModal from '@components/BuyingModal';
 import { useVideoModal } from '@providers/VideoProvider';
 import Link from 'next/link';
+import { useEffectPeriodic } from '@hooks/useEffectPeriodic';
 
 type NftCardDetailProps = {
   item: AuctionItemType;
@@ -156,16 +157,17 @@ const NftCardDetail = ({
       }
     });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  useEffectPeriodic(
+    () => {
       updateInfo()
         .catch((error) => console.log(`NftCardDetail ${error}`))
         .finally(() => {
           hidePreloader();
         });
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isStarted, collectionData.contractAddress, item.tokenId]);
+    },
+    5000,
+    [isStarted, collectionData.contractAddress, item.tokenId],
+  );
 
   return (
     <div className={className}>

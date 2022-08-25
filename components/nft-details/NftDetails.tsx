@@ -1,6 +1,6 @@
 import FsLightbox from 'fslightbox-react';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { VscTwitter } from 'react-icons/vsc';
 import { useInView } from 'react-intersection-observer';
 import { openInNewTab } from '@sections/utils';
@@ -13,6 +13,7 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useIsMounted } from '@hooks/useIsMounted';
 import { DropTokenIdOffsets } from '@sections/Warline/WarlineData';
 import { JOINLIST_LINK } from '@sections/Constants';
+import { useEffectPeriodic } from '@hooks/useEffectPeriodic';
 
 type ImageSources = {
   previewSrc: string;
@@ -86,23 +87,21 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   const { canMintThirdDrop, canMintFourthDrop } = useWeb3Modal();
   const isMounted = useIsMounted();
 
-  useEffect(() => {
-    const interval = setInterval(
-      () =>
-        (warlineDrop === WarlineDrop.Drop3
-          ? canMintThirdDrop
-          : warlineDrop === WarlineDrop.Drop4
-          ? canMintFourthDrop
-          : () => Promise.resolve(null))(
-          +id - DropTokenIdOffsets[warlineDrop!],
-        ).then((left) => {
-          if (!isMounted.current) return;
-          setEditionsLeft(left);
-        }),
-      5000,
-    );
-    return () => clearInterval(interval);
-  }, [id, warlineDrop, editions]);
+  useEffectPeriodic(
+    () =>
+      (warlineDrop === WarlineDrop.Drop3
+        ? canMintThirdDrop
+        : warlineDrop === WarlineDrop.Drop4
+        ? canMintFourthDrop
+        : () => Promise.resolve(null))(
+        +id - DropTokenIdOffsets[warlineDrop!],
+      ).then((left) => {
+        if (!isMounted.current) return;
+        setEditionsLeft(left);
+      }),
+    5000,
+    [id, warlineDrop, editions],
+  );
 
   const renderImage = ({
     title,
