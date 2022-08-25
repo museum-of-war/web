@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Button from '@components/Button';
 import { VscChromeClose } from 'react-icons/vsc';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
-import { WarlineDrop } from '@sections/Warline/constants';
+import { WarlineDrop, UtorgCurrencies } from '@sections/Warline/constants';
 
 type MintingModalProps = {
   setOpenMintingModal: (arg: boolean) => void;
   drop?: WarlineDrop;
   tokenId?: number;
+  maxMints?: number;
 };
 
 const MintingModal = ({
@@ -16,20 +17,52 @@ const MintingModal = ({
   setOpenMintingModal,
   drop,
   tokenId,
+  maxMints,
 }: MintingModalProps) => {
-  const { mintSecondDrop, mintThirdDrop } = useWeb3Modal();
+  const { provider, mintSecondDrop, mintThirdDrop } = useWeb3Modal();
   const { push } = useAppRouter();
+  const [signerAddress, setSignerAddress] = useState<string>('');
   const [amount, setAmount] = useState<number>(1);
-  const [disabled, setDisabled] = useState<boolean>(true);
+  const [decreaseDisabled, setDecreaseDisabled] = useState<boolean>(true);
+  const [increaseDisabled, setIncreaseDisabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const getAddress = async () => {
+      if (provider !== undefined) {
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        setSignerAddress(address);
+      } else {
+        setSignerAddress('');
+      }
+    };
+    getAddress();
+  }, [provider]);
+
+  const utorgLink = useMemo(() => {
+    const utorgCurrency = drop ? UtorgCurrencies[drop] : null;
+    if (!utorgCurrency) return null;
+
+    const params = new URLSearchParams();
+    params.append('currency', utorgCurrency);
+    params.append('nftId', '' + tokenId);
+    params.append('amount', '' + amount);
+    return `https://app.utorg.pro/direct/Np3qdvMIRU/${signerAddress}?${params}`;
+  }, [signerAddress, drop, tokenId, amount]);
+
   const decreaseAmount = () => {
     if (amount > 1) setAmount(amount - 1);
-    if (amount - 1 === 1) setDisabled(true);
+    if (amount - 1 <= 1) setDecreaseDisabled(true);
+    setIncreaseDisabled(false);
   };
+
   const increaseAmount = () => {
     setAmount(amount + 1);
-    setDisabled(false);
+    setDecreaseDisabled(false);
+    if (maxMints && amount + 1 >= maxMints) setIncreaseDisabled(true);
   };
+
   return (
     <>
       <div className="fixed z-10 w-screen100% h-screen100% bg-carbon top-0 left-0 opacity-70" />
@@ -59,9 +92,9 @@ const MintingModal = ({
           <div className="flex tablet:w-auto mobile:w-100% mobile:justify-between">
             <button
               onClick={() => decreaseAmount()}
-              disabled={disabled || isLoading}
+              disabled={decreaseDisabled || isLoading}
               className={`${
-                disabled ? 'opacity-20' : 'opacity-100'
+                decreaseDisabled ? 'opacity-20' : 'opacity-100'
               } outline-none tablet:w-48px tablet:h-48px mobile:w-60px mobile:h-60px flex items-center justify-center border-2 border-carbon rounded-full text-44px tablet:leading-48px mobile:leading-60px`}
             >
               -
@@ -71,8 +104,10 @@ const MintingModal = ({
             </div>
             <button
               onClick={() => increaseAmount()}
-              disabled={isLoading}
-              className="tablet:w-48px tablet:h-48px mobile:w-60px mobile:h-60px flex items-center justify-center border-2 border-carbon rounded-full text-44px tablet:leading-48px mobile:leading-60px"
+              disabled={increaseDisabled || isLoading}
+              className={`${
+                increaseDisabled ? 'opacity-20' : 'opacity-100'
+              } tablet:w-48px tablet:h-48px mobile:w-60px mobile:h-60px flex items-center justify-center border-2 border-carbon rounded-full text-44px tablet:leading-48px mobile:leading-60px`}
             >
               +
             </button>
@@ -86,28 +121,48 @@ const MintingModal = ({
             </p>
           </div>
         </div>
-        <Button
-          mode="primary"
-          className={`tablet:h-48px mobile:h-60px w-100% mt-48px ${
-            isLoading ? 'bg-carbon-800' : ''
-          }`}
-          round={false}
-          disabled={isLoading}
-          label="Mint Now"
-          onClick={() => {
-            setIsLoading(true);
+        <div className="flex flex-col mobile:gap-[20px] tablet:gap-24px">
+          <Button
+            mode="primary"
+            className={`tablet:h-48px mobile:h-60px w-100% mt-48px ${
+              isLoading ? 'bg-carbon-800' : ''
+            }`}
+            round={false}
+            disabled={isLoading}
+            label="Buy Now in ETH"
+            onClick={() => {
+              setIsLoading(true);
 
-            const mintPromise =
-              drop === WarlineDrop.Drop3
-                ? mintThirdDrop(tokenId ?? 1, amount)
-                : mintSecondDrop(amount);
+              const mintPromise =
+                drop === WarlineDrop.Drop3
+                  ? mintThirdDrop(tokenId ?? 1, amount)
+                  : mintSecondDrop(amount);
 
-            mintPromise
-              .then(() => push('/tokens'))
-              .catch((e) => alert(e?.message ?? e))
-              .finally(() => setIsLoading(false));
-          }}
-        />
+              mintPromise
+                .then(() => push('/tokens'))
+                .catch((e) => alert(e?.message ?? e))
+                .finally(() => setIsLoading(false));
+            }}
+          />
+          {!!utorgLink && (
+            <div className="flex flex-col items-center">
+              <Button
+                mode="secondary"
+                className={`tablet:h-48px mobile:h-60px w-100% ${
+                  isLoading ? 'opacity-70' : ''
+                }`}
+                round={false}
+                disabled={isLoading}
+                label="Buy Now with Card"
+                location={utorgLink}
+                openInNewWindow={true}
+              />
+              <p className="text-14px leading-24px text-center opacity-70">
+                via UTORG
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
