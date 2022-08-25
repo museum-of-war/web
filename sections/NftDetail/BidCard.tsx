@@ -7,6 +7,7 @@ import { useIsMounted } from '@hooks/useIsMounted';
 import Button from '@components/Button';
 import BuyingModal from '@components/BuyingModal';
 import { AuctionCollection } from '@sections/types';
+import { useEffectPeriodic } from '@hooks/useEffectPeriodic';
 
 type BidCardProps = {
   isMobile?: boolean;
@@ -76,16 +77,17 @@ export const BidCard = ({
     return () => clearInterval(interval);
   }, [timeLeft, endsIn, startsAt]);
 
-  useEffect(() => {
-    const interval = setInterval(async () => {
+  useEffectPeriodic(
+    async () => {
       const price = await getUsdPriceFromETH(currentBid).catch((e) => {
         console.error(e);
         return null;
       });
       if (price && isMounted.current) setUsdPrice(price);
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [currentBid]);
+    },
+    10000,
+    [currentBid],
+  );
 
   return (
     <>
