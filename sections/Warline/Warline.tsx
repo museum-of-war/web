@@ -3,7 +3,6 @@ import Day from './Day';
 import DonatePopup from './DonatePopup';
 import SupportBanner from './SupportBanner';
 import { useViewPort } from '@hooks/useViewport';
-import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useIsMounted } from '@hooks/useIsMounted';
 import WarlineData from './WarlineData';
 import SideMenu from './SideMenu';
@@ -36,16 +35,13 @@ const Warline = () => {
 
   const sordByNewestHandler = (v?: string) => setSelectedByNewest(v);
 
-  const { canMint } = useWeb3Modal();
-
   const isMounted = useIsMounted();
 
   const sortByTypeHandler = async () => {
-    const isMinting = await canMint();
     if (!isMounted.current) {
       return;
     }
-    if (isMinting && byType === ON_SALE) {
+    if (byType === ON_SALE) {
       const onSale = WarlineData.filter(
         (day) => !!day.events.find((e) => e.IsOnSale),
       ).map((day) => ({
@@ -54,9 +50,6 @@ const Warline = () => {
       }));
       const toSetData = sortByDate(onSale);
       setWarlineData(toSetData);
-    }
-    if (!isMinting && byType === ON_SALE) {
-      setWarlineData([]);
     }
     if (byType === ALL_ARTS) {
       let result = sortByDate(WarlineData);
