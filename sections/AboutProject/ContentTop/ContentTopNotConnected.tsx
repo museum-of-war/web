@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PoweredByFrame from '@components/PoweredByFrame';
+import ApprovedAndSupportedBy from '@components/ApprovedAndSupportedBy';
 import { useViewPort } from '@hooks/useViewport';
 import Button from '@components/Button';
 import MintingModal from '../../../components/MintingModal';
@@ -69,7 +69,7 @@ const ContentTopNotConnected = () => {
             }}
           />
         </div>
-        <PoweredByFrame />
+        <ApprovedAndSupportedBy />
       </div>
       {openMintingModal ? (
         <MintingModal setOpenMintingModal={setOpenMintingModal} />

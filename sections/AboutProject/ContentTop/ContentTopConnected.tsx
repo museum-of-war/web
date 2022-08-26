@@ -1,4 +1,4 @@
-import PoweredByFrame from '@components/PoweredByFrame';
+import ApprovedAndSupportedBy from '@components/ApprovedAndSupportedBy';
 import React from 'react';
 import '@dotlottie/player-component';
 
@@ -32,7 +32,7 @@ const ContentTopConnected = () => {
       </div>
       <div className="w-100% flex justify-end">
         <div className="desktop:w-45% mobile:w-100%">
-          <PoweredByFrame />
+          <ApprovedAndSupportedBy />
         </div>
       </div>
     </div>
