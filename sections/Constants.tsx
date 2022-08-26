@@ -13,6 +13,7 @@ export const TELEGRAM_LINK = 'https://t.me/metahistory_ua';
 export const DISCORD_LINK = 'https://discord.gg/A4R2rVqbXR';
 export const OPENSEA_LINK = 'https://opensea.io/collection/metahistorymuseum';
 export const FRAME_LINK = 'https://www.fair.xyz';
+export const BAU_LINK = 'https://bau.ai/';
 export const MINISTRY_DT_LINK = 'https://thedigital.gov.ua/';
 export const MINISTRY_CULTURE_LINK = 'https://mkip.gov.ua/';
 export const WAR_START_DATE = '02/24/2022';
