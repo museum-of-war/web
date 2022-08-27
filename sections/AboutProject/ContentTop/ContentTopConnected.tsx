@@ -1,6 +1,5 @@
 import ApprovedAndSupportedBy from '@components/ApprovedAndSupportedBy';
 import React from 'react';
-import '@dotlottie/player-component';
 
 const ContentTopConnected = () => {
   return (

@@ -1,6 +1,5 @@
 import { useViewPort } from '@hooks/useViewport';
 import React from 'react';
-import '@dotlottie/player-component';
 
 type ConnectYourWalletChronologyProps = {
   handleConnect: () => void;
