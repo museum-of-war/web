@@ -1,6 +1,5 @@
 import PoweredByFrame from '@components/PoweredByFrame';
 import React from 'react';
-import '@dotlottie/player-component';
 
 const ContentTopConnected = () => {
   return (
