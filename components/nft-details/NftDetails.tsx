@@ -8,10 +8,10 @@ import Button from '@components/Button';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 import { useViewPort } from '@hooks/useViewport';
 import MintingModal from '@components/MintingModal';
-import { WarlineDrop } from '@sections/Warline/constants';
+import { WarlineDrop } from '@pages/collections/Warline/constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useIsMounted } from '@hooks/useIsMounted';
-import { DropTokenIdOffsets } from '@sections/Warline/WarlineData';
+import { DropTokenIdOffsets } from '@pages/collections/Warline/WarlineData';
 import { JOINLIST_LINK } from '@sections/Constants';
 import { useEffectPeriodic } from '@hooks/useEffectPeriodic';
 

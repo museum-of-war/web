@@ -8,7 +8,7 @@ import Button from '@components/Button';
 import ScaledImage from '@components/ScaledImage';
 import { BY_DAY } from './constants';
 import MintingModal from '@components/MintingModal';
-import { DropTokenIdOffsets } from '@sections/Warline/WarlineData';
+import { DropTokenIdOffsets } from '@pages/collections/Warline/WarlineData';
 import { JOINLIST_LINK } from '@sections/Constants';
 
 type PropsEvent = {
