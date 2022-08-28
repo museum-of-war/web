@@ -28,3 +28,14 @@ export const BY_NEWEST_BY_OLDEST_OPTIONS: SelectOption[] = [
     value: OLDEST,
   },
 ];
+
+export enum WarlineDrop {
+  Drop1 = 'drop1',
+  Drop2 = 'drop2',
+  Drop3 = 'drop3',
+  Drop4 = 'drop4',
+}
+
+export const UtorgCurrencies = {
+  [WarlineDrop.Drop3]: 'MH3ETH',
+} as Record<WarlineDrop, string>;

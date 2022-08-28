@@ -1,12 +1,19 @@
 import FsLightbox from 'fslightbox-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { VscTwitter } from 'react-icons/vsc';
 import { useInView } from 'react-intersection-observer';
 import { openInNewTab } from '@sections/utils';
 import Button from '@components/Button';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 import { useViewPort } from '@hooks/useViewport';
+import MintingModal from '@components/MintingModal';
+import { WarlineDrop } from '@sections/Warline/constants';
+import { useWeb3Modal } from '@hooks/useWeb3Modal';
+import { useIsMounted } from '@hooks/useIsMounted';
+import { DropTokenIdOffsets } from '@sections/Warline/WarlineData';
+import { JOINLIST_LINK } from '@sections/Constants';
+import { useEffectPeriodic } from '@hooks/useEffectPeriodic';
 
 type ImageSources = {
   previewSrc: string;
@@ -43,6 +50,9 @@ type NftDetailsProps = {
   nextRecord?: PrevNextRecord;
   linkBack: string;
   linkBackText: string;
+  withBuyNowButton?: boolean;
+  withGetNowButton?: boolean;
+  warlineDrop?: WarlineDrop;
 };
 export const NftDetails: React.FC<NftDetailsProps> = ({
   id,
@@ -65,10 +75,33 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   imageSources,
   linkBack,
   linkBackText,
+  withBuyNowButton,
+  withGetNowButton,
+  warlineDrop,
 }) => {
   const [toggler, setToggler] = React.useState<boolean>(false);
+  const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
+  const [editionsLeft, setEditionsLeft] = useState<number | null>(null);
   const { ref, inView } = useInView();
-  const { isDesktop } = useViewPort();
+  const { isDesktop, isTablet, isMobile } = useViewPort();
+  const { canMintThirdDrop, canMintFourthDrop } = useWeb3Modal();
+  const isMounted = useIsMounted();
+
+  useEffectPeriodic(
+    () =>
+      (warlineDrop === WarlineDrop.Drop3
+        ? canMintThirdDrop
+        : warlineDrop === WarlineDrop.Drop4
+        ? canMintFourthDrop
+        : () => Promise.resolve(null))(
+        +id - DropTokenIdOffsets[warlineDrop!],
+      ).then((left) => {
+        if (!isMounted.current) return;
+        setEditionsLeft(left);
+      }),
+    5000,
+    [id, warlineDrop, editions],
+  );
 
   const renderImage = ({
     title,
@@ -171,6 +204,48 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
       </div>
     ) : undefined;
 
+  const renderBuyButton = (
+    containerCn: string = '',
+    linkBtnCn: string = '',
+    disabled: boolean = false,
+  ): React.ReactElement => (
+    <div className={containerCn}>
+      <Button
+        mode="primary"
+        label="Buy Now"
+        className={linkBtnCn}
+        disabled={disabled}
+        onClick={() => setOpenMintingModal(true)}
+      />
+      {openMintingModal ? (
+        <MintingModal
+          setOpenMintingModal={setOpenMintingModal}
+          drop={warlineDrop}
+          maxMints={editionsLeft ?? undefined}
+          tokenId={+id - (warlineDrop ? DropTokenIdOffsets[warlineDrop] : 0)}
+        />
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+
+  const renderGetButton = (
+    containerCn: string = '',
+    linkBtnCn: string = '',
+    disabled: boolean = false,
+  ): React.ReactElement => (
+    <div className={containerCn}>
+      <Button
+        mode="primary"
+        label="Get Now"
+        className={linkBtnCn}
+        disabled={disabled}
+        onClick={() => openInNewTab(JOINLIST_LINK)}
+      />
+    </div>
+  );
+
   const prevNextBreakpoints = [
     {
       lowerBound: 'tablet',
@@ -241,6 +316,45 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
           </div>
         </div>
         <div className="desktop:w-[544px] mobile:w-full box-border flex flex-col gap-[48px] text-[14px] tablet:text-[16px]">
+          {(withBuyNowButton || withGetNowButton) && (
+            <div
+              className={`flex flex-col gap-24px ${
+                isTablet
+                  ? 'bg-white border-[5px] border-carbon fixed bottom-20px left-[2%] right-[2%] p-48px w-[96%] z-10'
+                  : ''
+              }`}
+            >
+              <div className="flex tablet:flex-row mobile:flex-col justify-between tablet:items-end mobile:items-start gap-20px">
+                <div className="flex flex-col">
+                  {withBuyNowButton && (
+                    <p className="font-rnarrow tablet:text-16px tablet:leading-24px mobile:text-14px mobile:leading-30px opacity-70">
+                      Price
+                    </p>
+                  )}
+                  <p className="font-rblack tablet:text-32px tablet:leading-36px mobile:text-27px mobile:leading-30px">
+                    {withGetNowButton ? 'Whitelisted' : '0.15 ETH'}
+                  </p>
+                </div>
+                <div className="flex flex-row gap-[8px] font-rnarrow tablet:text-16px tablet:leading-36px mobile:text-14px mobile:leading-20px">
+                  <p>Editions:</p>
+                  <p>
+                    {editionsLeft ?? '?'} of {editions ?? '?'} left
+                  </p>
+                </div>
+              </div>
+              {editionsLeft !== 0
+                ? (withGetNowButton ? renderGetButton : renderBuyButton)(
+                    `w-100% ${
+                      isMobile
+                        ? 'fixed bottom-[68px] left-[2%] right-[2%] w-[96%] z-10'
+                        : ''
+                    }`,
+                    'w-100% disabled:opacity-70 font-rblack tablet:h-48px mobile:h-60px',
+                    editionsLeft === null,
+                  )
+                : null}
+            </div>
+          )}
           {!!editionsList?.length && editionInfo !== '1 of 1' && (
             <div className="bg-carbon font-rblack text-white p-24px mobile:leading-20px tablet:leading-24px flex mobile:flex-col tablet:flex-row tablet:items-center justify-between">
               <p className="mobile:text-[17px] tablet:text-20px">
@@ -356,7 +470,10 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                           src={'/img/down.svg'}
                           className="rotate-90 flex-grow-0"
                         />
-                        <span className="font-rblack text-[14px] ml-[8px] h-full leading-[44px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
+                        <span
+                          className="font-rblack text-[14px] ml-[8px] h-full leading-[44px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width] line-clamp-1"
+                          title={prevRecord.title}
+                        >
                           {prevRecord.title}
                         </span>
                       </div>
@@ -379,7 +496,10 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                         breakpoints: prevNextBreakpoints,
                       })}
                       <div className="h-[48px] flex items-center">
-                        <span className="ml-auto font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width]">
+                        <span
+                          className="ml-auto font-rblack text-[14px] ml-[8px] h-full leading-[48px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width] line-clamp-1"
+                          title={nextRecord.title}
+                        >
                           {nextRecord.title}
                         </span>
                         <img

@@ -6,6 +6,7 @@ import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useViewPort } from '@hooks/useViewport';
 import { useIsMounted } from '@hooks/useIsMounted';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
+import { useEffectPeriodic } from '@hooks/useEffectPeriodic';
 
 type NftCardProps = {
   type?: string;
@@ -76,11 +77,11 @@ function NftCard({
     return () => clearInterval(interval);
   }, [endsAt, localStartsAt]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  useEffectPeriodic(
+    () => {
       if (contractAddress) {
         getAuctionInfo(contractAddress, tokenId, version, externalBid)
-          .then(({ bid, nextMinBid, isSold, startsAt, endsAt, hasBid }) => {
+          .then(({ bid, nextMinBid, tokensLeft, startsAt, endsAt, hasBid }) => {
             if (!isMounted.current) {
               return;
             }
@@ -88,14 +89,15 @@ function NftCard({
               setLocalStartsAt(startsAt);
             if (endsAt && (!endsIn || endsAt > endsIn)) setEndsAt(endsAt);
             setCurrentBid({ bid, nextMinBid });
-            setIsSold(isSold);
+            setIsSold(!tokensLeft);
             setHasBid(hasBid);
           })
           .catch((error) => console.error(`NftCard ${error}`));
       }
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [contractAddress, tokenId]);
+    },
+    5000,
+    [contractAddress, tokenId],
+  );
 
   return (
     <Link href={`/auction/${index}`} passHref>
@@ -126,8 +128,13 @@ function NftCard({
               breakpoints={breakpoints}
             />
           </div>
-          <div className="p-10px">
-            <h3 className="font-rblack text-20px leading-[240%]">{name}</h3>
+          <div className="py-12px">
+            <h3
+              className="font-rblack text-20px leading-24px line-clamp-3 mb-12px"
+              title={name}
+            >
+              {name}
+            </h3>
             <div className="flex justify-between">
               {!isSold && isStarted && +currentBid.bid > 0 && (
                 <div>

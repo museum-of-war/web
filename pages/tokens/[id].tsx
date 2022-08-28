@@ -1,3 +1,4 @@
+import { TITLES } from '@sections/Constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import type { NextPage } from 'next';
@@ -14,6 +15,7 @@ import { useIsMounted } from '@hooks/useIsMounted';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import { groupBy } from '@sections/Tokens/Tokens';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
+import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 
 const rand_imgs: string[] = [
   '/img/dots-1.png',
@@ -81,6 +83,7 @@ const getImageSources = (event?: EventType | AuctionItemType) => {
 
 const TokenDetailPage: NextPage<SharedProps> = (props) => {
   const router = useRouter();
+  const url = useAbsoluteUrl();
   const id: string | undefined = router.query.id
     ? (router.query.id as string)
     : undefined;
@@ -236,7 +239,39 @@ const TokenDetailPage: NextPage<SharedProps> = (props) => {
 
   return (
     <div>
-      <PageHead title="My NFTs - Meta History: Museum of War" />
+      <PageHead
+        title={event ? getTitle(event) : 'Loading'}
+        subtitle={TITLES.TOKENS}
+        description={
+          event
+            ? `"${getTitle(event)}" created by ${
+                (event as EventType).ArtistName ??
+                (event as AuctionItemType).artist
+              }.\n${
+                (event as EventType).DescriptionEnglish ??
+                (event as AuctionItemType).descriptionEnglish
+              }`
+            : undefined
+        }
+        image={imageSources.originalSrc}
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'My NFTs',
+              item: url('/tokens'),
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: event ? getTitle(event) : 'Loading',
+            },
+          ],
+        }}
+      />
       {event ? (
         <NftDetails
           id={

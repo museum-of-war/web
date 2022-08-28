@@ -1,3 +1,4 @@
+import { TITLES } from '@sections/Constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
@@ -9,7 +10,7 @@ const Home: NextPage<SharedProps> = (props) => {
   return (
     <>
       <PageHead
-        title="Home"
+        title={TITLES.MAIN}
         description="Ukraine's NFT museum, supported by the Ministry of Digital Transformation. We created an NFT collection to preserve the memory of the events of the war & collect donations."
         data={{
           '@context': 'https://schema.org',
@@ -17,6 +18,7 @@ const Home: NextPage<SharedProps> = (props) => {
           url: url(),
           logo: url('/img/logo-icon.svg'),
         }}
+        canonical={'/'}
       />
       <AboutProject signerAddress={props.signerAddress} />
     </>

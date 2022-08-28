@@ -4,9 +4,11 @@ import {
   PROSPECT_100_ADDRESS,
   AVATARS_ADDRESS,
   KALUSH_ADDRESS,
+  REVIVAL_ADDRESS,
 } from '@sections/Constants';
 import { AuctionVersion } from '@museum-of-war/auction';
 import KalushAuctionData from '@sections/Auction/AuctionData/kalush';
+import FirstDropRemainingData from '@sections/Auction/AuctionData/drop1rest';
 
 const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
   {
@@ -36,6 +38,7 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
     },
     [AuctionCollection.AvatarsForUkraine]: {
       name: 'Avatars for Ukraine',
+      title: 'Avatars for Ukraine: charity NFT collection to help Ukraine',
       description:
         'Avatar - अवतार - ‘incarnation’.\n\n' +
         'Avatars for Ukraine is a charity NFT collection of the iconic digital art created in response to the largest war since WWII. The incarnations of the spirit of Ukraine in its fight for existence. The avatars for the free nation. Created by the top digital Ukrainian artists and produced by the video game hit makers, this collection is a historic event for the NFT. 100% of the proceeds will support the humanitarian and defence efforts of Ukraine. The official collection approved by the Ministry of Digital Transformation of Ukraine.',
@@ -50,6 +53,7 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
     },
     [AuctionCollection.Kalush]: {
       name: 'Stefania For Ukraine',
+      title: 'Kalush Orchestra auction: NFT Eurovision Glass Mic Trophy',
       headerImageSrc: '/img/auction/covers/kalush.png',
       logoSrc: '/img/auction/logos/kalush.png',
       posterSrc: '/img/auction/posters/kalush.png',
@@ -61,6 +65,31 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
       oneItemAuction: true,
       // Item for collection in case if this is collection with 1 item
       item: KalushAuctionData,
+    },
+    [AuctionCollection.RestOf1stDrop]: {
+      name: 'First Drop: Remaining Tokens',
+      description:
+        'Buy all remaining tokens of the first drop at a fixed price.',
+      headerImageSrc: '/img/auction/covers/drop1.png',
+      logoSrc: '/img/auction/logos/drop1.png',
+      contractAddress: FIRST_DROP_ADDRESS,
+      startsAt: new Date('2022-07-17T00:00:00.000+03:00'),
+      endsIn: new Date('2022-07-31T00:00:00.000+03:00'),
+      version: 'BatchSeller',
+      oneItemAuction: true,
+      item: FirstDropRemainingData,
+    },
+    [AuctionCollection.TheRevivalProject]: {
+      name: 'The Revival Project by Depositphotos',
+      description:
+        'Every day, dozens of cultural objects are being shelled in Ukraine, with numbers reaching over 450. Each destroyed museum, monument, or street is a valuable part of the country’s culture; they also play a crucial role in the lives of Ukrainians who call these places their home.\n\nTo help preserve and recover Ukraine’s culture, Depositphotos, an international content marketplace, collaborated with seven local artists to create a series of thematic NFT artworks for sale. Each illustration translates a unique, artistic vision of how some of the destroyed sites could look like in the future.\n\nAll NFT artworks are available for multiple purchases, with funds being directly transferred to the crypto wallet of the Ministry of Culture and Information Policy of Ukraine.\n\nBuy charity NFTs and make your contribution to Ukraine’s culture!',
+      headerImageSrc: '/img/auction/covers/revival.png',
+      logoSrc: '/img/auction/logos/revival.png',
+      posterSrc: '/img/auction/posters/revival.png',
+      contractAddress: REVIVAL_ADDRESS,
+      startsAt: new Date('2022-08-22T23:00:00.000+03:00'),
+      endsIn: new Date('2022-08-23T23:00:00.000+03:00'),
+      version: AuctionVersion.SellerV2,
     },
   };
 

@@ -1,3 +1,4 @@
+import { TITLES } from '@sections/Constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
 import PageHead from '@components/PageHead';
@@ -30,7 +31,7 @@ const WarlineItemPage: React.FC<WarlineItemProps> = ({ id }) => {
   );
 
   return event ? (
-    <WarlineItem event={event} allEvents={allEvents} />
+    <WarlineItem event={event} allEvents={allEvents} id={id} />
   ) : (
     <div>Event not found</div>
   );
@@ -46,7 +47,8 @@ const getTitle = (event: EventType) => `Day ${event.DayNo}, ${event.Time}`;
 const WarlineItem: React.FC<{
   event: EventType;
   allEvents: EventType[];
-}> = ({ event, allEvents }) => {
+  id: string;
+}> = ({ event, allEvents, id }) => {
   const url = useAbsoluteUrl();
 
   const imageSources = React.useMemo(() => {
@@ -88,11 +90,12 @@ const WarlineItem: React.FC<{
   return (
     <>
       <PageHead
-        title={`${title} - Warline`}
+        title={title}
+        subtitle={TITLES.WARLINE}
         description={`NFT of ${getTitle(event)} created by ${
           event.ArtistName
         }.\n${event.DescriptionEnglish}`}
-        image={url(imageSources.originalSrc)}
+        image={imageSources.originalSrc}
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
@@ -110,6 +113,7 @@ const WarlineItem: React.FC<{
             },
           ],
         }}
+        canonical={`/warline/${id}`}
       />
       <NftDetails
         id={event.Tokenid}
@@ -127,6 +131,9 @@ const WarlineItem: React.FC<{
         prevRecord={prevEventData}
         linkBack="/warline"
         linkBackText="Warline"
+        withBuyNowButton={event.IsOnSale}
+        withGetNowButton={event.IsWhitelisted}
+        warlineDrop={event.WarlineDrop}
       />
     </>
   );

@@ -11,13 +11,13 @@ const Team = () => {
     { name: 'Anastasiya Shyshenok', role: 'Identity' },
     { name: 'Alexander Yavorskyy', role: 'Voice' },
     { name: 'Serhii Revva', role: 'Experience' },
-    { name: 'Neonila Vodolska', role: 'Order' },
-    { name: 'Dima Muzychenko', role: 'Identity' },
     { name: 'Kateryna Dranova', role: 'Voice' },
-    { name: 'Rustam Abduvaliiev', role: 'Frontend' },
-    { name: 'Valeria Panina', role: 'Government Communications' },
     { name: 'Nick Zinchenko', role: 'Art Support' },
     { name: 'Alisa Fursa', role: 'Strategy' },
+    { name: 'Rustam Abduvaliiev', role: 'Frontend' },
+    { name: 'Elina Norden', role: 'Voice' },
+    { name: 'Liliana Kolodka', role: 'Project manager' },
+    { name: 'Oleksandra Shamonova', role: 'Project manager' },
   ];
 
   return (
@@ -26,7 +26,7 @@ const Team = () => {
         className="grid 
         desktop:grid-cols-4 desktop:gap-x-60px
         tablet:grid-cols-2 tablet:gap-x-40px
-        mobile:grid-cols-1 pb-50px"
+        mobile:grid-cols-1"
       >
         {mockTeam.map((teamData, idx) => (
           <div key={idx} className="pt-20px">

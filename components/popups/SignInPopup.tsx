@@ -9,11 +9,21 @@ import { openInNewTab } from '@sections/utils';
 type PropsPopup = {
   web3Modal: Web3Modal;
   onConnectionEstablished: (provider: any) => void;
+  onConnectionFailed: (reason: any) => void;
 };
 
-const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
+const SignInPopup = ({
+  web3Modal,
+  onConnectionEstablished,
+  onConnectionFailed,
+}: PropsPopup) => {
   const { hidePopup } = usePopup();
   const { isMobile } = useViewPort();
+
+  const rejectConnection = useCallback(() => {
+    hidePopup();
+    onConnectionFailed('User rejected connection');
+  }, [hidePopup, onConnectionFailed]);
 
   const connect = useCallback(
     async (provider: string) => {
@@ -21,10 +31,10 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
       try {
         onConnectionEstablished(await web3Modal.connectTo(provider));
       } catch (e) {
-        console.error(e);
+        onConnectionFailed(e);
       }
     },
-    [hidePopup, onConnectionEstablished, web3Modal],
+    [hidePopup, onConnectionEstablished, onConnectionFailed, web3Modal],
   );
 
   const handleMetaMask = useCallback(() => {
@@ -44,12 +54,12 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
   }, [connect]);
 
   return isMobile ? (
-    <div className="fixed z-10 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
+    <div className="fixed z-150 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
       <div className="z-20 bg-white absolute w-100% h-100% flex flex-col p-24px overflow-auto top-0">
         <div className="w-100% text-right">
           <button
             className="right-20px top-20px dark:text-carbon"
-            onClick={hidePopup}
+            onClick={rejectConnection}
           >
             <VscChromeClose size={25} />
           </button>
@@ -117,12 +127,12 @@ const SignInPopup = ({ web3Modal, onConnectionEstablished }: PropsPopup) => {
       </div>
     </div>
   ) : (
-    <div className="fixed z-10 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
+    <div className="fixed z-150 w-screen100% h-screen100% top-0 left-0 flex items-center justify-evenly">
       <div className="z-20 h-auto bg-white relative w-600px flex flex-row p-72px overflow-auto">
         <div>
           <button
             className="absolute right-20px top-20px dark:text-carbon"
-            onClick={hidePopup}
+            onClick={rejectConnection}
           >
             <VscChromeClose size={25} />
           </button>

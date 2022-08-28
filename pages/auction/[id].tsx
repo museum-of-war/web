@@ -1,4 +1,5 @@
 //import { AUCTION_START_DATE, AUCTION_END_DATE } from '@sections/Constants';
+import { TITLES } from '@sections/Constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
@@ -11,17 +12,17 @@ type AuctionItemProps = { id: string };
 const NftDetailPage: NextPage<SharedProps & AuctionItemProps> = ({ id }) => {
   const url = useAbsoluteUrl();
   const item = AuctionData[Number(id)];
-  const image = url(`/${item?.imageSrc || ''}`);
   return (
     <>
       <PageHead
-        title={`${item ? `${item.name} - ` : ''}Auction`}
+        title={item?.name ?? 'Auction item'}
+        subtitle={TITLES.AUCTION}
         description={
           item
             ? `NFT of ${item.name} created by ${item.artist}.\n${item.descriptionEnglish}`
             : ''
         }
-        image={image}
+        image={item?.imageSrc}
         data={[
           {
             '@context': 'https://schema.org',
@@ -59,6 +60,7 @@ const NftDetailPage: NextPage<SharedProps & AuctionItemProps> = ({ id }) => {
               },
           }*/, //TODO: uncomment for auctions
         ]}
+        canonical={`/auction/${id}`}
       />
       <NftDetail />
     </>

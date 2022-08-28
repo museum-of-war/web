@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { TITLES } from '@sections/Constants';
 import { SharedProps } from '@components/wrapper';
 import { useAppRouter } from '@hooks/useAppRouter';
 import PageHead from '@components/PageHead';
@@ -7,6 +8,7 @@ import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { EventType } from '@sections/types';
 import WarlineData from '@pages/collections/Warline/WarlineData';
 import dynamic from 'next/dynamic';
+
 const UpgradeYourNFT = dynamic(
   () => import('@sections/UpgradeYourNFT/UpgradeYourNFT'),
   {
@@ -32,7 +34,8 @@ const UpgradePage: NextPage<SharedProps> = ({ signerAddress }) => {
   return (
     <>
       <PageHead
-        title={`${title} - Upgrade Your NFT`}
+        title={title}
+        subtitle={TITLES.UPGRADE_YOUR_NFT}
         description={`NFT of ${getTitle(event)} created by ${
           event?.ArtistName
         }.\n${event?.DescriptionEnglish}`}

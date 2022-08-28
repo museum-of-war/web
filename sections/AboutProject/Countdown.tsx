@@ -1,36 +1,12 @@
 import React from 'react';
 import { useCountdown } from '@hooks/useCountdown';
-import {
-  atcb_action,
-  atcb_init,
-  ISO8601Date,
-  ISO8601Time,
-} from 'add-to-calendar-button';
+import { atcb_action, atcb_init } from 'add-to-calendar-button';
 
 type CountdownProp = {
   countDownDate: string;
 };
 
-type AddToCallendarEvent = {
-  name: string;
-  description: string;
-  startDate: ISO8601Date | 'today';
-  startTime: ISO8601Time;
-  endDate: string;
-  endTime: ISO8601Time;
-  timeZone: string;
-  options: (
-    | 'Apple'
-    | 'iCal'
-    | 'Microsoft365'
-    | 'Outlook.com'
-    | 'MicrosoftTeams'
-    | 'Yahoo'
-    | 'Google'
-  )[];
-  trigger: 'click';
-  iCalFileName: string;
-};
+type AddToCallendarEvent = Parameters<typeof atcb_action>[0];
 
 const Countdown = ({ countDownDate }: CountdownProp) => {
   let { days, hours, minutes, seconds, timerEnd } = useCountdown(countDownDate);
@@ -38,13 +14,13 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
 
   // set date and time according to ISO8601 !!!
   const event: AddToCallendarEvent = {
-    name: 'Avatars for Ukraine Auction',
+    name: 'Meta History: Museum of War - Chapter 3',
     description:
-      'Avatars for Ukraine Auction on [url]https://metahistory.gallery/auction/collection/avatars[/url]',
-    startDate: '2022-05-19',
-    startTime: '21:15:00',
-    endDate: '2022-05-22',
-    endTime: '22:00:00',
+      'Meta History Drop 3 on [url]https://metahistory.gallery/warline[/url]',
+    startDate: '2022-07-21',
+    startTime: '23:00:00',
+    endDate: '2022-07-28',
+    endTime: '23:00:00',
     timeZone: 'Europe/Kiev',
     options: [
       'Apple',
@@ -56,7 +32,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
       'Yahoo',
     ],
     trigger: 'click',
-    iCalFileName: 'Avatars for Ukraine Auction',
+    iCalFileName: 'Meta History: Museum of War - Chapter 3',
   };
 
   return !timerEnd ? (
@@ -65,7 +41,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
       <div className="flex mobile:my-16px tablet:my-0 tablet:flex-row desktop:items-center tablet:items-center mobile:flex-col mobile:items-start">
         <div className="flex desktop:items-center tablet:items-start desktop:flex-row mobile:flex-col">
           <div className="tablet:text-20px desktop:mr-24px tablet:leading-48px tablet:mb-0 mobile:mb-10px mobile:text-18px mobile:leading-20px font-rlight">
-            Avatars for Ukraine will be in:
+            Meta History Drop 3 will be in:
           </div>
           <div className="flex flex-row items-center tablet:my-7 mobile:my-0">
             <div className="flex desktop:flex-row mobile:flex-col desktop:items-center mobile:items-start">

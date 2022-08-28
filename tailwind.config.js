@@ -332,14 +332,8 @@ module.exports = {
         17: '17',
         18: '18',
         19: '19',
-      },
-      gridTemplateColumns: {
-        'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
-        'auto-fill': 'repeat(auto-fill, minmax(0, 1fr))',
-      },
-      gridTemplateRows: {
-        'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
-        'auto-fill': 'repeat(auto-fill, minmax(0, 1fr))',
+        100: '100',
+        150: '150',
       },
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
@@ -581,9 +575,6 @@ module.exports = {
       'screen71%': '71vh',
       'screen80%': '80vh',
       'screen90%': '90vh',
-      'screen100%': '100vh',
-      '10vw': '10vw',
-      '200px': '200px',
       'screen100%': '100vh',
       '10vw': '10vw',
       '200px': '200px',

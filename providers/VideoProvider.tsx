@@ -79,9 +79,7 @@ export const VideoProvider: React.FC<{ children: React.ReactNode }> = ({
           width="100%"
           height="auto"
           alt={name + ' Poster'}
-          className={`${
-            !!videoSrc ? 'cursor-pointer' : ''
-          } object-contain desktop:max-h-300px`}
+          className={`${!!videoSrc ? 'cursor-pointer' : ''} object-contain`}
           onClick={() => setModalOpen(!!videoSrc)}
         />
       ) : null}
@@ -115,6 +113,7 @@ export const VideoProvider: React.FC<{ children: React.ReactNode }> = ({
         ) : (
           <video
             src={videoData.videoSrc}
+            controls
             autoPlay
             style={{ aspectRatio: '16 / 9' }}
           />

@@ -1,6 +1,7 @@
 import { AuctionVersion } from '@museum-of-war/auction';
 import { BigNumberish } from 'ethers';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
+import { WarlineDrop } from '@sections/Warline/constants';
 
 export type IndexedNFT = {
   nft: Nft;
@@ -16,7 +17,6 @@ export type DayType = {
   dayNo: number;
   date: string;
   events: Array<EventType>;
-  isOnSale?: boolean;
 };
 
 export type EventType = {
@@ -34,6 +34,9 @@ export type EventType = {
   ArtistLink?: string | undefined;
   ImageType?: string;
   Editions?: number;
+  WarlineDrop: WarlineDrop;
+  IsOnSale?: boolean;
+  IsWhitelisted?: boolean;
 };
 
 export enum AuctionCollection {
@@ -41,10 +44,13 @@ export enum AuctionCollection {
   Prospect100 = 'Prospect100',
   AvatarsForUkraine = 'avatars',
   Kalush = 'kalush',
+  RestOf1stDrop = 'drop1rest',
+  TheRevivalProject = 'revival',
 }
 
 export type AuctionCollectionType = {
   name?: string;
+  title?: string;
   description?: string;
   logoSrc?: string;
   headerImageSrc: string;
@@ -53,7 +59,7 @@ export type AuctionCollectionType = {
   contractAddress: string;
   startsAt?: Date;
   endsIn: Date;
-  version: AuctionVersion;
+  version: AuctionVersion | 'BatchSeller';
   oneItemAuction?: boolean;
   item?: AuctionItemType;
 };
@@ -69,6 +75,9 @@ export type AuctionItemType = {
   descriptionEnglish?: string | JSX.Element;
   descriptionUkrainian?: string | JSX.Element;
   isSale: boolean;
+  editions?: number;
+  startsAt?: Date;
+  endsIn?: Date;
   videoSrc?: string;
   posterSrc?: string;
   bonuses?: string[];
@@ -99,4 +108,13 @@ export type ArtistType = {
   name: string;
   bio: string;
   avatarSrc?: string;
+};
+
+export type TransferInfoType = {
+  date: Date;
+  eth: string | number;
+  usd?: string | number;
+  from: string;
+  to: string;
+  hash: string;
 };

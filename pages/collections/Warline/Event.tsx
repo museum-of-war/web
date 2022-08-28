@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useViewPort } from '@hooks/useViewport';
 import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
@@ -7,6 +7,9 @@ import Link from 'next/link';
 import Button from '@components/Button';
 import ScaledImage from '@components/ScaledImage';
 import { BY_DAY } from './constants';
+import MintingModal from '@components/MintingModal';
+import { DropTokenIdOffsets } from '@sections/Warline/WarlineData';
+import { JOINLIST_LINK } from '@sections/Constants';
 
 type PropsEvent = {
   eventData: EventType;
@@ -16,7 +19,6 @@ type PropsEvent = {
   eventsData: EventType[];
   allEvents: Array<EventType>;
   view: string;
-  isOnSale: boolean | undefined;
 };
 
 const rand_imgs: string[] = [
@@ -30,8 +32,9 @@ const rand_imgs: string[] = [
   '/img/dots-8.png',
 ];
 
-const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
+const Event = ({ eventData, idx, view }: PropsEvent) => {
   const { isMobile, isTablet } = useViewPort();
+  const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
 
   const alt = useMemo(() => {
     return `Day ${eventData.DayNo}, ${eventData.Time}`;
@@ -47,6 +50,8 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
       : '#' + tokenId;
   };
   const shortView = useMemo(() => view === BY_DAY, [view]);
+  const isOnSale = useMemo(() => !!eventData.IsOnSale, [eventData]);
+  const isWhitelisted = useMemo(() => !!eventData.IsWhitelisted, [eventData]);
 
   const renderImage = (className: string) => {
     const randomSrc = rand_imgs[idx % 8] as string;
@@ -72,27 +77,51 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
                 },
               ]}
             />
-            {isOnSale && eventData.ImageType !== 'placeholder.png' && (
-              <div className="font-rblack cursor-pointer select-none absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
-                On Sale
-              </div>
-            )}
+            {(isOnSale || isWhitelisted) &&
+              eventData.ImageType !== 'placeholder.png' && (
+                <div className="font-rblack cursor-pointer select-none absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
+                  {isWhitelisted ? 'Whitelisted' : 'On Sale'}
+                </div>
+              )}
           </div>
         </a>
       </Link>
     );
   };
 
-  const renderLinkButton = (
-    auctionBtnCn: string = '',
-    linkBtnCn: string = '',
-  ): React.ReactElement => (
+  const renderBuyButton = (linkBtnCn: string = ''): React.ReactElement => (
     <div>
-      <Link href={`/warline/${eventData.Tokenid}`} passHref>
-        <a>
-          <Button mode="secondary" label="See Details" className={linkBtnCn} />
-        </a>
-      </Link>
+      <Button
+        mode="secondary"
+        label="Buy NFT"
+        className={linkBtnCn}
+        onClick={() => setOpenMintingModal(true)}
+      />
+      {openMintingModal ? (
+        <MintingModal
+          setOpenMintingModal={setOpenMintingModal}
+          drop={eventData.WarlineDrop}
+          tokenId={
+            +eventData.Tokenid -
+            (eventData.WarlineDrop
+              ? DropTokenIdOffsets[eventData.WarlineDrop]
+              : 0)
+          }
+        />
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+
+  const renderGetButton = (linkBtnCn: string = ''): React.ReactElement => (
+    <div>
+      <Button
+        mode="secondary"
+        label="Get NFT"
+        className={linkBtnCn}
+        onClick={() => openInNewTab(JOINLIST_LINK)}
+      />
     </div>
   );
 
@@ -177,7 +206,7 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
               <div className="flex flex-row items-center justify-between pt-15px">
                 {eventData.TwitterUsername?.length > 0 && (
                   <p
-                    className="font-rligh"
+                    className="font-rlight"
                     onClick={() => openInNewTab(eventData.TwitterUrl)}
                   >
                     @{eventData.TwitterUsername}
@@ -187,11 +216,29 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
             </>
           )}
         </div>
-        {!shortView &&
-          renderLinkButton(
-            'font-rnarrow  border-black border-y-4 py-5px w-100%',
-            'font-rblack',
-          )}
+        {!shortView && (
+          <div className="flex flex-row mt-24px items-center">
+            {isWhitelisted
+              ? renderGetButton('font-rblack')
+              : isOnSale
+              ? renderBuyButton('font-rblack')
+              : null}
+            <Link href={`/warline/${eventData.Tokenid}`} passHref>
+              <a>
+                <button
+                  className="mt-auto"
+                  onClick={() => {
+                    // openInNewTab(url);
+                  }}
+                >
+                  <p className="font-rblack ml-32px py-5px border-b-4 hover:border-carbon hover:border-b-4  hover:border-solid border-transparent">
+                    See details
+                  </p>
+                </button>
+              </a>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   ) : (
@@ -239,12 +286,27 @@ const Event = ({ eventData, idx, view, isOnSale }: PropsEvent) => {
           )}
         </div>
         {!shortView && (
-          <>
-            {renderLinkButton(
-              'font-rnarrow  border-black border-y-4 py-5px w-100%',
-              'font-rblack',
-            )}
-          </>
+          <div className="flex flex-row mt-24px items-center">
+            {isWhitelisted
+              ? renderGetButton('font-rblack')
+              : isOnSale
+              ? renderBuyButton('font-rblack')
+              : null}
+            <Link href={`/warline/${eventData.Tokenid}`} passHref>
+              <a>
+                <button
+                  className="mt-auto"
+                  onClick={() => {
+                    // openInNewTab(url);
+                  }}
+                >
+                  <p className="font-rblack ml-32px py-5px border-b-4 hover:border-carbon hover:border-b-4 hover:border-solid border-transparent">
+                    See details
+                  </p>
+                </button>
+              </a>
+            </Link>
+          </div>
         )}
       </div>
     </div>

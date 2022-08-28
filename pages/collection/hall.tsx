@@ -1,3 +1,4 @@
+import { TITLES } from '@sections/Constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import TheHall from '@pages/collections/TheHall/TheHall';
@@ -7,7 +8,7 @@ const TheHallPage: NextPage<SharedProps> = () => {
   return (
     <>
       <PageHead
-        title="The Hall of Fame"
+        title={TITLES.HALL}
         description="One-of-a-kind NFTs of public personalities who vocally support Ukraine. Our team - and our country wants to express gratitude for their contributions."
         data={{
           '@context': 'https://schema.org',
@@ -20,6 +21,7 @@ const TheHallPage: NextPage<SharedProps> = () => {
             },
           ],
         }}
+        canonical={'/hall'}
       />
       <TheHall />
     </>

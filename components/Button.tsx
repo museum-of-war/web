@@ -5,6 +5,7 @@ type ButtonProps = {
   mode: 'secondary' | 'primary' | 'custom';
   onClick?: () => void;
   location?: string;
+  openInNewWindow?: boolean;
   label?: string | React.ReactElement;
   className?: string;
   round?: boolean;
@@ -22,6 +23,7 @@ function Button({
   round = false,
   extraStyles,
   location,
+  openInNewWindow,
 }: ButtonProps) {
   const cn = useMemo(() => {
     if (mode === 'primary') {
@@ -64,7 +66,7 @@ function Button({
       style={extraStyles}
       disabled={disabled}
       type="button"
-      className={cn}
+      className={location ? 'h-100% w-100%' : cn}
       onClick={onClick}
     >
       {label}
@@ -73,7 +75,13 @@ function Button({
 
   return location ? (
     <Link href={location} passHref>
-      <a>{component}</a>
+      <a
+        target={openInNewWindow ? '_blank' : '_self'}
+        rel="noreferrer"
+        className={'text-center ' + cn}
+      >
+        {component}
+      </a>
     </Link>
   ) : (
     component
