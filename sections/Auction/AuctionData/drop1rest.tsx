@@ -1,4 +1,4 @@
-import { ORIGIN } from '@sections/Constants';
+import { ORIGIN } from '@sections/constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
 import React from 'react';
 

@@ -6,7 +6,7 @@ import { useAppRouter } from '@hooks/useAppRouter';
 import {
   WarlineDrop,
   UtorgCurrencies,
-} from '@pages/collections/Warline/constants';
+} from '../constants/collections/Warline/constants';
 
 type MintingModalProps = {
   setOpenMintingModal: (arg: boolean) => void;

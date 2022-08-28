@@ -4,7 +4,7 @@ import { useViewPort } from '@hooks/useViewport';
 import { EventType } from '@sections/types';
 import { VscChromeClose } from 'react-icons/vsc';
 import { openInNewTab } from '@sections/utils';
-import { getUrls } from '@pages/collections/Warline/WarlineUrls';
+import { getUrls } from '@utils/Warline/WarlineUrls';
 import { usePopup } from '@providers/PopupProvider';
 
 type PropsPopup = {

@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import Blurb from '@sections/AboutProject/Blurb';
 import { useViewPort } from '@hooks/useViewport';
-import { ITEMS } from '@pages/collections/IncredibleRooster/constants';
+import { ITEMS } from '../../../constants/collections/IncredibleRooster/constants';
 
 const IncredibleRooster = () => {
   const { isDesktop, isMobile, isTablet } = useViewPort();

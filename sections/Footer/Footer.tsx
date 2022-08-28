@@ -12,7 +12,7 @@ import {
   TELEGRAM_LINK,
   TWITTER_LINK,
   TWITTER_LINK_MOBILE,
-} from '@sections/Constants';
+} from '@sections/constants';
 
 const Footer = () => {
   const { isMobile, isTablet } = useViewPort();

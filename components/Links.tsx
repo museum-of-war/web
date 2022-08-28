@@ -6,7 +6,7 @@ import {
   TELEGRAM_LINK,
   TWITTER_LINK,
   TWITTER_LINK_MOBILE,
-} from '@sections/Constants';
+} from '@sections/constants';
 import { useViewPort } from '@hooks/useViewport';
 
 export const Links = () => {

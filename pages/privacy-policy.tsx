@@ -1,4 +1,4 @@
-import { TITLES } from '@sections/Constants';
+import { TITLES } from '@sections/constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import PrivacyPolicy from '@sections/PrivacyPolicy/PrivacyPolicy';

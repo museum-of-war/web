@@ -3,9 +3,9 @@ import {
   AUCTION_START_DATE,
   FIRST_DROP_ADDRESS,
   IMG_STORAGE,
-} from '@sections/Constants';
+} from '@sections/constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
-import WarlineData from '@pages/collections/Warline/WarlineData';
+import WarlineData from '../../../constants/collections/Warline';
 
 const FirstDropAuctionData: AuctionItemType[] = [
   ...WarlineData[0]!.events.slice(0, 4).map((event) => ({

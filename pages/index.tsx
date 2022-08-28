@@ -1,4 +1,4 @@
-import { TITLES } from '@sections/Constants';
+import { TITLES } from '@sections/constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
