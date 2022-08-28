@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
 import Blurb from '@sections/AboutProject/Blurb';
 import { useViewPort } from '@hooks/useViewport';
-import { ITEMS } from '../../../constants/collections/IncredibleRooster/constants';
+import Script from "next/script";
+import { ITEMS } from '@constants/collections/IncredibleRooster/constants';
 
 const IncredibleRooster = () => {
   const { isDesktop, isMobile, isTablet } = useViewPort();
@@ -34,6 +35,7 @@ const IncredibleRooster = () => {
 
   return (
     <div>
+      <Script src="https://viewer.marmoset.co/main/marmoset.js" />
       <div className="relative desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <Blurb
           header="Incredible Rooster"
