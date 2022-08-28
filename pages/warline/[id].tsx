@@ -1,10 +1,10 @@
-import { TITLES } from '@sections/Constants';
+import { TITLES } from '@sections/constants';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
 import PageHead from '@components/PageHead';
 import { EventType } from '@sections/types';
-import WarlineData from '@pages/collections/Warline/WarlineData';
-import { getUrls } from '@pages/collections/Warline/WarlineUrls';
+import WarlineData from '../../constants/collections/Warline';
+import { getUrls } from '@utils/Warline/WarlineUrls';
 import React from 'react';
 
 const rand_imgs: string[] = [

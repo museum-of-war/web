@@ -4,7 +4,7 @@ import {
   BAU_LINK,
   MINISTRY_DT_LINK,
   MINISTRY_CULTURE_LINK,
-} from '@sections/Constants';
+} from '@sections/constants';
 import { openInNewTab } from '@sections/utils';
 
 const ApprovedAndSupportedBy = () => {

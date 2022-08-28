@@ -1,4 +1,4 @@
-import { TITLES } from '@sections/Constants';
+import { TITLES } from '@sections/constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import type { NextPage } from 'next';
@@ -6,9 +6,9 @@ import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
-import WarlineData from '@pages/collections/Warline/WarlineData';
+import WarlineData from '../../constants/collections/Warline';
 import { AuctionItemType, EventType } from '@sections/types';
-import { getUrls } from '@pages/collections/Warline/WarlineUrls';
+import { getUrls } from '@utils/Warline/WarlineUrls';
 import { truncateAddress } from '@sections/utils';
 import AuctionData from '@sections/Auction/AuctionData';
 import { useIsMounted } from '@hooks/useIsMounted';

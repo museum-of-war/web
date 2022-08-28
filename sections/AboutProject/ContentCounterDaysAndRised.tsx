@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { WAR_START_DATE } from '@sections/Constants';
+import { WAR_START_DATE } from '@sections/constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 
 const ContentCounterDaysAndRised = () => {

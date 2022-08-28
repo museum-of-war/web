@@ -13,7 +13,7 @@ const Countdown = dynamic(() => import('./Countdown'), {
   ssr: false,
 });
 import AboutUs from '@sections/AboutProject/AboutUs';
-import { THIRD_DROP_DATE } from '@sections/Constants';
+import { THIRD_DROP_DATE } from '@sections/constants';
 import CryptoCirculation from '@sections/CryptoCirculation';
 
 type AboutProjectProps = {

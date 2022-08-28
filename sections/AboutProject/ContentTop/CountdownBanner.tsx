@@ -1,5 +1,5 @@
 import SupportButton from '@components/SupportButton';
-import DonatePopup from '@pages/collections/Warline/DonatePopup';
+import DonatePopup from '@components/collections/Warline/DonatePopup';
 import React, { useEffect, useState } from 'react';
 import { openInNewTab } from '@sections/utils';
 import Link from 'next/link';

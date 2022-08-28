@@ -5,7 +5,7 @@ import {
   AVATARS_ADDRESS,
   KALUSH_ADDRESS,
   REVIVAL_ADDRESS,
-} from '@sections/Constants';
+} from '@sections/constants';
 import { AuctionVersion } from '@museum-of-war/auction';
 import KalushAuctionData from '@sections/Auction/AuctionData/kalush';
 import FirstDropRemainingData from '@sections/Auction/AuctionData/drop1rest';
