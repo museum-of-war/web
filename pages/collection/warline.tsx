@@ -2,7 +2,7 @@ import { TITLES } from '@sections/constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import type { NextPage } from 'next';
-import Warline from '@pages/collections/Warline/Warline';
+import Warline from '@components/collections/Warline/Warline';
 
 const WarlinePage: NextPage<SharedProps> = () => (
   <>

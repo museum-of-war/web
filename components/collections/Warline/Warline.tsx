@@ -4,7 +4,7 @@ import DonatePopup from '@components/collections/Warline/DonatePopup';
 import SupportBanner from '@components/collections/Warline/SupportBanner';
 import { useViewPort } from '@hooks/useViewport';
 import { useIsMounted } from '@hooks/useIsMounted';
-import WarlineData from '../../../constants/collections/Warline';
+import WarlineData from '@constants/collections/Warline';
 import SideMenu from '@components/collections/Warline/SideMenu';
 import { DayType, EventType } from '@sections/types';
 import { PopupProvider } from '@providers/PopupProvider';
@@ -16,7 +16,7 @@ import {
   ALL_ARTS,
   ON_SALE,
   BY_NEWEST_BY_OLDEST_OPTIONS,
-} from '../../../constants/collections/Warline/constants';
+} from '@constants/collections/Warline/constants';
 import DropdownSelect from '@components/DropdownSelect';
 
 const SCROLL_BUFFER_DAYS = 2;
