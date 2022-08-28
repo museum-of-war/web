@@ -1,7 +1,7 @@
 import { AuctionVersion } from '@museum-of-war/auction';
 import { BigNumberish } from 'ethers';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
-import { WarlineDrop } from '@pages/collections/Warline/constants';
+import { WarlineDrop } from '../constants/collections/Warline/constants';
 
 export type IndexedNFT = {
   nft: Nft;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useViewPort } from '@hooks/useViewport';
-import { ScrollDesktop } from './ScrollDesktop';
+import { ScrollDesktop } from '@components/collections/TheHall/ScrollDesktop';
 import Blurb from '@sections/AboutProject/Blurb';
-import { ScrollTablet } from './ScrollTablet';
-import { ScrollMobile } from './ScrollMobile';
-import { data } from './data';
+import { ScrollTablet } from '@components/collections/TheHall/ScrollTablet';
+import { ScrollMobile } from '@components/collections/TheHall/ScrollMobile';
+import { data } from '@constants/collections/TheHall/data';
 
 const TheHall = () => {
   const { isMobile, isTablet } = useViewPort();

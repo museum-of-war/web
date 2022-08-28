@@ -29,10 +29,10 @@
       "@hooks/*": ["hooks/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"],
-      "@styles": ["styles"],
       "@store": ["store"],
       "@store/*": ["store/*"],
-      "@sections/*": ["sections/*"]
+      "@sections/*": ["sections/*"],
+      "@constants/*": ["constants/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_error.js"],

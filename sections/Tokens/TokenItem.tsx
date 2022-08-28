@@ -1,7 +1,7 @@
 import { AuctionItemType } from '@sections/types';
 import React, { useMemo, useState } from 'react';
-import { getUrls } from '@pages/collections/Warline/WarlineUrls';
-import WarlineData from '@pages/collections/Warline/WarlineData';
+import { getUrls } from '@utils/Warline/WarlineUrls';
+import WarlineData from '../../constants/collections/Warline';
 import AuctionData from '@sections/Auction/AuctionData';
 import ScaledImage from '@components/ScaledImage';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
