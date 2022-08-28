@@ -1,6 +1,6 @@
-import PageHead from '@components/PageHead';
-import { SharedProps } from '@components/wrapper';
-import IncredibleRooster from '@pages/collections/IncredibleRooster/IncredibleRooster';
+import PageHead from '../../../components/PageHead';
+import { SharedProps } from '../../../components/wrapper';
+import IncredibleRooster from '@pages/../../temp/pages/collections/IncredibleRooster/IncredibleRooster';
 import type { NextPage } from 'next';
 
 const IncredibleRoosterPage: NextPage<SharedProps> = () => {
