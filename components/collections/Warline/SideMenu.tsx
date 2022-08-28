@@ -8,7 +8,7 @@ import {
   BY_HOUR,
   BY_NEWEST_BY_OLDEST_OPTIONS,
   ON_SALE,
-} from './constants';
+} from '../../../constants/collections/Warline/constants';
 
 type SideMenuProps = {
   showSideMenu: boolean;

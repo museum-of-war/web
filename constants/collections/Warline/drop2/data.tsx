@@ -1,5 +1,5 @@
 import { DayType } from '@sections/types';
-import { WarlineDrop } from '@pages/collections/Warline/constants';
+import { WarlineDrop } from '../constants';
 
 export default [
   {

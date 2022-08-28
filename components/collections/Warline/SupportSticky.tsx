@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import SupportButton from '@components/SupportButton';
 import { useViewPort } from '@hooks/useViewport';
-import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
+import { MINT_LINK, OPENSEA_LINK } from '@sections/constants';
 import { openInNewTab } from '@sections/utils';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
-import { SECOND_DROP_DATE } from '@sections/Constants';
+import { SECOND_DROP_DATE } from '@sections/constants';
 import { useCountdown } from '@hooks/useCountdown';
 import MintingModal from '@components/MintingModal';
 import Button from '@components/Button';
@@ -29,8 +29,9 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
     setIsNFTDrop(isNFTDrop);
   };
 
-  // @ts-ignore
-  useEffect(() => getCanMint(), []);
+  useEffect(() => {
+    getCanMint();
+  }, [getCanMint]);
 
   const CTA = !isNFTDrop
     ? 'Support Ukraine while waiting for the drop'

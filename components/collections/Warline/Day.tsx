@@ -4,7 +4,7 @@ import { DayType, EventType } from '@sections/types';
 import Event from './Event';
 import { useViewPort } from '@hooks/useViewport';
 import DaysNavigation from './DaysNavigation';
-import { BY_DAY } from './constants';
+import { BY_DAY } from '../../../constants/collections/Warline/constants';
 
 type PropsDay = {
   dayData: DayType;

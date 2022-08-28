@@ -2,14 +2,14 @@ import React, { useMemo, useState } from 'react';
 import { useViewPort } from '@hooks/useViewport';
 import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
-import { getUrls } from './WarlineUrls';
+import { getUrls } from '@utils/Warline/WarlineUrls';
 import Link from 'next/link';
 import Button from '@components/Button';
 import ScaledImage from '@components/ScaledImage';
-import { BY_DAY } from './constants';
+import { BY_DAY } from '../../../constants/collections/Warline/constants';
 import MintingModal from '@components/MintingModal';
-import { DropTokenIdOffsets } from '@pages/collections/Warline/WarlineData';
-import { JOINLIST_LINK } from '@sections/Constants';
+import { DropTokenIdOffsets } from '../../../constants/collections/Warline';
+import { JOINLIST_LINK } from '@sections/constants';
 
 type PropsEvent = {
   eventData: EventType;

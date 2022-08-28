@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SupportButton from '@components/SupportButton';
-import { RELEASE_DATE } from '@sections/Constants';
+import { RELEASE_DATE } from '@sections/constants';
 
 type PropsSupportBanner = {
   setShowDonatePopup: (arg: boolean) => void;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkButton } from '@components/LinkButton';
 import { DayType } from '@sections/types';
-import { OLDEST } from './constants';
+import { OLDEST } from '../../../constants/collections/Warline/constants';
 
 type DaysNavigationProps = {
   onPrevDayClickHandler: () => void;
