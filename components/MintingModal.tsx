@@ -3,7 +3,10 @@ import Button from '@components/Button';
 import { VscChromeClose } from 'react-icons/vsc';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
-import { WarlineDrop, UtorgCurrencies } from '@sections/Warline/constants';
+import {
+  WarlineDrop,
+  UtorgCurrencies,
+} from '@pages/collections/Warline/constants';
 
 type MintingModalProps = {
   setOpenMintingModal: (arg: boolean) => void;

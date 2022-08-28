@@ -31,7 +31,11 @@ import {
 } from '@sections/Constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
-import { Drop1Data, Drop2Data } from '@pages/collections/Warline/WarlineData';
+import {
+  Drop1Data,
+  Drop2Data,
+  Drop3Data,
+} from '@pages/collections/Warline/WarlineData';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import AuctionData from '@sections/Auction/AuctionData';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';

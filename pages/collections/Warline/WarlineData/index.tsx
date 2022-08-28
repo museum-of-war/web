@@ -3,7 +3,7 @@ import { Drop1Data } from './drop1';
 import { Drop2Data } from './drop2';
 import { Drop3Data } from './drop3';
 import { Drop4Data } from './drop4';
-import { WarlineDrop } from '@sections/Warline/constants';
+import { WarlineDrop } from '@pages/collections/Warline/constants';
 
 const allDrops = [...Drop1Data, ...Drop2Data, ...Drop3Data, ...Drop4Data];
 
