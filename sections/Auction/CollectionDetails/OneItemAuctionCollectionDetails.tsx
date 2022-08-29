@@ -3,7 +3,7 @@ import MintingModal from '@components/MintingModal';
 import { AuctionCollectionType } from '@sections/types';
 import { Parallax } from 'react-parallax';
 import { useViewPort } from '@hooks/useViewport';
-import { CollectionLogo, NavBack } from './elements';
+import { RoundLogo, NavBack } from './elements';
 import NftCardDetail from '@sections/NftDetail/NftCardDetail';
 
 type OneItemAuctionProps = {
@@ -41,11 +41,11 @@ export const OneItemAuctionCollectionDetails: React.FC<OneItemAuctionProps> = ({
             marginTop: -60,
           }}
         >
-          <CollectionLogo size={120} src={collectionData.logoSrc} />
+          <RoundLogo size={120} src={collectionData.logoSrc} />
           <NavBack />
         </div>
         <div className="h-100px flex items-center desktop:hidden tablet:hidden relative">
-          <CollectionLogo size={80} src={collectionData.logoSrc} />
+          <RoundLogo size={80} src={collectionData.logoSrc} />
           <NavBack />
         </div>
         <p className="font-rblack mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase desktop:pt-60px tablet:pt-60px mobile:pt-0">

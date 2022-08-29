@@ -5,7 +5,7 @@ import { truncateAddress } from '@sections/utils';
 import { useAppRouter } from '@hooks/useAppRouter';
 import { useViewPort } from '@hooks/useViewport';
 import DropdownButton from '@components/DropdownButton';
-import { COLLECTIONS_OPTIONS } from '@sections/Header/constants';
+import { COLLECTIONS_OPTIONS, MORE_OPTIONS } from '@sections/Header/constants';
 
 type MenuMobileProps = {
   isDarkTheme: boolean;
@@ -78,14 +78,15 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
           underlined={route.split('/').includes('auction')}
           wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
         />
-        <HeaderAndFooterButton
-          label="About Us"
+        <DropdownButton
+          isDark={isDarkTheme}
+          label="More"
+          wrapperClassName="mr-32px"
+          options={MORE_OPTIONS}
           onClick={() => {
             setMenuOpen(false);
           }}
-          location="/about-us"
-          underlined={route === '/about-us'}
-          wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
+          menuItemWidth={200}
         />
         {signerAddress && (
           <HeaderAndFooterButton

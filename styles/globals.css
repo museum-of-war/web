@@ -214,3 +214,19 @@ body {
   left: 0!important;
   transform: none!important;
 }
+
+.search-input::-webkit-input-placeholder {
+  font-family: RockstarNarrowRegular;
+}
+
+.search-input:-ms-input-placeholder {
+  font-family: RockstarNarrowRegular;
+}
+
+.search-input:-moz-placeholder {
+  font-family: RockstarNarrowRegular;
+}
+
+.search-input::-moz-placeholder {
+  font-family: RockstarNarrowRegular;
+}
