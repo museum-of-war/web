@@ -1,9 +1,9 @@
 import React from 'react';
 import { useViewPort } from '@hooks/useViewport';
-import { ScrollDesktop } from '@components/collections/TheHall/ScrollDesktop';
+import { ScrollDesktop } from '@sections/Collections/TheHall/ScrollDesktop';
 import Blurb from '@sections/AboutProject/Blurb';
-import { ScrollTablet } from '@components/collections/TheHall/ScrollTablet';
-import { ScrollMobile } from '@components/collections/TheHall/ScrollMobile';
+import { ScrollTablet } from '@sections/Collections/TheHall/ScrollTablet';
+import { ScrollMobile } from '@sections/Collections/TheHall/ScrollMobile';
 import { data } from '@constants/collections/TheHall/data';
 
 const TheHall = () => {

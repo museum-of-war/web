@@ -6,9 +6,9 @@ import { getUrls } from '@utils/Warline/WarlineUrls';
 import Link from 'next/link';
 import Button from '@components/Button';
 import ScaledImage from '@components/ScaledImage';
-import { BY_DAY } from '../../../constants/collections/Warline/constants';
+import { BY_DAY } from '@constants/collections/Warline/constants';
 import MintingModal from '@components/MintingModal';
-import { DropTokenIdOffsets } from '../../../constants/collections/Warline';
+import { DropTokenIdOffsets } from '@constants/collections/Warline';
 import { JOINLIST_LINK } from '@sections/constants';
 
 type PropsEvent = {
