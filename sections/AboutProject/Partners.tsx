@@ -66,25 +66,25 @@ const Partners = () => {
       alt: 'NFT News Today',
     },
     {
-      src: 'img/partners/nevgamovni.png',
+      src: '/img/partners/nevgamovni.png',
       alt: 'Невгамовні',
     },
     {
-      src: 'img/partners/army_inform.png',
+      src: '/img/partners/army_inform.png',
       alt: 'АрміяInform',
     },
     /*
     {
-      src: 'img/partners/molfar.png',
+      src: '/img/partners/molfar.png',
       alt: 'Molfar',
     },
      */
     {
-      src: 'img/partners/lobby_x.png',
+      src: '/img/partners/lobby_x.png',
       alt: 'Lobby X',
     },
     {
-      src: 'img/partners/bitcoin_dot_com.png',
+      src: '/img/partners/bitcoin_dot_com.png',
       alt: 'Bitcoin.com',
     },
   ];
@@ -149,25 +149,25 @@ const Partners = () => {
       alt: 'NFT News Today',
     },
     {
-      src: 'img/partners/small/nevgamovni_small.png',
+      src: '/img/partners/small/nevgamovni_small.png',
       alt: 'Невгамовні',
     },
     {
-      src: 'img/partners/small/army_inform_small.png',
+      src: '/img/partners/small/army_inform_small.png',
       alt: 'АрміяInform',
     },
     /*
     {
-      src: 'img/partners/small/molfar_small.png',
+      src: '/img/partners/small/molfar_small.png',
       alt: 'Molfar',
     },
      */
     {
-      src: 'img/partners/small/lobby_x_small.png',
+      src: '/img/partners/small/lobby_x_small.png',
       alt: 'Lobby X',
     },
     {
-      src: 'img/partners/small/bitcoin_dot_com_small.png',
+      src: '/img/partners/small/bitcoin_dot_com_small.png',
       alt: 'Bitcoin.com',
     },
   ];
