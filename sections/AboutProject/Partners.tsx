@@ -83,6 +83,10 @@ const Partners = () => {
       src: 'img/partners/lobby_x.png',
       alt: 'Lobby X',
     },
+    {
+      src: 'img/partners/bitcoin_dot_com.png',
+      alt: 'Bitcoin.com',
+    },
   ];
 
   const partnersSmall = [
@@ -161,6 +165,10 @@ const Partners = () => {
     {
       src: 'img/partners/small/lobby_x_small.png',
       alt: 'Lobby X',
+    },
+    {
+      src: 'img/partners/small/bitcoin_dot_com_small.png',
+      alt: 'Bitcoin.com',
     },
   ];
 
