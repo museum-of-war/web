@@ -119,6 +119,7 @@ const Header = ({
                 label="Collections"
                 wrapperClassName="mr-32px"
                 options={COLLECTIONS_OPTIONS}
+                menuItemWidth={400}
               />
               <HeaderAndFooterButton
                 isDarkTheme={isDarkTheme}

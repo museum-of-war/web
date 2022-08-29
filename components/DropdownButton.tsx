@@ -16,6 +16,7 @@ type DropdownButtonProps = {
   label: string;
   wrapperClassName?: string;
   onClick?: () => void;
+  menuItemWidth: number;
 };
 
 function DropdownButton({
@@ -24,6 +25,7 @@ function DropdownButton({
   label,
   wrapperClassName = '',
   onClick,
+  menuItemWidth,
 }: DropdownButtonProps) {
   const [isOpen, setOpen] = useState<boolean>(false);
   const { route } = useAppRouter();
@@ -67,10 +69,11 @@ function DropdownButton({
             className={`${
               isMobile
                 ? ''
-                : 'origin-top-right z-10 top-40px absolute shadow-3xl w-400px py-12px'
+                : 'origin-top-right z-10 top-40px absolute shadow-3xl py-12px'
             } ${isMobile ? 'py-16px' : ''} ${
               isDark ? 'bg-dropdown' : 'bg-white'
             } w-full`}
+            style={{ width: isMobile ? undefined : menuItemWidth }}
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"

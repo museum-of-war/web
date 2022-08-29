@@ -67,6 +67,7 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
           onClick={() => {
             setMenuOpen(false);
           }}
+          menuItemWidth={400}
         />
         <HeaderAndFooterButton
           label="Auction"
