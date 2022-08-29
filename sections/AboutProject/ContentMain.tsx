@@ -47,12 +47,12 @@ const ContentMain = () => {
               <img
                 className="h-72px mr-auto tablet:block desktop:hidden"
                 alt="Dots"
-                src={'img/pd_horisontal_dots.svg'}
+                src={'/img/pd_horisontal_dots.svg'}
               />
               <img
                 className="mt-50px h-377px tablet:hidden desktop:block"
                 alt="Dots"
-                src={'img/vertical_dots.svg'}
+                src={'/img/vertical_dots.svg'}
               />
             </div>
           </div>

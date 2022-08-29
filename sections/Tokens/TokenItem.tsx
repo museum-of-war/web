@@ -1,7 +1,7 @@
 import { AuctionItemType } from '@sections/types';
 import React, { useMemo, useState } from 'react';
-import { getUrls } from '@sections/Warline/WarlineUrls';
-import WarlineData from '@sections/Warline/WarlineData';
+import { getUrls } from '@utils/Warline/WarlineUrls';
+import WarlineData from '../../constants/collections/Warline';
 import AuctionData from '@sections/Auction/AuctionData';
 import ScaledImage from '@components/ScaledImage';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
@@ -15,14 +15,14 @@ type TokenItemProps = {
 };
 
 const rand_imgs: string[] = [
-  'img/dots-1.png',
-  'img/dots-2.png',
-  'img/dots-3.png',
-  'img/dots-4.png',
-  'img/dots-5.png',
-  'img/dots-6.png',
-  'img/dots-7.png',
-  'img/dots-8.png',
+  '/img/dots-1.png',
+  '/img/dots-2.png',
+  '/img/dots-3.png',
+  '/img/dots-4.png',
+  '/img/dots-5.png',
+  '/img/dots-6.png',
+  '/img/dots-7.png',
+  '/img/dots-8.png',
 ];
 
 const TokenItem = ({ tokenData, index }: TokenItemProps) => {

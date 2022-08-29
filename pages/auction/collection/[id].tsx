@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TITLES } from '@sections/Constants';
+import { TITLES } from '@sections/constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { SharedProps } from '@components/wrapper';
 import { AuctionCollection } from '@sections/types';

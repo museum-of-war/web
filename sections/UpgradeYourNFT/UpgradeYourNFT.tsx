@@ -3,7 +3,7 @@ import { useAppRouter } from '@hooks/useAppRouter';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import UpgradeOption from './UpgradeOption';
 import { openInNewTab } from '@sections/utils';
-import { OPENSEA_LINK } from '@sections/Constants';
+import { OPENSEA_LINK } from '@sections/constants';
 import { useIsMounted } from '@hooks/useIsMounted';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
 import Link from 'next/link';

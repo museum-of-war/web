@@ -4,6 +4,8 @@ import Button from '@components/Button';
 import { truncateAddress } from '@sections/utils';
 import { useAppRouter } from '@hooks/useAppRouter';
 import { useViewPort } from '@hooks/useViewport';
+import DropdownButton from '@components/DropdownButton';
+import { COLLECTIONS_OPTIONS } from '@sections/Header/constants';
 
 type MenuMobileProps = {
   isDarkTheme: boolean;
@@ -44,7 +46,7 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
       <div
         className={`flex ${
           isTablet
-            ? 'flex-row flex-wrap justify-start items-center  h-60px'
+            ? 'flex-row flex-wrap justify-start items-center h-60px'
             : 'flex-col'
         }`}
       >
@@ -57,14 +59,15 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
           underlined={route === '/'}
           wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
         />
-        <HeaderAndFooterButton
-          label="Warline"
+        <DropdownButton
+          isDark={isDarkTheme}
+          label="Collections"
+          wrapperClassName="mr-32px"
+          options={COLLECTIONS_OPTIONS}
           onClick={() => {
             setMenuOpen(false);
           }}
-          location="/warline"
-          underlined={route === '/warline'}
-          wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
+          menuItemWidth={400}
         />
         <HeaderAndFooterButton
           label="Auction"
@@ -73,15 +76,6 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
           }}
           location="/auction"
           underlined={route.split('/').includes('auction')}
-          wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
-        />
-        <HeaderAndFooterButton
-          label="The Hall"
-          onClick={() => {
-            setMenuOpen(false);
-          }}
-          location="hall"
-          underlined={route === '/hall'}
           wrapperClassName={isMobile ? 'pb-32px' : 'mr-32px'}
         />
         <HeaderAndFooterButton

@@ -8,166 +8,166 @@ const Partners = () => {
 
   const partners = [
     {
-      src: 'img/partners/Logo_Ministry_Digital.png',
+      src: '/img/partners/Logo_Ministry_Digital.png',
       alt: 'Ministry of Digital Transformation',
     },
     {
-      src: 'img/partners/fair.png',
+      src: '/img/partners/fair.png',
       alt: 'FAIR',
     },
     {
-      src: 'img/partners/market_across.png',
+      src: '/img/partners/market_across.png',
       alt: 'MarketAcross',
     },
     {
-      src: 'img/partners/party_space.png',
+      src: '/img/partners/party_space.png',
       alt: 'Party.Space',
     },
     {
-      src: 'img/partners/hacken.png',
+      src: '/img/partners/hacken.png',
       alt: 'Hacken',
     },
     {
-      src: 'img/partners/kuna.png',
+      src: '/img/partners/kuna.png',
       alt: 'Kuna',
     },
     {
-      src: 'img/partners/blockchain_association.png',
+      src: '/img/partners/blockchain_association.png',
       alt: 'Blockchain Association',
     },
     {
-      src: 'img/partners/projector.png',
+      src: '/img/partners/projector.png',
       alt: 'Projector',
     },
     {
-      src: 'img/partners/disbalancer.png',
+      src: '/img/partners/disbalancer.png',
       alt: 'Disbalancer',
     },
     {
-      src: 'img/partners/financevote.png',
+      src: '/img/partners/financevote.png',
       alt: 'Finance.Vote',
     },
     {
-      src: 'img/partners/Logo_of_Ministry_of_Culture_of_Ukraine.png',
+      src: '/img/partners/Logo_of_Ministry_of_Culture_of_Ukraine.png',
       alt: 'Ministry of Culture of Ukraine',
     },
     /*
     {
-      src: 'img/partners/vector.png',
+      src: '/img/partners/vector.png',
       alt: 'Vector',
     },
     */
     {
-      src: 'img/partners/lliwell.png',
+      src: '/img/partners/lliwell.png',
       alt: 'LLIWELL',
     },
     {
-      src: 'img/partners/NFT_News_Today.png',
+      src: '/img/partners/NFT_News_Today.png',
       alt: 'NFT News Today',
     },
     {
-      src: 'img/partners/nevgamovni.png',
+      src: '/img/partners/nevgamovni.png',
       alt: 'Невгамовні',
     },
     {
-      src: 'img/partners/army_inform.png',
+      src: '/img/partners/army_inform.png',
       alt: 'АрміяInform',
     },
     /*
     {
-      src: 'img/partners/molfar.png',
+      src: '/img/partners/molfar.png',
       alt: 'Molfar',
     },
      */
     {
-      src: 'img/partners/lobby_x.png',
+      src: '/img/partners/lobby_x.png',
       alt: 'Lobby X',
     },
     {
-      src: 'img/partners/bitcoin_dot_com.png',
+      src: '/img/partners/bitcoin_dot_com.png',
       alt: 'Bitcoin.com',
     },
   ];
 
   const partnersSmall = [
     {
-      src: 'img/partners/small/Ministry_of_Digital_small.png',
+      src: '/img/partners/small/Ministry_of_Digital_small.png',
       alt: 'Ministry of Digital Transformation',
     },
     {
-      src: 'img/partners/small/fair_small.png',
+      src: '/img/partners/small/fair_small.png',
       alt: 'FAIR',
     },
     {
-      src: 'img/partners/small/market_across_small.png',
+      src: '/img/partners/small/market_across_small.png',
       alt: 'MarketAcross',
     },
     {
-      src: 'img/partners/small/party_space_small.png',
+      src: '/img/partners/small/party_space_small.png',
       alt: 'Party.Space',
     },
     {
-      src: 'img/partners/small/hacken_small.png',
+      src: '/img/partners/small/hacken_small.png',
       alt: 'Hacken',
     },
     {
-      src: 'img/partners/small/kuna_small.png',
+      src: '/img/partners/small/kuna_small.png',
       alt: 'Kuna',
     },
     {
-      src: 'img/partners/small/blockchain_association_small.png',
+      src: '/img/partners/small/blockchain_association_small.png',
       alt: 'Blockchain Association',
     },
     {
-      src: 'img/partners/small/projector_small.png',
+      src: '/img/partners/small/projector_small.png',
       alt: 'Projector',
     },
     {
-      src: 'img/partners/small/disbalancer_small.png',
+      src: '/img/partners/small/disbalancer_small.png',
       alt: 'Disbalancer',
     },
     {
-      src: 'img/partners/small/financevote_small.png',
+      src: '/img/partners/small/financevote_small.png',
       alt: 'Finance.Vote',
     },
     {
-      src: 'img/partners/small/Logo_of_Ministry_of_Culture_of_Ukraine_small.png',
+      src: '/img/partners/small/Logo_of_Ministry_of_Culture_of_Ukraine_small.png',
       alt: 'Ministry of Culture of Ukraine',
     },
     /*
     {
-      src: 'img/partners/small/vector_small.png',
+      src: '/img/partners/small/vector_small.png',
       alt: 'Vector',
     },
     */
     {
-      src: 'img/partners/small/lliwell_small.png',
+      src: '/img/partners/small/lliwell_small.png',
       alt: 'LLIWELL',
     },
     {
-      src: 'img/partners/small/NFT_News_Today_small.png',
+      src: '/img/partners/small/NFT_News_Today_small.png',
       alt: 'NFT News Today',
     },
     {
-      src: 'img/partners/small/nevgamovni_small.png',
+      src: '/img/partners/small/nevgamovni_small.png',
       alt: 'Невгамовні',
     },
     {
-      src: 'img/partners/small/army_inform_small.png',
+      src: '/img/partners/small/army_inform_small.png',
       alt: 'АрміяInform',
     },
     /*
     {
-      src: 'img/partners/small/molfar_small.png',
+      src: '/img/partners/small/molfar_small.png',
       alt: 'Molfar',
     },
      */
     {
-      src: 'img/partners/small/lobby_x_small.png',
+      src: '/img/partners/small/lobby_x_small.png',
       alt: 'Lobby X',
     },
     {
-      src: 'img/partners/small/bitcoin_dot_com_small.png',
+      src: '/img/partners/small/bitcoin_dot_com_small.png',
       alt: 'Bitcoin.com',
     },
   ];

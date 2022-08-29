@@ -5,7 +5,7 @@ import {
   INSTAGRAM_LINK,
   TELEGRAM_LINK,
   TWITTER_LINK,
-} from '@sections/Constants';
+} from '@sections/constants';
 import { useViewPort } from '@hooks/useViewport';
 
 const ShowMoreButton = ({

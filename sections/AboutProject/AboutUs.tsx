@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Blurb from '@sections/AboutProject/Blurb';
 import { useVideoModal } from '@providers/VideoProvider';
-import { IMG_STORAGE } from '@sections/Constants';
+import { IMG_STORAGE } from '@sections/constants';
 
 const AboutUs = () => {
   const { VideoElement } = useVideoModal();

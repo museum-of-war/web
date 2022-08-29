@@ -23,15 +23,16 @@
       "@components/*": ["components/*"],
       "@parameters/*": ["parameters/*"],
       "@parameters": ["parameters"],
+      "@pages/*": ["pages/*"],
       "@api": ["api"],
       "@api/*": ["api/*"],
       "@hooks/*": ["hooks/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"],
-      "@styles": ["styles"],
       "@store": ["store"],
       "@store/*": ["store/*"],
-      "@sections/*": ["sections/*"]
+      "@sections/*": ["sections/*"],
+      "@constants/*": ["constants/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_error.js"],

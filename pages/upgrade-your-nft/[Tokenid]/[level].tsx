@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
-import { TITLES } from '@sections/Constants';
+import { TITLES } from '@sections/constants';
 import { SharedProps } from '@components/wrapper';
 import { useAppRouter } from '@hooks/useAppRouter';
 import PageHead from '@components/PageHead';
 import React from 'react';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { EventType } from '@sections/types';
-import WarlineData from '@sections/Warline/WarlineData';
+import WarlineData from '../../../constants/collections/Warline';
 import dynamic from 'next/dynamic';
 
 const UpgradeYourNFT = dynamic(

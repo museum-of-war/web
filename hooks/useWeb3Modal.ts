@@ -28,10 +28,14 @@ import {
   SECOND_DROP_ADDRESS,
   THIRD_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
-} from '@sections/Constants';
+} from '@sections/constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
-import { Drop1Data, Drop2Data, Drop3Data } from '@sections/Warline/WarlineData';
+import {
+  Drop1Data,
+  Drop2Data,
+  Drop3Data,
+} from '../constants/collections/Warline';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import AuctionData from '@sections/Auction/AuctionData';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';

@@ -1,6 +1,6 @@
 import React from 'react';
 import ScaledImage from '@components/ScaledImage';
-import { IMG_STORAGE } from '@sections/Constants';
+import { IMG_STORAGE } from '@sections/constants';
 import Link from 'next/link';
 
 type ContentChapterProps = {};

@@ -1,4 +1,4 @@
-import { WarlineDrop } from '@sections/Warline/constants';
+import { WarlineDrop } from '../../constants/collections/Warline/constants';
 import { TransferInfoType } from '@sections/types';
 
 export const ACHIEVE_DATA = {

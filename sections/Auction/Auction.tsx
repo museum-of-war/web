@@ -10,7 +10,7 @@ import {
   AUCTION_END_DATE,
   MINT_LINK,
   OPENSEA_LINK,
-} from '@sections/Constants';
+} from '@sections/constants';
 import CountdownBanner from '@sections/AboutProject/ContentTop/CountdownBanner';
 import MintingModal from '@components/MintingModal';
 

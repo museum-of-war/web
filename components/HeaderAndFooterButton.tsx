@@ -24,7 +24,7 @@ const HeaderAndFooterButton = ({
   const content = (
     <div className={`${wrapperClassName}`}>
       <button
-        className={`mt-[4px] font-rblack mobile:text-16px tablet:text-16px desktop:text-16px ${
+        className={`mt-[4px] font-rblack mobile:text-16px tablet:text-16px desktop:text-16px h-[36px] ${
           underlined
             ? 'border-b-4 border-carbon dark:border-white'
             : 'border-b-4 border-transparent'

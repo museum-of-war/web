@@ -4,7 +4,7 @@ import { useViewPort } from '@hooks/useViewport';
 import { EventType } from '@sections/types';
 import { VscChromeClose } from 'react-icons/vsc';
 import { openInNewTab } from '@sections/utils';
-import { getUrls } from '@sections/Warline/WarlineUrls';
+import { getUrls } from '@utils/Warline/WarlineUrls';
 import { usePopup } from '@providers/PopupProvider';
 
 type PropsPopup = {
@@ -15,14 +15,14 @@ type PropsPopup = {
 };
 
 const rand_imgs = [
-  'img/dots-1.png',
-  'img/dots-2.png',
-  'img/dots-3.png',
-  'img/dots-4.png',
-  'img/dots-5.png',
-  'img/dots-6.png',
-  'img/dots-7.png',
-  'img/dots-8.png',
+  '/img/dots-1.png',
+  '/img/dots-2.png',
+  '/img/dots-3.png',
+  '/img/dots-4.png',
+  '/img/dots-5.png',
+  '/img/dots-6.png',
+  '/img/dots-7.png',
+  '/img/dots-8.png',
 ];
 
 const Popup = ({ eventData, dayNo, idx, allEvents }: PropsPopup) => {
@@ -58,7 +58,7 @@ const Popup = ({ eventData, dayNo, idx, allEvents }: PropsPopup) => {
   const renderPrevBtn = (className: string = '', imgClass: string = '') => (
     <div className={`z-20 ${className}`}>
       <button onClick={() => currIdx > 0 && setCurrIdx(currIdx - 1)}>
-        <img src={'img/modal-left.svg'} className={imgClass} />
+        <img src={'/img/modal-left.svg'} className={imgClass} />
       </button>
     </div>
   );
@@ -71,7 +71,7 @@ const Popup = ({ eventData, dayNo, idx, allEvents }: PropsPopup) => {
         }
       >
         <img
-          src={'img/modal-left.svg'}
+          src={'/img/modal-left.svg'}
           style={{ transform: ' scale(-1, 1)' }}
           className={imgClass}
         />
@@ -159,7 +159,7 @@ const Popup = ({ eventData, dayNo, idx, allEvents }: PropsPopup) => {
               >
                 <img
                   alt="Twitter"
-                  src={'img/warline-TwitterLogo.png'}
+                  src={'/img/warline-TwitterLogo.png'}
                   className="w-50px"
                 />
               </button>
@@ -227,7 +227,7 @@ const Popup = ({ eventData, dayNo, idx, allEvents }: PropsPopup) => {
               >
                 <img
                   alt="Twitter"
-                  src={'img/warline-TwitterLogo.png'}
+                  src={'/img/warline-TwitterLogo.png'}
                   className="w-50px"
                 />
               </button>

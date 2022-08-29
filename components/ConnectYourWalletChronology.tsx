@@ -34,7 +34,7 @@ const ConnectYourWalletChronology = ({
         </div>
       </div>
       <div className="block mt-2%">
-        <img alt="Dots" src={'img/pd-dots1.png'} />
+        <img alt="Dots" src={'/img/pd-dots1.png'} />
       </div>
     </div>
   ) : (
@@ -64,7 +64,7 @@ const ConnectYourWalletChronology = ({
         </div>
       </div>
       <div className="w-50% tablet:w-50% block m-auto mt-2%">
-        <img alt="Dots" src="img/pd-dots1.png" />
+        <img alt="Dots" src="/img/pd-dots1.png" />
       </div>
     </div>
   );

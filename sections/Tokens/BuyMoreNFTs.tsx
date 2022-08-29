@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '@dotlottie/player-component';
 import { openInNewTab } from '@sections/utils';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
-import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
+import { MINT_LINK, OPENSEA_LINK } from '@sections/constants';
 import MintingModal from '@components/MintingModal';
 
 const BuyMoreNFTs = () => {

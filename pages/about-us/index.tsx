@@ -1,5 +1,5 @@
 import React from 'react';
-import { TITLES } from '@sections/Constants';
+import { TITLES } from '@sections/constants';
 import AboutUsContent from '../../sections/AboutUs/AboutUs';
 import PageHead from '@components/PageHead';
 

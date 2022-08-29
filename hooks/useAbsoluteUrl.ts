@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { ORIGIN } from '@sections/Constants';
+import { ORIGIN } from '@sections/constants';
 
 export const useAbsoluteUrl = () => {
   const { basePath, locale } = useRouter();

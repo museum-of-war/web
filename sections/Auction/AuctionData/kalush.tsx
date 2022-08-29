@@ -1,4 +1,4 @@
-import { IMG_STORAGE } from '@sections/Constants';
+import { IMG_STORAGE } from '@sections/constants';
 import { AuctionCollection, AuctionItemType } from '@sections/types';
 import Button from '@components/Button';
 import React from 'react';

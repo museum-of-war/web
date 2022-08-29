@@ -4,7 +4,7 @@ import MintingModal from '@components/MintingModal';
 import DropNft from '@sections/Auction/DropNft';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { openInNewTab } from '@sections/utils';
-import { MINT_LINK, OPENSEA_LINK } from '@sections/Constants';
+import { MINT_LINK, OPENSEA_LINK } from '@sections/constants';
 import { useAppRouter } from '@hooks/useAppRouter';
 import { Dialog } from '@mui/material';
 import { AuctionCollection, AuctionCollectionType } from '@sections/types';

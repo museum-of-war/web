@@ -10,7 +10,7 @@ import { ACHIEVE_DATA } from '@sections/AboutUs/constants';
 import { useVideoModal } from '@providers/VideoProvider';
 import AuctionData from '@sections/Auction/AuctionData';
 import CryptoCirculation from '@sections/CryptoCirculation';
-import { IMG_STORAGE } from '@sections/Constants';
+import { IMG_STORAGE } from '@sections/constants';
 
 const CollapsedSection = () => {
   const { VideoElement } = useVideoModal();
