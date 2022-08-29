@@ -10,7 +10,8 @@ import { Dialog } from '@mui/material';
 import { AuctionCollection, AuctionCollectionType } from '@sections/types';
 import { Parallax } from 'react-parallax';
 import { useViewPort } from '@hooks/useViewport';
-import { RoundLogo, NavBack } from './elements';
+import { RoundLogo } from '../../elements';
+import { NavBack } from './elements';
 
 type CollectionDetailsPageProps = {
   menuOpen: boolean;

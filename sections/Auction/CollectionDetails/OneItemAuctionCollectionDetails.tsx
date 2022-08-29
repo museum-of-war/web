@@ -3,8 +3,9 @@ import MintingModal from '@components/MintingModal';
 import { AuctionCollectionType } from '@sections/types';
 import { Parallax } from 'react-parallax';
 import { useViewPort } from '@hooks/useViewport';
-import { RoundLogo, NavBack } from './elements';
+import { RoundLogo } from '../../elements';
 import NftCardDetail from '@sections/NftDetail/NftCardDetail';
+import { NavBack } from './elements';
 
 type OneItemAuctionProps = {
   menuOpen: boolean;
