@@ -20,7 +20,14 @@ const InfiniteLoop = ({
       <div
         className="flex-shrink-0 w-max flex flex-row items-center"
         style={{
+          WebkitAnimation: `carousel ${speed}s linear infinite`,
+          MozAnimation: `carousel ${speed}s linear infinite`,
+          OAnimation: `carousel ${speed}s linear infinite`,
           animation: `carousel ${speed}s linear infinite`,
+          // @ts-ignore
+          WebkitWillChange: 'translateX',
+          MozWillChange: 'translateX',
+          OWillChange: 'translateX',
           willChange: 'translateX',
         }}
       >
@@ -29,8 +36,19 @@ const InfiniteLoop = ({
       <div
         className="flex-shrink-0 w-max flex flex-row items-center"
         style={{
+          WebkitAnimationDelay: `${delay}s`,
+          MozAnimationDelay: `${delay}s`,
+          OAnimationDelay: `${delay}s`,
           animationDelay: `${delay}s`,
+          WebkitAnimation: `carousel ${speed}s linear infinite`,
+          MozAnimation: `carousel ${speed}s linear infinite`,
+          OAnimation: `carousel ${speed}s linear infinite`,
           animation: `carousel ${speed}s linear infinite`,
+          // @ts-ignore
+          WebkitWillChange: 'translateX',
+          MozWillChange: 'translateX',
+          OWillChange: 'translateX',
+          willChange: 'translateX',
         }}
       >
         {children}
