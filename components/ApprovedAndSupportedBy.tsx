@@ -32,7 +32,7 @@ const ApprovedAndSupportedBy = () => {
         <p className="basis-1/2 font-rnarrow tablet:text-16px mobile:text-14px tablet:leading-36px mobile:leading-20px mobile:whitespace-normal tablet:whitespace-nowrap">
           Supported by:
         </p>
-        <div className="flex flex-row tablet:gap-48px mobile:gap-20px items-center justify-start mobile:py-[3px] tablet:py-[6px]">
+        <div className="flex flex-row tablet:gap-48px tablet:w-100% mobile:gap-20px items-center justify-between mobile:py-[3px] tablet:py-[6px]">
           <button onClick={() => openInNewTab(MINISTRY_CULTURE_LINK)}>
             <img
               src={'img/partners/Logo_of_Ministry_of_Culture_of_Ukraine.svg'}
