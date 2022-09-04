@@ -11,6 +11,7 @@ const data = [
   { name: 'Michael Chobanian', url: 'https://kuna.family/' },
   { name: 'Sergii Vasylchuk', url: 'https://everstake.one/' },
   { name: 'Oleksandr Tkachenko', url: 'https://mkip.gov.ua/' },
+  { name: 'Taras Gorbul', url: 'https://superheroes.marketing/' },
 ];
 
 const Ambassadors = () => {
