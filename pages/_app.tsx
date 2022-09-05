@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactGA from 'react-ga4';
+import TagManager from 'react-gtm-module';
 import { AppWrapper } from '@components/wrapper';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
@@ -11,14 +12,31 @@ import '../styles/globals.css';
 
 ReactGA.initialize('G-D2QVC3VF6W');
 
+const tagManagerArgs = {
+  gtmId: 'GTM-PQ8HDNG',
+};
+
 function getTheme(route: string): 'light' | 'dark' {
   return route.split('/').includes('auction') ? 'dark' : 'light';
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { route } = useAppRouter();
+  const { route, events: routerEvents } = useAppRouter();
 
   const [theme, setTheme] = useState(() => getTheme(route));
+
+  useEffect(() => {
+    import('react-facebook-pixel')
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init('402511822022112');
+        ReactPixel.pageView();
+
+        routerEvents.on('routeChangeComplete', () => ReactPixel.pageView());
+      });
+  }, [routerEvents]);
+
+  useEffect(() => TagManager.initialize(tagManagerArgs), []);
 
   useEffect(() => {
     ReactGA.send({
