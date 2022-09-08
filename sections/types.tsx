@@ -110,6 +110,12 @@ export type ArtistType = {
   avatarSrc?: string;
 };
 
+export type AmbassadorType = {
+  name: string;
+  url: string;
+  info: string[];
+};
+
 export type TransferInfoType = {
   date: Date;
   eth: string | number;
