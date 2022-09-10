@@ -51,6 +51,8 @@ export const TITLES = {
   TOKENS: 'My NFTs',
   UPGRADE_YOUR_NFT: 'Upgrade Your NFT',
   HALL: 'The Hall of Fame: NFTs of public figures that stand for Ukraine',
+  ROOSTER:
+    'Incredible Rooster: NFT of Borodyanskiy rooster, recreated in the style of famous paintings',
   ABOUT: 'About us | Meta History Gallery',
   PRIVACY_POLICY: 'Privacy Policy',
   TERMS_AND_CONDITIONS: 'Terms and Conditions',

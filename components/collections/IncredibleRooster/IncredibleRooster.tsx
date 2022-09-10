@@ -1,11 +1,12 @@
-import React, { useEffect, useMemo } from 'react';
-import Blurb from '../../../../sections/AboutProject/Blurb';
-import { useViewPort } from '../../../../hooks/useViewport';
-import Script from "next/script";
-import { ITEMS } from '../../../../constants/collections/IncredibleRooster/constants';
+import React, { useEffect, useMemo, useState } from 'react';
+import Blurb from '@sections/AboutProject/Blurb';
+import { useViewPort } from '@hooks/useViewport';
+import Script from 'next/script';
+import { ITEMS } from '@constants/collections/IncredibleRooster/constants';
 
 const IncredibleRooster = () => {
   const { isDesktop, isMobile, isTablet } = useViewPort();
+  const [isMarmosetLoaded, setIsMarmosetLoaded] = useState(false);
 
   const playerParams = useMemo(() => {
     if (isDesktop) return { width: 644, height: 384 };
@@ -16,12 +17,15 @@ const IncredibleRooster = () => {
   }, [isDesktop, isMobile, isTablet]);
 
   useEffect(() => {
-    // @ts-ignore
-    window.marmoset.noUserInterface = true;
+    if (!isMarmosetLoaded) return;
+
+    const marmoset = (window as any)?.marmoset;
+    if (!marmoset) return;
+
+    marmoset.noUserInterface = true;
 
     ITEMS.forEach((item) => {
-      // @ts-ignore
-      const instance = new window.marmoset.WebViewer(0, 0, item.url);
+      const instance = new marmoset.WebViewer(0, 0, item.url);
 
       const node = document.getElementById(`player-container-${item.id}`);
 
@@ -31,11 +35,14 @@ const IncredibleRooster = () => {
 
       return instance;
     });
-  }, []);
+  }, [isMarmosetLoaded]);
 
   return (
     <div>
-      <Script src="https://viewer.marmoset.co/main/marmoset.js" />
+      <Script
+        src="https://viewer.marmoset.co/main/marmoset.js"
+        onLoad={() => setIsMarmosetLoaded(true)}
+      />
       <div className="relative desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <Blurb
           header="Incredible Rooster"
