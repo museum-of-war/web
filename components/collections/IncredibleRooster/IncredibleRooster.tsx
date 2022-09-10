@@ -1,48 +1,34 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect } from 'react';
+import { JavascriptViewer } from '@3dweb/360javascriptviewer';
 import Blurb from '@sections/AboutProject/Blurb';
 import { useViewPort } from '@hooks/useViewport';
-import Script from 'next/script';
 import { ITEMS } from '@constants/collections/IncredibleRooster/constants';
 
 const IncredibleRooster = () => {
   const { isDesktop, isMobile, isTablet } = useViewPort();
-  const [isMarmosetLoaded, setIsMarmosetLoaded] = useState(false);
-
-  const playerParams = useMemo(() => {
-    if (isDesktop) return { width: 644, height: 384 };
-    if (isTablet) return { width: 624, height: 360 };
-    if (isMobile) return { width: 272, height: 260 };
-
-    return { width: 0, height: 0 };
-  }, [isDesktop, isMobile, isTablet]);
 
   useEffect(() => {
-    if (!isMarmosetLoaded) return;
-
-    const marmoset = (window as any)?.marmoset;
-    if (!marmoset) return;
-
-    marmoset.noUserInterface = true;
-
     ITEMS.forEach((item) => {
-      const instance = new marmoset.WebViewer(0, 0, item.url);
+      const viewer = new JavascriptViewer({
+        mainHolderId: `jsv-holder-${item.id}`,
+        mainImageId: `jsv-image-${item.id}`,
+        totalFrames: 360,
+        speed: 120,
+        defaultProgressBar: true,
+        mainImageUrl: `${item.url}/0001.jpg`,
+        imageUrlFormat: `${item.url}/xxxx.jpg`,
+        autoRotate: 7200,
+        autoRotateSpeed: 30,
+      });
 
-      const node = document.getElementById(`player-container-${item.id}`);
+      viewer.start();
 
-      if (node && !node.children.length) {
-        node.appendChild(instance.domRoot);
-      }
-
-      return instance;
+      return viewer;
     });
-  }, [isMarmosetLoaded]);
+  }, []);
 
   return (
     <div>
-      <Script
-        src="https://viewer.marmoset.co/main/marmoset.js"
-        onLoad={() => setIsMarmosetLoaded(true)}
-      />
       <div className="relative desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <Blurb
           header="Incredible Rooster"
@@ -89,16 +75,13 @@ NFT-версії півня, відтворені в стилі відомих �
               style={{ background: 'white' }}
             >
               <div className="flex desktop:flex-row tablet:flex-col mobile:flex-col">
-                <div
-                  style={{
-                    width: playerParams.width,
-                    height: playerParams.height,
-                    minWidth: isDesktop ? 0 : '100%',
-                    minHeight: isDesktop ? 0 : '100%',
-                  }}
-                  className="player-container "
-                  id={`player-container-${item.id}`}
-                />
+                <div id={`jsv-holder-${item.id}`} className="player-container">
+                  <img
+                    id={`jsv-image-${item.id}`}
+                    alt="example"
+                    src={`${item.url}/0001.jpg`}
+                  />
+                </div>
                 <div className="desktop:w-[344px] tablet:w-full mobile:w-full desktop:pl-[48px] desktop:pt-[48px] tablet:pl-[48px] tablet:pt-[24px] mobile:pl-[24px] mobile:pt-[20px]">
                   <div className="font-rblack desktop:text-[20px] desktop:leading-[24px] tablet:text-[20px] tablet:leading-[24px] mobile:text-[27px] mobile:leading-[30px]">
                     {item.museum}

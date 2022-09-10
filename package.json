@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@3dweb/360javascriptviewer": "^1.8.17",
     "@alch/alchemy-web3": "^1.4.0",
     "@coinbase/wallet-sdk": "^3.3.0",
     "@dotlottie/player-component": "^1.1.0",
