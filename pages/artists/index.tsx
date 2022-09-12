@@ -1,14 +1,14 @@
 import { TITLES } from '@sections/constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
-import { Artists } from '@components/artists/Artists';
+import { Artists } from '@sections/Artists/Artists';
 import type { NextPage } from 'next';
 
 const ArtistsPage: NextPage<SharedProps> = () => {
   return (
     <>
       <PageHead
-        title={TITLES.HALL}
+        title={TITLES.ARTISTS}
         description="todo @current"
         data={{
           '@context': 'https://schema.org',

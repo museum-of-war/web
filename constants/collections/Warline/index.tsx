@@ -5,7 +5,12 @@ import { Drop3Data } from './drop3';
 import { Drop4Data } from './drop4';
 import { WarlineDrop } from './constants';
 
-const allDrops = [...Drop1Data, ...Drop2Data, ...Drop3Data, ...Drop4Data];
+export const ALL_DROPS = [
+  ...Drop1Data,
+  ...Drop2Data,
+  ...Drop3Data,
+  ...Drop4Data,
+];
 
 const Drops = {
   [WarlineDrop.Drop1]: Drop1Data,
@@ -20,7 +25,7 @@ const DropTokenIdOffsets = Object.keys(Drops).reduce((offsets, drop) => {
   return offsets;
 }, {} as Record<WarlineDrop, number>) as Readonly<Record<WarlineDrop, number>>;
 
-const groupedDropsByDay = allDrops.reduce((group, day) => {
+const groupedDropsByDay = ALL_DROPS.reduce((group, day) => {
   const { dayNo } = day;
   const arr = group[dayNo] ?? [];
   arr.push(day);
