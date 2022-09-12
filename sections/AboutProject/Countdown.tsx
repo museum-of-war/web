@@ -16,7 +16,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
   const event: AddToCallendarEvent = {
     name: 'Meta History: Museum of War - Chapter 3',
     description:
-      'Meta History Drop 3 on [url]https://metahistory.gallery/warline[/url]',
+      'Meta History Drop 3 on [url]https://metahistory.gallery/collection/warline[/url]',
     startDate: '2022-07-21',
     startTime: '23:00:00',
     endDate: '2022-07-28',

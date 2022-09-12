@@ -104,7 +104,7 @@ const WarlineItem: React.FC<{
               '@type': 'ListItem',
               position: 1,
               name: 'Warline',
-              item: url('/warline'),
+              item: url('/collection/warline'),
             },
             {
               '@type': 'ListItem',
@@ -129,7 +129,7 @@ const WarlineItem: React.FC<{
         imageSources={imageSources}
         nextRecord={nextEventData}
         prevRecord={prevEventData}
-        linkBack="/warline"
+        linkBack="/collection/warline"
         linkBackText="Warline"
         withBuyNowButton={event.IsOnSale}
         withGetNowButton={event.IsWhitelisted}

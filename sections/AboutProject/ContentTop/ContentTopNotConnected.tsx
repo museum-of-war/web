@@ -38,7 +38,7 @@ const ContentTopNotConnected = () => {
             isTablet ? 'mt-36px mb-48px' : isMobile ? 'mt-30px mb-40px' : ''
           } desktop:flex-row tablet:flex-row mobile:flex-col`}
         >
-          <Link href="/warline">
+          <Link href="/collection/warline">
             <a>
               <Button
                 mode="primary"

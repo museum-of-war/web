@@ -11,4 +11,12 @@ export const data: HallItemType[] = [
     TweetText:
       'Starlink service is now active in Ukraine. More terminals en route.',
   },
+  {
+    Id: 2,
+    TwitterUrl: 'https://twitter.com/unchainfund/status/1497380711288152067',
+    ImageSrc: `${IMG_STORAGE}/original/hall/vitalik_buterin.png`,
+    TwitterUsername: 'VitalikButerin',
+    TwitterAccountName: 'Vitalik Buterin',
+    TweetText: '',
+  },
 ];

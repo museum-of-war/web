@@ -13,7 +13,7 @@ const TheHall = () => {
     <div className="the-hall-wrapper">
       <Blurb
         header="The hall"
-        english={`This is not just a war between two countries. This is a war against humanity, against the light. The whole world — and these amazing individuals, in part — unprecedentedly united in this battle. The Hall is a collection of NFT art that was created in gratitude for public figures that stand for Ukraine (and can be claimed only by them.) It's the least how we can say "thank you".`}
+        english="This is not just a war between two countries. This is a war against humanity, against the light. The whole world — and these amazing individuals, in part — unprecedentedly united in this battle. The Hall is a collection of NFT art that was created in gratitude for public figures that stand for Ukraine (and can be claimed only by them.) It's the least we can do to thank them."
         ukrainian="Це не просто війна однієї країни проти іншої. Це війна проти людства, проти світла. Весь світ — і, зокрема, ці неймовірні особистості — безпрецедентно об’єдналися в цій битві. The Hall — це колекція NFT-експонатів, створених на знак подяки громадським діячам, які виступають за Україну. Це найменше, як ми можемо сказати «дякуємо». Музей готовий передати NFT їх власникам за першою вимогою!"
       />
       {isMobile ? (

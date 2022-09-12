@@ -8,7 +8,7 @@ type ContentChapterProps = {};
 const ContentChapter = ({}: ContentChapterProps) => (
   <div className="flex justify-between desktop:mb-120px tablet:mb-100px mobile:mb-60px desktop:flex-row tablet:flex-row mobile:flex-col">
     <div className="desktop:w-[544px] tablet:w-45% mobile:w-full flex">
-      <Link href="/warline" passHref>
+      <Link href="/collection/warline" passHref>
         <a>
           <div className="hover:cursor-pointer ">
             <div className="border-4 border-carbon border-solid flex-1 flex flex-col text-carbon h-full">
