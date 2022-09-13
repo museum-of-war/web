@@ -87,6 +87,10 @@ const Partners = () => {
       src: '/img/partners/bitcoin_dot_com.png',
       alt: 'Bitcoin.com',
     },
+    {
+      src: '/img/partners/School_of_Visual_Communication.png',
+      alt: 'School of Visual Communication',
+    },
   ];
 
   const partnersSmall = [
@@ -169,6 +173,10 @@ const Partners = () => {
     {
       src: '/img/partners/small/bitcoin_dot_com_small.png',
       alt: 'Bitcoin.com',
+    },
+    {
+      src: '/img/partners/small/School_of_Visual_Communication_small.png',
+      alt: 'School of Visual Communication',
     },
   ];
 
