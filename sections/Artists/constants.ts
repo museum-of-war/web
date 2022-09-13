@@ -1,6 +1,6 @@
-import { ALL_DROPS } from '@constants/collections/Warline';
+import { AllDropsData } from '@constants/collections/Warline';
 
-const DROP_EVENTS = ALL_DROPS.map((drop) => drop.events).flat();
+const DROP_EVENTS = AllDropsData.flatMap((drop) => drop.events);
 export const ARTISTS = [
   {
     name: 'Danya Shulipa',
@@ -452,7 +452,7 @@ I draw minimalistic illustrations for the soul and business.`,
   {
     name: 'Anya Kislaya',
     avatar: 'Anya Kislaya.jpg',
-    descriptionUa: `
+    descriptionEn: `
 Born in Kherson, Ukraine, Anya Kislaya obtained Master’s degree in Fine Arts. After working at State University of Kherson she left for Kyiv to become an illustrator at game production company.  Before the full-scale invasion, she lived in Kherson
 Since 2009 she takes active part in exhibitions and group projects as well as workshops and art residences. In her creative work she appeals to the role of women in society, their limitations of freedom and rights as well as the conception of “beauty"". Anya works with graphics, painting, installation, photography and video.
 
@@ -461,7 +461,7 @@ MFA diploma with distinction in Fine Arts, Kherson State University, Kherson, Uk
 Academic Lyceum of Kherson State University. Major: Fine Arts. 2003 – 200
 
 TRAINING
-Participation in student program of exchange  in order to get new knowledge in the academy Jan Dlugasha, Department of Fine Art, Czestochowa, Poland\t\t\t\t\t\t\t\t\t\t\t\t  
+Participation in student program of exchange  in order to get new knowledge in the academy Jan Dlugasha, Department of Fine Art, Czestochowa, Poland  
 
 OTHER EXPERIENCE
 Exhibitions
@@ -498,7 +498,7 @@ Exhibition, National Union of Artists, Students Spring, (Kherson, Ukraine) Sprin
 Exhibition, Festival visual art Sunflowers, Art Gallery Blue cat, (Kherson, Ukraine) Spring 2009
 Exhibition, Festival Young Artists Creative suitcase, Exhibition Hall of House culture, (Rivne, Ukraine) Autumn 2008"
 `,
-    descriptionEn: `
+    descriptionUa: `
 Анья Кисла народилася в Херсоні, Україна. Отримала ступінь магістра образотворчого мистецтва. Після роботи в Херсонському державному університеті поїхала до Києва, щоб стати ілюстратором у компанії з виробництва ігор. До повномасштабного вторгнення проживала в Херсоні
 З 2009 року бере активну участь у виставках і групових проектах, а також майстер-класах і арт-резиденціях. У своїй творчості вона звертається до ролі жінки в суспільстві, обмеження її свободи та прав, а також до поняття «краса». Аня працює з графікою, живописом, інсталяцією, фотографією та відео. До повномасштабного вторгнення проживала в Херсоні`,
     id: 36,

@@ -3,14 +3,24 @@ import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import { ArtistPage } from '@sections/Artist/Artist';
 import type { NextPage } from 'next';
+import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
+import { ARTISTS } from '@sections/Artists/constants';
 
-const Component: NextPage<SharedProps> = ({ menuOpen }) => {
-  console.log(menuOpen);
+type ArtistPageProps = { id: string };
+
+const CurrentArtistPage: NextPage<SharedProps & ArtistPageProps> = ({
+  menuOpen,
+  id,
+}) => {
+  const url = useAbsoluteUrl();
+  const artist = ARTISTS.find((artist) => artist.id === +id);
+
   return (
     <>
       <PageHead
-        title={TITLES.ARTISTS}
-        description="todo @current"
+        title={artist?.name ?? 'Unknown'}
+        subtitle={TITLES.ARTISTS}
+        description={artist?.descriptionEn}
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
@@ -18,15 +28,34 @@ const Component: NextPage<SharedProps> = ({ menuOpen }) => {
             {
               '@type': 'ListItem',
               position: 1,
-              name: 'todo @current',
+              name: 'Artists',
+              item: url('/artists'),
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: artist?.name ?? 'Unknown',
             },
           ],
         }}
         canonical={'/artists'}
       />
-      <ArtistPage menuOpen={menuOpen} />
+      <ArtistPage menuOpen={menuOpen} id={id} />
     </>
   );
 };
 
-export default Component;
+export default CurrentArtistPage;
+
+export function getStaticProps({ params }: { params: ArtistPageProps }) {
+  return { props: params };
+}
+
+export function getStaticPaths() {
+  return {
+    paths: ARTISTS.map((artist) => ({
+      params: { id: artist.id.toString() },
+    })),
+    fallback: false,
+  };
+}

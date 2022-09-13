@@ -4,18 +4,18 @@ import { useViewPort } from '@hooks/useViewport';
 import { RoundLogo } from '@sections/elements';
 import Blurb from '@sections/AboutProject/Blurb';
 import { NavBack } from './elements';
-import { useAppRouter } from '@hooks/useAppRouter';
 import { ARTISTS_WITH_ARTS } from '@sections/Artists/constants';
 import { IMG_STORAGE } from '@sections/constants';
+import Link from 'next/link';
+import ScaledImage from '@components/ScaledImage';
+import { getImageSources } from '@utils/Warline/WarlineUrls';
 
 type ArtistPageProps = {
   menuOpen: boolean;
+  id: string;
 };
-export const ArtistPage: React.FC<ArtistPageProps> = ({ menuOpen }) => {
+export const ArtistPage: React.FC<ArtistPageProps> = ({ menuOpen, id }) => {
   const { isMobile } = useViewPort();
-  const {
-    query: { id },
-  } = useAppRouter();
   const artist = ARTISTS_WITH_ARTS.find((artist) => artist.id === +(id || 0));
 
   if (!artist || !artist.arts[0]) {
@@ -81,6 +81,53 @@ export const ArtistPage: React.FC<ArtistPageProps> = ({ menuOpen }) => {
         <div className="desktop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-row mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
           {/*<p className="whitespace-pre-wrap pt-10 desktop:w-65% tablet:w-65% mobile:w-100% mobile:mb-6% desktop:pr-48px tablet:pr-48px mobile:pr-0">*/}
           {/*</p>*/}
+          {artist.arts.map((art) => {
+            const title = `Day ${art.DayNo}, ${art.Time}`;
+            const imageSources = getImageSources(art);
+            //TODO: fix styles
+            return (
+              <Link key={art.Tokenid} href={`/warline/${art.Tokenid}`} passHref>
+                <a>
+                  <div role="button">
+                    <ScaledImage
+                      alt={title}
+                      title={title}
+                      src={
+                        imageSources.isAnimation
+                          ? imageSources.previewSrc
+                          : imageSources.originalSrc
+                      }
+                      postLoad={
+                        imageSources.isAnimation
+                          ? imageSources.animationSrc
+                          : false
+                      }
+                      className="cursor-pointer object-contain aspect-square transition-transform hover:scale-[101%]"
+                      containerClassName="flex-1"
+                      breakpoints={[
+                        {
+                          lowerBound: 'tablet',
+                          ratio: 0.5,
+                        },
+                        {
+                          lowerBound: 'desktop',
+                          ratio: 0.25,
+                        },
+                      ]}
+                    />
+                    <div className="h-[44px] flex items-center">
+                      <span
+                        className="font-rblack text-[14px] ml-[8px] h-full leading-[44px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width] line-clamp-1"
+                        title={title}
+                      >
+                        {title}
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

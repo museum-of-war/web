@@ -9,7 +9,7 @@ const ArtistsPage: NextPage<SharedProps> = () => {
     <>
       <PageHead
         title={TITLES.ARTISTS}
-        description="todo @current"
+        description="Check out the artists who have created works included in the Meta History collections."
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',

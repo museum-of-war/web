@@ -4,19 +4,8 @@ import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
 import PageHead from '@components/PageHead';
 import { EventType } from '@sections/types';
 import WarlineData from '../../constants/collections/Warline';
-import { getUrls } from '@utils/Warline/WarlineUrls';
+import { getImageSources } from '@utils/Warline/WarlineUrls';
 import React from 'react';
-
-const rand_imgs: string[] = [
-  '/img/dots-1.png',
-  '/img/dots-2.png',
-  '/img/dots-3.png',
-  '/img/dots-4.png',
-  '/img/dots-5.png',
-  '/img/dots-6.png',
-  '/img/dots-7.png',
-  '/img/dots-8.png',
-];
 
 type WarlineItemProps = { id: string };
 
@@ -35,11 +24,6 @@ const WarlineItemPage: React.FC<WarlineItemProps> = ({ id }) => {
   ) : (
     <div>Event not found</div>
   );
-};
-
-const getImageSources = (event: EventType) => {
-  const randomSrc = rand_imgs[parseInt(event.Tokenid, 10) % 8] as string;
-  return getUrls(event.Tokenid, event.ImageType, randomSrc as string);
 };
 
 const getTitle = (event: EventType) => `Day ${event.DayNo}, ${event.Time}`;
