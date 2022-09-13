@@ -10,6 +10,8 @@ const IncredibleRooster = () => {
   useEffect(() => {
     ITEMS.forEach((item) => {
       const viewer = new JavascriptViewer({
+        extraImageClass:
+          'desktop:w-[692px] desktop:h-[692px] tablet:w-[624px] tablet:h-[624px] mobile:w-[272px] mobile:h-[272px]',
         mainHolderId: `jsv-holder-${item.id}`,
         mainImageId: `jsv-image-${item.id}`,
         totalFrames: 360,
@@ -42,9 +44,9 @@ NFT-версії півня, відтворені в стилі відомих �
       </div>
       {isTablet ? (
         <div
-          className="absolute z-1 bg-no-repeat w-[694px] h-[552px]"
+          className="absolute z-1 bg-no-repeat w-[565px] h-[552px]"
           style={{
-            backgroundImage: 'url(/img/theHall/bg-tablet.svg)',
+            backgroundImage: 'url(/img/roosters/bg-tablet.svg)',
           }}
         />
       ) : null}
@@ -52,7 +54,7 @@ NFT-версії півня, відтворені в стилі відомих �
         <div
           className="absolute z-1 bg-no-repeat w-[320px] h-[340px]"
           style={{
-            backgroundImage: 'url(/img/theHall/bg-mobile.svg)',
+            backgroundImage: 'url(/img/roosters/bg-mobile.svg)',
           }}
         />
       ) : null}
@@ -60,9 +62,9 @@ NFT-версії півня, відтворені в стилі відомих �
         {isDesktop ? (
           <div className="sticky pt-[100px] top-[100px]">
             <div
-              className="z-1 bg-no-repeat w-[652px] h-[501px] bg-contain top-[100px]"
+              className="z-1 bg-no-repeat w-[543px] h-[552px] bg-contain top-[100px]"
               style={{
-                backgroundImage: 'url(/img/theHall/bg-desktop.svg)',
+                backgroundImage: 'url(/img/roosters/bg-desktop.svg)',
               }}
             />
           </div>
@@ -75,10 +77,11 @@ NFT-версії півня, відтворені в стилі відомих �
               style={{ background: 'white' }}
             >
               <div className="flex desktop:flex-row tablet:flex-col mobile:flex-col">
-                <div id={`jsv-holder-${item.id}`} className="player-container">
+                <div id={`jsv-holder-${item.id}`}>
                   <img
                     id={`jsv-image-${item.id}`}
                     alt="example"
+                    className="desktop:w-[692px] desktop:h-[692px] tablet:w-[624px] tablet:h-[624px] mobile:w-[272px] mobile:h-[272px]"
                     src={`${item.url}/0001.jpg`}
                   />
                 </div>
