@@ -100,7 +100,7 @@ const MenuMobile: React.FC<MenuMobileProps> = ({
           />
         )}
       </div>
-      <div className={`flex items-center ${isTablet ? 'h-60px' : ''}`}>
+      <div className={`flex items-center ${isTablet ? 'h-60px' : ''} mr-24px`}>
         {!signerAddress ? (
           <Button
             mode="secondary"

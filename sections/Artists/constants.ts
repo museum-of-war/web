@@ -50,7 +50,7 @@ Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists a
   {
     name: 'Dmitriy Shepil',
     avatar: 'Shepil Dmitriy.png',
-    descriptionUa: 'todo @current',
+    descriptionUa: '',
     descriptionEn:
       'My name is Dmitriy and I am a motion designer based in Ukraine. I specialise on 3D animation, branding and CG.',
     id: 6,
@@ -143,7 +143,7 @@ Recently, I have been making my first attempts at creating personal NFT collecti
   {
     name: 'Valerii Kolor',
     avatar: 'ZDESROY (Valerii Kolor).jpeg',
-    descriptionUa: 'todo @current',
+    descriptionUa: '',
     descriptionEn: `
 Valery Kolor with artist name ZDESROY.
 Born in 1987 in the industrial Ukrainian city name is Dnipro.
@@ -174,7 +174,7 @@ The motives of the works are now aimed at covering the war in Ukraine, maintaini
   {
     name: 'PASKA',
     avatar: 'PASKA.jpeg',
-    descriptionUa: 'todo @current',
+    descriptionUa: '',
     descriptionEn: `
 Anastasia Pasechnik is a multi-artist from Kharkov.
 Anastasia graduated from the Kotlyarevsky University of the Arts as an actress of dramatic theater and cinema.  She studied art history and theater set design at the University.
@@ -328,8 +328,8 @@ The projects and series of works on which Alisa Gots works are mainly related to
   },
   {
     name: 'Julie Grechukh',
-    avatar: '',
-    descriptionUa: 'todo @current',
+    avatar: 'placeholder.png',
+    descriptionUa: '',
     descriptionEn: `I'm Julie, illustrator from Lviv, Ukraine. I have been working in this sphere for almost 3 years now. Usually I create positive and bright illustrations for children's books and toys. But after the war in Ukraine started I have drewn lots of patriotic and war illustrations to express my feelings and solidarity with people of Ukraine, as well as to promote Ukraine around the world.`,
     id: 25,
   },
