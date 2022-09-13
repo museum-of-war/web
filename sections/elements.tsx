@@ -16,6 +16,7 @@ export const RoundLogo = ({ size, src }: { size: number; src?: string }) =>
       }}
     >
       <img
+        className="object-cover"
         src={src}
         style={{
           width: size,
