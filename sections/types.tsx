@@ -110,6 +110,18 @@ export type ArtistType = {
   avatarSrc?: string;
 };
 
+export type ExtendedArtistType = {
+  name: string;
+  avatar?: string;
+  descriptionUa?: string;
+  descriptionEn?: string;
+  id: string | number;
+};
+
+export type ExtendedArtistWithArtsType = {
+  arts: EventType[];
+} & ExtendedArtistType;
+
 export type AmbassadorType = {
   name: string;
   url: string;

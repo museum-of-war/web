@@ -1,4 +1,5 @@
 import { IMG_STORAGE } from '@sections/constants';
+import { EventType } from '@sections/types';
 
 export function getUrls(
   tokenId: string | number,
@@ -41,3 +42,19 @@ export function getUrls(
     randomSrc,
   };
 }
+
+const rand_imgs: string[] = [
+  '/img/dots-1.png',
+  '/img/dots-2.png',
+  '/img/dots-3.png',
+  '/img/dots-4.png',
+  '/img/dots-5.png',
+  '/img/dots-6.png',
+  '/img/dots-7.png',
+  '/img/dots-8.png',
+];
+
+export const getImageSources = (event: EventType) => {
+  const randomSrc = rand_imgs[parseInt(event.Tokenid, 10) % 8] as string;
+  return getUrls(event.Tokenid, event.ImageType, randomSrc as string);
+};

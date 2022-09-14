@@ -1,15 +1,15 @@
 import { TITLES } from '@sections/constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
-import TheHall from '@sections/Collections/TheHall/TheHall';
+import { Artists } from '@sections/Artists/Artists';
 import type { NextPage } from 'next';
 
-const TheHallPage: NextPage<SharedProps> = () => {
+const ArtistsPage: NextPage<SharedProps> = () => {
   return (
     <>
       <PageHead
-        title={TITLES.HALL}
-        description="One-of-a-kind NFTs of public personalities who vocally support Ukraine. Our team - and our country wants to express gratitude for their contributions."
+        title={TITLES.ARTISTS}
+        description="Check out the artists who have created works included in the Meta History collections."
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
@@ -17,15 +17,15 @@ const TheHallPage: NextPage<SharedProps> = () => {
             {
               '@type': 'ListItem',
               position: 1,
-              name: 'The Hall',
+              name: 'Artists',
             },
           ],
         }}
-        canonical={'/collection/hall'}
+        canonical={'/artists'}
       />
-      <TheHall />
+      <Artists />
     </>
   );
 };
 
-export default TheHallPage;
+export default ArtistsPage;

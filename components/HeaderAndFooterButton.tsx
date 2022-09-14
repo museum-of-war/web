@@ -27,7 +27,7 @@ const HeaderAndFooterButton = ({
         className={`mt-[4px] font-rblack mobile:text-16px tablet:text-16px desktop:text-16px h-[36px] ${
           underlined
             ? 'border-b-4 border-carbon dark:border-white'
-            : 'border-b-4 border-transparent'
+            : `${menu ? '' : 'border-b-4'} border-transparent`
         } hover:border-solid ${
           isDarkTheme ? 'hover:border-white' : 'hover:border-carbon'
         } whitespace-nowrap`}

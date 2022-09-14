@@ -4,19 +4,9 @@ import { NftDetails, PrevNextRecord } from '@components/nft-details/NftDetails';
 import PageHead from '@components/PageHead';
 import { EventType } from '@sections/types';
 import WarlineData from '../../constants/collections/Warline';
-import { getUrls } from '@utils/Warline/WarlineUrls';
+import { getImageSources } from '@utils/Warline/WarlineUrls';
 import React from 'react';
-
-const rand_imgs: string[] = [
-  '/img/dots-1.png',
-  '/img/dots-2.png',
-  '/img/dots-3.png',
-  '/img/dots-4.png',
-  '/img/dots-5.png',
-  '/img/dots-6.png',
-  '/img/dots-7.png',
-  '/img/dots-8.png',
-];
+import { ARTISTS } from '@sections/Artists/constants';
 
 type WarlineItemProps = { id: string };
 
@@ -35,11 +25,6 @@ const WarlineItemPage: React.FC<WarlineItemProps> = ({ id }) => {
   ) : (
     <div>Event not found</div>
   );
-};
-
-const getImageSources = (event: EventType) => {
-  const randomSrc = rand_imgs[parseInt(event.Tokenid, 10) % 8] as string;
-  return getUrls(event.Tokenid, event.ImageType, randomSrc as string);
 };
 
 const getTitle = (event: EventType) => `Day ${event.DayNo}, ${event.Time}`;
@@ -87,6 +72,10 @@ const WarlineItem: React.FC<{
 
   const title = getTitle(event);
 
+  const artist = ARTISTS.find((artist) => artist.name === event.ArtistName);
+
+  const artistLink = artist ? `/artists/${artist.id}` : event.ArtistLink;
+
   return (
     <>
       <PageHead
@@ -123,7 +112,7 @@ const WarlineItem: React.FC<{
         twitterUrl={event.TwitterUrl}
         twitterUsername={event.TwitterUsername}
         headline={event.Headline}
-        artistUrl={event.ArtistLink}
+        artistUrl={artistLink}
         artistName={event.ArtistName}
         editions={event.Editions}
         imageSources={imageSources}

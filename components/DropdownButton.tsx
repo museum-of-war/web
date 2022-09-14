@@ -8,7 +8,7 @@ type SelectOption = {
   title: string;
   url: string;
   id: string;
-  description: string;
+  description?: string;
 };
 type DropdownButtonProps = {
   options: SelectOption[];
@@ -72,7 +72,7 @@ function DropdownButton({
                 : 'origin-top-right z-10 top-40px absolute shadow-3xl py-12px'
             } ${isMobile ? 'py-16px' : ''} ${
               isDark ? 'bg-dropdown' : 'bg-white'
-            } w-full`}
+            }`}
             style={{ width: isMobile ? undefined : menuItemWidth }}
             role="menu"
             aria-orientation="vertical"
