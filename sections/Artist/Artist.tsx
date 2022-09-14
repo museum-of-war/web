@@ -78,53 +78,55 @@ export const ArtistPage: React.FC<ArtistPageProps> = ({ menuOpen, id }) => {
           }
         />
         <div className="h-5px w-100%" />
-        <div className="desktop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-row mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
-          {/*<p className="whitespace-pre-wrap pt-10 desktop:w-65% tablet:w-65% mobile:w-100% mobile:mb-6% desktop:pr-48px tablet:pr-48px mobile:pr-0">*/}
-          {/*</p>*/}
+        <div className="desktop:py-40px tablet:pb-0 tablet:pt-40px mobile:pb-0 mobile:pt-20px relative tablet:flex desktop:flex-row tablet:flex-row mobile:flex-col font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between flex-wrap">
           {artist.arts.map((art) => {
             const title = `Day ${art.DayNo}, ${art.Time}`;
             const imageSources = getImageSources(art);
-            //TODO: fix styles
+
             return (
               <Link key={art.Tokenid} href={`/warline/${art.Tokenid}`} passHref>
-                <a>
-                  <div role="button">
-                    <ScaledImage
-                      alt={title}
-                      title={title}
-                      src={
-                        imageSources.isAnimation
-                          ? imageSources.previewSrc
-                          : imageSources.originalSrc
-                      }
-                      postLoad={
-                        imageSources.isAnimation
-                          ? imageSources.animationSrc
-                          : false
-                      }
-                      className="cursor-pointer object-contain aspect-square transition-transform hover:scale-[101%]"
-                      containerClassName="flex-1"
-                      breakpoints={[
-                        {
-                          lowerBound: 'tablet',
-                          ratio: 0.5,
-                        },
-                        {
-                          lowerBound: 'desktop',
-                          ratio: 0.25,
-                        },
-                      ]}
-                    />
-                    <div className="h-[44px] flex items-center">
-                      <span
-                        className="font-rblack text-[14px] ml-[8px] h-full leading-[44px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width] line-clamp-1"
+                <div
+                  className={`desktop:w-1/4 tablet:w-1/2 mobile:w-full flex flex-col p-14px border-4 border-transparent hover:border-carbon`}
+                >
+                  <a>
+                    <div role="button">
+                      <ScaledImage
+                        alt={title}
                         title={title}
-                      >
-                        {title}
-                      </span>
+                        src={
+                          imageSources.isAnimation
+                            ? imageSources.previewSrc
+                            : imageSources.originalSrc
+                        }
+                        postLoad={
+                          imageSources.isAnimation
+                            ? imageSources.animationSrc
+                            : false
+                        }
+                        className="cursor-pointer object-contain aspect-square transition-transform hover:scale-[101%]"
+                        containerClassName="flex-1"
+                        breakpoints={[
+                          {
+                            lowerBound: 'tablet',
+                            ratio: 0.5,
+                          },
+                          {
+                            lowerBound: 'desktop',
+                            ratio: 0.25,
+                          },
+                        ]}
+                      />
+                      <div className="h-[44px] flex items-center">
+                        <span
+                          className="font-rblack text-[14px] ml-[8px] h-full leading-[44px] group-hover:border-b-4 group-hover:border-b-carbon transition-[border-width] line-clamp-1"
+                          title={title}
+                        >
+                          {title}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </a>
+                  </a>
+                </div>
               </Link>
             );
           })}
