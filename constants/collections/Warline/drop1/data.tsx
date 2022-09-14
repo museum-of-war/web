@@ -1645,7 +1645,7 @@ export default [
           'The Metropolitan Opera said  that it would no longer engage with performers or other institutions that have voiced support for President Putin, becoming the latest cultural organization to seek to distance itself from some Russian artists amid Mr. Putin’s invasion of Ukraine.',
         DescriptionUkrainian:
           'Метрополітен-опера більше не буде співпрацювати з виконавцями чи іншими інституціями, які висловлювали підтримку президента Росії Володимира Путіна',
-        ArtistName: 'Harkavets Iryna marginai_',
+        ArtistName: 'Harkavets Iryna\nmarginai_',
         ArtistLink: 'https://www.behance.net/marginai11a52b/projects',
         ImageType: 'drop1/87.gif',
         Editions: 22,

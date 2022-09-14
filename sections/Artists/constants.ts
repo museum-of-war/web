@@ -1,4 +1,8 @@
 import { AllDropsData } from '@constants/collections/Warline';
+import {
+  ExtendedArtistType,
+  ExtendedArtistWithArtsType,
+} from '@sections/types';
 
 const DROP_EVENTS = AllDropsData.flatMap((drop) => drop.events);
 export const ARTISTS = [
@@ -9,7 +13,7 @@ export const ARTISTS = [
 З 2015 живе в Києві. Працював з українськими та світовими артистами і брендами. Серед інших це Offset, 21 savage & j Cole, Max Barskih, Був частиною команди, що займалася відкриттям київського магазину Off-White. Паралельно робив творчі проекти та концепти.`,
     descriptionEn: `Artist, graphic designer. Born in 1998 in Kostyantynivka, Donetsk region, in the east of Ukraine
 Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists and brands. Among others are Offset, 21 savage & j Cole, Max Barskih. Danya also was part of the team involved in the opening of the Off-White store in Kyiv. At the same time, he made creative projects and concepts.`,
-    id: 1,
+    id: 'danya_shulipa',
   },
   {
     name: 'Oleg Savin',
@@ -18,7 +22,7 @@ Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists a
       "Олег Савін (спр. ім'я Олег Кучеренко). Народився 26 січня 1992 року в Києві. Український художник працює в техніці живопису. У 2021 році закінчив Київську державну академію декоративно-прикладного мистецтва та дизайну імені Михайла Бойчука за спеціальністю «станковий живопис»",
     descriptionEn:
       'Oleg Savin (aka Oleg Kucherenko). Was born on January 26, 1992 in Kyiv. Ukrainian artist working in the technique of painting. In 2021 graduated from the Kyiv State Academy of Decorative Arts and Design named after Mykhailo Boychuk with a degree in easel painting.',
-    id: 2,
+    id: 'oleg_savin',
   },
   {
     name: 'Olga Smirnova',
@@ -27,7 +31,7 @@ Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists a
       'Ольга Смірнова - ілюстраторка та колажистка з Києва. За 8 років роботи у сфері дитячої книжкової ілюстрації вона оформила більше 20 книжок для українських, польських та китайських видавництв. Ольгу захоплює поєднання різних медіа при створенні своїх робіт, останні 1,5 роки вона активно експериментує і досліджує колаж як техніку і як форму мистецького самовираження. ',
     descriptionEn:
       "Olga Smirnova is an illustrator and collage artist from Kyiv. For 8 years of work in the field of children's book illustration, she created illustrations for more than 20 books of Ukrainian, Polish and Chinese publishing houses. Olga is fascinated by the combination of different media when creating her works, for the past 1.5 years she has been actively experimenting and exploring collage both as a technique and as a form of artistic expression.",
-    id: 3,
+    id: 'olga_smirnova',
   },
   {
     name: 'Klimenkova Yelyzaveta',
@@ -36,7 +40,7 @@ Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists a
       'Народилася в 1999 році в Харкові. З 2015 по 2018 рік навчалася у Харківському художньому училищі. 2018 року вступила до Харківської мистецької академії на спеціальність книжкова ілюстрація. Диплом бакалавра отримувала 2022 року вже під час війни у Львові.До війни працювала у різноманітних виставкових проектах, волонтерила на фестивалях. Зараз я перебуваю в Ужгороді на резиденції Undercover Residence від проекту Artist at risk.',
     descriptionEn:
       "I was born in 1999 in Kharkov. From 2015 to 2018 studied at the Kharkov Art College. In 2018, entered the Kharkiv Art Academy with a degree in book illustration. I eceived my bachelor's degree in 2022 already during the war in Lviv.Before the war, I worked in various exhibition projects and volunteered at festivals. Now I am in Uzhgorod at the residence Undercover Residence from the project Artist at risk.",
-    id: 4,
+    id: 'klimenkova_yelyzaveta',
   },
   {
     name: 'Dima Gavriliv',
@@ -45,7 +49,7 @@ Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists a
       'Мене звати Діма, 17 років, проживаю в місті Новояворівськ Львівської області. Коли я закінчив школу, мене хвилювало питання, що робити далі. І я натрапив на 3D графіку, якою займаюся вже рік. Завдяки чому я можу тепер висловлювати свої думки через творчість і допомагати країні в тому числі',
     descriptionEn:
       'My name is Dima, 17 years old, live in the city of Novoyavorivsk in the Lviv Region. When I finished school, the question that bothered me of what to do next. And I came across 3D graphics, which I have been doing for a year.Thanks to this I can now express my thoughts through creativity and help the country as well',
-    id: 5,
+    id: 'dima_gavriliv',
   },
   {
     name: 'Dmitriy Shepil',
@@ -53,16 +57,16 @@ Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists a
     descriptionUa: '',
     descriptionEn:
       'My name is Dmitriy and I am a motion designer based in Ukraine. I specialise on 3D animation, branding and CG.',
-    id: 6,
+    id: 'dmitriy_shepil',
   },
   {
-    name: 'Harkavets Iryna',
+    name: 'Harkavets Iryna\nmarginai_',
     avatar: 'marginai_.png',
     descriptionUa:
       'Ірина Гарькавець, marginai_. Ілюстратор та аніматор з Харкова, Україна. Випускниця з відзнакою у ХДАДМ. Я дослідниця новітнього мистецтва, автор короткометражних фільмів "Обіцянка", "Від недавна до давно", "Війна, яка завжди поруч", що здобули безліч лаурелей на кінофестивалях по всьому світу.',
     descriptionEn:
       'Iryna Harkavets, marginai_. Illustrator and animator from Kharkiv, Ukraine. Graduated with honors from the Kharkiv State Academy of Design and Fine Arts. I am a researcher of contemporary art, author of short films "Promise", "From Recent to Long ago", "The war that is always around", which won many prizes at film festivals around the world.',
-    id: 7,
+    id: 'marginai_',
   },
   {
     name: 'Anna Voda',
@@ -105,7 +109,7 @@ Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists a
 2004 - 2010 - Kharkiv State Pedagogical University. G.S. Skovorody , faculty artistic graphic , easel graphics
 2000-2004 - Kharkov Institute of Management, faculty economic, accounting and auditing
 1986 - born in Kharkov, Ukraine`,
-    id: 8,
+    id: 'anna_voda',
   },
   {
     name: 'Margarita Marushevska',
@@ -114,7 +118,7 @@ Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists a
       "My name is Margarita, I'm a visual artist from Kyiv, Ukraine, but my home is in the occupied city of Luhansk. I work as a graphic designer at Leo Burnett Ukraine since 2020. I practise traditional arts, such as linocut and mixed graphics, and I work with digital illustration and collage as well.",
     descriptionEn:
       'Мене звуть Маргарита, я художниця та дизайнерка з Києва, але мій дім знаходиться в окупованому росією місті Луганську. Я працюю графічною дизайнеркою в рекламній агенції Leo Burnett Ukraine з 2020 року. Я займаюсь графікою та друкованими техніками, а також діджитальною ілюстрацією та колажами.',
-    id: 9,
+    id: 'margarita_marushevska',
   },
   {
     name: 'Sveta Gavrilenko',
@@ -125,7 +129,7 @@ Since 2015 live in Kyiv. Danya worked with Ukrainian and international artists a
     descriptionEn: `Sveta Gavrilenko was born in 1990 in Crimea. From 2007 to 2011 she studied at the Crimean Art School named after I. Samokish, at the painting department. From 2011 to 2012 she studied in Kiev, at the National Academy of Art and Architecture. On returning to Crimea, Sveta founded a painting studio in which she has been teaching since. In 2016, she participated in the "Muzychi expended history project" residence under the supervision of Alevtina Kokhidze. And from 2017 to 2018 she studied at the course "Philosophy of Art" by A.G. Velikanov at the educational center of the Garage Museum in Moscow.
 
 At the moment, based in Yalta.`,
-    id: 10,
+    id: 'sveta_gavrilenko',
   },
   {
     name: 'Mara Kava',
@@ -138,7 +142,7 @@ At the moment, based in Yalta.`,
 I studied at the Kharkiv Art School and the Lviv Academy of Printing. 
 Now I work with Ukrainian media and film documentaries: I create posters, participate in the creation of documentary animation.
 Recently, I have been making my first attempts at creating personal NFT collections.`,
-    id: 11,
+    id: 'mara_kava',
   },
   {
     name: 'Valerii Kolor',
@@ -169,7 +173,7 @@ This gave a positive result and very hooked on the local politics who staged a r
 Now the artist has a large workshop in the city of Dnipro and integrates styles and techniques into one whole.
 The motives of the works are now aimed at covering the war in Ukraine, maintaining the spirit of Ukrainians`,
 
-    id: 12,
+    id: 'valerii_kolor',
   },
   {
     name: 'PASKA',
@@ -186,21 +190,21 @@ Personal exhibitions:
 "The Promised Life" - Kiev 2020.
 "Circus"" - Kiev 2021
 "The Promised Life" - Kharkiv 2021`,
-    id: 13,
+    id: 'paska',
   },
   {
     name: 'mitya lapko',
     avatar: 'mitya.lapko.jpg',
     descriptionUa: 'Моушн дизайнер з Києва ',
     descriptionEn: 'Motion-designer from Kyiv',
-    id: 14,
+    id: 'mitya_lapko',
   },
   {
     name: 'Khrystyna Vlasenko',
     avatar: 'Khrystyna Vlasenko.jpg',
     descriptionUa: `Я ілюстраторка з Києва. Вчилась в НАОМА на вільний графіці. Зараз займаюся графічним дизайном та ілюстрацією.`,
     descriptionEn: `I'm illustrator based in Kyiv. I studied graphics at National Academy of Fine Arts and Architecture. Now I work as graphic designer and illustrator.`,
-    id: 15,
+    id: 'khrystyna_vlasenko',
   },
   {
     name: 'Alina Shevchuk',
@@ -218,35 +222,35 @@ In 2013 she enrolled at KNUBA, specializing in urban planning and architecture.
 In 2018, after getting a bachelor's degree, she started her work in the film industry in the costume and style department. She worked as an assistant costume designer for films, sitcoms, and advertising. Her first significant project was ""The Rising Hawk"" movie.
 Alina works on the set sporadically but tends to return as a landscape architect.
 She likes a healthy and active lifestyle, and her mini bullterrier named Butch.`,
-    id: 16,
+    id: 'alina_shevchuk',
   },
   {
     name: 'Barbalat Kateryna',
     avatar: 'Kateryna Barbalat.png',
     descriptionUa: `Я креативниця з Києва (Україна). Працюю одночасно як графічна дизайнерка і креативна копірайтерка. `,
     descriptionEn: `I'm creative from Kyiv, Ukraine. I work as freelance graphic designer and creative copywriter. `,
-    id: 17,
+    id: 'barbalat_kateryna',
   },
   {
     name: 'Anna Golub',
     avatar: 'Anna Golub.JPG',
     descriptionUa: `Графічний дизайнер. Народилася в Україні, живу у Києві та Кривому Розі.`,
     descriptionEn: `Graphic designer. Was born in Ukraine. I live in Kiyv and Kryvyi Rig.`,
-    id: 18,
+    id: 'anna_golub',
   },
   {
     name: 'Anton Abo',
     avatar: 'Anton Abo.jpg',
     descriptionUa: `Антон Або – київський графічний дизайер, ілюстратор, арт директор та викладач із досвідом роботи в області моди, візуальних комунікацій та ілюстрації. Член колективу «ОRKA». Арт-директор та співвласник бренду M0D44.`,
     descriptionEn: `Anton Abo is a Kyiv based graphic designer, illustrator, art director and lecturer with experience working in fashion, visual communication and illustration. Member of Orka Collective. Art-director and co-owner of M0D44 brand.`,
-    id: 19,
+    id: 'anton_abo',
   },
   {
     name: 'Kos Reed',
     avatar: 'Kos Reed.jpg',
     descriptionUa: `My name is Kostiantyn. I am from Kyiv. Now I work as a 3D character artist.`,
     descriptionEn: `Мене звати Костянтин. Я з Києва. Зараз я працюю як 3D character artist.`,
-    id: 20,
+    id: 'kos_reed',
   },
   {
     name: 'Tina Tykhonenko',
@@ -268,9 +272,8 @@ After that, I focused on digital art that could help our country.
 I took part in the «Meta history: Museum of War» project. 
 Now I’ve focused on cooperation with clothing brands that contribute to the development of national identity, and I support volunteer organizations.
 Now I’m staying in Odesa and doing my best to be useful not only in the art sphere.`,
-    id: 21,
+    id: 'tina_tykhonenko',
   },
-  // { name: 'SERGOLT', avatar: 'SERGOLT.png', id: 22 },
   {
     name: 'Zhannet Podobed',
     avatar: 'Zhannet Podobed.jpeg',
@@ -308,7 +311,7 @@ Her works don't reference recognizable forms. The results are deconstructed to t
 
 Zhannet Podobed currently lives and works in Odesa.
 `,
-    id: 23,
+    id: 'zhannet_podobed',
   },
   {
     name: 'Alisa Gots',
@@ -324,14 +327,13 @@ In 2012, she had a master's degree in the Printing Institute at NTUU KPI, specia
 She began her practice in the workshop of Vladimir Ivanov- Akhmetov. In 2013, together with Nina Savenko and Taras Kabluk, she founded the independent lithographic workshop Lithography30, where all three work mainly in the technique of lithography on stone.
 Today it is the only independent lithographic workshop in Ukraine that operates as an art association and as an open educational platform where people can learn the this technique.
 The projects and series of works on which Alisa Gots works are mainly related to personal experiences, created on the basis of certain psychological states and emotional periods. Many of the artist's works are a way to leave personal experiences in memory and unravel their essence. Often these experiences are compared with the situation in the country and the world.`,
-    id: 24,
+    id: 'alisa_gots',
   },
   {
     name: 'Julie Grechukh',
-    avatar: 'placeholder.png',
     descriptionUa: '',
     descriptionEn: `I'm Julie, illustrator from Lviv, Ukraine. I have been working in this sphere for almost 3 years now. Usually I create positive and bright illustrations for children's books and toys. But after the war in Ukraine started I have drewn lots of patriotic and war illustrations to express my feelings and solidarity with people of Ukraine, as well as to promote Ukraine around the world.`,
-    id: 25,
+    id: 'julie_grechukh',
   },
   {
     name: 'Machneva Kateryna',
@@ -340,28 +342,28 @@ The projects and series of works on which Alisa Gots works are mainly related to
 Я графічна дизайнерка, ілюстраторка та каліграфиня з Києва.`,
     descriptionEn: `Hi, I’m Kateryna Machneva.
 I’m a Graphic Designer, Illustrator and Calligrapher based in Kyiv, Ukraine.`,
-    id: 26,
+    id: 'machneva_kateryna',
   },
   {
     name: 'Nika Kurilenko',
     avatar: 'Nika Kurilenko.jpg',
     descriptionUa: `Ніка Куріленко - ілюстраторка і графічна дизайнерка, що народилася 26 січня 2001 року в Києві. З 13-ти років вчилася малювати на графічному планшеті та брала участь у проєктах друзів як художник. Закінчила художню школу та КНУБА, навчається на графічному факультеті Projector Institute. Наразі працює в коміксному проєкті @bloome__ua. Створювала ілюстрації для Yamaha, Kalush та Kukurudza.`,
     descriptionEn: `Nika Kurilenko is an illustrator and graphic designer from Kyiv, born on January 26, 2001. From the age of 13, she’s been learning digital art and participated in friends' projects as an artist. Graduated from art school and KNUCA, studies at the graphic faculty of Projector Institute. Currently working at @bloome__ua. Created illustrations for Yamaha, Kalush and Kukurudza.`,
-    id: 27,
+    id: 'nika_kurilenko',
   },
   {
     name: 'AlgorithmAB',
     avatar: 'AlgorithmAB.png',
     descriptionUa: `Я почав вчитися малювати у віці чотирьох років, і з того часу я малюю форми, кольори, текстури, людей, ідеї та архітектурні простори. Я все життя був художником і близько 15 років архітектором. Моє послання таке: про естетику та якість ніколи не слід забувати, незважаючи ні на що`,
     descriptionEn: `I started learning to draw at the age of four, and since then I have been drawing shapes, colors, textures, people, ideas, and architectural spaces. I have been an artist all my life and for about 15 years an architect. My message is: aesthetics and quality should never be forgotten no matter what`,
-    id: 28,
+    id: 'algorithm_ab',
   },
   {
     name: 'Yu Andriichuk',
     avatar: 'yuseless.me.png',
     descriptionUa: `Народилася 1995 року в Житомирі. Магістр образотворчого мистецтва (Університеті мистецтв у Познані), зараз навчається в аспірантурі Інституту антропології та етнології Університету Адама Міцкевича. Професійно займається ілюстрацією, як хобі - аналоговою фотографією (середній формат), а в науковій роботі цікавиться темами на перетині food, animal та women's studies. Напротязі найближчих років прагне розробити та активно використовувати метод дослідження, який передбачає практичне застосування навичок зі сфери образотворчого мистецтва в міждисциплінарних дослідженнях, і намалювати кілька коротеньких історій.`,
     descriptionEn: `Born in 1995 in Zhytomyr, Ukraine. Master of Fine Arts (University of the Arts in Poznań), currently studying at the graduate school of the Institute of Anthropology and Ethnology of Adam Mickiewicz University. She is engaged in illustration and analog photography (medium format), and in scientific work she is interested in topics from the intersection of food, animal and women's studies. For the next few years, she aims to develop and apply a research method that involves the practical application of skills from the field of visual arts in interdisciplinary projects, and draw several short stories.`,
-    id: 29,
+    id: 'yu_andriichuk',
   },
   {
     name: 'Irene Neyman',
@@ -388,7 +390,7 @@ I often draw characters, because I'm largely inspired by people and their abilit
 
 My biggest belief is that a human being can achieve absolutely everything on his own — the main thing is his desire! This is the position I have kept before and will continue to keep, as it helped me learn everything that I know and became who I am.
 `,
-    id: 30,
+    id: 'irene_neyman',
   },
   {
     name: 'Yana Svyatkina',
@@ -403,21 +405,21 @@ Yana Sviatkina, b. 1979, lives in Kyiv
 Biography
 Education: studied Business Administration in Management at International Christian University, Kyiv; studied basic and conceptual photography, Composition and Color (Yale University course) at Maruschenko School of Photography, Kyiv; completed course Illustration: means of Expression at Projector School, took numerous private courses in drawing and illustration. During my artistic journey I have tried acting, photography and then finally drawing and painting. I believe such diverse experiences enrich my works. Most of the time worked in areas not connected with art directly, however took part in various group photography exhibitions, in illustrative area mostly created works for private commissions.
 `,
-    id: 31,
+    id: 'yana_svyatkina',
   },
   {
     name: 'Olena Kalinina',
     avatar: 'creblur.png',
     descriptionUa: `Олена, 23. Мульти-дисциплінарний митець, захоплююся експериментальним мистецтвом та міксом ілюстрації, анімації, графічного дизайну.`,
     descriptionEn: `Olena, 23. Multi-disciplinary creative, who is passionate about experimental art and the mix of illustration, animation and graphic design.`,
-    id: 32,
+    id: 'olena_kalinina',
   },
   {
     name: 'Olena Dziura',
     avatar: 'Olena Dziura.png',
     descriptionUa: `Я - уродженка м. Рівного. За освітою - дизайнер-графік, проте зараз працюю як UI/UX дизайнер. З дитинства займаюсь ілюстрацією та мріяла оформлювати дитячі книжки, проте, на даний момент творчість - це лише моє хобі.`,
     descriptionEn: `I was born in Rivne. As a student, I studied graphic design  but now I work as a UI/UX designer. As a child I used to draw and wanted to make illustrations for childrens' book. However at the moment creativity is only my hobby.`,
-    id: 33,
+    id: 'olena_dziura',
   },
   {
     name: 'Erlikh Dima',
@@ -438,7 +440,7 @@ EDUCATION:
 INTERNATIONAL HUMANITIES UNIVERSITY (MSU) ENDED BECAUSEOF BACCALA, FACULTY OF DESIGN, IN 2013
 IN 2011, Odessa art school M.B.Grekova
 IN 2013 USED BY ART IN SUCH MEDIA AS: PICTURE, GRAPHICS,INSTALLATION, SCULPTURE`,
-    id: 34,
+    id: 'erlikh_dima',
   },
   {
     name: 'Anastasiia Taraskevych',
@@ -447,7 +449,7 @@ IN 2013 USED BY ART IN SUCH MEDIA AS: PICTURE, GRAPHICS,INSTALLATION, SCULPTURE`
 Малюю мінімалістичні ілюстрації для душі та бізнесу.`,
     descriptionEn: `Illustrator based in Dnipro.
 I draw minimalistic illustrations for the soul and business.`,
-    id: 35,
+    id: 'anastasiia_taraskevych',
   },
   {
     name: 'Anya Kislaya',
@@ -501,12 +503,74 @@ Exhibition, Festival Young Artists Creative suitcase, Exhibition Hall of House c
     descriptionUa: `
 Анья Кисла народилася в Херсоні, Україна. Отримала ступінь магістра образотворчого мистецтва. Після роботи в Херсонському державному університеті поїхала до Києва, щоб стати ілюстратором у компанії з виробництва ігор. До повномасштабного вторгнення проживала в Херсоні
 З 2009 року бере активну участь у виставках і групових проектах, а також майстер-класах і арт-резиденціях. У своїй творчості вона звертається до ролі жінки в суспільстві, обмеження її свободи та прав, а також до поняття «краса». Аня працює з графікою, живописом, інсталяцією, фотографією та відео. До повномасштабного вторгнення проживала в Херсоні`,
-    id: 36,
+    id: 'anya_kislaya',
   },
-];
-export const ARTISTS_WITH_ARTS = ARTISTS.map((artist) => ({
-  ...artist,
-  arts: DROP_EVENTS.filter((event) => event.ArtistName.includes(artist.name)),
-}));
+  {
+    name: 'Mark Bushuiev',
+    avatar: 'Mark Bushuiev.png',
+    descriptionUa: `Марк Бушуєв – художник, дизайнер досвідчений у створенні цифрових та традиційних творів образотворчого мистецтва, а також розробки айдентики. Засновник дизайн-агенції Red Eye Depot.
 
-// Anya Kislaya.jpg
+В минулому працював у медіа галузі, будучи задіяним у зйомках реаліті-шоу та багатьох YouTube-проектів в якості звукорежисера чи оператора. 
+
+А нині вкладає усі свої сили та креатив у мистецтво та дизайн. 
+`,
+    descriptionEn: `Mark Bushuev is an artist and designer experienced in creating digital and traditional works of art, as well as developing brand identity. Founder of the Red Eye Depot design agency.
+
+In the past, he worked in the media industry, being involved in the filming of reality shows and many YouTube projects as a sound engineer or cameraman.
+
+And now he invests all his energy and creativity in art and design.`,
+    id: 'mark_bushuiev',
+  },
+  {
+    name: 'Yulya Nikolaieva',
+    avatar: 'Yulya.jpg',
+    descriptionUa: '',
+    descriptionEn: `Yulya Nikolaieva is an illustrator and motion designer from Ukraine. She has been working for around 7 years and creating editorial blogs, books, and promo animations.
+She is looking for inspiration and themes for personal working on the street and she loves to show in compositions dynamics and people communications.
+
+Clients were Discovery, Exadel, American House in Kyiv, startups: Naviga Global, Be.live, and IO technologies.`,
+    id: 'yulya_nikolaieva',
+  },
+  {
+    name: 'Milak Karina',
+    avatar: 'Milak Karina.jpg',
+    descriptionUa: `Я дизайнер та художник з досвідом роботи більше 5 років. Я вивчаю всі напрямки, починаючи від олівця, акварельного чи олійного живопису завершуючи 3D візуалізацією та анімацією. Також маю досвід роботи з сайтами та мобільними додатками, оформлення фірмового стилю. Найбільше полюбляю 2D та 3D графіку, хочу створювати неймовірне оточення та персонажів для комп'ютерних ігор, фільмів, мультиків, реклами! Працюю щодня задля покращення своїх навиків та вмінь, маю попереду грандіозні плани. Вже працюю над цікавими NFT проєктами, комп'ютерною грою та власною колекцією NFT присвячену Героям України.`,
+    descriptionEn: `I am a designer and artist with more than 5 years of experience. I study all directions, starting from pencil, watercolor or oil painting, ending with 3D visualization and animation. I also have experience working with websites and mobile applications, corporate identity design. I love 2D and 3D graphics the most, I want to create incredible environments and characters for computer games, movies, cartoons, advertisements! I work every day to improve my skills and abilities, I have big plans ahead. I am already working on interesting NFT projects, a computer game and my own NFT collection dedicated to the Heroes of Ukraine.`,
+    id: 'milak_karina',
+  },
+  {
+    name: 'Jutta Kivilompolo',
+    avatar: 'jutta ulrika.jpeg',
+    descriptionUa: ``,
+    descriptionEn: `I'm a Finnish Illustrator and Art Director working for clients all around the world. I love edgy colours, rich messy patterns and interesting compositions. I get inspired by the nature, beautiful people, dreams and urban phenomena. 
+
+I love working for both, digital and traditional platforms, making everything beyond magazine illustrations / book design to user interfaces and interior illustration.`,
+    id: 'jutta_ulrika',
+  },
+  {
+    name: 'Bezkorovainyi Oleksii aka eviltorn',
+    avatar: 'eviltorn.jpg',
+    descriptionUa: `Привіт. Я Безкоровайний Олексій. Діджитал митець із Київа зі школи мріяв створити свій фаллаут і серію коміксів по ньому, тож вистроїв свою майбутню кар'єру навколо професійного і напівпрофесійного геймдеву.
+За плечима близько 14 років роботи в великих і не дуже великих компаніях в якості графічного дизайнера, іллюстратора,художніка.
+Наразі активно займаюсь НФТ, і підтримкою українських художників новачків.`,
+    descriptionEn: `Hello. I am Bezkorovayn Oleksiy. A digital artist from Kyiv dreamed of creating his Fallout and a series of comics based on it since school, so he built his future career around professional and semi-professional game development. He has about 14 years of work in large and not so large companies as a graphic designer, illustrator, and artist. Currently, I am actively involved in the NFT and support of Ukrainian novice artists.`,
+    id: 'eviltorn',
+  },
+  {
+    name: 'Sheverev Dmytro',
+    avatar: 'shesvit.png',
+    descriptionUa: `Народився у Києві, виріс у Києві, живу у Києві. Моє оточення - вся Україна, моє натхнення - всі ці люди. Не уявляю себе тою людиною, якою я зараз є, без продавчинь у магазинах, поліцейських біля метро, лікарів у лікарнях, без всіх своїх вчителів, коллег, друзів і рідних. Те що мене оточує формує мене, але саме я надаю значення всьому що мене оточує. Мої роботи - це те що ми відчували та забули, те що ми відчуваємо та не зізнаємось, те що ми ще відчуємо та зараз цього не бачимо. Моя ідея - гуманізм, моя ціль - спокій та усмішки.`,
+    descriptionEn: `Born in Kyiv, grew up in Kyiv, live in Kyiv. My environment is all of Ukraine, my inspiration is all these people. I can't imagine myself as the person I am now without saleswomen in stores, police officers near the subway, doctors in hospitals, without all my teachers, colleagues, friends and relatives. What surrounds me shapes me, but it is I who give meaning to everything that surrounds me. My works are what we have felt and forgotten, what we feel and do not admit, what we will still feel and now do not see. My idea is humanism, my goal is peace and smiles.`,
+    id: 'shesvit',
+  },
+].sort((a1, a2) => a1.name.localeCompare(a2.name)) as ExtendedArtistType[];
+
+export const ARTISTS_WITH_ARTS = ARTISTS.map(
+  (artist) =>
+    ({
+      ...artist,
+      arts: DROP_EVENTS.filter((event) =>
+        event.ArtistName.includes(artist.name),
+      ),
+    } as ExtendedArtistWithArtsType),
+);

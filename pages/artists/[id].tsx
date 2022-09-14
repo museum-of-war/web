@@ -13,7 +13,7 @@ const CurrentArtistPage: NextPage<SharedProps & ArtistPageProps> = ({
   id,
 }) => {
   const url = useAbsoluteUrl();
-  const artist = ARTISTS.find((artist) => artist.id === +id);
+  const artist = ARTISTS.find((artist) => artist.id == id);
 
   return (
     <>
@@ -34,11 +34,11 @@ const CurrentArtistPage: NextPage<SharedProps & ArtistPageProps> = ({
             {
               '@type': 'ListItem',
               position: 2,
-              name: artist?.name ?? 'Unknown',
+              name: artist?.name ?? id,
             },
           ],
         }}
-        canonical={'/artists'}
+        canonical={`/artists/${id}`}
       />
       <ArtistPage menuOpen={menuOpen} id={id} />
     </>

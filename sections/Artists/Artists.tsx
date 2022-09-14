@@ -37,7 +37,9 @@ export const Artists: React.FC = () => {
             <Link href={`/artists/${artist.id}`} passHref>
               <a>
                 <img
-                  src={`${IMG_STORAGE}/avatars/${artist.avatar}?w=128&h=128`}
+                  src={`${IMG_STORAGE}/avatars/${
+                    artist.avatar || 'placeholder.png'
+                  }?w=128&h=128`}
                   alt={`${artist.name} avatar`}
                   className="w-96px h-96px rounded-[48px] object-cover"
                 />

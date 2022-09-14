@@ -6,6 +6,7 @@ import { EventType } from '@sections/types';
 import WarlineData from '../../constants/collections/Warline';
 import { getImageSources } from '@utils/Warline/WarlineUrls';
 import React from 'react';
+import { ARTISTS } from '@sections/Artists/constants';
 
 type WarlineItemProps = { id: string };
 
@@ -71,6 +72,10 @@ const WarlineItem: React.FC<{
 
   const title = getTitle(event);
 
+  const artist = ARTISTS.find((artist) => artist.name === event.ArtistName);
+
+  const artistLink = artist ? `/artists/${artist.id}` : event.ArtistLink;
+
   return (
     <>
       <PageHead
@@ -107,7 +112,7 @@ const WarlineItem: React.FC<{
         twitterUrl={event.TwitterUrl}
         twitterUsername={event.TwitterUsername}
         headline={event.Headline}
-        artistUrl={event.ArtistLink}
+        artistUrl={artistLink}
         artistName={event.ArtistName}
         editions={event.Editions}
         imageSources={imageSources}
