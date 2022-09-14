@@ -13,7 +13,7 @@ export const Artists: React.FC = () => {
       <div className="relative desktop:mt-20px tablet:mt-20px mobile:mt-12px">
         <input
           className="w-full font-rblack text-16px bg-beige border-4 box-border focus:border-black rounded-[24px]
-             leading-[40px] pl-60px transition-all duration-1500
+             leading-[40px] px-60px transition-all duration-1500
              outline-none search-input"
           placeholder="Search by name"
           value={filter}
@@ -24,6 +24,14 @@ export const Artists: React.FC = () => {
           alt="search"
           className="absolute top-0 bottom-0 m-auto left-[24px]"
         />
+        {filter.length > 0 ? (
+          <img
+            onClick={() => setFilter('')}
+            src="/img/clear.svg"
+            alt="clear"
+            className="absolute top-0 bottom-0 m-auto right-[24px] cursor-pointer"
+          />
+        ) : null}
       </div>
       <div className="flex flex-row flex-wrap">
         {ARTISTS_WITH_ARTS.filter((artist) =>
