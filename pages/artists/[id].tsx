@@ -1,4 +1,4 @@
-import { TITLES } from '@sections/constants';
+import { IMG_STORAGE, TITLES } from '@sections/constants';
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import { ArtistPage } from '@sections/Artist/Artist';
@@ -21,6 +21,7 @@ const CurrentArtistPage: NextPage<SharedProps & ArtistPageProps> = ({
         title={artist?.name ?? 'Unknown'}
         subtitle={TITLES.ARTISTS}
         description={artist?.descriptionEn}
+        image={`${IMG_STORAGE}/avatars/${artist?.avatar || 'placeholder.png'}`}
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
