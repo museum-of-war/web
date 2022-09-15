@@ -563,6 +563,13 @@ I love working for both, digital and traditional platforms, making everything be
     descriptionEn: `Born in Kyiv, grew up in Kyiv, live in Kyiv. My environment is all of Ukraine, my inspiration is all these people. I can't imagine myself as the person I am now without saleswomen in stores, police officers near the subway, doctors in hospitals, without all my teachers, colleagues, friends and relatives. What surrounds me shapes me, but it is I who give meaning to everything that surrounds me. My works are what we have felt and forgotten, what we feel and do not admit, what we will still feel and now do not see. My idea is humanism, my goal is peace and smiles.`,
     id: 'shesvit',
   },
+  {
+    name: 'Serhii Mirchuk',
+    avatar: 'Serhii Mirchuk.jpg',
+    descriptionUa: `Ілюстратор та 2D дизайнер з Вінниці.`,
+    descriptionEn: `I'm an illustrator and 2d designer based in Vinnytsia.`,
+    id: 'serhii_mirchuk',
+  },
 ].sort((a1, a2) => a1.name.localeCompare(a2.name)) as ExtendedArtistType[];
 
 export const ARTISTS_WITH_ARTS = ARTISTS.map(
