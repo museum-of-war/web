@@ -570,6 +570,13 @@ I love working for both, digital and traditional platforms, making everything be
     descriptionEn: `I'm an illustrator and 2d designer based in Vinnytsia.`,
     id: 'serhii_mirchuk',
   },
+  {
+    name: 'Katalina Maievska',
+    avatar: 'Katalina Maievska.jpg',
+    descriptionUa: `Народилась та жила в мирному любому Києві. Навчалась на менеджера, але насправді хотіла стати дизайнером. Ось і стала. Зараз працюю на перемогу України як тільки можу.`,
+    descriptionEn: `I was born and lived in peaceful Kiev. I was studying to be a manager, but I really wanted to become a designer. So I became. Now I am working for the victory of Ukraine as much as I can.`,
+    id: 'katalina_maievska',
+  },
 ].sort((a1, a2) => a1.name.localeCompare(a2.name)) as ExtendedArtistType[];
 
 export const ARTISTS_WITH_ARTS = ARTISTS.map(
