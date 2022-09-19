@@ -80,12 +80,12 @@ export const ArtistPage: React.FC<ArtistPageProps> = ({ menuOpen, id }) => {
           ukrainian={artist.descriptionUa}
           oneColumn={!artist.descriptionEn || !artist.descriptionUa}
           rightContent={
-            <div
+            <span
               className="desktop:leading-[48px] desktop:text-14px tablet:leading-[48px] tablet:text-14px
              mobile:leading-[40px] mobile:text-12px font-rlight lowercase ml-auto whitespace-nowrap mt-auto"
             >
               {artist.arts?.length} art{artist.arts?.length === 1 ? '' : 's'}
-            </div>
+            </span>
           }
         />
         <div className="h-5px w-100%" />
