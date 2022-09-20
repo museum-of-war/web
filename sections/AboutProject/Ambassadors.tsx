@@ -85,6 +85,11 @@ const data = [
       'Part of KPMG Ukraine and the Presidential Administration of Ukraine',
     ],
   },
+  {
+    name: 'Alex Slobozhenko',
+    url: 'https://www.traffic-devils.com/',
+    info: ['CEO & founder of Traffic Devils'],
+  },
 ] as AmbassadorType[];
 
 const Ambassadors = () => {
