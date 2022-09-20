@@ -76,6 +76,15 @@ const data = [
       'CEO of Blockchain Association of Ukraine',
     ],
   },
+  {
+    name: 'Yulia Karnas',
+    url: 'https://oneukraine.com/about/',
+    info: [
+      'Part of Leadership Team in OneUkraine',
+      'Independent Legal & Operations consultant with a primary focus on technological projects',
+      'Part of KPMG Ukraine and the Presidential Administration of Ukraine',
+    ],
+  },
 ] as AmbassadorType[];
 
 const Ambassadors = () => {
