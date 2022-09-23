@@ -4,19 +4,19 @@ import React from 'react';
 const Team = () => {
   const mockTeam: Array<TeamDataType> = [
     { name: 'V K', role: 'Chaos' },
-    { name: 'Glib Kaporikov', role: 'Identity' },
+    { name: 'Alisa Fursa', role: 'Strategy' },
     { name: 'Kevin Lista Navarro', role: 'Assistant Director' },
     { name: 'Oleksandr Pokhylenko', role: 'Technology' },
     { name: 'Alexander Yavorskyy', role: 'Voice' },
+    { name: 'Oleksandra Shamonova', role: 'Project manager' },
     { name: 'Anastasiya Shyshenok', role: 'Identity' },
     { name: 'Serhii Revva', role: 'Experience' },
     { name: 'Kateryna Dranova', role: 'Voice' },
-    { name: 'Nick Zinchenko', role: 'Art Support' },
-    { name: 'Alisa Fursa', role: 'Strategy' },
+    { name: 'Liliana Kolodka', role: 'Project manager' },
+    { name: 'Glib Kaporikov', role: 'Identity' },
     { name: 'Rustam Abduvaliiev', role: 'Frontend' },
     { name: 'Elina Norden', role: 'Voice' },
-    { name: 'Liliana Kolodka', role: 'Project manager' },
-    { name: 'Oleksandra Shamonova', role: 'Project manager' },
+    { name: 'Nick Zinchenko', role: 'Art Support' },
   ];
 
   return (
