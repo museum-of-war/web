@@ -8,12 +8,12 @@ const IncredibleRooster = () => {
   const { isDesktop, isMobile, isTablet } = useViewPort();
 
   useEffect(() => {
-    ITEMS.forEach((item) => {
+    ITEMS.forEach((item, id) => {
       const viewer = new JavascriptViewer({
         extraImageClass:
           'desktop:w-[692px] desktop:h-[692px] tablet:w-[624px] tablet:h-[624px] mobile:w-[272px] mobile:h-[272px]',
-        mainHolderId: `jsv-holder-${item.id}`,
-        mainImageId: `jsv-image-${item.id}`,
+        mainHolderId: `jsv-holder-${id}`,
+        mainImageId: `jsv-image-${id}`,
         totalFrames: 360,
         speed: 120,
         defaultProgressBar: true,
@@ -70,27 +70,34 @@ NFT-версії півня, відтворені в стилі відомих �
           </div>
         ) : null}
         <div className={`${isDesktop ? 'mt-[-520px]' : ''}`}>
-          {ITEMS.map((item) => (
+          {ITEMS.map((item, id) => (
             <div
-              key={item.id}
+              key={id}
               className="desktop:mt-[70px] tablet:mt-[48px] mobile:mt-[40px] desktop:ml-[130px] tablet:ml-0 mobile:ml-0"
               style={{ background: 'white' }}
             >
               <div className="flex desktop:flex-row tablet:flex-col mobile:flex-col">
-                <div id={`jsv-holder-${item.id}`}>
+                <div id={`jsv-holder-${id}`}>
                   <img
-                    id={`jsv-image-${item.id}`}
+                    id={`jsv-image-${id}`}
                     alt="example"
                     className="desktop:w-[692px] desktop:h-[692px] tablet:w-[624px] tablet:h-[624px] mobile:w-[272px] mobile:h-[272px]"
                     src={`${item.url}/0001.jpg`}
                   />
                 </div>
-                <div className="desktop:w-[344px] tablet:w-full mobile:w-full desktop:pl-[48px] desktop:pt-[48px] tablet:pl-[48px] tablet:pt-[24px] mobile:pl-[24px] mobile:pt-[20px]">
+                <div className="z-1 desktop:w-[344px] tablet:w-full mobile:w-full desktop:pl-[48px] desktop:pt-[48px] tablet:pl-[48px] tablet:pt-[24px] mobile:pl-[24px] mobile:pt-[20px]">
                   <div className="font-rblack desktop:text-[20px] desktop:leading-[24px] tablet:text-[20px] tablet:leading-[24px] mobile:text-[27px] mobile:leading-[30px]">
                     {item.museum}
                   </div>
                   <div className="font-rnarrow desktop:text-[16px] desktop:leading-[24px] tablet:text-[16px] tablet:leading-[24px] mobile:text-[14px] mobile:leading-[20px] desktop:mt-[24px] tablet:mt-[24px] mobile:mt-[20px]">
-                    {item.name}
+                    <a
+                      href={item.link}
+                      className="underline"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.name}
+                    </a>
                   </div>
                   <div className="font-rlight desktop:text-[14px] desktop:leading-[48px] tablet:text-[14px] tablet:leading-[48px] mobile:text-[14px] mobile:leading-[40px]">
                     {item.author}
