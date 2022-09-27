@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import Day from '@components/collections/Warline/Day';
-import DonatePopup from '@components/collections/Warline/DonatePopup';
-import SupportBanner from '@components/collections/Warline/SupportBanner';
+import Day from '@sections/Collections/Warline/Day';
+import DonatePopup from '@sections/Collections/Warline/DonatePopup';
+import SupportBanner from '@sections/Collections/Warline/SupportBanner';
 import { useViewPort } from '@hooks/useViewport';
 import { useIsMounted } from '@hooks/useIsMounted';
 import WarlineData from '@constants/collections/Warline';
-import SideMenu from '@components/collections/Warline/SideMenu';
+import SideMenu from '@sections/Collections/Warline/SideMenu';
 import { DayType, EventType } from '@sections/types';
 import { PopupProvider } from '@providers/PopupProvider';
 import Blurb from '@sections/AboutProject/Blurb';

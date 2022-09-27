@@ -1,6 +1,6 @@
 import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
-import IncredibleRooster from '@pages/../../components/collections/IncredibleRooster/IncredibleRooster';
+import IncredibleRooster from '@sections/Collections/IncredibleRooster/IncredibleRooster';
 import type { NextPage } from 'next';
 import { TITLES } from '@sections/constants';
 

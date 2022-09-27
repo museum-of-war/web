@@ -117,7 +117,7 @@ const ContentMedia = () => {
             isMobile ? (
               <></>
             ) : (
-              <div className="flex flex-row ml-auto">
+              <span className="flex flex-row ml-auto">
                 <button
                   disabled={disabledLeft}
                   onClick={() => setStartIdx(startIdx - itemsOnPage)}
@@ -125,7 +125,7 @@ const ContentMedia = () => {
                     disabledLeft ? 'opacity-20' : 'opacity-100'
                   } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full mr-25px`}
                 >
-                  <img src="/img/left_arrow.svg" alt="/img/left_arrow" />
+                  <img src="/img/left_arrow.svg" alt="left arrow" />
                 </button>
                 <button
                   onClick={() => setStartIdx(startIdx + itemsOnPage)}
@@ -134,9 +134,9 @@ const ContentMedia = () => {
                     disabledRight ? 'opacity-20' : 'opacity-100'
                   } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full`}
                 >
-                  <img src="/img/right_arrow.svg" alt="/img/right_arrow" />
+                  <img src="/img/right_arrow.svg" alt="right arrow" />
                 </button>
-              </div>
+              </span>
             )
           }
         />

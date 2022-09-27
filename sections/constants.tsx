@@ -56,4 +56,5 @@ export const TITLES = {
   ABOUT: 'About us | Meta History Gallery',
   PRIVACY_POLICY: 'Privacy Policy',
   TERMS_AND_CONDITIONS: 'Terms and Conditions',
+  ARTISTS: 'Artists of Meta History',
 };

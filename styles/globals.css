@@ -254,3 +254,19 @@ body {
 .play-button:hover {
   fill: #000;
 }
+
+.search-input::-webkit-input-placeholder {
+  font-family: RockstarNarrowRegular;
+}
+
+.search-input:-ms-input-placeholder {
+  font-family: RockstarNarrowRegular;
+}
+
+.search-input:-moz-placeholder {
+  font-family: RockstarNarrowRegular;
+}
+
+.search-input::-moz-placeholder {
+  font-family: RockstarNarrowRegular;
+}

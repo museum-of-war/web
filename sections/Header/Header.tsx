@@ -8,7 +8,7 @@ import { truncateAddress } from '@sections/utils';
 import MenuMobile from '@sections/Header/MenuMobile';
 import Link from 'next/link';
 import DropdownButton from '@components/DropdownButton';
-import { COLLECTIONS_OPTIONS } from '@sections/Header/constants';
+import { COLLECTIONS_OPTIONS, MORE_OPTIONS } from '@sections/Header/constants';
 
 type HeaderProps = {
   signerAddress: string;
@@ -128,15 +128,12 @@ const Header = ({
                 underlined={route.split('/').includes('auction')}
                 wrapperClassName="mr-32px"
               />
-              <HeaderAndFooterButton
-                isDarkTheme={isDarkTheme}
-                label="About Us"
-                onClick={() => {
-                  setMenuOpen(false);
-                }}
-                location="/about-us"
-                underlined={route === '/about-us'}
-                wrapperClassName={signerAddress ? 'mr-32px' : ''}
+              <DropdownButton
+                isDark={isDarkTheme}
+                label="More"
+                wrapperClassName="mr-32px"
+                options={MORE_OPTIONS}
+                menuItemWidth={200}
               />
               {signerAddress && (
                 <HeaderAndFooterButton

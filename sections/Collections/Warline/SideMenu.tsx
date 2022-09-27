@@ -8,7 +8,7 @@ import {
   BY_HOUR,
   BY_NEWEST_BY_OLDEST_OPTIONS,
   ON_SALE,
-} from '../../../constants/collections/Warline/constants';
+} from '@constants/collections/Warline/constants';
 
 type SideMenuProps = {
   showSideMenu: boolean;
@@ -86,7 +86,7 @@ const SideMenu = ({
         <div className="flex justify-between items-center">
           <p className="font-rblack text-32px leading-36px">Filters</p>
           <button className="cursor-pointer" onClick={cancelAndCloseHandler}>
-            <img src="/img/close_icon.svg" alt="cliose" />
+            <img src="/img/close_icon.svg" alt="close" />
           </button>
         </div>
 

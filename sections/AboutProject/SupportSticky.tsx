@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SupportButton from '@components/SupportButton';
-import DonatePopup from '@components/collections/Warline/DonatePopup';
+import DonatePopup from '@sections/Collections/Warline/DonatePopup';
 import { useViewPort } from '@hooks/useViewport';
 import { MINT_LINK, RELEASE_DATE, OPENSEA_LINK } from '@sections/constants';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';

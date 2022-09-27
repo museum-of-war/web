@@ -10,7 +10,8 @@ import { Dialog } from '@mui/material';
 import { AuctionCollection, AuctionCollectionType } from '@sections/types';
 import { Parallax } from 'react-parallax';
 import { useViewPort } from '@hooks/useViewport';
-import { CollectionLogo, NavBack } from './elements';
+import { RoundLogo } from '../../elements';
+import { NavBack } from './elements';
 
 type CollectionDetailsPageProps = {
   menuOpen: boolean;
@@ -61,11 +62,11 @@ const CollectionDetailsPage: React.FC<CollectionDetailsPageProps> = ({
             marginTop: -60,
           }}
         >
-          <CollectionLogo size={120} src={collectionData.logoSrc} />
+          <RoundLogo size={120} src={collectionData.logoSrc} />
           <NavBack />
         </div>
         <div className="h-100px flex items-center desktop:hidden tablet:hidden relative">
-          <CollectionLogo size={80} src={collectionData.logoSrc} />
+          <RoundLogo size={80} src={collectionData.logoSrc} />
           <NavBack />
         </div>
         <p className="font-rblack break-words mobile:text-38px mobile:leading-38px tablet:text-70px tablet:leading-70px uppercase desktop:pt-60px tablet:pt-60px mobile:pt-0">

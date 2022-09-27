@@ -21,3 +21,15 @@ export const COLLECTIONS_OPTIONS = [
     id: 'incredible-rooster',
   },
 ];
+export const MORE_OPTIONS = [
+  {
+    title: 'About Us',
+    url: '/about-us',
+    id: 'about-us',
+  },
+  {
+    title: 'Artists',
+    url: '/artists',
+    id: 'artists',
+  },
+];
