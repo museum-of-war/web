@@ -577,6 +577,24 @@ I love working for both, digital and traditional platforms, making everything be
     descriptionEn: `I was born and lived in peaceful Kiev. I was studying to be a manager, but I really wanted to become a designer. So I became. Now I am working for the victory of Ukraine as much as I can.`,
     id: 'katalina_maievska',
   },
+  {
+    name: 'Natasha Steshenko',
+    avatar: 'Natasha Steshenko.jpg',
+    descriptionUa: `Народилася: Канів, Україна, 1990
+Освіта: НТУУ КПІ, Видавничо-поліграфічний інститут, кафедра графіки.
+Персональні виставки:
+2020 – "Простір для сенсу", Аукціонний дім Корнерз, Київ
+2021 – "Простір для сенсу", бар Гніздо, Київ
+2021 – "Ізометрія реальності", галерея Portal 11, Київ`,
+    descriptionEn: `Born: Kaniv, Ukraine , 1990
+Education: Kyiv Polytechnic University at the Department of Graphic Arts
+Solo exhibitions:
+2020 – "Space for Sence", Auction house "Corners", Kyiv, Ukraine
+2021 – "Space for Sence", Gnezdo bar, Kyiv, Ukraine
+2021 – "Isometry of Reality", gallery "Portal 11", Kyiv, Ukraine
+`,
+    id: 'natasha_steshenko',
+  },
 ].sort((a1, a2) => a1.name.localeCompare(a2.name)) as ExtendedArtistType[];
 
 export const ARTISTS_WITH_ARTS = ARTISTS.map(
