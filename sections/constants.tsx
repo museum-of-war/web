@@ -55,4 +55,5 @@ export const TITLES = {
   PRIVACY_POLICY: 'Privacy Policy',
   TERMS_AND_CONDITIONS: 'Terms and Conditions',
   ARTISTS: 'Artists of Meta History',
+  FOR_ARTISTS: 'For Artists',
 };
