@@ -1,41 +1,36 @@
-import React, { useEffect, useMemo } from 'react';
-import Blurb from '../../../../sections/AboutProject/Blurb';
-import { useViewPort } from '../../../../hooks/useViewport';
-import Script from "next/script";
-import { ITEMS } from '../../../../constants/collections/IncredibleRooster/constants';
+import React, { useEffect } from 'react';
+import { JavascriptViewer } from '@3dweb/360javascriptviewer';
+import Blurb from '@sections/AboutProject/Blurb';
+import { useViewPort } from '@hooks/useViewport';
+import { ITEMS } from '@constants/collections/IncredibleRooster/constants';
 
 const IncredibleRooster = () => {
   const { isDesktop, isMobile, isTablet } = useViewPort();
 
-  const playerParams = useMemo(() => {
-    if (isDesktop) return { width: 644, height: 384 };
-    if (isTablet) return { width: 624, height: 360 };
-    if (isMobile) return { width: 272, height: 260 };
-
-    return { width: 0, height: 0 };
-  }, [isDesktop, isMobile, isTablet]);
-
   useEffect(() => {
-    // @ts-ignore
-    window.marmoset.noUserInterface = true;
+    ITEMS.forEach((item, id) => {
+      const viewer = new JavascriptViewer({
+        extraImageClass:
+          'desktop:w-[692px] desktop:h-[692px] tablet:w-[624px] tablet:h-[624px] mobile:w-[272px] mobile:h-[272px]',
+        mainHolderId: `jsv-holder-${id}`,
+        mainImageId: `jsv-image-${id}`,
+        totalFrames: 360,
+        speed: 120,
+        defaultProgressBar: true,
+        mainImageUrl: `${item.url}/0001.jpg`,
+        imageUrlFormat: `${item.url}/xxxx.jpg`,
+        autoRotate: 7200,
+        autoRotateSpeed: 30,
+      });
 
-    ITEMS.forEach((item) => {
-      // @ts-ignore
-      const instance = new window.marmoset.WebViewer(0, 0, item.url);
+      viewer.start();
 
-      const node = document.getElementById(`player-container-${item.id}`);
-
-      if (node && !node.children.length) {
-        node.appendChild(instance.domRoot);
-      }
-
-      return instance;
+      return viewer;
     });
   }, []);
 
   return (
     <div>
-      <Script src="https://viewer.marmoset.co/main/marmoset.js" />
       <div className="relative desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <Blurb
           header="Incredible Rooster"
@@ -49,9 +44,9 @@ NFT-версії півня, відтворені в стилі відомих �
       </div>
       {isTablet ? (
         <div
-          className="absolute z-1 bg-no-repeat w-[694px] h-[552px]"
+          className="absolute z-1 bg-no-repeat w-[565px] h-[552px]"
           style={{
-            backgroundImage: 'url(/img/theHall/bg-tablet.svg)',
+            backgroundImage: 'url(/img/roosters/bg-tablet.svg)',
           }}
         />
       ) : null}
@@ -59,7 +54,7 @@ NFT-версії півня, відтворені в стилі відомих �
         <div
           className="absolute z-1 bg-no-repeat w-[320px] h-[340px]"
           style={{
-            backgroundImage: 'url(/img/theHall/bg-mobile.svg)',
+            backgroundImage: 'url(/img/roosters/bg-mobile.svg)',
           }}
         />
       ) : null}
@@ -67,37 +62,42 @@ NFT-версії півня, відтворені в стилі відомих �
         {isDesktop ? (
           <div className="sticky pt-[100px] top-[100px]">
             <div
-              className="z-1 bg-no-repeat w-[652px] h-[501px] bg-contain top-[100px]"
+              className="z-1 bg-no-repeat w-[543px] h-[552px] bg-contain top-[100px]"
               style={{
-                backgroundImage: 'url(/img/theHall/bg-desktop.svg)',
+                backgroundImage: 'url(/img/roosters/bg-desktop.svg)',
               }}
             />
           </div>
         ) : null}
         <div className={`${isDesktop ? 'mt-[-520px]' : ''}`}>
-          {ITEMS.map((item) => (
+          {ITEMS.map((item, id) => (
             <div
-              key={item.id}
+              key={id}
               className="desktop:mt-[70px] tablet:mt-[48px] mobile:mt-[40px] desktop:ml-[130px] tablet:ml-0 mobile:ml-0"
               style={{ background: 'white' }}
             >
               <div className="flex desktop:flex-row tablet:flex-col mobile:flex-col">
-                <div
-                  style={{
-                    width: playerParams.width,
-                    height: playerParams.height,
-                    minWidth: isDesktop ? 0 : '100%',
-                    minHeight: isDesktop ? 0 : '100%',
-                  }}
-                  className="player-container "
-                  id={`player-container-${item.id}`}
-                />
-                <div className="desktop:w-[344px] tablet:w-full mobile:w-full desktop:pl-[48px] desktop:pt-[48px] tablet:pl-[48px] tablet:pt-[24px] mobile:pl-[24px] mobile:pt-[20px]">
+                <div id={`jsv-holder-${id}`}>
+                  <img
+                    id={`jsv-image-${id}`}
+                    alt="example"
+                    className="desktop:w-[692px] desktop:h-[692px] tablet:w-[624px] tablet:h-[624px] mobile:w-[272px] mobile:h-[272px]"
+                    src={`${item.url}/0001.jpg`}
+                  />
+                </div>
+                <div className="z-1 desktop:w-[344px] tablet:w-full mobile:w-full desktop:pl-[48px] desktop:pt-[48px] tablet:pl-[48px] tablet:pt-[24px] mobile:pl-[24px] mobile:pt-[20px]">
                   <div className="font-rblack desktop:text-[20px] desktop:leading-[24px] tablet:text-[20px] tablet:leading-[24px] mobile:text-[27px] mobile:leading-[30px]">
                     {item.museum}
                   </div>
                   <div className="font-rnarrow desktop:text-[16px] desktop:leading-[24px] tablet:text-[16px] tablet:leading-[24px] mobile:text-[14px] mobile:leading-[20px] desktop:mt-[24px] tablet:mt-[24px] mobile:mt-[20px]">
-                    {item.name}
+                    <a
+                      href={item.link}
+                      className="underline"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.name}
+                    </a>
                   </div>
                   <div className="font-rlight desktop:text-[14px] desktop:leading-[48px] tablet:text-[14px] tablet:leading-[48px] mobile:text-[14px] mobile:leading-[40px]">
                     {item.author}

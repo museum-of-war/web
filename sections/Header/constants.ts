@@ -13,13 +13,13 @@ export const COLLECTIONS_OPTIONS = [
     url: '/collection/hall',
     id: 'the-hall',
   },
-  // {
-  //   title: 'Incredible Rooster',
-  //   description:
-  //     'NFT version of the rooster without fear, recreated in the style of famous paintings',
-  //   url: '/collection/incredible-rooster',
-  //   id: 'incredible-rooster',
-  // },
+  {
+    title: 'Incredible Rooster',
+    description:
+      'NFT version of the rooster without fear, recreated in the style of famous paintings',
+    url: '/collection/incredible-rooster',
+    id: 'incredible-rooster',
+  },
 ];
 export const MORE_OPTIONS = [
   {
