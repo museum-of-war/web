@@ -90,6 +90,14 @@ const data = [
     url: 'https://www.traffic-devils.com/',
     info: ['CEO & founder of Traffic Devils'],
   },
+  {
+    name: 'Vladimir Panchenko',
+    url: 'https://dmarket.com/',
+    info: [
+      'Video game and technology entrepreneur with over 15 years of experience',
+      'Building the future of the in-game items industry that covers the needs of 2.4 billion gamers worldwide',
+    ],
+  },
 ] as AmbassadorType[];
 
 const Ambassadors = () => {
