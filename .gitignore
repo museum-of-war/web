@@ -50,3 +50,4 @@ letsencrypt
 /public/sitemap*
 
 .idea/
+.history/

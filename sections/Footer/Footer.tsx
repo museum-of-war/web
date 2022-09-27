@@ -48,6 +48,11 @@ const Footer = () => {
           </div>
           <div className="flex flex-row justify-center tablet:mb-24px mobile:mb-24px flex-wrap">
             <HeaderAndFooterButton
+              label="For Artists"
+              location="/for-artists"
+              wrapperClassName="mr-20px"
+            />
+            <HeaderAndFooterButton
               label="Audits"
               onClick={onClickAuditReport}
               wrapperClassName="mr-20px"
@@ -95,6 +100,11 @@ const Footer = () => {
               © 2022 All rights reserved
             </div>
             <div className="flex flex-row mt-24px">
+              <HeaderAndFooterButton
+                label="For Artists"
+                location="/for-artists"
+                wrapperClassName="mr-24px"
+              />
               <HeaderAndFooterButton
                 wrapperClassName="mr-24px"
                 label="Audits"
