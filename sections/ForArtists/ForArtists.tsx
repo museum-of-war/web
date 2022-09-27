@@ -53,7 +53,6 @@ const FORM_FIELDS: { [id: string]: TextField | CheckBoxField } = {
 };
 
 const FORM_ID = '1FAIpQLSf2ZlSFHXLluHu4H9M4-kmooPrG0DQwjYTTiFFGl8AsVsTG5Q';
-// const FORM_ID = '1FAIpQLSfT7jleX4Y4WUsNpLcMPDRXQYUDz5mnjk67kRHjgLrxrGtzNQ';
 const FORM_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
 
 export const ForArtists: React.FC = () => {

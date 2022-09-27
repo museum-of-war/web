@@ -11,7 +11,7 @@ const ForArtistsPage: NextPage<SharedProps> = () => {
     <>
       <PageHead
         title={TITLES.FOR_ARTISTS}
-        description="Join the artists and create works for the Meta History collections." //TODO: check me
+        description="Join the artists and create works for the Meta History collections."
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',

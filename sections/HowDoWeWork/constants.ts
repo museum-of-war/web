@@ -27,7 +27,7 @@ export const data: Data[] = [
   },
   {
     en: {
-      text: 'Insert a tweet with rounded corners into your artwork. It shoud take up about 1/9 of the illustration',
+      text: 'Insert a tweet with rounded corners into your artwork. It should take up about 1/9 of the illustration',
     },
     ua: {
       text: 'Вставте твіт з заокругленими кутами на вашу роботу. Він має займати до 1/9 зображення',
@@ -38,7 +38,7 @@ export const data: Data[] = [
       text: 'Make sure that your artwork fits the following technical requirements:',
       list: [
         'Proportion: square',
-        'Format: jpg, png, gif, svg, eps, pdf, mp4, avi',
+        'Format: jpg, png, gif, tif, svg, mp4, avi',
         'File size: up to 50MB',
       ],
     },
@@ -46,7 +46,7 @@ export const data: Data[] = [
       text: 'Переконайтесь, що ваша робота відповідає наступним технічним вимогам:',
       list: [
         'Пропорція: квадрат',
-        'Формат: jpg, png, gif, svg, eps, pdf, mp4, avi',
+        'Формат: jpg, png, gif, tif, svg, mp4, avi',
         'Розмір файлу: до 50МБ',
       ],
     },
