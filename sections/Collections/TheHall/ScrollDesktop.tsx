@@ -3,7 +3,7 @@ import { HallItemType } from '@sections/types';
 import { CardDesktop } from './CardDesktop';
 import { ComingSoon } from './ComingSoon';
 
-const CARD_WIDTH = 990;
+const CARD_WIDTH = 594;
 
 const PrevButton = ({
   active,
@@ -112,7 +112,7 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
 
   return (
     <>
-      <div style={{ paddingBottom: data.length ? 750 : 650 }} />
+      <div style={{ paddingBottom: 750 }} />
       <div
         className="absolute"
         style={{
@@ -120,7 +120,7 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
           width: '100vw',
           overflow: 'hidden',
           left: 0,
-          top: data.length ? 420 : 270,
+          top: 280,
           zIndex: 100,
         }}
       >
@@ -141,17 +141,16 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
           style={{
             height: 552,
             width: '100vw',
-            top: 100,
+            top: 0,
           }}
         >
           <div
             ref={backgroundRef}
-            className="absolute z-1 bg-no-repeat"
+            className="absolute z-1 bg-no-repeat top-0"
             style={{
               backgroundImage: 'url(/img/theHall/bg-desktop.svg)',
               width: 828,
               height: 552,
-              top: 100,
               ...{
                 ...(data.length
                   ? {}
@@ -168,12 +167,12 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
             className="overflow-hidden absolute z-2"
             style={{
               width: '100%',
+              top: 100,
             }}
           >
             <div
               ref={scrollRef}
-              className="relative inline-flex flex-row the-hall-cards-wrapper"
-              style={{ left: 0 }}
+              className="relative inline-flex flex-row the-hall-cards-wrapper left-0 top-0"
             >
               {data.map((datum) => (
                 <CardDesktop key={datum.Id} {...datum} />

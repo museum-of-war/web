@@ -1,8 +1,7 @@
 import React from 'react';
+import { useViewPort } from '@hooks/useViewport';
 import HeaderAndFooterButton from '../../components/HeaderAndFooterButton';
 import SocialMediaButton from '../../components/SocialMediaButton';
-import { useViewPort } from '@hooks/useViewport';
-import { useAppRouter } from '@hooks/useAppRouter';
 import { openInNewTab } from '../utils';
 import {
   DISCORD_LINK,
@@ -16,22 +15,14 @@ import {
 
 const Footer = () => {
   const { isMobile, isTablet } = useViewPort();
-  const { route } = useAppRouter();
 
   const onClickAuditReport = () =>
     openInNewTab('https://github.com/museum-of-war/nft/tree/master/audits');
   const onClickContactUs = () =>
     openInNewTab('mailto:vk@metahistory.gallery?subject=Meta History');
-  const isHall = route.split('/').includes('hall');
 
   return (
-    <div
-      className={
-        isHall
-          ? ''
-          : 'desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px'
-      }
-    >
+    <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
       {isMobile || isTablet ? (
         <div className="font-rnarrow pt-10% flex flex-col">
           <div className="flex tablet:flex-row mobile:flex-col align-center justify-center tablet:mb-24px mobile:mb-24px">

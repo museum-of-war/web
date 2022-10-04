@@ -91,11 +91,7 @@ export type AuctionItemType = {
 
 export type HallItemType = {
   Id: number;
-  TwitterUrl: string;
   ImageSrc: string;
-  TwitterUsername: string;
-  TwitterAccountName: string;
-  TweetText: string;
 };
 
 export type BidInfo = {

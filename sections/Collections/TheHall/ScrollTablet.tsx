@@ -11,8 +11,9 @@ export const ScrollTablet: React.FC<ScrollTabletProps> = ({ data }) => (
     className="relative"
     style={{
       height: 552,
-      marginTop: data.length ? 380 : 96,
+      marginTop: 20,
       marginBottom: 60,
+      left: -72,
       width: '100vw',
     }}
   >
@@ -39,8 +40,10 @@ export const ScrollTablet: React.FC<ScrollTabletProps> = ({ data }) => (
       <div
         className="flex flex-row z-2 absolute overflow-auto scrollbar-hidden"
         style={{
-          top: -340,
+          top: 40,
           width: '100%',
+          paddingLeft: 52,
+          paddingRight: 92,
         }}
       >
         {data.map((datum) => (

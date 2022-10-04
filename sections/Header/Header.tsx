@@ -38,18 +38,14 @@ const Header = ({
     setMenuOpen(false);
   }, [handleDisconnect, setMenuOpen]);
   const isDarkTheme = route.split('/').includes('auction');
-  const isHall = route.split('/').includes('hall');
 
   const isClientRendered = useIsClientRendered();
 
   return (
     <div
-      className={
-        (isClientRendered ? '' : 'invisible ') +
-        (isHall
-          ? ''
-          : 'desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px')
-      }
+      className={`${
+        isClientRendered ? '' : 'invisible'
+      } desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px`}
     >
       {isMobile || isTablet ? (
         <div>
