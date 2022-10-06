@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { HallItemType } from '@sections/types';
+import Link from 'next/link';
 import { CardDesktop } from './CardDesktop';
 import { ComingSoon } from './ComingSoon';
 
@@ -175,7 +176,11 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
               className="relative inline-flex flex-row the-hall-cards-wrapper left-0 top-0"
             >
               {data.map((datum) => (
-                <CardDesktop key={datum.Id} {...datum} />
+                <Link href={`/collection/hall/${datum.Tokenid}`} passHref>
+                  <a>
+                    <CardDesktop key={datum.Tokenid} {...datum} />
+                  </a>
+                </Link>
               ))}
             </div>
           </div>

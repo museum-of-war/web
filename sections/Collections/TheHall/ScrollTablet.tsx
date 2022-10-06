@@ -2,6 +2,7 @@ import React from 'react';
 import { HallItemType } from '@sections/types';
 import { CardTablet } from './CardTablet';
 import { ComingSoon } from './ComingSoon';
+import Link from 'next/link';
 
 type ScrollTabletProps = {
   data: HallItemType[];
@@ -47,7 +48,11 @@ export const ScrollTablet: React.FC<ScrollTabletProps> = ({ data }) => (
         }}
       >
         {data.map((datum) => (
-          <CardTablet key={datum.Id} {...datum} />
+          <Link href={`/collection/hall/${datum.Tokenid}`} passHref>
+            <a>
+              <CardTablet key={datum.Tokenid} {...datum} />
+            </a>
+          </Link>
         ))}
       </div>
     </div>

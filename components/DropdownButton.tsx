@@ -69,7 +69,7 @@ function DropdownButton({
             className={`${
               isMobile
                 ? ''
-                : 'origin-top-right z-10 top-40px absolute shadow-3xl py-12px'
+                : 'origin-top-right z-1000 top-40px absolute shadow-3xl py-12px'
             } ${isMobile ? 'py-16px' : ''} ${
               isDark ? 'bg-dropdown' : 'bg-white'
             }`}

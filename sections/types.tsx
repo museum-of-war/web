@@ -90,8 +90,16 @@ export type AuctionItemType = {
 };
 
 export type HallItemType = {
-  Id: number;
+  Tokenid: string;
   ImageSrc: string;
+  TwitterUrl: string;
+  TwitterUsername: string;
+  ImageType: string;
+  Title: string;
+  ArtistName: string;
+  ArtistLink: string;
+  DescriptionEnglish: string;
+  DescriptionUkrainian: string;
 };
 
 export type BidInfo = {

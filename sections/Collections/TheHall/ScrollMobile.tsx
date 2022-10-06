@@ -2,6 +2,7 @@ import React from 'react';
 import { HallItemType } from '@sections/types';
 import { CardMobile } from './CardMobile';
 import { ComingSoon } from './ComingSoon';
+import Link from 'next/link';
 
 type ScrollMobileProps = {
   data: HallItemType[];
@@ -38,7 +39,11 @@ export const ScrollMobile: React.FC<ScrollMobileProps> = ({ data }) => (
         }}
       >
         {data.map((datum) => (
-          <CardMobile key={datum.Id} {...datum} />
+          <Link href={`/collection/hall/${datum.Tokenid}`} passHref>
+            <a>
+              <CardMobile key={datum.Tokenid} {...datum} />
+            </a>
+          </Link>
         ))}
       </div>
     </div>
