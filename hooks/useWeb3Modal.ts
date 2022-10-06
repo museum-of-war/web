@@ -979,6 +979,26 @@ export function useWeb3Modal() {
     }
   }
 
+  async function getFifthDropMintedCount() {
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+
+    try {
+      const nftContract = new web3.eth.Contract(
+        MetaHistorySelectiveDropContractAbi as AbiItem[],
+        FIFTH_DROP_ADDRESS,
+      );
+
+      return +(await nftContract.methods
+        .viewMinted()
+        .call({ from: FIFTH_DROP_ADDRESS }));
+    } catch (e) {
+      console.warn(e);
+      return 0;
+    }
+  }
+
   async function getProspect100TokensCount() {
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
@@ -1388,6 +1408,7 @@ export function useWeb3Modal() {
     const firstDropMinted = +(await getFirstDropMintedCount());
     const secondDropMinted = +(await getSecondDropMintedCount());
     const thirdDropMinted = +(await getThirdDropMintedCount());
+    const fifthDropMinted = +(await getFifthDropMintedCount());
     const prospect100Tokens = +(await getProspect100TokensCount());
     const revivalTokens = +(await getRevivalTokensCount());
     const auctions =
@@ -1403,6 +1424,7 @@ export function useWeb3Modal() {
       firstDropMinted +
       secondDropMinted +
       thirdDropMinted +
+      fifthDropMinted +
       prospect100Tokens +
       revivalTokens +
       auctions
@@ -1423,7 +1445,8 @@ export function useWeb3Modal() {
           firstDropAirdrop -
           secondDropAirdrop +
           (await getSecondDropMintedCount()) +
-          (await getThirdDropMintedCount()),
+          (await getThirdDropMintedCount()) +
+          (await getFifthDropMintedCount()),
       );
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
     const secondAuctionWeth = BigNumber.from('12656000000000000000'); // second auction
