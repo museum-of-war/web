@@ -197,7 +197,7 @@ export default [
         DescriptionEnglish: 'New tragedy with correspondent',
         DescriptionUkrainian:
           'Оператор Fox News Пьєр Закревськи був застрелений неподалік Києва. Він багато років працював на ЗМІ і висвітлював війни в Іраку, Афганістані та Сирії.',
-        ArtistName: 'Yanka.Ki',
+        ArtistName: 'Yana Svyatkina aka Yanka.Ki',
         ArtistLink: 'https://www.instagram.com/yanka.ki/',
         ImageType: 'drop3/11.png',
       },
@@ -1525,7 +1525,7 @@ export default [
           'UN Secretary-General Antonio Guterres has urged an end to the "absurd war" Russia has launched against Ukraine, calling it an "unwinnable" conflict that is putting people through "a living hell.”',
         DescriptionUkrainian:
           'Генеральний секретар ООН Антоніу Гутерріш закликав припинити "абсурдну війну", яку Росія розв\'язала проти України, назвавши її "непереможним" конфліктом, який ставить людей через "живе пекло".',
-        ArtistName: 'Цуканова Оксана',
+        ArtistName: 'Oksana Tsukanova aka carrot4all',
         ArtistLink: 'https://instagram.com/carrot4all?igshid=NWRhNmQxMjQ=',
         ImageType: 'drop3/83.png',
       },
@@ -1628,7 +1628,7 @@ export default [
         DescriptionUkrainian:
           'У четвер міністр закордонних справ України закликав країни ЄС утриматися від прийняття вимоги президента Росії Володимира Путіна платити за російські нафту і газ рублями.',
         ArtistName: 'Захар Беркут',
-        ArtistLink: '',
+        ArtistLink: 'https://www.instagram.com/zahar_berkyt_ukrainian/',
         ImageType: 'drop3/88.png',
       },
     ],
@@ -1669,7 +1669,7 @@ export default [
           'Since the Russian invasion of Ukraine began on 24 February, Insecurity Insight has documented 83 incidents of violence against health care, including 51 against health facilities and the deaths of 12 health workers.',
         DescriptionUkrainian:
           'З моменту початку російського вторгнення в Україну 24 лютого Insecurity Insight задокументувала 83 випадки насильства проти медичних закладів, у тому числі 51 проти медичних закладів і смерть 12 медичних працівників.',
-        ArtistName: 'Софія Рунова',
+        ArtistName: 'Sofiia Runova',
         ArtistLink: 'https://www.instagram.com/runo_illustration/',
         ImageType: 'drop3/90.png',
       },
@@ -1885,7 +1885,7 @@ export default [
           'Support for President Vladimir Putin has surged among Russians following his invasion of Ukraine, according to the country’s leading independent pollster, even as a Kremlin crackdown on protest raises questions about public willingness to express opposition to the war. Some 83% approved of Putin’s actions as president in a March 24-30 survey of 1,632 respondents, an increase of 12 percentage points on the previous month and the highest since 2017, the Moscow-based Levada Center reported.',
         DescriptionUkrainian:
           'Підтримка президента Володимира Путіна зросла серед росіян після його вторгнення в Україну, згідно з провідним незалежним соціологом країни, незважаючи на те, що придушення протестів Кремлем викликає сумніви щодо готовності громадськості висловлювати опозицію до війни. Близько 83% схвалювали дії Путіна на посаді президента в опитуванні 24-30 березня за участю 1632 респондентів, що на 12 процентних пунктів більше, ніж у попередньому місяці, і є найвищим показником з 2017 року, повідомляє московський Левада-Центр.',
-        ArtistName: 'Yana Svyatkina',
+        ArtistName: 'Yana Svyatkina aka Yanka.Ki',
         ArtistLink: 'https://www.instagram.com/yanka.ki',
         ImageType: 'drop3/100.png',
       },

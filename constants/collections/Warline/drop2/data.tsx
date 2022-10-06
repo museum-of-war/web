@@ -1548,7 +1548,7 @@ export default [
           'President Joe Biden says the United States is "targeting the main artery of Russia\'s economy," adding "we will not be part of subsidising Putin\'s war”',
         DescriptionUkrainian:
           'Президент Джо Байден заявив, що Сполучені Штати «націлені на головну артерію російської економіки», додавши, що «ми не будемо брати участь у субсидуванні війни Путіна».',
-        ArtistName: 'Yanka.Ki ',
+        ArtistName: 'Yana Svyatkina aka Yanka.Ki',
         ArtistLink: 'https://www.instagram.com/yanka.ki/',
         ImageType: 'drop2/53.jpg',
       },

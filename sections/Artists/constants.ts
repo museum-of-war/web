@@ -564,6 +564,13 @@ I love working for both, digital and traditional platforms, making everything be
     id: 'shesvit',
   },
   {
+    name: 'Surenzh',
+    avatar: 'surenzh.jpeg',
+    descriptionUa: `Кажуть, що «дизайнер це творець сенсу та форми», — цим я і займаюсь, розробляю концепції які розповідають історію. Це problem-solving процес що перетворює суть проекту в скульптурну візуальну форму. Я ARTivist, тож вірю що сучасні технології та цифрове мистецтво можуть кардинально змінити світ. Тому я захоплююсь своєю роботою, і тому беру участь в волонтерській дизайнерській діяльності.`,
+    descriptionEn: `As one said, "designer is a creator of meaning and form" — and that's exactly who I am. I develop concepts that tell stories, it is a problem-solving process which transforms the project's attitude into the hewn, visual form of its essence. I am an ARTivist who believes that modern technologies and digital art can bring profound changes to the world. That's why I am passionate about my work and that's why I take part in design volunteering.`,
+    id: 'surenzh',
+  },
+  {
     name: 'Serhii Mirchuk',
     avatar: 'Serhii Mirchuk.jpg',
     descriptionUa: `Ілюстратор та 2D дизайнер з Вінниці.`,

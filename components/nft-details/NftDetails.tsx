@@ -84,7 +84,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   const [editionsLeft, setEditionsLeft] = useState<number | null>(null);
   const { ref, inView } = useInView();
   const { isDesktop, isTablet, isMobile } = useViewPort();
-  const { canMintThirdDrop, canMintFourthDrop } = useWeb3Modal();
+  const { canMintThirdDrop, canMintFourthDrop, canMintFifthDrop } =
+    useWeb3Modal();
   const isMounted = useIsMounted();
 
   useEffectPeriodic(
@@ -93,6 +94,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         ? canMintThirdDrop
         : warlineDrop === WarlineDrop.Drop4
         ? canMintFourthDrop
+        : warlineDrop === WarlineDrop.Drop5
+        ? canMintFifthDrop
         : () => Promise.resolve(null))(
         +id - DropTokenIdOffsets[warlineDrop!],
       ).then((left) => {
@@ -338,7 +341,9 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                 <div className="flex flex-row gap-[8px] font-rnarrow tablet:text-16px tablet:leading-36px mobile:text-14px mobile:leading-20px">
                   <p>Editions:</p>
                   <p>
-                    {editionsLeft ?? '?'} of {editions ?? '?'} left
+                    {editionsLeft === 0
+                      ? `${editions ?? '?'}`
+                      : `${editionsLeft ?? '?'} of ${editions ?? '?'} left`}
                   </p>
                 </div>
               </div>

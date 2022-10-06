@@ -34,6 +34,7 @@ export enum WarlineDrop {
   Drop2 = 'drop2',
   Drop3 = 'drop3',
   Drop4 = 'drop4',
+  Drop5 = 'drop5',
 }
 
 export const UtorgCurrencies = {

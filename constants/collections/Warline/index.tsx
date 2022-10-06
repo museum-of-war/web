@@ -3,6 +3,7 @@ import { Drop1Data } from './drop1';
 import { Drop2Data } from './drop2';
 import { Drop3Data } from './drop3';
 import { Drop4Data } from './drop4';
+import { Drop5Data } from './drop5';
 import { WarlineDrop } from './constants';
 
 const Drops = {
@@ -10,6 +11,7 @@ const Drops = {
   [WarlineDrop.Drop2]: Drop2Data,
   [WarlineDrop.Drop3]: Drop3Data,
   [WarlineDrop.Drop4]: Drop4Data,
+  [WarlineDrop.Drop5]: Drop5Data,
 } as Readonly<Record<WarlineDrop, ReadonlyArray<DayType>>>;
 
 const AllDropsData = Object.values(Drops).flat();
@@ -49,4 +51,5 @@ export {
   Drop2Data,
   Drop3Data,
   Drop4Data,
+  Drop5Data,
 };

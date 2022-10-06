@@ -897,7 +897,7 @@ export default [
           'Ukraine calls on Viktor Orban to support Ukraine and not to advocate against banning Russia from SWIFT',
         DescriptionUkrainian:
           'Угорщина входить до числа країн, які виступають проти заборони SWIFT в Росії',
-        ArtistName: 'yanka.ki  ',
+        ArtistName: 'Yana Svyatkina aka Yanka.Ki',
         ArtistLink: 'https://www.instagram.com/yanka.ki/',
         ImageType: 'drop1/48.jpg',
         Editions: 22,

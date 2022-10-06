@@ -27,6 +27,8 @@ import {
   REVIVAL_ADDRESS,
   SECOND_DROP_ADDRESS,
   THIRD_DROP_ADDRESS,
+  FOURTH_DROP_ADDRESS,
+  FIFTH_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
 } from '@sections/constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
@@ -35,6 +37,8 @@ import {
   Drop1Data,
   Drop2Data,
   Drop3Data,
+  Drop4Data,
+  Drop5Data,
 } from '../constants/collections/Warline';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import AuctionData from '@sections/Auction/AuctionData';
@@ -253,6 +257,7 @@ export function useWeb3Modal() {
             MetaHistoryAddress,
             SECOND_DROP_ADDRESS,
             THIRD_DROP_ADDRESS,
+            FIFTH_DROP_ADDRESS,
             MERGER_ADDRESS,
             ...AuctionsAddresses,
           ].filter((v, i, a) => a.indexOf(v) === i),
@@ -339,6 +344,56 @@ export function useWeb3Modal() {
             {
               trait_type: 'Edition',
               max_value: 12,
+              value: 'x' + nft.balance,
+            },
+          ],
+        },
+      };
+    }
+
+    function recreateNftForDrop4(
+      nft: typeof ownedNfts[number],
+    ): typeof ownedNfts[number] {
+      const tokenId = parseInt(nft.id.tokenId);
+      const event = Drop4Data.flatMap((day) => day.events).find((event) =>
+        event.ImageType?.includes(`drop4/${tokenId}`),
+      )!;
+      return {
+        ...nft,
+        metadata: {
+          name: `Day ${event.DayNo}, ${event.Time}`,
+          description: event.Headline,
+          image: event.ImageType,
+          item_number: event.Tokenid,
+          attributes: [
+            {
+              trait_type: 'Edition',
+              max_value: 8,
+              value: 'x' + nft.balance,
+            },
+          ],
+        },
+      };
+    }
+
+    function recreateNftForDrop5(
+      nft: typeof ownedNfts[number],
+    ): typeof ownedNfts[number] {
+      const tokenId = parseInt(nft.id.tokenId);
+      const event = Drop5Data.flatMap((day) => day.events).find((event) =>
+        event.ImageType?.includes(`drop5/${tokenId}`),
+      )!;
+      return {
+        ...nft,
+        metadata: {
+          name: `Day ${event.DayNo}, ${event.Time}`,
+          description: event.Headline,
+          image: event.ImageType,
+          item_number: event.Tokenid,
+          attributes: [
+            {
+              trait_type: 'Edition',
+              max_value: 4,
               value: 'x' + nft.balance,
             },
           ],
@@ -455,6 +510,10 @@ export function useWeb3Modal() {
           ? recreateNftForDrop2(nft)
           : nft.contract.address === THIRD_DROP_ADDRESS.toLowerCase()
           ? recreateNftForDrop3(nft)
+          : nft.contract.address === FOURTH_DROP_ADDRESS.toLowerCase()
+          ? recreateNftForDrop4(nft)
+          : nft.contract.address === FIFTH_DROP_ADDRESS.toLowerCase()
+          ? recreateNftForDrop5(nft)
           : nft.contract.address === MERGER_ADDRESS.toLowerCase()
           ? fixNftForMerged1(nft)
           : nft.contract.address === PROSPECT_100_ADDRESS.toLowerCase()
@@ -1074,6 +1133,42 @@ export function useWeb3Modal() {
     return +tokenId > 0 && +tokenId <= 100 ? 8 : 0;
   }
 
+  async function canMintFifthDrop(tokenId: string | number) {
+    const web3 = createAlchemyWeb3(
+      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+    );
+
+    try {
+      const nftContract = new web3.eth.Contract(
+        MetaHistorySelectiveDropContractAbi as AbiItem[],
+        FIFTH_DROP_ADDRESS,
+      );
+      const isPaused = await nftContract.methods
+        .paused()
+        .call({ from: FIFTH_DROP_ADDRESS });
+
+      if (isPaused) return 0;
+
+      const startTime = await nftContract.methods
+        .startTime()
+        .call({ from: FIFTH_DROP_ADDRESS });
+
+      if (new Date(startTime * 1000) > new Date()) return 0;
+
+      const maxSupply = +(await nftContract.methods
+        .maxSupply()
+        .call({ from: FIFTH_DROP_ADDRESS }));
+      const tokenSupply = +(await nftContract.methods
+        .totalSupply(tokenId)
+        .call({ from: FIFTH_DROP_ADDRESS }));
+
+      return maxSupply - tokenSupply;
+    } catch (e) {
+      console.warn(e);
+      return 0;
+    }
+  }
+
   async function mintFirstDrop(tokensCount?: number) {
     const ethersProvider = await connectWallet();
     if (!ethersProvider) throw new Error('Cannot get ethers provider');
@@ -1145,6 +1240,33 @@ export function useWeb3Modal() {
 
     let nftContract = new ethers.Contract(
       ThirdDropAddress,
+      MetaHistorySelectiveDropContractAbi,
+      signer,
+    );
+
+    const price: BigNumber = await nftContract.price();
+
+    const tokenIds = Array(tokensCount).fill(tokenId);
+
+    const estimatedGas = await nftContract.estimateGas.mint!(tokenIds, {
+      value: price.mul(tokensCount),
+    });
+
+    const tx = await nftContract.mint(tokenIds, {
+      value: price.mul(tokensCount),
+      gasLimit: estimatedGas.mul(11).div(10),
+    });
+
+    await tx.wait();
+  }
+
+  async function mintFifthDrop(tokenId: number, tokensCount: number) {
+    const ethersProvider = await connectWallet();
+    if (!ethersProvider) throw new Error('Cannot get ethers provider');
+    const signer = ethersProvider.getSigner();
+
+    let nftContract = new ethers.Contract(
+      FIFTH_DROP_ADDRESS,
       MetaHistorySelectiveDropContractAbi,
       signer,
     );
@@ -1362,9 +1484,11 @@ export function useWeb3Modal() {
     canMintSecondDrop,
     canMintThirdDrop,
     canMintFourthDrop,
+    canMintFifthDrop,
     mintFirstDrop,
     mintSecondDrop,
     mintThirdDrop,
+    mintFifthDrop,
     isUnlocked,
     openModal,
     getSellerTransfers,

@@ -22,7 +22,8 @@ const MintingModal = ({
   tokenId,
   maxMints,
 }: MintingModalProps) => {
-  const { provider, mintSecondDrop, mintThirdDrop } = useWeb3Modal();
+  const { provider, mintSecondDrop, mintThirdDrop, mintFifthDrop } =
+    useWeb3Modal();
   const { push } = useAppRouter();
   const [signerAddress, setSignerAddress] = useState<string>('');
   const [amount, setAmount] = useState<number>(1);
@@ -137,7 +138,9 @@ const MintingModal = ({
               setIsLoading(true);
 
               const mintPromise =
-                drop === WarlineDrop.Drop3
+                drop === WarlineDrop.Drop5
+                  ? mintFifthDrop(tokenId ?? 1, amount)
+                  : WarlineDrop.Drop3
                   ? mintThirdDrop(tokenId ?? 1, amount)
                   : mintSecondDrop(amount);
 
