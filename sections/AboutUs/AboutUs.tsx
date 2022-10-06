@@ -199,7 +199,7 @@ const AboutUs = () => {
             </div>
             <div className="desktop:w-[248px] tablet:w-45% mobile:w-full desktop:mt-[48px] tablet:mt-[72px] mobile:mt-[30px] ml-auto">
               <p className="font-rblack text-32px mb-24px">6</p>
-              the proceeds are transferred to official wallets of Ukrainian
+              The proceeds are transferred to official wallets of Ukrainian
               ministries and volunteers funds
             </div>
           </div>
