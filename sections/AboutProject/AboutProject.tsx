@@ -13,7 +13,7 @@ const Countdown = dynamic(() => import('./Countdown'), {
   ssr: false,
 });
 import AboutUs from '@sections/AboutProject/AboutUs';
-import { THIRD_DROP_DATE } from '@sections/constants';
+import { FIFTH_DROP_DATE } from '@sections/constants';
 import CryptoCirculation from '@sections/CryptoCirculation';
 
 type AboutProjectProps = {
@@ -25,7 +25,7 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
     <div>
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <ContentTop signerAddress={signerAddress} />
-        <Countdown countDownDate={THIRD_DROP_DATE} />
+        <Countdown countDownDate={FIFTH_DROP_DATE} />
         <ContentChapter />
         <ContentCounterDaysAndRised />
       </div>
