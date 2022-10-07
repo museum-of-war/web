@@ -1244,7 +1244,7 @@ export default [
           'Ukraine must win this war for the sake of stability not only of its state, but also for the well-being of the world. In case of Russia’s victory, their aggression may not stop at Ukrainians. The victory of Ukraine is the protection of democracy, it is the opportunity to defend its rights and freedoms. Another good reason why Ukraine should win for the sake of the whole world is the export of grain, which is already now Russia steals and exporting to its territory. Ukraine’s victory is the path to the future.',
         DescriptionUkrainian:
           'Україна має перемогти у цій війні заради стабільності не тільки своєї держави, а й для благополуччя світу. У випадку перемоги Росії, їхня агресія може не зупинитись на українцях. Перемога України - це захист демократії, це можливість відстояти свої права та свободи. Інша вагома причина, чому Україна має виграти заради усього світу - це експорт зерна, яке вже зараз РФ краде та вивозить на свої території. Перемога України - це шлях у майбутнє.',
-        ArtistName: 'IIONN_art',
+        ArtistName: 'iionn.art',
         ArtistLink: 'https://www.instagram.com/iionn.art/',
         ImageType: 'drop5/64.mp4',
       },
