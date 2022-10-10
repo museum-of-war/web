@@ -48,7 +48,11 @@ export const ScrollTablet: React.FC<ScrollTabletProps> = ({ data }) => (
         }}
       >
         {data.map((datum) => (
-          <Link href={`/collection/hall/${datum.Tokenid}`} passHref>
+          <Link
+            key={datum.Tokenid}
+            href={`/collection/hall/${datum.Tokenid}`}
+            passHref
+          >
             <a>
               <CardTablet key={datum.Tokenid} {...datum} />
             </a>

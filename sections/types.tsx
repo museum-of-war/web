@@ -94,12 +94,14 @@ export type HallItemType = {
   ImageSrc: string;
   TwitterUrl: string;
   TwitterUsername: string;
+  Headline: string;
   ImageType: string;
   Title: string;
   ArtistName: string;
   ArtistLink: string;
-  DescriptionEnglish: string;
-  DescriptionUkrainian: string;
+  ShortDescription?: string;
+  DescriptionEnglish: string | JSX.Element;
+  DescriptionUkrainian?: string | JSX.Element;
 };
 
 export type BidInfo = {

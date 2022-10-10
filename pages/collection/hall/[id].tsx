@@ -6,6 +6,7 @@ import { data as HallData } from '@constants/collections/TheHall/data';
 import { getImageSources } from '@utils/Warline/WarlineUrls';
 import React from 'react';
 import { ARTISTS } from '@sections/Artists/constants';
+import { HallItemType } from '@sections/types';
 
 type WarlineItemProps = { id: string };
 
@@ -23,8 +24,8 @@ const WarlineItemPage: React.FC<WarlineItemProps> = ({ id }) => {
 };
 
 const TheHallItem: React.FC<{
-  event: any;
-  allEvents: any[];
+  event: HallItemType;
+  allEvents: HallItemType[];
   id: string;
 }> = ({ event, allEvents, id }) => {
   const url = useAbsoluteUrl();
@@ -72,7 +73,7 @@ const TheHallItem: React.FC<{
       <PageHead
         title={event.Title}
         subtitle={TITLES.HALL}
-        description={`todo`}
+        description={event.ShortDescription}
         image={imageSources.originalSrc}
         data={{
           '@context': 'https://schema.org',
@@ -91,7 +92,7 @@ const TheHallItem: React.FC<{
             },
           ],
         }}
-        canonical={`/warline/${id}`}
+        canonical={`/hall/${id}`}
       />
       <NftDetails
         id={event.Tokenid}
@@ -103,15 +104,11 @@ const TheHallItem: React.FC<{
         headline={event.Headline}
         artistUrl={artistLink}
         artistName={event.ArtistName}
-        editions={event.Editions}
         imageSources={imageSources}
         linkBack="/collection/hall"
         linkBackText="The Hall"
         nextRecord={nextEventData}
         prevRecord={prevEventData}
-        withBuyNowButton={event.IsOnSale}
-        withGetNowButton={event.IsWhitelisted}
-        warlineDrop={event.WarlineDrop}
       />
     </>
   );

@@ -176,7 +176,11 @@ export const ScrollDesktop: React.FC<ScrollProps> = ({ data }, ref) => {
               className="relative inline-flex flex-row the-hall-cards-wrapper left-0 top-0"
             >
               {data.map((datum) => (
-                <Link href={`/collection/hall/${datum.Tokenid}`} passHref>
+                <Link
+                  key={datum.Tokenid}
+                  href={`/collection/hall/${datum.Tokenid}`}
+                  passHref
+                >
                   <a>
                     <CardDesktop key={datum.Tokenid} {...datum} />
                   </a>

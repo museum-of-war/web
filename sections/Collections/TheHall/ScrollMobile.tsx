@@ -39,7 +39,11 @@ export const ScrollMobile: React.FC<ScrollMobileProps> = ({ data }) => (
         }}
       >
         {data.map((datum) => (
-          <Link href={`/collection/hall/${datum.Tokenid}`} passHref>
+          <Link
+            key={datum.Tokenid}
+            href={`/collection/hall/${datum.Tokenid}`}
+            passHref
+          >
             <a>
               <CardMobile key={datum.Tokenid} {...datum} />
             </a>
