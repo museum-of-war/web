@@ -98,6 +98,11 @@ const data = [
       'Building the future of the in-game items industry that covers the needs of 2.4 billion gamers worldwide',
     ],
   },
+  {
+    name: 'Pavlo Kartashov',
+    url: 'https://usf.com.ua/#usf-sc-2',
+    info: ['Director of Ukrainian Startup Fund'],
+  },
 ] as AmbassadorType[];
 
 const Ambassadors = () => {
