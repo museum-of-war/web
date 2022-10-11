@@ -91,6 +91,10 @@ const Partners = () => {
       src: '/img/partners/School_of_Visual_Communication.png',
       alt: 'School of Visual Communication',
     },
+    {
+      src: '/img/partners/superheroes.png',
+      alt: 'Superheroes.',
+    },
   ];
 
   const partnersSmall = [
@@ -177,6 +181,10 @@ const Partners = () => {
     {
       src: '/img/partners/small/School_of_Visual_Communication_small.png',
       alt: 'School of Visual Communication',
+    },
+    {
+      src: '/img/partners/small/superheroes_small.png',
+      alt: 'Superheroes.',
     },
   ];
 
