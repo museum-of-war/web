@@ -18,6 +18,7 @@ const Team = () => {
     { name: 'Elina Norden', role: 'Voice' },
     { name: 'Nick Zinchenko', role: 'Art Support' },
     { name: 'Alyosha Kovalenko', role: 'Author' },
+    { name: 'Oleh Zasadnyy', role: 'Frontend' },
   ];
 
   return (
