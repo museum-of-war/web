@@ -95,6 +95,10 @@ const Partners = () => {
       src: '/img/partners/superheroes.png',
       alt: 'Superheroes.',
     },
+    {
+      src: '/img/partners/nft_calendar.png',
+      alt: 'NFT Calendar',
+    },
   ];
 
   const partnersSmall = [
@@ -185,6 +189,10 @@ const Partners = () => {
     {
       src: '/img/partners/small/superheroes_small.png',
       alt: 'Superheroes.',
+    },
+    {
+      src: '/img/partners/small/nft_calendar_small.png',
+      alt: 'NFT Calendar',
     },
   ];
 
