@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SupportButton from '@components/SupportButton';
+import Button2 from '@components/Button2';
 import { RELEASE_DATE } from '@sections/constants';
 
 type PropsSupportBanner = {
@@ -55,7 +55,7 @@ const SupportBanner = ({ setShowDonatePopup }: PropsSupportBanner) => {
       </div>
       <p className="font-rlight pt-15px text-14px text-white"></p>
       <div className="pt-40px">
-        <SupportButton
+        <Button2
           label={'Support Ukraine'}
           onClick={() => {
             setShowDonatePopup(true);
