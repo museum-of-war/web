@@ -103,6 +103,18 @@ const data = [
     url: 'https://usf.com.ua/#usf-sc-2',
     info: ['Director of Ukrainian Startup Fund'],
   },
+  {
+    name: 'Viktoriya Tigipko',
+    url: 'https://taventures.vc/',
+    info: [
+      'Chairman of the Board of the Ukrainian Startup Fund',
+      'Managing Partner of TA Ventures',
+      'Founder of ICLUB',
+      'President of Odesa International Film Festival',
+      'Chairman of the Ukrainian Film Academy Supervisory Board',
+      'Co-founder of WTECH',
+    ],
+  },
 ] as AmbassadorType[];
 
 const Ambassadors = () => {
