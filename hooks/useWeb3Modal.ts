@@ -96,6 +96,26 @@ const getWeb3Modal = () => {
   return web3Modal;
 };
 
+const ethPriceMemo = {
+  cachingTime: 60000, // in ms
+  cached: {} as {
+    [currency: string]: [Promise<number>, Date];
+  },
+  async tryGetEthPrice(
+    getEthPrice: (currency: string) => Promise<number>,
+    currency: string,
+  ): Promise<number> {
+    const prevVal = this.cached[currency];
+    if (prevVal && +new Date() - +prevVal[1] < this.cachingTime) {
+      return prevVal[0];
+    } else {
+      const promise = getEthPrice(currency);
+      this.cached[currency] = [promise, new Date()];
+      return promise;
+    }
+  },
+};
+
 type getAuctionInfoType = ReturnType<typeof useWeb3Modal>['_getAuctionInfo'];
 const auctionInfoMemo = {
   cachingTime: 5000, // in ms
@@ -1386,16 +1406,25 @@ export function useWeb3Modal() {
     return [...transfers, ...transfersV2];
   }
 
-  async function getPriceFromETH(
-    ethPrice: string | number,
-    currency: 'usd' | 'eur',
-  ): Promise<string> {
+  async function _getEthPrice(currency: string): Promise<number> {
     return await fetch(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=ethereum`,
     )
       .then((res) => res.json())
-      .then((json) => json[0].current_price as number)
-      .then((price) => (price * +ethPrice).toFixed(0));
+      .then((json) => json[0].current_price as number);
+  }
+
+  async function getEthPrice(currency: string): Promise<number> {
+    return ethPriceMemo.tryGetEthPrice(_getEthPrice, currency);
+  }
+
+  async function getPriceFromETH(
+    ethPrice: string | number,
+    currency: 'usd' | 'eur',
+  ): Promise<string> {
+    return await getEthPrice(currency).then((price) =>
+      (price * +ethPrice).toFixed(0),
+    );
   }
 
   async function getUsdPriceFromETH(
