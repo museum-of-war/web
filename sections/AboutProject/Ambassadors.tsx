@@ -91,7 +91,7 @@ const data = [
     info: ['CEO & founder of Traffic Devils'],
   },
   {
-    name: 'Vladimir Panchenko',
+    name: 'Volodymyr Panchenko',
     url: 'https://dmarket.com/',
     info: [
       'Video game and technology entrepreneur with over 15 years of experience',
