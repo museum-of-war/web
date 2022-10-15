@@ -1,24 +1,24 @@
 import Button from '@components/Button';
-import { useViewPort } from '@hooks/useViewport';
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction, useCallback, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import {
-  ALL_ARTS,
-  BY_DAY,
-  BY_HOUR,
-  BY_NEWEST_BY_OLDEST_OPTIONS,
-  ON_SALE,
-} from '@constants/collections/Warline/constants';
+  Sorting,
+  SORTING_OPTIONS,
+  TypeFilter,
+  TYPE_FILTER_OPTIONS,
+  ViewFilter,
+  VIEW_OPTIONS,
+} from './constants';
 
 type SideMenuProps = {
   showSideMenu: boolean;
   setShowSideMenu: React.Dispatch<SetStateAction<boolean>>;
-  byType: string;
-  setByType: React.Dispatch<React.SetStateAction<string>>;
-  selectedByNewest: string | undefined;
-  setSelectedByNewest: React.Dispatch<React.SetStateAction<string | undefined>>;
-  view: string;
-  setView: React.Dispatch<React.SetStateAction<string>>;
+  typeFilter: TypeFilter;
+  setTypeFilter: React.Dispatch<React.SetStateAction<TypeFilter>>;
+  sorting: Sorting;
+  setSorting: React.Dispatch<React.SetStateAction<Sorting>>;
+  viewFilter: ViewFilter;
+  setViewFilter: React.Dispatch<React.SetStateAction<ViewFilter>>;
 };
 
 const SelectedMark = () => (
@@ -43,38 +43,47 @@ const SelectedMark = () => (
 const SideMenu = ({
   showSideMenu,
   setShowSideMenu,
-  byType,
-  setByType,
-  selectedByNewest,
-  setSelectedByNewest,
-  view,
-  setView,
+  typeFilter,
+  setTypeFilter: setByType,
+  sorting: selectedByNewest,
+  setSorting: setSelectedByNewest,
+  viewFilter,
+  setViewFilter: setView,
 }: SideMenuProps) => {
-  const [selectSortBy, setSelectSortBy] = useState(selectedByNewest);
-  const [selectType, setSelectType] = useState(byType);
-  const [viewInMenu, setViewInMenu] = useState(view);
+  const [selectSortBy, setSelectSortBy] = useState<Sorting>(selectedByNewest);
+  const [selectType, setSelectType] = useState<TypeFilter>(typeFilter);
+  const [viewInMenu, setViewInMenu] = useState<ViewFilter>(viewFilter);
 
-  const { isMobile } = useViewPort();
-
-  const applyFilersHandler = () => {
+  const applyFilersHandler = useCallback(() => {
     if (selectSortBy !== selectedByNewest) {
       setSelectedByNewest(selectSortBy);
     }
-    if (selectType !== byType) {
+    if (selectType !== typeFilter) {
       setByType(selectType);
     }
-    if (viewInMenu !== view) {
+    if (viewInMenu !== viewFilter) {
       setView(viewInMenu);
     }
     setShowSideMenu(false);
-  };
+  }, [
+    selectSortBy,
+    selectType,
+    selectedByNewest,
+    setByType,
+    setSelectedByNewest,
+    setShowSideMenu,
+    setView,
+    typeFilter,
+    viewFilter,
+    viewInMenu,
+  ]);
 
-  const cancelAndCloseHandler = () => {
+  const cancelAndCloseHandler = useCallback(() => {
     setSelectSortBy(selectedByNewest);
-    setSelectType(byType);
-    setViewInMenu(view);
+    setSelectType(typeFilter);
+    setViewInMenu(viewFilter);
     setShowSideMenu(false);
-  };
+  }, [selectedByNewest, setShowSideMenu, typeFilter, viewFilter]);
 
   return (
     <OutsideClickHandler onOutsideClick={cancelAndCloseHandler}>
@@ -94,18 +103,18 @@ const SideMenu = ({
           <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">
             Sort by
           </p>
-          {BY_NEWEST_BY_OLDEST_OPTIONS.map((option) => (
+          {SORTING_OPTIONS.map(({ value, label }) => (
             <div
-              key={option.value}
+              key={value}
               className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between"
             >
               <p
-                onClick={() => setSelectSortBy(option.value)}
+                onClick={() => setSelectSortBy(value)}
                 className="cursor-pointer"
               >
-                {option.text}
+                {label}
               </p>
-              {selectSortBy === option.value && <SelectedMark />}
+              {selectSortBy === value && <SelectedMark />}
             </div>
           ))}
         </div>
@@ -114,43 +123,41 @@ const SideMenu = ({
           <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">
             Type
           </p>
-          {[ALL_ARTS, ON_SALE].map((option) => (
+          {TYPE_FILTER_OPTIONS.map(({ value, label }) => (
             <div
-              key={option}
+              key={value}
               className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between"
             >
               <p
-                onClick={() => setSelectType(option)}
+                onClick={() => setSelectType(value)}
                 className="cursor-pointer"
               >
-                {option}
+                {label}
               </p>
-              {selectType === option && <SelectedMark />}
+              {selectType === value && <SelectedMark />}
             </div>
           ))}
         </div>
 
-        {isMobile && (
-          <div className="tablet:mt-48px mobile:mt-30px">
-            <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">
-              View
-            </p>
-            {[BY_DAY, BY_HOUR].map((option) => (
-              <div
-                key={option}
-                className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between"
+        <div className="tablet:mt-48px mobile:mt-30px new_md:hidden">
+          <p className="tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px font-rlight">
+            View
+          </p>
+          {VIEW_OPTIONS.map(({ value, label }) => (
+            <div
+              key={value}
+              className="font-rblack tablet:text-16px tablet:leading-48px mobile:text-14px mobile:leading-40px flex items-center justify-between"
+            >
+              <p
+                onClick={() => setViewInMenu(value)}
+                className="cursor-pointer"
               >
-                <p
-                  onClick={() => setViewInMenu(option)}
-                  className="cursor-pointer"
-                >
-                  {option}
-                </p>
-                {viewInMenu === option && <SelectedMark />}
-              </div>
-            ))}
-          </div>
-        )}
+                {label}
+              </p>
+              {viewInMenu === value && <SelectedMark />}
+            </div>
+          ))}
+        </div>
 
         <div className="flex items-center tablet:justify-evenly mobile:justify-between mt-auto">
           <Button

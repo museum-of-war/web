@@ -23,6 +23,7 @@
     "add-to-calendar-button": "^1.8.3",
     "ethers": "^5.6.0",
     "fslightbox-react": "^1.6.2-2",
+    "lazysizes": "^5.3.2",
     "lottie-react": "^2.2.1",
     "next": "12.1.0",
     "next-sitemap": "^3.0.5",

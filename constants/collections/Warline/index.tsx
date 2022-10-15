@@ -1,4 +1,4 @@
-import { DayType } from '@sections/types';
+import { DayType, EventsGroup } from '@sections/types';
 import { Drop1Data } from './drop1';
 import { Drop2Data } from './drop2';
 import { Drop3Data } from './drop3';
@@ -13,6 +13,14 @@ const Drops = {
   [WarlineDrop.Drop4]: Drop4Data,
   [WarlineDrop.Drop5]: Drop5Data,
 } as Readonly<Record<WarlineDrop, ReadonlyArray<DayType>>>;
+
+const dropTitle: Readonly<Record<WarlineDrop, string>> = {
+  [WarlineDrop.Drop1]: 'Drop 1',
+  [WarlineDrop.Drop2]: 'Drop 2',
+  [WarlineDrop.Drop3]: 'Drop 3',
+  [WarlineDrop.Drop4]: 'Drop 4',
+  [WarlineDrop.Drop5]: 'Drop 5',
+};
 
 const AllDropsData = Object.values(Drops).flat();
 
@@ -40,6 +48,37 @@ const WarlineData: Array<DayType> = Object.keys(groupedDropsByDay).map(
     };
   },
 );
+
+export const eventsGroupByDay: EventsGroup[] = Object.entries(
+  groupedDropsByDay,
+).reduce<EventsGroup[]>((group, [dayNumber, day]) => {
+  return [
+    ...group,
+    {
+      name: `Day ${dayNumber}`,
+      description: day[0]!.date,
+      firstDate: day[0]!.date,
+      lastDate: day[0]!.date,
+      events: day.flatMap((day) => day.events),
+    },
+  ];
+}, []);
+
+export const eventsGroupByDrop: EventsGroup[] = Object.entries(Drops).reduce<
+  EventsGroup[]
+>((group, [dropId, drop]) => {
+  return [
+    ...group,
+    {
+      name: dropTitle[dropId as WarlineDrop],
+      // We should guarantee that array is sorted by days
+      description: `${drop[0]!.date} - ${drop[drop.length - 1]!.date}`,
+      firstDate: drop[0]!.date,
+      lastDate: drop[drop.length - 1]!.date,
+      events: drop.flatMap((day) => day.events),
+    },
+  ];
+}, []);
 
 export default WarlineData;
 
