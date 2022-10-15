@@ -226,10 +226,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
             <div className="px-20px">
               <DropdownSelect
                 options={Object.values(OptionType).map((value) => ({
-                  text: value,
+                  label: value,
                   value,
                 }))}
-                selectedValue={selectedType}
+                selected={selectedType}
                 onChange={handleChangeType}
                 className="min-w-[200px]"
               />
@@ -238,10 +238,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
               <div className="px-20px">
                 <DropdownSelect
                   options={Object.values(OptionCategory).map((value) => ({
-                    text: value,
+                    label: value,
                     value: OptionCategoriesValues[value],
                   }))}
-                  selectedValue={selectedCategory}
+                  selected={selectedCategory}
                   onChange={handleChangeCategory}
                 />
               </div>
@@ -267,10 +267,10 @@ const ContentAuction = ({ collection }: ContentAuctionProps) => {
         {!isMobile && (
           <DropdownSelect
             options={Object.values(OptionSortType).map((value) => ({
-              text: value,
+              label: value,
               value,
             }))}
-            selectedValue={selectedSort}
+            selected={selectedSort}
             onChange={handleChangeSort}
             className="w-[236px]"
           />

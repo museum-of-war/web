@@ -13,6 +13,14 @@ export type TeamDataType = {
   role: string;
 };
 
+export type EventsGroup = {
+  name: string;
+  description: string;
+  firstDate: string;
+  lastDate: string;
+  events: EventType[];
+};
+
 export type DayType = {
   dayNo: number;
   date: string;

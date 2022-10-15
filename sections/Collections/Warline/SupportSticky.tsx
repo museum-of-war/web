@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import SupportButton from '@components/SupportButton';
 import { useViewPort } from '@hooks/useViewport';
 import { MINT_LINK, OPENSEA_LINK } from '@sections/constants';
@@ -19,7 +19,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
   const { timerEnd } = useCountdown(SECOND_DROP_DATE);
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
 
-  const getCanMint = async () => {
+  const getCanMint = useCallback(async () => {
     let isNFTDrop = false;
     try {
       isNFTDrop = await canMint();
@@ -27,7 +27,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
       isNFTDrop = false;
     }
     setIsNFTDrop(isNFTDrop);
-  };
+  }, [canMint]);
 
   useEffect(() => {
     getCanMint();

@@ -1,3 +1,5 @@
+import 'lazysizes';
+import 'lazysizes/plugins/attrchange/ls.attrchange';
 import {
   CSSProperties,
   MouseEventHandler,
@@ -98,6 +100,8 @@ type ScaledImageProps = {
   onMouseLeave?: MouseEventHandler<HTMLElement>;
   breakpoints?: BreakpointRatios;
   postLoad?: boolean | string;
+  lazyload?: boolean;
+  fallbackSrc?: string;
 };
 
 function ScaledImage({
@@ -113,6 +117,8 @@ function ScaledImage({
   onMouseLeave,
   breakpoints,
   postLoad = false,
+  lazyload = false,
+  fallbackSrc,
 }: ScaledImageProps) {
   const DEFAULT_RATIO: RatioOrWidth = {
     type: 'ratio',
@@ -177,6 +183,7 @@ function ScaledImage({
       setLoaded(true);
     }
   }, [imgixRef.current?.complete]);
+
   return (
     <div
       className={`relative ${containerClassName ?? ''}`}
@@ -247,9 +254,12 @@ function ScaledImage({
               onMouseEnter,
               onMouseLeave,
               onLoad: () => update(),
+              ...(lazyload && {
+                src: fallbackSrc,
+              }),
             } as any
           }
-          className={className}
+          className={`${lazyload ? 'lazyload' : ''} ${className}`}
           sizes={[
             ...(pixelBreakpoints.length === 0 ||
             pixelBreakpoints[0]!.lowerBound <= desktopWidth
@@ -270,6 +280,15 @@ function ScaledImage({
             ),
             toViewport(DEFAULT_RATIO),
           ].join(', ')}
+          attributeConfig={
+            lazyload
+              ? {
+                  src: 'data-src',
+                  srcSet: 'data-srcset',
+                  sizes: 'data-sizes',
+                }
+              : undefined
+          }
         />
       )}
       {postLoadStatus !== null && !postLoadStatus.loaded && (

@@ -1,24 +1,19 @@
-import React, { useMemo, useState } from 'react';
-import { useViewPort } from '@hooks/useViewport';
+import React, { useMemo } from 'react';
 import { EventType } from '@sections/types';
 import { openInNewTab } from '@sections/utils';
 import { getUrls } from '@utils/Warline/WarlineUrls';
 import Link from 'next/link';
 import Button from '@components/Button';
-import ScaledImage from '@components/ScaledImage';
-import { BY_DAY } from '@constants/collections/Warline/constants';
-import MintingModal from '@components/MintingModal';
-import { DropTokenIdOffsets } from '@constants/collections/Warline';
+import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 import { JOINLIST_LINK } from '@sections/constants';
 
-type PropsEvent = {
+type EventProps = {
   eventData: EventType;
-  dayNo: number;
-  date: string;
   idx: number;
-  eventsData: EventType[];
-  allEvents: Array<EventType>;
-  view: string;
+  showTime?: boolean;
+  extendedView?: boolean;
+  small?: boolean;
+  onBuy: () => void;
 };
 
 const rand_imgs: string[] = [
@@ -32,283 +27,154 @@ const rand_imgs: string[] = [
   '/img/dots-8.png',
 ];
 
-const Event = ({ eventData, idx, view }: PropsEvent) => {
-  const { isMobile, isTablet } = useViewPort();
-  const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
+const Event = ({
+  eventData,
+  idx,
+  showTime = false,
+  extendedView = false,
+  small = false,
+  onBuy,
+}: EventProps) => {
+  const randomSrc = rand_imgs[idx % 8] as string;
+  const { originalSrc, previewSrc, animationSrc, isAnimation } = getUrls(
+    eventData.Tokenid,
+    eventData.ImageType,
+    randomSrc as string,
+  );
 
-  const alt = useMemo(() => {
-    return `Day ${eventData.DayNo}, ${eventData.Time}`;
-  }, [eventData]);
+  const formattedTokenId = useMemo(() => {
+    return parseInt(eventData.Tokenid) < 10
+      ? '#000' + eventData.Tokenid
+      : parseInt(eventData.Tokenid) < 100
+      ? '#00' + eventData.Tokenid
+      : parseInt(eventData.Tokenid) < 1000
+      ? '#0' + eventData.Tokenid
+      : '#' + eventData.Tokenid;
+  }, [eventData.Tokenid]);
 
-  const TokenidFormatter = (tokenId: string): string => {
-    return parseInt(tokenId) < 10
-      ? '#000' + tokenId
-      : parseInt(tokenId) < 100
-      ? '#00' + tokenId
-      : parseInt(tokenId) < 1000
-      ? '#0' + tokenId
-      : '#' + tokenId;
-  };
-  const shortView = useMemo(() => view === BY_DAY, [view]);
-  const isOnSale = useMemo(() => !!eventData.IsOnSale, [eventData]);
-  const isWhitelisted = useMemo(() => !!eventData.IsWhitelisted, [eventData]);
+  const breakpoints: BreakpointRatios = small
+    ? [
+        {
+          lowerBound: 'mobile',
+          width: 150,
+        },
+      ]
+    : [
+        {
+          lowerBound: 'tablet',
+          width: 300,
+        },
+      ];
 
-  const renderImage = (className: string) => {
-    const randomSrc = rand_imgs[idx % 8] as string;
-    const { originalSrc, previewSrc, animationSrc, isAnimation } = getUrls(
-      eventData.Tokenid,
-      eventData.ImageType,
-      randomSrc as string,
-    );
-
-    return (
+  return (
+    <div className="flex flex-col tablet:flex-row">
       <Link href={`/warline/${eventData.Tokenid}`} passHref>
-        <a>
-          <div className="relative">
-            <ScaledImage
-              alt={alt}
-              src={isAnimation ? previewSrc : originalSrc}
-              postLoad={isAnimation ? animationSrc : false}
-              className={className}
-              breakpoints={[
-                {
-                  lowerBound: 'tablet',
-                  width: 300,
-                },
-              ]}
-            />
-            {(isOnSale || isWhitelisted) &&
+        <a
+          className={`group flex flex-col cursor-pointer w-full ${
+            extendedView ? 'tablet:max-w-[288px] desktop:max-w-[240px]' : ''
+          }`}
+        >
+          <div className="relative aspect-square">
+            <div className="relative">
+              <ScaledImage
+                alt={`${eventData.FullDate}, ${eventData.Time}`}
+                src={isAnimation ? previewSrc : originalSrc}
+                fallbackSrc={isAnimation ? previewSrc : randomSrc}
+                postLoad={isAnimation ? animationSrc : false}
+                containerClassName="aspect-square"
+                className={`aspect-square w-full ${
+                  extendedView
+                    ? 'tablet:max-w-[288px] desktop:max-w-[240px]'
+                    : ''
+                }`}
+                breakpoints={breakpoints}
+                lazyload
+              />
+              <div
+                className={`absolute -inset-8px border-4 border-carbon opacity-0 transition-opacity ${
+                  small ? 'group-hover:opacity-100' : ''
+                }`}
+              />
+            </div>
+            {(eventData.IsOnSale || eventData.IsWhitelisted) &&
               eventData.ImageType !== 'placeholder.png' && (
-                <div className="font-rblack cursor-pointer select-none absolute -top-7 -right-7 border-2 border-carbon rounded-full bg-beige px-16px text-14px leading-28px">
-                  {isWhitelisted ? 'Whitelisted' : 'On Sale'}
+                <div
+                  className={`font-rblack cursor-pointer select-none absolute border-2 border-carbon rounded-full bg-beige ${
+                    small
+                      ? 'px-8px text-10px leading-16px tablet:text-12px tablet:leading-20px -top-4 -right-4'
+                      : 'px-16px text-14px leading-28px -top-7 -right-7'
+                  }`}
+                >
+                  {eventData.IsWhitelisted ? 'Whitelisted' : 'On Sale'}
                 </div>
               )}
           </div>
+          {showTime && !extendedView && (
+            <div className="mt-8px flex flex-row justify-between items-center">
+              <p className="font-rblack text-14px tablet:text-20px">
+                {eventData.Time}
+              </p>
+              <p className="font-rlight text-12px tablet:text-14px">
+                {formattedTokenId}
+              </p>
+            </div>
+          )}
         </a>
       </Link>
-    );
-  };
 
-  const renderBuyButton = (linkBtnCn: string = ''): React.ReactElement => (
-    <div>
-      <Button
-        mode="secondary"
-        label="Buy NFT"
-        className={linkBtnCn}
-        onClick={() => setOpenMintingModal(true)}
-      />
-      {openMintingModal ? (
-        <MintingModal
-          setOpenMintingModal={setOpenMintingModal}
-          drop={eventData.WarlineDrop}
-          tokenId={
-            +eventData.Tokenid -
-            (eventData.WarlineDrop
-              ? DropTokenIdOffsets[eventData.WarlineDrop]
-              : 0)
-          }
-        />
-      ) : (
-        <></>
-      )}
-    </div>
-  );
-
-  const renderGetButton = (linkBtnCn: string = ''): React.ReactElement => (
-    <div>
-      <Button
-        mode="secondary"
-        label="Get NFT"
-        className={linkBtnCn}
-        onClick={() => openInNewTab(JOINLIST_LINK)}
-      />
-    </div>
-  );
-
-  return isMobile ? (
-    <div
-      className={`flex flex-col items-top ${
-        !shortView ? 'mb-60px' : 'min-w-124px w-full'
-      }`}
-    >
-      {renderImage('w-100%')}
-      <div className="mt-20px flex flex-col justify-between">
-        <div>
-          <div className="flex flex-row items-center justify-between ">
-            <p
-              className={`font-rblack ${
-                !shortView ? 'leading-32px text-32px' : 'text-14px'
-              } `}
-            >
-              {eventData.Time}
-            </p>
-            <p className={`font-rlight ${shortView ? 'text-12px' : ''}`}>
-              {TokenidFormatter(eventData.Tokenid)}
-            </p>
-          </div>
-          {!shortView && (
-            <>
-              <p
-                className="font-rnarrow pt-15px"
-                style={{ overflowWrap: 'anywhere' }}
-              >
-                {eventData.Headline}
+      {extendedView && (
+        <div className="flex flex-col justify-between tablet:flex-1 mt-10px tablet:mt-0 tablet:ml-48px">
+          <div>
+            <div className="flex flex-row justify-between items-center">
+              <p className="font-rblack leading-32px text-27px tablet:text-32px">
+                {eventData.Time}
               </p>
-              <div
-                className="flex flex-row items-center justify-between mt-16px"
-                onClick={() => {
-                  openInNewTab(eventData.TwitterUrl);
-                }}
+              <p className="font-rlight text-12px tablet:text-14px">
+                {formattedTokenId}
+              </p>
+            </div>
+
+            <p className="mt-16px tablet:mt-24px font-rnarrow tablet:line-clamp-3">
+              {eventData.Headline}
+            </p>
+
+            {eventData.TwitterUsername?.length > 0 && (
+              <a
+                className="block mt-16px tablet:mt-24px font-rlight"
+                href={eventData.TwitterUrl}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {eventData.TwitterUsername?.length > 0 && (
-                  <p className="font-rlight ">@{eventData.TwitterUsername}</p>
-                )}
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    </div>
-  ) : isTablet ? (
-    <div
-      className={
-        shortView
-          ? 'flex flex-col justify-between min-w-176px w-full'
-          : 'flex flex-row items-top mb-60px'
-      }
-    >
-      {renderImage(
-        shortView ? 'w-40vw w-full' : 'w-40vw max-w-300px max-h-300px h-40vw',
-      )}
-      <div
-        className={`flex flex-col justify-between ${
-          shortView ? '' : 'ml-50px'
-        }`}
-      >
-        <div>
-          <div
-            className={`flex flex-row items-center justify-between
-                          ${shortView ? '' : 'mb-32px'}`}
-          >
-            <p
-              className={`font-rblack leading-32px
-            ${!shortView ? 'text-32px' : 'text-20px'}`}
-            >
-              {eventData.Time}
-            </p>
-            <p className={`font-rlight ${shortView ? 'text-14px' : ''}`}>
-              {TokenidFormatter(eventData.Tokenid)}
-            </p>
+                @{eventData.TwitterUsername}
+              </a>
+            )}
           </div>
-          {!shortView && (
-            <>
-              <p className="font-rnarrow line-clamp-3">{eventData.Headline}</p>
-              <div className="flex flex-row items-center justify-between pt-15px">
-                {eventData.TwitterUsername?.length > 0 && (
-                  <p
-                    className="font-rlight"
-                    onClick={() => openInNewTab(eventData.TwitterUrl)}
-                  >
-                    @{eventData.TwitterUsername}
-                  </p>
-                )}
-              </div>
-            </>
-          )}
-        </div>
-        {!shortView && (
-          <div className="flex flex-row mt-24px items-center">
-            {isWhitelisted
-              ? renderGetButton('font-rblack')
-              : isOnSale
-              ? renderBuyButton('font-rblack')
-              : null}
+
+          <div className="mt-24px hidden tablet:flex grid-flow-col gap-32px items-center">
+            {eventData.IsWhitelisted && (
+              <Button
+                mode="secondary"
+                label="Get NFT"
+                className="font-rblack"
+                onClick={() => openInNewTab(JOINLIST_LINK)}
+              />
+            )}
+            {eventData.IsOnSale && (
+              <Button
+                mode="secondary"
+                label="Buy NFT"
+                className="font-rblack"
+                onClick={onBuy}
+              />
+            )}
             <Link href={`/warline/${eventData.Tokenid}`} passHref>
-              <a>
-                <button
-                  className="mt-auto"
-                  onClick={() => {
-                    // openInNewTab(url);
-                  }}
-                >
-                  <p className="font-rblack ml-32px py-5px border-b-4 hover:border-carbon hover:border-b-4  hover:border-solid border-transparent">
-                    See details
-                  </p>
-                </button>
+              <a className="font-rblack cursor-pointer py-5px border-b-4 hover:border-carbon hover:border-b-4 hover:border-solid border-transparent">
+                See details
               </a>
             </Link>
           </div>
-        )}
-      </div>
-    </div>
-  ) : (
-    <div
-      className={
-        shortView
-          ? 'flex flex-col justify-between min-w-200px w-full'
-          : 'flex flex-row items-top mb-60px'
-      }
-    >
-      {renderImage(
-        shortView
-          ? 'w-full hover:cursor-pointer'
-          : 'max-w-300px max-h-300px h-240px w-248px hover:cursor-pointer',
-      )}
-      <div
-        className={`w-100% flex flex-col justify-between ${
-          shortView ? '' : 'ml-50px'
-        }`}
-      >
-        <div>
-          <div
-            className={`flex flex-row items-center justify-between
-                            ${shortView ? 'py-16px' : ''}`}
-          >
-            <p className="font-rblack leading-32px text-32px">
-              {eventData.Time}
-            </p>
-            <p className="font-rlight">{TokenidFormatter(eventData.Tokenid)}</p>
-          </div>
-          {!shortView && (
-            <>
-              <p className="font-rnarrow mt-24px line-clamp-3">
-                {eventData.Headline}
-              </p>
-              {eventData.TwitterUsername?.length > 0 && (
-                <div
-                  className="font-rlight pt-24px hover:cursor-pointer"
-                  onClick={() => openInNewTab(eventData.TwitterUrl)}
-                >
-                  @{eventData.TwitterUsername}
-                </div>
-              )}
-            </>
-          )}
         </div>
-        {!shortView && (
-          <div className="flex flex-row mt-24px items-center">
-            {isWhitelisted
-              ? renderGetButton('font-rblack')
-              : isOnSale
-              ? renderBuyButton('font-rblack')
-              : null}
-            <Link href={`/warline/${eventData.Tokenid}`} passHref>
-              <a>
-                <button
-                  className="mt-auto"
-                  onClick={() => {
-                    // openInNewTab(url);
-                  }}
-                >
-                  <p className="font-rblack ml-32px py-5px border-b-4 hover:border-carbon hover:border-b-4 hover:border-solid border-transparent">
-                    See details
-                  </p>
-                </button>
-              </a>
-            </Link>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 };

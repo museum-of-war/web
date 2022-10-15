@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { ValueLabel } from 'types';
 
 export const ArrowSvg = ({ isDark = true }) => (
   <svg
@@ -18,36 +19,36 @@ export const ArrowSvg = ({ isDark = true }) => (
   </svg>
 );
 
-export type SelectOption = {
-  text: string;
-  value: string;
-};
-
-type DropdownSelectProps = {
+type DropdownSelectProps<T> = {
+  selected: T;
+  options: ValueLabel<T>[];
+  onChange: (value: T) => void;
   className?: string;
-  selectedValue?: string;
-  options: SelectOption[];
-  onChange: (v?: string) => void;
   isDark?: boolean;
 };
 
-function DropdownSelect({
+function DropdownSelect<T>({
   className,
   options,
-  selectedValue,
+  selected,
   onChange,
   isDark = true,
-}: DropdownSelectProps) {
+}: DropdownSelectProps<T>) {
   const [isOpen, setOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string | undefined>(selectedValue);
 
   const handleClick = () => setOpen((state) => !state);
-  const handleChangeValue = (value: string) => () => {
-    setSelected(value);
-    setOpen(false);
+
+  const handleChangeValue = (value: T) => () => {
     onChange(value);
+    setOpen(false);
   };
+
   const handleClose = () => setOpen(false);
+
+  const selectedLabel = useMemo(
+    () => options.find((i) => i.value === selected)?.label,
+    [options, selected],
+  );
 
   return (
     <OutsideClickHandler onOutsideClick={handleClose}>
@@ -66,9 +67,7 @@ function DropdownSelect({
             aria-haspopup="true"
             onClick={handleClick}
           >
-            <span className="mr-10px">
-              {options.find((i) => i.value === selected)?.text}
-            </span>
+            <span className="mr-10px">{selectedLabel}</span>
             <span className={`h-100% flex ${!isOpen ? 'rotate-180' : ''}`}>
               <ArrowSvg isDark={isDark} />
             </span>
@@ -85,17 +84,15 @@ function DropdownSelect({
             aria-labelledby="menu-button"
             tabIndex={-1}
           >
-            {options.map((i) => (
+            {options.map(({ value, label }) => (
               <div
+                key={label}
                 className="flex items-center justify-between hover:cursor-pointer"
                 role="none"
-                key={i.value}
-                onClick={handleChangeValue(i.value)}
+                onClick={handleChangeValue(value)}
               >
-                <p className="font-rblack text-14px py-12px px-24px">
-                  {i.text}
-                </p>
-                {selected === i.value && (
+                <p className="font-rblack text-14px py-12px px-24px">{label}</p>
+                {selected === value && (
                   <span className="mr-12px">
                     <svg
                       width="20"

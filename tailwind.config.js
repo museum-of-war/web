@@ -360,6 +360,7 @@ module.exports = {
       '7px': '7px',
       7: '8px',
       15: '15px',
+      '8px': '8px',
       '10px': '10px',
       '12px': '12px',
       '14px': '14px',
