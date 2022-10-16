@@ -1,4 +1,4 @@
-import SupportButton from '@components/SupportButton';
+import Button2 from '@components/Button2';
 import DonatePopup from '@sections/Collections/Warline/DonatePopup';
 import React, { useEffect, useState } from 'react';
 import { openInNewTab } from '@sections/utils';
@@ -89,11 +89,11 @@ const CountdownBanner = ({
           {timeLeft.isLeft ? (
             <Link href="/auction" passHref>
               <a>
-                <SupportButton label="Go to Auction" />
+                <Button2 label="Go to Auction" />
               </a>
             </Link>
           ) : (
-            <SupportButton
+            <Button2
               label="Go to Ceremony"
               onClick={() => {
                 openInNewTab('https://enter.party.space/metahistory');

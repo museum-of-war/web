@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SupportButton from '@components/SupportButton';
+import Button2 from '@components/Button2';
 import DonatePopup from '@sections/Collections/Warline/DonatePopup';
 import { useViewPort } from '@hooks/useViewport';
 import { MINT_LINK, RELEASE_DATE, OPENSEA_LINK } from '@sections/constants';
@@ -56,7 +56,7 @@ const SupportSticky = ({ targetAnchorId }: PropsSupportSticky) => {
 
   const stickyButton =
     difference > 0 ? (
-      <SupportButton
+      <Button2
         label="Support Ukraine"
         onClick={() => {
           if (isMobile) setShowBtn(false);

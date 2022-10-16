@@ -9,12 +9,13 @@ import dynamic from 'next/dynamic';
 import ContentChapter from './ContentChapter';
 import ContentCounterDaysAndRised from './ContentCounterDaysAndRised';
 import Partners from './Partners';
-const Countdown = dynamic(() => import('./Countdown'), {
-  ssr: false,
-});
 import AboutUs from '@sections/AboutProject/AboutUs';
 import { FIFTH_DROP_DATE } from '@sections/constants';
 import CryptoCirculation from '@sections/CryptoCirculation';
+import { ApplyAsAnArtist } from '@components/ApplyAsAnArtist';
+const Countdown = dynamic(() => import('./Countdown'), {
+  ssr: false,
+});
 
 type AboutProjectProps = {
   signerAddress: string;
@@ -39,7 +40,14 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
         <Ambassadors />
         <ContentMedia />
         <Partners />
-        <SupportProject />
+        <div className="desktop:flex desktop:flex-row desktop:justify-between mt-20 desktop:mb-120px tablet:mb-96px mobile:mb-60px">
+          <div className="desktop:w-[544px] tablet:mt-0 mobile:mt-60px">
+            <SupportProject />
+          </div>
+          <div className="desktop:w-[544px] desktop:mt-0 tablet:mt-48px mobile:mt-30px">
+            <ApplyAsAnArtist />
+          </div>
+        </div>
       </div>
     </div>
   );

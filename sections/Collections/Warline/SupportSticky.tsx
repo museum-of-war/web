@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import SupportButton from '@components/SupportButton';
+import Button2 from '@components/Button2';
 import { useViewPort } from '@hooks/useViewport';
 import { MINT_LINK, OPENSEA_LINK } from '@sections/constants';
 import { openInNewTab } from '@sections/utils';
@@ -41,7 +41,7 @@ const SupportSticky = ({ setShowDonatePopup }: PropsSupportSticky) => {
   const [showBtn, setShowBtn] = useState<boolean>(false);
 
   const stickyButton = !isNFTDrop ? (
-    <SupportButton
+    <Button2
       label={'Support Ukraine'}
       onClick={() => {
         if (isMobile) setShowBtn(false);
