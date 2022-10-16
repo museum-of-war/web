@@ -11,6 +11,7 @@ import { useVideoModal } from '@providers/VideoProvider';
 import AuctionData from '@sections/Auction/AuctionData';
 import CryptoCirculation from '@sections/CryptoCirculation';
 import { IMG_STORAGE } from '@sections/constants';
+import { ApplyAsAnArtist } from '@components/ApplyAsAnArtist';
 
 const CollapsedSection = () => {
   const { VideoElement } = useVideoModal();
@@ -217,8 +218,13 @@ const AboutUs = () => {
         </div>
       </div>
       <CryptoCirculation initialSize={10} />
-      <div className="desktop:mt-120px tablet:mt-96px mobile:mt-60px desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
-        <SupportProject />
+      <div className="desktop:flex desktop:flex-row desktop:justify-between desktop:mt-120px tablet:mt-96px mobile:mt-60px desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
+        <div className="desktop:w-[544px] tablet:mt-0 mobile:mt-60px">
+          <SupportProject />
+        </div>
+        <div className="desktop:w-[544px] desktop:mt-0 tablet:mt-48px mobile:mt-30px">
+          <ApplyAsAnArtist />
+        </div>
       </div>
     </div>
   );
