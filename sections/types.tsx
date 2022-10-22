@@ -98,12 +98,18 @@ export type AuctionItemType = {
 };
 
 export type HallItemType = {
-  Id: number;
-  TwitterUrl: string;
+  Tokenid: string;
   ImageSrc: string;
+  TwitterUrl: string;
   TwitterUsername: string;
-  TwitterAccountName: string;
-  TweetText: string;
+  Headline: string;
+  ImageType: string;
+  Title: string;
+  ArtistName: string;
+  ArtistLink: string;
+  ShortDescription?: string;
+  DescriptionEnglish: string | JSX.Element;
+  DescriptionUkrainian?: string | JSX.Element;
 };
 
 export type BidInfo = {

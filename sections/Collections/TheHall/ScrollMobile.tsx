@@ -2,6 +2,7 @@ import React from 'react';
 import { HallItemType } from '@sections/types';
 import { CardMobile } from './CardMobile';
 import { ComingSoon } from './ComingSoon';
+import Link from 'next/link';
 
 type ScrollMobileProps = {
   data: HallItemType[];
@@ -9,7 +10,7 @@ type ScrollMobileProps = {
 export const ScrollMobile: React.FC<ScrollMobileProps> = ({ data }) => (
   <div
     className="relative"
-    style={{ height: 400, marginTop: data.length ? 240 : 80, left: -24 }}
+    style={{ height: 400, marginTop: 32, left: -24, marginBottom: 40 }}
   >
     <div className="absolute" style={{ height: 400, width: '100vw' }}>
       <div
@@ -34,11 +35,19 @@ export const ScrollMobile: React.FC<ScrollMobileProps> = ({ data }) => (
       <div
         className="scrollbar-hidden flex absolute flex-row overflow-auto z-2 w-full"
         style={{
-          top: -220,
+          top: 32,
         }}
       >
         {data.map((datum) => (
-          <CardMobile key={datum.Id} {...datum} />
+          <Link
+            key={datum.Tokenid}
+            href={`/collection/hall/${datum.Tokenid}`}
+            passHref
+          >
+            <a>
+              <CardMobile key={datum.Tokenid} {...datum} />
+            </a>
+          </Link>
         ))}
       </div>
     </div>

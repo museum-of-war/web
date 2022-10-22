@@ -33,8 +33,8 @@ type NftDetailsProps = {
   id: string;
   level?: number;
   title: string;
-  descriptionEnglish: string;
-  descriptionUkrainian: string;
+  descriptionEnglish: string | JSX.Element;
+  descriptionUkrainian?: string | JSX.Element;
   twitterUrl: string;
   twitterUsername: string;
   headline: string;
@@ -379,11 +379,6 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
               </Link>
             </div>
           )}
-          <div>
-            <p>{descriptionEnglish}</p>
-            <br />
-            <p className="">{descriptionUkrainian}</p>
-          </div>
           {headline && (
             <a href={twitterUrl} target="_blank" rel="noreferrer">
               <div className="border-carbon border-4 p-[20px] flex flex-col tablet:flex-row gap-[24px]">
@@ -397,6 +392,11 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
               </div>
             </a>
           )}
+          <div>
+            <p>{descriptionEnglish}</p>
+            <br />
+            <p>{descriptionUkrainian}</p>
+          </div>
           {artistName?.length > 0 && (
             <div className="flex flex-row gap-[48px]">
               <div>
