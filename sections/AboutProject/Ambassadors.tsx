@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import Blurb from '@sections/AboutProject/Blurb';
 import { openInNewTab } from '@sections/utils';
 import { AmbassadorType } from '@sections/types';
+import { useViewPort } from '@hooks/useViewport';
 
 const data = [
   {
@@ -118,16 +119,60 @@ const data = [
 ] as AmbassadorType[];
 
 const Ambassadors = () => {
-  const hideOnDesktop = data.length % 4 === 0;
+  const { isTablet, isDesktop } = useViewPort();
+  const [startIdx, setStartIdx] = useState(0);
+
+  const itemsOnPage = useMemo(() => {
+    if (isTablet) {
+      return 2;
+    }
+    if (isDesktop) {
+      return 4;
+    }
+    return 1;
+  }, [isDesktop, isTablet]);
+
+  const toShow = useMemo(
+    () => data.slice(startIdx, startIdx + itemsOnPage),
+    [itemsOnPage, startIdx],
+  );
+
+  const disabledLeft = startIdx === 0;
+  const disabledRight = startIdx + itemsOnPage >= data.length;
 
   return (
     <div className="font-rlight desktop:py-120px tablet:py-[96px] mobile:py-60px">
-      <Blurb header="Ambassadors" classNames="break-all" />
-      <div className="flex desktop:flex-row tablet:flex-row mobile:flex-col justify-between desktop:mt-40px tablet:mt-40px mobile:mt-32px gap-48px">
+      <Blurb
+        header="Ambassadors"
+        classNames="w-full break-all"
+        rightContent={
+          <span className="ml-auto hidden tablet:flex flex-row">
+            <button
+              disabled={disabledLeft}
+              onClick={() => setStartIdx(startIdx - itemsOnPage)}
+              className={`${
+                disabledLeft ? 'opacity-20' : 'opacity-100'
+              } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full mr-25px`}
+            >
+              <img src="/img/left_arrow.svg" alt="left arrow" />
+            </button>
+            <button
+              onClick={() => setStartIdx(startIdx + itemsOnPage)}
+              disabled={disabledRight}
+              className={`${
+                disabledRight ? 'opacity-20' : 'opacity-100'
+              } tablet:w-48px tablet:h-48px mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full`}
+            >
+              <img src="/img/right_arrow.svg" alt="right arrow" />
+            </button>
+          </span>
+        }
+      />
+      <div className="flex desktop:flex-row tablet:flex-row mobile:flex-col justify-between desktop:mt-40px tablet:mt-40px mobile:mt-32px">
         <div
           className={`grid desktop:grid-cols-4 tablet:grid-cols-2 mobile:grid-cols-1 flex-wrap gap-48px`}
         >
-          {data.map((datum) => (
+          {toShow.map((datum) => (
             <div key={datum.name}>
               <div className="flex flex-col">
                 <img className="w-96px" alt="wreath" src="/wreath.svg" />
@@ -153,17 +198,27 @@ const Ambassadors = () => {
               </div>
             </div>
           ))}
-          <div
-            className={`mobile:hidden tablet:flex ${
-              !hideOnDesktop ? '' : 'desktop:hidden'
-            } self-center desktop:col-start-4 justify-end`}
+        </div>
+
+        <div className="mt-32px flex flex-row tablet:hidden">
+          <button
+            disabled={disabledLeft}
+            onClick={() => setStartIdx(startIdx - itemsOnPage)}
+            className={`${
+              disabledLeft ? 'opacity-20' : 'opacity-100'
+            } mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full mr-40px`}
           >
-            <img
-              src="/img/dots-ambassadors.svg"
-              className="w-[248px] h-96px mt-auto"
-              alt="dots"
-            />
-          </div>
+            <img src="/img/left_arrow.svg" alt="/img/left_arrow" />
+          </button>
+          <button
+            onClick={() => setStartIdx(startIdx + itemsOnPage)}
+            disabled={disabledRight}
+            className={`${
+              disabledRight ? 'opacity-20' : 'opacity-100'
+            } mobile:w-40px mobile:h-40px flex items-center justify-center border-2 border-carbon rounded-full`}
+          >
+            <img src="/img/right_arrow.svg" alt="/img/right_arrow" />
+          </button>
         </div>
       </div>
     </div>

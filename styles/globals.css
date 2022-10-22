@@ -5,21 +5,21 @@
 @import 'add-to-calendar-button/assets/css/atcb.min';
 
 @font-face {
-  font-family: "RockstarBlack";
-  src: local("RockstarBlack"),
-    url("/fonts/RockStar-Black.otf") format("truetype");
+  font-family: 'RockstarBlack';
+  src: local('RockstarBlack'),
+    url('/fonts/RockStar-Black.otf') format('truetype');
 }
 
 @font-face {
-  font-family: "RockstarLight";
-  src: local("RockstarLight"),
-    url("/fonts/RockStar-Light.otf") format("truetype");
+  font-family: 'RockstarLight';
+  src: local('RockstarLight'),
+    url('/fonts/RockStar-Light.otf') format('truetype');
 }
 
 @font-face {
-  font-family: "RockstarNarrowRegular";
-  src: local("RockstarNarrowRegular"),
-    url("/fonts/RockStar-NarrowRegular.otf") format("truetype");
+  font-family: 'RockstarNarrowRegular';
+  src: local('RockstarNarrowRegular'),
+    url('/fonts/RockStar-NarrowRegular.otf') format('truetype');
 }
 
 html.dark body {
@@ -39,7 +39,7 @@ body {
 }
 .font-rlight-forced,
 .font-rlight-forced * {
-  font-family: RockstarLight!important;
+  font-family: RockstarLight !important;
 }
 
 .font-rnarrow {
@@ -67,37 +67,34 @@ body {
   color: white !important;
   font-weight: 400 !important;
   font-size: 16px !important;
-
 }
 
 .Mui-focused {
   color: white !important;
   font-weight: 400 !important;
   font-size: 16px !important;
-
 }
 
 .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   font-weight: 400 !important;
   font-size: 16px !important;
-
 }
 
 .css-66dh3a-MuiInputBase-input-MuiInput-input {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   font-weight: 400 !important;
   font-size: 16px !important;
-  border-color: #FFFFFF !important;
+  border-color: #ffffff !important;
   padding-left: 10px !important;
 }
 
 .css-5xn5lu-MuiInputBase-root-MuiInput-root:after {
-  border-bottom: 2px solid #FFFFFF !important;
+  border-bottom: 2px solid #ffffff !important;
 }
 
 .css-5xn5lu-MuiInputBase-root-MuiInput-root:before {
-  border-bottom: 2px solid #FFFFFF !important;
+  border-bottom: 2px solid #ffffff !important;
 }
 
 /* END */
@@ -115,23 +112,27 @@ body {
 }
 
 .css-1howxi1-MuiTableCell-root {
-  color: #FFFFFF !important;
-  border-bottom: 4px solid #FFFFFF !important;
+  color: #ffffff !important;
+  border-bottom: 4px solid #ffffff !important;
   padding: 0px 0px 6px !important;
   font-weight: 900 !important;
   font-size: 14px !important;
 }
 
 .css-dsuxgy-MuiTableCell-root {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   border-bottom: none !important;
   padding: 12px 12px 12px 0px !important;
   font-weight: 400 !important;
   font-size: 16px !important;
 }
 
-.zoom-hover { transition: all .2s ease-in-out; }
-.zoom-hover:hover { transform: scale(1.03); }
+.zoom-hover {
+  transition: all 0.2s ease-in-out;
+}
+.zoom-hover:hover {
+  transform: scale(1.03);
+}
 
 #WEB3_CONNECT_MODAL_ID * {
   z-index: 100;
@@ -210,7 +211,7 @@ body {
 }
 
 .the-hall-cards-wrapper {
-  transition: all .5s ease-in-out
+  transition: all 0.5s ease-in-out;
 }
 
 .breathing {
@@ -269,4 +270,26 @@ body {
 
 .search-input::-moz-placeholder {
   font-family: RockstarNarrowRegular;
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+@screen desktop {
+  .highlight-group:hover .highlight-item {
+    opacity: 0.5;
+  }
+  .highlight-group .highlight-item,
+  .highlight-group:hover .highlight-group-inner:hover .highlight-item {
+    opacity: 1;
+  }
 }

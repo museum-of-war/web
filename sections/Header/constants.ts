@@ -23,6 +23,11 @@ export const COLLECTIONS_OPTIONS = [
 ];
 export const MORE_OPTIONS = [
   {
+    title: 'Roadmap',
+    url: '/roadmap',
+    id: 'roadmap',
+  },
+  {
     title: 'About Us',
     url: '/about-us',
     id: 'about-us',
