@@ -61,4 +61,5 @@ export const TITLES = {
   TERMS_AND_CONDITIONS: 'Terms and Conditions',
   ARTISTS: 'Artists of Meta History',
   FOR_ARTISTS: 'For Artists | Meta History Gallery',
+  ROADMAP: 'Roadmap | Meta History Gallery',
 };

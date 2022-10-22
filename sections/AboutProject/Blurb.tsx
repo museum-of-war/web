@@ -37,26 +37,29 @@ const Blurb = ({
           />
         </>
       )}
-      <div className="pt-20px relative tablet:flex tablet:flex-row font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
-        {english && (
-          <p
-            className={`whitespace-pre-wrap pt-10 ${
-              oneColumn ? 'w-full' : 'tablet:w-45%'
-            } mobile:mb-6%`}
-          >
-            {english}
-          </p>
-        )}
-        {ukrainian && (
-          <p
-            className={`whitespace-pre-wrap ${
-              oneColumn ? 'w-full' : 'tablet:w-45%'
-            } `}
-          >
-            {ukrainian}
-          </p>
-        )}
-      </div>
+      {english ||
+        (ukrainian && (
+          <div className="pt-20px relative tablet:flex tablet:flex-row font-rnarrow mobile:leading-20px tablet:leading-24px mobile:text-14px tablet:text-16px tablet:justify-between">
+            {english && (
+              <p
+                className={`whitespace-pre-wrap pt-10 ${
+                  oneColumn ? 'w-full' : 'tablet:w-45%'
+                } mobile:mb-6%`}
+              >
+                {english}
+              </p>
+            )}
+            {ukrainian && (
+              <p
+                className={`whitespace-pre-wrap ${
+                  oneColumn ? 'w-full' : 'tablet:w-45%'
+                } `}
+              >
+                {ukrainian}
+              </p>
+            )}
+          </div>
+        ))}
     </div>
   );
 };
