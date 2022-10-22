@@ -12,6 +12,7 @@ const RoadmapPage: NextPage<SharedProps> = () => {
     <>
       <PageHead
         title={TITLES.ROADMAP}
+        description="The evolution of Meta History. Timeline-based set of important events of Meta History. Past, present and future. Step by step."
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',

@@ -85,7 +85,7 @@ export const roadmapData: RoadMapData[] = [
   {
     title: '29',
     subTitle: 'May, 2022',
-    description: 'record bid per lot (500 ETN) on the project platform.',
+    description: 'record bid per lot (500 ETH) on the project platform.',
   },
   {
     title: '30',
@@ -132,7 +132,7 @@ export const roadmapData: RoadMapData[] = [
     title: '15',
     subTitle: 'Aug, 2022',
     description:
-      'President of the Blockchain Association of Ukraine Mikhail Chabanyan becomes the official ambassador of the project.',
+      'President of the Blockchain Association of Ukraine Michael Chobanian becomes the official ambassador of the project.',
   },
   {
     title: '23',
