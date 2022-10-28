@@ -85,7 +85,9 @@ export const ForArtists: React.FC = () => {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
+        alert('Your data has been successfully saved!\nThank you!');
       } catch (e) {
+        alert(`An error occurred: ${(e as Error)?.message ?? e}`);
       } finally {
         setLoading(false);
         setInputs({});
