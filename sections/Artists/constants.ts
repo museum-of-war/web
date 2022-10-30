@@ -602,6 +602,15 @@ Solo exhibitions:
 `,
     id: 'natasha_steshenko',
   },
+  {
+    name: 'Anna Babysheva',
+    avatar: 'Anna Babysheva.jpg',
+    descriptionUa: `Художник і ілюстратор з 2016 року.
+Маю диплом психолога та викладача англійської мови. Троє дітей. Половина моєї сім'ї в Україні (наша бабуся ще в Києві, вона 96 років тому, до нас приїхала наша двоюрідна сестра і ми могли зустрітися тут, у Тбілісі) і половина знаходиться в Росії. Ми переїхали до Грузії в кінці лютого, тому що ми проти ВІЙНИ і зараз намагаємося почати нове життя.`,
+    descriptionEn: `Artist and illustrator since 2016. 
+Have the diploma of psychologist & the teacher of English. Three children. Half of my family is in Ukraine (our grandma is still in Kyiv, she's 96 y.o., our cousin came to us and we could meet here, in Tbilisi) and half is in Russia. We moved to Georgia in the end of February because we are against WAR and now are trying to start a new life.`,
+    id: 'babysheva_anna',
+  },
 ].sort((a1, a2) => a1.name.localeCompare(a2.name)) as ExtendedArtistType[];
 
 export const ARTISTS_WITH_ARTS = ARTISTS.map(
