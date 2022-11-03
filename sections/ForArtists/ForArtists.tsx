@@ -87,7 +87,8 @@ export const ForArtists: React.FC = () => {
         });
         alert('Your data has been successfully saved!\nThank you!');
       } catch (e) {
-        alert(`An error occurred: ${(e as Error)?.message ?? e}`);
+        if ((e as Error)?.message !== 'Failed to fetch')
+          alert(`An error occurred: ${(e as Error)?.message ?? e}`);
       } finally {
         setLoading(false);
         setInputs({});
