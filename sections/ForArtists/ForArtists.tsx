@@ -84,11 +84,12 @@ export const ForArtists: React.FC = () => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
+        }).catch((e) => {
+          if ((e as Error)?.message !== 'Failed to fetch') throw e;
         });
         alert('Your data has been successfully saved!\nThank you!');
       } catch (e) {
-        if ((e as Error)?.message !== 'Failed to fetch')
-          alert(`An error occurred: ${(e as Error)?.message ?? e}`);
+        alert(`An error occurred: ${(e as Error)?.message ?? e}`);
       } finally {
         setLoading(false);
         setInputs({});
