@@ -611,6 +611,56 @@ Solo exhibitions:
 Have the diploma of psychologist & the teacher of English. Three children. Half of my family is in Ukraine (our grandma is still in Kyiv, she's 96 y.o., our cousin came to us and we could meet here, in Tbilisi) and half is in Russia. We moved to Georgia in the end of February because we are against WAR and now are trying to start a new life.`,
     id: 'babysheva_anna',
   },
+  {
+    name: 'Dasha Podoltseva',
+    avatar: 'Dasha_Podoltseva.jpg',
+    descriptionUa: `Даша Подольцева — українська графічна дизайнерка, художниця. Народилася у Києві. Закінчила Києво-Могилянську академію. Вивчала академічний малюнок та живопис у майстерні Олександра Тітова. Навчалась у літній школі Central Saint Martins / University of Arts London, школі плаката Петра Банкова. Випускниця школи урбаністики Canactions Studio 1. Співзасновниця проєкту Серія__, присвяченого українським панелькам. Працює з такими темами, як публічний простір, предметний світ та “тимчасові незручності”. Серед вибраних виставок: “Ким я є?”, Одеса, Харків, Ужгород, Івано-Франківськ, Київ (2019-2020), “Лабіринт пам’яті”, Мистецький арсенал, Київ (2020), “VNGRDR”, PostPlayLab, Київ (2020), “Різні разом”, Мистецький арсенал, Київ (2021), B.I International Poster Art Biennale, Корея (2021), “Stand With Ukraine”, UCLA Design Media Arts, Лос-Анджелес (2022), “Голоси”, Український дім, Київ (2022), “Fragile Architecture. SERIA___”, VN Residence, Цюрих (2022).`,
+    descriptionEn: `Ukrainian graphic designer, visual artist. Co-founder of the «Seria» project. Her works were exhibited by the 4th Block Graphic Designers Association, Boston, MA; “STAND WITH UKRAINE!” exhibition in Tbilisi, Georgia; «18th International Biennale of Theatre Posters 2022» in Rzeszów, Poland, «Piazza Ucraina» within the program of «La Biennale di Venezia, Giardini della Biennale», Venice, Italy; «Ukrainian War Time Posters Exhibition», Ukrainian House Art Centre, Kyiv Ukraine; «Stand With Ukraine» show, UCLA Design Media Arts, Los Angeles, California, USA`,
+    id: 'dashapodoltseva',
+  },
+  {
+    name: 'Taras Seniv',
+    avatar: 'Taras_Seniv.jpg',
+    descriptionUa: `Привіт світ! Мене звати Тарас Сенів. Я архітектор, який закоханий в графічний дизайн. Брендинг, ілюстрації, графіка, веб-дизайн. На це все я згідний - лиш би Україна отримала перемогу!`,
+    descriptionEn: `Hello world! My name is Taras Seniv. I am an architect who is in love with graphic design. Branding, illustrations, graphics, web design. I agree with all of this - if only Ukraine would win!`,
+    id: 'senivtaras',
+  },
+  {
+    name: 'Sveta Bilyk',
+    avatar: 'Sveta_Bilyk.png',
+    descriptionUa: `Я 3D і VR художник з України, зараз живу в Парижі.
+
+Я досліджую, як зберегти баланс між минулим, сьогоденням і майбутнім.
+Минуле для мене - це знати своє коріння, поважати, зберігати та примножувати національну спадщину, до якої ти належиш.
+Сьогодення - це психічне здоров'я кожного з нас та турбота про внутрішній світ. Я вірю, що ми поширюємо те, чим самі наповнені.
+Наше майбутнє залежить від наших стосунків з природою. Воно можливе лише тоді, коли ми знайдемо спосіб бути в гармонії з навколишнім середовищем.`,
+    descriptionEn: `I\`m a 3D and VR artist from Ukraine, currently based in Paris.
+
+I explores how to keep the balance between past, present and future.
+The past for me knowing your roots, respecting, preserving and multiplying the national heritage you belong to.
+The present is about the mental health of each of us and taking care of the inner world. I believe that we spread what we are full of.
+Our future depends on our relations with nature. It is possible only if we find a way to be in harmony with nature.
+`,
+    id: 'svetabilyk',
+  },
+  {
+    name: 'Oksana Tsukanova aka carrot4all',
+    avatar: 'Oksana_Tsukanova.png',
+    descriptionUa: `Ілюстраторка: Цуканова Оксана aka @carrot4all
+
+До 2014 року жила у Луганську. Останні 8 років моїм домом стала Полтава.
+
+Як ілюстраторка я знайшла себе у малюванні оточуючого середовища, природи та рослинного світу. Цю свою любов до природи та рослинного світу я реалізую у створенні дизайну патернів та орнаментів.
+
+Техніка (стиль) всіх ілюстрацій які я створила з початку повномасштабної війни в Україні відрізняється від того, що я робила до цього. На цей стиль ілюстрації мене надихнули традиційні техніки друку, такі як ліногравюра, естамп та ін. З 24 лютого я не могла намалювати нічого звичного для мене, у спосіб звичній для мене… Тож ця техніка “вирізання з плями невизначеної форми” (взамін малювання лінією) лягла на  мій стурбований розум тоді як дуже природня, та залишається такою і понині.`,
+    descriptionEn: `Illustrator: Tsukanova Oksana aka @carrot4all
+
+Lived in Luhansk till July 2014. Last 8 years my hometown has been Poltava.
+
+As an artist and illustrator I found myself in drawing surroundings, nature and plants and transform this love to pattern design.
+Technique for all illustrations I’ve created since the beginning of the full scale war in Ukraine  was inspired by traditional hand printing techniques, such as linocut, etching, stamping ets. Since February 24 I couldn’t create anything I used to in a way I used to… So for my troubled mind this technique of cutting out from a random shape (not drawing in the traditional way) felt right and it still does.`,
+    id: 'carrot4all',
+  },
 ].sort((a1, a2) => a1.name.localeCompare(a2.name)) as ExtendedArtistType[];
 
 export const ARTISTS_WITH_ARTS = ARTISTS.map(
