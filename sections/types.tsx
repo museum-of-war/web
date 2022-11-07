@@ -144,3 +144,13 @@ export type TransferInfoType = {
   to: string;
   hash: string;
 };
+
+export type ManagementMemberType = {
+  name: string;
+  title: string;
+  avatarSrc: string;
+  cta: {
+    label: string;
+    url: string;
+  };
+};
