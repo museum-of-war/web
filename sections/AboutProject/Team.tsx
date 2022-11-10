@@ -11,16 +11,15 @@ const Team = () => {
     { name: 'Oleksandra Shamonova', role: 'Project manager' },
     { name: 'Anastasiya Shyshenok', role: 'Identity' },
     { name: 'Serhii Revva', role: 'Experience' },
-    { name: 'Kateryna Dranova', role: 'Voice' },
+    { name: 'Elina Norden', role: 'Voice' },
     { name: 'Liliana Kolodka', role: 'Project manager' },
     { name: 'Glib Kaporikov', role: 'Identity' },
     { name: 'Rustam Abduvaliiev', role: 'Frontend' },
-    { name: 'Elina Norden', role: 'Voice' },
+    { name: 'Valeriia Kucheriavenko', role: 'Description Journalist' },
     { name: 'Oleksandra Postoieva', role: 'Description Journalist' },
     { name: 'Alyosha Kovalenko', role: 'Author' },
     { name: 'Oleh Zasadnyy', role: 'Frontend' },
     { name: 'Nick Zinchenko', role: 'Art Support' },
-    { name: 'Valeriia Kucheriavenko', role: 'Description Journalist' },
   ];
 
   return (
