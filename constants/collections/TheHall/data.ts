@@ -19,4 +19,12 @@ export const data: HallItemType[] = [
     TwitterAccountName: 'Vitalik Buterin',
     TweetText: '',
   },
+  {
+    Id: 3,
+    TwitterUrl: 'https://twitter.com/MarkHamill/status/1576487966846767104',
+    ImageSrc: `${IMG_STORAGE}/original/hall/mark_hamill.jpg`,
+    TwitterUsername: 'MarkHamill',
+    TwitterAccountName: 'Mark Hamill',
+    TweetText: 'Хай буде з вами Сила 🇺🇦',
+  },
 ];
