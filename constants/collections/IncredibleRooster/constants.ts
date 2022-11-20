@@ -80,4 +80,29 @@ export const ITEMS = [
     author: 'Ülo Sooster, 1964',
     url: '/roosters/Museum KUMU',
   },
+  {
+    museum: 'Moderna Museet',
+    name: 'Première rencontre/First Meeting',
+    author: 'Francis Picabia, 1925',
+    url: '/roosters/Moderna Museet FM',
+  },
+  {
+    museum: 'Moderna Museet',
+    name: 'Venezia',
+    author: 'Aleksandra Ekster, 1915',
+    url: '/roosters/Moderna Museet Venezia',
+  },
+  {
+    museum: 'Francisco Carolinum Linz',
+    name: 'Goden bowl with typical flamed decor',
+    author: '2nd quarter of the 17th century',
+    url: '/roosters/Francisco Carolinum Linz',
+  },
+  {
+    museum: 'Tate Modern',
+    name: 'Infinity Mirrored Room - Filled with the Brilliance of Life',
+    author: 'Yayoi Kusama, 2011',
+    url: '/roosters/Tate Modern',
+    link: 'https://www.tate.org.uk/art/artworks/kusama-infinity-mirrored-room-filled-with-the-brilliance-of-life-t15206',
+  },
 ];
