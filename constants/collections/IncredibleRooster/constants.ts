@@ -20,7 +20,6 @@ export const ITEMS = [
     url: '/roosters/LNMM PL-4',
     link: 'https://www.gabrans.com/photonpainting.php',
   },
-  /*
   {
     museum: 'Centre Pompidou',
     name: 'IKB 3, Monochrome bleu',
@@ -81,5 +80,4 @@ export const ITEMS = [
     author: 'Ülo Sooster, 1964',
     url: '/roosters/Museum KUMU',
   },
-   */
 ];

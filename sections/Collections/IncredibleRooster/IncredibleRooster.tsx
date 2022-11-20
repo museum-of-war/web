@@ -90,14 +90,18 @@ NFT-версії півня, відтворені в стилі відомих �
                     {item.museum}
                   </div>
                   <div className="font-rnarrow desktop:text-[16px] desktop:leading-[24px] tablet:text-[16px] tablet:leading-[24px] mobile:text-[14px] mobile:leading-[20px] desktop:mt-[24px] tablet:mt-[24px] mobile:mt-[20px]">
-                    <a
-                      href={item.link}
-                      className="underline"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {item.name}
-                    </a>
+                    {item.link ? (
+                      <a
+                        href={item.link}
+                        className="underline"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      item.name
+                    )}
                   </div>
                   <div className="font-rlight desktop:text-[14px] desktop:leading-[48px] tablet:text-[14px] tablet:leading-[48px] mobile:text-[14px] mobile:leading-[40px]">
                     {item.author}
