@@ -38,14 +38,6 @@ const data = [
     ],
   },
   {
-    name: 'Rev Miller',
-    url: 'https://me.linkedin.com/in/revmiller',
-    info: [
-      'Innovative serial entrepreneur, creator of Unchain Ukraine, a charity organization',
-      'Co-founder of Atlantis World, first lightweight metaverse enabling interactive, token-gated community spaces',
-    ],
-  },
-  {
     name: 'Michael Chobanian',
     url: 'https://kuna.family/',
     info: [
