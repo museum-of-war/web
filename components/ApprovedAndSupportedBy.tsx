@@ -48,7 +48,7 @@ const ApprovedAndSupportedBy = () => {
       <div className="flex gap-16px items-center flex-wrap">
         {supporters.map(({ link: url, src: imgUrl, name, className }) => (
           <a key={url} href={url} target="_blank" rel="noreferrer">
-            <img src={imgUrl} alt={name} className={`w-full ${className}`} />
+            <img src={imgUrl} alt={name} className={className} />
           </a>
         ))}
       </div>
