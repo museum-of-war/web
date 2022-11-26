@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Button from '@components/Button';
 import { AboutProject } from './AboutProject';
 
@@ -9,8 +9,33 @@ import {
   projectDescription,
   startDate,
 } from './data';
+import { atcb_action } from 'add-to-calendar-button';
 
 export const VesaZenaida = () => {
+  const setReminder = useCallback(() => {
+    atcb_action({
+      name: 'Vesa & Zinaida NFT Drop',
+      description:
+        'Vesa & Zinaida NFT Drop on [url]https://metahistory.gallery/auction/collection/vesa-zinaida[/url]',
+      startDate: '2022-11-30',
+      startTime: '20:00:00',
+      endDate: '2022-11-30',
+      endTime: '21:10:00',
+      timeZone: 'Europe/Kyiv',
+      options: [
+        'Apple',
+        'Google',
+        'iCal',
+        'Microsoft365',
+        'Outlook.com',
+        'MicrosoftTeams',
+        'Yahoo',
+      ],
+      trigger: 'click',
+      iCalFileName: 'Meta History: Museum of War - Vesa & Zinaida NFT Drop',
+    });
+  }, []);
+
   return (
     <>
       <div className="-mt-32px tablet:-mt-40px">
@@ -43,6 +68,7 @@ export const VesaZenaida = () => {
                 mode="custom"
                 label="Set a reminder"
                 className="mt-8px tablet:mt-16px bg-white text-carbon w-full h-[42px] tablet:h-[48px] mobile:py-0"
+                onClick={setReminder}
               />
 
               <p className="mt-40px tablet:mt-48px font-rnarrow text-16px">
@@ -96,6 +122,7 @@ export const VesaZenaida = () => {
                     mode="custom"
                     label="Set a reminder"
                     className="bg-white text-carbon w-full tablet:w-auto h-[42px] tablet:h-[48px] mobile:py-0"
+                    onClick={setReminder}
                   />
                 </div>
 

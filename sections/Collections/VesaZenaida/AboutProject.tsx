@@ -2,7 +2,7 @@ import React from 'react';
 
 export const AboutProject = () => {
   return (
-    <>
+    <div className="mb-80px">
       <div className="h-3px w-full bg-white" />
 
       <img
@@ -33,6 +33,6 @@ export const AboutProject = () => {
           that has already begun”, — VK, founder of the META HISTORY museum.
         </p>
       </div>
-    </>
+    </div>
   );
 };
