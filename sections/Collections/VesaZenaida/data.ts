@@ -1,3 +1,5 @@
+import auctionData from '@sections/Auction/AuctionData';
+
 export const auctionName = 'Vesa & Zinaida Charity Fine Art Auction';
 export const startDate = '30th of November 2022';
 export const nftDescription =
@@ -6,6 +8,8 @@ export const projectDescription =
   '600+ sites of Ukrainian culture were damaged by the war. META HISTORY museum will restore them together with the Ministry of Culture and Information Policy of Ukraine. Make your contribution to the survival of the best examples of the art of previous generations by purchasing NFT works of outstanding contemporary artists.';
 
 interface NFTInfo {
+  id: string;
+  tokenIndex: number;
   name: string;
   imgUrl: string;
   author: string;
@@ -15,6 +19,7 @@ interface NFTInfo {
 }
 export const nfts: NFTInfo[] = [
   {
+    id: 'vesa-silence',
     name: 'Silence',
     imgUrl: '/img/vesa-zinaida/vesa.webp',
     author: 'VESA',
@@ -24,6 +29,7 @@ export const nfts: NFTInfo[] = [
       '«The artwork, as dark as it is with an abstract eagle pecking at the neck of the screaming unraveling figure, represents the alchemy that happens through even the darkest of time if we will it to be. Someone collecting it, after 12 years as the digital original, will be a part of its transformative story. How to turn the negative into something positive to stop the screams. This work represents and was made during a very dark and challenging time in my life when my company was going bankrupt, I nearly died of pneumonia and spent time in an intense care unit with multiple surgeries. The universe seemed a very hostile place, and I needed to discover the positive side and meaning again in a different way. I’m very happy to be presenting this with Zinaida, who is a powerful artist along the same vein, attempting alchemy and purpose through her work», — VESA.',
   },
   {
+    id: 'zinaida-silence-mode',
     name: 'Silence Mode',
     imgUrl: '/img/vesa-zinaida/zinaida.webp',
     author: 'ZINAIDA',
@@ -31,7 +37,12 @@ export const nfts: NFTInfo[] = [
     description:
       "«My video works use mixed techniques to compile a holistic image. Silence Mode is one such multilayered image, where the photo of the girl is complemented by the bride's veil, which looks as if it is 'smoky' because of the events that are currently taking place in Ukraine - flashes, explosions, and fires. One of the very symbolic details is an old Ukrainian wreath of goose feathers, which was created by hand in one of the villages of western Ukraine, and now this tradition is lost. In the work, I address the theme of silence, because nowadays in Ukraine peace has been replaced by a mode of silence, during which the heart freezes with fear and expectation. I am glad that I was able to strengthen this work with the energy of interaction through cooperation with the Finnish artist VESA», — ZINAIDA.",
   },
-];
+].map((info) => ({
+  tokenIndex: auctionData.find(
+    (item) => item.name === info.name && item.artist === info.author,
+  )?.index as number,
+  ...info,
+}));
 
 interface Author {
   name: string;

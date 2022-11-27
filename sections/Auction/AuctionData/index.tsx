@@ -4,6 +4,7 @@ import prospect100 from '@sections/Auction/AuctionData/prospect100';
 import avatarsForUkraine from '@sections/Auction/AuctionData/avatarsForUkraine';
 import kalush from '@sections/Auction/AuctionData/kalush';
 import revival from '@sections/Auction/AuctionData/revival';
+import vesaAndZinaida from '@sections/Auction/AuctionData/vesaAndZinaida';
 
 const AuctionData: Array<AuctionItemType> = [
   ...firstDrop,
@@ -11,6 +12,7 @@ const AuctionData: Array<AuctionItemType> = [
   ...avatarsForUkraine,
   kalush,
   ...revival,
+  ...vesaAndZinaida,
 ].map((item, index) => ({
   index,
   ...item,

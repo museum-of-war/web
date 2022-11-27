@@ -10,9 +10,22 @@ import {
   projectDescription,
   startDate,
 } from './data';
+import { useCountdown } from '@hooks/useCountdown';
 import { atcb_action } from 'add-to-calendar-button';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
+import { AuctionCollection } from '@sections/types';
 
 export const VesaZenaida = () => {
+  const { timerEnd: isStarted } = useCountdown(
+    AuctionCollectionData[
+      AuctionCollection.VesaZinaida
+    ].startsAt!.toISOString(),
+  );
+
+  const { timerEnd: isEnded } = useCountdown(
+    AuctionCollectionData[AuctionCollection.VesaZinaida].endsIn!.toISOString(),
+  );
+
   const setReminder = useCallback(() => {
     atcb_action({
       name: auctionName,
@@ -34,6 +47,12 @@ export const VesaZenaida = () => {
       trigger: 'click',
       iCalFileName: `Meta History: Museum of War - ${auctionName}`,
     });
+  }, []);
+
+  const scrollToWorks = useCallback(() => {
+    document
+      .getElementById(nfts[nfts.length - 1]!.id)
+      ?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   return (
@@ -60,20 +79,22 @@ export const VesaZenaida = () => {
         <div className="desktop:container mx-auto px-24px tablet:px-72px desktop:px-132px">
           <div className="my-40px tablet:my-64px flex justify-center">
             <div className="w-full max-w-[560px]">
-              <h3 className="font-rblack text-16px tablet:text-32px text-center">
-                {startDate}
-              </h3>
+              {!isEnded && (
+                <div className="mb-40px tablet:mb-48px ">
+                  <h3 className="font-rblack text-16px tablet:text-32px text-center">
+                    {startDate}
+                  </h3>
 
-              <Button
-                mode="custom"
-                label="Set a reminder"
-                className="mt-8px tablet:mt-16px bg-white text-carbon w-full h-[42px] tablet:h-[48px] mobile:py-0"
-                onClick={setReminder}
-              />
+                  <Button
+                    mode="custom"
+                    label={isStarted ? 'Place Bid' : 'Set a reminder'}
+                    className="mt-8px tablet:mt-16px bg-white text-carbon w-full h-[42px] tablet:h-[48px] mobile:py-0"
+                    onClick={isStarted ? scrollToWorks : setReminder}
+                  />
+                </div>
+              )}
 
-              <p className="mt-40px tablet:mt-48px font-rnarrow text-16px">
-                {nftDescription}
-              </p>
+              <p className="font-rnarrow text-16px">{nftDescription}</p>
             </div>
           </div>
 
@@ -102,35 +123,56 @@ export const VesaZenaida = () => {
           </div>
 
           <div className="grid grid-cols-1 tablet:grid-cols-2 gap-48px">
-            {nfts.map(({ name, imgUrl, author, type, year, description }) => (
-              <div key={name}>
-                <img
-                  src={imgUrl}
-                  alt={name}
-                  className="w-full"
-                  loading="lazy"
-                />
-                <div className="mt-24px flex flex-col tablet:flex-row gap-28px tablet:justify-between">
-                  <div>
-                    <h2 className="font-rblack text-16px">{`Artwork by ${author}:`}</h2>
-                    <p className="font-rnarrow text-16px">{name}</p>
-                    <p className="font-rnarrow text-16px">{type}</p>
-                    <p className="font-rnarrow text-16px">{year}</p>
+            {nfts.map(
+              ({
+                id,
+                tokenIndex,
+                name,
+                imgUrl,
+                author,
+                type,
+                year,
+                description,
+              }) => (
+                <div key={name}>
+                  <img
+                    src={imgUrl}
+                    alt={name}
+                    className="w-full"
+                    loading="lazy"
+                  />
+                  <a id={id} />
+                  <div className="mt-24px flex flex-col tablet:flex-row gap-28px tablet:justify-between">
+                    <div>
+                      <h2 className="font-rblack text-16px">{`Artwork by ${author}:`}</h2>
+                      <p className="font-rnarrow text-16px">{name}</p>
+                      <p className="font-rnarrow text-16px">{type}</p>
+                      <p className="font-rnarrow text-16px">{year}</p>
+                    </div>
+
+                    <Button
+                      mode="custom"
+                      label={
+                        isStarted
+                          ? isEnded
+                            ? 'Open page'
+                            : 'Place Bid'
+                          : 'Set a reminder'
+                      }
+                      className="block bg-white text-carbon w-full tablet:w-auto h-[42px] tablet:h-[48px] mobile:py-0"
+                      onClick={isStarted ? undefined : setReminder}
+                      location={
+                        isStarted ? `/auction/${tokenIndex}` : undefined
+                      }
+                    />
                   </div>
 
-                  <Button
-                    mode="custom"
-                    label="Set a reminder"
-                    className="bg-white text-carbon w-full tablet:w-auto h-[42px] tablet:h-[48px] mobile:py-0"
-                    onClick={setReminder}
-                  />
+                  <p className="mt-32px tablet:mt-24px font-rnarrow text-16px">
+                    {description}
+                  </p>
                 </div>
-
-                <p className="mt-32px tablet:mt-24px font-rnarrow text-16px">
-                  {description}
-                </p>
-              </div>
-            ))}
+              ),
+            )}
           </div>
 
           <div className="mt-48px flex flex-col gap-24px tablet:gap-40px">
