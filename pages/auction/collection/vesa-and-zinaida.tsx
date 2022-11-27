@@ -4,7 +4,10 @@ import PageHead from '@components/PageHead';
 import { useAbsoluteUrl } from '@hooks/useAbsoluteUrl';
 import { TITLES } from '@sections/constants';
 import { VesaZenaida } from '@sections/Collections/VesaZenaida/VesaZenaida';
-import { nftDescription } from '@sections/Collections/VesaZenaida/data';
+import {
+  auctionName,
+  nftDescription,
+} from '@sections/Collections/VesaZenaida/data';
 
 const VesaZinaidaCollection = () => {
   const url = useAbsoluteUrl();
@@ -12,7 +15,7 @@ const VesaZinaidaCollection = () => {
   return (
     <>
       <PageHead
-        title="Vesa&Zinaida nft"
+        title={auctionName}
         subtitle={TITLES.AUCTION}
         description={nftDescription}
         // image={collectionData.logoSrc}
@@ -30,14 +33,13 @@ const VesaZinaidaCollection = () => {
               {
                 '@type': 'ListItem',
                 position: 2,
-                name: 'Vesa&Zinaida',
+                name: 'Vesa & Zinaida',
               },
             ],
           },
         ]}
-        canonical="/auction/collection/vesa-zinaida"
+        canonical="/auction/collection/vesa-and-zinaida"
       />
-
       <VesaZenaida />
     </>
   );

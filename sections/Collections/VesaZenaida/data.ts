@@ -1,3 +1,4 @@
+export const auctionName = 'Vesa & Zinaida Charity Fine Art Auction';
 export const startDate = '30th of November 2022';
 export const nftDescription =
   'For cultural heritage protection by the largest charity NFT-project in Ukraine. Award-winning digital art meets technology that changes the world and people who build the future. World-famous artists donated their artworks for tokenization and selling. The funds will go to the restoration of Ukrainian iconic sites.';

@@ -3,6 +3,7 @@ import Button from '@components/Button';
 import { AboutProject } from './AboutProject';
 
 import {
+  auctionName,
   authors,
   nftDescription,
   nfts,
@@ -14,9 +15,8 @@ import { atcb_action } from 'add-to-calendar-button';
 export const VesaZenaida = () => {
   const setReminder = useCallback(() => {
     atcb_action({
-      name: 'Vesa & Zinaida NFT Drop',
-      description:
-        'Vesa & Zinaida NFT Drop on [url]https://metahistory.gallery/auction/collection/vesa-zinaida[/url]',
+      name: auctionName,
+      description: `${auctionName} on [url]https://metahistory.gallery/auction/collection/vesa-and-zinaida[/url]`,
       startDate: '2022-11-30',
       startTime: '20:00:00',
       endDate: '2022-11-30',
@@ -32,7 +32,7 @@ export const VesaZenaida = () => {
         'Yahoo',
       ],
       trigger: 'click',
-      iCalFileName: 'Meta History: Museum of War - Vesa & Zinaida NFT Drop',
+      iCalFileName: `Meta History: Museum of War - ${auctionName}`,
     });
   }, []);
 
