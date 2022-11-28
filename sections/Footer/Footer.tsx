@@ -73,7 +73,7 @@ const Footer = () => {
             />
           </div>
           <div className="m-0 text-center tablet:mb-24px mobile:mb-24px">
-            34 Taras Shevchenko blvd., Kyiv, Ukraine, 01030
+            22 Lva Tolstogo st., apt. 69, Kyiv, Ukraine, 01032
           </div>
           <div className="m-0 text-center">© 2022 All rights reserved</div>
         </div>
@@ -81,7 +81,7 @@ const Footer = () => {
         <div className="flex flex-col font-rnarrow py-36px justify-between w-full">
           <div className="flex flex-row items-center desktop:justify-end tablet:justify-center">
             <div className="grow tablet:mt-24px desktop:mt-0">
-              34 Taras Shevchenko blvd., Kyiv, Ukraine, 01030{' '}
+              22 Lva Tolstogo st., apt. 69, Kyiv, Ukraine, 01032{' '}
             </div>
             <div className="flex flex-row">
               <SocialMediaButton discord href={DISCORD_LINK} />

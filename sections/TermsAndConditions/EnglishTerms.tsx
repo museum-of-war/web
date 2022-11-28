@@ -408,7 +408,7 @@ const EnglishTerms = () => {
           Email:{' '}
           <a href="mailto:vk@metahistory.gallery">vk@metahistory.gallery</a>
         </p>
-        <p>Address: 01030, Ukraine, Kyiv, Taras Shevchenko blvd., 34</p>
+        <p>Address: 01032, Ukraine, Kyiv, Lva Tolstogo st., 22, apt. 69</p>
       </div>
     </>
   );

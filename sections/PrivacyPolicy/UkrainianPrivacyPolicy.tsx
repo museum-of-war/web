@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const UkrainianPrivacyPolicy = () => {
   return (
@@ -173,6 +173,13 @@ const UkrainianPrivacyPolicy = () => {
       таким прямим маркетингом); персональні дані були оброблені незаконно;
       персональні дані мають бути видалені для дотримання юридичних зобов’язань
       у законодавстві Союзу чи держави-члена, яким ми підпорядковуємось.
+      <br />
+      <br />
+      <i>
+        «META HISTORY: MUSEUM OF WAR» non-governmental organization
+        (registration number: 44825804), registered in Ukraine at street Lva
+        Tolstogo, 22, apt. 69, Kyiv city, 01032
+      </i>
     </div>
   );
 };

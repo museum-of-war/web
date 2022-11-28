@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const EnglishPrivacyPolicy = () => {
   return (
@@ -7,12 +7,12 @@ const EnglishPrivacyPolicy = () => {
       to ensure that you understand how we collect and use personal data as part
       of the services we provide, thus we created this Privacy Policy
       (“Policy”). By continuing to use our services or accessing our Website
-      http://metahistory.gallery, you acknowledge that you have read,
-      understood and accepted the information described in this Policy. IF YOU
-      DO NOT AGREE WITH THIS PRIVACY POLICY IN GENERAL OR ANY PART OF IT, PLEASE
-      DO NOT ACCESS OUR WEBSITE AND/OR USE OUR SERVICES. Please note that our
-      services and Website are not intended for minors below the age of 18 years
-      and we do not knowingly collect data relating to minors. If provided a
+      http://metahistory.gallery, you acknowledge that you have read, understood
+      and accepted the information described in this Policy. IF YOU DO NOT AGREE
+      WITH THIS PRIVACY POLICY IN GENERAL OR ANY PART OF IT, PLEASE DO NOT
+      ACCESS OUR WEBSITE AND/OR USE OUR SERVICES. Please note that our services
+      and Website are not intended for minors below the age of 18 years and we
+      do not knowingly collect data relating to minors. If provided a
       translation of the English language version of this Policy, the English
       language version of the Policy will control if there is any conflict.
       GENERAL KUNAWALLET OU is a controller of your personal data. A personal
@@ -165,6 +165,13 @@ const EnglishPrivacyPolicy = () => {
       unlawfully processed; the personal data has to be erased for compliance
       with a legal obligation in Union or Member State law to which we are the
       subject.
+      <br />
+      <br />
+      <i>
+        «META HISTORY: MUSEUM OF WAR» non-governmental organization
+        (registration number: 44825804), registered in Ukraine at street Lva
+        Tolstogo, 22, apt. 69, Kyiv city, 01032
+      </i>
     </div>
   );
 };
