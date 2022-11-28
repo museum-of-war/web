@@ -176,9 +176,9 @@ const UkrainianPrivacyPolicy = () => {
       <br />
       <br />
       <i>
-        «META HISTORY: MUSEUM OF WAR» non-governmental organization
-        (registration number: 44825804), registered in Ukraine at street Lva
-        Tolstogo, 22, apt. 69, Kyiv city, 01032
+        ГРОМАДСЬКА ОРГАНІЗАЦІЯ «МЕТА ІСТОРІЯ: МУЗЕЙ ВІЙНИ» (Код ЄДРПОУ:
+        44825804), зареєстрована за адресою: Україна, 01032, місто Київ,
+        Шевченківський р-н, вулиця Льва Толстого, буд. 22, кв. 69
       </i>
     </div>
   );
