@@ -102,9 +102,11 @@ export function getStaticProps({ params }: { params: CollectionProps }) {
 
 export function getStaticPaths() {
   return {
-    paths: Object.keys(AuctionCollectionData).map((id) => ({
-      params: { id },
-    })),
+    paths: Object.keys(AuctionCollectionData)
+      .filter((id) => id !== AuctionCollection.VesaZinaida) //special page
+      .map((id) => ({
+        params: { id },
+      })),
     fallback: false,
   };
 }
