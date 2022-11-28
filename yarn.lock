@@ -897,10 +897,10 @@
     prop-types "^15.8.1"
     react-is "^18.2.0"
 
-"@museum-of-war/auction@5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@museum-of-war/auction/-/auction-5.0.3.tgz#b6072d3cb3ed0ecbcd0cfb749bd5290dcc9e05b2"
-  integrity sha512-b4oWIeyHwmk4AJ0kjdHicgE+yD9l1AfIRsdfu/PAlB15wkw+vIIa4shJPOGPQMEtYOv+Xa8nIiXvuXDsUVb4dw==
+"@museum-of-war/auction@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@museum-of-war/auction/-/auction-5.1.0.tgz#57a1ec2bb1bdad83a36935d6d4a62dc1bd6280e0"
+  integrity sha512-ixlsWyMrDYGuoOmVzdUJm6DEWSh9zspMej3cs98tHuhijvvJg7qUfYBapQCHrHZcTdHrRwnnImjkNg5UTXHmzw==
 
 "@next/env@12.1.0":
   version "12.1.0"

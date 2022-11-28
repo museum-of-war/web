@@ -54,6 +54,7 @@ export enum AuctionCollection {
   Kalush = 'kalush',
   RestOf1stDrop = 'drop1rest',
   TheRevivalProject = 'revival',
+  VesaZinaida = 'vesa-and-zinaida',
 }
 
 export type AuctionCollectionType = {

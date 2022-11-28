@@ -5,10 +5,15 @@ import {
   AVATARS_ADDRESS,
   KALUSH_ADDRESS,
   REVIVAL_ADDRESS,
+  VESA_AND_ZINAIDA_ADDRESS,
 } from '@sections/constants';
 import { AuctionVersion } from '@museum-of-war/auction';
 import KalushAuctionData from '@sections/Auction/AuctionData/kalush';
 import FirstDropRemainingData from '@sections/Auction/AuctionData/drop1rest';
+import {
+  auctionName,
+  nftDescription,
+} from '@sections/Collections/VesaZenaida/data';
 
 const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
   {
@@ -90,6 +95,15 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
       startsAt: new Date('2022-08-22T23:00:00.000+03:00'),
       endsIn: new Date('2022-08-23T23:00:00.000+03:00'),
       version: AuctionVersion.SellerV2,
+    },
+    [AuctionCollection.VesaZinaida]: {
+      name: auctionName,
+      description: nftDescription,
+      headerImageSrc: '/img/vesa-zinaida/vesa-zinaida_hero.webp',
+      contractAddress: VESA_AND_ZINAIDA_ADDRESS,
+      startsAt: new Date('2022-11-30T20:00:00.000+02:00'),
+      endsIn: new Date('2022-12-07T20:00:00.000+02:00'),
+      version: AuctionVersion.V2,
     },
   };
 

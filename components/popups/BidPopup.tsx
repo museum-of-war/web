@@ -42,7 +42,7 @@ const BidPopup = ({
 }: PropsPopup) => {
   const { makeBid, isUnlocked, openModal } = useWeb3Modal();
   const { hidePopup } = usePopup();
-  const minBid = useMemo(() => proposedBids[0]!, [proposedBids]);
+  const minBid = useMemo(() => proposedBids?.[0] ?? '0', [proposedBids]);
   const [ETHAmount, setETHAmount] = useState<string | number>(minBid);
   const [amountError, setAmountError] = useState<string | undefined>(undefined);
   const [isBidding, setIsBidding] = useState<boolean>(false);
@@ -101,7 +101,7 @@ const BidPopup = ({
             <p>ETH</p>
           </div>
           <div className="flex flex-row items-center flex-wrap gap-x-24px">
-            {proposedBids.map((amount) => (
+            {proposedBids?.map((amount) => (
               <BidButton
                 key={amount}
                 disabled={isBidding}

@@ -10,11 +10,12 @@ import ContentChapter from './ContentChapter';
 import ContentCounterDaysAndRised from './ContentCounterDaysAndRised';
 import Partners from './Partners';
 import AboutUs from '@sections/AboutProject/AboutUs';
-import { FIFTH_DROP_DATE } from '@sections/constants';
 import CryptoCirculation from '@sections/CryptoCirculation';
 import { ApplyAsAnArtist } from '@components/ApplyAsAnArtist';
 import { RoadmapPromoBlock } from '@sections/Roadmap/RoadmapPromoBlock';
 import { ManagementTeam } from './ManagementTeam';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
+import { AuctionCollection } from '@sections/types';
 const Countdown = dynamic(() => import('./Countdown'), {
   ssr: false,
 });
@@ -28,7 +29,11 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
     <div>
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <ContentTop signerAddress={signerAddress} />
-        <Countdown countDownDate={FIFTH_DROP_DATE} />
+        <Countdown
+          countDownDate={AuctionCollectionData[
+            AuctionCollection.VesaZinaida
+          ].startsAt!.toISOString()}
+        />
         <ContentChapter />
         <ContentCounterDaysAndRised />
       </div>

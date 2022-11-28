@@ -10,6 +10,7 @@ export enum OptionType {
 
 export enum OptionCategory {
   All = 'All Collections',
+  VesaZinaida = 'Vesa & Zinaida',
   Revival = 'The Revival Project',
   Kalush = 'Stefania For Ukraine',
   AvatarsForUkraine = 'Avatars for Ukraine',
@@ -31,6 +32,7 @@ export const OptionCategoriesValues = {
   [OptionCategory.AvatarsForUkraine]: AuctionCollection.AvatarsForUkraine,
   [OptionCategory.Kalush]: AuctionCollection.Kalush,
   [OptionCategory.Revival]: AuctionCollection.TheRevivalProject,
+  [OptionCategory.VesaZinaida]: AuctionCollection.VesaZinaida,
 };
 
 export const FilterSvg = () => (
