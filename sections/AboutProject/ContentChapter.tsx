@@ -51,7 +51,7 @@ const ContentChapter = ({}: ContentChapterProps) => (
           </div>
           <div className="flex flex-wrap border-t-4 border-carbon border-solid ">
             <img
-              src="/img/vesa-zinaida/vesa-zinaida_hero_small.webp"
+              src="/img/posters/vesa-zinaida.jpg"
               alt={VesaZenaidaConstants.auctionName}
               className="w-full"
             />

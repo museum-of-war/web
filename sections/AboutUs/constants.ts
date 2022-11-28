@@ -21,6 +21,10 @@ export const KNOWN_WALLETS = {
     'Meta History Artists Wallet',
   ['0x557f10757Ef9E28E23E33c82B6d8c035189D7f3f'.toLowerCase()]:
     'Kalush & Prytula Wallet',
+  ['0xb4b382735cf3606aa3b24888b2aa89dd02bc63b0'.toLowerCase()]:
+    'ZINAIDA Artist Wallet',
+  ['0x6A7E35fE807Dd2C00DF3A915eDAFF42896005da1'.toLowerCase()]:
+    'VESA Artist Wallet',
 } as Record<string, string>;
 
 export const MAIN_TRANSFERS = [
