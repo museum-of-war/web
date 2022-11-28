@@ -8,6 +8,8 @@ import {
   auctionName,
   nftDescription,
 } from '@sections/Collections/VesaZenaida/data';
+import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
+import { AuctionCollection } from '@sections/types';
 
 const VesaZinaidaCollection = () => {
   const url = useAbsoluteUrl();
@@ -18,7 +20,7 @@ const VesaZinaidaCollection = () => {
         title={auctionName}
         subtitle={TITLES.AUCTION}
         description={nftDescription}
-        // image={collectionData.logoSrc}
+        image={AuctionCollectionData[AuctionCollection.VesaZinaida]?.logoSrc}
         data={[
           {
             '@context': 'https://schema.org',

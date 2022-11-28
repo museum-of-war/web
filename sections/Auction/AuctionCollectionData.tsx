@@ -99,6 +99,7 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
     [AuctionCollection.VesaZinaida]: {
       name: auctionName,
       description: nftDescription,
+      logoSrc: '/img/auction/logos/vesa-zinaida.jpg',
       headerImageSrc: '/img/vesa-zinaida/vesa-zinaida_hero.webp',
       contractAddress: VESA_AND_ZINAIDA_ADDRESS,
       startsAt: new Date('2022-11-30T20:00:00.000+02:00'),
