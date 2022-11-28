@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCountdown } from '@hooks/useCountdown';
 import { atcb_action, atcb_init } from 'add-to-calendar-button';
+import { auctionName } from '@sections/Collections/VesaZenaida/data';
 
 type CountdownProp = {
   countDownDate: string;
@@ -14,14 +15,13 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
 
   // set date and time according to ISO8601 !!!
   const event: AddToCallendarEvent = {
-    name: 'Meta History: Museum of War - Chapter 5',
-    description:
-      'Meta History Drop 5 on [url]https://metahistory.gallery/collection/warline[/url]',
-    startDate: '2022-10-06',
-    startTime: '23:00:00',
-    endDate: '2022-10-13',
-    endTime: '23:00:00',
-    timeZone: 'Europe/Kiev',
+    name: auctionName,
+    description: `${auctionName} on [url]https://metahistory.gallery/auction/collection/vesa-and-zinaida[/url]`,
+    startDate: '2022-11-30',
+    startTime: '20:00:00',
+    endDate: '2022-11-30',
+    endTime: '21:10:00',
+    timeZone: 'Europe/Kyiv',
     options: [
       'Apple',
       'Google',
@@ -32,7 +32,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
       'Yahoo',
     ],
     trigger: 'click',
-    iCalFileName: 'Meta History: Museum of War - Chapter 5',
+    iCalFileName: `Meta History: Museum of War - ${auctionName}`,
   };
 
   return !timerEnd ? (
@@ -41,7 +41,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
       <div className="flex mobile:my-16px tablet:my-0 tablet:flex-row desktop:items-center tablet:items-center mobile:flex-col mobile:items-start">
         <div className="flex desktop:items-center tablet:items-start desktop:flex-row mobile:flex-col">
           <div className="tablet:text-20px desktop:mr-24px tablet:leading-48px tablet:mb-0 mobile:mb-10px mobile:text-18px mobile:leading-20px font-rlight">
-            Meta History Drop 5 will be in:
+            Charity fine art auction will be in:
           </div>
           <div className="flex flex-row items-center tablet:my-7 mobile:my-0">
             <div className="flex desktop:flex-row mobile:flex-col desktop:items-center mobile:items-start">
