@@ -124,16 +124,7 @@ export const VesaZenaida = () => {
 
           <div className="grid grid-cols-1 tablet:grid-cols-2 gap-48px">
             {nfts.map(
-              ({
-                id,
-                tokenIndex,
-                name,
-                imgUrl,
-                author,
-                type,
-                year,
-                description,
-              }) => (
+              ({ id, tokenIndex, name, imgUrl, author, type, description }) => (
                 <div key={name}>
                   <img
                     src={imgUrl}
@@ -147,7 +138,6 @@ export const VesaZenaida = () => {
                       <h2 className="font-rblack text-16px">{`Artwork by ${author}:`}</h2>
                       <p className="font-rnarrow text-16px">{name}</p>
                       <p className="font-rnarrow text-16px">{type}</p>
-                      <p className="font-rnarrow text-16px">{year}</p>
                     </div>
 
                     <Button
