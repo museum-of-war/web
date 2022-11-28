@@ -33,7 +33,7 @@ const VesaZinaidaCollection = () => {
               {
                 '@type': 'ListItem',
                 position: 2,
-                name: 'Vesa & Zinaida',
+                name: 'VESA & ZINAIDA',
               },
             ],
           },

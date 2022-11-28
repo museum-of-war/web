@@ -6,7 +6,7 @@ import { useViewPort } from '@hooks/useViewport';
 
 const data = [
   {
-    name: 'Vesa',
+    name: 'VESA',
     url: 'https://www.artforcrypto.com/',
     info: [
       'Digital mixed media artist, creates NFT pieces, mixed reality pieces, art in the Multiverse',
