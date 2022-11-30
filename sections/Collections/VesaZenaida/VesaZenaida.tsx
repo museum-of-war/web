@@ -59,7 +59,7 @@ export const VesaZenaida = () => {
   const onPressNft = useCallback(
     (tokenIndex) => () => {
       if (isStarted) {
-        window.location.replace(`/auction/${tokenIndex}`);
+        window.open(`/auction/${tokenIndex}`, '_self');
       } else {
         setReminder();
       }
