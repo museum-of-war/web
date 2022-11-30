@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import ReactGA from 'react-ga4';
 import Button from '@components/Button';
 import { AboutProject } from './AboutProject';
 
@@ -54,6 +55,26 @@ export const VesaZenaida = () => {
       .getElementById(nfts[nfts.length - 1]!.id)
       ?.scrollIntoView({ behavior: 'smooth' });
   }, []);
+
+  const onPressNft = useCallback(
+    (tokenIndex) => () => {
+      if (isStarted) {
+        window.location.replace(`/auction/${tokenIndex}`);
+      } else {
+        setReminder();
+      }
+      ReactGA.send({
+        category: 'auction',
+        action: isStarted
+          ? isEnded
+            ? 'open_page'
+            : 'place_bid'
+          : 'set_reminder',
+        label: tokenIndex,
+      });
+    },
+    [isEnded, isStarted, setReminder],
+  );
 
   return (
     <>
@@ -150,10 +171,7 @@ export const VesaZenaida = () => {
                           : 'Set a reminder'
                       }
                       className="block bg-white text-carbon w-full tablet:w-auto h-[42px] tablet:h-[48px] mobile:py-0"
-                      onClick={isStarted ? undefined : setReminder}
-                      location={
-                        isStarted ? `/auction/${tokenIndex}` : undefined
-                      }
+                      onClick={onPressNft(tokenIndex)}
                     />
                   </div>
 
