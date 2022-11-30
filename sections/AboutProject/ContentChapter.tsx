@@ -3,6 +3,7 @@ import ScaledImage from '@components/ScaledImage';
 import { IMG_STORAGE } from '@sections/constants';
 import Link from 'next/link';
 import * as VesaZenaidaConstants from '@sections/Collections/VesaZenaida/data';
+import ReactGA from 'react-ga4';
 
 type ContentChapterProps = {};
 
@@ -38,7 +39,16 @@ const ContentChapter = ({}: ContentChapterProps) => (
       </a>
     </Link>
     <Link href="/auction/collection/vesa-and-zinaida" passHref>
-      <a className="cursor-pointer">
+      <a
+        className="cursor-pointer"
+        onClick={() => {
+          ReactGA.send({
+            category: 'auction',
+            action: 'open',
+            label: 'vesa_zenaida',
+          });
+        }}
+      >
         <div className="border-4 border-carbon border-solid flex-1 flex flex-col h-full">
           <div className="desktop:p-48px tablet:py-48px tablet:px-36px mobile:py-20px mobile:px-24px flex-1 flex flex-col text-white bg-carbon">
             <h2 className="tablet:text-32px mobile:text-27px font-rblack">
