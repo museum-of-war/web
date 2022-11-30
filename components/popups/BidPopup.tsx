@@ -123,8 +123,8 @@ const BidPopup = ({
               const unlocked: boolean = await isUnlocked();
 
               if (!unlocked) {
-                openModal();
                 hidePopup();
+                openModal();
 
                 return;
               }
