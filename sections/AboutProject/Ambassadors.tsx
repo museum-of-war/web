@@ -79,11 +79,6 @@ const data = [
     ],
   },
   {
-    name: 'Alex Slobozhenko',
-    url: 'https://www.traffic-devils.com/',
-    info: ['CEO & founder of Traffic Devils'],
-  },
-  {
     name: 'Volodymyr Panchenko',
     url: 'https://dmarket.com/',
     info: [
