@@ -1,6 +1,7 @@
-import Blurb from '@sections/AboutProject/Blurb';
 import React, { useCallback, useMemo, useState } from 'react';
+import ReactGA from 'react-ga4';
 import Image from 'next/image';
+import Blurb from '@sections/AboutProject/Blurb';
 import { description } from './constants';
 import { isValidURL } from '@utils/url';
 
@@ -75,6 +76,12 @@ export const ForArtists: React.FC = () => {
               : value;
           data.push(`entry.${id}=${adjustedValue}`);
         }
+      });
+
+      ReactGA.send({
+        category: 'artists_form',
+        action: 'submit',
+        label: inputs['280977728'],
       });
 
       try {
