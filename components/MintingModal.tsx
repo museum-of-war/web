@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import ReactGA from 'react-ga4';
 import Button from '@components/Button';
 import { VscChromeClose } from 'react-icons/vsc';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
@@ -7,12 +8,15 @@ import {
   WarlineDrop,
   UtorgCurrencies,
 } from '../constants/collections/Warline/constants';
+import { AnalyticsContext } from 'types';
+import { openInNewTab } from '@sections/utils';
 
 type MintingModalProps = {
   setOpenMintingModal: (arg: boolean) => void;
   drop?: WarlineDrop;
   tokenId?: number;
   maxMints?: number;
+  analyticsContext?: AnalyticsContext;
 };
 
 const MintingModal = ({
@@ -21,6 +25,7 @@ const MintingModal = ({
   drop,
   tokenId,
   maxMints,
+  analyticsContext,
 }: MintingModalProps) => {
   const { provider, mintSecondDrop, mintThirdDrop, mintFifthDrop } =
     useWeb3Modal();
@@ -66,6 +71,51 @@ const MintingModal = ({
     setDecreaseDisabled(false);
     if (maxMints && amount + 1 >= maxMints) setIncreaseDisabled(true);
   };
+
+  const onBuyETH = useCallback(() => {
+    () => {
+      ReactGA.send({
+        category: analyticsContext?.category || 'nft',
+        action: 'buy_eth',
+        label: tokenId,
+        value: amount,
+      });
+      setIsLoading(true);
+
+      const mintPromise =
+        drop === WarlineDrop.Drop5
+          ? mintFifthDrop(tokenId ?? 1, amount)
+          : WarlineDrop.Drop3
+          ? mintThirdDrop(tokenId ?? 1, amount)
+          : mintSecondDrop(amount);
+
+      mintPromise
+        .then(() => push('/tokens'))
+        .catch((e) => alert(e?.message ?? e))
+        .finally(() => setIsLoading(false));
+    };
+  }, [
+    amount,
+    analyticsContext?.category,
+    drop,
+    mintFifthDrop,
+    mintSecondDrop,
+    mintThirdDrop,
+    push,
+    tokenId,
+  ]);
+
+  const onBuyViaCard = useCallback(() => {
+    if (utorgLink) {
+      openInNewTab(utorgLink);
+      ReactGA.send({
+        category: analyticsContext?.category || 'nft',
+        action: 'buy_via_card',
+        label: tokenId,
+        value: amount,
+      });
+    }
+  }, [amount, analyticsContext?.category, tokenId, utorgLink]);
 
   return (
     <>
@@ -134,21 +184,7 @@ const MintingModal = ({
             round={false}
             disabled={isLoading}
             label="Buy Now in ETH"
-            onClick={() => {
-              setIsLoading(true);
-
-              const mintPromise =
-                drop === WarlineDrop.Drop5
-                  ? mintFifthDrop(tokenId ?? 1, amount)
-                  : WarlineDrop.Drop3
-                  ? mintThirdDrop(tokenId ?? 1, amount)
-                  : mintSecondDrop(amount);
-
-              mintPromise
-                .then(() => push('/tokens'))
-                .catch((e) => alert(e?.message ?? e))
-                .finally(() => setIsLoading(false));
-            }}
+            onClick={onBuyETH}
           />
           {!!utorgLink && (
             <div className="flex flex-col items-center">
@@ -160,8 +196,7 @@ const MintingModal = ({
                 round={false}
                 disabled={isLoading}
                 label="Buy Now with Card"
-                location={utorgLink}
-                openInNewWindow={true}
+                onClick={onBuyViaCard}
               />
               <p className="text-14px leading-24px text-center opacity-70">
                 via UTORG

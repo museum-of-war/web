@@ -123,6 +123,9 @@ const WarlineItem: React.FC<{
         withBuyNowButton={event.IsOnSale}
         withGetNowButton={event.IsWhitelisted}
         warlineDrop={event.WarlineDrop}
+        analyticsContext={{
+          category: 'warline',
+        }}
       />
     </>
   );

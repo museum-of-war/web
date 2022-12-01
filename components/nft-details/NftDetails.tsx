@@ -1,6 +1,7 @@
 import FsLightbox from 'fslightbox-react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import ReactGA from 'react-ga4';
 import { VscTwitter } from 'react-icons/vsc';
 import { useInView } from 'react-intersection-observer';
 import { openInNewTab } from '@sections/utils';
@@ -14,6 +15,7 @@ import { useIsMounted } from '@hooks/useIsMounted';
 import { DropTokenIdOffsets } from '../../constants/collections/Warline';
 import { JOINLIST_LINK } from '@sections/constants';
 import { useEffectPeriodic } from '@hooks/useEffectPeriodic';
+import { AnalyticsContext } from 'types';
 
 type ImageSources = {
   previewSrc: string;
@@ -53,6 +55,7 @@ type NftDetailsProps = {
   withBuyNowButton?: boolean;
   withGetNowButton?: boolean;
   warlineDrop?: WarlineDrop;
+  analyticsContext?: AnalyticsContext;
 };
 export const NftDetails: React.FC<NftDetailsProps> = ({
   id,
@@ -78,6 +81,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   withBuyNowButton,
   withGetNowButton,
   warlineDrop,
+  analyticsContext,
 }) => {
   const [toggler, setToggler] = React.useState<boolean>(false);
   const [openMintingModal, setOpenMintingModal] = useState<boolean>(false);
@@ -87,6 +91,15 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   const { canMintThirdDrop, canMintFourthDrop, canMintFifthDrop } =
     useWeb3Modal();
   const isMounted = useIsMounted();
+
+  const onBuy = useCallback(() => {
+    setOpenMintingModal(true);
+    ReactGA.send({
+      category: analyticsContext?.category || 'nft',
+      action: 'open_buy_modal',
+      label: id,
+    });
+  }, [analyticsContext?.category, id]);
 
   useEffectPeriodic(
     () =>
@@ -218,7 +231,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         label="Buy Now"
         className={linkBtnCn}
         disabled={disabled}
-        onClick={() => setOpenMintingModal(true)}
+        onClick={onBuy}
       />
       {openMintingModal ? (
         <MintingModal
@@ -226,6 +239,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
           drop={warlineDrop}
           maxMints={editionsLeft ?? undefined}
           tokenId={+id - (warlineDrop ? DropTokenIdOffsets[warlineDrop] : 0)}
+          analyticsContext={analyticsContext}
         />
       ) : (
         <></>

@@ -15,6 +15,7 @@ type EventsGroupSectionProps = {
   onScrollToPrevSection: () => void;
   onScrollToNextSection: () => void;
   onBuy: (event: EventType) => void;
+  onJoinList: (event: EventType) => void;
 };
 
 const EventsGroupSection = ({
@@ -27,6 +28,7 @@ const EventsGroupSection = ({
   onScrollToPrevSection,
   onScrollToNextSection,
   onBuy,
+  onJoinList,
 }: EventsGroupSectionProps) => {
   return (
     <InView as="div" onChange={(inView) => onInViewChanged?.(inView)}>
@@ -78,6 +80,7 @@ const EventsGroupSection = ({
               extendedView={viewFilter === ViewFilter.BY_HOUR}
               small={viewFilter === ViewFilter.BY_DROP}
               onBuy={() => onBuy(event)}
+              onJoinList={() => onJoinList(event)}
             />
           ))}
         </div>

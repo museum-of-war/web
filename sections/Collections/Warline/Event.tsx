@@ -1,11 +1,9 @@
 import React, { useMemo } from 'react';
 import { EventType } from '@sections/types';
-import { openInNewTab } from '@sections/utils';
 import { getUrls } from '@utils/Warline/WarlineUrls';
 import Link from 'next/link';
 import Button from '@components/Button';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
-import { JOINLIST_LINK } from '@sections/constants';
 
 type EventProps = {
   eventData: EventType;
@@ -14,6 +12,7 @@ type EventProps = {
   extendedView?: boolean;
   small?: boolean;
   onBuy: () => void;
+  onJoinList: () => void;
 };
 
 const rand_imgs: string[] = [
@@ -34,6 +33,7 @@ const Event = ({
   extendedView = false,
   small = false,
   onBuy,
+  onJoinList,
 }: EventProps) => {
   const randomSrc = rand_imgs[idx % 8] as string;
   const { originalSrc, previewSrc, animationSrc, isAnimation } = getUrls(
@@ -156,7 +156,7 @@ const Event = ({
                 mode="secondary"
                 label="Get NFT"
                 className="font-rblack"
-                onClick={() => openInNewTab(JOINLIST_LINK)}
+                onClick={onJoinList}
               />
             )}
             {eventData.IsOnSale && (

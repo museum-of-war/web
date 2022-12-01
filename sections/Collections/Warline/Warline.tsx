@@ -29,7 +29,10 @@ import EventsGroupSection from './EventsGroupSection';
 import SideMenu from './SideMenu';
 import { filterByType, sortEventGroups } from './utils';
 import MintingModal from '@components/MintingModal';
+import { JOINLIST_LINK } from '@sections/constants';
+import { openInNewTab } from '@sections/utils';
 import { WarlineDrop } from '@constants/collections/Warline/constants';
+import ReactGA from 'react-ga4';
 
 const SCROLL_BUFFER_BLOCKS = 2;
 
@@ -90,15 +93,6 @@ const Warline = () => {
     [],
   );
 
-  const onBuy = useCallback((event: EventType) => {
-    setDropToMint({
-      drop: event.WarlineDrop,
-      tokenId:
-        +event.Tokenid -
-        (event.WarlineDrop ? DropTokenIdOffsets[event.WarlineDrop] : 0),
-    });
-  }, []);
-
   const onSetViewFilter = useCallback(
     (nextViewFilter) => {
       setViewFilter(nextViewFilter);
@@ -119,6 +113,29 @@ const Warline = () => {
       ),
     [],
   );
+
+  const onBuy = useCallback((event: EventType) => {
+    setDropToMint({
+      drop: event.WarlineDrop,
+      tokenId:
+        +event.Tokenid -
+        (event.WarlineDrop ? DropTokenIdOffsets[event.WarlineDrop] : 0),
+    });
+    ReactGA.send({
+      category: 'warline',
+      action: 'open_buy_modal',
+      label: event.Tokenid,
+    });
+  }, []);
+
+  const onJoinList = useCallback((event: EventType) => {
+    openInNewTab(JOINLIST_LINK);
+    ReactGA.send({
+      category: 'warline',
+      action: 'join_list',
+      label: event.Tokenid,
+    });
+  }, []);
 
   return (
     <PopupProvider>
@@ -198,6 +215,7 @@ const Warline = () => {
                     onScrollToPrevSection={scrollToSection(index - 1)}
                     onScrollToNextSection={scrollToSection(index + 1)}
                     onBuy={onBuy}
+                    onJoinList={onJoinList}
                     onInViewChanged={onInViewChanged(index)}
                   />
                 </div>
