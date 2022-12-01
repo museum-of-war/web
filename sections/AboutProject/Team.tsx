@@ -6,7 +6,7 @@ const Team = () => {
     { name: 'V K', role: 'Chaos' },
     { name: 'Alisa Fursa', role: 'Strategy' },
     { name: 'Kevin Lista Navarro', role: 'Assistant Director' },
-    { name: 'Oleksandr Pokhylenko', role: 'Technology' },
+    { name: 'Oleh Zasadnyy', role: 'Technology' },
     { name: 'Oleksandra Shamonova', role: 'Project manager' },
     { name: 'Anastasiya Shyshenok', role: 'Identity' },
     { name: 'Serhii Revva', role: 'Experience' },
@@ -17,7 +17,7 @@ const Team = () => {
     { name: 'Valeriia Kucheriavenko', role: 'Description Journalist' },
     { name: 'Oleksandra Postoieva', role: 'Description Journalist' },
     { name: 'Alyosha Kovalenko', role: 'Author' },
-    { name: 'Oleh Zasadnyy', role: 'Frontend' },
+    { name: 'Oleksandr Pokhylenko', role: 'Maintenance' },
     { name: 'Pavlo Tsytsorin', role: 'Motion designer' },
     { name: 'Giuseppe Graziano', role: 'Global community manager' },
   ];
