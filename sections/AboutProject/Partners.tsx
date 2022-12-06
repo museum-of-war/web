@@ -19,6 +19,11 @@ const partners: Partner[] = [
     link: 'https://fair.xyz/',
   },
   {
+    src: '/img/partners/kindustry.png',
+    alt: 'Kindustry',
+    link: 'https://www.kindustryandco.com/',
+  },
+  {
     src: '/img/partners/market_across.png',
     alt: 'MarketAcross',
     link: 'https://marketacross.com/',
@@ -124,7 +129,7 @@ const Partners = () => {
             rel="noopener noreferrer"
           >
             <img
-              className="max-h-[80px]"
+              className="max-h-[80px] "
               src={partner.src}
               alt={partner.alt}
               loading="lazy"
