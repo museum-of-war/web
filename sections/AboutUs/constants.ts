@@ -188,4 +188,20 @@ export const MAIN_TRANSFERS = [
     to: '0x165CD37b4C644C2921454429E7F9358d18A45e14',
     hash: '0x4218a0eb4bd248669dae95ff5dc82401be32fd49d7a9fa881dea46f6e0621daa',
   },
+  {
+    date: new Date(1667976551000),
+    eth: 1.5,
+    usd: 1.5 * 1104.17,
+    from: '0x926a0d777ca847ec944f5587c34d93cb837da1ae',
+    to: '0xc47f5F962b6816d204cb6DbFfbC78d146b42d66c',
+    hash: '0x6538dd65a15cde12490e4383de825565b6727afbbd4f9229439a69f07a1d9e26',
+  },
+  {
+    date: new Date(1670149103000),
+    eth: 0.75,
+    usd: 0.75 * 1279.89,
+    from: '0x926a0d777ca847ec944f5587c34d93cb837da1ae',
+    to: '0xc47f5F962b6816d204cb6DbFfbC78d146b42d66c',
+    hash: '0xceb580ae5fdabfb92b526f526ff97741119d7d6ce40fbca99cd2ed4a2f04309c',
+  },
 ] as TransferInfoType[];
