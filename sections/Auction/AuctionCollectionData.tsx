@@ -104,7 +104,7 @@ const AuctionCollectionData: Record<AuctionCollection, AuctionCollectionType> =
       contractAddress: VESA_AND_ZINAIDA_ADDRESS,
       startsAt: new Date('2022-11-30T20:00:00.000+02:00'),
       endsIn: new Date('2022-12-07T20:00:00.000+02:00'),
-      version: AuctionVersion.V2,
+      version: AuctionVersion.Seller,
     },
   };
 

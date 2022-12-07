@@ -1,4 +1,4 @@
-import { WarlineDrop } from '../../constants/collections/Warline/constants';
+import { WarlineDrop } from '@constants/collections/Warline/constants';
 import { TransferInfoType } from '@sections/types';
 
 export const ACHIEVE_DATA = {
@@ -25,6 +25,10 @@ export const KNOWN_WALLETS = {
     'ZINAIDA Artist Wallet',
   ['0x6A7E35fE807Dd2C00DF3A915eDAFF42896005da1'.toLowerCase()]:
     'VESA Artist Wallet',
+  ['0x85d2541B059c7Fa569e09DC5b5011C881Ed172A0'.toLowerCase()]:
+    '80%/10%/10% - Culture/VESA/MetaHistory',
+  ['0x4d09b700C92BD40bD43ba37e5905443e0aFC39CC'.toLowerCase()]:
+    '80%/10%/10% - Culture/ZINAIDA/MetaHistory',
 } as Record<string, string>;
 
 export const MAIN_TRANSFERS = [

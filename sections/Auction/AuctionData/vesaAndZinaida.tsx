@@ -22,7 +22,7 @@ I’m very happy to be presenting this with Zinaida, who is a powerful artist al
 Overlaying special effects on the photo of the girl in the form of a veil for the bride, as if it is "smoky" due to current events in Ukraine ̶ flashes, explosions and fires. I am grateful that I was able to empower this work with the energy of interaction through cooperation with the Finnish artist VESA.`,
   },
 ].map((item) => ({
-  isSale: false,
+  isSale: true,
   category: AuctionCollection.VesaZinaida,
   ...item,
 }));
