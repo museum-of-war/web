@@ -73,27 +73,25 @@ const MintingModal = ({
   };
 
   const onBuyETH = useCallback(() => {
-    () => {
-      ReactGA.send({
-        category: analyticsContext?.category || 'nft',
-        action: 'buy_eth',
-        label: tokenId,
-        value: amount,
-      });
-      setIsLoading(true);
+    ReactGA.send({
+      category: analyticsContext?.category || 'nft',
+      action: 'buy_eth',
+      label: tokenId,
+      value: amount,
+    });
+    setIsLoading(true);
 
-      const mintPromise =
-        drop === WarlineDrop.Drop5
-          ? mintFifthDrop(tokenId ?? 1, amount)
-          : WarlineDrop.Drop3
-          ? mintThirdDrop(tokenId ?? 1, amount)
-          : mintSecondDrop(amount);
+    const mintPromise =
+      drop === WarlineDrop.Drop5
+        ? mintFifthDrop(tokenId ?? 1, amount)
+        : WarlineDrop.Drop3
+        ? mintThirdDrop(tokenId ?? 1, amount)
+        : mintSecondDrop(amount);
 
-      mintPromise
-        .then(() => push('/tokens'))
-        .catch((e) => alert(e?.message ?? e))
-        .finally(() => setIsLoading(false));
-    };
+    mintPromise
+      .then(() => push('/tokens'))
+      .catch((e) => alert(e?.message ?? e))
+      .finally(() => setIsLoading(false));
   }, [
     amount,
     analyticsContext?.category,
