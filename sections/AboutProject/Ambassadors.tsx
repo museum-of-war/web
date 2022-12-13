@@ -86,18 +86,22 @@ const data = [
 ] as AmbassadorType[];
 
 const Ambassadors = () => {
-  const { isTablet, isDesktop } = useViewPort();
+  const { isTablet, isNewMd, isDesktop } = useViewPort();
   const [startIdx, setStartIdx] = useState(0);
 
   const itemsOnPage = useMemo(() => {
+    if (isNewMd) {
+      return 3;
+    }
     if (isTablet) {
       return 2;
     }
+
     if (isDesktop) {
       return 4;
     }
     return 1;
-  }, [isDesktop, isTablet]);
+  }, [isDesktop, isNewMd, isTablet]);
 
   const toShow = useMemo(
     () => data.slice(startIdx, startIdx + itemsOnPage),
@@ -137,7 +141,7 @@ const Ambassadors = () => {
       />
       <div className="flex desktop:flex-row tablet:flex-row mobile:flex-col justify-between desktop:mt-40px tablet:mt-40px mobile:mt-32px">
         <div
-          className={`grid desktop:grid-cols-4 tablet:grid-cols-2 mobile:grid-cols-1 flex-wrap gap-48px`}
+          className={`grid desktop:grid-cols-4 new_md:grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 flex-wrap gap-48px`}
         >
           {toShow.map((datum) => (
             <div key={datum.name}>
