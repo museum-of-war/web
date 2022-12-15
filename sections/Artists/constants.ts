@@ -661,6 +661,44 @@ As an artist and illustrator I found myself in drawing surroundings, nature and 
 Technique for all illustrations I’ve created since the beginning of the full scale war in Ukraine  was inspired by traditional hand printing techniques, such as linocut, etching, stamping ets. Since February 24 I couldn’t create anything I used to in a way I used to… So for my troubled mind this technique of cutting out from a random shape (not drawing in the traditional way) felt right and it still does.`,
     id: 'carrot4all',
   },
+  {
+    name: 'VLAD',
+    avatar: 'eneftenko.png',
+    descriptionUa: `Це моє давнє заняття, котре зараз набуло нового змісту та сподіваюсь буде корисним тут.
+
+Люблю цікаве й в різних його втіленнях.`,
+    descriptionEn: `This is my old pastime which now has an another meaning and I hope will be useful here. 
+
+I like interesting and in its various avatars.`,
+    id: 'eneftenko',
+  },
+  {
+    name: 'Olha Dubrovina',
+    avatar: 'doljastar.png',
+    descriptionUa: `Ілюстраторка та графічна дизайнерка, співзасновниця об’єднання ілюстраторів “ВМІЮ”.
+Створює цифрових персонажів для брендів та перетворює їх у стікери чи інший необхідний мерч.
+В захваті від людських облич та яскравих персонажів, тому малювати стилізовані портрети або скетчеві репортажі особливе задоволення. Ну і фешн ілюстрація – це любов:)
+Проєкти/виставки, в яких брала участь
+-- Видання Stranger’s Guide: Discover the Ukraine that was—and the one that will be. https://strangersguide.com/issue/ukraine-guide/
+-- Аудіовізуальне видання «The World Stands with Ukraine», разом із «Митцем миру» @unesco Германом Макаренком та оркестром @kyivclassic (@artit).
+-- SupportUkraineGallery (NFT)
+-- «113днів війни» (Steinbarg Gallery&Cafe, Чернівці, Україна)
+-- «Коли говорять гармати - музи не мовчать!» (галерея Мадам Палмгрен, Львів, Україна)
+-- #ZATURNIKETOM (Метро, Київ, Україна)
+`,
+    descriptionEn: `Illustrator and graphic designer, co-founder of the association of illustrators ""VMIYU"".
+Creates digital characters for brands and turns them into stickers or other necessary merch.
+Delighted in human faces and bright characters, drawing stylized portraits or sketch reports is a special pleasure. Well, fashion illustration is love:)
+Projects/exhibitions in which she participated:
+-- Edition Stranger's Guide: Discover the Ukraine that was—and the one that will be. https://strangersguide.com/issue/ukraine-guide/
+-- Audiovisual publication ""The World Stands with Ukraine"", together with @unesco ""Artist of Peace"" Herman Makarenko and the @kyivclassic (@artit) orchestra.
+-- SupportUkraineGallery (NFT)
+-- ""113 Days of War"" (Steinbarg Gallery&Cafe, Chernivtsi, Ukraine)
+-- ""When the guns speak - the muses are not silent!"" (Madame Palmgren Gallery, Lviv, Ukraine)
+-- #ZATURNIKETOM (Metro, Kyiv, Ukraine)
+`,
+    id: 'doljastar',
+  },
 ].sort((a1, a2) => a1.name.localeCompare(a2.name)) as ExtendedArtistType[];
 
 export const ARTISTS_WITH_ARTS = ARTISTS.map(

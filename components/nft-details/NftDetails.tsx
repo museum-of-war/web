@@ -88,8 +88,12 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   const [editionsLeft, setEditionsLeft] = useState<number | null>(null);
   const { ref, inView } = useInView();
   const { isDesktop, isTablet, isMobile } = useViewPort();
-  const { canMintThirdDrop, canMintFourthDrop, canMintFifthDrop } =
-    useWeb3Modal();
+  const {
+    canMintThirdDrop,
+    canMintFourthDrop,
+    canMintFifthDrop,
+    canMintSixthDrop,
+  } = useWeb3Modal();
   const isMounted = useIsMounted();
 
   const onBuy = useCallback(() => {
@@ -109,6 +113,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         ? canMintFourthDrop
         : warlineDrop === WarlineDrop.Drop5
         ? canMintFifthDrop
+        : warlineDrop === WarlineDrop.Drop6
+        ? canMintSixthDrop
         : () => Promise.resolve(null))(
         +id - DropTokenIdOffsets[warlineDrop!],
       ).then((left) => {
@@ -349,7 +355,11 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                     </p>
                   )}
                   <p className="font-rblack tablet:text-32px tablet:leading-36px mobile:text-27px mobile:leading-30px">
-                    {withGetNowButton ? 'Whitelisted' : '0.15 ETH'}
+                    {withGetNowButton
+                      ? 'Whitelisted'
+                      : warlineDrop !== WarlineDrop.Drop6
+                      ? '0.15 ETH'
+                      : '0.3 ETH'}
                   </p>
                 </div>
                 <div className="flex flex-row gap-[8px] font-rnarrow tablet:text-16px tablet:leading-36px mobile:text-14px mobile:leading-20px">

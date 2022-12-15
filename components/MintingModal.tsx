@@ -1,12 +1,12 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactGA from 'react-ga4';
 import Button from '@components/Button';
 import { VscChromeClose } from 'react-icons/vsc';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
 import {
-  WarlineDrop,
   UtorgCurrencies,
+  WarlineDrop,
 } from '../constants/collections/Warline/constants';
 import { AnalyticsContext } from 'types';
 import { openInNewTab } from '@sections/utils';
@@ -27,8 +27,13 @@ const MintingModal = ({
   maxMints,
   analyticsContext,
 }: MintingModalProps) => {
-  const { provider, mintSecondDrop, mintThirdDrop, mintFifthDrop } =
-    useWeb3Modal();
+  const {
+    provider,
+    mintSecondDrop,
+    mintThirdDrop,
+    mintFifthDrop,
+    mintSixthDrop,
+  } = useWeb3Modal();
   const { push } = useAppRouter();
   const [signerAddress, setSignerAddress] = useState<string>('');
   const [amount, setAmount] = useState<number>(1);
@@ -82,7 +87,9 @@ const MintingModal = ({
     setIsLoading(true);
 
     const mintPromise =
-      drop === WarlineDrop.Drop5
+      drop === WarlineDrop.Drop6
+        ? mintSixthDrop(tokenId ?? 1, amount)
+        : WarlineDrop.Drop5
         ? mintFifthDrop(tokenId ?? 1, amount)
         : WarlineDrop.Drop3
         ? mintThirdDrop(tokenId ?? 1, amount)
@@ -97,6 +104,7 @@ const MintingModal = ({
     analyticsContext?.category,
     drop,
     mintFifthDrop,
+    mintSixthDrop,
     mintSecondDrop,
     mintThirdDrop,
     push,
@@ -138,7 +146,7 @@ const MintingModal = ({
           <br />
           You will mint NFTs from those that are currently on sale.
           <br />
-          Each NFT will cost 0.15 ETH.
+          Each NFT will cost {drop !== WarlineDrop.Drop6 ? '0.15' : '0.3'} ETH.
         </p>
         <div className="flex tablet:flex-row tablet:items-center tablet:mt-48px mobile:mt-40px mobile:flex-col mobile:items-start">
           <div className="flex tablet:w-auto mobile:w-100% mobile:justify-between">
@@ -169,7 +177,8 @@ const MintingModal = ({
               Total
             </p>
             <p className="tablet:text-16px tablet:leading-24px tablet:ml-0 mobile:ml-7px mobile:text-14px mobile:leading-20px">
-              {(amount * 0.15).toFixed(2)} ETH
+              {(amount * (drop !== WarlineDrop.Drop6 ? 0.15 : 0.3)).toFixed(2)}{' '}
+              ETH
             </p>
           </div>
         </div>

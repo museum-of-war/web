@@ -936,7 +936,7 @@ export default [
           "The Russian president started a war with the idea that he could divide Ukraine and NATO. But not everything is going according to Putin's plan - NATO and Ukraine have only made more efforts to unite for the sake of victory.",
         DescriptionUkrainian:
           "Президент Росії почав війну з думкою, що може розділити Україну та НАТО. Але не все йде за планом Путіна - НАТО та Україна лише більше спрямували зусиль на об'єднання заради перемоги.",
-        ArtistName: 'Дубровіна Ольга',
+        ArtistName: 'Olha Dubrovina',
         ArtistLink: 'https://www.instagram.com/doljastar/',
         ImageType: 'drop5/48.jpg',
       },
