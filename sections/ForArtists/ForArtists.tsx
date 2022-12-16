@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { Fragment, useCallback, useMemo, useRef, useState } from 'react';
 import ReactGA from 'react-ga4';
 import Image from 'next/image';
 import Blurb from '@sections/AboutProject/Blurb';
@@ -8,6 +8,7 @@ import { isValidURL } from '@utils/url';
 interface FormField {
   order: number;
   id: string;
+  name: string;
   label: string;
   type: 'checkbox' | 'text' | 'url';
 }
@@ -27,6 +28,7 @@ const FORM_FIELDS: { [id: string]: TextField | CheckBoxField } = {
     order: 0,
     type: 'text',
     id: '280977728',
+    name: 'Your Nickname in latin letters',
     label: 'Your Nickname in latin letters',
     placeholder: 'e.g. Andy Warhol',
   },
@@ -34,6 +36,7 @@ const FORM_FIELDS: { [id: string]: TextField | CheckBoxField } = {
     order: 1,
     type: 'url',
     id: '1695571578',
+    name: 'Link on your portfolio',
     label: 'Link on your portfolio',
     placeholder: 'Paste a link',
   },
@@ -41,6 +44,7 @@ const FORM_FIELDS: { [id: string]: TextField | CheckBoxField } = {
     order: 2,
     type: 'text',
     id: '177827027',
+    name: 'How to contact you',
     label: 'How to contact you',
     placeholder: 'Enter you Telegram nickname or paste a link',
   },
@@ -48,13 +52,15 @@ const FORM_FIELDS: { [id: string]: TextField | CheckBoxField } = {
     order: 3,
     type: 'checkbox',
     id: '392897183',
-    label: 'I’m ready to create an artwork in 3 days',
+    name: 'Are you ready to create an artwork in 3 days?',
+    label: "I'm ready to create an artwork in 3 days",
     valueToSend: "I'm ready to create an artwork in 3 days",
   },
 };
 
-const FORM_ID = '1FAIpQLSf2ZlSFHXLluHu4H9M4-kmooPrG0DQwjYTTiFFGl8AsVsTG5Q';
-const FORM_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
+// HOWTO: https://github.com/levinunnink/html-form-to-google-sheet
+const SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbwJxde9qJVzvkbIOrbhTxfpzfwBRdPexv5SWG6MNPqe28WhOOxp3RxJACfztlyCY7AH/exec';
 
 export const ForArtists: React.FC = () => {
   const [isLoading, setLoading] = useState(false);
@@ -66,15 +72,15 @@ export const ForArtists: React.FC = () => {
     async (e) => {
       e.preventDefault();
 
-      const data: string[] = [];
+      const data = new FormData();
 
       Object.entries(inputs).map(([id, value]) => {
         if (FORM_FIELDS[id]?.type !== 'checkbox' || value) {
           const adjustedValue =
             FORM_FIELDS[id]?.type === 'checkbox' && value
               ? (FORM_FIELDS[id] as CheckBoxField).valueToSend
-              : value;
-          data.push(`entry.${id}=${adjustedValue}`);
+              : value.toString();
+          data.append(FORM_FIELDS[id]!.name, adjustedValue);
         }
       });
 
@@ -86,20 +92,13 @@ export const ForArtists: React.FC = () => {
 
       try {
         setLoading(true);
-        await fetch(`${FORM_URL}?${data.join('&')}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        }).catch((e) => {
-          if ((e as Error)?.message !== 'Failed to fetch') throw e;
-        });
+        await fetch(SCRIPT_URL, { method: 'POST', body: data });
+        setInputs({});
         alert('Your data has been successfully saved!\nThank you!');
       } catch (e) {
-        alert(`An error occurred: ${(e as Error)?.message ?? e}`);
+        alert('Sorry! Something went wrong.');
       } finally {
         setLoading(false);
-        setInputs({});
       }
     },
     [inputs],
@@ -135,7 +134,7 @@ export const ForArtists: React.FC = () => {
           {Object.values(FORM_FIELDS)
             .sort((a, b) => a.order - b.order)
             .map((field) => (
-              <>
+              <Fragment key={field.id}>
                 {['text', 'url'].includes(field.type) ? (
                   <label key={field.id} htmlFor={field.id}>
                     <span className="font-rlight text-12px leading-30px tablet:text-14px tablet:leading-48px">
@@ -143,7 +142,7 @@ export const ForArtists: React.FC = () => {
                     </span>
                     <input
                       id={field.id}
-                      name={field.id}
+                      name={field.name}
                       type={field.type}
                       className={`w-full font-rblack text-16px bg-beige border-4 box-border focus:border-black ${
                         inputs[field.id] !== undefined && hasError[field.id]
@@ -170,7 +169,7 @@ export const ForArtists: React.FC = () => {
                   >
                     <input
                       id={field.id}
-                      name={field.id}
+                      name={field.name}
                       className="border-carbon border-2 rounded-[8px] h-32px w-32px accent-carbon"
                       type="checkbox"
                       checked={Boolean(inputs[field.id])}
@@ -186,7 +185,7 @@ export const ForArtists: React.FC = () => {
                     </span>
                   </label>
                 ) : null}
-              </>
+              </Fragment>
             ))}
           <button
             className="font-rblack text-16px bg-carbon text-white rounded-full mt-20px px-15px py-18px disabled:opacity-70"
