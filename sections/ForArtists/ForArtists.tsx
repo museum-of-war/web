@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo, useRef, useState } from 'react';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import ReactGA from 'react-ga4';
 import Image from 'next/image';
 import Blurb from '@sections/AboutProject/Blurb';
