@@ -140,9 +140,7 @@ const Ambassadors = () => {
         }
       />
       <div className="flex desktop:flex-row tablet:flex-row mobile:flex-col justify-between desktop:mt-40px tablet:mt-40px mobile:mt-32px">
-        <div
-          className={`grid desktop:grid-cols-4 new_md:grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 flex-wrap gap-48px`}
-        >
+        <div className="grid grid-cols-1 tablet:grid-cols-2 new_md:grid-cols-3 desktop:grid-cols-4 flex-wrap gap-48px">
           {toShow.map((datum) => (
             <div key={datum.name}>
               <div className="flex flex-col">
