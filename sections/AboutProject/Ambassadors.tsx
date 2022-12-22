@@ -22,14 +22,6 @@ const data = [
     ],
   },
   {
-    name: 'Alona Shevchenko',
-    url: 'https://linktr.ee/ukrainedao',
-    info: [
-      'Founder of Ukraine DAO, a Web3-native community with a mission, blockchain activist',
-      'Solving real-life problems with the help of digital art',
-    ],
-  },
-  {
     name: 'Ian Scarffe',
     url: 'https://ianscarffe.com/',
     info: [
@@ -90,18 +82,6 @@ const data = [
     name: 'Pavlo Kartashov',
     url: 'https://usf.com.ua/#usf-sc-2',
     info: ['Director of Ukrainian Startup Fund'],
-  },
-  {
-    name: 'Viktoriya Tigipko',
-    url: 'https://taventures.vc/',
-    info: [
-      'Chairman of the Board of the Ukrainian Startup Fund',
-      'Managing Partner of TA Ventures',
-      'Founder of ICLUB',
-      'President of Odesa International Film Festival',
-      'Chairman of the Ukrainian Film Academy Supervisory Board',
-      'Co-founder of WTECH',
-    ],
   },
 ] as AmbassadorType[];
 
