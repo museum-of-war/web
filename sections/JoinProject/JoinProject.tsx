@@ -1,14 +1,46 @@
+import { usePopup } from '@providers/PopupProvider';
 import Ambassadors from '@sections/AboutProject/Ambassadors';
 import Blurb from '@sections/AboutProject/Blurb';
+import { openInNewTab } from '@sections/utils';
+import { useCallback } from 'react';
 import {
   intro,
   opportunities,
+  Opportunity,
   ourResults,
   projectsWeSupport,
   whoHelpsUs,
 } from './constants';
 
 export const JoinProject: React.FC = () => {
+  const { showPopup, hidePopup } = usePopup();
+
+  const scrollToForm = useCallback(() => {
+    console.log('scrollToForm');
+  }, []);
+
+  const onSelectOpportunity = useCallback(
+    (opportunity: Opportunity) => {
+      showPopup('text', {
+        text: opportunity.details.description,
+        buttons: opportunity.details.links.map((link) => {
+          return {
+            label: link.label,
+            onClick: () => {
+              if (link.url) {
+                openInNewTab(link.url);
+              } else if (link.action === 'open_form') {
+                hidePopup();
+                scrollToForm();
+              }
+            },
+          };
+        }),
+      });
+    },
+    [hidePopup, scrollToForm, showPopup],
+  );
+
   return (
     <div className="desktop:container mx-auto px-24px tablet:px-72px desktop:px-132px">
       <Blurb english={intro.en} ukrainian={intro.uk} />
@@ -17,9 +49,10 @@ export const JoinProject: React.FC = () => {
 
       <div className="mt-12px tablet:mt-32px grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-16px tablet:gap-32px">
         {opportunities.map((opportunity, index) => (
-          <div
+          <button
             key={index}
-            className="py-24px px-16px border-4 border-transparent hover:border-carbon hover:cursor-pointer"
+            className="py-24px px-16px border-4 border-transparent text-left hover:border-carbon hover:cursor-pointer"
+            onClick={() => onSelectOpportunity(opportunity)}
           >
             <span className="font-rblack text-27px leading-30px tablet:text-32px tablet:leading-24px ">
               {index + 1}
@@ -38,7 +71,7 @@ export const JoinProject: React.FC = () => {
                 <p className="mt-2 tablet:mt-4">{opportunity.description.uk}</p>
               </div>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 

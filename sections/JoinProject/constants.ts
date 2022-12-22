@@ -1,19 +1,22 @@
 import { HTMLAttributes } from 'react';
+import { TranslatedString } from 'types';
 
 export const intro = {
   en: 'META HISTORY museum is the largest charitable NFT project in Ukraine, which explores the commercial possibilities of digital art and the use of web3 technologies in charity.\n\nWe welcome the desire to help our project in any way, which exists on a volunteer basis, thanks to the enthusiasm of people who want to help Ukraine.',
   uk: 'META HISTORY museum ― найбільший благодійний NFT-проект в Україні, що досліджує комерційні можливості цифрового мистецтва і використання технологій web3 у благодійності.\n\nМи вітаємо бажання у будь-який спосіб допомогти нашому проекту, що існує на волонтерських засадах, завдяки ентузіазму людей, які прагнуть допомогти Україні.',
 };
 
-interface Opportunity {
+export interface Opportunity {
   icon: string;
-  title: {
-    en: string;
-    uk: string;
-  };
-  description: {
-    en: string;
-    uk: string;
+  title: TranslatedString;
+  description: TranslatedString;
+  details: {
+    description: TranslatedString;
+    links: {
+      label: string;
+      url?: string;
+      action?: 'open_form';
+    }[];
   };
 }
 
@@ -28,6 +31,18 @@ export const opportunities: Opportunity[] = [
       en: 'Create a job for one of the collections',
       uk: 'Створити роботу для однієї з колекцій',
     },
+    details: {
+      description: {
+        en: "Capture one of the events of the war in Ukraine in a work of art that will be part of Warline's unique historical NFT collection. Learn more about how we work with artists and get involved by filling out the form.",
+        uk: 'Зафіксуйте одну із подій війни в Україні у мистецькому творі, що увійде до унікальної історичної NFT-колекції Warline. Дізнайтесь більше про те, як ми співпрацюємо з митцями, і долучайтесь, заповнивши форму.',
+      },
+      links: [
+        {
+          label: 'Join',
+          url: 'https://metahistory.gallery/for-artists',
+        },
+      ],
+    },
   },
   {
     icon: '',
@@ -38,6 +53,18 @@ export const opportunities: Opportunity[] = [
     description: {
       en: 'Strengthen the project with your expertise',
       uk: 'Підсилити проєкт своєю експертизою',
+    },
+    details: {
+      description: {
+        en: 'Make our story about ourselves better to the world. Pitch us an idea, plan, content creation, or ad setup or distribution service. Tell us about your capabilities, experience or knowledge that will be useful to us by filling out the form.',
+        uk: 'Зробіть кращою нашу розповідь про себе світу. Запропонуйте нам ідею, план, створення контенту або послуги з налаштування чи поширення реклами. Розкажіть нам про свої можливості, досвід чи знання, що будуть нам корисні, заповнивши форму.',
+      },
+      links: [
+        {
+          label: 'Fill a form',
+          action: 'open_form',
+        },
+      ],
     },
   },
   {
@@ -50,6 +77,18 @@ export const opportunities: Opportunity[] = [
       en: 'Make a contribution to the reconstruction of Ukraine by purchasing NFT',
       uk: 'Зробити внесок на відбудову України, придбавши NFT',
     },
+    details: {
+      description: {
+        en: 'Buy a piece of art from our collections. Find out what makes them special and why their value will increase by exploring our plans. Get an answer to your question from the project team by filling out the form.',
+        uk: 'Придбайте твір мистецтва з наших колекцій. Зʼясуйте, чим вони особливі, і чому їх цінність зросте, ознайомившись з нашими планами. Отримайте відповідь на запитання від команди проекту, заповнивши форму.',
+      },
+      links: [
+        {
+          label: 'Whitepaper',
+          url: 'https://metahistory.gallery/about-us', // TODO: UPDATE ME
+        },
+      ],
+    },
   },
   {
     icon: '',
@@ -61,6 +100,18 @@ export const opportunities: Opportunity[] = [
       en: 'Tell your audience about the project',
       uk: 'Розказати про проєкт своїй аудиторії',
     },
+    details: {
+      description: {
+        en: 'Tell your audience about us. Create content with us in any format or get content from us for posting. Tell us about your conditions and offers by filling out the form.',
+        uk: 'Розкажіть про нас вашій аудиторії. Створіть разом з нами контент у будь-якому форматі або отримайте від нас матеріал для розміщення. Повідомте нам про ваші умови і пропозиції, заповнивши форму.',
+      },
+      links: [
+        {
+          label: 'Fill a form',
+          action: 'open_form',
+        },
+      ],
+    },
   },
   {
     icon: '',
@@ -71,6 +122,22 @@ export const opportunities: Opportunity[] = [
     description: {
       en: 'Fund project improvements',
       uk: 'Профінансувати покращення проєкту',
+    },
+    details: {
+      description: {
+        en: 'Implement with us the plan to transform META HISTORY into one of the leading charitable NFT projects in the world. Take a look at some of our next steps in the roadmap. Get to know the project team, which will tell you much more about its future, by filling out the form on the website.',
+        uk: 'Реалізуйте разом з нами план перетворення META HISTORY на один з провідних благодійних NFT-проектів у світі. Погляньте на деякі з наших подальших кроків у дорожній карті. Познайомтесь з командою проекту, що розкаже значно більше про його майбутнє, заповнивши форму на сайті.',
+      },
+      links: [
+        {
+          label: 'Roadmap',
+          url: '/roadmap',
+        },
+        {
+          label: 'Fill a form',
+          action: 'open_form',
+        },
+      ],
     },
   },
 ];
@@ -102,11 +169,6 @@ export const projectsWeSupport: Project[] = [
     link: 'https://mkip.gov.ua/',
   },
 ];
-
-interface TranslatedString {
-  en: string;
-  uk: string;
-}
 
 export const whoHelpsUs: {
   sectionTitle: TranslatedString;
