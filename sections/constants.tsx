@@ -1,5 +1,5 @@
 import { BigNumber } from 'ethers';
-
+//TODO: better organize constants? Use objects for collections (address, name, time)?
 export const ORIGIN = 'https://metahistory.gallery';
 export const IMG_STORAGE = 'https://meta-history.imgix.net';
 export const TWITTER_LINK =
@@ -22,6 +22,7 @@ export const SECOND_DROP_DATE = '2022-05-01T23:59:59.000+03:00';
 export const THIRD_DROP_DATE = '2022-07-21T23:00:00.000+03:00';
 export const FIFTH_DROP_DATE = '2022-10-06T23:00:00.000+03:00';
 export const SIXTH_DROP_DATE = '2022-12-15T23:00:00.000+02:00';
+export const SEVENTH_DROP_DATE = '2022-12-29T23:00:00.000+02:00';
 export const MINT_LINK = `https://app.fair.xyz/collection/MHXYZ/queue`;
 export const PROJECT_WALLET_ADDRESS =
   '0x98c30d4B65b2A0ab0838E7b1E09352c0FD70736C';
@@ -35,6 +36,8 @@ export const THIRD_DROP_ADDRESS = '0xe8b95A3A15dAcBe3368BcA1DA71564C2Ec14Ff37'; 
 export const FOURTH_DROP_ADDRESS = ''; // TODO: change after drop 4 deploy
 export const FIFTH_DROP_ADDRESS = '0x926a0D777CA847Ec944f5587C34d93CB837da1ae'; // goerli: 0x0B14a188d0921bEd20107Ac841AAfFEC2423a46E
 export const SIXTH_DROP_ADDRESS = '0x7982649234E992506F72CE5d4C3C39BaA299cFd6';
+export const SEVENTH_DROP_ADDRESS =
+  '0xB86AD90302680EB75A860a6F4bb4cba5349c4D28';
 export const PROSPECT_100_ADDRESS =
   '0x932aEAc0eEBaA1fE8fdB53C4f81312cBA5F771A8';
 export const AVATARS_ADDRESS = '0x11F0640bdb99E54Cbb7bE40E18460F9c9c16B957';

@@ -14,8 +14,7 @@ import CryptoCirculation from '@sections/CryptoCirculation';
 import { ApplyAsAnArtist } from '@components/ApplyAsAnArtist';
 import { RoadmapPromoBlock } from '@sections/Roadmap/RoadmapPromoBlock';
 import { ManagementTeam } from './ManagementTeam';
-import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
-import { AuctionCollection } from '@sections/types';
+import { SEVENTH_DROP_DATE } from '@sections/constants';
 const Countdown = dynamic(() => import('./Countdown'), {
   ssr: false,
 });
@@ -29,11 +28,7 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
     <div>
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <ContentTop signerAddress={signerAddress} />
-        <Countdown
-          countDownDate={AuctionCollectionData[
-            AuctionCollection.VesaZinaida
-          ].startsAt!.toISOString()}
-        />
+        <Countdown countDownDate={SEVENTH_DROP_DATE} />
         <ContentChapter />
         <ContentCounterDaysAndRised />
       </div>

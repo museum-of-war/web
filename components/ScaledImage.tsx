@@ -190,7 +190,7 @@ function ScaledImage({
       style={containerStyle}
     >
       {postLoadStatus?.loaded &&
-        (postLoadSrc?.endsWith('.mp4') ? (
+        (postLoadSrc?.toLowerCase()?.endsWith('.mp4') ? (
           <video
             ref={videoRef}
             autoPlay

@@ -7,7 +7,9 @@ export function getUrls(
   randomSrc: string,
 ) {
   const isNoImage = image === '' || image === undefined;
-  const isAnimation = image?.endsWith('.gif') || image?.endsWith('.mp4');
+  const isAnimation =
+    image?.toLowerCase()?.endsWith('.gif') ||
+    image?.toLowerCase()?.endsWith('.mp4');
   const fileNameStartIndex = (image?.lastIndexOf('/') ?? -1) + 1;
   const prefixFolder = image?.substr(0, fileNameStartIndex);
   const fileNameWithoutExtension = image?.substr(

@@ -33,6 +33,7 @@ const MintingModal = ({
     mintThirdDrop,
     mintFifthDrop,
     mintSixthDrop,
+    mintSeventhDrop,
   } = useWeb3Modal();
   const { push } = useAppRouter();
   const [signerAddress, setSignerAddress] = useState<string>('');
@@ -87,11 +88,13 @@ const MintingModal = ({
     setIsLoading(true);
 
     const mintPromise =
-      drop === WarlineDrop.Drop6
+      drop === WarlineDrop.Drop7
+        ? mintSeventhDrop(tokenId ?? 1, amount)
+        : drop === WarlineDrop.Drop6
         ? mintSixthDrop(tokenId ?? 1, amount)
-        : WarlineDrop.Drop5
+        : drop === WarlineDrop.Drop5
         ? mintFifthDrop(tokenId ?? 1, amount)
-        : WarlineDrop.Drop3
+        : drop === WarlineDrop.Drop3
         ? mintThirdDrop(tokenId ?? 1, amount)
         : mintSecondDrop(amount);
 
@@ -105,6 +108,7 @@ const MintingModal = ({
     drop,
     mintFifthDrop,
     mintSixthDrop,
+    mintSeventhDrop,
     mintSecondDrop,
     mintThirdDrop,
     push,
@@ -146,7 +150,11 @@ const MintingModal = ({
           <br />
           You will mint NFTs from those that are currently on sale.
           <br />
-          Each NFT will cost {drop !== WarlineDrop.Drop6 ? '0.15' : '0.3'} ETH.
+          Each NFT will cost{' '}
+          {drop !== WarlineDrop.Drop6 && drop !== WarlineDrop.Drop7
+            ? '0.15'
+            : '0.3'}{' '}
+          ETH.
         </p>
         <div className="flex tablet:flex-row tablet:items-center tablet:mt-48px mobile:mt-40px mobile:flex-col mobile:items-start">
           <div className="flex tablet:w-auto mobile:w-100% mobile:justify-between">
@@ -177,7 +185,12 @@ const MintingModal = ({
               Total
             </p>
             <p className="tablet:text-16px tablet:leading-24px tablet:ml-0 mobile:ml-7px mobile:text-14px mobile:leading-20px">
-              {(amount * (drop !== WarlineDrop.Drop6 ? 0.15 : 0.3)).toFixed(2)}{' '}
+              {(
+                amount *
+                (drop !== WarlineDrop.Drop6 && drop !== WarlineDrop.Drop7
+                  ? 0.15
+                  : 0.3)
+              ).toFixed(2)}{' '}
               ETH
             </p>
           </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useCountdown } from '@hooks/useCountdown';
 import { atcb_action, atcb_init } from 'add-to-calendar-button';
-import { auctionName } from '@sections/Collections/VesaZenaida/data';
 
 type CountdownProp = {
   countDownDate: string;
@@ -13,14 +12,16 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
   let { days, hours, minutes, seconds, timerEnd } = useCountdown(countDownDate);
   React.useEffect(atcb_init, []);
 
+  const eventName = 'Warline Drop 7';
+
   // set date and time according to ISO8601 !!!
   const event: AddToCallendarEvent = {
-    name: auctionName,
-    description: `${auctionName} on [url]https://metahistory.gallery/auction/collection/vesa-and-zinaida[/url]`,
-    startDate: '2022-11-30',
-    startTime: '20:00:00',
-    endDate: '2022-11-30',
-    endTime: '21:10:00',
+    name: eventName,
+    description: `${eventName} on [url]https://metahistory.gallery/collection/warline[/url]`,
+    startDate: '2022-12-29',
+    startTime: '23:00:00',
+    endDate: '2022-12-29',
+    endTime: '23:59:59',
     timeZone: 'Europe/Kyiv',
     options: [
       'Apple',
@@ -32,7 +33,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
       'Yahoo',
     ],
     trigger: 'click',
-    iCalFileName: `Meta History: Museum of War - ${auctionName}`,
+    iCalFileName: `Meta History: Museum of War - ${eventName}`,
   };
 
   return !timerEnd ? (
@@ -41,7 +42,7 @@ const Countdown = ({ countDownDate }: CountdownProp) => {
       <div className="flex mobile:my-16px tablet:my-0 tablet:flex-row desktop:items-center tablet:items-center mobile:flex-col mobile:items-start">
         <div className="flex desktop:items-center tablet:items-start desktop:flex-row mobile:flex-col">
           <div className="tablet:text-20px desktop:mr-24px tablet:leading-48px tablet:mb-0 mobile:mb-10px mobile:text-18px mobile:leading-20px font-rlight">
-            Charity fine art auction will be in:
+            Warline Drop 7 will be in:
           </div>
           <div className="flex flex-row items-center tablet:my-7 mobile:my-0">
             <div className="flex desktop:flex-row mobile:flex-col desktop:items-center mobile:items-start">

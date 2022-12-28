@@ -699,6 +699,213 @@ Projects/exhibitions in which she participated:
 `,
     id: 'doljastar',
   },
+  {
+    name: 'Abrosimova',
+    avatar: 'abrosimova.jpeg',
+    descriptionUa: `Ольга Абросімова – молода українська художниця, яка працює в стилі сучасного живопису та портрета.  Її картини торкаються актуальних тем.  Тут вибухи почуттів і фіксація моментів, які нерозривно пов'язані зі свідомістю сучасного покоління.  Натхненна фламандськими натюрмортами, художниця використовує у своїх роботах темний фон і велику кількість яскравих об’єктів і акцентів.
+ Ольга народилася в 1993 році в Харкові, Україна.  Зараз живе і працює в Києві.  Закінчила Національний юридичний університет, отримавши ступінь магістра права.
+ Тоді ж у неї з’явилася пристрасть до малювання, яка визначила її подальше життя.
+ Її картини про задоволення, почуття, мрії, бажання та пристрасті.  Її картини про залежності, політичні погляди, споживчі стосунки, гріховне осудження та бажання здаватися кращим.
+ Її картини про спокуси, слабкість, гонитву за удачею.
+ Її картини про особистість.`,
+    descriptionEn: `Olha Abrosimova is a young Ukrainian artist who works in modern painting style and portraiture. Her paintings touch upon relevant topics. There is an explosions of feelings and recording of moments that are inextricably linked with consciousness of modern generation. Inspired by Flemish still-life paintings the artist uses a dark background and a large number of bright objects and accents in her works.
+Olha was born in 1993 in Kharkov, Ukraine. Now she lives and works in Kyiv. She graduated from National Law University having received a master's degree in law.
+At the same time, she gained a passion for drawing that predetermined her future life.
+Her paintings are about satisfaction, feelings, dreams, desires and passions. Her paintings are about addictions, political views, consumer relations, sinful condemnation and desire to seem better.
+Her paintings are about temptations, weakness, pursuit of good luck.
+Her paintings are about personality.`,
+    id: 'abrosimova',
+  },
+  {
+    name: 'Kesan Oksana Khyzhniak',
+    avatar: 'kesan_oksanakhyzhniak.jpg',
+    descriptionEn: `OKSANA KHYZHNIAK @kesan.oksanakhyzhniak (born in 1968,
+Zaporizhzhya, Ukraine) is a Ukrainian watercolorist, art teacher,
+master of Petrykivka painting, illustrator. After college art and craft
+Oksana follow discover art. The artist prefers watercolors but does
+not stop experimenting with other techniques and styles. Petrykivka
+painting, land art, dress decoration, murals, illustration, collaboration
+with music. Since 2015 Kesan has been a member of IWS
+(International Watercolor Society). Starting with fine art landscapes
+and flowers, her work has evolved into more abstract images. ""I came
+to abstraction as a more comprehensive and emotionally precise
+style"" she says.
+At the moment Oksana is working on two projects:
+* Initially, the project ""my abstract visible world"" is a general idea, a
+large format triptych, several smaller paintings and knitted details for
+the project.
+*On December 31, work on the Calendar 2022 series ends. The series
+of watercolor works Calendar 2022 is a sublimation of impressions
+from the surrounding diversity, a self-exploration of inspiration.
+Every day a new work is posted on my Instagram page. Furthermore
+this is a creative search for new watercolor painting techniques, color
+combinational solutions in the intended 30x30 cm format.
+Since March 2022, Oksana has been able to work in Sweden at Misschiefsthanks to the collaboration with Artist at
+Risks @artistsatrisk and @swan_residency_network.
+Oksana has been exhibited in Ukraine as well as internationally. Her
+paintings are in collections in Ukraine, France, Sweden, Germany,
+Israel, Norway, UAE, USA, Czech, Poland, Italy and Greece.
+`,
+    id: 'kesan_oksanakhyzhniak',
+  },
+  {
+    name: 'PaulinaRez',
+    avatar: 'paulina_rez.jpeg',
+    descriptionUa: `Мене звати Пауліна , я з України, мені 21 рік. За освітою я психолог, але моя душа завжди лежала до малювання. С початку війни я зрозуміла, що хочу займатися тим, що мені найбільше подобається. Я малюю вже 5 місяців та на данний момент працюю над двома колекціями.`,
+    descriptionEn: `My name is Paulina, I am from Ukraine, I am 21 years old.  I am a psychologist by education, but my soul has always been drawn to drawing.  Since the beginning of the war, I realized that I want to do what I like the most.  I've been drawing for 5 months now and I'm currently working on two collections.`,
+    id: 'paulina_rez',
+  },
+  {
+    name: 'Philipp Kapustin',
+    avatar: 'phill_kapustin.jpg',
+    descriptionUa: `Доброго дня, мене звати Філіп Капустін.
+
+Я сучасний український митець. Займаюся живописом, ілюстрацією та створюю інсталяції. Протягом багатьох років я рухався до власного художнього стилю, натхненний роботами старих майстрів кубізму та модернізму, таких як Малевич та Пікассо.
+ 
+Я малював і розвивав навички сучасного цифрового митця, та завдяки цьому симбіозу я створив свій власний унікальний стиль. Старе і нове, геометрія і органіка. Моя мета — створити і принести в цей світ щось нове і неповторне - Цифровий Неоубізм.`,
+    descriptionEn: `Hello, my name is Philipp Kapustin.
+
+I am a modern Ukrainian artist and crypto artist. I am engaged in painting, illustration and create installations. Over the years I have been moving towards my own artistic style inspired by the works of the old masters of Cubism and Modernism such as Malevich and Picasso. 
+
+I drew and developed the skills to be a modern digital artist, and through this symbiosis I created my own unique style. Old and new, geometry 
+
+and organicity. My goal is to create and bring something new and unique to this world — Digital Neoubism.`,
+    id: 'phill_kapustin',
+  },
+  {
+    name: 'Albert Nikogosyan & 36pm',
+    avatar: '36pm.jpg',
+    descriptionEn: `Hi, I'm Albert Nikogosyan, or 36pm - a crypto artist with ADHD in the genre of META ABSTRACT ⍫ Selected Artist: NFT.NYC23 ⌂ The NFT Magazine ⌂ MONOGRAMA - 1st GLOBAL ARTIVIST COLLECTIVE ⌂`,
+    id: '36pm',
+  },
+  {
+    name: 'Alex Deer',
+    avatar: 'alex_deer.jpg',
+    descriptionUa: `Харків. Район Жуковського. Разбитий дім.
+
+Київська область. Погріб. Сусідьски діти сплять на моєму дощевику.
+
+50 смс, відправлених мамі. ""Ми живі"". Жодне з них не доходить до адресата.
+
+Моє життя останній рік досить мінливе та непередбачуванне. Мені важко розповісти про себе словами. Віддаю перевагу художній мові.`,
+    descriptionEn: `Kharkiv. Zhukovsky neighborhood. A broken home.
+
+Kyiv region. Cellar. Neighbor children sleep on my raincoat.
+
+50 text messages sent to my mother. ""We are alive"". None of them send the recipient.
+
+My life has been quite changeable and unpredictable for the past year. It is difficult for me to describe myself in words. I prefer artistic language.`,
+    id: 'alex_deer',
+  },
+  {
+    name: 'Daria Ivashchenko',
+    avatar: 'divashchenko_art.jpg',
+    descriptionUa: `Українська мисткиня, яка працює в техніці живопису. Вона розкриває сутність природних тем у своїх творах, звертаючись до флори та фауни на суші та під водою. Вона також працює з образами та асоціаціями глибокої підсвідомості та ідентичності, пізнаючи при цьому свій внутрішній світ та його взаємодію із зовнішнім. Оскільки людина є невід’ємною частиною всього живого на Землі. Ці глибокі підсвідомі зв’язки стають ідеями для творів мисткині.
+
+Дар’я працює переважно в реалізмі, чудово передаючи кольори та форми.
+Її художня практика здебільшого характеризується використанням металу, символізуючи мінливість та непостійність. Вивчає здатність поверхонь відображати реальність і відтворює це у своїх роботах.
+
+Картини знаходяться в приватних колекціях багатьох країн: України, Англії, Америки, Австрії, Швейцарії, Іспанії, Німеччини та Греції.
+
+Бере участь у виставках у галереях та музеях.
+Роботи прикрашають Офіс Президента України, Володимира Зеленського.`,
+    descriptionEn: `The Ukrainian artist, that works in the painting technique. She reveals the essence of natural themes in her artworks, addressing flora and fauna on land and under water. She also works with images and associations of the deep subconscious and identity, getting to know her inner world and its interaction with the external one in the process. As the human is an inseparable part of all life on Earth. These deep subconscious connections become ideas for the artist's artworks. 
+
+Daria works mostly in realism, perfectly conveying colors and shapes.
+Her artistic practice is mostly characterized by the use of metal leaves, a symbol of variability and impermanence. Studies the ability of surfaces to reflect reality and reproduces this in her artworks.
+
+Paintings are in private collections in many countries: Ukraine, England, America, Austria, Switzerland, Spain, Germany and Greece.
+
+Participate in exhibitions in different galleries and museums.
+Decorate The Office of the President of Ukraine.`,
+    id: 'divashchenko_art',
+  },
+  {
+    name: 'Zlezlo',
+    avatar: 'zlezlo.jpeg',
+    descriptionUa: `Мене звуть Оля, мені 22 роки. Я цифровий  художник із Одеси. Своєю творчістю я розкриваю унікальну красу жінок. З недавніх пір у моїй творчості почали з'являтися українські мотиви, тож я хочу привернути увагу до своєї культури та популяризувати Україну.`,
+    descriptionEn: `My name is Olya, I'm 22 years old. I am an artist from Odessa. I draw digital art. With my art I show the unique beauty of women. Recently Ukrainian motifs started to appear in my art, so I want to draw attention to my culture and to popularize Ukraine.`,
+    id: 'zlezlo',
+  },
+  {
+    name: 'Crevol',
+    avatar: 'crevol.jpg',
+    descriptionUa: `Привіт, ось моя історія:
+
+Творцем я себе бачив ще з дитячих років, коли я майстрував різні конструкції з підручних засобів, малював по стінах та асфальту всім чим можна, та дражнив своїх вчителів карикатурами на тему: “Що може трапитись поганого зі злою вчителькою:)”
+Що було помічено моїми батьками, які прийняли рішення віддати мене в художню школу де мені прищепили ще більшу любов до мистецтва…
+Далі був інститут мистецтв в якому я навчався на графічного дизайнера і синхронно з цим розвивав декілька мікробізнесів, що на жаль мене перетворило більше на менеджера який намагався вгодити замовникам, і тоді я ще не  бачив в ілюстрації та Арті чогось глобального в чому можна самореалізуватись(
+Поки не натрапив на тему NFT, яка спочатку здавалась ефемерною, але з часом заглибившись все це, я побачив можливість самореалізації як творця та переходу до створення того що прагну та бачу тільки Я, без сторонніх нав'язувань трендів, думок та ідей замовників, аудиторії.
+
+Але це все тривало не довго, тому що як в кожної творчої людини настає період затяжної Депресії як в мене виникла через провал мого “Фріланс стартапу” та великі фінансові проблеми, розібравшись з якими я спочатку поїхав не відпочинок, який на жаль не дав мені можливості вийти з цього стану, але смішне те що в той час (ще до війни) я випадково отримав повістку від військкомату, та хотів  відкупитись, вже маючи на руках необхідну суму, у мене раптом з'явилась думка, що це можливість перебудувати своє життя на новий лад, та абстрагуватись від усього, що було до цього, виховати в собі дисципліну та мужність стояти за себе, своїх близьких та свої ідеї!
+
+Тому я вирішив піти в армію…
+Що стало максимально складним випробуванням яке я ще досі долаю:)
+Тому, що прийшлось пройти через жорстку, морально та фізично складну систему виховання з мене військового, який готовий до усіх випробувань у житті й тоді було геть не до творчості(
+
+Але минав час і я почав шукати можливість повернутись до мистецтва, спочатку я влаштувався зв'язківцем в штаб зв'язку, де отримав доступ до ПК та інтернету.
+У вільний від служби час творив свої перші NFT та розвивався в цій сфері більш поглиблено.Саме  головне я прийняв рішення, що надалі я себе бачу в основному в статусі художника і далі працюватиму в цьому напрямку.
+
+Але тут як і усіх Українців мене застала війна, яка змусила поміняти зручний робочий стіл у Штабі на сидіння в БТР (Бронетранспортері), де я відповідав за зв'язок екіпажів які їхали на бойові виїзди під час визволення Києва, та на виконання інших бойових завдань, і тоді було геть не до творчості(((
+
+З часом виїздів поменшало і почалась польова робота, тому я у вільний час намагався малювати в невеличкому дешевому блокноті, ескізи для майбутніх робіт від руки й навіть документував це все в фото на різноманітних фонах наслідків війни, що можна знайти в соцмережах за тегом #war_background та відео (https://www.instagram.com/reel/Cg-B6J4MiQG/) данні скетчі мотивували багатьох художників які були в тилу, творити й не здаватись попри усе що відбувається, та давало мені сили самому.
+
+На цей момент я вже як 4 місячці несу військову службу в тилу, та розумію, що це ідеальна можливість окрім службових завдань, допомагати хлопцям які нас міняли та несуть службу на фронті зараз, різними шляхами, а саме закупляти амуніцію та все необхідне для їх бойової діяльності.
+Шляхом волонтерства, зборів, продажу власного мистецтва, особистими коштами та іншими можливими засобами забезпечити моїх побратимів!!!
+
+Тому творю і не зупиняюсь за для Перемоги, попри обмежені технічні ресурси та мало вільного часу)`,
+    descriptionEn: `Art came to me in childhood. I always created some kind of drawings from the materials at hand and visited art school. When I got older, I studied to be a graphic designer. Later I found myself in the NFT space. It was a great opportunity for self-realization. 
+At that time, I joined the army and there I began to look for an opportunity to return to art. At first, I got a job as a signalman at the communications headquarters, where I got access to a PC and the Internet. In my spare time, I created my NFTs and tried to work in this field more harder. In these circumstances I made the most important choice -  in the future, I will be an artist and will continue to work in this direction.
+
+On the 24th of February, I was caught by the war, which forced me to exchange a comfortable desk at the headquarters for a seat in an armoured personnel carrier (APC), where I was responsible for the communication of crews that went on combat missions during the liberation of Kyiv and other combat tasks.
+
+Now when I have some free time I try to draw in a small, cheap notebook, sketches for future works by hand, and document all this in photos on various backgrounds of the consequences of the war, which can be found on social networks under the tag #war_background (https://www.instagram.com/reel/Cg-B6J4MiQG/). These sketches motivate many artists to create and not give up despite everything that is happening (and it gives strength to me too). By selling my own art, I help our military to buy necessary ammunition and other things. Therefore, I create and won't stop for our victory!`,
+    id: 'crevol',
+  },
+  {
+    name: 'Alina Kolomiichenko',
+    avatar: 'alikolomichenko.jpeg',
+    descriptionUa: `Я українська художниця і працюю в техніці олійного живопису. Я зображую людей та їх індивідуальний світ. Мене зачаровує краса та характер людини. Моя мета - вловити гру кольору і світла, створити гармонійні картини, сповнені енергії. Летючі мазки фарби перетворюються на інтуїтивний процес. Кожна картина має свою історію, до якої може доторкнутися глядач.`,
+    descriptionEn: `I’m Ukrainian artist and work in oil painting technique. I show people and their individual world. I am fascinated by the humans beauty and their characters. My goal is to capture the play of colours and light, to create harmonious pictures full of energy. The flying strokes of paint turn into an intuitive process. Each picture has its own story that can be touched by the viewer.`,
+    id: 'alikolomichenko',
+  },
+  {
+    name: 'Morgans',
+    avatar: 'morgganss.jpg',
+    descriptionUa: `Митець-самоучка, що працює у змішаній техніці (традиційна і цифрова). Ніколи не вивчав мистецтво професійно, але навчаюся на практиці щодня. Хочу показати світ своїми очима і принести нові ідеї. Відкрита до всього людина, що зображує життя простіше ніж воно здається.`,
+    descriptionEn: `Self-taught artist working in mixed media technic (traditional and digital). Never studied art professionally but learn practically every day, hard work over fancy university. Want to show the world through my eyes and bring new ideas into the world. Open-minded person showing the life simpler.`,
+    id: 'morgganss',
+  },
+  {
+    name: 'Ozzy',
+    avatar: 'ozzy.jpeg',
+    descriptionUa: `Мене звати Ольга, я художниця з Дніпра.  Я малюю останні два роки.  За освітою  юрист, але знайти себе в цій професії не змогла.  Малювання повністю розкриває моє серце, і я із задоволенням ділюся з іншими тим, що приходить до мене із Всесвіту.  Я навчився малювати самостійно.  Люблю працювати аквареллю та акрилом.  Крім того, в останні півтора року  почала вивчати цифрове малювання.  Мені дуже близька тема розкриття через мистецтво жіночності, природи, магії.  Тому мої малюнки в основному присвячені жінкам.`,
+    descriptionEn: `My name is Olga, I am an artist from Dnipro.  I have been painting for the last two years.  I am a lawyer by education, but I could not find myself in this profession.  Drawing fully reveals my heart, and I am happy to share with others what comes to me from the universe.  I taught myself to draw.  I like to work with watercolor and acrylic.  In addition, in the last year and a half, I started learning digital painting.  The topic of disclosure through the art of femininity, nature, magic is very close to me.  Therefore, my drawings are mainly dedicated to women.`,
+    id: 'ozzy',
+  },
+  {
+    name: 'Taya Ferdinand',
+    avatar: 'tayaferdinand.jpg',
+    descriptionUa: `Тая — художниця, народилася в Миколаєві. Вона створює фігуративне цифрове мистецтво та описує свій стиль як магічний реалізм. Магічний реалізм часто стирає межі між реальністю та фантазією, а в її творчості вона стирається на духовному рівні. Її мистецтво — це складні емоції та стан душі, які передаються за допомогою яскравих кольорів і світла.`,
+    descriptionEn: `Taya is a visual artist, born in Mykolaiv, Ukraine. She creates figurative digital art and describe her style as magical realism. Magical realism often blurs the lines between reality and fantasy and in her work it is blurred on the spiritual level. Her art is about complex emotions and state of mind, communicated with the help of vibrant colours and light.`,
+    id: 'tayaferdinand',
+  },
+  {
+    name: 'Sonia Wag',
+    avatar: 'wag_sonia.jpeg',
+    descriptionUa: `Привіт! Я діджитал художниця. Малюю в стилі дарк, фентезі, кібер та аніме.`,
+    descriptionEn: `Hi! I’m a digital illustrator from Ukraine. I create art in dark, fantasy, cyber and anime style.`,
+    id: 'wag_sonia',
+  },
+  {
+    name: 'Alice Zhuravel',
+    avatar: 'alice_zhuravel.jpg',
+    descriptionUa: `Соціальний дослідниця та художниця з Харкова. З 2018 по 2022 працювала в арт-дирекшені, дизайні, фотографії та 3D.
+З лютого 2022 року працює в гуманітарній сфері й створила соціальну ініціативу, спрямовану на обізнанність про різноманіття, рівность та інклюзію в українському суспільстві.`,
+    descriptionEn: `Social researcher and visual artist from Kharkiv. From 2018 till 2022, she worked in art direction, design, photography, and 3D.
+Since February 2022, she has been working in the humanitarian field and also created a social initiative aimed at demonstrating and growing diversity, equality, and inclusion in Ukrainian society.`,
+    id: 'alice_zhuravel',
+  },
 ].sort((a1, a2) => a1.name.localeCompare(a2.name)) as ExtendedArtistType[];
 
 export const ARTISTS_WITH_ARTS = ARTISTS.map(
