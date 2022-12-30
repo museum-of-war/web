@@ -126,7 +126,7 @@ export default [
         DescriptionUkrainian:
           'Голова австралійського уряду Ентоні Албаніз здійснив візит в Україну. Албаніз відвідав деокуповані Бучу, Ірпінь та Гостомель. Прем’єр-міністр Австралії, побачивши жахи російської окупації, запевнив Володимира Зеленського у підтримці Австралією України, зауважуючи, що ворог має бути покараним.',
         ArtistName: 'VELYCHEV IEVGEN',
-        ArtistLink: 'https://www.instagram.com/velichev.jenya/',
+        ArtistLink: 'https://www.instagram.com/velychev.jpg/',
         ImageType: 'drop7/6.jpg',
       },
       {
@@ -168,7 +168,7 @@ export default [
         DescriptionUkrainian:
           'Учасники саміту НАТО у Мадриді назвали Росію найголовнішою загрозою для безпеки. Члени НАТО заявили, що військове вторгнення РФ в Україну похитнуло мир та стабільність. Задля попередження російської агресії НАТО має намір збільшити кількість своїх сил швидкого реагування.',
         ArtistName: 'VELYCHEV IEVGEN',
-        ArtistLink: 'https://www.instagram.com/velichev.jenya/',
+        ArtistLink: 'https://www.instagram.com/velychev.jpg/',
         ImageType: 'drop7/8.jpg',
       },
     ],
