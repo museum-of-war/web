@@ -16,6 +16,11 @@ const nextConfig = {
         destination: '/collection/warline',
         permanent: true,
       },
+      {
+        source: '/collection/incredible-rooster',
+        destination: '/collection/meta-rooster',
+        permanent: true,
+      },
     ];
   },
 };

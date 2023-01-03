@@ -33,7 +33,7 @@ const IncredibleRooster = () => {
     <div>
       <div className="relative desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <Blurb
-          header="Incredible Rooster"
+          header="Meta Rooster"
           english={`Using 3D design we created a digital copy of the famous in Ukraine Borodyanskiy rooster — a ceramic piece, which turned out to be one of the few objects that survived the Russian occupation in March 2022 in a small town near Kyiv. The rooster has become one of the symbols of resilience in our country.
 
 NFT versions of the rooster, recreated in the style of famous paintings, will appear on the websites of museums around the world to attract the attention of art lovers to the cultural symbol of our struggle.`}

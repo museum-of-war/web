@@ -14,11 +14,11 @@ export const COLLECTIONS_OPTIONS = [
     id: 'the-hall',
   },
   {
-    title: 'Incredible Rooster',
+    title: 'Meta Rooster',
     description:
       'NFT version of the rooster without fear, recreated in the style of famous paintings',
-    url: '/collection/incredible-rooster',
-    id: 'incredible-rooster',
+    url: '/collection/meta-rooster',
+    id: 'meta-rooster',
   },
 ];
 export const MORE_OPTIONS = [

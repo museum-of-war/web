@@ -17,7 +17,7 @@ const IncredibleRoosterPage: NextPage<SharedProps> = () => {
             {
               '@type': 'ListItem',
               position: 1,
-              name: 'Incredible Rooster',
+              name: 'Meta Rooster',
             },
           ],
         }}
