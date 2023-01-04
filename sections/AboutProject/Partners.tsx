@@ -9,9 +9,9 @@ interface Partner {
 
 const partners: Partner[] = [
   {
-    alt: 'United24',
-    src: 'img/partners/united24.webp',
-    link: 'https://u24.gov.ua/',
+    alt: 'Ministry of Education and Science of Ukraine',
+    src: 'img/partners/mon.svg',
+    link: 'https://mon.gov.ua/eng',
   },
   {
     src: '/img/partners/Logo_Ministry_Digital.png',

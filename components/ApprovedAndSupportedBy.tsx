@@ -14,10 +14,10 @@ interface Supporter {
 
 const supporters: Supporter[] = [
   {
-    name: 'United24',
-    src: 'img/partners/united24.webp',
-    link: 'https://u24.gov.ua/',
-    className: 'max-h-[14px] tablet:max-h-[18px] desktop:max-h-[16px]',
+    name: 'Ministry of Education and Science of Ukraine',
+    src: 'img/partners/mon.svg',
+    link: 'https://mon.gov.ua/eng',
+    className: 'max-h-[28px] tablet:max-h-[36px] desktop:max-h-[32px]',
   },
   {
     name: 'Ministry of Digital Transformation',
@@ -29,19 +29,13 @@ const supporters: Supporter[] = [
     name: 'Ministry of Culture of Ukraine',
     src: 'img/partners/Logo_of_Ministry_of_Culture_of_Ukraine.svg',
     link: MINISTRY_CULTURE_LINK,
-    className: 'max-h-[32px] tablet:max-h-[42px] desktop:max-h-[38px]',
+    className: 'max-h-[32px] tablet:max-h-[42px] desktop:max-h-[40px]',
   },
   {
     name: 'Blockchain Association of Ukraine',
     src: 'img/partners/blockchain_association.png',
     link: BAU_LINK,
     className: 'max-h-[24px] tablet:max-h-[36px] desktop:max-h-[28px]',
-  },
-  {
-    name: 'Superheroes.',
-    src: 'img/partners/superheroes.png',
-    link: 'https://superheroes.ua/',
-    className: 'max-h-[22px] tablet:max-h-[24px] desktop:max-h-[20px]',
   },
 ];
 
