@@ -79,11 +79,6 @@ const partners: Partner[] = [
     link: 'https://nftnewstoday.com/',
   },
   {
-    src: '/img/partners/nevgamovni.png',
-    alt: 'Невгамовні',
-    link: 'https://nevgamovni.agency/',
-  },
-  {
     src: '/img/partners/army_inform.png',
     alt: 'АрміяInform',
     link: 'https://armyinform.com.ua/',
@@ -97,11 +92,6 @@ const partners: Partner[] = [
     src: '/img/partners/bitcoin_dot_com.png',
     alt: 'Bitcoin.com',
     link: 'https://www.bitcoin.com/',
-  },
-  {
-    src: '/img/partners/School_of_Visual_Communication.png',
-    alt: 'School of Visual Communication',
-    link: 'https://svc.com.ua/',
   },
   {
     src: '/img/partners/superheroes.png',

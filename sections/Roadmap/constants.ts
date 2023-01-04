@@ -161,7 +161,7 @@ export const roadmapData: RoadMapData[] = [
   {
     title: '30',
     subTitle: 'Sep, 2022',
-    description: 'release of the Incredible Rooster collection.',
+    description: 'release of the Meta Rooster collection.',
   },
   {
     title: '6',
