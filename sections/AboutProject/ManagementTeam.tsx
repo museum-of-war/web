@@ -12,24 +12,6 @@ const data: ManagementMemberType[] = [
       url: 'mailto:vk@metahistory.gallery',
     },
   },
-  {
-    name: 'Taras Gorbul',
-    title: 'managing partner',
-    avatarSrc: '/img/avatars/Taras_Gorbul.webp',
-    cta: {
-      label: 'About',
-      url: 'https://superheroes.ua/',
-    },
-  },
-  {
-    name: 'Michael Chobanian',
-    title: 'managing partner',
-    avatarSrc: '/img/avatars/Michael_Chobanian.webp',
-    cta: {
-      label: 'About',
-      url: 'https://kuna.family/',
-    },
-  },
 ];
 
 export const ManagementTeam = () => {
