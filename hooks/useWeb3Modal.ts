@@ -1546,6 +1546,7 @@ export function useWeb3Modal() {
       3 + // quiz prizes
       1; // for retweet
     const secondDropAirdrop = 30; // for artsy and airdrops (retweets, etc.)
+    const eighthDropAirdrop = 50; // for giveaways
     const firstDropWeth = ethers.constants.WeiPerEther.mul(15)
       .div(100) // 0.15 ETH
       .mul(
@@ -1559,7 +1560,8 @@ export function useWeb3Modal() {
           2 * // double price
             ((await getSixthDropMintedCount()) +
               (await getSeventhDropMintedCount()) +
-              (await getEighthDropMintedCount())),
+              (await getEighthDropMintedCount()) -
+              eighthDropAirdrop),
       );
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
     const secondAuctionWeth = BigNumber.from('12656000000000000000'); // second auction
