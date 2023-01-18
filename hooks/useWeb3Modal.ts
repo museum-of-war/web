@@ -32,6 +32,7 @@ import {
   UKRAINE_WALLET_ADDRESS,
   SIXTH_DROP_ADDRESS,
   SEVENTH_DROP_ADDRESS,
+  EIGHTH_DROP_ADDRESS,
 } from '@sections/constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
@@ -43,6 +44,7 @@ import {
   Drop5Data,
   Drop6Data,
   Drop7Data,
+  Drop8Data,
 } from '../constants/collections/Warline';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import AuctionData from '@sections/Auction/AuctionData';
@@ -477,6 +479,31 @@ export function useWeb3Modal() {
       };
     }
 
+    function recreateNftForDrop8(
+      nft: typeof ownedNfts[number],
+    ): typeof ownedNfts[number] {
+      const tokenId = parseInt(nft.id.tokenId);
+      const event = Drop8Data.flatMap((day) => day.events).find((event) =>
+        event.ImageType?.includes(`drop8/${tokenId}`),
+      )!;
+      return {
+        ...nft,
+        metadata: {
+          name: `Day ${event.DayNo}, ${event.Time}`,
+          description: event.Headline,
+          image: event.ImageType,
+          item_number: event.Tokenid,
+          attributes: [
+            {
+              trait_type: 'Edition',
+              max_value: 2,
+              value: 'x' + nft.balance,
+            },
+          ],
+        },
+      };
+    }
+
     function recreateNftForProspect100(
       nft: typeof ownedNfts[number],
     ): typeof ownedNfts[number] {
@@ -594,6 +621,8 @@ export function useWeb3Modal() {
           ? recreateNftForDrop6(nft)
           : nft.contract.address === SEVENTH_DROP_ADDRESS.toLowerCase()
           ? recreateNftForDrop7(nft)
+          : nft.contract.address === EIGHTH_DROP_ADDRESS.toLowerCase()
+          ? recreateNftForDrop8(nft)
           : nft.contract.address === MERGER_ADDRESS.toLowerCase()
           ? fixNftForMerged1(nft)
           : nft.contract.address === PROSPECT_100_ADDRESS.toLowerCase()
@@ -1075,6 +1104,10 @@ export function useWeb3Modal() {
     return getSelectiveDropMintedCount(SEVENTH_DROP_ADDRESS);
   }
 
+  async function getEighthDropMintedCount() {
+    return getSelectiveDropMintedCount(EIGHTH_DROP_ADDRESS);
+  }
+
   async function getProspect100TokensCount() {
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
@@ -1249,6 +1282,10 @@ export function useWeb3Modal() {
     return canMintSelectiveDrop(SEVENTH_DROP_ADDRESS, tokenId);
   }
 
+  async function canMintEighthDrop(tokenId: string | number) {
+    return canMintSelectiveDrop(EIGHTH_DROP_ADDRESS, tokenId);
+  }
+
   async function mintFirstDrop(tokensCount?: number) {
     const ethersProvider = await connectWallet();
     if (!ethersProvider) throw new Error('Cannot get ethers provider');
@@ -1358,6 +1395,10 @@ export function useWeb3Modal() {
 
   async function mintSeventhDrop(tokenId: number, tokensCount: number) {
     return mintSelectiveDrop(SEVENTH_DROP_ADDRESS, tokenId, tokensCount);
+  }
+
+  async function mintEighthDrop(tokenId: number, tokensCount: number) {
+    return mintSelectiveDrop(EIGHTH_DROP_ADDRESS, tokenId, tokensCount);
   }
 
   async function isUnlocked() {
@@ -1473,6 +1514,7 @@ export function useWeb3Modal() {
     const fifthDropMinted = +(await getFifthDropMintedCount());
     const sixthDropMinted = +(await getSixthDropMintedCount());
     const seventhDropMinted = +(await getSeventhDropMintedCount());
+    const eighthDropMinted = +(await getEighthDropMintedCount());
     const prospect100Tokens = +(await getProspect100TokensCount());
     const revivalTokens = +(await getRevivalTokensCount());
     const auctions =
@@ -1491,6 +1533,7 @@ export function useWeb3Modal() {
       fifthDropMinted +
       sixthDropMinted +
       seventhDropMinted +
+      eighthDropMinted +
       prospect100Tokens +
       revivalTokens +
       auctions
@@ -1513,9 +1556,10 @@ export function useWeb3Modal() {
           (await getSecondDropMintedCount()) +
           (await getThirdDropMintedCount()) +
           (await getFifthDropMintedCount()) +
-          2 *
+          2 * // double price
             ((await getSixthDropMintedCount()) +
-              (await getSeventhDropMintedCount())), // double price
+              (await getSeventhDropMintedCount()) +
+              (await getEighthDropMintedCount())),
       );
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
     const secondAuctionWeth = BigNumber.from('12656000000000000000'); // second auction
@@ -1579,12 +1623,14 @@ export function useWeb3Modal() {
     canMintFifthDrop,
     canMintSixthDrop,
     canMintSeventhDrop,
+    canMintEighthDrop,
     mintFirstDrop,
     mintSecondDrop,
     mintThirdDrop,
     mintFifthDrop,
     mintSixthDrop,
     mintSeventhDrop,
+    mintEighthDrop,
     isUnlocked,
     openModal,
     getSellerTransfers,

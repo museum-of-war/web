@@ -94,6 +94,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
     canMintFifthDrop,
     canMintSixthDrop,
     canMintSeventhDrop,
+    canMintEighthDrop,
   } = useWeb3Modal();
   const isMounted = useIsMounted();
 
@@ -118,6 +119,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
         ? canMintSixthDrop
         : warlineDrop === WarlineDrop.Drop7
         ? canMintSeventhDrop
+        : warlineDrop === WarlineDrop.Drop8
+        ? canMintEighthDrop
         : () => Promise.resolve(null))(
         +id - DropTokenIdOffsets[warlineDrop!],
       ).then((left) => {
@@ -361,7 +364,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                     {withGetNowButton
                       ? 'Whitelisted'
                       : warlineDrop !== WarlineDrop.Drop6 &&
-                        warlineDrop !== WarlineDrop.Drop7
+                        warlineDrop !== WarlineDrop.Drop7 &&
+                        warlineDrop !== WarlineDrop.Drop8
                       ? '0.15 ETH'
                       : '0.3 ETH'}
                   </p>

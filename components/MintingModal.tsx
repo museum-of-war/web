@@ -34,6 +34,7 @@ const MintingModal = ({
     mintFifthDrop,
     mintSixthDrop,
     mintSeventhDrop,
+    mintEighthDrop,
   } = useWeb3Modal();
   const { push } = useAppRouter();
   const [signerAddress, setSignerAddress] = useState<string>('');
@@ -88,7 +89,9 @@ const MintingModal = ({
     setIsLoading(true);
 
     const mintPromise =
-      drop === WarlineDrop.Drop7
+      drop === WarlineDrop.Drop8
+        ? mintEighthDrop(tokenId ?? 1, amount)
+        : WarlineDrop.Drop7
         ? mintSeventhDrop(tokenId ?? 1, amount)
         : drop === WarlineDrop.Drop6
         ? mintSixthDrop(tokenId ?? 1, amount)
@@ -109,6 +112,7 @@ const MintingModal = ({
     mintFifthDrop,
     mintSixthDrop,
     mintSeventhDrop,
+    mintEighthDrop,
     mintSecondDrop,
     mintThirdDrop,
     push,
@@ -151,7 +155,9 @@ const MintingModal = ({
           You will mint NFTs from those that are currently on sale.
           <br />
           Each NFT will cost{' '}
-          {drop !== WarlineDrop.Drop6 && drop !== WarlineDrop.Drop7
+          {drop !== WarlineDrop.Drop6 &&
+          drop !== WarlineDrop.Drop7 &&
+          drop !== WarlineDrop.Drop8
             ? '0.15'
             : '0.3'}{' '}
           ETH.
@@ -187,7 +193,9 @@ const MintingModal = ({
             <p className="tablet:text-16px tablet:leading-24px tablet:ml-0 mobile:ml-7px mobile:text-14px mobile:leading-20px">
               {(
                 amount *
-                (drop !== WarlineDrop.Drop6 && drop !== WarlineDrop.Drop7
+                (drop !== WarlineDrop.Drop6 &&
+                drop !== WarlineDrop.Drop7 &&
+                drop !== WarlineDrop.Drop8
                   ? 0.15
                   : 0.3)
               ).toFixed(2)}{' '}
