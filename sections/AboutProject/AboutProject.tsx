@@ -14,7 +14,7 @@ import CryptoCirculation from '@sections/CryptoCirculation';
 import { ApplyAsAnArtist } from '@components/ApplyAsAnArtist';
 import { RoadmapPromoBlock } from '@sections/Roadmap/RoadmapPromoBlock';
 import { ManagementTeam } from './ManagementTeam';
-import { SEVENTH_DROP_DATE } from '@sections/constants';
+import { EIGHTH_DROP_DATE } from '@sections/constants';
 const Countdown = dynamic(() => import('./Countdown'), {
   ssr: false,
 });
@@ -28,7 +28,7 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
     <div>
       <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px">
         <ContentTop signerAddress={signerAddress} />
-        <Countdown countDownDate={SEVENTH_DROP_DATE} />
+        <Countdown countDownDate={EIGHTH_DROP_DATE} />
         <ContentChapter />
         <ContentCounterDaysAndRised />
       </div>
