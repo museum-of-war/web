@@ -32,12 +32,12 @@ export const ITEMS = [
     author: 'Hieronymus Bosch, 1490–1500',
     url: '/roosters/Prado Museum',
   },
-  {
-    museum: 'Guggenheim Museum',
-    name: 'Composition 8',
-    author: 'Vasily Kandinsky, 1923',
-    url: '/roosters/Guggenheim Museum NY',
-  },
+  // {
+  //   museum: 'Guggenheim Museum',
+  //   name: 'Composition 8',
+  //   author: 'Vasily Kandinsky, 1923',
+  //   url: '/roosters/Guggenheim Museum NY',
+  // },
   {
     museum: 'MoMA',
     name: 'Number 1A',
