@@ -1,3 +1,4 @@
+import { FormFields, GoogleSheetsForm } from '@components/GoogleSheetsForm';
 import { usePopup } from '@providers/PopupProvider';
 import Ambassadors from '@sections/AboutProject/Ambassadors';
 import Blurb from '@sections/AboutProject/Blurb';
@@ -11,6 +12,45 @@ import {
   projectsWeSupport,
   whoHelpsUs,
 } from './constants';
+
+const FORM_FIELDS: FormFields = {
+  '2809757728': {
+    order: 0,
+    type: 'text',
+    id: '2809757728',
+    name: 'Your name in latin letters',
+    label: 'Your name in latin letters',
+    placeholder: 'e.g. Andy Warhol',
+    sendToAnalytics: true,
+  },
+  '1778247027': {
+    order: 1,
+    type: 'text',
+    id: '1778247027',
+    name: 'How to contact you',
+    label: 'How to contact you',
+    placeholder: 'Enter you Telegram nickname or paste a link',
+  },
+  '1778270227': {
+    order: 2,
+    type: 'text',
+    id: '1778270227',
+    name: 'Subject',
+    label: 'Subject',
+    placeholder: 'Sponsorship',
+  },
+  '1778270327': {
+    order: 3,
+    type: 'text',
+    id: '1778270327',
+    name: 'Message',
+    label: 'Message',
+    placeholder: 'Write your message here',
+  },
+};
+
+const SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbwHgeGn0SLJ0T4AkWAEreZvlmf0jiIR6t6pmKuGqf0lYfUsiN5QnIFWTpQkIyhWy0I5HQ/exec';
 
 export const JoinProject: React.FC = () => {
   const { showPopup, hidePopup } = usePopup();
@@ -45,7 +85,10 @@ export const JoinProject: React.FC = () => {
     <div className="desktop:container mx-auto px-24px tablet:px-72px desktop:px-132px">
       <Blurb english={intro.en} ukrainian={intro.uk} />
 
-      <Blurb classNames="mt-40px tablet:mt-48px" header="Join us" />
+      <Blurb
+        classNames="mt-40px tablet:mt-48px"
+        header="We invite you to join our project"
+      />
 
       <div className="mt-12px tablet:mt-32px grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-16px tablet:gap-32px">
         {opportunities.map((opportunity, index) => (
@@ -101,7 +144,10 @@ export const JoinProject: React.FC = () => {
         ))}
       </div>
 
-      <Blurb classNames="mt-60px tablet:mt-[120px]" header="Who helps us" />
+      <Blurb
+        classNames="mt-60px tablet:mt-[120px]"
+        header="We are supported by"
+      />
 
       <div className="mt-24px">
         {whoHelpsUs.map((section, idx) => (
@@ -137,6 +183,19 @@ export const JoinProject: React.FC = () => {
       </div>
 
       <Ambassadors />
+
+      <Blurb classNames="mt-60px tablet:mt-[120px]" header="Contact us" />
+
+      <div className="mt-24px mb-120px flex">
+        <div className="tablet:max-w-[50%]">
+          <GoogleSheetsForm
+            formFields={FORM_FIELDS}
+            scriptUrl={SCRIPT_URL}
+            buttonLabel="Send"
+            analyticsContext={{ category: 'join_project_form' }}
+          />
+        </div>
+      </div>
     </div>
   );
 };
