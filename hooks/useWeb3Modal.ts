@@ -26,35 +26,27 @@ import {
   PROSPECT_100_ADDRESS,
   REVIVAL_ADDRESS,
   SECOND_DROP_ADDRESS,
-  THIRD_DROP_ADDRESS,
-  FOURTH_DROP_ADDRESS,
-  FIFTH_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
-  SIXTH_DROP_ADDRESS,
-  SEVENTH_DROP_ADDRESS,
-  EIGHTH_DROP_ADDRESS,
 } from '@sections/constants';
 import { AuctionVersion, NFTAuctionConnect } from '@museum-of-war/auction';
 import { ExternalProvider } from '@ethersproject/providers';
 import {
+  CollectionsData,
   Drop1Data,
-  Drop2Data,
-  Drop3Data,
-  Drop4Data,
-  Drop5Data,
-  Drop6Data,
-  Drop7Data,
-  Drop8Data,
+  Drops,
 } from '../constants/collections/Warline';
 import AuctionCollectionData from '@sections/Auction/AuctionCollectionData';
 import AuctionData from '@sections/Auction/AuctionData';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
-import { AuctionCollection, TransferInfoType } from '@sections/types';
+import {
+  AuctionCollection,
+  TransferInfoType,
+  WarlineDrop,
+  WarlineDropVersion,
+} from '@sections/types';
 import { useEffectOnce } from '@hooks/useEffectOnce';
 import { useIsMounted } from '@hooks/useIsMounted';
 import { usePopup } from '@providers/PopupProvider';
-
-// TODO: refactor this file!!!
 
 const apiKey = <string>process.env.NEXT_PUBLIC_ALCHEMY_API;
 
@@ -62,7 +54,18 @@ const ProjectWalletNo = PROJECT_WALLET_ADDRESS;
 const CountryWalletNo = UKRAINE_WALLET_ADDRESS;
 const MetaHistoryAddress = FIRST_DROP_ADDRESS;
 const SecondDropAddress = SECOND_DROP_ADDRESS;
-const ThirdDropAddress = THIRD_DROP_ADDRESS;
+
+const DropsAddresses = Object.values(CollectionsData)
+  .map((d) => d.address)
+  .filter((a) => !!a);
+
+const AddressesToDrops = {} as Record<string, WarlineDrop>;
+for (let key in CollectionsData) {
+  const address = CollectionsData[key as WarlineDrop].address;
+  if (!address) continue;
+  AddressesToDrops[address.toLowerCase()] = key as WarlineDrop;
+}
+
 const AuctionsAddresses = Object.values(AuctionCollectionData).map(
   (d) => d.contractAddress,
 );
@@ -282,10 +285,7 @@ export function useWeb3Modal() {
           pageKey,
           owner: ownerAddr,
           contractAddresses: [
-            MetaHistoryAddress,
-            SECOND_DROP_ADDRESS,
-            THIRD_DROP_ADDRESS,
-            FIFTH_DROP_ADDRESS,
+            ...DropsAddresses,
             MERGER_ADDRESS,
             ...AuctionsAddresses,
           ].filter((v, i, a) => a.indexOf(v) === i),
@@ -329,13 +329,16 @@ export function useWeb3Modal() {
       };
     }
 
-    function recreateNftForDrop2(
+    function recreateNftForDrop(
+      drop: WarlineDrop,
       nft: typeof ownedNfts[number],
     ): typeof ownedNfts[number] {
+      if (drop === WarlineDrop.Drop1) return fixNftForDrop1(nft);
+      const collectionData = CollectionsData[drop];
       const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop2Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop2/${tokenId}`),
-      )!;
+      const event = Drops[drop]
+        .flatMap((day) => day.events)
+        .find((event) => event.ImageType?.includes(`${drop}/${tokenId}`))!;
       return {
         ...nft,
         metadata: {
@@ -346,157 +349,7 @@ export function useWeb3Modal() {
           attributes: [
             {
               trait_type: 'Edition',
-              max_value: 16,
-              value: 'x' + nft.balance,
-            },
-          ],
-        },
-      };
-    }
-
-    function recreateNftForDrop3(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop3Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop3/${tokenId}`),
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 12,
-              value: 'x' + nft.balance,
-            },
-          ],
-        },
-      };
-    }
-
-    function recreateNftForDrop4(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop4Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop4/${tokenId}`),
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 8,
-              value: 'x' + nft.balance,
-            },
-          ],
-        },
-      };
-    }
-
-    function recreateNftForDrop5(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop5Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop5/${tokenId}`),
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 4,
-              value: 'x' + nft.balance,
-            },
-          ],
-        },
-      };
-    }
-
-    function recreateNftForDrop6(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop6Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop6/${tokenId}`),
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 2,
-              value: 'x' + nft.balance,
-            },
-          ],
-        },
-      };
-    }
-
-    function recreateNftForDrop7(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop7Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop7/${tokenId}`),
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 2,
-              value: 'x' + nft.balance,
-            },
-          ],
-        },
-      };
-    }
-
-    function recreateNftForDrop8(
-      nft: typeof ownedNfts[number],
-    ): typeof ownedNfts[number] {
-      const tokenId = parseInt(nft.id.tokenId);
-      const event = Drop8Data.flatMap((day) => day.events).find((event) =>
-        event.ImageType?.includes(`drop8/${tokenId}`),
-      )!;
-      return {
-        ...nft,
-        metadata: {
-          name: `Day ${event.DayNo}, ${event.Time}`,
-          description: event.Headline,
-          image: event.ImageType,
-          item_number: event.Tokenid,
-          attributes: [
-            {
-              trait_type: 'Edition',
-              max_value: 2,
+              max_value: collectionData.editions,
               value: 'x' + nft.balance,
             },
           ],
@@ -603,32 +456,21 @@ export function useWeb3Modal() {
       };
     }
 
+    function fixNft(nft: typeof ownedNfts[number]): typeof ownedNfts[number] {
+      const address = nft.contract.address;
+      if (address === FIRST_DROP_ADDRESS.toLowerCase())
+        return nft.metadata?.image === undefined ? fixNftForDrop1(nft) : nft;
+      const drop = AddressesToDrops[address];
+      if (drop) return recreateNftForDrop(drop, nft);
+      if (address === MERGER_ADDRESS.toLowerCase())
+        return fixNftForMerged1(nft);
+      if (address === PROSPECT_100_ADDRESS.toLowerCase())
+        return recreateNftForProspect100(nft);
+      return tryRecreateNftForAuctions(nft);
+    }
+
     return ownedNfts
-      .map((nft) =>
-        nft.contract.address === FIRST_DROP_ADDRESS.toLowerCase()
-          ? nft.metadata?.image === undefined
-            ? fixNftForDrop1(nft)
-            : nft
-          : nft.contract.address === SECOND_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop2(nft)
-          : nft.contract.address === THIRD_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop3(nft)
-          : nft.contract.address === FOURTH_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop4(nft)
-          : nft.contract.address === FIFTH_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop5(nft)
-          : nft.contract.address === SIXTH_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop6(nft)
-          : nft.contract.address === SEVENTH_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop7(nft)
-          : nft.contract.address === EIGHTH_DROP_ADDRESS.toLowerCase()
-          ? recreateNftForDrop8(nft)
-          : nft.contract.address === MERGER_ADDRESS.toLowerCase()
-          ? fixNftForMerged1(nft)
-          : nft.contract.address === PROSPECT_100_ADDRESS.toLowerCase()
-          ? recreateNftForProspect100(nft)
-          : tryRecreateNftForAuctions(nft),
-      )
+      .map(fixNft)
       .sort((a, b) => parseInt(a.id.tokenId) - parseInt(b.id.tokenId))
       .sort((a, b) =>
         a.contract.address > b.contract.address
@@ -1028,7 +870,7 @@ export function useWeb3Modal() {
     await tx.wait();
   }
 
-  async function getFirstDropMintedCount() {
+  async function getFairDropMintedCount(dropAddress: string) {
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
@@ -1036,19 +878,19 @@ export function useWeb3Modal() {
     try {
       const nftContract = new web3.eth.Contract(
         MetaHistoryContractAbi as AbiItem[],
-        MetaHistoryAddress,
+        dropAddress,
       );
 
       return +(await nftContract.methods
         .viewMinted()
-        .call({ from: MetaHistoryAddress }));
+        .call({ from: dropAddress }));
     } catch (e) {
       console.warn(e);
       return 0;
     }
   }
 
-  async function getSecondDropMintedCount() {
+  async function getSimpleDropMintedCount(dropAddress: string) {
     const web3 = createAlchemyWeb3(
       `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
     );
@@ -1056,12 +898,12 @@ export function useWeb3Modal() {
     try {
       const nftContract = new web3.eth.Contract(
         MetaHistoryDropContractAbi as AbiItem[],
-        SecondDropAddress,
+        dropAddress,
       );
 
       return +(await nftContract.methods
         .viewMinted()
-        .call({ from: SecondDropAddress }));
+        .call({ from: dropAddress }));
     } catch (e) {
       console.warn(e);
       return 0;
@@ -1088,24 +930,25 @@ export function useWeb3Modal() {
     }
   }
 
-  async function getThirdDropMintedCount() {
-    return getSelectiveDropMintedCount(ThirdDropAddress);
-  }
+  async function getDropMintedCount(drop: WarlineDrop): Promise<number> {
+    const { version, address } = CollectionsData[drop];
 
-  async function getFifthDropMintedCount() {
-    return getSelectiveDropMintedCount(FIFTH_DROP_ADDRESS);
-  }
+    switch (version) {
+      case WarlineDropVersion.FairXYZMH:
+        return getFairDropMintedCount(address);
 
-  async function getSixthDropMintedCount() {
-    return getSelectiveDropMintedCount(SIXTH_DROP_ADDRESS);
-  }
+      case WarlineDropVersion.DropMH:
+        return getSimpleDropMintedCount(address);
 
-  async function getSeventhDropMintedCount() {
-    return getSelectiveDropMintedCount(SEVENTH_DROP_ADDRESS);
-  }
+      case WarlineDropVersion.SelectiveDropMH:
+      case WarlineDropVersion.SelectiveDropMHv2:
+        return getSelectiveDropMintedCount(address);
 
-  async function getEighthDropMintedCount() {
-    return getSelectiveDropMintedCount(EIGHTH_DROP_ADDRESS);
+      default:
+        throw new Error(
+          `Get minted tokens count - not implemented for ${drop} (version: ${version})`,
+        );
+    }
   }
 
   async function getProspect100TokensCount() {
@@ -1260,30 +1103,21 @@ export function useWeb3Modal() {
     }
   }
 
-  async function canMintThirdDrop(tokenId: string | number) {
-    return canMintSelectiveDrop(ThirdDropAddress, tokenId);
+  async function canMintDrop(drop: WarlineDrop, tokenId: string | number) {
+    const { address, version, editions } = CollectionsData[drop];
+    if (
+      version !== WarlineDropVersion.SelectiveDropMH &&
+      version !== WarlineDropVersion.SelectiveDropMHv2
+    )
+      return 0;
+
+    if (!address) return editions;
+
+    return canMintSelectiveDrop(address, tokenId);
   }
 
-  async function canMintFourthDrop(tokenId: string | number) {
-    //TODO: add minting logic after smart-contract deploy
-    return +tokenId > 0 && +tokenId <= 100 ? 8 : 0;
-    //return canMintSelectiveDrop(FOURTH_DROP_ADDRESS, tokenId);
-  }
-
-  async function canMintFifthDrop(tokenId: string | number) {
-    return canMintSelectiveDrop(FIFTH_DROP_ADDRESS, tokenId);
-  }
-
-  async function canMintSixthDrop(tokenId: string | number) {
-    return canMintSelectiveDrop(SIXTH_DROP_ADDRESS, tokenId);
-  }
-
-  async function canMintSeventhDrop(tokenId: string | number) {
-    return canMintSelectiveDrop(SEVENTH_DROP_ADDRESS, tokenId);
-  }
-
-  async function canMintEighthDrop(tokenId: string | number) {
-    return canMintSelectiveDrop(EIGHTH_DROP_ADDRESS, tokenId);
+  function getDropPriceETH(drop: WarlineDrop): number {
+    return CollectionsData[drop].priceETH;
   }
 
   async function mintFirstDrop(tokensCount?: number) {
@@ -1381,24 +1215,21 @@ export function useWeb3Modal() {
     await tx.wait();
   }
 
-  async function mintThirdDrop(tokenId: number, tokensCount: number) {
-    return mintSelectiveDrop(ThirdDropAddress, tokenId, tokensCount);
-  }
+  async function mintDrop(
+    drop: WarlineDrop,
+    tokenId: number,
+    tokensCount: number,
+  ) {
+    const { address, version } = CollectionsData[drop];
+    if (
+      version !== WarlineDropVersion.SelectiveDropMH &&
+      version !== WarlineDropVersion.SelectiveDropMHv2
+    )
+      return; // only selective drops can be minted
 
-  async function mintFifthDrop(tokenId: number, tokensCount: number) {
-    return mintSelectiveDrop(FIFTH_DROP_ADDRESS, tokenId, tokensCount);
-  }
+    if (!address) throw new Error(`Cannot mint: ${drop} is not deployed!`);
 
-  async function mintSixthDrop(tokenId: number, tokensCount: number) {
-    return mintSelectiveDrop(SIXTH_DROP_ADDRESS, tokenId, tokensCount);
-  }
-
-  async function mintSeventhDrop(tokenId: number, tokensCount: number) {
-    return mintSelectiveDrop(SEVENTH_DROP_ADDRESS, tokenId, tokensCount);
-  }
-
-  async function mintEighthDrop(tokenId: number, tokensCount: number) {
-    return mintSelectiveDrop(EIGHTH_DROP_ADDRESS, tokenId, tokensCount);
+    return mintSelectiveDrop(address, tokenId, tokensCount);
   }
 
   async function isUnlocked() {
@@ -1508,13 +1339,9 @@ export function useWeb3Modal() {
   }
 
   async function getTotalNFTs() {
-    const firstDropMinted = +(await getFirstDropMintedCount());
-    const secondDropMinted = +(await getSecondDropMintedCount());
-    const thirdDropMinted = +(await getThirdDropMintedCount());
-    const fifthDropMinted = +(await getFifthDropMintedCount());
-    const sixthDropMinted = +(await getSixthDropMintedCount());
-    const seventhDropMinted = +(await getSeventhDropMintedCount());
-    const eighthDropMinted = +(await getEighthDropMintedCount());
+    const dropsMinted = await Promise.all(
+      Object.values(AddressesToDrops).map((drop) => getDropMintedCount(drop)),
+    ).then((arr) => arr.reduce((prev, curr) => prev + curr, 0));
     const prospect100Tokens = +(await getProspect100TokensCount());
     const revivalTokens = +(await getRevivalTokensCount());
     const auctions =
@@ -1526,43 +1353,28 @@ export function useWeb3Modal() {
           d.category === AuctionCollection.TheRevivalProject,
       ).length;
 
-    return (
-      firstDropMinted +
-      secondDropMinted +
-      thirdDropMinted +
-      fifthDropMinted +
-      sixthDropMinted +
-      seventhDropMinted +
-      eighthDropMinted +
-      prospect100Tokens +
-      revivalTokens +
-      auctions
-    );
+    return dropsMinted + prospect100Tokens + revivalTokens + auctions;
+  }
+
+  async function getDropFundsRaisedWeth(drop: WarlineDrop): Promise<BigNumber> {
+    const { airdropped, priceETH } = CollectionsData[drop];
+    const mintedCount = await getDropMintedCount(drop);
+    const soldCount = mintedCount - (airdropped ?? 0);
+
+    const multiplier = 100; // BigNumber can work only with integers
+
+    return ethers.constants.WeiPerEther.mul(
+      priceETH * multiplier * soldCount,
+    ).div(multiplier);
   }
 
   async function getTotalFundsRaised() {
-    const firstDropUnique = 4; // first four tokens were sold at auction
-    const firstDropAirdrop =
-      3 + // quiz prizes
-      1; // for retweet
-    const secondDropAirdrop = 30; // for artsy and airdrops (retweets, etc.)
-    const eighthDropAirdrop = 50; // for giveaways
-    const firstDropWeth = ethers.constants.WeiPerEther.mul(15)
-      .div(100) // 0.15 ETH
-      .mul(
-        (await getFirstDropMintedCount()) -
-          firstDropUnique -
-          firstDropAirdrop -
-          secondDropAirdrop +
-          (await getSecondDropMintedCount()) +
-          (await getThirdDropMintedCount()) +
-          (await getFifthDropMintedCount()) +
-          2 * // double price
-            ((await getSixthDropMintedCount()) +
-              (await getSeventhDropMintedCount()) +
-              (await getEighthDropMintedCount()) -
-              eighthDropAirdrop),
-      );
+    const dropsFundsRaisedWeth = await Promise.all(
+      Object.values(AddressesToDrops).map((drop) =>
+        getDropFundsRaisedWeth(drop),
+      ),
+    ).then((arr) => arr.reduce((prev, curr) => prev.add(curr)));
+
     const firstAuctionWeth = BigNumber.from('4724827773016000000'); // first auction
     const secondAuctionWeth = BigNumber.from('12656000000000000000'); // second auction
 
@@ -1583,7 +1395,7 @@ export function useWeb3Modal() {
     const revivalSaleWeth =
       ethers.constants.WeiPerEther.div(40).mul(soldRevivalTokens); // 0.025 ETH fixed price
 
-    const wethTotal = firstDropWeth
+    const wethTotal = dropsFundsRaisedWeth
       .add(firstAuctionWeth)
       .add(secondAuctionWeth)
       .add(KALUSH_BID)
@@ -1620,19 +1432,11 @@ export function useWeb3Modal() {
     makeBid,
     canMint,
     canMintSecondDrop,
-    canMintThirdDrop,
-    canMintFourthDrop,
-    canMintFifthDrop,
-    canMintSixthDrop,
-    canMintSeventhDrop,
-    canMintEighthDrop,
+    canMintDrop,
+    getDropPriceETH,
     mintFirstDrop,
     mintSecondDrop,
-    mintThirdDrop,
-    mintFifthDrop,
-    mintSixthDrop,
-    mintSeventhDrop,
-    mintEighthDrop,
+    mintDrop,
     isUnlocked,
     openModal,
     getSellerTransfers,

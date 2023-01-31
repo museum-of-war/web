@@ -1,7 +1,6 @@
 import { AuctionVersion } from '@museum-of-war/auction';
 import { BigNumberish } from 'ethers';
 import { Nft } from '@alch/alchemy-web3/dist/esm/alchemy-apis/types';
-import { WarlineDrop } from '../constants/collections/Warline/constants';
 
 export type IndexedNFT = {
   nft: Nft;
@@ -45,6 +44,33 @@ export type EventType = {
   WarlineDrop: WarlineDrop;
   IsOnSale?: boolean;
   IsWhitelisted?: boolean;
+};
+
+export enum WarlineDrop {
+  Drop1 = 'drop1',
+  Drop2 = 'drop2',
+  Drop3 = 'drop3',
+  Drop4 = 'drop4',
+  Drop5 = 'drop5',
+  Drop6 = 'drop6',
+  Drop7 = 'drop7',
+  Drop8 = 'drop8',
+}
+
+export enum WarlineDropVersion {
+  FairXYZMH = 'FairXYZMH',
+  DropMH = 'DropMH',
+  SelectiveDropMH = 'SelectiveDropMH',
+  SelectiveDropMHv2 = 'SelectiveDropMHv2',
+}
+
+export type WarlineDropType = {
+  name: string;
+  address: string;
+  version: WarlineDropVersion;
+  priceETH: number;
+  editions: number;
+  airdropped?: number;
 };
 
 export enum AuctionCollection {

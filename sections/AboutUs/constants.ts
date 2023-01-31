@@ -1,5 +1,4 @@
-import { WarlineDrop } from '@constants/collections/Warline/constants';
-import { TransferInfoType } from '@sections/types';
+import { TransferInfoType, WarlineDrop } from '@sections/types';
 
 export const ACHIEVE_DATA = {
   metaverseEvents: 3,

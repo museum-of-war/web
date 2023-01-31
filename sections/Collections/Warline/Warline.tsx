@@ -12,7 +12,7 @@ import {
   eventsGroupByDay,
   eventsGroupByDrop,
 } from '@constants/collections/Warline';
-import { EventType } from '@sections/types';
+import { EventType, WarlineDrop } from '@sections/types';
 import { PopupProvider } from '@providers/PopupProvider';
 import Blurb from '@sections/AboutProject/Blurb';
 import Toggle from '@components/Toggle';
@@ -31,7 +31,6 @@ import { filterByType, sortEventGroups } from './utils';
 import MintingModal from '@components/MintingModal';
 import { JOINLIST_LINK } from '@sections/constants';
 import { openInNewTab } from '@sections/utils';
-import { WarlineDrop } from '@constants/collections/Warline/constants';
 import ReactGA from 'react-ga4';
 
 const SCROLL_BUFFER_BLOCKS = 2;

@@ -1,5 +1,4 @@
-import { DayType } from '@sections/types';
-import { WarlineDrop } from '../constants';
+import { DayType, WarlineDrop } from '@sections/types';
 
 export default [
   {

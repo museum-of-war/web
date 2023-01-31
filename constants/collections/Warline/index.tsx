@@ -1,4 +1,4 @@
-import { DayType, EventsGroup } from '@sections/types';
+import { DayType, EventsGroup, WarlineDrop } from '@sections/types';
 import { Drop1Data } from './drop1';
 import { Drop2Data } from './drop2';
 import { Drop3Data } from './drop3';
@@ -7,7 +7,7 @@ import { Drop5Data } from './drop5';
 import { Drop6Data } from './drop6';
 import { Drop7Data } from './drop7';
 import { Drop8Data } from './drop8';
-import { WarlineDrop } from './constants';
+import { WarlineData as CollectionsData } from './constants';
 
 const Drops = {
   [WarlineDrop.Drop1]: Drop1Data,
@@ -19,17 +19,6 @@ const Drops = {
   [WarlineDrop.Drop7]: Drop7Data,
   [WarlineDrop.Drop8]: Drop8Data,
 } as Readonly<Record<WarlineDrop, ReadonlyArray<DayType>>>;
-
-const dropTitle: Readonly<Record<WarlineDrop, string>> = {
-  [WarlineDrop.Drop1]: 'Drop 1',
-  [WarlineDrop.Drop2]: 'Drop 2',
-  [WarlineDrop.Drop3]: 'Drop 3',
-  [WarlineDrop.Drop4]: 'Drop 4',
-  [WarlineDrop.Drop5]: 'Drop 5',
-  [WarlineDrop.Drop6]: 'Drop 6',
-  [WarlineDrop.Drop7]: 'Drop 7',
-  [WarlineDrop.Drop8]: 'Drop 8',
-};
 
 const AllDropsData = Object.values(Drops).flat();
 
@@ -79,7 +68,7 @@ export const eventsGroupByDrop: EventsGroup[] = Object.entries(Drops).reduce<
   return [
     ...group,
     {
-      name: dropTitle[dropId as WarlineDrop],
+      name: CollectionsData[dropId as WarlineDrop].name,
       // We should guarantee that array is sorted by days
       description: `${drop[0]!.date} - ${drop[drop.length - 1]!.date}`,
       firstDate: drop[0]!.date,
@@ -92,6 +81,7 @@ export const eventsGroupByDrop: EventsGroup[] = Object.entries(Drops).reduce<
 export default WarlineData;
 
 export {
+  CollectionsData,
   Drops,
   AllDropsData,
   DropTokenIdOffsets,
