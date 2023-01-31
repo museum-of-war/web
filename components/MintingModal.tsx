@@ -4,12 +4,10 @@ import Button from '@components/Button';
 import { VscChromeClose } from 'react-icons/vsc';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useAppRouter } from '@hooks/useAppRouter';
-import {
-  UtorgCurrencies,
-  WarlineDrop,
-} from '../constants/collections/Warline/constants';
+import { UtorgCurrencies } from '@constants/collections/Warline/constants';
 import { AnalyticsContext } from 'types';
 import { openInNewTab } from '@sections/utils';
+import { WarlineDrop } from '@sections/types';
 
 type MintingModalProps = {
   setOpenMintingModal: (arg: boolean) => void;
@@ -27,15 +25,8 @@ const MintingModal = ({
   maxMints,
   analyticsContext,
 }: MintingModalProps) => {
-  const {
-    provider,
-    mintSecondDrop,
-    mintThirdDrop,
-    mintFifthDrop,
-    mintSixthDrop,
-    mintSeventhDrop,
-    mintEighthDrop,
-  } = useWeb3Modal();
+  const { provider, getDropPriceETH, mintSecondDrop, mintDrop } =
+    useWeb3Modal();
   const { push } = useAppRouter();
   const [signerAddress, setSignerAddress] = useState<string>('');
   const [amount, setAmount] = useState<number>(1);
@@ -89,16 +80,8 @@ const MintingModal = ({
     setIsLoading(true);
 
     const mintPromise =
-      drop === WarlineDrop.Drop8
-        ? mintEighthDrop(tokenId ?? 1, amount)
-        : WarlineDrop.Drop7
-        ? mintSeventhDrop(tokenId ?? 1, amount)
-        : drop === WarlineDrop.Drop6
-        ? mintSixthDrop(tokenId ?? 1, amount)
-        : drop === WarlineDrop.Drop5
-        ? mintFifthDrop(tokenId ?? 1, amount)
-        : drop === WarlineDrop.Drop3
-        ? mintThirdDrop(tokenId ?? 1, amount)
+      drop && drop !== WarlineDrop.Drop1 && drop !== WarlineDrop.Drop2
+        ? mintDrop(drop, tokenId ?? 1, amount)
         : mintSecondDrop(amount);
 
     mintPromise
@@ -109,12 +92,8 @@ const MintingModal = ({
     amount,
     analyticsContext?.category,
     drop,
-    mintFifthDrop,
-    mintSixthDrop,
-    mintSeventhDrop,
-    mintEighthDrop,
     mintSecondDrop,
-    mintThirdDrop,
+    mintDrop,
     push,
     tokenId,
   ]);
@@ -154,13 +133,7 @@ const MintingModal = ({
           <br />
           You will mint NFTs from those that are currently on sale.
           <br />
-          Each NFT will cost{' '}
-          {drop !== WarlineDrop.Drop6 &&
-          drop !== WarlineDrop.Drop7 &&
-          drop !== WarlineDrop.Drop8
-            ? '0.15'
-            : '0.3'}{' '}
-          ETH.
+          Each NFT will cost {drop ? getDropPriceETH(drop) : '?'} ETH.
         </p>
         <div className="flex tablet:flex-row tablet:items-center tablet:mt-48px mobile:mt-40px mobile:flex-col mobile:items-start">
           <div className="flex tablet:w-auto mobile:w-100% mobile:justify-between">
@@ -191,15 +164,7 @@ const MintingModal = ({
               Total
             </p>
             <p className="tablet:text-16px tablet:leading-24px tablet:ml-0 mobile:ml-7px mobile:text-14px mobile:leading-20px">
-              {(
-                amount *
-                (drop !== WarlineDrop.Drop6 &&
-                drop !== WarlineDrop.Drop7 &&
-                drop !== WarlineDrop.Drop8
-                  ? 0.15
-                  : 0.3)
-              ).toFixed(2)}{' '}
-              ETH
+              {(amount * (drop ? getDropPriceETH(drop) : 0)).toFixed(2)} ETH
             </p>
           </div>
         </div>

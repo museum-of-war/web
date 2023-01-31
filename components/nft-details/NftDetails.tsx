@@ -9,10 +9,10 @@ import Button from '@components/Button';
 import ScaledImage, { BreakpointRatios } from '@components/ScaledImage';
 import { useViewPort } from '@hooks/useViewport';
 import MintingModal from '@components/MintingModal';
-import { WarlineDrop } from '../../constants/collections/Warline/constants';
+import { WarlineDrop } from '@sections/types';
 import { useWeb3Modal } from '@hooks/useWeb3Modal';
 import { useIsMounted } from '@hooks/useIsMounted';
-import { DropTokenIdOffsets } from '../../constants/collections/Warline';
+import { DropTokenIdOffsets } from '@constants/collections/Warline';
 import { JOINLIST_LINK } from '@sections/constants';
 import { useEffectPeriodic } from '@hooks/useEffectPeriodic';
 import { AnalyticsContext } from 'types';
@@ -88,14 +88,7 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
   const [editionsLeft, setEditionsLeft] = useState<number | null>(null);
   const { ref, inView } = useInView();
   const { isDesktop, isTablet, isMobile } = useViewPort();
-  const {
-    canMintThirdDrop,
-    canMintFourthDrop,
-    canMintFifthDrop,
-    canMintSixthDrop,
-    canMintSeventhDrop,
-    canMintEighthDrop,
-  } = useWeb3Modal();
+  const { canMintDrop, getDropPriceETH } = useWeb3Modal();
   const isMounted = useIsMounted();
 
   const onBuy = useCallback(() => {
@@ -109,18 +102,8 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
 
   useEffectPeriodic(
     () =>
-      (warlineDrop === WarlineDrop.Drop3
-        ? canMintThirdDrop
-        : warlineDrop === WarlineDrop.Drop4
-        ? canMintFourthDrop
-        : warlineDrop === WarlineDrop.Drop5
-        ? canMintFifthDrop
-        : warlineDrop === WarlineDrop.Drop6
-        ? canMintSixthDrop
-        : warlineDrop === WarlineDrop.Drop7
-        ? canMintSeventhDrop
-        : warlineDrop === WarlineDrop.Drop8
-        ? canMintEighthDrop
+      (warlineDrop
+        ? (tokenId: string | number) => canMintDrop(warlineDrop, tokenId)
         : () => Promise.resolve(null))(
         +id - DropTokenIdOffsets[warlineDrop!],
       ).then((left) => {
@@ -363,11 +346,9 @@ export const NftDetails: React.FC<NftDetailsProps> = ({
                   <p className="font-rblack tablet:text-32px tablet:leading-36px mobile:text-27px mobile:leading-30px">
                     {withGetNowButton
                       ? 'Whitelisted'
-                      : warlineDrop !== WarlineDrop.Drop6 &&
-                        warlineDrop !== WarlineDrop.Drop7 &&
-                        warlineDrop !== WarlineDrop.Drop8
-                      ? '0.15 ETH'
-                      : '0.3 ETH'}
+                      : `${
+                          warlineDrop ? getDropPriceETH(warlineDrop) : '?'
+                        } ETH`}
                   </p>
                 </div>
                 <div className="flex flex-row gap-[8px] font-rnarrow tablet:text-16px tablet:leading-36px mobile:text-14px mobile:leading-20px">
