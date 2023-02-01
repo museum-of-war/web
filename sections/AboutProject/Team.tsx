@@ -16,7 +16,6 @@ const Team = () => {
     { name: 'Valeriia Kucheriavenko', role: 'Description Journalist' },
     { name: 'Oleksandra Postoieva', role: 'Description Journalist' },
     { name: 'Alyosha Kovalenko', role: 'Author' },
-    { name: 'Oleksandr Pokhylenko', role: 'Maintenance' },
     { name: 'Pavlo Tsytsorin', role: 'Motion designer' },
     { name: 'Giuseppe Graziano', role: 'Global community manager' },
   ];
