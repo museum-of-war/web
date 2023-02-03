@@ -6,3 +6,8 @@ export type ValueLabel<T> = {
 export type AnalyticsContext = {
   category: string;
 };
+
+export interface TranslatedString {
+  en: string;
+  uk: string;
+}

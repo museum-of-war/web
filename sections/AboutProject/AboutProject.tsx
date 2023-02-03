@@ -42,7 +42,6 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
         <div className="mt-60px tablet:mt-120px">
           <ManagementTeam />
         </div>
-        <Ambassadors />
         <div className="mb-60px tablet:mb-120px">
           <RoadmapPromoBlock />
         </div>

@@ -16,8 +16,17 @@ export const useViewPort = () => {
   const isTablet = useMediaQuery('(min-width:680px) and (max-width:1439px)', {
     noSsr: true,
   });
+  const isNewMd = useMediaQuery('(min-width:900px) and (max-width:1439px)', {
+    noSsr: true,
+  });
   const isDesktop = useMediaQuery('(min-width:1440px)', { noSsr: true });
   return isClientRendered
-    ? { isMobile, isTablet, isDesktop, isTouch: isTouch() }
-    : { isMobile: true, isTablet: false, isDesktop: false, isTouch: true };
+    ? { isMobile, isTablet, isDesktop, isTouch: isTouch(), isNewMd }
+    : {
+        isMobile: true,
+        isTablet: false,
+        isDesktop: false,
+        isTouch: true,
+        isNewMd: true,
+      };
 };
