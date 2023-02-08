@@ -71,4 +71,5 @@ export const TITLES = {
   ARTISTS: 'Artists of Meta History',
   FOR_ARTISTS: 'For Artists | Meta History Gallery',
   ROADMAP: 'Roadmap | Meta History Gallery',
+  JOIN_PROJECT: 'Join the project | Meta History Gallery',
 };

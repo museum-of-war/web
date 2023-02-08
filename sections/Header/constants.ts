@@ -37,4 +37,9 @@ export const MORE_OPTIONS = [
     url: '/artists',
     id: 'artists',
   },
+  {
+    title: 'Join Project',
+    url: '/join-project',
+    id: 'join-project',
+  },
 ];
