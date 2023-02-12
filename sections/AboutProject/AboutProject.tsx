@@ -1,6 +1,5 @@
 import SupportProject from '@sections/AboutProject/SupportProject';
 import GovernmentApproval from '@sections/AboutProject/GovernmentApproval';
-import Ambassadors from '@sections/AboutProject/Ambassadors';
 import React from 'react';
 import ContentTop from './ContentTop/ContentTop';
 import ContentMain from './ContentMain';

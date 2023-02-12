@@ -3,7 +3,6 @@ import PageHead from '@components/PageHead';
 import { SharedProps } from '@components/wrapper';
 import type { NextPage } from 'next';
 import React from 'react';
-import Blurb from '@sections/AboutProject/Blurb';
 import { JoinProject } from '@sections/JoinProject/JoinProject';
 
 const JoinProjectPage: NextPage<SharedProps> = () => {
