@@ -20,28 +20,30 @@ export const ArtistPage: React.FC<ArtistPageProps> = ({ menuOpen, id }) => {
 
   const coverHeight = useMemo(() => (isMobile ? 180 : 408), [isMobile]);
 
-  if (!artist || !artist.arts[0]) {
+  if (!artist) {
     return null;
   }
 
   return (
     <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:mt-[-48px] tablet:mt-[-48px] mobile:mt-[-40px]">
-      <div className="absolute left-0 top-100px z-0 right-0">
-        {artist.arts[0].ImageType?.includes('.mp4') ? (
-          <video
-            style={{ height: coverHeight, width: '100%', objectFit: 'cover' }}
-            src={`${IMG_STORAGE}/original/${artist.arts[0].ImageType}`}
-          />
-        ) : (
-          <Parallax
-            strength={isMobile ? 0 : 200}
-            style={{ height: coverHeight, width: '100%' }}
-            bgImage={`${IMG_STORAGE}/original/${artist.arts[0].ImageType}`}
-            bgImageAlt={`${artist.name} Cover Image`}
-            bgImageStyle={{ height: coverHeight, objectFit: 'cover' }}
-          />
-        )}
-      </div>
+      {artist?.arts[0] && (
+        <div className="absolute left-0 top-100px z-0 right-0">
+          {artist.arts[0].ImageType?.includes('.mp4') ? (
+            <video
+              style={{ height: coverHeight, width: '100%', objectFit: 'cover' }}
+              src={`${IMG_STORAGE}/original/${artist.arts[0].ImageType}`}
+            />
+          ) : (
+            <Parallax
+              strength={isMobile ? 0 : 200}
+              style={{ height: coverHeight, width: '100%' }}
+              bgImage={`${IMG_STORAGE}/original/${artist.arts[0].ImageType}`}
+              bgImageAlt={`${artist.name} Cover Image`}
+              bgImageStyle={{ height: coverHeight, objectFit: 'cover' }}
+            />
+          )}
+        </div>
+      )}
       <div
         className="relative"
         style={{
