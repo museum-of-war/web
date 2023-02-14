@@ -2,11 +2,13 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import EventPopup from '@components/popups/EventPopup';
 import BidPopup from '@components/popups/BidPopup';
 import SignInPopup from '@components/popups/SignInPopup';
+import { TextPopup } from '@components/popups/TextPopup';
 
 const POPUPS_MAP = {
   event: EventPopup,
   bid: BidPopup,
   signIn: SignInPopup,
+  text: TextPopup,
 };
 
 export const PopupContext = createContext<{

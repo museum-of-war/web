@@ -1,6 +1,5 @@
 import SupportProject from '@sections/AboutProject/SupportProject';
 import GovernmentApproval from '@sections/AboutProject/GovernmentApproval';
-import Ambassadors from '@sections/AboutProject/Ambassadors';
 import React from 'react';
 import ContentTop from './ContentTop/ContentTop';
 import ContentMain from './ContentMain';
@@ -42,7 +41,6 @@ const AboutProject = ({ signerAddress }: AboutProjectProps) => {
         <div className="mt-60px tablet:mt-120px">
           <ManagementTeam />
         </div>
-        <Ambassadors />
         <div className="mb-60px tablet:mb-120px">
           <RoadmapPromoBlock />
         </div>

@@ -40,6 +40,7 @@ export const SIXTH_DROP_ADDRESS = '0x7982649234E992506F72CE5d4C3C39BaA299cFd6';
 export const SEVENTH_DROP_ADDRESS =
   '0xB86AD90302680EB75A860a6F4bb4cba5349c4D28';
 export const EIGHTH_DROP_ADDRESS = '0xCaA7d9278480F662E0FE8d627eeDBD36cae9aA37';
+export const NINTH_DROP_ADDRESS = '0x9B9226f60DcA80A31770371b59aBFA76C7FAacA0';
 export const PROSPECT_100_ADDRESS =
   '0x932aEAc0eEBaA1fE8fdB53C4f81312cBA5F771A8';
 export const AVATARS_ADDRESS = '0x11F0640bdb99E54Cbb7bE40E18460F9c9c16B957';
@@ -71,4 +72,5 @@ export const TITLES = {
   ARTISTS: 'Artists of Meta History',
   FOR_ARTISTS: 'For Artists | Meta History Gallery',
   ROADMAP: 'Roadmap | Meta History Gallery',
+  JOIN_PROJECT: 'Join the project | Meta History Gallery',
 };
