@@ -906,6 +906,56 @@ Now when I have some free time I try to draw in a small, cheap notebook, sketche
 Since February 2022, she has been working in the humanitarian field and also created a social initiative aimed at demonstrating and growing diversity, equality, and inclusion in Ukrainian society.`,
     id: 'alice_zhuravel',
   },
+  {
+    name: 'Oleksii Gnievyshev',
+    avatar: 'gnievyshev.jpg.webp',
+    descriptionUa: `Мистецтво – це шлях до нашої підсвідомості, наших почуттів, переживань і внутрішніх сил. Кожна картина – це вікно в інший світ, з якого можна щось взяти для себе. Я вважаю, що сила мистецтва неймовірно велика. Це може допомогти нам підійти до такого фундаментального явища, як просвітлення. Про нього чули всі, але мало хто міг навіть почати його розуміти. Завдяки багаторічній роботі над собою та творчому пошуку я зрозуміла, що через мистецтво є шлях. У моїх картинах переплетені в одне ціле всі мої знання, підсвідомість, усвідомлені сновидіння, медитація та багато іншого. Я впевнений, що таке пробудження, на яке здатний мозок і дух, може значно змінити наше суспільство. Це принесе мир, взаєморозуміння та процвітання.
+Олексій Гнєвишев — високопрофесійний художник, майстер реалістичного живопису. Народився в Україні 1991 року. Він успішно закінчив Київську академію мистецтв і 5 років навчався у приватного викладача Володимира Багалики. З 2014 року живе і працює в Брюлі, Німеччина. Його картини знаходяться в приватних колекціях і музеях по всьому світу.`,
+    descriptionEn: `Art is the way to our subconscious, our feelings, experiences and inner powers. Each picture is a window into another world from which you can take something for yourself. I believe that the power of art is incredibly great. It can help us approach a phenomenon as fundamental as enlightenment. Everyone heard of him, but few could even begin to understand him. Thanks to many years of work on myself and creative search, I realized that there is a way through art. In my paintings all my knowledge, subconscious, lucid dreaming, meditation and much more are intertwined into a whole. I am confident that such an awakening, which the brain and spirit are capable of, can greatly transform our society. It will bring peace, understanding and prosperity.
+Oleksii Gnievyshev is a highly professional artist, master of realistic painting. He was born in Ukraine in 1991. He successfully graduated from the Kiev Academy of Arts and studied with a private teacher Vladimir Bagalika for 5 years. Since 2014 he lives and works in Brühl, Germany. His paintings are in private collections and museums around the world.`,
+    id: 'oleksii_gnievyshev',
+  },
+  {
+    name: 'Stanislav Lunin',
+    avatar: 'lunin.jpg.webp',
+    descriptionUa: `Я український концепт-художник зі Львова. Я створюю плакати "Символів Супротиву" з озброєними жінками. Зараз працюю в техніці комп’ютерної графіки. Я створюю роботи, які зупиняють час і фіксують історію війни в Україні, яку можна розповісти всьому світу мовою мистецтва.`,
+    descriptionEn: `I am a Ukrainian concept artist from Lviv. I create posters with symbols of resistance against armed women. The technique in which I currently work is Computer Graphics. I create works that stop time and record a story of the war in Ukraine that can be told to the whole world in the language of art.`,
+    id: 'stanislav_lunin',
+  },
+  {
+    name: 'Roman Chalyi',
+    avatar: 'chalyi.jpg.webp',
+    descriptionUa: `Роман Чалий закінчив Харківське державне художнє училище та Харківську державну академію дизайну і мистецтв. Працював в українських студіях Plarium, Room8Studio та 4A Games. З 2020 року працює фріланс концепт-художником. Створює дизайни персонажів, середовища та ключові кадри. Співпрацює з такими студіями як Aaron Sims Creative, Nickelodeon, Riot Games та багатьма іншими.`,
+    descriptionEn: `Roman Chaliy graduated from the Kharkiv State School of Art and the Kharkiv State Academy of Design and Arts. Worked in Ukrainian studios such as Plarium, Room8Studio and 4A Games. Since 2020, he has been working as a freelance concept artist. Creates character designs, environments and keyframes. Cooperates with such studios as Aaron Sims Creative, Nickelodeon, Riot Games and many others.`,
+    id: 'roman_chalyi',
+  },
+  {
+    name: 'Karina Kuts',
+    avatar: 'kuts.jpeg',
+    descriptionUa: `Каріна Куц — художник ілюстратор. Мистецький шлях почала ледь не зі свого першого ковтку повітря. З дитинства малювала на усіх придатних до кольорових олівців поверхнях, будь то шпалери, чи важливі батьківські документи. Отримала ступінь бакалавра веб-дизайну в Мистецькому інституті художнього моделювання та дизайну ім. Сальвадора Далі, а також диплом спеціаліста з вільної графіки та ілюстрації книги у Національній академії образотворчого мистецтва і архітектури (НАОМА). Саме ілюстрування книг вважає своєю найзаповітнішою мрією.  
+
+Має спільний проект з українським видавництвом настільних ігор Wanted Games – карткову гру Hanafuda (Koi-koi). Працювала дизайнером в компанії My Gift, а також художником ювелірного дому.`,
+    descriptionEn: `Karina Kuts is an illustrator. She began her artistic journey almost from her first breath of air. Since childhood, she drew on all surfaces suitable for colored pencils, be it wallpaper or important parental documents. She received a bachelor's degree in web design at the Art Institute of Artistic Modeling and Design named after Salvador Dali, as well as a specialist diploma in free graphics and book illustration at the National Academy of Fine Arts and Architecture. She considers book illustration to be her most cherished dream.
+
+Has a joint project with the Ukrainian board game publisher Wanted Games - the Hanafuda (Koi-koi) card game. She worked as a designer at the My Gift company, as well as an artist of a jewelry house.`,
+    id: 'karina_kuts',
+  },
+  {
+    name: 'Alex Twin',
+    avatar: 'twin.png.webp',
+    descriptionUa: `Олександр Близнюк. Український цифровий художник з Рівненщини. Працюю в ігровій та кіноіндустрії протягом 12 років. Приймав yчасть в розробці мультфільмів для Netflix, а також таких ігрових проектів як HALO, Prey, PUBG, Call of Duty, Apex Legends, та ін.`,
+    descriptionEn: `Oleksandr Blyzniuk. Ukrainian CG artist from Rivne region. I have been working in the game and film industry for 12 years. Worked on some cartoons on Netflix and games such as HALO, Prey, PUBG, Call of Duty, Apex Legends, etc.`,
+    id: 'alex_twin',
+  },
+  {
+    name: 'Oleksandr Borodin',
+    avatar: 'borodin.jpg',
+    descriptionUa: `Мене звати Олександр Бородін. Мені 32. Народився у Харкові. Я самонавчаний цифровий художник. Можу працювати як в 2D так і в 3D. Працюю в геймдеві з 2013 року у ролі концепт-артисту та ліда.
+Маю захоплення від відеоігор, фотографії та велосипедів. Також полюбляю простоту та локонічність.`,
+    descriptionEn: `My name is Oleksandr Borodin. I'm 32. Born in Kharkiv. I'm self-developed cg-artist. I able to do stuff in 2D and 3D. I've working in gamedev since 2013 on concept-artists or lead/supervising positions. 
+Passioned by video-games, photos and cycling. Also love simplicity and laconicism.`,
+    id: 'alex_twin',
+  },
 ].sort((a1, a2) => a1.name.localeCompare(a2.name)) as ExtendedArtistType[];
 
 export const ARTISTS_WITH_ARTS = ARTISTS.map(
