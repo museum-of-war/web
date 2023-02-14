@@ -156,6 +156,7 @@ export type ExtendedArtistType = {
 
 export type ExtendedArtistWithArtsType = {
   arts: EventType[];
+  amountOfWorks: number;
 } & ExtendedArtistType;
 
 export type AmbassadorType = {

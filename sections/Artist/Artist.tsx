@@ -9,6 +9,7 @@ import { IMG_STORAGE } from '@sections/constants';
 import Link from 'next/link';
 import ScaledImage from '@components/ScaledImage';
 import { getImageSources } from '@utils/Warline/WarlineUrls';
+import AuctionData from '@sections/Auction/AuctionData';
 
 type ArtistPageProps = {
   menuOpen: boolean;
@@ -18,11 +19,15 @@ export const ArtistPage: React.FC<ArtistPageProps> = ({ menuOpen, id }) => {
   const { isMobile } = useViewPort();
   const artist = ARTISTS_WITH_ARTS.find((artist) => artist.id == id);
 
-  const coverHeight = useMemo(() => (isMobile ? 180 : 408), [isMobile]);
-
   if (!artist) {
     return null;
   }
+
+  const artistCollectionData = AuctionData.filter((event) =>
+    event.artist.includes(artist.name),
+  );
+
+  const coverHeight = useMemo(() => (isMobile ? 180 : 408), [isMobile]);
 
   return (
     <div className="desktop:container mx-auto desktop:px-132px tablet:px-72px mobile:px-24px desktop:mt-[-48px] tablet:mt-[-48px] mobile:mt-[-40px]">
@@ -44,6 +49,17 @@ export const ArtistPage: React.FC<ArtistPageProps> = ({ menuOpen, id }) => {
           )}
         </div>
       )}
+      {!artist?.arts[0] && artistCollectionData[0] && (
+        <div className="absolute left-0 top-100px z-0 right-0">
+          <Parallax
+            strength={isMobile ? 0 : 200}
+            style={{ height: coverHeight, width: '100%' }}
+            bgImage={artistCollectionData[0].imageSrc}
+            bgImageAlt={`${artist.name} Cover Image`}
+            bgImageStyle={{ height: coverHeight, objectFit: 'cover' }}
+          />
+        </div>
+      )}
       <div
         className="relative"
         style={{
@@ -60,9 +76,9 @@ export const ArtistPage: React.FC<ArtistPageProps> = ({ menuOpen, id }) => {
         >
           <RoundLogo
             size={120}
-            src={`${IMG_STORAGE}/avatars/${
-              artist.avatar || 'placeholder.png'
-            }?w=120&h=120`}
+            src={`${IMG_STORAGE}/avatars/${artist.avatar || 'placeholder.png'}${
+              artist.avatar?.includes('.webp') ? '' : '?w=120&h=120'
+            }`}
           />
           <NavBack />
         </div>

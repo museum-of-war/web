@@ -26,8 +26,8 @@ const Card: React.FC<{ artist: typeof ARTISTS_WITH_ARTS[number] }> = ({
           {artist.name}
         </div>
         <div className="font-rlight desktop:leading-[36px] desktop:leading-[36px] mobile:leading-[40px] mb-24px">
-          {artist.arts?.length} art
-          {artist.arts?.length === 1 ? '' : 's'}
+          {artist.amountOfWorks} art
+          {artist.amountOfWorks === 1 ? '' : 's'}
         </div>
       </a>
     </Link>

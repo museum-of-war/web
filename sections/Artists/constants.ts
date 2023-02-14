@@ -3,6 +3,7 @@ import {
   ExtendedArtistType,
   ExtendedArtistWithArtsType,
 } from '@sections/types';
+import AuctionData from '@sections/Auction/AuctionData';
 
 const DROP_EVENTS = AllDropsData.flatMap((drop) => drop.events);
 export const ARTISTS = [
@@ -965,5 +966,10 @@ export const ARTISTS_WITH_ARTS = ARTISTS.map(
       arts: DROP_EVENTS.filter((event) =>
         event.ArtistName.includes(artist.name),
       ),
+      amountOfWorks:
+        DROP_EVENTS.filter((event) => event.ArtistName.includes(artist.name))
+          .length +
+        AuctionData.filter((event) => event.artist.includes(artist.name))
+          .length,
     } as ExtendedArtistWithArtsType),
 );
