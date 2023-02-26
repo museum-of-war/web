@@ -11,7 +11,7 @@ export enum OptionType {
 export enum OptionCategory {
   All = 'All Collections',
   VesaZinaida = 'Vesa & Zinaida',
-  Revival = 'The Revival Project',
+  // Revival = 'The Revival Project',
   Kalush = 'Stefania For Ukraine',
   AvatarsForUkraine = 'Avatars for Ukraine',
   Prospect100 = 'PROSPECT 100',
@@ -31,7 +31,7 @@ export const OptionCategoriesValues = {
   [OptionCategory.Prospect100]: AuctionCollection.Prospect100,
   [OptionCategory.AvatarsForUkraine]: AuctionCollection.AvatarsForUkraine,
   [OptionCategory.Kalush]: AuctionCollection.Kalush,
-  [OptionCategory.Revival]: AuctionCollection.TheRevivalProject,
+  // [OptionCategory.Revival]: AuctionCollection.TheRevivalProject,
   [OptionCategory.VesaZinaida]: AuctionCollection.VesaZinaida,
 };
 

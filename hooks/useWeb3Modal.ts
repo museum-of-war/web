@@ -24,7 +24,7 @@ import {
   MERGER_ADDRESS,
   PROJECT_WALLET_ADDRESS,
   PROSPECT_100_ADDRESS,
-  REVIVAL_ADDRESS,
+  // REVIVAL_ADDRESS,
   SECOND_DROP_ADDRESS,
   UKRAINE_WALLET_ADDRESS,
 } from '@sections/constants';
@@ -973,41 +973,41 @@ export function useWeb3Modal() {
     }
   }
 
-  async function getRevivalTokensCount() {
-    const web3 = createAlchemyWeb3(
-      `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
-    );
-
-    try {
-      const nftContract = new web3.eth.Contract(
-        MetaHistorySelectiveDropContractAbi as AbiItem[],
-        REVIVAL_ADDRESS,
-      );
-
-      const ethersProvider = new ethers.providers.Web3Provider(
-        web3.currentProvider as ExternalProvider,
-      );
-
-      const sellerV2 = NFTAuctionConnect(
-        ethersProvider,
-        chain,
-        AuctionVersion.SellerV2,
-      );
-
-      const total = +(await nftContract.methods
-        .totalSupply()
-        .call({ from: REVIVAL_ADDRESS }));
-
-      const onSale = +(await nftContract.methods
-        .balanceOf(sellerV2.address)
-        .call({ from: REVIVAL_ADDRESS }));
-
-      return total - onSale;
-    } catch (e) {
-      console.warn(e);
-      return 0;
-    }
-  }
+  // async function getRevivalTokensCount() {
+  //   const web3 = createAlchemyWeb3(
+  //     `https://eth-${chain}.alchemyapi.io/v2/${apiKey}`,
+  //   );
+  //
+  //   try {
+  //     const nftContract = new web3.eth.Contract(
+  //       MetaHistorySelectiveDropContractAbi as AbiItem[],
+  //       REVIVAL_ADDRESS,
+  //     );
+  //
+  //     const ethersProvider = new ethers.providers.Web3Provider(
+  //       web3.currentProvider as ExternalProvider,
+  //     );
+  //
+  //     const sellerV2 = NFTAuctionConnect(
+  //       ethersProvider,
+  //       chain,
+  //       AuctionVersion.SellerV2,
+  //     );
+  //
+  //     const total = +(await nftContract.methods
+  //       .totalSupply()
+  //       .call({ from: REVIVAL_ADDRESS }));
+  //
+  //     const onSale = +(await nftContract.methods
+  //       .balanceOf(sellerV2.address)
+  //       .call({ from: REVIVAL_ADDRESS }));
+  //
+  //     return total - onSale;
+  //   } catch (e) {
+  //     console.warn(e);
+  //     return 0;
+  //   }
+  // }
 
   async function canMint() {
     // Initialize an alchemy-web3 instance:
@@ -1343,17 +1343,17 @@ export function useWeb3Modal() {
       Object.values(AddressesToDrops).map((drop) => getDropMintedCount(drop)),
     ).then((arr) => arr.reduce((prev, curr) => prev + curr, 0));
     const prospect100Tokens = +(await getProspect100TokensCount());
-    const revivalTokens = +(await getRevivalTokensCount());
+    // const revivalTokens = +(await getRevivalTokensCount());
     const auctions =
       AuctionData.length -
       AuctionData.filter(
         (d) =>
           d.category === AuctionCollection.FirstDrop ||
-          d.category === AuctionCollection.Prospect100 ||
-          d.category === AuctionCollection.TheRevivalProject,
+          d.category === AuctionCollection.Prospect100,
+        // d.category === AuctionCollection.TheRevivalProject,
       ).length;
 
-    return dropsMinted + prospect100Tokens + revivalTokens + auctions;
+    return dropsMinted + prospect100Tokens + /*revivalTokens*/ +auctions;
   }
 
   async function getDropFundsRaisedWeth(drop: WarlineDrop): Promise<BigNumber> {
@@ -1391,16 +1391,16 @@ export function useWeb3Modal() {
       52 - avatarsOnSale,
     ); // 52 on sale, 0.5 ETH fixed price
 
-    const soldRevivalTokens = +(await getRevivalTokensCount());
-    const revivalSaleWeth =
-      ethers.constants.WeiPerEther.div(40).mul(soldRevivalTokens); // 0.025 ETH fixed price
+    // const soldRevivalTokens = +(await getRevivalTokensCount());
+    // const revivalSaleWeth =
+    //   ethers.constants.WeiPerEther.div(40).mul(soldRevivalTokens); // 0.025 ETH fixed price
 
     const wethTotal = dropsFundsRaisedWeth
       .add(firstAuctionWeth)
       .add(secondAuctionWeth)
       .add(KALUSH_BID)
       .add(avatarsSaleWeth)
-      .add(revivalSaleWeth);
+      // .add(revivalSaleWeth);
 
     if (wethTotal.lte(0))
       return {
