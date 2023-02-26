@@ -80,7 +80,7 @@ export enum AuctionCollection {
   AvatarsForUkraine = 'avatars',
   Kalush = 'kalush',
   RestOf1stDrop = 'drop1rest',
-  TheRevivalProject = 'revival',
+  // TheRevivalProject = 'revival',
   VesaZinaida = 'vesa-and-zinaida',
 }
 
@@ -183,4 +183,3 @@ export type ManagementMemberType = {
     url: string;
   };
 };
-//

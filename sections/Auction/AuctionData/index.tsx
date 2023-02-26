@@ -3,7 +3,7 @@ import firstDrop from '@sections/Auction/AuctionData/firstDrop';
 import prospect100 from '@sections/Auction/AuctionData/prospect100';
 import avatarsForUkraine from '@sections/Auction/AuctionData/avatarsForUkraine';
 import kalush from '@sections/Auction/AuctionData/kalush';
-import revival from '@sections/Auction/AuctionData/revival';
+// import revival from '@sections/Auction/AuctionData/revival';
 import vesaAndZinaida from '@sections/Auction/AuctionData/vesaAndZinaida';
 
 const AuctionData: Array<AuctionItemType> = [
@@ -11,7 +11,7 @@ const AuctionData: Array<AuctionItemType> = [
   ...prospect100,
   ...avatarsForUkraine,
   kalush,
-  ...revival,
+  // ...revival,
   ...vesaAndZinaida,
 ].map((item, index) => ({
   index,
