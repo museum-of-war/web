@@ -3,6 +3,7 @@ import {
   BAU_LINK,
   MINISTRY_DT_LINK,
   MINISTRY_CULTURE_LINK,
+  UNITED_24,
 } from '@sections/constants';
 
 interface Supporter {
@@ -36,6 +37,12 @@ const supporters: Supporter[] = [
     src: 'img/partners/blockchain_association.png',
     link: BAU_LINK,
     className: 'max-h-[24px] tablet:max-h-[36px] desktop:max-h-[28px]',
+  },
+  {
+    name: 'United24',
+    src: 'img/partners/united24.webp',
+    link: UNITED_24,
+    className: 'max-h-[14px] tablet:max-h-[20px] desktop:max-h-[16px]',
   },
 ];
 
