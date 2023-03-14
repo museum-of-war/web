@@ -18,6 +18,7 @@ const Team = () => {
     { name: 'Alyosha Kovalenko', role: 'Author' },
     { name: 'Pavlo Tsytsorin', role: 'Motion designer' },
     { name: 'Giuseppe Graziano', role: 'Global community manager' },
+    { name: 'Alika Samoladas', role: 'Graphic and Motion Designer' },
   ];
 
   return (
