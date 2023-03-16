@@ -86,8 +86,12 @@ export const opportunities: Opportunity[] = [
       },
       links: [
         {
-          label: 'Whitepaper',
-          url: '/about-us', // TODO: UPDATE ME
+          label: 'Whitepaper (EN)',
+          url: 'https://drive.google.com/file/d/1kaNISNTf1K_vxFd7rf-dREmeJHP-qNTc/view?usp=sharing',
+        },
+        {
+          label: 'Whitepaper (UA)',
+          url: 'https://drive.google.com/file/d/1qEGsCHWa3npoZpSnqPg_FIXVr1xqRgWm/view?usp=sharing ',
         },
       ],
     },
