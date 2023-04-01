@@ -57,6 +57,7 @@ export enum WarlineDrop {
   Drop8 = 'drop8',
   Drop9 = 'drop9',
   Drop10 = 'drop10',
+  Drop11 = 'drop11',
 }
 
 export enum WarlineDropVersion {

@@ -14,6 +14,7 @@ import {
   EIGHTH_DROP_ADDRESS,
   NINTH_DROP_ADDRESS,
   TENTH_DROP_ADDRESS,
+  ELEVENTH_DROP_ADDRESS,
 } from '@sections/constants';
 
 export const rand_imgs: string[] = [
@@ -97,6 +98,13 @@ export const WarlineData: Readonly<Record<WarlineDrop, WarlineDropType>> = {
   [WarlineDrop.Drop10]: {
     name: 'Drop 10',
     address: TENTH_DROP_ADDRESS,
+    version: WarlineDropVersion.SelectiveDropMHv2,
+    priceETH: 0.3,
+    editions: 2,
+  },
+  [WarlineDrop.Drop11]: {
+    name: 'Drop 11',
+    address: ELEVENTH_DROP_ADDRESS,
     version: WarlineDropVersion.SelectiveDropMHv2,
     priceETH: 0.3,
     editions: 2,
