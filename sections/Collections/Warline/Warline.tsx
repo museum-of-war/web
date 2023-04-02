@@ -143,8 +143,21 @@ const Warline = () => {
           <div className="desktop:flex desktop:flex-row desktop:justify-between mt-20 pb-36px new_md:pb-0">
             <Blurb
               header="WARLINE"
-              english="A chronology of events of the Ukrainian history of modern times, set in stone. The NFTs are facts accompanied by personal reflections. The formula of each NFT is clear and simple: each token is a real news piece from an official source and an illustration from artists, both Ukrainian and international."
-              ukrainian="Відверта хронологія подій новітньої історії України. Експонати — це факти, супроводжені емоційними спогадами. Формула експонату проста і прозора, кожен токен — реальне новинне повідомлення з офіційних джерел та ілюстрація до нього від художників — як українських, так і світових."
+              english={`Welcome to the META HISTORY museum. Here you can support Ukraine and contribute by buying NFT-art.
+
+In the Warline collection, we have collected a chronology of modern events in Ukraine. Verified facts about the war, selected by professional journalists, and artistic reflection on them by talented artists — this is the simple formula of our exhibits.
+
+This is how we immortalize the truth about the events in Ukraine with the help of art and web3 technologies, so that it remains forever in the blockchain, in our memory, and the memory of generations.
+ 
+Funds from the sale of NFTs go to help Ukraine and will be transferred to the account of the fundraising platform UNITED24, created at the initiative of the President of Ukraine Volodymyr Zelenskiy.`}
+              ukrainian={`Вітаємо у музеї META HISTORY. Тут ви можете підтримати Україну, купивши NFT-арт. 
+
+У колекції Warline ми зібрали хронологію сучасних подій в Україні. Перевірені факти про війну, відібрані професійними журналістами, та художня рефлексія на них талановитих митців — ось проста формула наших експонатів. 
+
+Так ми увіковічнюємо правду про події в Україні за допомогою мистецтва та web3 технологій, аби вона назавжди залишилась у блокчейні, в нашій пам’яті та пам’яті поколінь. 
+ 
+Кошти від продажу NFT ідуть на допомогу Україні та будуть переведені на рахунок фандрейзингової платформи UNITED24, створеної за ініціативою Президента України Володимира Зеленського.
+`}
             />
           </div>
         </div>
