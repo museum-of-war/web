@@ -19,7 +19,7 @@ export default [
         DescriptionUkrainian: '1',
         ArtistName: '',
         ArtistLink: '',
-        ImageType: '1.jpg',
+        ImageType: 'drop11/1.jpg',
       },
       {
         Tokenid: '811',
