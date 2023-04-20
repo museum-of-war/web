@@ -197,16 +197,18 @@ export const JoinProject: React.FC = () => {
 
       <Ambassadors />
 
-      <Blurb classNames="mt-60px tablet:mt-[120px]" header="Contact us" />
+      <div id="form">
+        <Blurb classNames="mt-60px tablet:mt-[120px]" header="Contact us" />
 
-      <div className="mt-24px mb-120px flex">
-        <div ref={formRef} className="tablet:max-w-[50%]">
-          <GoogleSheetsForm
-            formFields={FORM_FIELDS}
-            scriptUrl={SCRIPT_URL}
-            buttonLabel="Send"
-            analyticsContext={{ category: 'join_project_form' }}
-          />
+        <div className="mt-24px mb-120px flex">
+          <div ref={formRef} className="tablet:max-w-[50%]">
+            <GoogleSheetsForm
+              formFields={FORM_FIELDS}
+              scriptUrl={SCRIPT_URL}
+              buttonLabel="Send"
+              analyticsContext={{ category: 'join_project_form' }}
+            />
+          </div>
         </div>
       </div>
     </div>
